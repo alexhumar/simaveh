@@ -1,0 +1,20 @@
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/bin/Debug/netstandard1.4/SiMaVeh.Domain.deps.json
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/bin/Debug/netstandard1.4/SiMaVeh.Domain.dll
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/bin/Debug/netstandard1.4/SiMaVeh.Domain.pdb
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.AssemblyInfo.cs
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.dll
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.pdb
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/bin/Debug/netstandard1.4/SiMaVeh.Domain.xml
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.csproj.CoreCompileInputs.cache
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.AssemblyInfoInputs.cache
+C:/Users/Alex Humar/Source/Repos/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.csprojResolveAssemblyReference.cache
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/bin/Debug/netstandard1.4/SiMaVeh.Domain.deps.json
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/bin/Debug/netstandard1.4/SiMaVeh.Domain.dll
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/bin/Debug/netstandard1.4/SiMaVeh.Domain.pdb
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/bin/Debug/netstandard1.4/SiMaVeh.Domain.xml
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.csprojResolveAssemblyReference.cache
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.csproj.CoreCompileInputs.cache
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.AssemblyInfoInputs.cache
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.AssemblyInfo.cs
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.dll
+/home/alex/Microsoft/SiMaVeh/SiMaVeh.Domain/obj/Debug/netstandard1.4/SiMaVeh.Domain.pdb

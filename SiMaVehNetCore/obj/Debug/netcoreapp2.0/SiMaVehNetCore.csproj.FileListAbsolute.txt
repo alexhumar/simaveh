@@ -1,0 +1,13 @@
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/bin/Debug/netcoreapp2.0/SiMaVehNetCore.deps.json
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/bin/Debug/netcoreapp2.0/SiMaVehNetCore.runtimeconfig.json
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/bin/Debug/netcoreapp2.0/SiMaVehNetCore.runtimeconfig.dev.json
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/bin/Debug/netcoreapp2.0/SiMaVehNetCore.dll
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/bin/Debug/netcoreapp2.0/SiMaVehNetCore.pdb
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/bin/Debug/netcoreapp2.0/SiMaVeh.Domain.dll
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/bin/Debug/netcoreapp2.0/SiMaVeh.Domain.pdb
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/bin/Debug/netcoreapp2.0/SiMaVeh.Domain.xml
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/obj/Debug/netcoreapp2.0/SiMaVehNetCore.csproj.CoreCompileInputs.cache
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/obj/Debug/netcoreapp2.0/SiMaVehNetCore.AssemblyInfoInputs.cache
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/obj/Debug/netcoreapp2.0/SiMaVehNetCore.AssemblyInfo.cs
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/obj/Debug/netcoreapp2.0/SiMaVehNetCore.dll
+/home/alex/Microsoft/SiMaVeh/SiMaVehNetCore/obj/Debug/netcoreapp2.0/SiMaVehNetCore.pdb

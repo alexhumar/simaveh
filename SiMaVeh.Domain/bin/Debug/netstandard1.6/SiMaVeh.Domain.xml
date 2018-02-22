@@ -1,0 +1,1786 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SiMaVeh.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:SiMaVeh.Domain.Enums.EAccionMantenimiento">
+            <summary>
+            EAccionMantenimiento
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.EAccionMantenimiento.Reparacion">
+            <summary>
+            Reparacion
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.EAccionMantenimiento.Reemplazo">
+            <summary>
+            Reemplazo
+            </summary>
+        </member>
+        <member name="T:SiMaVeh.Domain.Enums.EConstruccionCarcasaNeumatico">
+            <summary>
+            EConstruccionCarcasaNeumatico
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.EConstruccionCarcasaNeumatico.CintasOpuestas">
+            <summary>
+            CintasOpuestas - B
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.EConstruccionCarcasaNeumatico.Diagonal">
+            <summary>
+            Diagonal - D
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.EConstruccionCarcasaNeumatico.Radial">
+            <summary>
+            Radial - R
+            </summary>
+        </member>
+        <member name="T:SiMaVeh.Domain.Enums.ConstruccionCarcasaNeumaticoParser">
+            <summary>
+            ConstruccionCarcasaNeumaticoParser
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Enums.ConstruccionCarcasaNeumaticoParser.ToString(SiMaVeh.Domain.Enums.EConstruccionCarcasaNeumatico)">
+            <summary>
+            EConstruccionCarcasaNeumaticoParser 
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Enums.ETipoVehiculoNeumatico">
+            <summary>
+            ETipoVehiculoNeumatico
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.ETipoVehiculoNeumatico.Pasajero">
+            <summary>
+            Pasajero
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.ETipoVehiculoNeumatico.CamionLigero">
+            <summary>
+            CamionLigero
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.ETipoVehiculoNeumatico.TrailerEspecial">
+            <summary>
+            TrailerEspecial
+            </summary>
+        </member>
+        <member name="F:SiMaVeh.Domain.Enums.ETipoVehiculoNeumatico.UsoTemporal">
+            <summary>
+            UsoTemporal
+            </summary>
+        </member>
+        <member name="T:SiMaVeh.Domain.Enums.TipoVehiculoNeumaticoParser">
+            <summary>
+            ConstruccionCarcasaNeumaticoParser
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Enums.TipoVehiculoNeumaticoParser.ToString(SiMaVeh.Domain.Enums.ETipoVehiculoNeumatico)">
+            <summary>
+            EConstruccionCarcasaNeumaticoParser 
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Aceite">
+            <summary>
+            Aceite
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Aceite.ViscosidadSAEBajaTemperatura">
+            <summary>
+            Viscosidad SAE Baja Temperatura
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Aceite.ViscosidadSAEAltaTemperatura">
+            <summary>
+            Viscosidad SAE Alta Temperatura
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Aceite.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Aceite.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Aceite.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Automovil">
+            <summary>
+            Automovil
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Automovil.Patente">
+            <summary>
+            Patente
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Automovil.NumeroChasis">
+            <summary>
+            Numero de Chasis
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Automovil.CodigoColorPintura">
+            <summary>
+            Codigo Color Pintura
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Automovil.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Automovil.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Automovil.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Direccion">
+            <summary>
+            Direccion
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Direccion.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Direccion.Calle">
+            <summary>
+            Calle
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Direccion.NumeroCalle">
+            <summary>
+            Numero Calle
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Direccion.Localidad">
+            <summary>
+            Localidad
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Direccion.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Direccion.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Direccion.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.EntidadReparadora">
+            <summary>
+            Entidad Reparadora
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.EntidadReparadora.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EntidadReparadora.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EntidadReparadora.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EntidadReparadora.TipoEntidad">
+            <summary>
+            Tipo Entidad
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EntidadReparadora.ServiciosReparadores">
+            <summary>
+            Servicios Mecanicos
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EntidadReparadora.Reparadores">
+            <summary>
+            Mecanicos
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EntidadReparadora.Direccion">
+            <summary>
+            Direccion
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.EntidadReparadora.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.EntidadReparadora.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.EntidadReparadora.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.EquipamientoAirbags">
+            <summary>
+            Equipamiento Airbags
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EquipamientoAirbags.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EquipamientoAirbags.Volante">
+            <summary>
+            Airbag en Volante
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EquipamientoAirbags.Guantera">
+            <summary>
+            Airbag en Guantera
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EquipamientoAirbags.DelanteroIzquierdo">
+            <summary>
+            Delantero Izquierdo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EquipamientoAirbags.DelanteroDerecho">
+            <summary>
+            Delantero Derecho
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EquipamientoAirbags.TraseroIzquierdo">
+            <summary>
+            Trasero Izquierdo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.EquipamientoAirbags.TraseroDerecho">
+            <summary>
+            Trasero Derecho
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.EquipamientoAirbags.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.EquipamientoAirbags.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.EquipamientoAirbags.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Fluido">
+            <summary>
+            Fluido
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Fluido.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Fluido.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Fluido.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.FuenteEnergia">
+            <summary>
+            Combustible
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.FuenteEnergia.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.FuenteEnergia.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.FuenteEnergia.Marca">
+            <summary>
+            Marca
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.FuenteEnergia.Tipo">
+            <summary>
+            Tipo de Fuente de Energia
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.FuenteEnergia.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.FuenteEnergia.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.FuenteEnergia.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.GrupoModelo">
+            <summary>
+            Grupo Modelo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.GrupoModelo.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.GrupoModelo.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.GrupoModelo.Marca">
+            <summary>
+            Marca
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.GrupoModelo.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.GrupoModelo.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.GrupoModelo.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Kit">
+            <summary>
+            Kit
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Kit.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Kit.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Kit.Descripcion">
+            <summary>
+            Descripcion
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Kit.Recambios">
+            <summary>
+            Recambios
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Kit.GetRepuestos">
+            <summary>
+            GetRepuestos
+            </summary>
+            <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Kit.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Kit.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Kit.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Localidad">
+            <summary>
+            Localidad
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Localidad.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Localidad.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Localidad.CPA">
+            <summary>
+            Codigo Postal
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Localidad.Partido">
+            <summary>
+            Partido
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Localidad.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Localidad.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Localidad.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Mantenimiento">
+            <summary>
+            Mantenimiento
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Mantenimiento.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Mantenimiento.Accion">
+            <summary>
+            Accion
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Mantenimiento.Recambio">
+            <summary>
+            Recambio
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Mantenimiento.MontoRecambio">
+            <summary>
+            Monto Recambio
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Mantenimiento.MonedaMontoRecambio">
+            <summary>
+            Moneda Monto Recambio
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Mantenimiento.ServicioReparador">
+            <summary>
+            Servicio Reparador
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Mantenimiento.Reparador">
+            <summary>
+            Reparador
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Mantenimiento.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Mantenimiento.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Mantenimiento.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Marca">
+            <summary>
+            Marca
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Marca.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Marca.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Marca.Descripcion">
+            <summary>
+            Descripcion
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Marca.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Marca.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Marca.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.ModeloVehiculo">
+            <summary>
+            Modelo Vehiculo
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.ModeloVehiculo.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.GrupoModelo">
+            <summary>
+            Grupo Modelo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.Version">
+            <summary>
+            Version
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.AceiteRecomendado">
+            <summary>
+            Aceite Recomendado
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.Airbags">
+            <summary>
+            Airbags
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.TipoFuenteEnergia">
+            <summary>
+            Tipo de Fuente de Energia
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.FuenteEnergiaRecomendada">
+            <summary>
+            Fuente Energia Recomendada
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.RepuestosRecomendados">
+            <summary>
+            Repuestos Recomendados
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ModeloVehiculo.PresionesNeumaticosRecomendadas">
+            <summary>
+            Presiones de Neumaticos Recomendadas
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.ModeloVehiculo.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.ModeloVehiculo.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.ModeloVehiculo.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Moneda">
+            <summary>
+            Moneda
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Moneda.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Moneda.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Moneda.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Moneda.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Moneda.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Neumatico">
+            <summary>
+            Neumatico
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.Marca">
+            <summary>
+            Marca
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.Modelo">
+            <summary>
+            Modelo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.Tipo">
+            <summary>
+            Tipo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.ConstruccionCarcasa">
+            <summary>
+            Construccion Carcasa
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.RelacionAnchoAlto">
+            <summary>
+            Relación de aspecto entre la altura del perfil y la anchura del neumático como porcentaje
+            Si no esta presente, por defecto es 82.
+            Si supera los 200, entonces es el diámetro total del neumático en milímetros.
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.DiametroLLanta">
+            <summary>
+            Diámetro en pulgadas de la llanta para la que el neumático está diseñado específicamente
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.AnchuraSeccionalNominal">
+            <summary>
+            Anchura Seccional Nominal en mm
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.IndiceCarga">
+            <summary>
+            Indice de Carga
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Neumatico.IndiceVelocidad">
+            <summary>
+            Indice Velocidad
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Neumatico.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Neumatico.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Neumatico.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Pais">
+            <summary>
+            Pais
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Pais.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Pais.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Pais.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Pais.Provincias">
+            <summary>
+            Provincias
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Pais.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Pais.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Pais.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Partido">
+            <summary>
+            Partido
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Partido.#ctor">
+            <summary>
+            Partido
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Partido.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Partido.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Partido.Provincia">
+            <summary>
+            Provincia
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Partido.Localidades">
+            <summary>
+            Localidades
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Partido.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Partido.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Partido.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.PeriodicidadMantenimiento">
+            <summary>
+            Periodicidad Mantenimiento
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.Kilometros">
+            <summary>
+            Kilometros
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.Dias">
+            <summary>
+            Dias
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.Meses">
+            <summary>
+            Meses
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.Anios">
+            <summary>
+            Anios
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.ModeloVehiculo">
+            <summary>
+            Modelo Vehiculo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.TargetMantenimiento">
+            <summary>
+            Target Mantenimiento
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.EsDefault">
+            <summary>
+            Es periodicidad default (independiente del modelo vehiculo)
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.PeriodicidadMantenimiento.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Persona">
+            <summary>
+            Persona
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Persona.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Persona.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Persona.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Persona.Apellido">
+            <summary>
+            Apellido
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Persona.NumeroDocumento">
+            <summary>
+            Numero Documento
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Persona.TipoDocumento">
+            <summary>
+            Tipo Documento
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Persona.Telefonos">
+            <summary>
+            Telefonos
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Persona.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Persona.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Persona.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Pieza">
+            <summary>
+            Pieza
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Pieza.Ubicacion">
+            <summary>
+            Ubicacion
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Pieza.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Pieza.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Pieza.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.PresionNeumatico">
+            <summary>
+            Presion Neumaticos
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PresionNeumatico.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PresionNeumatico.RuedasDelanteras">
+            <summary>
+            Presion en PSI de ruedas delanteras
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PresionNeumatico.RuedasTraseras">
+            <summary>
+            Presion en PSI de ruedas traseras
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PresionNeumatico.EsDefault">
+            <summary>
+            Es presion default (para cualquier neumatico)
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PresionNeumatico.ModeloVehiculo">
+            <summary>
+            Modelo Vehiculo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.PresionNeumatico.Neumatico">
+            <summary>
+            Neumatico
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.PresionNeumatico.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.PresionNeumatico.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.PresionNeumatico.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Provincia">
+            <summary>
+            Provincia
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Provincia.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Provincia.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Provincia.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Provincia.Pais">
+            <summary>
+            Pais
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Provincia.Partidos">
+            <summary>
+            Partidos
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Provincia.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Provincia.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Provincia.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Recambio">
+            <summary>
+            Recambio
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Recambio.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Recambio.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Recambio.Marca">
+            <summary>
+            Marca
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Recambio.Kits">
+            <summary>
+            Kits a los que pertenece
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Recambio.GetRepuestos">
+            <summary>
+            GetRepuestos
+            </summary>
+            <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Recambio.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Recambio.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Recambio.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Reparador">
+            <summary>
+            Reparador
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Reparador.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Reparador.EntidadesReparadoras">
+            <summary>
+            Entidades reparadoras en las que trabaja el reparador
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Reparador.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Reparador.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Reparador.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Repuesto">
+            <summary>
+            Repuesto
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Repuesto.#ctor">
+            <summary>
+            Repuesto
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Repuesto.CodigoIdentificador">
+            <summary>
+            Codigo Identificador
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Repuesto.TargetMantenimiento">
+            <summary>
+            Target Mantenimiento
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Repuesto.PeriodicidadesMantenimiento">
+            <summary>
+            Periodicidades Mantenimiento
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Repuesto.GetRepuestos">
+            <summary>
+            GetRepuestos
+            </summary>
+            <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Repuesto.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Repuesto.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Repuesto.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.ServicioReparador">
+            <summary>
+            Servicio Reparador
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.ServicioReparador.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.Mantenimientos">
+            <summary>
+            Mantenimientos
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.FechaInicio">
+            <summary>
+            Fecha Inicio
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.FechaFin">
+            <summary>
+            Fecha Fin
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.EntidadReparadora">
+            <summary>
+            Entidad Reparadora
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.Vehiculo">
+            <summary>
+            Vehiculo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.MontoManoObra">
+            <summary>
+            Monto de Mano de Obra
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.MonedaMontoManoObra">
+            <summary>
+            Moneda del Monto de Mano de Obra
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.ServicioReparador.KilometrajeVehiculo">
+            <summary>
+            Kilometraje del vehiculo al momento del servicio
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.ServicioReparador.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.ServicioReparador.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.ServicioReparador.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.TargetMantenimiento">
+            <summary>
+            Target Mantenimiento
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TargetMantenimiento.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TargetMantenimiento.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TargetMantenimiento.Descripcion">
+            <summary>
+            Descripcion
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TargetMantenimiento.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TargetMantenimiento.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TargetMantenimiento.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Telefono">
+            <summary>
+            Telefono
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Telefono.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Telefono.Numero">
+            <summary>
+            Numero
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Telefono.Tipo">
+            <summary>
+            Tipo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Telefono.Persona">
+            <summary>
+            Persona
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Telefono.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Telefono.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Telefono.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.TipoCambio">
+            <summary>
+            Tipo Cambio
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoCambio.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoCambio.CoeficienteCambio">
+            <summary>
+            Valor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoCambio.MonedaOrigen">
+            <summary>
+            Moneda Origen
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoCambio.MonedaDestino">
+            <summary>
+            Moneda Destino
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoCambio.Fecha">
+            <summary>
+            Fecha
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoCambio.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoCambio.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoCambio.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.TipoDocumento">
+            <summary>
+            Tipo Documento
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoDocumento.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoDocumento.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoDocumento.Descripcion">
+            <summary>
+            Descripcion
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoDocumento.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoDocumento.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoDocumento.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.TipoEntidadReparadora">
+            <summary>
+            Tipo Entidad Reparadora
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoEntidadReparadora.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoEntidadReparadora.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoEntidadReparadora.Descripcion">
+            <summary>
+            Descripcion
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoEntidadReparadora.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoEntidadReparadora.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoEntidadReparadora.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.TipoFuenteEnergia">
+            <summary>
+            Tipo de Fuente de Energia
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoFuenteEnergia.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoFuenteEnergia.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoFuenteEnergia.Descripcion">
+            <summary>
+            Descripcion
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoFuenteEnergia.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoFuenteEnergia.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoFuenteEnergia.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.TipoTelefono">
+            <summary>
+            Tipo Telefono
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoTelefono.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoTelefono.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.TipoTelefono.Descripcion">
+            <summary>
+            Descripcion
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoTelefono.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoTelefono.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.TipoTelefono.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.UbicacionPieza">
+            <summary>
+            Ubicacion Pieza
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.UbicacionPieza.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.UbicacionPieza.Izquierda">
+            <summary>
+            True -> Izquierda. False -> Derecha.
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.UbicacionPieza.Superior">
+            <summary>
+            True -> Superior. False -> Inferior.
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.UbicacionPieza.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.UbicacionPieza.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.UbicacionPieza.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Usuario">
+            <summary>
+            Usuario
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Usuario.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Usuario.Vehiculos">
+            <summary>
+            Vehiculos
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Usuario.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Usuario.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Usuario.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SiMaVeh.Domain.Models.Vehiculo">
+            <summary>
+            Vehiculo
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Vehiculo.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Vehiculo.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Vehiculo.Modelo">
+            <summary>
+            Modelo
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Vehiculo.Kilometraje">
+            <summary>
+            Kilometraje
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Vehiculo.AnioFabricacion">
+            <summary>
+            Anio de fabricacion
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Vehiculo.Usuario">
+            <summary>
+            Usuario al que pertenece
+            </summary>
+        </member>
+        <member name="P:SiMaVeh.Domain.Models.Vehiculo.ServiciosReparadores">
+            <summary>
+            Servicios Reparadores
+            </summary>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Vehiculo.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Vehiculo.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiMaVeh.Domain.Models.Vehiculo.GetHashCode">
+            <summary>
+            GetHashCode
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
