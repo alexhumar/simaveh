@@ -1,5 +1,7 @@
 ﻿using SiMaVeh.Domain.Interfaces;
+using SiMaVeh.Domain.Relations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -15,7 +17,8 @@ namespace SiMaVeh.Domain.Models
         public EntidadReparadora()
         {
             ServiciosReparadores = new List<ServicioReparador>();
-            Reparadores = new List<Reparador>();
+            // Reparadores = new List<Reparador>();
+            ReparadorEntidadReparadora = new List<ReparadorEntidadReparadora>();
         }
 
         /// <summary>
@@ -36,12 +39,24 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Mecanicos
         /// </summary>
-        public virtual IList<Reparador> Reparadores { get; set; }
+        public virtual IList<Reparador> Reparadores
+        {
+            get { return ReparadorEntidadReparadora.Select(r => r.Reparador).ToList(); }
+        }
 
         /// <summary>
         /// Direccion
         /// </summary>
         public virtual Direccion Direccion { get; set; }
+
+        #region relations
+
+        /// <summary>
+        /// Relacion Reparador-EntidadReparadora
+        /// </summary>
+        public virtual IList<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
+
+        #endregion
 
         #region overrides
 
@@ -168,8 +183,13 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Reparadores?.Add(entity);
-                entity.EntidadesReparadoras?.Add(this);
+                // Reparadores?.Add(entity);
+                // entity.EntidadesReparadoras?.Add(this);
+                ReparadorEntidadReparadora?.Add(new ReparadorEntidadReparadora
+                {
+                    Reparador = entity,
+                    EntidadReparadora = this
+                });
             }
         }
 
@@ -181,8 +201,13 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Reparadores?.Remove(entity);
-                entity.EntidadesReparadoras?.Remove(this);
+                // Reparadores?.Remove(entity);
+                // entity.EntidadesReparadoras?.Remove(this);
+                var toRemove = ReparadorEntidadReparadora?
+                    .Where(r => r.Reparador == entity && r.EntidadReparadora == this)
+                    .FirstOrDefault();
+                if (toRemove != null)
+                    ReparadorEntidadReparadora.Remove(toRemove);
             }
         }
 

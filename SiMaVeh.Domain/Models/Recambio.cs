@@ -1,5 +1,7 @@
 ﻿using SiMaVeh.Domain.Interfaces;
+using SiMaVeh.Domain.Relations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -13,7 +15,8 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public Recambio()
         {
-            Kits = new List<Kit>();
+            // Kits = new List<Kit>();
+            KitRecambio = new List<KitRecambio>();
         }
 
         /// <summary>
@@ -24,13 +27,28 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Kits a los que pertenece
         /// </summary>
-        public virtual IList<Kit> Kits { get; set; }
+        public virtual IList<Kit> Kits
+        {
+            get
+            {
+                return this.KitRecambio.Select(k => k.Kit).ToList();
+            }
+        }
 
         /// <summary>
         /// GetRepuestos
         /// </summary>
         /// <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
         public abstract IList<Repuesto> GetRepuestos();
+
+        #region relations
+
+        /// <summary>
+        /// Relacion Kit-Recambio
+        /// </summary>
+        public virtual IList<KitRecambio> KitRecambio { get; }
+
+        #endregion
 
         #region overrides
 
@@ -102,8 +120,13 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Kits?.Add(entity);
-                entity.Recambios.Add(this);
+                // Kits?.Add(entity);
+                // entity.Recambios.Add(this);
+                KitRecambio?.Add(new KitRecambio
+                {
+                    Recambio = this,
+                    Kit = entity
+                });
             }
         }
 
@@ -115,8 +138,13 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Kits?.Remove(entity);
-                entity.Recambios.Remove(this);
+                // Kits?.Remove(entity);
+                // entity.Recambios.Remove(this);
+                var toRemove = KitRecambio?
+                    .Where(r => r.Recambio == this && r.Kit == entity)
+                    .FirstOrDefault();
+                if (toRemove != null)
+                    KitRecambio.Remove(toRemove);
             }
         }
 

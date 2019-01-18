@@ -88,7 +88,7 @@ namespace SiMaVeh.Controllers
         /// <param name="entity"></param>
         /// <returns>Entidad creada</returns>
         /// <response code="201"></response>
-        public virtual async Task<IActionResult> Post(TBe entity)
+        public virtual async Task<IActionResult> Post([FromBody] TBe entity)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -105,7 +105,7 @@ namespace SiMaVeh.Controllers
         /// <param name="entity"></param>
         /// <returns>Entidad actualizada</returns>
         /// <response code="204"></response>
-        public virtual async Task<IActionResult> Put([FromODataUri] TBeId key, TBe entity)
+        public virtual async Task<IActionResult> Put([FromODataUri] TBeId key, [FromBody] TBe entity)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -135,7 +135,7 @@ namespace SiMaVeh.Controllers
         /// <param name="entity"></param>
         /// <returns>Entidad actualizada</returns>
         /// <response code="204"></response>
-        public virtual async Task<IActionResult> Patch([FromODataUri] TBeId key, Delta<TBe> entity)
+        public virtual async Task<IActionResult> Patch([FromODataUri] TBeId key, [FromBody] Delta<TBe> entity)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

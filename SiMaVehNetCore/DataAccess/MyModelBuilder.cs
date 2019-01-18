@@ -9,9 +9,9 @@ namespace SiMaVeh.DataAccess
 {
     public class MyModelBuilder
     {
-        public static IEdmModel getEdmModel(IServiceProvider serviceProvider)
+        public static IEdmModel getEdmModel()
         {
-            var builder = new ODataConventionModelBuilder(serviceProvider);
+            var builder = new ODataConventionModelBuilder();
 
             // var products = builder.EntitySet<Product>("Products");
             // var categories = builder.EntitySet<Category>("Categories");

@@ -36,7 +36,7 @@ namespace SiMaVehNetCore
 
             app.UseMvc(routeBuilder =>
             {
-                routeBuilder.MapODataServiceRoute("ODataRoute", "odata", MyModelBuilder.getEdmModel(app.ApplicationServices));
+                routeBuilder.MapODataServiceRoute("odata", "simaveh", MyModelBuilder.getEdmModel());
 
                 //Work-around for issue #1175
                 routeBuilder.EnableDependencyInjection();

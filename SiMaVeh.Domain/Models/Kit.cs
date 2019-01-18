@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.Interfaces;
+using SiMaVeh.Domain.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +15,7 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public Kit()
         {
-            Recambios = new List<Recambio>();
+            // Recambios = new List<Recambio>();
         }
 
         /// <summary>
@@ -30,7 +31,13 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recambios
         /// </summary>
-        public virtual IList<Recambio> Recambios { get; set; }
+        public virtual IList<Recambio> Recambios 
+        { 
+            get
+            {
+                return KitRecambio.Select(k => k.Recambio).ToList();
+            }
+        }
 
         #region overrides
 
@@ -109,8 +116,13 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Recambios?.Add(entity);
-                entity.Kits.Add(this);
+                // Recambios?.Add(entity);
+                // entity.Kits.Add(this);
+                KitRecambio?.Add(new KitRecambio
+                {
+                    Recambio = entity,
+                    Kit = this
+                });
             }
         }
 
@@ -122,12 +134,15 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Recambios?.Remove(entity);
-                entity.Kits.Remove(this);
+                // Recambios?.Remove(entity);
+                // entity.Kits.Remove(this);
+                var toRemove = KitRecambio?
+                    .Where(r => r.Recambio == entity && r.Kit == this)
+                    .FirstOrDefault();
+                if (toRemove != null)
+                    KitRecambio.Remove(toRemove);
             }
         }
-
-        
 
         #endregion
     }

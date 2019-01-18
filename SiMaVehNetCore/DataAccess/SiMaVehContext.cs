@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SiMaVeh.Domain.Models;
+using SiMaVeh.Domain.Relations;
 
 namespace SiMaVeh.DataAccess
 {
@@ -17,16 +18,26 @@ namespace SiMaVeh.DataAccess
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            //Esto es para activar la modalidad (TPC - Table per class).
+            //Al dia de hoy (14/01/2019) no es soportada por EF Core.
+            builder.Entity<Automovil>().ToTable("Automoviles");
+            builder.Entity<Pieza>().ToTable("Piezas");
+            builder.Entity<Fluido>().ToTable("Fluidos");
+            builder.Entity<Aceite>().ToTable("Aceites");
+            builder.Entity<Usuario>().ToTable("Usuarios");
+            builder.Entity<Reparador>().ToTable("Reparadores");
+            builder.Entity<Kit>().ToTable("Kits");
+            builder.Entity<Repuesto>().ToTable("Repuestos");
 
-            builder.Entity<Automovil>().ToTable("automoviles");
-            builder.Entity<Pieza>().ToTable("piezas");
-            builder.Entity<Fluido>().ToTable("fluidos");
-            builder.Entity<Aceite>().ToTable("aceites");
-            builder.Entity<Usuario>().ToTable("usuarios");
-            builder.Entity<Reparador>().ToTable("reparadores");
-            builder.Entity<Kit>().ToTable("kits");
-            builder.Entity<Repuesto>().ToTable("repuestos");
+            #region Relaciones
+
+            builder.Entity<ReparadorEntidadReparadora>()
+                .HasKey(k => new { k.ReparadorId, k.EntidadReparadoraId });
+
+            builder.Entity<KitRecambio>()
+                .HasKey(k => new { k.KitId, k.RecambioId });
+
+            #endregion
         }
 
         /// <summary>
