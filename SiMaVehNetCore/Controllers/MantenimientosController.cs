@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -18,7 +18,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public MantenimientosController(SiMaVehContext context) : base(context) { }
+        public MantenimientosController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -147,10 +147,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(recambioTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var recambio = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Recambio, long>(link);
+                var recambio = await _entityGetter.TryGetEntityFromRelatedLink<Recambio, long>(link);
                 if (recambio == null)
                     return NotFound();
 
@@ -158,10 +158,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(PropertyConstants.MonedaMontoRecambio))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Moneda, long>(link);
+                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, long>(link);
                 if (moneda == null)
                     return NotFound();
 
@@ -169,10 +169,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(servicioReparadorTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var servicioReparador = await EntityGetter.Instance.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
+                var servicioReparador = await _entityGetter.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
                 if (servicioReparador == null)
                     return NotFound();
 
@@ -180,10 +180,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(reparadorTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var reparador = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Reparador, long>(link);
+                var reparador = await _entityGetter.TryGetEntityFromRelatedLink<Reparador, long>(link);
                 if (reparador == null)
                     return NotFound();
 

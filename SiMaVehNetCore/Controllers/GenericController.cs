@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.Parametrization;
 using SiMaVeh.Repository;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,18 @@ namespace SiMaVeh.Controllers
         protected readonly IRepository<TBe, TBeId> _repository;
 
         /// <summary>
+        /// _entityGetter
+        /// </summary>
+        protected readonly IEntityGetter _entityGetter;
+
+        /// <summary>
         /// Constructor
         /// </summary>
-        public GenericController(SiMaVehContext context)
+        public GenericController(IControllerParameter parameters)
         {
-            _context = context;
+            _context = parameters.Context;
             _repository = new Repository<TBe, TBeId>(_context);
+            _entityGetter = parameters.EntityGetter;
         }
 
         /// <summary>

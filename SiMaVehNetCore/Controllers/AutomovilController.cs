@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -19,7 +19,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public AutomovilController(SiMaVehContext context) : base(context) { }
+        public AutomovilController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -180,10 +180,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(servicioReparadorCollectionName))
             {
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var servicioReparador = await EntityGetter.Instance.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
+                var servicioReparador = await _entityGetter.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
                 if (servicioReparador == null)
                     return NotFound();
 
@@ -191,10 +191,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var modeloVehiculo = await EntityGetter.Instance.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
+                var modeloVehiculo = await _entityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
                 if (modeloVehiculo == null)
                     return NotFound();
 
@@ -202,10 +202,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(usuarioTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var usuario = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Usuario, long>(link);
+                var usuario = await _entityGetter.TryGetEntityFromRelatedLink<Usuario, long>(link);
                 if (usuario == null)
                     return NotFound();
 

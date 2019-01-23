@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -18,7 +18,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public TelefonosController(SiMaVehContext context) : base(context) { }
+        public TelefonosController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -93,10 +93,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(tipoTelefonoTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoTelefono = await EntityGetter.Instance.TryGetEntityFromRelatedLink<TipoTelefono, long>(link);
+                var tipoTelefono = await _entityGetter.TryGetEntityFromRelatedLink<TipoTelefono, long>(link);
                 if (tipoTelefono == null)
                     return NotFound();
 
@@ -104,10 +104,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(personaTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var persona = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Persona, long>(link);
+                var persona = await _entityGetter.TryGetEntityFromRelatedLink<Persona, long>(link);
                 if (persona == null)
                     return NotFound();
 

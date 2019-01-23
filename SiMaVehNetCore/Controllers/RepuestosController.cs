@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -19,7 +19,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public RepuestosController(SiMaVehContext context) : base(context) { }
+        public RepuestosController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -131,10 +131,10 @@ namespace SiMaVeh.Controllers
             if (navigationProperty.Equals(kitsCollectionName))
             {
                 //El repuesto se agrega a un kit existente
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var kit = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Kit, long>(link);
+                var kit = await _entityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
                 if (kit == null)
                     return NotFound();
 
@@ -142,10 +142,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(periodicidadMantenimientoCollectionName))
             {
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var periodicidadMantenimiento = await EntityGetter.Instance.TryGetEntityFromRelatedLink<PeriodicidadMantenimiento, long>(link);
+                var periodicidadMantenimiento = await _entityGetter.TryGetEntityFromRelatedLink<PeriodicidadMantenimiento, long>(link);
                 if (periodicidadMantenimiento == null)
                     return NotFound();
 
@@ -153,10 +153,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var marca = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Marca, long>(link);
+                var marca = await _entityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
                     return NotFound();
 
@@ -164,10 +164,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(targetMantenimientoTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var targetMantenimiento = await EntityGetter.Instance.TryGetEntityFromRelatedLink<TargetMantenimiento, long>(link);
+                var targetMantenimiento = await _entityGetter.TryGetEntityFromRelatedLink<TargetMantenimiento, long>(link);
                 if (targetMantenimiento == null)
                     return NotFound();
 

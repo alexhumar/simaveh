@@ -25,12 +25,22 @@ namespace SiMaVeh.DataAccess
             builder.Entity<Fluido>().ToTable("Fluidos");
             builder.Entity<Aceite>().ToTable("Aceites");
             builder.Entity<Usuario>().ToTable("Usuarios");
-            builder.Entity<Reparador>().ToTable("Reparadores");
+            builder.Entity<Reparador>()
+                .Ignore(r => r.EntidadesReparadoras)
+                .ToTable("Reparadores");
             builder.Entity<Kit>().ToTable("Kits");
             builder.Entity<Repuesto>().ToTable("Repuestos");
+            builder.Entity<Recambio>().Ignore(r => r.Kits);
+            builder.Entity<EntidadReparadora>().Ignore(er => er.Reparadores);
+
+            //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
+            //no tire excepcion al notar que no tienen setter.o
 
             #region Relaciones
 
+            //Esto es necesario ya que EF Core al dia de hoy (14/01/2019)
+            //no soporta relaciones Many-To-Many con colecciones directamente.
+            //Hay que modelarlas con un objeto relacion.
             builder.Entity<ReparadorEntidadReparadora>()
                 .HasKey(k => new { k.ReparadorId, k.EntidadReparadoraId });
 

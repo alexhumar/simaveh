@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -18,7 +18,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public NeumaticosController(SiMaVehContext context) : base(context) { }
+        public NeumaticosController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -189,10 +189,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(marcaTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var marca = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Marca, long>(link);
+                var marca = await _entityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
                     return NotFound();
 

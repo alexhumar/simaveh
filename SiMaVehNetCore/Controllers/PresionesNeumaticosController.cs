@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -18,7 +18,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public PresionesNeumaticosController(SiMaVehContext context) : base(context) { }
+        public PresionesNeumaticosController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -128,10 +128,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var modeloVehiculo = await EntityGetter.Instance.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
+                var modeloVehiculo = await _entityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
                 if (modeloVehiculo == null)
                     return NotFound();
 
@@ -139,10 +139,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(neumaticoTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var neumatico = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Neumatico, long>(link);
+                var neumatico = await _entityGetter.TryGetEntityFromRelatedLink<Neumatico, long>(link);
                 if (neumatico == null)
                     return NotFound();
 

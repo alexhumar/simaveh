@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.DataAccess;
+using SiMaVeh.Helpers;
+using SiMaVeh.Parametrization;
 
 namespace SiMaVehNetCore
 {
@@ -21,7 +23,11 @@ namespace SiMaVehNetCore
         public void ConfigureServices(IServiceCollection services)
         {
             var config = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<SiMaVehContext>(opt => opt.UseMySql(config));
+            services.AddDbContext<SiMaVehContext>(opt => opt
+                .UseLazyLoadingProxies()
+                .UseMySql(config));
+            services.AddScoped<IEntityGetter, EntityGetter>();
+            services.AddScoped<IControllerParameter, ControllerParameter>();
             services.AddMvc();
             services.AddOData();
         }

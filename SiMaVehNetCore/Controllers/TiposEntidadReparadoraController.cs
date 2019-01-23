@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
+using SiMaVeh.Parametrization;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -14,7 +14,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public TiposEntidadReparadoraController(SiMaVehContext context) : base(context) { }
+        public TiposEntidadReparadoraController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 

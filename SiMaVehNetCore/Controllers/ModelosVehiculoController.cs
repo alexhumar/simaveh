@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using SiMaVeh.Repository;
 using System;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -20,7 +20,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public ModelosVehiculoController(SiMaVehContext context) : base(context) { }
+        public ModelosVehiculoController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -185,10 +185,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(grupoModeloTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var grupoModelo = await EntityGetter.Instance.TryGetEntityFromRelatedLink<GrupoModelo, long>(link);
+                var grupoModelo = await _entityGetter.TryGetEntityFromRelatedLink<GrupoModelo, long>(link);
                 if (grupoModelo == null)
                     return NotFound();
 
@@ -196,10 +196,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(PropertyConstants.AceiteRecomendado))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var aceite = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Aceite, long>(link);
+                var aceite = await _entityGetter.TryGetEntityFromRelatedLink<Aceite, long>(link);
                 if (aceite == null)
                     return NotFound();
 
@@ -207,10 +207,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(PropertyConstants.Airbags))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var airbags = await EntityGetter.Instance.TryGetEntityFromRelatedLink<EquipamientoAirbags, long>(link);
+                var airbags = await _entityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, long>(link);
                 if (airbags == null)
                     return NotFound();
 
@@ -218,10 +218,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(tipoFuenteEnergiaTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoFuenteEnergia = await EntityGetter.Instance.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
+                var tipoFuenteEnergia = await _entityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
                 if (tipoFuenteEnergia == null)
                     return NotFound();
 
@@ -229,10 +229,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(PropertyConstants.FuenteEnergiaRecomendada))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var fuenteEnergia = await EntityGetter.Instance.TryGetEntityFromRelatedLink<FuenteEnergia, long>(link);
+                var fuenteEnergia = await _entityGetter.TryGetEntityFromRelatedLink<FuenteEnergia, long>(link);
                 if (fuenteEnergia == null)
                     return NotFound();
 
@@ -240,10 +240,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(PropertyConstants.RepuestosRecomendados))
             {
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var repuesto = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Repuesto, long>(link);
+                var repuesto = await _entityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
                 if (repuesto == null)
                     return NotFound();
 
@@ -251,10 +251,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(PropertyConstants.PresionesNeumaticosRecomendadas))
             {
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var presionNeumatico = await EntityGetter.Instance.TryGetEntityFromRelatedLink<PresionNeumatico, long>(link);
+                var presionNeumatico = await _entityGetter.TryGetEntityFromRelatedLink<PresionNeumatico, long>(link);
                 if (presionNeumatico == null)
                     return NotFound();
 

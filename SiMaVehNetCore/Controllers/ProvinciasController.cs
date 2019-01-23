@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -19,7 +19,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProvinciasController(SiMaVehContext context) : base(context) { }
+        public ProvinciasController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -103,10 +103,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(partidoCollectionName))
             {
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var partido = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Partido, long>(link);
+                var partido = await _entityGetter.TryGetEntityFromRelatedLink<Partido, long>(link);
                 if (partido == null)
                     return NotFound();
 
@@ -114,10 +114,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(paisTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var pais = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Pais, long>(link);
+                var pais = await _entityGetter.TryGetEntityFromRelatedLink<Pais, long>(link);
                 if (pais == null)
                     return NotFound();
 

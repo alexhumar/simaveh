@@ -39,7 +39,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat(Nombre, " ", Pais.ToString());
+            return string.Concat(Nombre, " ", Pais?.ToString());
         }
 
         /// <summary>

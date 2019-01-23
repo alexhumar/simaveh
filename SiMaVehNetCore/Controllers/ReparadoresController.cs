@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -19,7 +19,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public ReparadoresController(SiMaVehContext context) : base(context) { }
+        public ReparadoresController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -142,10 +142,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(entidadesReparadorasCollectionName))
             {
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var entidadReparadora = await EntityGetter.Instance.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
+                var entidadReparadora = await _entityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
                 if (entidadReparadora == null)
                     return NotFound();
 
@@ -153,10 +153,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(telefonosCollectionName))
             {
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var telefono = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Telefono, long>(link);
+                var telefono = await _entityGetter.TryGetEntityFromRelatedLink<Telefono, long>(link);
                 if (telefono == null)
                     return NotFound();
 
@@ -164,10 +164,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(tipoDocumentoTypeName))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoDocumento = await EntityGetter.Instance.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
+                var tipoDocumento = await _entityGetter.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
                 if (tipoDocumento == null)
                     return NotFound();
 

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -18,7 +18,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public TiposCambioController(SiMaVehContext context) : base(context) { }
+        public TiposCambioController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -105,10 +105,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(PropertyConstants.MonedaOrigen))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Moneda, long>(link);
+                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, long>(link);
                 if (moneda == null)
                     return NotFound();
 
@@ -116,10 +116,10 @@ namespace SiMaVeh.Controllers
             }
             else if (navigationProperty.Equals(PropertyConstants.MonedaDestino))
             {
-                if (!Request.Method.Equals(HttpMethod.Put))
+                if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Moneda, long>(link);
+                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, long>(link);
                 if (moneda == null)
                     return NotFound();
 

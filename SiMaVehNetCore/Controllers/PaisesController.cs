@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
+using SiMaVeh.HelpersHttpConstants;
+using SiMaVeh.Parametrization;
 using System;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -19,7 +19,7 @@ namespace SiMaVeh.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public PaisesController(SiMaVehContext context) : base(context) { }
+        public PaisesController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -78,10 +78,10 @@ namespace SiMaVeh.Controllers
 
             if (navigationProperty.Equals(provinciaCollectionName))
             {
-                if (!Request.Method.Equals(HttpMethod.Post))
+                if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var provincia = await EntityGetter.Instance.TryGetEntityFromRelatedLink<Provincia, long>(link);
+                var provincia = await _entityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
                 if (provincia == null)
                     return NotFound();
 
