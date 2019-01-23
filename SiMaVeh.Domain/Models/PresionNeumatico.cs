@@ -40,7 +40,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ") ", ModeloVehiculo.ToString());
+            return string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ") ", ModeloVehiculo?.ToString());
         }
 
         /// <summary>

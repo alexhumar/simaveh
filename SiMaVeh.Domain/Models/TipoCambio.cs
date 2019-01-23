@@ -35,7 +35,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("MOR: ", MonedaOrigen.ToString(), " MDEST: ", MonedaDestino.ToString(), " ",
+            return string.Concat("MOR: ", MonedaOrigen?.ToString(), " MDEST: ", MonedaDestino?.ToString(), " ",
                 CoeficienteCambio, " ", Fecha.ToString());
         }
 

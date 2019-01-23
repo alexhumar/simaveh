@@ -63,8 +63,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat(Marca.ToString(), Modelo, TipoVehiculoNeumaticoParser.ToString(Tipo), 
-                AnchuraSeccionalNominal, "/", RelacionAnchoAlto.ToString(), ConstruccionCarcasaNeumaticoParser.ToString(ConstruccionCarcasa),
+            return string.Concat(Marca?.ToString(), Modelo, TipoVehiculoNeumaticoParser.ToString(Tipo), 
+                AnchuraSeccionalNominal, "/", RelacionAnchoAlto?.ToString(), ConstruccionCarcasaNeumaticoParser.ToString(ConstruccionCarcasa),
                 DiametroLLanta, " ", IndiceCarga, IndiceVelocidad);
         }
 

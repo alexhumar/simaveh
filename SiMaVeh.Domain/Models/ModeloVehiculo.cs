@@ -67,7 +67,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat(GrupoModelo.ToString(), " ", Version);
+            return string.Concat(GrupoModelo?.ToString(), " ", Version);
         }
 
         /// <summary>

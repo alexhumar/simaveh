@@ -50,7 +50,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("Periodicidad ", TargetMantenimiento.ToString(), " - ", ModeloVehiculo.ToString());
+            return string.Concat("Periodicidad ", TargetMantenimiento?.ToString(), " - ", ModeloVehiculo?.ToString());
         }
 
         /// <summary>

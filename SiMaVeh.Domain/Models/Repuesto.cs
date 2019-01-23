@@ -53,7 +53,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("(", CodigoIdentificador, ") ", TargetMantenimiento.ToString());
+            return string.Concat("(", CodigoIdentificador, ") ", TargetMantenimiento?.ToString());
         }
 
         /// <summary>

@@ -66,7 +66,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("(", TipoEntidadReparadora.ToString(), ") ", Nombre);
+            return string.Concat("(", TipoEntidadReparadora?.ToString(), ") ", Nombre);
         }
 
         /// <summary>

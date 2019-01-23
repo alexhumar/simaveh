@@ -28,7 +28,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("(", Patente, ") ", ModeloVehiculo.ToString(), " ", AnioFabricacion);
+            return string.Concat("(", Patente, ") ", ModeloVehiculo?.ToString(), " ", AnioFabricacion);
         }
 
         /// <summary>

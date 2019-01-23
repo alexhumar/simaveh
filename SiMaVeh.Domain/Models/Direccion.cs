@@ -30,7 +30,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat(Calle, " ", NumeroCalle, ", ", Localidad.ToString());
+            return string.Concat(Calle, " ", NumeroCalle, ", ", Localidad?.ToString());
         }
 
         /// <summary>
