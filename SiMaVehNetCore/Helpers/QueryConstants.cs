@@ -24,5 +24,10 @@
         /// MaxSkip
         /// </summary>
         public const int MaxSkip = 10;
+
+        /// <summary>
+        /// PageSize
+        /// </summary>
+        public const int PageSize = 15;
     }
 }

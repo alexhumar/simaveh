@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SiMaVeh.DataAccess;
@@ -59,9 +60,22 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Lista de entidades</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
-        public virtual async Task<IQueryable<TBe>> Get()
+        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop, PageSize = QueryConstants.PageSize)]
+        public virtual async Task</*PageResult*/IQueryable<TBe>> Get(/*ODataQueryOptions<TBe> options*/)
         {
+            //Con este codigo comentado se consigue un resultado paginado y con el inlinecount seteado, pero no soporta expand.
+            // ODataQuerySettings settings = new ODataQuerySettings()
+            // {
+            //     PageSize = QueryConstants.PageSize
+            // };
+
+            // IQueryable results = options.ApplyTo(await Task.Run(() => _repository.GetCollection()), settings);
+
+            // return new PageResult<TBe>(
+            //     results as IEnumerable<TBe>, 
+            //     Request.GetNextPageLink(QueryConstants.PageSize),
+            //     (results as IEnumerable<TBe>).Count());
+
             return await Task.Run(() => _repository.GetCollection());
         }
 
