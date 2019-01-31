@@ -336,7 +336,7 @@ namespace SiMaVeh.DataAccess
                 .Select();
 
             //Ubicaciones Pieza
-            builder.EntitySet<UbicacionPieza>(EntityTypeGetter<UbicacionPieza, long>.GetCollectionNameAsString());
+            builder.EntitySet<UbicacionPieza>(EntityTypeGetter<UbicacionPieza, string>.GetCollectionNameAsString());
             builder.EntityType<UbicacionPieza>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()

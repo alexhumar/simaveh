@@ -9,7 +9,7 @@ namespace SiMaVeh.Controllers
     /// <summary>
     /// Ubicacion Pieza Controller
     /// </summary>
-    public class UbicacionesPiezaController : GenericController<UbicacionPieza, long>
+    public class UbicacionesPiezaController : GenericController<UbicacionPieza, string>
     {
         /// <summary>
         /// Constructor
@@ -23,7 +23,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Si es pieza izquierda</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetIzquierda([FromODataUri] long key)
+        public async Task<IActionResult> GetIzquierda([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 
@@ -38,7 +38,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Si es pieza superior</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetSuperior([FromODataUri] long key)
+        public async Task<IActionResult> GetSuperior([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 

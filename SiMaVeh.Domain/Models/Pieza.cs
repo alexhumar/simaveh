@@ -5,7 +5,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Pieza
     /// </summary>
-    public class Pieza : TargetMantenimiento, IEntityChanger<UbicacionPieza, long>
+    public class Pieza : TargetMantenimiento, IEntityChanger<UbicacionPieza, string>
     {
         /// <summary>
         /// Ubicacion

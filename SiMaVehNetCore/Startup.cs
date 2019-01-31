@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.OData.Extensions;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -28,8 +29,11 @@ namespace SiMaVehNetCore
                 .UseMySql(config));
             services.AddScoped<IEntityGetter, EntityGetter>();
             services.AddScoped<IControllerParameter, ControllerParameter>();
-            services.AddMvc();
+            services.AddMvc()
+                .AddFluentValidation();
             services.AddOData();
+
+            ValidatorRegistrator.RegisterValidators(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

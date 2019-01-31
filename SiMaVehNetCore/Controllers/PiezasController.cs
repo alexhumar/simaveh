@@ -89,14 +89,14 @@ namespace SiMaVeh.Controllers
             if (fuenteEnergia == null)
                 return NotFound();
 
-            var ubicacionPiezaTypeName = EntityTypeGetter<UbicacionPieza, long>.GetTypeAsString();
+            var ubicacionPiezaTypeName = EntityTypeGetter<UbicacionPieza, string>.GetTypeAsString();
 
             if (navigationProperty.Equals(ubicacionPiezaTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var ubicacionPieza = await _entityGetter.TryGetEntityFromRelatedLink<UbicacionPieza, long>(link);
+                var ubicacionPieza = await _entityGetter.TryGetEntityFromRelatedLink<UbicacionPieza, string>(link);
                 if (ubicacionPieza == null)
                     return NotFound();
 

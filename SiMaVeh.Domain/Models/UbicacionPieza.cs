@@ -5,17 +5,35 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Ubicacion Pieza
     /// </summary>
-    public class UbicacionPieza : DomainMember<long>
+    public class UbicacionPieza : DomainMember<string>
     {
+        private bool _izquierda { get; set; }
         /// <summary>
         /// True -> Izquierda. False -> Derecha.
         /// </summary>
-        public virtual bool Izquierda { get; set; }
+        public virtual bool Izquierda
+        { 
+            get { return _izquierda; }
+            set 
+            { 
+                _izquierda = value;
+                this.Id = this.CalcularId();
+            }
+        }
 
+        private bool _superior { get; set; }
         /// <summary>
         /// True -> Superior. False -> Inferior.
         /// </summary>
-        public virtual bool Superior { get; set; }
+        public virtual bool Superior
+        { 
+            get { return _superior; }
+            set
+            {
+                _superior = value;
+                this.Id = this.CalcularId();
+            } 
+        }
 
         #region overrides
 
@@ -62,6 +80,15 @@ namespace SiMaVeh.Domain.Models
         public override int GetHashCode()
         {
             return string.Concat(typeof(UbicacionPieza).FullName, Id.ToString()).GetHashCode();
+        }
+
+        #endregion
+
+        #region private
+
+        private string CalcularId()
+        {
+            return (this.Izquierda ? "I" : "D") + (this.Superior ? "S": "I");
         }
 
         #endregion

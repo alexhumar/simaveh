@@ -50,9 +50,9 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Si existe entidad</returns>
-        protected bool ExisteEntidad(TBeId key)
+        protected async Task<bool> ExisteEntidad(TBeId key)
         {
-            return _repository.GetCollection().Find(key) != null;
+            return await _repository.Find(key) != null;
         }
 
         /// <summary>
@@ -112,9 +112,16 @@ namespace SiMaVeh.Controllers
         public virtual async Task<IActionResult> Post([FromBody] TBe entity)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
 
-            await _repository.Add(entity);
+            try
+            {
+                await _repository.Add(entity);
+            }
+            catch(Exception e)
+            {
+                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+            }
 
             return Created(entity);
         }
@@ -129,7 +136,10 @@ namespace SiMaVeh.Controllers
         public virtual async Task<IActionResult> Put([FromODataUri] TBeId key, [FromBody] TBe entity)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+
+            if (!await ExisteEntidad(key))
+                return NotFound();
 
             if (!key.Equals(entity.Id))
                 return BadRequest();
@@ -138,12 +148,9 @@ namespace SiMaVeh.Controllers
             {
                 await _repository.Update(entity);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!ExisteEntidad(key))
-                    return NotFound();
-                else
-                    throw;
+                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
             }
 
             return Updated(entity);
@@ -159,7 +166,7 @@ namespace SiMaVeh.Controllers
         public virtual async Task<IActionResult> Patch([FromODataUri] TBeId key, [FromBody] Delta<TBe> entity)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
 
             var existingEntity = await _repository.Find(key);
             if (existingEntity == null)
@@ -171,12 +178,9 @@ namespace SiMaVeh.Controllers
             {
                 await _repository.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!ExisteEntidad(key))
-                    return NotFound();
-                else
-                    throw;
+                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
             }
 
             return Updated(existingEntity);
