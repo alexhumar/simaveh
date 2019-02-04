@@ -8,7 +8,6 @@ namespace SiMaVeh.Domain.Validators
     /// </summary>
     public class ValidadorUbicacionPieza : AbstractValidator<UbicacionPieza>
 	{
-
         /// <summary>
         /// Constructor
         /// </summary>

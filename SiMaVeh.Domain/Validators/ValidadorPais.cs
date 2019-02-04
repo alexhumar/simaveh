@@ -8,7 +8,6 @@ namespace SiMaVeh.Domain.Validators
     /// </summary>
     public class ValidadorPais : AbstractValidator<Pais>
 	{
-
         /// <summary>
         /// Constructor
         /// </summary>

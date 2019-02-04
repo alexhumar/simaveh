@@ -1,16 +1,20 @@
+
 using FluentValidation;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
 	/// <summary>
-    /// ValidadorProvincia
+    /// ValidadorFluido
     /// </summary>
-    public class ValidadorProvincia : AbstractValidator<Provincia>
+    public class ValidadorFluido : AbstractValidator<Fluido>
 	{
         /// <summary>
         /// Constructor
         /// </summary>
-        public ValidadorProvincia() => RuleFor(x => x.Nombre).NotNull().NotEqual(string.Empty);
+        public ValidadorFluido()
+        {
+            Include(new ValidadorTargetMantenimiento());
+        }
     }
 }

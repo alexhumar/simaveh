@@ -1,16 +1,20 @@
+
 using FluentValidation;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
 	/// <summary>
-    /// ValidadorProvincia
+    /// ValidadorUsuario
     /// </summary>
-    public class ValidadorProvincia : AbstractValidator<Provincia>
+    public class ValidadorUsuario : AbstractValidator<Usuario>
 	{
         /// <summary>
         /// Constructor
         /// </summary>
-        public ValidadorProvincia() => RuleFor(x => x.Nombre).NotNull().NotEqual(string.Empty);
+        public ValidadorUsuario()
+        {
+            Include(new ValidadorPersona());
+        }
     }
 }

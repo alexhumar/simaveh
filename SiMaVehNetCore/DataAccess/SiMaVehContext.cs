@@ -37,7 +37,7 @@ namespace SiMaVeh.DataAccess
                 .Property(k => k.Id).ValueGeneratedNever();
 
             //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
-            //no tire excepcion al notar que no tienen setter.o
+            //no tire excepcion al notar que no tienen setter.
 
             #region Relaciones
 
