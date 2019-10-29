@@ -3,7 +3,6 @@ using Microsoft.AspNet.OData.Query;
 using Microsoft.OData.Edm;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
-using System;
 
 namespace SiMaVeh.DataAccess
 {

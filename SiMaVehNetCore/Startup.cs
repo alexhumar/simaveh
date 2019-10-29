@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.DataAccess;
 using SiMaVeh.Helpers;
 using SiMaVeh.Parametrization;
+using Microsoft.Extensions.Hosting;
 
 namespace SiMaVehNetCore
 {
@@ -29,15 +30,19 @@ namespace SiMaVehNetCore
                 .UseMySql(config));
             services.AddScoped<IEntityGetter, EntityGetter>();
             services.AddScoped<IControllerParameter, ControllerParameter>();
-            services.AddMvc()
-                .AddFluentValidation();
             services.AddOData();
+            services.AddMvc(options =>
+                {
+                    // add custom binder to beginning of collection
+                    // options.ModelBinderProviders.Insert(0, new ProvinciaEntityBinderProvider());
+                })
+                .AddFluentValidation();
 
             ValidatorRegistrator.RegisterValidators(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

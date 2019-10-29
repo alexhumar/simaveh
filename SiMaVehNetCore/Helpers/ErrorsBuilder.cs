@@ -20,7 +20,9 @@ namespace SiMaVeh.Helpers
 
             foreach (var ms in modelState.Values) {
                 foreach (var error in ms.Errors) {
-                    result.Add(error.Exception.Message);
+                    var message = ((error.Exception != null) ? error.Exception.Message : error.ErrorMessage).Trim();
+                    if (!string.IsNullOrEmpty(message))
+                        result.Add(message);
                 }
             }
 
