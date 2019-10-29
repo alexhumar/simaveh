@@ -35,6 +35,9 @@ namespace SiMaVehNetCore
                 {
                     // add custom binder to beginning of collection
                     // options.ModelBinderProviders.Insert(0, new ProvinciaEntityBinderProvider());
+
+                    //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
+                    options.EnableEndpointRouting = false;
                 })
                 .AddFluentValidation();
 
@@ -52,7 +55,6 @@ namespace SiMaVehNetCore
             app.UseMvc(routeBuilder =>
             {
                 routeBuilder.MapODataServiceRoute("odata", "simaveh", MyModelBuilder.getEdmModel());
-
                 //Work-around for issue #1175
                 routeBuilder.EnableDependencyInjection();
             });
