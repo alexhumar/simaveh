@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessLogic\" />
     <Folder Include="Enums\" />
     <Folder Include="Validators\" />
   </ItemGroup>
