@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 namespace SiMaVeh.Helpers
 {
     /// <summary>
-    /// Helpers
+    /// UriParser
     /// </summary>
-    public static class Helpers
+    public static class UriParser
     {
         /// <summary>
         /// GetKeyFromUri
@@ -40,7 +40,7 @@ namespace SiMaVeh.Helpers
             {
                 result = default(TKey);
             }
-            
+
             return result;
         }
     }

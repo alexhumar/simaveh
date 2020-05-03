@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Helpers;
-using SiMaVeh.HelpersHttpConstants;
-using SiMaVeh.Parametrization;
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers
@@ -93,7 +92,7 @@ namespace SiMaVeh.Controllers
                 return NotFound();
 
             var tipoFuenteEnergiaTypeName = EntityTypeGetter<TipoFuenteEnergia, long>.GetTypeAsString();
-            var marcaTypeName = EntityTypeGetter <Marca, long>.GetTypeAsString();
+            var marcaTypeName = EntityTypeGetter<Marca, long>.GetTypeAsString();
 
             if (navigationProperty.Equals(tipoFuenteEnergiaTypeName))
             {

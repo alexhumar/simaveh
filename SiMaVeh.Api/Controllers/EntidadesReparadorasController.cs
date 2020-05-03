@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Helpers;
-using SiMaVeh.HelpersHttpConstants;
-using SiMaVeh.Parametrization;
 using System;
 using System.Linq;
 using System.Net;
@@ -20,7 +20,7 @@ namespace SiMaVeh.Controllers
         /// Constructor
         /// </summary>
         public EntidadesReparadorasController(IControllerParameter parameters) : base(parameters) { }
-        
+
         #region properties
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace SiMaVeh.Controllers
             var servicioReparadorCollectionName = EntityTypeGetter<ServicioReparador, long>.GetCollectionNameAsString();
             var direccionTypeName = EntityTypeGetter<Direccion, long>.GetTypeAsString();
             var tipoEntidadTypeName = EntityTypeGetter<TipoEntidadReparadora, long>.GetTypeAsString();
-            
+
             if (navigationProperty.Equals(reparadorCollectionName))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))

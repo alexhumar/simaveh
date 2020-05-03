@@ -12,12 +12,12 @@ namespace SiMaVeh.Domain.Models
         /// True -> Izquierda. False -> Derecha.
         /// </summary>
         public virtual bool Izquierda
-        { 
+        {
             get { return _izquierda; }
-            set 
-            { 
+            set
+            {
                 _izquierda = value;
-                this.Id = this.CalcularId();
+                Id = CalcularId();
             }
         }
 
@@ -26,13 +26,13 @@ namespace SiMaVeh.Domain.Models
         /// True -> Superior. False -> Inferior.
         /// </summary>
         public virtual bool Superior
-        { 
+        {
             get { return _superior; }
             set
             {
                 _superior = value;
-                this.Id = this.CalcularId();
-            } 
+                Id = CalcularId();
+            }
         }
 
         #region overrides
@@ -88,7 +88,7 @@ namespace SiMaVeh.Domain.Models
 
         private string CalcularId()
         {
-            return (this.Izquierda ? "I" : "D") + (this.Superior ? "S": "I");
+            return (Izquierda ? "I" : "D") + (Superior ? "S" : "I");
         }
 
         #endregion

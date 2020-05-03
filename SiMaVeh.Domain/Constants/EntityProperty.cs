@@ -1,9 +1,9 @@
-﻿namespace SiMaVeh.Helpers
+﻿namespace SiMaVeh.Domain.Constants
 {
     /// <summary>
     /// Property Constants
     /// </summary>
-    public static class PropertyConstants
+    public static class EntityProperty
     {
         /// <summary>
         /// AceiteRecomendado

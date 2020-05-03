@@ -1,9 +1,9 @@
-﻿namespace SiMaVeh.Helpers
+﻿namespace SiMaVeh.Domain.Constants
 {
     /// <summary>
     /// Collection Constants
     /// </summary>
-    public static class CollectionConstants
+    public static class Entity
     {
         /// <summary>
         /// Aceite

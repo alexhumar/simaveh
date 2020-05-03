@@ -1,5 +1,5 @@
-﻿using SiMaVeh.Domain.Interfaces;
-using SiMaVeh.Domain.Relations;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,7 +23,7 @@ namespace SiMaVeh.Domain.Models
         /// Entidades reparadoras en las que trabaja el reparador
         /// </summary>
         public virtual IList<EntidadReparadora> EntidadesReparadoras
-        { 
+        {
             get { return ReparadorEntidadReparadora.Select(e => e.EntidadReparadora).ToList(); }
         }
 

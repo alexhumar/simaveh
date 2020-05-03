@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Controllers.Parametrization;
 using SiMaVeh.DataAccess;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Helpers;
-using SiMaVeh.Parametrization;
 using SiMaVeh.Repository;
 using System;
 using System.Collections.Generic;
@@ -118,7 +118,7 @@ namespace SiMaVeh.Controllers
             {
                 await _repository.Add(entity);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return StatusCode(500, ErrorsBuilder.BuildErrors(e));
             }

@@ -1,14 +1,13 @@
-
 using FluentValidation;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
-	/// <summary>
+    /// <summary>
     /// ValidadorEntidadReparadora
     /// </summary>
     public class ValidadorEntidadReparadora : AbstractValidator<EntidadReparadora>
-	{
+    {
         /// <summary>
         /// Constructor
         /// </summary>

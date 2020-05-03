@@ -1,5 +1,5 @@
-﻿using SiMaVeh.Domain.Interfaces;
-using SiMaVeh.Domain.Relations;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 

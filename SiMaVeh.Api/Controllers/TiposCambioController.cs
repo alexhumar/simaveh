@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Helpers;
-using SiMaVeh.HelpersHttpConstants;
-using SiMaVeh.Parametrization;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -103,7 +103,7 @@ namespace SiMaVeh.Controllers
             if (tipoCambio == null)
                 return NotFound();
 
-            if (navigationProperty.Equals(PropertyConstants.MonedaOrigen))
+            if (navigationProperty.Equals(EntityProperty.MonedaOrigen))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
@@ -114,7 +114,7 @@ namespace SiMaVeh.Controllers
 
                 tipoCambio.CambiarMonedaOrigen(moneda);
             }
-            else if (navigationProperty.Equals(PropertyConstants.MonedaDestino))
+            else if (navigationProperty.Equals(EntityProperty.MonedaDestino))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();

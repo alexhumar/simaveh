@@ -1,7 +1,7 @@
 using SiMaVeh.DataAccess;
-using SiMaVeh.Helpers;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
-namespace SiMaVeh.Parametrization
+namespace SiMaVeh.Api.Controllers.Parametrization
 {
     /// <summary>
     /// Interface IControllerParameter
@@ -12,7 +12,7 @@ namespace SiMaVeh.Parametrization
         /// Context
         /// </summary>
         SiMaVehContext Context { get; set; }
-        
+
         /// <summary>
         /// EntityGetter
         /// </summary>

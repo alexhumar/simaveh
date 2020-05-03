@@ -1,6 +1,6 @@
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace SiMaVeh.Helpers
 {
@@ -18,8 +18,10 @@ namespace SiMaVeh.Helpers
         {
             var result = new List<string>();
 
-            foreach (var ms in modelState.Values) {
-                foreach (var error in ms.Errors) {
+            foreach (var ms in modelState.Values)
+            {
+                foreach (var error in ms.Errors)
+                {
                     var message = ((error.Exception != null) ? error.Exception.Message : error.ErrorMessage).Trim();
                     if (!string.IsNullOrEmpty(message))
                         result.Add(message);

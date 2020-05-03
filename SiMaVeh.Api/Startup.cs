@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SiMaVeh.DataAccess;
-using SiMaVeh.Helpers;
-using SiMaVeh.Parametrization;
 using Microsoft.Extensions.Hosting;
+using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.DataAccess;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+using SiMaVeh.Helpers;
 
 namespace SiMaVeh
 {

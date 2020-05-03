@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace SiMaVeh.Repository
 {
@@ -10,7 +10,7 @@ namespace SiMaVeh.Repository
     /// </summary>
     /// <typeparam name="TBe"></typeparam>
     /// <typeparam name="TBeId"></typeparam>
-    public interface IRepository<TBe,TBeId> where TBe : class
+    public interface IRepository<TBe, TBeId> where TBe : class
     {
         /// <summary>
         /// Add (async)
@@ -29,7 +29,7 @@ namespace SiMaVeh.Repository
         /// GetCollection
         /// </summary>
         /// <returns></returns>
-        DbSet<TBe> GetCollection();
+        IQueryable<TBe> GetCollection();
 
         /// <summary>
         /// Find (async)

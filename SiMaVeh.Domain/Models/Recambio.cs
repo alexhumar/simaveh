@@ -1,5 +1,5 @@
-﻿using SiMaVeh.Domain.Interfaces;
-using SiMaVeh.Domain.Relations;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         {
             get
             {
-                return this.KitRecambio.Select(k => k.Kit).ToList();
+                return KitRecambio.Select(k => k.Kit).ToList();
             }
         }
 

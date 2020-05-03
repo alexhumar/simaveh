@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -60,7 +60,7 @@ namespace SiMaVeh.Domain.Models
                     return true;
                 else
                 {
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (Neumatico.Equals(item.Neumatico) && ModeloVehiculo.Equals(item.ModeloVehiculo) && EsDefault == item.EsDefault);
                 }
             }

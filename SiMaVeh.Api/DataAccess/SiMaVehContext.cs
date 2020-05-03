@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Domain.Relations;
+using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.DataAccess
 {
@@ -32,7 +32,7 @@ namespace SiMaVeh.DataAccess
             builder.Entity<Repuesto>().ToTable("Repuestos");
             builder.Entity<Recambio>().Ignore(r => r.Kits);
             builder.Entity<EntidadReparadora>().Ignore(er => er.Reparadores);
-            
+
             builder.Entity<UbicacionPieza>()
                 .Property(k => k.Id).ValueGeneratedNever();
 
@@ -181,7 +181,7 @@ namespace SiMaVeh.DataAccess
         /// <summary>
         /// Servicios Reparadores
         /// </summary>
-        public DbSet<ServicioReparador> ServiciosReparadores { get; set; }   
+        public DbSet<ServicioReparador> ServiciosReparadores { get; set; }
 
         /// <summary>
         /// Targets Mantenimiento

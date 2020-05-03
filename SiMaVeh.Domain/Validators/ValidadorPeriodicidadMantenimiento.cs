@@ -1,15 +1,13 @@
-
 using FluentValidation;
-using SiMaVeh.Domain.Enums;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
-	/// <summary>
+    /// <summary>
     /// ValidadorPeriodicidadMantenimiento
     /// </summary>
     public class ValidadorPeriodicidadMantenimiento : AbstractValidator<PeriodicidadMantenimiento>
-	{
+    {
         /// <summary>
         /// Constructor
         /// </summary>

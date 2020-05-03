@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -87,9 +87,9 @@ namespace SiMaVeh.Domain.Models
                     return true;
                 else
                 {
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (Vehiculo.Equals(item.Vehiculo) && EntidadReparadora.Equals(item.EntidadReparadora) &&
-                        FechaInicio == item.FechaInicio && FechaFin == item.FechaFin && 
+                        FechaInicio == item.FechaInicio && FechaFin == item.FechaFin &&
                         MontoManoObra == item.MontoManoObra && MonedaMontoManoObra.Equals(item.MonedaMontoManoObra) &&
                         KilometrajeVehiculo == item.KilometrajeVehiculo);
                 }

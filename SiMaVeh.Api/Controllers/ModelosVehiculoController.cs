@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Domain.BusinessLogic.Entities;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Helpers;
-using SiMaVeh.HelpersHttpConstants;
-using SiMaVeh.Parametrization;
 using SiMaVeh.Repository;
 using System;
 using System.Linq;
@@ -181,7 +182,7 @@ namespace SiMaVeh.Controllers
 
             var grupoModeloTypeName = EntityTypeGetter<GrupoModelo, long>.GetTypeAsString();
             var tipoFuenteEnergiaTypeName = EntityTypeGetter<TipoFuenteEnergia, long>.GetTypeAsString();
-            
+
 
             if (navigationProperty.Equals(grupoModeloTypeName))
             {
@@ -194,7 +195,7 @@ namespace SiMaVeh.Controllers
 
                 modeloVehiculo.Cambiar(grupoModelo);
             }
-            else if (navigationProperty.Equals(PropertyConstants.AceiteRecomendado))
+            else if (navigationProperty.Equals(EntityProperty.AceiteRecomendado))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
@@ -205,7 +206,7 @@ namespace SiMaVeh.Controllers
 
                 modeloVehiculo.Cambiar(aceite);
             }
-            else if (navigationProperty.Equals(PropertyConstants.Airbags))
+            else if (navigationProperty.Equals(EntityProperty.Airbags))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
@@ -227,7 +228,7 @@ namespace SiMaVeh.Controllers
 
                 modeloVehiculo.Cambiar(tipoFuenteEnergia);
             }
-            else if (navigationProperty.Equals(PropertyConstants.FuenteEnergiaRecomendada))
+            else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
@@ -238,7 +239,7 @@ namespace SiMaVeh.Controllers
 
                 modeloVehiculo.Cambiar(fuenteEnergia);
             }
-            else if (navigationProperty.Equals(PropertyConstants.RepuestosRecomendados))
+            else if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
@@ -249,7 +250,7 @@ namespace SiMaVeh.Controllers
 
                 modeloVehiculo.Agregar(repuesto);
             }
-            else if (navigationProperty.Equals(PropertyConstants.PresionesNeumaticosRecomendadas))
+            else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
@@ -281,7 +282,7 @@ namespace SiMaVeh.Controllers
             if (modeloVehiculo == null)
                 return NotFound();
 
-            if (navigationProperty.Equals(PropertyConstants.RepuestosRecomendados))
+            if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
                 var repuesto = new Repository<Repuesto, long>(_context).Find(Convert.ToInt64(relatedKey)).Result;
                 if (repuesto == null)

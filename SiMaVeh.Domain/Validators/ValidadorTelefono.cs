@@ -3,11 +3,11 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
-	/// <summary>
+    /// <summary>
     /// ValidadorTelefono
     /// </summary>
     public class ValidadorTelefono : AbstractValidator<Telefono>
-	{
+    {
         /// <summary>
         /// Constructor
         /// </summary>

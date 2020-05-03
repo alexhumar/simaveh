@@ -57,7 +57,7 @@ namespace SiMaVeh.Domain.Models
 
             return string.Concat(ubicaciones, " - ", sb.ToString());
         }
-        
+
         /// <summary>
         /// Equals
         /// </summary>

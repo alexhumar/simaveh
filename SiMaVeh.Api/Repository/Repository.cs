@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SiMaVeh.DataAccess;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Repository
@@ -103,7 +104,7 @@ namespace SiMaVeh.Repository
         /// GetCollection
         /// </summary>
         /// <returns></returns>
-        public DbSet<TBe> GetCollection()
+        public IQueryable<TBe> GetCollection()
         {
             return _context.Set<TBe>();
         }

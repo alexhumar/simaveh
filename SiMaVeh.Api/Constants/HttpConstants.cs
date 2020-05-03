@@ -1,4 +1,4 @@
-﻿namespace SiMaVeh.HelpersHttpConstants
+﻿namespace SiMaVeh.Api.Constants
 {
     /// <summary>
     /// Http Constants

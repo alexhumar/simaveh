@@ -1,4 +1,4 @@
-﻿namespace SiMaVeh.Helpers
+﻿namespace SiMaVeh.Api.Constants
 {
     /// <summary>
     /// Query Constants

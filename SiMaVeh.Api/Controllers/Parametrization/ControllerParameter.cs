@@ -1,7 +1,7 @@
 using SiMaVeh.DataAccess;
-using SiMaVeh.Helpers;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
-namespace SiMaVeh.Parametrization
+namespace SiMaVeh.Api.Controllers.Parametrization
 {
     /// <summary>
     /// Singleton que encapsula los objetos necesarios para inyectar en el GenericController
@@ -21,7 +21,7 @@ namespace SiMaVeh.Parametrization
         /// Context
         /// </summary>
         public SiMaVehContext Context { get; set; }
-        
+
         /// <summary>
         /// EntityGetter
         /// </summary>

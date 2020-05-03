@@ -9,7 +9,7 @@
         /// Nombre
         /// </summary>
         public virtual string Nombre { get; set; }
-        
+
         /// <summary>
         /// Descripcion
         /// </summary>

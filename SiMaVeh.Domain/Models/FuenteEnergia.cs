@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -49,7 +49,7 @@ namespace SiMaVeh.Domain.Models
                 if (ReferenceEquals(this, item))
                     return true;
                 else
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (Nombre == item.Nombre && Marca.Equals(item.Marca) && TipoFuenteEnergia.Equals(item.TipoFuenteEnergia));
             }
         }

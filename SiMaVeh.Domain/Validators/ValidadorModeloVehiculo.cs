@@ -1,14 +1,13 @@
-
 using FluentValidation;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
-	/// <summary>
+    /// <summary>
     /// ValidadorModeloVehiculo
     /// </summary>
     public class ValidadorModeloVehiculo : AbstractValidator<ModeloVehiculo>
-	{
+    {
         /// <summary>
         /// Constructor
         /// </summary>
