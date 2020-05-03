@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/SiMaVehNetCore/SiMaVehNetCore.csproj"
+                "${workspaceFolder}/SiMaVeh.Api/SiMaVeh.Api.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

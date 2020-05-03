@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiMaVeh.Api", "SiMaVeh.Api.csproj", "{3E3F0C0D-E227-4425-8368-AC518A072425}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Domain", "..\SiMaVeh.Domain\SiMaVeh.Domain.csproj", "{7B610946-49C1-4777-824F-4750A249CEE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E3F0C0D-E227-4425-8368-AC518A072425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E3F0C0D-E227-4425-8368-AC518A072425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E3F0C0D-E227-4425-8368-AC518A072425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E3F0C0D-E227-4425-8368-AC518A072425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B610946-49C1-4777-824F-4750A249CEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B610946-49C1-4777-824F-4750A249CEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B610946-49C1-4777-824F-4750A249CEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B610946-49C1-4777-824F-4750A249CEE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B97C363-57DD-403B-8B74-6ED0C198BE22}
+	EndGlobalSection
+EndGlobal

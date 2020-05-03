@@ -12,9 +12,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/SiMaVehNetCore/bin/Debug/netcoreapp3.1/SiMaVehNetCore.dll",
+            "program": "${workspaceFolder}/SiMaVeh.Api/bin/Debug/netcoreapp3.1/SiMaVeh.Api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/SiMaVehNetCore",
+            "cwd": "${workspaceFolder}/SiMaVeh.Api",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
