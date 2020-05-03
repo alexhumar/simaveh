@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Validators;
 
-namespace SiMaVeh.Helpers
+namespace SiMaVeh.Api.Validators
 {
     public class ValidatorRegistrator
     {

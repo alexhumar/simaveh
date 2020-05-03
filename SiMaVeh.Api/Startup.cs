@@ -7,7 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Controllers.Parametrization;
-using SiMaVeh.DataAccess;
+using SiMaVeh.Api.Validators;
+using SiMaVeh.DataAcces.Model;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Helpers;
 

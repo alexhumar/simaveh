@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace SiMaVeh.Helpers
+namespace SiMaVeh.DataAcces.Model
 {
     /// <summary>
     /// UriParser
@@ -38,7 +38,7 @@ namespace SiMaVeh.Helpers
             }
             catch (Exception)
             {
-                result = default(TKey);
+                result = default;
             }
 
             return result;

@@ -1,4 +1,4 @@
-﻿namespace SiMaVeh.Api.Constants
+﻿namespace SiMaVeh.DataAcces.Constants
 {
     /// <summary>
     /// Query Constants

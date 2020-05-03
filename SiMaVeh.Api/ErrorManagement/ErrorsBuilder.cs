@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Helpers
+namespace SiMaVeh.Api.ErrorManagement
 {
     /// <summary>
     /// Genera y procesa errores del sistema
@@ -22,7 +22,7 @@ namespace SiMaVeh.Helpers
             {
                 foreach (var error in ms.Errors)
                 {
-                    var message = ((error.Exception != null) ? error.Exception.Message : error.ErrorMessage).Trim();
+                    var message = (error.Exception != null ? error.Exception.Message : error.ErrorMessage).Trim();
                     if (!string.IsNullOrEmpty(message))
                         result.Add(message);
                 }

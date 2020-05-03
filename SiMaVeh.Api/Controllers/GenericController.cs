@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization;
-using SiMaVeh.DataAccess;
+using SiMaVeh.Api.ErrorManagement;
+using SiMaVeh.DataAcces.Constants;
+using SiMaVeh.DataAcces.Model;
+using SiMaVeh.DataAcces.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Helpers;
-using SiMaVeh.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
