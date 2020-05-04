@@ -36,12 +36,12 @@ namespace SiMaVeh.Helpers
             //desde afuera (hay que ver algun metodo a nivel Api) se le pase una relatedKey ya procesada con el UriParser, que a fin de cuentas es de la capa de Api.
             TLinkBeId relatedKey = DataAcces.Model.UriParser.GetKeyFromUri<TLinkBeId>(
                 EntityTypeGetter<TLinkBe, TLinkBeId>.GetCollectionNameAsString(), link);
-            IRepository<TLinkBe, TLinkBeId> _repo = new Repository<TLinkBe, TLinkBeId>(_context);
+            IRepository<TLinkBe, TLinkBeId> repo = new Repository<TLinkBe, TLinkBeId>(_context);
             TLinkBe result;
 
             try
             {
-                result = await _repo.Find(relatedKey);
+                result = await repo.Find(relatedKey);
             }
             catch (Exception)
             {
