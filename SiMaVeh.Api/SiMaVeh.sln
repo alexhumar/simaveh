@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Api", "SiMaVeh.Api.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Domain", "..\SiMaVeh.Domain\SiMaVeh.Domain.csproj", "{7B610946-49C1-4777-824F-4750A249CEE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiMaVeh.DataAcces", "..\SiMaVeh.DataAcces\SiMaVeh.DataAcces.csproj", "{5ED19B56-BF39-410D-B45A-B7C86C76A193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.DataAccess", "..\SiMaVeh.DataAcces\SiMaVeh.DataAccess.csproj", "{5ED19B56-BF39-410D-B45A-B7C86C76A193}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

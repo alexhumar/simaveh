@@ -1,11 +1,11 @@
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.OData.Edm;
-using SiMaVeh.DataAcces.Constants;
+using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 
-namespace SiMaVeh.DataAcces.Model
+namespace SiMaVeh.DataAccess.Model
 {
     public class MyModelBuilder
     {

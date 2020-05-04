@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace SiMaVeh.DataAcces.Model
+namespace SiMaVeh.DataAccess.Model
 {
     /// <summary>
     /// UriParser

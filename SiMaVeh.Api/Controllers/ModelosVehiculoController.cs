@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization;
-using SiMaVeh.DataAcces.Constants;
-using SiMaVeh.DataAcces.Repository;
+using SiMaVeh.DataAccess.Repository;
+using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;

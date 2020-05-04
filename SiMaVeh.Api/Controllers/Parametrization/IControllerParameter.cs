@@ -1,4 +1,4 @@
-using SiMaVeh.DataAcces.Model;
+using SiMaVeh.DataAccess.Model;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
 namespace SiMaVeh.Api.Controllers.Parametrization

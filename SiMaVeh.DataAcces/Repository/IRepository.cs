@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.DataAcces.Repository
+namespace SiMaVeh.DataAccess.Repository
 {
     /// <summary>
     /// IRepository

@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SiMaVeh.DataAcces.Model;
+using SiMaVeh.DataAccess.Model;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.DataAcces.Repository
+namespace SiMaVeh.DataAccess.Repository
 {
     /// <summary>
     /// Repository

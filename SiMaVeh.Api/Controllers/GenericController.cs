@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Controllers.Parametrization;
 using SiMaVeh.Api.ErrorManagement;
-using SiMaVeh.DataAcces.Constants;
-using SiMaVeh.DataAcces.Model;
-using SiMaVeh.DataAcces.Repository;
+using SiMaVeh.DataAccess.Repository;
+using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.DataAccess.Model;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 using System;

@@ -1,5 +1,5 @@
-﻿using SiMaVeh.DataAcces.Model;
-using SiMaVeh.DataAcces.Repository;
+﻿using SiMaVeh.DataAccess.Repository;
+using SiMaVeh.DataAccess.Model;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
@@ -34,7 +34,7 @@ namespace SiMaVeh.Helpers
         {
             //TODO - este metodo tiene un problema: que va a parar a una capa de DataAccess y usa el UriParser. Lo que hay que hacer es que en vez de recibir un link,
             //desde afuera (hay que ver algun metodo a nivel Api) se le pase una relatedKey ya procesada con el UriParser, que a fin de cuentas es de la capa de Api.
-            TLinkBeId relatedKey = DataAcces.Model.UriParser.GetKeyFromUri<TLinkBeId>(
+            TLinkBeId relatedKey = DataAccess.Model.UriParser.GetKeyFromUri<TLinkBeId>(
                 EntityTypeGetter<TLinkBe, TLinkBeId>.GetCollectionNameAsString(), link);
             IRepository<TLinkBe, TLinkBeId> repo = new Repository<TLinkBe, TLinkBeId>(_context);
             TLinkBe result;

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Relations;
 
-namespace SiMaVeh.DataAcces.Model
+namespace SiMaVeh.DataAccess.Model
 {
     public class SiMaVehContext : DbContext
     {
