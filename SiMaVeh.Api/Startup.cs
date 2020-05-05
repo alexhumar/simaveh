@@ -29,7 +29,8 @@ namespace SiMaVeh
             var config = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SiMaVehContext>(opt => opt
                 .UseLazyLoadingProxies()
-                .UseMySql(config));
+                .UseMySql(config,
+                          options => options.EnableRetryOnFailure())); //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations. 
             services.AddScoped<IEntityGetter, EntityGetter>();
             services.AddScoped<IControllerParameter, ControllerParameter>();
             services.AddOData();

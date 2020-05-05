@@ -18,18 +18,22 @@ namespace SiMaVeh.DataAccess.Model
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //Esto es para activar la modalidad (TPC - Table per class).
-            //Al dia de hoy (14/01/2019) no es soportada por EF Core.
-            builder.Entity<Automovil>().ToTable("Automoviles");
-            builder.Entity<Pieza>().ToTable("Piezas");
-            builder.Entity<Fluido>().ToTable("Fluidos");
-            builder.Entity<Aceite>().ToTable("Aceites");
-            builder.Entity<Usuario>().ToTable("Usuarios");
+            //Las invocaciones al método ToTable de las clases derivadas se realiza en pos de
+            //activar la modalidad (TPT - Table Per Type). 
+            //Como esto al dia de hoy (04/05/2020) no es soportada por EF Core, pero lo será
+            //en versiones posteriores, se deja el codigo comentado.
+
+            //builder.Entity<Automovil>().ToTable("Automoviles");
+            //builder.Entity<Pieza>().ToTable("Piezas");
+            //builder.Entity<Fluido>().ToTable("Fluidos");
+            //builder.Entity<Aceite>().ToTable("Aceites");
+            //builder.Entity<Usuario>().ToTable("Usuarios");
             builder.Entity<Reparador>()
-                .Ignore(r => r.EntidadesReparadoras)
-                .ToTable("Reparadores");
-            builder.Entity<Kit>().ToTable("Kits");
-            builder.Entity<Repuesto>().ToTable("Repuestos");
+                .Ignore(r => r.EntidadesReparadoras);
+                //.ToTable("Reparadores");
+            //builder.Entity<Kit>().ToTable("Kits");
+            //builder.Entity<Repuesto>().ToTable("Repuestos");
+
             builder.Entity<Recambio>().Ignore(r => r.Kits);
             builder.Entity<EntidadReparadora>().Ignore(er => er.Reparadores);
 
