@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models

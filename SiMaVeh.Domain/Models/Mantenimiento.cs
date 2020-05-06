@@ -1,5 +1,5 @@
-﻿using SiMaVeh.Domain.Enums;
-using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+using SiMaVeh.Domain.Enums;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -67,7 +67,7 @@ namespace SiMaVeh.Domain.Models
                     return true;
                 else
                 {
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (Accion.Equals(item.Accion) && Recambio.Equals(item.Recambio) && ServicioReparador.Equals(item.ServicioReparador) &&
                         Reparador.Equals(item.Reparador));
                 }

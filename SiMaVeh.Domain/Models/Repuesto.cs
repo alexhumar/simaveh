@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -24,7 +24,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Target Mantenimiento
         /// </summary>
-        public virtual TargetMantenimiento TargetMantenimiento { get; set; }      
+        public virtual TargetMantenimiento TargetMantenimiento { get; set; }
 
         /// <summary>
         /// Periodicidades Mantenimiento
@@ -73,7 +73,7 @@ namespace SiMaVeh.Domain.Models
                     return true;
                 else
                 {
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (CodigoIdentificador == item.CodigoIdentificador && TargetMantenimiento.Equals(item.TargetMantenimiento));
                 }
             }

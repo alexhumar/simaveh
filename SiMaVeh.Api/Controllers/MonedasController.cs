@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using SiMaVeh.Api.Controllers.Parametrization;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Parametrization;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.Controllers

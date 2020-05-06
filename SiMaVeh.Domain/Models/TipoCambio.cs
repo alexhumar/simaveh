@@ -56,7 +56,7 @@ namespace SiMaVeh.Domain.Models
                     return true;
                 else
                 {
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (MonedaOrigen.Equals(item.MonedaOrigen) && MonedaDestino.Equals(item.MonedaDestino) &&
                         Fecha == item.Fecha && CoeficienteCambio == item.CoeficienteCambio);
                 }

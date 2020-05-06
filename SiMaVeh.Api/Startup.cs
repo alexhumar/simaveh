@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SiMaVeh.DataAccess;
-using SiMaVeh.Helpers;
-using SiMaVeh.Parametrization;
 using Microsoft.Extensions.Hosting;
+using SiMaVeh.Api.Registration;
+using SiMaVeh.DataAccess.Model;
 
 namespace SiMaVeh
 {
@@ -24,12 +23,15 @@ namespace SiMaVeh
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var config = Configuration.GetConnectionString("DefaultConnection");
+            var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SiMaVehContext>(opt => opt
                 .UseLazyLoadingProxies()
-                .UseMySql(config));
-            services.AddScoped<IEntityGetter, EntityGetter>();
-            services.AddScoped<IControllerParameter, ControllerParameter>();
+                .UseMySql(connection,
+                          o =>
+                          {
+                              o.EnableRetryOnFailure(); //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations.
+                              o.MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
+                          }));
             services.AddOData();
             services.AddMvc(options =>
                 {
@@ -41,7 +43,7 @@ namespace SiMaVeh
                 })
                 .AddFluentValidation();
 
-            ValidatorRegistrator.RegisterValidators(services);
+            SiMaVehDIRegistrator.RegisterDI(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +60,15 @@ namespace SiMaVeh
                 //Work-around for issue #1175
                 routeBuilder.EnableDependencyInjection();
             });
+
+            //Esto es para que se actualice la BD mediante migrations cuando arranca la Api. No es lo ideal,
+            //pero como no es un modelo grande, esta bien.
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var siMaVehContext = scope.ServiceProvider.GetService<SiMaVehContext>();
+                siMaVehContext.ServiceProvider = scope.ServiceProvider;
+                siMaVehContext.Database.Migrate();
+            }
         }
     }
 }

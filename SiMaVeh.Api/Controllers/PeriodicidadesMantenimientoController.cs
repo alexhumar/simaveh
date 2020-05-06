@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Domain.BusinessLogic.Entities;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Helpers;
-using SiMaVeh.HelpersHttpConstants;
-using SiMaVeh.Parametrization;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -168,7 +169,7 @@ namespace SiMaVeh.Controllers
 
                 periodicidadMantenimiento.Cambiar(modeloVehiculo);
             }
-            else if (navigationProperty.Equals(PropertyConstants.TargetMantenimiento))
+            else if (navigationProperty.Equals(EntityProperty.TargetMantenimiento))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();

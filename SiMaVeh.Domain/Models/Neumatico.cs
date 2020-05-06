@@ -1,5 +1,5 @@
-﻿using SiMaVeh.Domain.Enums;
-using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+using SiMaVeh.Domain.Enums;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -63,7 +63,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat(Marca?.ToString(), Modelo, TipoVehiculoNeumaticoParser.ToString(Tipo), 
+            return string.Concat(Marca?.ToString(), Modelo, TipoVehiculoNeumaticoParser.ToString(Tipo),
                 AnchuraSeccionalNominal, "/", RelacionAnchoAlto?.ToString(), ConstruccionCarcasaNeumaticoParser.ToString(ConstruccionCarcasa),
                 DiametroLLanta, " ", IndiceCarga, IndiceVelocidad);
         }
@@ -85,7 +85,7 @@ namespace SiMaVeh.Domain.Models
                     return true;
                 else
                 {
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (Marca.Equals(Marca) && Modelo.ToUpper() == item.Modelo.ToUpper());
                 }
             }
