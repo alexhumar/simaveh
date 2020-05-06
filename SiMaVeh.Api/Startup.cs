@@ -6,11 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SiMaVeh.Api.Controllers.Parametrization;
-using SiMaVeh.Api.Validators;
+using SiMaVeh.Api.Registration;
 using SiMaVeh.DataAccess.Model;
-using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
-using SiMaVeh.Helpers;
 
 namespace SiMaVeh
 {
@@ -30,12 +27,11 @@ namespace SiMaVeh
             services.AddDbContext<SiMaVehContext>(opt => opt
                 .UseLazyLoadingProxies()
                 .UseMySql(connection,
-                          o => { 
+                          o =>
+                          {
                               o.EnableRetryOnFailure(); //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations.
-                              o.MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName); 
-                          })); 
-            services.AddScoped<IEntityGetter, EntityGetter>();
-            services.AddScoped<IControllerParameter, ControllerParameter>();
+                              o.MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
+                          }));
             services.AddOData();
             services.AddMvc(options =>
                 {
@@ -47,7 +43,7 @@ namespace SiMaVeh
                 })
                 .AddFluentValidation();
 
-            ValidatorRegistrator.RegisterValidators(services);
+            SiMaVehDIRegistrator.RegisterDI(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +65,9 @@ namespace SiMaVeh
             //pero como no es un modelo grande, esta bien.
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                scope.ServiceProvider.GetService<SiMaVehContext>().Database.Migrate();
+                var siMaVehContext = scope.ServiceProvider.GetService<SiMaVehContext>();
+                siMaVehContext.ServiceProvider = scope.ServiceProvider;
+                siMaVehContext.Database.Migrate();
             }
         }
     }

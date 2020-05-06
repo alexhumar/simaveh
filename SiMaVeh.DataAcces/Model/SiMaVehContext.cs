@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Relations;
+using System;
 
 namespace SiMaVeh.DataAccess.Model
 {
     public class SiMaVehContext : DbContext
     {
+        public IServiceProvider ServiceProvider { get; set; }
+
         public SiMaVehContext(DbContextOptions<SiMaVehContext> options) : base(options)
         {
         }
@@ -22,11 +27,12 @@ namespace SiMaVeh.DataAccess.Model
             //builder.Entity<Fluido>().ToTable("Fluidos");
             //builder.Entity<Aceite>().ToTable("Aceites");
             //builder.Entity<Usuario>().ToTable("Usuarios");
+            //builder.Entity<Kit>().ToTable("Kits");
+            //builder.Entity<Repuesto>().ToTable("Repuestos");
+
             builder.Entity<Reparador>()
                 .Ignore(r => r.EntidadesReparadoras);
                 //.ToTable("Reparadores");
-            //builder.Entity<Kit>().ToTable("Kits");
-            //builder.Entity<Repuesto>().ToTable("Repuestos");
 
             builder.Entity<Recambio>().Ignore(r => r.Kits);
             builder.Entity<EntidadReparadora>().Ignore(er => er.Reparadores);
@@ -47,6 +53,12 @@ namespace SiMaVeh.DataAccess.Model
 
             builder.Entity<KitRecambio>()
                 .HasKey(k => new { k.KitId, k.RecambioId });
+
+            #endregion
+
+            #region Data Seeding
+
+            ServiceProvider.GetService<IDataSeeder>().SeedData(builder);
 
             #endregion
         }
