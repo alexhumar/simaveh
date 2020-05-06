@@ -8,12 +8,6 @@ namespace SiMaVeh.DataAccess.Model
     {
         public SiMaVehContext(DbContextOptions<SiMaVehContext> options) : base(options)
         {
-            Database.EnsureCreated();
-        }
-
-        public SiMaVehContext() : base()
-        {
-            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
