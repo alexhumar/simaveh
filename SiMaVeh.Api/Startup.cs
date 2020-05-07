@@ -66,7 +66,6 @@ namespace SiMaVeh
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var siMaVehContext = scope.ServiceProvider.GetService<SiMaVehContext>();
-                siMaVehContext.ServiceProvider = scope.ServiceProvider;
                 siMaVehContext.Database.Migrate();
             }
         }

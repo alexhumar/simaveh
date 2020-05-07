@@ -24,7 +24,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Id. Pais
         /// </summary>
-        public virtual long IdPais { get; set; }
+        public virtual long PaisId { get; set; }
 
         /// <summary>
         /// Pais

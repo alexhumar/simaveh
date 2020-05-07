@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SiMaVeh.Domain.DataSeed;
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 
@@ -9,10 +10,10 @@ namespace SiMaVeh.DataAccess.DataSeed
         private readonly ISeeder<Pais> paisSeeder;
         private readonly ISeeder<Provincia> provinciaSeeder;
 
-        public DataSeeder(ISeeder<Pais> paisSeeder, ISeeder<Provincia> provinciaSeeder)
+        public DataSeeder()
         {
-            this.paisSeeder = paisSeeder;
-            this.provinciaSeeder = provinciaSeeder;
+            paisSeeder = new PaisSeeder();
+            provinciaSeeder = new ProvinciaSeeder();
         }
 
         public void SeedData(ModelBuilder builder)

@@ -17,7 +17,7 @@ namespace SiMaVeh.Domain.DataSeed
         {
             var result = new List<Provincia>
             {
-                new Provincia { Id = 1, Nombre = "Buenos Aires", IdPais = 1 }
+                new Provincia { Id = 1, Nombre = "Buenos Aires", PaisId = 1 }
             };
 
             return result;
