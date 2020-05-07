@@ -22,6 +22,11 @@ namespace SiMaVeh.Domain.Models
         public virtual string Nombre { get; set; }
 
         /// <summary>
+        /// Id. Pais
+        /// </summary>
+        public virtual long IdPais { get; set; }
+
+        /// <summary>
         /// Pais
         /// </summary>
         public virtual Pais Pais { get; set; }
