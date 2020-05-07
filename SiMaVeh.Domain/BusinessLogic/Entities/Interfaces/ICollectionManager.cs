@@ -3,16 +3,22 @@
 namespace SiMaVeh.Domain.BusinessLogic.Entities.Interfaces
 {
     /// <summary>
-    /// IEntityChanger
+    /// ICollectionManager
     /// </summary>
     /// <typeparam name="TBe"></typeparam>
     /// <typeparam name="TBeId"></typeparam>
-    public interface IEntityChanger<TBe, TBeId> where TBe : DomainMember<TBeId>
+    public interface ICollectionManager<TBe, TBeId> where TBe : DomainMember<TBeId>
     {
         /// <summary>
-        /// Cambiar
+        /// Agregar
         /// </summary>
         /// <param name="entity"></param>
-        void Cambiar(TBe entity);
+        void Agregar(TBe entity);
+
+        /// <summary>
+        /// Quitar
+        /// </summary>
+        /// <param name="entity"></param>
+        void Quitar(TBe entity);
     }
 }

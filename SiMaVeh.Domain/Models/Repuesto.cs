@@ -6,7 +6,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Repuesto
     /// </summary>
-    public class Repuesto : Recambio, IEntityChanger<TargetMantenimiento, long>, IEntityChanger<PeriodicidadMantenimiento, long>
+    public class Repuesto : Recambio, IEntityChanger<TargetMantenimiento, long>, ICollectionManager<PeriodicidadMantenimiento, long>
     {
         /// <summary>
         /// Repuesto
@@ -29,7 +29,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Periodicidades Mantenimiento
         /// </summary>
-        public virtual IList<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; set; }
+        public virtual IList<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; protected set; }
 
         #region overrides
 
@@ -102,32 +102,9 @@ namespace SiMaVeh.Domain.Models
                 TargetMantenimiento = entity;
         }
 
-        /// <summary>
-        /// Agregar target mantenimiento
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(TargetMantenimiento entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #endregion
 
-        /// <summary>
-        /// Quitar target mantenimiento
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(TargetMantenimiento entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar periodicidad mantenimiento
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(PeriodicidadMantenimiento entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar periodicidad mantenimiento

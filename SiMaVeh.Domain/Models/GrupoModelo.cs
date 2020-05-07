@@ -71,24 +71,6 @@ namespace SiMaVeh.Domain.Models
                 Marca = entity;
         }
 
-        /// <summary>
-        /// Agregar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Marca entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Marca entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
         #endregion
     }
 }

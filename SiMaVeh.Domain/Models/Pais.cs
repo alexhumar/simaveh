@@ -6,7 +6,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Pais
     /// </summary>
-    public class Pais : DomainMember<long>, IEntityChanger<Provincia, long>
+    public class Pais : DomainMember<long>, ICollectionManager<Provincia, long>
     {
         /// <summary>
         /// Constructor
@@ -24,7 +24,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Provincias
         /// </summary>
-        public virtual IList<Provincia> Provincias { get; set; }
+        public virtual IList<Provincia> Provincias { get; protected set; }
 
         #region overrides
 
@@ -71,15 +71,6 @@ namespace SiMaVeh.Domain.Models
         #endregion
 
         #region IEntityChanger
-
-        /// <summary>
-        /// Cambiar provincia
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Provincia entity)
-        {
-            throw new System.NotSupportedException();
-        }
 
         /// <summary>
         /// Agregar provincia

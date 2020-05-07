@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Recambio
     /// </summary>
-    public abstract class Recambio : DomainMember<long>, IEntityChanger<Marca, long>, IEntityChanger<Kit, long>
+    public abstract class Recambio : DomainMember<long>, IEntityChanger<Marca, long>, ICollectionManager<Kit, long>
     {
         /// <summary>
         /// Constructor
@@ -46,7 +46,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Relacion Kit-Recambio
         /// </summary>
-        public virtual IList<KitRecambio> KitRecambio { get; }
+        public virtual IList<KitRecambio> KitRecambio { get; protected set; }
 
         #endregion
 
@@ -85,32 +85,9 @@ namespace SiMaVeh.Domain.Models
                 Marca = entity;
         }
 
-        /// <summary>
-        /// Agregar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Marca entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #endregion
 
-        /// <summary>
-        /// Quitar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Marca entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar kit
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Kit entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar kit

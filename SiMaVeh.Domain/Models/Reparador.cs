@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Reparador
     /// </summary>
-    public class Reparador : Persona, IEntityChanger<EntidadReparadora, long>
+    public class Reparador : Persona, ICollectionManager<EntidadReparadora, long>
     {
         /// <summary>
         /// Constructor
@@ -32,7 +32,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Relacion Reparador-EntidadReparadora
         /// </summary>
-        public virtual IList<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
+        public virtual IList<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; protected set; }
 
         #endregion
 
@@ -80,16 +80,7 @@ namespace SiMaVeh.Domain.Models
 
         #endregion
 
-        #region IEntityChanger
-
-        /// <summary>
-        /// Cambiar entidad reparadora
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(EntidadReparadora entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar entidad reparadora

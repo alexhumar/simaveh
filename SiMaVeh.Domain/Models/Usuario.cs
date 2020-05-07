@@ -6,7 +6,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Usuario
     /// </summary>
-    public class Usuario : Persona, IEntityChanger<Vehiculo, long>
+    public class Usuario : Persona, ICollectionManager<Vehiculo, long>
     {
         /// <summary>
         /// Constructor
@@ -19,7 +19,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Vehiculos
         /// </summary>
-        public virtual IList<Vehiculo> Vehiculos { get; set; }
+        public virtual IList<Vehiculo> Vehiculos { get; protected set; }
 
         #region overrides
 
@@ -65,16 +65,7 @@ namespace SiMaVeh.Domain.Models
 
         #endregion
 
-        #region IEntityChanger
-
-        /// <summary>
-        /// Cambiar vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Vehiculo entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar vehiculo

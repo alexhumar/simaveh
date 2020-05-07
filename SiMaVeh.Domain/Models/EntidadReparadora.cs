@@ -8,8 +8,8 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Entidad Reparadora
     /// </summary>
-    public class EntidadReparadora : DomainMember<long>, IEntityChanger<TipoEntidadReparadora, long>, IEntityChanger<ServicioReparador, long>,
-        IEntityChanger<Reparador, long>, IEntityChanger<Direccion, long>
+    public class EntidadReparadora : DomainMember<long>, IEntityChanger<TipoEntidadReparadora, long>, ICollectionManager<ServicioReparador, long>,
+        ICollectionManager<Reparador, long>, IEntityChanger<Direccion, long>
     {
         /// <summary>
         /// Constructor
@@ -29,12 +29,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo Entidad
         /// </summary>
-        public virtual TipoEntidadReparadora TipoEntidadReparadora { get; set; }
+        public virtual TipoEntidadReparadora TipoEntidadReparadora { get; protected set; }
 
         /// <summary>
         /// Servicios Mecanicos
         /// </summary>
-        public virtual IList<ServicioReparador> ServiciosReparadores { get; set; }
+        public virtual IList<ServicioReparador> ServiciosReparadores { get; protected set; }
 
         /// <summary>
         /// Mecanicos
@@ -113,31 +113,18 @@ namespace SiMaVeh.Domain.Models
         }
 
         /// <summary>
-        /// Agregar tipo entidad reparadora
+        /// Cambiar direccion
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(TipoEntidadReparadora entity)
+        public void Cambiar(Direccion entity)
         {
-            throw new System.NotSupportedException();
+            if (entity != null)
+                Direccion = entity;
         }
 
-        /// <summary>
-        /// Quitar tipo entidad reparadora
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(TipoEntidadReparadora entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #endregion
 
-        /// <summary>
-        /// Cambiar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(ServicioReparador entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar servicio reparador
@@ -164,15 +151,6 @@ namespace SiMaVeh.Domain.Models
                 if ((bool)entity.EntidadReparadora?.Equals(this))
                     entity.EntidadReparadora = null;
             }
-        }
-
-        /// <summary>
-        /// Cambiar reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Reparador entity)
-        {
-            throw new System.NotSupportedException();
         }
 
         /// <summary>
@@ -209,34 +187,6 @@ namespace SiMaVeh.Domain.Models
                 if (toRemove != null)
                     ReparadorEntidadReparadora.Remove(toRemove);
             }
-        }
-
-        /// <summary>
-        /// Cambiar direccion
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Direccion entity)
-        {
-            if (entity != null)
-                Direccion = entity;
-        }
-
-        /// <summary>
-        /// Agregar direccion
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Direccion entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar direccion
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Direccion entity)
-        {
-            throw new System.NotSupportedException();
         }
 
         #endregion

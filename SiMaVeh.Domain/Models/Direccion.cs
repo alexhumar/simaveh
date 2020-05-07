@@ -77,24 +77,6 @@ namespace SiMaVeh.Domain.Models
                 Localidad = entity;
         }
 
-        /// <summary>
-        /// Agregar localidad
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Localidad entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar localidad
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Localidad entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
         #endregion
     }
 }

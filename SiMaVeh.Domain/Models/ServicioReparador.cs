@@ -7,7 +7,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Servicio Reparador
     /// </summary>
-    public class ServicioReparador : DomainMember<long>, IEntityChanger<Mantenimiento, long>, IEntityChanger<EntidadReparadora, long>,
+    public class ServicioReparador : DomainMember<long>, ICollectionManager<Mantenimiento, long>, IEntityChanger<EntidadReparadora, long>,
         IEntityChanger<Vehiculo, long>, IEntityChanger<Moneda, long>
     {
         /// <summary>
@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Mantenimientos
         /// </summary>
-        public virtual IList<Mantenimiento> Mantenimientos { get; set; }
+        public virtual IList<Mantenimiento> Mantenimientos { get; protected set; }
 
         /// <summary>
         /// Fecha Inicio
@@ -110,13 +110,38 @@ namespace SiMaVeh.Domain.Models
         #region IEntityChanger
 
         /// <summary>
-        /// Cambiar mantenimiento
+        /// Cambiar entidad reparadora
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Mantenimiento entity)
+        public void Cambiar(EntidadReparadora entity)
         {
-            throw new NotSupportedException();
+            EntidadReparadora?.Quitar(this);
+            entity?.Agregar(this);
         }
+
+        /// <summary>
+        /// Cambiar vehiculo
+        /// </summary>
+        /// <param name="entity"></param>
+        public void Cambiar(Vehiculo entity)
+        {
+            Vehiculo?.Quitar(this);
+            entity?.Agregar(this);
+        }
+
+        /// <summary>
+        /// Cambiar moneda
+        /// </summary>
+        /// <param name="entity"></param>
+        public void Cambiar(Moneda entity)
+        {
+            if (entity != null)
+                MonedaMontoManoObra = entity;
+        }
+
+        #endregion
+
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar mantenimiento
@@ -143,90 +168,6 @@ namespace SiMaVeh.Domain.Models
                 if ((bool)entity.ServicioReparador?.Equals(this))
                     entity.ServicioReparador = null;
             }
-        }
-
-        /// <summary>
-        /// Cambiar entidad reparadora
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(EntidadReparadora entity)
-        {
-            EntidadReparadora?.Quitar(this);
-            entity?.Agregar(this);
-        }
-
-        /// <summary>
-        /// Agregar entidad reparadora
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(EntidadReparadora entity)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar entidad reparadora
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(EntidadReparadora entity)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Vehiculo entity)
-        {
-            Vehiculo?.Quitar(this);
-            entity?.Agregar(this);
-        }
-
-        /// <summary>
-        /// Agregar vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Vehiculo entity)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Vehiculo entity)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar moneda
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Moneda entity)
-        {
-            if (entity != null)
-                MonedaMontoManoObra = entity;
-        }
-
-        /// <summary>
-        /// Agregar moneda
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Moneda entity)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar moneda
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Moneda entity)
-        {
-            throw new NotSupportedException();
         }
 
         #endregion

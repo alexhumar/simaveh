@@ -6,7 +6,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Persona
     /// </summary>
-    public abstract class Persona : DomainMember<long>, IEntityChanger<TipoDocumento, long>, IEntityChanger<Telefono, long>
+    public abstract class Persona : DomainMember<long>, IEntityChanger<TipoDocumento, long>, ICollectionManager<Telefono, long>
     {
         /// <summary>
         /// Constructor
@@ -39,7 +39,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Telefonos
         /// </summary>
-        public virtual IList<Telefono> Telefonos { get; set; }
+        public virtual IList<Telefono> Telefonos { get; protected set; }
 
         #region overrides
 
@@ -94,32 +94,9 @@ namespace SiMaVeh.Domain.Models
                 TipoDocumento = entity;
         }
 
-        /// <summary>
-        /// Agregar tipo documento
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(TipoDocumento entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #endregion
 
-        /// <summary>
-        /// Quitar tipo documento
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(TipoDocumento entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar telefono
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Telefono entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar telefono

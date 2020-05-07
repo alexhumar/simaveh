@@ -76,24 +76,6 @@ namespace SiMaVeh.Domain.Models
             entity?.Agregar(this);
         }
 
-        /// <summary>
-        /// Agregar partido
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Partido entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar partido
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Partido entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
         #endregion
     }
 }

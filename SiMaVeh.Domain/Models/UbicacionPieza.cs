@@ -7,7 +7,7 @@ namespace SiMaVeh.Domain.Models
     /// </summary>
     public class UbicacionPieza : DomainMember<string>
     {
-        private bool _izquierda { get; set; }
+        private bool _izquierda;
         /// <summary>
         /// True -> Izquierda. False -> Derecha.
         /// </summary>
@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Models
             }
         }
 
-        private bool _superior { get; set; }
+        private bool _superior;
         /// <summary>
         /// True -> Superior. False -> Inferior.
         /// </summary>

@@ -101,24 +101,6 @@ namespace SiMaVeh.Domain.Models
         }
 
         /// <summary>
-        /// Agregar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(ModeloVehiculo entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(ModeloVehiculo entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
         /// Cambiar repuesto
         /// </summary>
         /// <param name="entity"></param>
@@ -126,24 +108,6 @@ namespace SiMaVeh.Domain.Models
         {
             TargetMantenimiento?.Quitar(this);
             entity?.Agregar(this);
-        }
-
-        /// <summary>
-        /// Agregar repuesto
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Repuesto entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar repuesto
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Repuesto entity)
-        {
-            throw new System.NotSupportedException();
         }
 
         #endregion

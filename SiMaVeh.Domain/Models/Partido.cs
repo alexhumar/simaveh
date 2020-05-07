@@ -6,7 +6,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Partido
     /// </summary>
-    public class Partido : DomainMember<long>, IEntityChanger<Provincia, long>, IEntityChanger<Localidad, long>
+    public class Partido : DomainMember<long>, IEntityChanger<Provincia, long>, ICollectionManager<Localidad, long>
     {
         /// <summary>
         /// Partido
@@ -29,7 +29,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Localidades
         /// </summary>
-        public virtual IList<Localidad> Localidades { get; set; }
+        public virtual IList<Localidad> Localidades { get; protected set; }
 
         #region overrides
 
@@ -88,32 +88,9 @@ namespace SiMaVeh.Domain.Models
             entity?.Agregar(this);
         }
 
-        /// <summary>
-        /// Agregar provincia
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Provincia entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #endregion
 
-        /// <summary>
-        /// Quitar provincia
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Provincia entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar localidad
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Localidad entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar localidad

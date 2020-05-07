@@ -6,7 +6,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Provincia
     /// </summary>
-    public class Provincia : DomainMember<long>, IEntityChanger<Pais, long>, IEntityChanger<Partido, long>
+    public class Provincia : DomainMember<long>, IEntityChanger<Pais, long>, ICollectionManager<Partido, long>
     {
         /// <summary>
         /// Constructor
@@ -29,7 +29,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Partidos
         /// </summary>
-        public virtual IList<Partido> Partidos { get; set; }
+        public virtual IList<Partido> Partidos { get; protected set; }
 
         #region override
 
@@ -79,13 +79,18 @@ namespace SiMaVeh.Domain.Models
         #region IEntityChanger
 
         /// <summary>
-        /// Cambiar partido
+        /// Cambiar pais
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Partido entity)
+        public void Cambiar(Pais entity)
         {
-            throw new System.NotSupportedException();
+            Pais?.Quitar(this);
+            entity?.Agregar(this);
         }
+
+        #endregion
+
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar partido
@@ -112,34 +117,6 @@ namespace SiMaVeh.Domain.Models
                 if ((bool)entity.Provincia?.Equals(this))
                     entity.Provincia = null;
             }
-        }
-
-        /// <summary>
-        /// Cambiar pais
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Pais entity)
-        {
-            Pais?.Quitar(this);
-            entity?.Agregar(this);
-        }
-
-        /// <summary>
-        /// Agregar pais
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Pais entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar pais
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Pais entity)
-        {
-            throw new System.NotSupportedException();
         }
 
         #endregion

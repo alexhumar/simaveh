@@ -79,24 +79,6 @@ namespace SiMaVeh.Domain.Models
         }
 
         /// <summary>
-        /// Agregar tipo telefono
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(TipoTelefono entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar tipo telefono
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(TipoTelefono entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
         /// Cambiar persona
         /// </summary>
         /// <param name="entity"></param>
@@ -104,24 +86,6 @@ namespace SiMaVeh.Domain.Models
         {
             Persona?.Quitar(this);
             entity?.Agregar(this);
-        }
-
-        /// <summary>
-        /// Agregar persona
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Persona entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar persona
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Persona entity)
-        {
-            throw new System.NotSupportedException();
         }
 
         #endregion

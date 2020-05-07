@@ -98,24 +98,6 @@ namespace SiMaVeh.Domain.Models
         }
 
         /// <summary>
-        /// Agregar recambio
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Recambio entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar recambio
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Recambio entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
         /// Cambiar moneda
         /// </summary>
         /// <param name="entity"></param>
@@ -123,24 +105,6 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
                 MonedaMontoRecambio = entity;
-        }
-
-        /// <summary>
-        /// Agregar moneda
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Moneda entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar moneda
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Moneda entity)
-        {
-            throw new System.NotSupportedException();
         }
 
         /// <summary>
@@ -154,24 +118,6 @@ namespace SiMaVeh.Domain.Models
         }
 
         /// <summary>
-        /// Agregar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(ServicioReparador entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(ServicioReparador entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
         /// Cambiar reparador
         /// </summary>
         /// <param name="entity"></param>
@@ -179,24 +125,6 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
                 Reparador = entity;
-        }
-
-        /// <summary>
-        /// Agregar reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Reparador entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Reparador entity)
-        {
-            throw new System.NotSupportedException();
         }
 
         #endregion

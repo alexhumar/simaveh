@@ -66,24 +66,6 @@ namespace SiMaVeh.Domain.Models
                 UbicacionPieza = entity;
         }
 
-        /// <summary>
-        /// Agregar ubicacion pieza
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(UbicacionPieza entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar ubicacion pieza
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(UbicacionPieza entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
         #endregion
     }
 }

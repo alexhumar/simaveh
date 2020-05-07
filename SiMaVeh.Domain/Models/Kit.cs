@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Kit
     /// </summary>
-    public class Kit : Recambio, IEntityChanger<Recambio, long>
+    public class Kit : Recambio, ICollectionManager<Recambio, long>
     {
         /// <summary>
         /// Constructor
@@ -98,15 +98,6 @@ namespace SiMaVeh.Domain.Models
         #endregion
 
         #region IEntityChanger
-
-        /// <summary>
-        /// Cambiar recambio
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Recambio entity)
-        {
-            throw new System.NotSupportedException();
-        }
 
         /// <summary>
         /// Agregar recambio
