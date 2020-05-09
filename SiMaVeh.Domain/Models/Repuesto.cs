@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -6,14 +6,16 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Repuesto
     /// </summary>
-    public class Repuesto : Recambio, IEntityChanger<TargetMantenimiento, long>, ICollectionManager<PeriodicidadMantenimiento, long>
+    public class Repuesto : Recambio,
+        IEntityChanger<TargetMantenimiento, long, Repuesto, long>,
+        ICollectionManager<PeriodicidadMantenimiento, long, Repuesto, long>
     {
         /// <summary>
         /// Repuesto
         /// </summary>
         public Repuesto()
         {
-            PeriodicidadesMantenimiento = new List<PeriodicidadMantenimiento>();
+            PeriodicidadesMantenimiento = new HashSet<PeriodicidadMantenimiento>();
         }
 
         /// <summary>
@@ -29,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Periodicidades Mantenimiento
         /// </summary>
-        public virtual IList<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; protected set; }
+        public virtual ISet<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; protected set; }
 
         #region overrides
 
@@ -37,9 +39,9 @@ namespace SiMaVeh.Domain.Models
         /// GetRepuestos
         /// </summary>
         /// <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
-        public override IList<Repuesto> GetRepuestos()
+        public override ISet<Repuesto> GetRepuestos()
         {
-            var repuestos = new List<Repuesto>
+            var repuestos = new HashSet<Repuesto>
             {
                 this
             };
@@ -96,10 +98,13 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar target mantenimiento
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(TargetMantenimiento entity)
+        /// <returns></returns>
+        public Repuesto Cambiar(TargetMantenimiento entity)
         {
             if (entity != null)
                 TargetMantenimiento = entity;
+
+            return this;
         }
 
         #endregion
@@ -110,20 +115,24 @@ namespace SiMaVeh.Domain.Models
         /// Agregar periodicidad mantenimiento
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(PeriodicidadMantenimiento entity)
+        /// <returns></returns>
+        public Repuesto Agregar(PeriodicidadMantenimiento entity)
         {
             if (entity != null)
             {
                 PeriodicidadesMantenimiento?.Add(entity);
                 entity.TargetMantenimiento = this;
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar periodicidad mantenimiento
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(PeriodicidadMantenimiento entity)
+        /// <returns></returns>
+        public Repuesto Quitar(PeriodicidadMantenimiento entity)
         {
             if (entity != null)
             {
@@ -131,6 +140,8 @@ namespace SiMaVeh.Domain.Models
                 if ((bool)entity.TargetMantenimiento?.Equals(this))
                     entity.TargetMantenimiento = null;
             }
+
+            return this;
         }
 
         #endregion

@@ -1,11 +1,13 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Telefono
     /// </summary>
-    public class Telefono : DomainMember<long>, IEntityChanger<TipoTelefono, long>, IEntityChanger<Persona, long>
+    public class Telefono : DomainMember<long>,
+        IEntityChanger<TipoTelefono, long, Telefono, long>,
+        IEntityChanger<Persona, long, Telefono, long>
     {
         /// <summary>
         /// Numero
@@ -72,20 +74,26 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar tipo telefono
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(TipoTelefono entity)
+        /// <returns></returns>
+        public Telefono Cambiar(TipoTelefono entity)
         {
             if (entity != null)
                 TipoTelefono = entity;
+
+            return this;
         }
 
         /// <summary>
         /// Cambiar persona
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Persona entity)
+        /// <returns></returns>
+        public Telefono Cambiar(Persona entity)
         {
             Persona?.Quitar(this);
             entity?.Agregar(this);
+
+            return this;
         }
 
         #endregion

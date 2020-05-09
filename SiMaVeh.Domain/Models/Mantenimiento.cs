@@ -1,13 +1,16 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
-using SiMaVeh.Domain.Enums;
+﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Mantenimiento
     /// </summary>
-    public class Mantenimiento : DomainMember<long>, IEntityChanger<Recambio, long>, IEntityChanger<Moneda, long>,
-        IEntityChanger<ServicioReparador, long>, IEntityChanger<Reparador, long>
+    public class Mantenimiento : DomainMember<long>,
+        IEntityChanger<Recambio, long, Mantenimiento, long>,
+        IEntityChanger<Moneda, long, Mantenimiento, long>,
+        IEntityChanger<ServicioReparador, long, Mantenimiento, long>,
+        IEntityChanger<Reparador, long, Mantenimiento, long>
     {
         /// <summary>
         /// Accion
@@ -17,7 +20,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recambio
         /// </summary>
-        public virtual Recambio Recambio { get; set; }
+        public virtual Recambio Recambio { get; protected set; }
 
         /// <summary>
         /// Monto Recambio
@@ -27,7 +30,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Moneda Monto Recambio
         /// </summary>
-        public virtual Moneda MonedaMontoRecambio { get; set; }
+        public virtual Moneda MonedaMontoRecambio { get; protected set; }
 
         /// <summary>
         /// Servicio Reparador
@@ -37,7 +40,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Reparador
         /// </summary>
-        public virtual Reparador Reparador { get; set; }
+        public virtual Reparador Reparador { get; protected set; }
 
         #region overrides
 
@@ -91,40 +94,52 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar recambio
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Recambio entity)
+        /// <returns></returns>
+        public Mantenimiento Cambiar(Recambio entity)
         {
             if (entity != null)
                 Recambio = entity;
+
+            return this;
         }
 
         /// <summary>
         /// Cambiar moneda
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Moneda entity)
+        /// <returns></returns>
+        public Mantenimiento Cambiar(Moneda entity)
         {
             if (entity != null)
                 MonedaMontoRecambio = entity;
+
+            return this;
         }
 
         /// <summary>
         /// Cambiar servicio reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(ServicioReparador entity)
+        /// <returns></returns>
+        public Mantenimiento Cambiar(ServicioReparador entity)
         {
             ServicioReparador?.Quitar(this);
             entity?.Agregar(this);
+
+            return this;
         }
 
         /// <summary>
         /// Cambiar reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Reparador entity)
+        /// <returns></returns>
+        public Mantenimiento Cambiar(Reparador entity)
         {
             if (entity != null)
                 Reparador = entity;
+
+            return this;
         }
 
         #endregion

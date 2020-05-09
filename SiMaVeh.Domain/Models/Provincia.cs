@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -6,14 +6,16 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Provincia
     /// </summary>
-    public class Provincia : DomainMember<long>, IEntityChanger<Pais, long>, ICollectionManager<Partido, long>
+    public class Provincia : DomainMember<long>,
+        IEntityChanger<Pais, long, Provincia, long>,
+        ICollectionManager<Partido, long, Provincia, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public Provincia()
         {
-            Partidos = new List<Partido>();
+            Partidos = new HashSet<Partido>();
         }
 
         /// <summary>
@@ -22,19 +24,14 @@ namespace SiMaVeh.Domain.Models
         public virtual string Nombre { get; set; }
 
         /// <summary>
-        /// Id. Pais
-        /// </summary>
-        public virtual long PaisId { get; set; }
-
-        /// <summary>
         /// Pais
         /// </summary>
-        public virtual Pais Pais { get; set; }
+        public virtual Pais Pais { get; protected set; }
 
         /// <summary>
         /// Partidos
         /// </summary>
-        public virtual IList<Partido> Partidos { get; protected set; }
+        public virtual ISet<Partido> Partidos { get; protected set; }
 
         #region override
 
@@ -87,10 +84,17 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar pais
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Pais entity)
+        /// <returns></returns>
+        public Provincia Cambiar(Pais entity)
         {
-            Pais?.Quitar(this);
-            entity?.Agregar(this);
+            if (Pais != entity)
+            {
+                Pais?.Quitar(this);
+                Pais = entity;
+                entity?.Agregar(this);
+            }
+
+            return this;
         }
 
         #endregion
@@ -101,20 +105,24 @@ namespace SiMaVeh.Domain.Models
         /// Agregar partido
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Partido entity)
+        /// <returns></returns>
+        public Provincia Agregar(Partido entity)
         {
             if (entity != null)
             {
                 Partidos?.Add(entity);
                 entity.Provincia = this;
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar partido
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Partido entity)
+        /// <returns></returns>
+        public Provincia Quitar(Partido entity)
         {
             if (entity != null)
             {
@@ -122,6 +130,8 @@ namespace SiMaVeh.Domain.Models
                 if ((bool)entity.Provincia?.Equals(this))
                     entity.Provincia = null;
             }
+
+            return this;
         }
 
         #endregion

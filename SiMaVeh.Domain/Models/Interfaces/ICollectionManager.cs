@@ -1,24 +1,24 @@
-﻿using SiMaVeh.Domain.Models;
-
-namespace SiMaVeh.Domain.BusinessLogic.Entities.Interfaces
+﻿namespace SiMaVeh.Domain.Models.Interfaces
 {
     /// <summary>
     /// ICollectionManager
     /// </summary>
     /// <typeparam name="TBe"></typeparam>
     /// <typeparam name="TBeId"></typeparam>
-    public interface ICollectionManager<TBe, TBeId> where TBe : DomainMember<TBeId>
+    /// <typeparam name="TBeReturn"></typeparam>
+    /// <typeparam name="TBeReturnId"></typeparam>
+    public interface ICollectionManager<TBe, TBeId, TBeReturn, TBeReturnId> where TBe : DomainMember<TBeId> where TBeReturn : DomainMember<TBeReturnId>
     {
         /// <summary>
         /// Agregar
         /// </summary>
         /// <param name="entity"></param>
-        void Agregar(TBe entity);
+        TBeReturn Agregar(TBe entity);
 
         /// <summary>
         /// Quitar
         /// </summary>
         /// <param name="entity"></param>
-        void Quitar(TBe entity);
+        TBeReturn Quitar(TBe entity);
     }
 }

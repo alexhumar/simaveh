@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +8,19 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Entidad Reparadora
     /// </summary>
-    public class EntidadReparadora : DomainMember<long>, IEntityChanger<TipoEntidadReparadora, long>, ICollectionManager<ServicioReparador, long>,
-        ICollectionManager<Reparador, long>, IEntityChanger<Direccion, long>
+    public class EntidadReparadora : DomainMember<long>,
+        IEntityChanger<TipoEntidadReparadora, long, EntidadReparadora, long>,
+        IEntityChanger<Direccion, long, EntidadReparadora, long>,
+        ICollectionManager<ServicioReparador, long, EntidadReparadora, long>,
+        ICollectionManager<Reparador, long, EntidadReparadora, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public EntidadReparadora()
         {
-            ServiciosReparadores = new List<ServicioReparador>();
-            // Reparadores = new List<Reparador>();
-            ReparadorEntidadReparadora = new List<ReparadorEntidadReparadora>();
+            ServiciosReparadores = new HashSet<ServicioReparador>();
+            ReparadorEntidadReparadora = new HashSet<ReparadorEntidadReparadora>();
         }
 
         /// <summary>
@@ -34,27 +36,28 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Servicios Mecanicos
         /// </summary>
-        public virtual IList<ServicioReparador> ServiciosReparadores { get; protected set; }
+        public virtual ISet<ServicioReparador> ServiciosReparadores { get; protected set; }
 
         /// <summary>
         /// Mecanicos
         /// </summary>
-        public virtual IList<Reparador> Reparadores
+        public virtual ISet<Reparador> Reparadores
         {
-            get { return ReparadorEntidadReparadora.Select(r => r.Reparador).ToList(); }
+            get { return ReparadorEntidadReparadora.Select(r => r.Reparador).ToHashSet(); }
         }
 
         /// <summary>
         /// Direccion
         /// </summary>
-        public virtual Direccion Direccion { get; set; }
+        public virtual Direccion Direccion { get; protected set; }
 
         #region relations
 
+        //PRUEBA ARH - PROBAR PROTECTED!
         /// <summary>
         /// Relacion Reparador-EntidadReparadora
         /// </summary>
-        public virtual IList<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
+        public virtual ISet<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
 
         #endregion
 
@@ -106,20 +109,26 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar tipo entidad reparadora
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(TipoEntidadReparadora entity)
+        /// <returns></returns>
+        public EntidadReparadora Cambiar(TipoEntidadReparadora entity)
         {
             if (entity != null)
                 TipoEntidadReparadora = entity;
+
+            return this;
         }
 
         /// <summary>
         /// Cambiar direccion
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Direccion entity)
+        /// <returns></returns>
+        public EntidadReparadora Cambiar(Direccion entity)
         {
             if (entity != null)
                 Direccion = entity;
+
+            return this;
         }
 
         #endregion
@@ -130,20 +139,24 @@ namespace SiMaVeh.Domain.Models
         /// Agregar servicio reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(ServicioReparador entity)
+        /// <returns></returns>
+        public EntidadReparadora Agregar(ServicioReparador entity)
         {
             if (entity != null)
             {
                 ServiciosReparadores?.Add(entity);
                 entity.EntidadReparadora = this;
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar servicio reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(ServicioReparador entity)
+        /// <returns></returns>
+        public EntidadReparadora Quitar(ServicioReparador entity)
         {
             if (entity != null)
             {
@@ -151,42 +164,46 @@ namespace SiMaVeh.Domain.Models
                 if ((bool)entity.EntidadReparadora?.Equals(this))
                     entity.EntidadReparadora = null;
             }
+
+            return this;
         }
 
         /// <summary>
         /// Agregar reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Reparador entity)
+        /// <returns></returns>
+        public EntidadReparadora Agregar(Reparador entity)
         {
             if (entity != null)
             {
-                // Reparadores?.Add(entity);
-                // entity.EntidadesReparadoras?.Add(this);
                 ReparadorEntidadReparadora?.Add(new ReparadorEntidadReparadora
                 {
                     Reparador = entity,
                     EntidadReparadora = this
                 });
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Reparador entity)
+        /// <returns></returns>
+        public EntidadReparadora Quitar(Reparador entity)
         {
             if (entity != null)
             {
-                // Reparadores?.Remove(entity);
-                // entity.EntidadesReparadoras?.Remove(this);
                 var toRemove = ReparadorEntidadReparadora?
                     .Where(r => r.Reparador == entity && r.EntidadReparadora == this)
                     .FirstOrDefault();
                 if (toRemove != null)
                     ReparadorEntidadReparadora.Remove(toRemove);
             }
+
+            return this;
         }
 
         #endregion

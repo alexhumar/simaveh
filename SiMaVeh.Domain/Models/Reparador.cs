@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,23 +8,23 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Reparador
     /// </summary>
-    public class Reparador : Persona, ICollectionManager<EntidadReparadora, long>
+    public class Reparador : Persona,
+        ICollectionManager<EntidadReparadora, long, Reparador, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public Reparador()
         {
-            // EntidadesReparadoras = new List<EntidadReparadora>();
-            ReparadorEntidadReparadora = new List<ReparadorEntidadReparadora>();
+            ReparadorEntidadReparadora = new HashSet<ReparadorEntidadReparadora>();
         }
 
         /// <summary>
         /// Entidades reparadoras en las que trabaja el reparador
         /// </summary>
-        public virtual IList<EntidadReparadora> EntidadesReparadoras
+        public virtual ISet<EntidadReparadora> EntidadesReparadoras
         {
-            get { return ReparadorEntidadReparadora.Select(e => e.EntidadReparadora).ToList(); }
+            get { return ReparadorEntidadReparadora.Select(e => e.EntidadReparadora).ToHashSet(); }
         }
 
         #region relations
@@ -32,7 +32,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Relacion Reparador-EntidadReparadora
         /// </summary>
-        public virtual IList<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; protected set; }
+        public virtual ISet<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; protected set; }
 
         #endregion
 
@@ -86,7 +86,8 @@ namespace SiMaVeh.Domain.Models
         /// Agregar entidad reparadora
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(EntidadReparadora entity)
+        /// <returns></returns>
+        public Reparador Agregar(EntidadReparadora entity)
         {
             if (entity != null)
             {
@@ -100,13 +101,16 @@ namespace SiMaVeh.Domain.Models
                     EntidadReparadora = entity
                 });
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar entidad reparadora
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(EntidadReparadora entity)
+        /// <returns></returns>
+        public Reparador Quitar(EntidadReparadora entity)
         {
             if (entity != null)
             {
@@ -118,6 +122,8 @@ namespace SiMaVeh.Domain.Models
                 if (toRemove != null)
                     ReparadorEntidadReparadora.Remove(toRemove);
             }
+
+            return this;
         }
 
         #endregion

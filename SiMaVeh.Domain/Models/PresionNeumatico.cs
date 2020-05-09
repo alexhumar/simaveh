@@ -1,11 +1,13 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Presion Neumaticos
     /// </summary>
-    public class PresionNeumatico : DomainMember<long>, IEntityChanger<ModeloVehiculo, long>, IEntityChanger<Neumatico, long>
+    public class PresionNeumatico : DomainMember<long>,
+        IEntityChanger<ModeloVehiculo, long, PresionNeumatico, long>,
+        IEntityChanger<Neumatico, long, PresionNeumatico, long>
     {
         /// <summary>
         /// Presion en PSI de ruedas delanteras
@@ -83,20 +85,26 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar modelo vehiculo
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(ModeloVehiculo entity)
+        /// <returns></returns>
+        public PresionNeumatico Cambiar(ModeloVehiculo entity)
         {
             ModeloVehiculo?.Quitar(this);
             entity?.Agregar(this);
+
+            return this;
         }
 
         /// <summary>
         /// Cambiar neumatico
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Neumatico entity)
+        /// <returns></returns>
+        public PresionNeumatico Cambiar(Neumatico entity)
         {
             if (entity != null)
                 Neumatico = entity;
+
+            return this;
         }
 
         #endregion

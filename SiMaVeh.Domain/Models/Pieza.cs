@@ -1,11 +1,12 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Pieza
     /// </summary>
-    public class Pieza : TargetMantenimiento, IEntityChanger<UbicacionPieza, string>
+    public class Pieza : TargetMantenimiento,
+        IEntityChanger<UbicacionPieza, string, Pieza, long>
     {
         /// <summary>
         /// Ubicacion
@@ -60,10 +61,13 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar ubicacion pieza
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(UbicacionPieza entity)
+        /// <returns></returns>
+        public Pieza Cambiar(UbicacionPieza entity)
         {
             if (entity != null)
                 UbicacionPieza = entity;
+
+            return this;
         }
 
         #endregion

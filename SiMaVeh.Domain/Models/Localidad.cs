@@ -1,11 +1,12 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Localidad
     /// </summary>
-    public class Localidad : DomainMember<long>, IEntityChanger<Partido, long>
+    public class Localidad : DomainMember<long>,
+        IEntityChanger<Partido, long, Localidad, long>
     {
         /// <summary>
         /// Nombre
@@ -70,10 +71,13 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar partido
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Partido entity)
+        /// <returns></returns>
+        public Localidad Cambiar(Partido entity)
         {
             Partido?.Quitar(this);
             entity?.Agregar(this);
+
+            return this;
         }
 
         #endregion

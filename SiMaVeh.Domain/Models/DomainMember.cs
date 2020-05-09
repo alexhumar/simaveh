@@ -1,9 +1,7 @@
 ﻿namespace SiMaVeh.Domain.Models
 {
-    //TODO - evaluar convertir en interfaz.
-
     /// <summary>
-    /// Interfaz DomainMember
+    /// Clase base DomainMember
     /// </summary>
     public class DomainMember<TBeId>
     {

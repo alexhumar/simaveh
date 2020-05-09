@@ -1,17 +1,18 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
-using SiMaVeh.Domain.Enums;
+﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Neumatico
     /// </summary>
-    public class Neumatico : DomainMember<long>, IEntityChanger<Marca, long>
+    public class Neumatico : DomainMember<long>,
+        IEntityChanger<Marca, long, Neumatico, long>
     {
         /// <summary>
         /// Marca
         /// </summary>
-        public virtual Marca Marca { get; set; }
+        public virtual Marca Marca { get; protected set; }
 
         /// <summary>
         /// Modelo
@@ -108,10 +109,13 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar marca
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Marca entity)
+        /// <returns></returns>
+        public Neumatico Cambiar(Marca entity)
         {
             if (entity != null)
                 Marca = entity;
+
+            return this;
         }
 
         #endregion

@@ -1,11 +1,13 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Periodicidad Mantenimiento
     /// </summary>
-    public class PeriodicidadMantenimiento : DomainMember<long>, IEntityChanger<ModeloVehiculo, long>, IEntityChanger<Repuesto, long>
+    public class PeriodicidadMantenimiento : DomainMember<long>,
+        IEntityChanger<ModeloVehiculo, long, PeriodicidadMantenimiento, long>,
+        IEntityChanger<Repuesto, long, PeriodicidadMantenimiento, long>
     {
         /// <summary>
         /// Kilometros
@@ -94,20 +96,26 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar modelo vehiculo
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(ModeloVehiculo entity)
+        /// <returns></returns>
+        public PeriodicidadMantenimiento Cambiar(ModeloVehiculo entity)
         {
             if (entity != null)
                 ModeloVehiculo = entity;
+
+            return this;
         }
 
         /// <summary>
         /// Cambiar repuesto
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Repuesto entity)
+        /// <returns></returns>
+        public PeriodicidadMantenimiento Cambiar(Repuesto entity)
         {
             TargetMantenimiento?.Quitar(this);
             entity?.Agregar(this);
+
+            return this;
         }
 
         #endregion

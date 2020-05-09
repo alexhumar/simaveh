@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +8,16 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Recambio
     /// </summary>
-    public abstract class Recambio : DomainMember<long>, IEntityChanger<Marca, long>, ICollectionManager<Kit, long>
+    public abstract class Recambio : DomainMember<long>,
+        IEntityChanger<Marca, long, Recambio, long>,
+        ICollectionManager<Kit, long, Recambio, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public Recambio()
         {
-            // Kits = new List<Kit>();
-            KitRecambio = new List<KitRecambio>();
+            KitRecambio = new HashSet<KitRecambio>();
         }
 
         /// <summary>
@@ -27,11 +28,11 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Kits a los que pertenece
         /// </summary>
-        public virtual IList<Kit> Kits
+        public virtual ISet<Kit> Kits
         {
             get
             {
-                return KitRecambio.Select(k => k.Kit).ToList();
+                return KitRecambio.Select(k => k.Kit).ToHashSet();
             }
         }
 
@@ -39,14 +40,14 @@ namespace SiMaVeh.Domain.Models
         /// GetRepuestos
         /// </summary>
         /// <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
-        public abstract IList<Repuesto> GetRepuestos();
+        public abstract ISet<Repuesto> GetRepuestos();
 
         #region relations
 
         /// <summary>
         /// Relacion Kit-Recambio
         /// </summary>
-        public virtual IList<KitRecambio> KitRecambio { get; protected set; }
+        public virtual ISet<KitRecambio> KitRecambio { get; protected set; }
 
         #endregion
 
@@ -79,10 +80,13 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar marca
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Marca entity)
+        /// <returns></returns>
+        public Recambio Cambiar(Marca entity)
         {
             if (entity != null)
                 Marca = entity;
+
+            return this;
         }
 
         #endregion
@@ -93,36 +97,38 @@ namespace SiMaVeh.Domain.Models
         /// Agregar kit
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Kit entity)
+        /// <returns></returns>
+        public Recambio Agregar(Kit entity)
         {
             if (entity != null)
             {
-                // Kits?.Add(entity);
-                // entity.Recambios.Add(this);
                 KitRecambio?.Add(new KitRecambio
                 {
                     Recambio = this,
                     Kit = entity
                 });
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar Kit
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Kit entity)
+        /// <returns></returns>
+        public Recambio Quitar(Kit entity)
         {
             if (entity != null)
             {
-                // Kits?.Remove(entity);
-                // entity.Recambios.Remove(this);
                 var toRemove = KitRecambio?
                     .Where(r => r.Recambio == this && r.Kit == entity)
                     .FirstOrDefault();
                 if (toRemove != null)
                     KitRecambio.Remove(toRemove);
             }
+
+            return this;
         }
 
         #endregion

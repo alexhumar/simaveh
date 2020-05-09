@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -6,14 +6,16 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Persona
     /// </summary>
-    public abstract class Persona : DomainMember<long>, IEntityChanger<TipoDocumento, long>, ICollectionManager<Telefono, long>
+    public abstract class Persona : DomainMember<long>,
+        IEntityChanger<TipoDocumento, long, Persona, long>,
+        ICollectionManager<Telefono, long, Persona, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public Persona()
         {
-            Telefonos = new List<Telefono>();
+            Telefonos = new HashSet<Telefono>();
         }
 
         /// <summary>
@@ -39,7 +41,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Telefonos
         /// </summary>
-        public virtual IList<Telefono> Telefonos { get; protected set; }
+        public virtual ISet<Telefono> Telefonos { get; protected set; }
 
         #region overrides
 
@@ -88,10 +90,13 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar tipo documento
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(TipoDocumento entity)
+        /// <returns></returns>
+        public Persona Cambiar(TipoDocumento entity)
         {
             if (entity != null)
                 TipoDocumento = entity;
+
+            return this;
         }
 
         #endregion
@@ -102,20 +107,24 @@ namespace SiMaVeh.Domain.Models
         /// Agregar telefono
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Telefono entity)
+        /// <returns></returns>
+        public Persona Agregar(Telefono entity)
         {
             if (entity != null)
             {
                 Telefonos?.Add(entity);
                 entity.Persona = this;
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar telefono
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Telefono entity)
+        /// <returns></returns>
+        public Persona Quitar(Telefono entity)
         {
             if (entity != null)
             {
@@ -123,6 +132,8 @@ namespace SiMaVeh.Domain.Models
                 if ((bool)entity.Persona?.Equals(this))
                     entity.Persona = null;
             }
+
+            return this;
         }
 
         #endregion
