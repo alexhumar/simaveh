@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Domain", "..\SiMaVe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.DataAccess", "..\SiMaVeh.DataAcces\SiMaVeh.DataAccess.csproj", "{5ED19B56-BF39-410D-B45A-B7C86C76A193}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiMaVeh.Domain.Test", "..\SiMaVeh.Domain.Test\SiMaVeh.Domain.Test.csproj", "{ADCEF814-641C-46EE-8CC0-AE931BC496E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5ED19B56-BF39-410D-B45A-B7C86C76A193}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED19B56-BF39-410D-B45A-B7C86C76A193}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED19B56-BF39-410D-B45A-B7C86C76A193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCEF814-641C-46EE-8CC0-AE931BC496E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCEF814-641C-46EE-8CC0-AE931BC496E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCEF814-641C-46EE-8CC0-AE931BC496E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCEF814-641C-46EE-8CC0-AE931BC496E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

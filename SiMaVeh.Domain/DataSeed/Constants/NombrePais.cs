@@ -9,5 +9,10 @@
         /// Argentina
         /// </summary>
         public const string Argentina = "Argentina";
+
+        /// <summary>
+        /// Argentina
+        /// </summary>
+        public const string Uruguay = "Uruguay";
     }
 }
