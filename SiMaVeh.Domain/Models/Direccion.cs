@@ -76,7 +76,9 @@ namespace SiMaVeh.Domain.Models
         public Direccion Cambiar(Localidad entity)
         {
             if (entity != null)
+            {
                 Localidad = entity;
+            }
 
             return this;
         }

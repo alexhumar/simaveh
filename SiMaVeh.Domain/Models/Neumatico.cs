@@ -113,7 +113,9 @@ namespace SiMaVeh.Domain.Models
         public Neumatico Cambiar(Marca entity)
         {
             if (entity != null)
+            {
                 Marca = entity;
+            }
 
             return this;
         }

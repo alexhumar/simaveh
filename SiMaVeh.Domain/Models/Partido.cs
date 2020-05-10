@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Provincia
         /// </summary>
-        public virtual Provincia Provincia { get; set; }
+        public virtual Provincia Provincia { get; protected set; }
 
         /// <summary>
         /// Localidades
@@ -51,10 +51,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Partido;
-
-            if (item == null)
+            if (!(obj is Partido item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -87,8 +87,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Partido Cambiar(Provincia entity)
         {
-            Provincia?.Quitar(this);
-            entity?.Agregar(this);
+            if (Provincia != entity)
+            {
+                Provincia?.Quitar(this);
+                Provincia = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }
@@ -104,10 +108,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Partido Agregar(Localidad entity)
         {
-            if (entity != null)
+            if ((entity != null) && !Localidades.Contains(entity))
             {
-                Localidades?.Add(entity);
-                entity.Partido = this;
+                Localidades.Add(entity);
+                entity.Cambiar(this);
             }
 
             return this;
@@ -120,11 +124,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Partido Quitar(Localidad entity)
         {
-            if (entity != null)
+            if ((entity != null) && Localidades.Contains(entity))
             {
-                Localidades?.Remove(entity);
+                Localidades.Remove(entity);
                 if ((bool)entity.Partido?.Equals(this))
-                    entity.Partido = null;
+                {
+                    entity.Cambiar(null);
+                }
             }
 
             return this;

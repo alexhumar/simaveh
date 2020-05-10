@@ -45,10 +45,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Pais;
-
-            if (item == null)
+            if (!(obj is Pais item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -100,7 +100,9 @@ namespace SiMaVeh.Domain.Models
             {
                 Provincias.Remove(entity);
                 if ((bool)entity.Pais?.Equals(this))
+                {
                     entity.Cambiar(null);
+                }
             }
 
             return this;

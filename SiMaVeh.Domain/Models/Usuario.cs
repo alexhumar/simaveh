@@ -40,10 +40,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Usuario;
-
-            if (item == null)
+            if (!(obj is Usuario item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -75,10 +75,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Usuario Agregar(Vehiculo entity)
         {
-            if (entity != null)
+            if ((entity != null) && !Vehiculos.Contains(entity))
             {
-                Vehiculos?.Add(entity);
-                entity.Usuario = this;
+                Vehiculos.Add(entity);
+                entity.Cambiar(this);
             }
 
             return this;
@@ -91,11 +91,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Usuario Quitar(Vehiculo entity)
         {
-            if (entity != null)
+            if ((entity != null) && Vehiculos.Contains(entity))
             {
-                Vehiculos?.Remove(entity);
+                Vehiculos.Remove(entity);
                 if ((bool)entity.Usuario?.Equals(this))
-                    entity.Usuario = null;
+                {
+                    entity.Cambiar((Usuario)null);
+                }
             }
 
             return this;

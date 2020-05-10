@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Target Mantenimiento
         /// </summary>
-        public virtual TargetMantenimiento TargetMantenimiento { get; set; }
+        public virtual TargetMantenimiento TargetMantenimiento { get; protected set; }
 
         /// <summary>
         /// Periodicidades Mantenimiento
@@ -65,10 +65,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Repuesto;
-
-            if (item == null)
+            if (!(obj is Repuesto item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -102,7 +102,9 @@ namespace SiMaVeh.Domain.Models
         public Repuesto Cambiar(TargetMantenimiento entity)
         {
             if (entity != null)
+            {
                 TargetMantenimiento = entity;
+            }
 
             return this;
         }
@@ -118,10 +120,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Repuesto Agregar(PeriodicidadMantenimiento entity)
         {
-            if (entity != null)
+            if ((entity != null) && !PeriodicidadesMantenimiento.Contains(entity))
             {
-                PeriodicidadesMantenimiento?.Add(entity);
-                entity.TargetMantenimiento = this;
+                PeriodicidadesMantenimiento.Add(entity);
+                entity.Cambiar(this);
             }
 
             return this;
@@ -134,11 +136,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Repuesto Quitar(PeriodicidadMantenimiento entity)
         {
-            if (entity != null)
+            if ((entity != null) && PeriodicidadesMantenimiento.Contains(entity))
             {
-                PeriodicidadesMantenimiento?.Remove(entity);
+                PeriodicidadesMantenimiento.Remove(entity);
                 if ((bool)entity.TargetMantenimiento?.Equals(this))
-                    entity.TargetMantenimiento = null;
+                {
+                    entity.Cambiar((Repuesto)null);
+                }
             }
 
             return this;

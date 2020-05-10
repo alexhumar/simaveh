@@ -39,12 +39,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Entidad Reparadora
         /// </summary>
-        public virtual EntidadReparadora EntidadReparadora { get; set; }
+        public virtual EntidadReparadora EntidadReparadora { get; protected set; }
 
         /// <summary>
         /// Vehiculo
         /// </summary>
-        public virtual Vehiculo Vehiculo { get; set; }
+        public virtual Vehiculo Vehiculo { get; protected set; }
 
         /// <summary>
         /// Monto de Mano de Obra
@@ -54,7 +54,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Moneda del Monto de Mano de Obra
         /// </summary>
-        public virtual Moneda MonedaMontoManoObra { get; set; }
+        public virtual Moneda MonedaMontoManoObra { get; protected set; }
 
         /// <summary>
         /// Kilometraje del vehiculo al momento del servicio
@@ -80,10 +80,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as ServicioReparador;
-
-            if (item == null)
+            if (!(obj is ServicioReparador item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -119,8 +119,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ServicioReparador Cambiar(EntidadReparadora entity)
         {
-            EntidadReparadora?.Quitar(this);
-            entity?.Agregar(this);
+            if (EntidadReparadora != entity)
+            {
+                EntidadReparadora?.Quitar(this);
+                EntidadReparadora = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }
@@ -132,8 +136,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ServicioReparador Cambiar(Vehiculo entity)
         {
-            Vehiculo?.Quitar(this);
-            entity?.Agregar(this);
+            if (Vehiculo != entity)
+            {
+                Vehiculo?.Quitar(this);
+                Vehiculo = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }
@@ -146,7 +154,9 @@ namespace SiMaVeh.Domain.Models
         public ServicioReparador Cambiar(Moneda entity)
         {
             if (entity != null)
+            {
                 MonedaMontoManoObra = entity;
+            }
 
             return this;
         }
@@ -162,10 +172,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ServicioReparador Agregar(Mantenimiento entity)
         {
-            if (entity != null)
+            if ((entity != null) && !Mantenimientos.Contains(entity))
             {
-                Mantenimientos?.Add(entity);
-                entity.ServicioReparador = this;
+                Mantenimientos.Add(entity);
+                entity.Cambiar(this);
             }
 
             return this;
@@ -178,11 +188,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ServicioReparador Quitar(Mantenimiento entity)
         {
-            if (entity != null)
+            if ((entity != null) && Mantenimientos.Contains(entity))
             {
-                Mantenimientos?.Remove(entity);
+                Mantenimientos.Remove(entity);
                 if ((bool)entity.ServicioReparador?.Equals(this))
-                    entity.ServicioReparador = null;
+                {
+                    entity.Cambiar((ServicioReparador)null);
+                }
             }
 
             return this;

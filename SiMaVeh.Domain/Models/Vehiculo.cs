@@ -22,7 +22,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Modelo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; protected set; }
 
         /// <summary>
         /// Kilometraje
@@ -37,7 +37,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Usuario al que pertenece
         /// </summary>
-        public virtual Usuario Usuario { get; set; }
+        public virtual Usuario Usuario { get; protected set; }
 
         /// <summary>
         /// Servicios Reparadores
@@ -77,7 +77,9 @@ namespace SiMaVeh.Domain.Models
         public Vehiculo Cambiar(ModeloVehiculo entity)
         {
             if (ModeloVehiculo != null)
+            {
                 ModeloVehiculo = entity;
+            }
 
             return this;
         }
@@ -89,8 +91,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Vehiculo Cambiar(Usuario entity)
         {
-            Usuario?.Quitar(this);
-            entity?.Agregar(this);
+            if (Usuario != entity)
+            {
+                Usuario?.Quitar(this);
+                Usuario = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }
@@ -106,10 +112,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Vehiculo Agregar(ServicioReparador entity)
         {
-            if (entity != null)
+            if ((entity != null) && !ServiciosReparadores.Contains(entity))
             {
-                ServiciosReparadores?.Add(entity);
-                entity.Vehiculo = this;
+                ServiciosReparadores.Add(entity);
+                entity.Cambiar(this);
             }
 
             return this;
@@ -122,11 +128,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Vehiculo Quitar(ServicioReparador entity)
         {
-            if (entity != null)
+            if ((entity != null) && ServiciosReparadores.Contains(entity))
             {
-                ServiciosReparadores?.Remove(entity);
+                ServiciosReparadores.Remove(entity);
                 if ((bool)entity.Vehiculo?.Equals(this))
-                    entity.Vehiculo = null;
+                {
+                    entity.Cambiar((Vehiculo)null);
+                }
             }
 
             return this;

@@ -36,7 +36,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo Documento
         /// </summary>
-        public virtual TipoDocumento TipoDocumento { get; set; }
+        public virtual TipoDocumento TipoDocumento { get; protected set; }
 
         /// <summary>
         /// Telefonos
@@ -94,7 +94,9 @@ namespace SiMaVeh.Domain.Models
         public Persona Cambiar(TipoDocumento entity)
         {
             if (entity != null)
+            {
                 TipoDocumento = entity;
+            }
 
             return this;
         }
@@ -130,7 +132,9 @@ namespace SiMaVeh.Domain.Models
             {
                 Telefonos?.Remove(entity);
                 if ((bool)entity.Persona?.Equals(this))
+                {
                     entity.Persona = null;
+                }
             }
 
             return this;

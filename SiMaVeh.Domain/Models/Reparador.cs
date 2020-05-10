@@ -91,10 +91,6 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                // EntidadesReparadoras?.Add(entity);
-                // entity.Agregar(this);
-                // Reparadores?.Add(entity);
-                // entity.EntidadesReparadoras?.Add(this);
                 ReparadorEntidadReparadora?.Add(new ReparadorEntidadReparadora
                 {
                     Reparador = this,
@@ -114,13 +110,12 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                // EntidadesReparadoras?.Remove(entity);
-                // entity.Quitar(this);
                 var toRemove = ReparadorEntidadReparadora?
-                    .Where(r => r.Reparador == this && r.EntidadReparadora == entity)
-                    .FirstOrDefault();
+                    .FirstOrDefault(r => r.Reparador == this && r.EntidadReparadora == entity);
                 if (toRemove != null)
+                {
                     ReparadorEntidadReparadora.Remove(toRemove);
+                }
             }
 
             return this;

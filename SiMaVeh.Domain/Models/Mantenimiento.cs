@@ -35,7 +35,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Servicio Reparador
         /// </summary>
-        public virtual ServicioReparador ServicioReparador { get; set; }
+        public virtual ServicioReparador ServicioReparador { get; protected set; }
 
         /// <summary>
         /// Reparador
@@ -60,10 +60,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Mantenimiento;
-
-            if (item == null)
+            if (!(obj is Mantenimiento item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -98,7 +98,9 @@ namespace SiMaVeh.Domain.Models
         public Mantenimiento Cambiar(Recambio entity)
         {
             if (entity != null)
+            {
                 Recambio = entity;
+            }
 
             return this;
         }
@@ -111,7 +113,9 @@ namespace SiMaVeh.Domain.Models
         public Mantenimiento Cambiar(Moneda entity)
         {
             if (entity != null)
+            {
                 MonedaMontoRecambio = entity;
+            }
 
             return this;
         }
@@ -123,8 +127,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Mantenimiento Cambiar(ServicioReparador entity)
         {
-            ServicioReparador?.Quitar(this);
-            entity?.Agregar(this);
+            if (ServicioReparador != entity)
+            {
+                ServicioReparador?.Quitar(this);
+                ServicioReparador = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }
@@ -137,7 +145,9 @@ namespace SiMaVeh.Domain.Models
         public Mantenimiento Cambiar(Reparador entity)
         {
             if (entity != null)
+            {
                 Reparador = entity;
+            }
 
             return this;
         }

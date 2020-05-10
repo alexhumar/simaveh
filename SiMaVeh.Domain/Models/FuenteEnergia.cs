@@ -77,7 +77,9 @@ namespace SiMaVeh.Domain.Models
         public FuenteEnergia Cambiar(Marca entity)
         {
             if (entity != null)
+            {
                 Marca = entity;
+            }
 
             return this;
         }
@@ -90,7 +92,9 @@ namespace SiMaVeh.Domain.Models
         public FuenteEnergia Cambiar(TipoFuenteEnergia entity)
         {
             if (entity != null)
+            {
                 TipoFuenteEnergia = entity;
+            }
 
             return this;
         }

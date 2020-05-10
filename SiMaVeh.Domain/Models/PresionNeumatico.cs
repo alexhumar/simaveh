@@ -27,12 +27,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Modelo Vehiculo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; protected set; }
 
         /// <summary>
         /// Neumatico
         /// </summary>
-        public virtual Neumatico Neumatico { get; set; }
+        public virtual Neumatico Neumatico { get; protected set; }
 
         #region overrides
 
@@ -52,10 +52,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as PresionNeumatico;
-
-            if (item == null)
+            if (!(obj is PresionNeumatico item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -88,8 +88,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public PresionNeumatico Cambiar(ModeloVehiculo entity)
         {
-            ModeloVehiculo?.Quitar(this);
-            entity?.Agregar(this);
+            if (ModeloVehiculo != entity)
+            {
+                ModeloVehiculo?.Quitar(this);
+                ModeloVehiculo = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }
@@ -102,7 +106,9 @@ namespace SiMaVeh.Domain.Models
         public PresionNeumatico Cambiar(Neumatico entity)
         {
             if (entity != null)
+            {
                 Neumatico = entity;
+            }
 
             return this;
         }

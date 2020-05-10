@@ -23,7 +23,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Marca
         /// </summary>
-        public virtual Marca Marca { get; set; }
+        public virtual Marca Marca { get; protected set; }
 
         /// <summary>
         /// Kits a los que pertenece
@@ -84,7 +84,9 @@ namespace SiMaVeh.Domain.Models
         public Recambio Cambiar(Marca entity)
         {
             if (entity != null)
+            {
                 Marca = entity;
+            }
 
             return this;
         }
@@ -122,10 +124,11 @@ namespace SiMaVeh.Domain.Models
             if (entity != null)
             {
                 var toRemove = KitRecambio?
-                    .Where(r => r.Recambio == this && r.Kit == entity)
-                    .FirstOrDefault();
+                    .FirstOrDefault(r => r.Recambio == this && r.Kit == entity);
                 if (toRemove != null)
+                {
                     KitRecambio.Remove(toRemove);
+                }
             }
 
             return this;

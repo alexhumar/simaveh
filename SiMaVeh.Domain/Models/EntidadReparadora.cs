@@ -79,10 +79,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as EntidadReparadora;
-
-            if (item == null)
+            if (!(obj is EntidadReparadora item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -113,7 +113,9 @@ namespace SiMaVeh.Domain.Models
         public EntidadReparadora Cambiar(TipoEntidadReparadora entity)
         {
             if (entity != null)
+            {
                 TipoEntidadReparadora = entity;
+            }
 
             return this;
         }
@@ -126,7 +128,9 @@ namespace SiMaVeh.Domain.Models
         public EntidadReparadora Cambiar(Direccion entity)
         {
             if (entity != null)
+            {
                 Direccion = entity;
+            }
 
             return this;
         }
@@ -142,10 +146,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public EntidadReparadora Agregar(ServicioReparador entity)
         {
-            if (entity != null)
+            if ((entity != null) && !ServiciosReparadores.Contains(entity))
             {
-                ServiciosReparadores?.Add(entity);
-                entity.EntidadReparadora = this;
+                ServiciosReparadores.Add(entity);
+                entity.Cambiar(this);
             }
 
             return this;
@@ -158,11 +162,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public EntidadReparadora Quitar(ServicioReparador entity)
         {
-            if (entity != null)
+            if ((entity != null) && ServiciosReparadores.Contains(entity))
             {
-                ServiciosReparadores?.Remove(entity);
+                ServiciosReparadores.Remove(entity);
                 if ((bool)entity.EntidadReparadora?.Equals(this))
-                    entity.EntidadReparadora = null;
+                {
+                    entity.Cambiar((EntidadReparadora)null);
+                }
             }
 
             return this;
@@ -197,10 +203,11 @@ namespace SiMaVeh.Domain.Models
             if (entity != null)
             {
                 var toRemove = ReparadorEntidadReparadora?
-                    .Where(r => r.Reparador == entity && r.EntidadReparadora == this)
-                    .FirstOrDefault();
+                    .FirstOrDefault(r => r.Reparador == entity && r.EntidadReparadora == this);
                 if (toRemove != null)
+                {
                     ReparadorEntidadReparadora.Remove(toRemove);
+                }
             }
 
             return this;

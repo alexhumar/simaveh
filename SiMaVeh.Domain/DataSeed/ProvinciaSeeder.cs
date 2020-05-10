@@ -28,7 +28,7 @@ namespace SiMaVeh.Domain.DataSeed
                 var chaco = new Provincia { Id = 2, Nombre = "Chaco" };
                 chaco.Cambiar(argentina);
 
-                result.AddRange(new List<Provincia>{ bsAs, chaco });
+                result.AddRange(new List<Provincia> { bsAs, chaco });
             }
 
             return result;

@@ -17,7 +17,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo
         /// </summary>
-        public virtual TipoTelefono TipoTelefono { get; set; }
+        public virtual TipoTelefono TipoTelefono { get; protected set; }
 
         /// <summary>
         /// Persona
@@ -42,10 +42,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Telefono;
-
-            if (item == null)
+            if (!(obj is Telefono item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -78,7 +78,9 @@ namespace SiMaVeh.Domain.Models
         public Telefono Cambiar(TipoTelefono entity)
         {
             if (entity != null)
+            {
                 TipoTelefono = entity;
+            }
 
             return this;
         }
@@ -90,6 +92,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Telefono Cambiar(Persona entity)
         {
+            //PRUEBA ARH - REVISAR ESTO
             Persona?.Quitar(this);
             entity?.Agregar(this);
 

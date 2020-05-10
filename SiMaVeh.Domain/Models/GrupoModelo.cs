@@ -70,7 +70,9 @@ namespace SiMaVeh.Domain.Models
         public GrupoModelo Cambiar(Marca entity)
         {
             if (entity != null)
+            {
                 Marca = entity;
+            }
 
             return this;
         }

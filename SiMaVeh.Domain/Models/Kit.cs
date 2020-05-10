@@ -12,13 +12,6 @@ namespace SiMaVeh.Domain.Models
         ICollectionManager<Recambio, long, Kit, long>
     {
         /// <summary>
-        /// Constructor
-        /// </summary>
-        public Kit()
-        {
-        }
-
-        /// <summary>
         /// Nombre
         /// </summary>
         public virtual string Nombre { get; set; }
@@ -50,7 +43,9 @@ namespace SiMaVeh.Domain.Models
             var repuestos = new HashSet<Repuesto>();
 
             foreach (Recambio recambio in Recambios)
+            {
                 repuestos = repuestos.Concat(recambio.GetRepuestos()).ToHashSet();
+            }
 
             return repuestos;
         }
@@ -128,10 +123,11 @@ namespace SiMaVeh.Domain.Models
             if (entity != null)
             {
                 var toRemove = KitRecambio?
-                    .Where(r => r.Recambio == entity && r.Kit == this)
-                    .FirstOrDefault();
+                    .FirstOrDefault(r => r.Recambio == entity && r.Kit == this);
                 if (toRemove != null)
+                {
                     KitRecambio.Remove(toRemove);
+                }
             }
 
             return this;

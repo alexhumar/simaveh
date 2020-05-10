@@ -82,10 +82,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as ModeloVehiculo;
-
-            if (item == null)
+            if (!(obj is ModeloVehiculo item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -119,7 +119,9 @@ namespace SiMaVeh.Domain.Models
         public ModeloVehiculo Cambiar(GrupoModelo entity)
         {
             if (entity != null)
+            {
                 GrupoModelo = entity;
+            }
 
             return this;
         }
@@ -132,7 +134,9 @@ namespace SiMaVeh.Domain.Models
         public ModeloVehiculo Cambiar(Aceite entity)
         {
             if (entity != null)
+            {
                 AceiteRecomendado = entity;
+            }
 
             return this;
         }
@@ -145,7 +149,9 @@ namespace SiMaVeh.Domain.Models
         public ModeloVehiculo Cambiar(EquipamientoAirbags entity)
         {
             if (entity != null)
+            {
                 Airbags = entity;
+            }
 
             return this;
         }
@@ -158,7 +164,9 @@ namespace SiMaVeh.Domain.Models
         public ModeloVehiculo Cambiar(TipoFuenteEnergia entity)
         {
             if (entity != null)
+            {
                 TipoFuenteEnergia = entity;
+            }
 
             return this;
         }
@@ -171,7 +179,9 @@ namespace SiMaVeh.Domain.Models
         public ModeloVehiculo Cambiar(FuenteEnergia entity)
         {
             if (entity != null)
+            {
                 FuenteEnergiaRecomendada = entity;
+            }
 
             return this;
         }
@@ -187,10 +197,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ModeloVehiculo Agregar(PresionNeumatico entity)
         {
-            if (entity != null)
+            if ((entity != null) && !PresionesNeumaticosRecomendadas.Contains(entity))
             {
-                PresionesNeumaticosRecomendadas?.Add(entity);
-                entity.ModeloVehiculo = this;
+                PresionesNeumaticosRecomendadas.Add(entity);
+                entity.Cambiar(this);
             }
 
             return this;
@@ -203,11 +213,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ModeloVehiculo Quitar(PresionNeumatico entity)
         {
-            if (entity != null)
+            if ((entity != null) && PresionesNeumaticosRecomendadas.Contains(entity))
             {
-                PresionesNeumaticosRecomendadas?.Remove(entity);
+                PresionesNeumaticosRecomendadas.Remove(entity);
                 if ((bool)entity.ModeloVehiculo?.Equals(this))
-                    entity.ModeloVehiculo = null;
+                {
+                    entity.Cambiar((ModeloVehiculo)null);
+                }
             }
 
             return this;
@@ -221,7 +233,9 @@ namespace SiMaVeh.Domain.Models
         public ModeloVehiculo Agregar(Repuesto entity)
         {
             if (entity != null)
+            {
                 RepuestosRecomendados?.Add(entity);
+            }
 
             return this;
         }
@@ -234,7 +248,9 @@ namespace SiMaVeh.Domain.Models
         public ModeloVehiculo Quitar(Repuesto entity)
         {
             if (entity != null)
+            {
                 RepuestosRecomendados?.Remove(entity);
+            }
 
             return this;
         }

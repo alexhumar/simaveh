@@ -32,12 +32,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Modelo Vehiculo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; protected set; }
 
         /// <summary>
         /// Target Mantenimiento
         /// </summary>
-        public virtual Repuesto TargetMantenimiento { get; set; }
+        public virtual Repuesto TargetMantenimiento { get; protected set; }
 
         /// <summary>
         /// Es periodicidad default (independiente del modelo vehiculo)
@@ -100,7 +100,9 @@ namespace SiMaVeh.Domain.Models
         public PeriodicidadMantenimiento Cambiar(ModeloVehiculo entity)
         {
             if (entity != null)
+            {
                 ModeloVehiculo = entity;
+            }
 
             return this;
         }
@@ -112,8 +114,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public PeriodicidadMantenimiento Cambiar(Repuesto entity)
         {
-            TargetMantenimiento?.Quitar(this);
-            entity?.Agregar(this);
+            if (TargetMantenimiento != entity)
+            {
+                TargetMantenimiento?.Quitar(this);
+                TargetMantenimiento = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }

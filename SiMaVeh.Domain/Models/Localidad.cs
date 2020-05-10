@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Partido
         /// </summary>
-        public virtual Partido Partido { get; set; }
+        public virtual Partido Partido { get; protected set; }
 
         #region overrides
 
@@ -41,10 +41,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Localidad;
-
-            if (item == null)
+            if (!(obj is Localidad item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -74,8 +74,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Localidad Cambiar(Partido entity)
         {
-            Partido?.Quitar(this);
-            entity?.Agregar(this);
+            if (Partido != entity)
+            {
+                Partido?.Quitar(this);
+                Partido = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }

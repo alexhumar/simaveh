@@ -51,10 +51,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Provincia;
-
-            if (item == null)
+            if (!(obj is Provincia item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -108,10 +108,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Provincia Agregar(Partido entity)
         {
-            if (entity != null)
+            if ((entity != null) && !Partidos.Contains(entity))
             {
-                Partidos?.Add(entity);
-                entity.Provincia = this;
+                Partidos.Add(entity);
+                entity.Cambiar(this);
             }
 
             return this;
@@ -124,11 +124,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Provincia Quitar(Partido entity)
         {
-            if (entity != null)
+            if ((entity != null) && Partidos.Contains(entity))
             {
-                Partidos?.Remove(entity);
+                Partidos.Remove(entity);
                 if ((bool)entity.Provincia?.Equals(this))
-                    entity.Provincia = null;
+                {
+                    entity.Cambiar(null);
+                }
             }
 
             return this;

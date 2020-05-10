@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Ubicacion
         /// </summary>
-        public virtual UbicacionPieza UbicacionPieza { get; set; }
+        public virtual UbicacionPieza UbicacionPieza { get; protected set; }
 
         #region overrides
 
@@ -65,7 +65,9 @@ namespace SiMaVeh.Domain.Models
         public Pieza Cambiar(UbicacionPieza entity)
         {
             if (entity != null)
+            {
                 UbicacionPieza = entity;
+            }
 
             return this;
         }
