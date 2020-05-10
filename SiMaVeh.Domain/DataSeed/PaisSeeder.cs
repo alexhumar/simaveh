@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Constants;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 
@@ -13,12 +13,18 @@ namespace SiMaVeh.Domain.DataSeed
         /// Genera los Paises default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Pais> GetSeeds()
+        public IEnumerable<object> GetSeeds()
         {
-            var result = new List<Pais>
+            var result = new List<object>();
+
+            foreach (var paisFixture in FixturePais.Paises)
             {
-                new Pais { Id = 1, Nombre = NombrePais.Argentina }
-            };
+                result.Add(new
+                {
+                    Id = paisFixture.Key,
+                    Nombre = paisFixture.Value
+                });
+            }
 
             return result;
         }

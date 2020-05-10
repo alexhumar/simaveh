@@ -1,7 +1,5 @@
-﻿using SiMaVeh.Domain.DataSeed.Constants;
-using SiMaVeh.Domain.Models;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed
 {
@@ -14,21 +12,26 @@ namespace SiMaVeh.Domain.DataSeed
         /// Genera las Provincias default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Provincia> GetSeeds(IEnumerable<Pais> paises)
+        public IEnumerable<object> GetSeeds()
         {
-            var result = new List<Provincia>();
-            var argentina = paises.FirstOrDefault(p => p.Nombre == NombrePais.Argentina);
+            var result = new List<object>();
 
-            //TODO - esto asi NO funciona. EFCore requiere que se le especifique el valor a la property PaisId
-            //(ya sea porque esta en el modelo, o si es la property que crea a nivel interno)
-            if (argentina != null)
+            //TODO - por limitaciones de EFCore en torno a DataSeed, y para no ensuciar el modelo con 
+            //definiciones de FKs, se utilizan tipos anonimos para cargar las entidades y poder especificar la 
+            //shadow property que EFCore utiliza a nivel interno. Seguir el tema para ver si en algun momento se soluciona.
+            foreach (var provinciasPorPais in FixtureProvincia.Provincias)
             {
-                var bsAs = new Provincia { Id = 1, Nombre = "Buenos Aires" };
-                bsAs.Cambiar(argentina);
-                var chaco = new Provincia { Id = 2, Nombre = "Chaco" };
-                chaco.Cambiar(argentina);
+                var idPais = provinciasPorPais.Key;
 
-                result.AddRange(new List<Provincia> { bsAs, chaco });
+                foreach (var provincia in provinciasPorPais.Value)
+                {
+                    result.Add(new
+                    {
+                        Id = provincia.Key,
+                        Nombre = provincia.Value,
+                        PaisId = idPais
+                    });
+                }
             }
 
             return result;

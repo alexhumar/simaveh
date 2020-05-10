@@ -9,7 +9,7 @@ using SiMaVeh.DataAccess.Model;
 namespace SiMaVeh.DataAccess.Migrations
 {
     [DbContext(typeof(SiMaVehContext))]
-    [Migration("20200505232400_InitialCreate")]
+    [Migration("20200510235334_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

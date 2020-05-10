@@ -23,7 +23,7 @@ namespace SiMaVeh.DataAccess.DataSeed
 
             var paises = paisSeeder.GetSeeds();
             builder.Entity<Pais>().HasData(paises);
-            builder.Entity<Provincia>().HasData(provinciaSeeder.GetSeeds(paises));
+            builder.Entity<Provincia>().HasData(provinciaSeeder.GetSeeds());
         }
     }
 }
