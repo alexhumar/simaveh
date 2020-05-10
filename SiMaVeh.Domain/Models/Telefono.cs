@@ -22,7 +22,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Persona
         /// </summary>
-        public virtual Persona Persona { get; set; }
+        public virtual Persona Persona { get; protected set; }
 
         #region overrides
 
@@ -92,9 +92,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Telefono Cambiar(Persona entity)
         {
-            //PRUEBA ARH - REVISAR ESTO
-            Persona?.Quitar(this);
-            entity?.Agregar(this);
+            if (Persona != entity)
+            {
+                Persona?.Quitar(this);
+                Persona = entity;
+                entity?.Agregar(this);
+            }
 
             return this;
         }

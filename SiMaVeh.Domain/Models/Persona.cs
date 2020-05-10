@@ -112,11 +112,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Persona Agregar(Telefono entity)
         {
-            if (entity != null)
+            if ((entity != null) && !Telefonos.Contains(entity))
             {
-                Telefonos?.Add(entity);
-                entity.Persona = this;
+                Telefonos.Add(entity);
+                entity.Cambiar(this);
             }
+
 
             return this;
         }
@@ -128,12 +129,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Persona Quitar(Telefono entity)
         {
-            if (entity != null)
+            if ((entity != null) && Telefonos.Contains(entity))
             {
-                Telefonos?.Remove(entity);
+                Telefonos.Remove(entity);
                 if ((bool)entity.Persona?.Equals(this))
                 {
-                    entity.Persona = null;
+                    entity.Cambiar((Persona)null);
                 }
             }
 
