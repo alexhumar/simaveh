@@ -27,12 +27,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Modelo Vehiculo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; protected set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Neumatico
         /// </summary>
-        public virtual Neumatico Neumatico { get; protected set; }
+        public virtual Neumatico Neumatico { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 

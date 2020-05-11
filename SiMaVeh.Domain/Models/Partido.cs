@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Provincia
         /// </summary>
-        public virtual Provincia Provincia { get; protected set; }
+        public virtual Provincia Provincia { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Localidades

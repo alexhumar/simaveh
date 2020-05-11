@@ -12,7 +12,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Marca
         /// </summary>
-        public virtual Marca Marca { get; protected set; }
+        public virtual Marca Marca { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Modelo

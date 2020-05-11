@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Pais
         /// </summary>
-        public virtual Pais Pais { get; protected set; }
+        public virtual Pais Pais { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Partidos

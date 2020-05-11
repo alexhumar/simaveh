@@ -32,12 +32,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Modelo Vehiculo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; protected set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Target Mantenimiento
         /// </summary>
-        public virtual Repuesto TargetMantenimiento { get; protected set; }
+        public virtual Repuesto TargetMantenimiento { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Es periodicidad default (independiente del modelo vehiculo)

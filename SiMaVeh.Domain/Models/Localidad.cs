@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Partido
         /// </summary>
-        public virtual Partido Partido { get; protected set; }
+        public virtual Partido Partido { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 

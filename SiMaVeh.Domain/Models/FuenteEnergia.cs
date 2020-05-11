@@ -17,12 +17,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Marca
         /// </summary>
-        public virtual Marca Marca { get; protected set; }
+        public virtual Marca Marca { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Tipo de Fuente de Energia
         /// </summary>
-        public virtual TipoFuenteEnergia TipoFuenteEnergia { get; protected set; }
+        public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 

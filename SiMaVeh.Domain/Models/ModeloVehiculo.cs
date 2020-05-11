@@ -27,7 +27,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Grupo Modelo
         /// </summary>
-        public virtual GrupoModelo GrupoModelo { get; protected set; }
+        public virtual GrupoModelo GrupoModelo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Version
@@ -37,22 +37,22 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Aceite Recomendado
         /// </summary>
-        public virtual Aceite AceiteRecomendado { get; protected set; }
+        public virtual Aceite AceiteRecomendado { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Airbags
         /// </summary>
-        public virtual EquipamientoAirbags Airbags { get; protected set; }
+        public virtual EquipamientoAirbags Airbags { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Tipo de Fuente de Energia
         /// </summary>
-        public virtual TipoFuenteEnergia TipoFuenteEnergia { get; protected set; }
+        public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Fuente Energia Recomendada
         /// </summary>
-        public virtual FuenteEnergia FuenteEnergiaRecomendada { get; protected set; }
+        public virtual FuenteEnergia FuenteEnergiaRecomendada { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Repuestos Recomendados

@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Target Mantenimiento
         /// </summary>
-        public virtual TargetMantenimiento TargetMantenimiento { get; protected set; }
+        public virtual TargetMantenimiento TargetMantenimiento { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Periodicidades Mantenimiento

@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Ubicacion
         /// </summary>
-        public virtual UbicacionPieza UbicacionPieza { get; protected set; }
+        public virtual UbicacionPieza UbicacionPieza { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 

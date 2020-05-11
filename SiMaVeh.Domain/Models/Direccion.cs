@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Localidad
         /// </summary>
-        public virtual Localidad Localidad { get; protected set; }
+        public virtual Localidad Localidad { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 

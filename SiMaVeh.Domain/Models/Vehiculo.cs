@@ -22,7 +22,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Modelo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; protected set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Kilometraje
@@ -37,7 +37,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Usuario al que pertenece
         /// </summary>
-        public virtual Usuario Usuario { get; protected set; }
+        public virtual Usuario Usuario { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Servicios Reparadores

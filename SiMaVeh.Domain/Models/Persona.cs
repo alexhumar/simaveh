@@ -36,7 +36,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo Documento
         /// </summary>
-        public virtual TipoDocumento TipoDocumento { get; protected set; }
+        public virtual TipoDocumento TipoDocumento { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Telefonos

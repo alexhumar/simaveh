@@ -15,12 +15,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Moneda Origen
         /// </summary>
-        public virtual Moneda MonedaOrigen { get; protected set; }
+        public virtual Moneda MonedaOrigen { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Moneda Destino
         /// </summary>
-        public virtual Moneda MonedaDestino { get; protected set; }
+        public virtual Moneda MonedaDestino { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Fecha

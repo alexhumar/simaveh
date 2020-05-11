@@ -39,12 +39,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Entidad Reparadora
         /// </summary>
-        public virtual EntidadReparadora EntidadReparadora { get; protected set; }
+        public virtual EntidadReparadora EntidadReparadora { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Vehiculo
         /// </summary>
-        public virtual Vehiculo Vehiculo { get; protected set; }
+        public virtual Vehiculo Vehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Monto de Mano de Obra
@@ -54,7 +54,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Moneda del Monto de Mano de Obra
         /// </summary>
-        public virtual Moneda MonedaMontoManoObra { get; protected set; }
+        public virtual Moneda MonedaMontoManoObra { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Kilometraje del vehiculo al momento del servicio

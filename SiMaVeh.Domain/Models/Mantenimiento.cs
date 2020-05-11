@@ -20,7 +20,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recambio
         /// </summary>
-        public virtual Recambio Recambio { get; protected set; }
+        public virtual Recambio Recambio { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Monto Recambio
@@ -30,17 +30,17 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Moneda Monto Recambio
         /// </summary>
-        public virtual Moneda MonedaMontoRecambio { get; protected set; }
+        public virtual Moneda MonedaMontoRecambio { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Servicio Reparador
         /// </summary>
-        public virtual ServicioReparador ServicioReparador { get; protected set; }
+        public virtual ServicioReparador ServicioReparador { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Reparador
         /// </summary>
-        public virtual Reparador Reparador { get; protected set; }
+        public virtual Reparador Reparador { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 

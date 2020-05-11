@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo Entidad
         /// </summary>
-        public virtual TipoEntidadReparadora TipoEntidadReparadora { get; protected set; }
+        public virtual TipoEntidadReparadora TipoEntidadReparadora { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Servicios Mecanicos
@@ -49,7 +49,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Direccion
         /// </summary>
-        public virtual Direccion Direccion { get; protected set; }
+        public virtual Direccion Direccion { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region relations
 

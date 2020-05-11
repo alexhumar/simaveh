@@ -17,12 +17,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo
         /// </summary>
-        public virtual TipoTelefono TipoTelefono { get; protected set; }
+        public virtual TipoTelefono TipoTelefono { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Persona
         /// </summary>
-        public virtual Persona Persona { get; protected set; }
+        public virtual Persona Persona { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 
