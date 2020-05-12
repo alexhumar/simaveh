@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants;
+using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,23 +8,29 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
     /// <summary>
     /// Fixture con informacion de Paises
     /// </summary>
-    public class FixturePais
+    public class FixturePais : IFixturePais
     {
-        /// <summary>
-        /// Argentina
-        /// </summary>
-        public static readonly Dictionary<long, string> Paises = new Dictionary<long, string>()
+        private Dictionary<long, string> Paises => new Dictionary<long, string>()
         {
             { 1, NombrePais.Argentina },
             { 2, NombrePais.Uruguay }
         };
 
         /// <summary>
+        /// Get Paises
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<long, string> GetPaises()
+        {
+            return Paises;
+        }
+
+        /// <summary>
         /// Find by Nombre
         /// </summary>
         /// <param name="nombre"></param>
         /// <returns></returns>
-        public static KeyValuePair<long, string>? FindByNombre(string nombre)
+        public KeyValuePair<long, string>? FindByNombre(string nombre)
         {
             return Paises.FirstOrDefault(p => p.Value == nombre);
         }

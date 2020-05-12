@@ -1,4 +1,7 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures;
+using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Interfaces;
+using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed
@@ -6,8 +9,18 @@ namespace SiMaVeh.Domain.DataSeed
     /// <summary>
     /// Seeder de Provincia
     /// </summary>
-    public class ProvinciaSeeder
+    public class ProvinciaSeeder : ISeeder<Provincia, long>
     {
+        private readonly IFixtureProvincia fixtureProvincia;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public ProvinciaSeeder()
+        {
+            fixtureProvincia = new FixtureProvincia();
+        }
+
         /// <summary>
         /// Genera las Provincias default
         /// </summary>
@@ -19,7 +32,7 @@ namespace SiMaVeh.Domain.DataSeed
             //TODO - por limitaciones de EFCore en torno a DataSeed, y para no ensuciar el modelo con 
             //definiciones de FKs, se utilizan tipos anonimos para cargar las entidades y poder especificar la 
             //shadow property que EFCore utiliza a nivel interno. Seguir el tema para ver si en algun momento se soluciona.
-            foreach (var provinciasPorPais in FixtureProvincia.Provincias)
+            foreach (var provinciasPorPais in fixtureProvincia.GetProvincias())
             {
                 var idPais = provinciasPorPais.Key;
 

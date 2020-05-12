@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SiMaVeh.Domain.DataSeed;
+using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.DataSeed
 {
     public class DataSeeder : IDataSeeder
     {
-        private readonly PaisSeeder paisSeeder;
-        private readonly ProvinciaSeeder provinciaSeeder;
+        private readonly ISeeder<Pais, long> paisSeeder;
+        private readonly ISeeder<Provincia, long> provinciaSeeder;
 
         public DataSeeder()
         {
@@ -17,12 +18,8 @@ namespace SiMaVeh.DataAccess.DataSeed
 
         public void SeedData(ModelBuilder builder)
         {
-            //TODO - Para poder aplicar efectivamente los Seeds, hay que generar migrations.
-            //Para eso, primero hay que revisar los modelos, ya que seguramente haya que incluir los Id de las tablas relacionadas
-            //como propiedades del modelo.
-
-            var paises = paisSeeder.GetSeeds();
-            builder.Entity<Pais>().HasData(paises);
+            //Para poder aplicar efectivamente los Seeds, hay que generar migrations.
+            builder.Entity<Pais>().HasData(paisSeeder.GetSeeds());
             builder.Entity<Provincia>().HasData(provinciaSeeder.GetSeeds());
         }
     }

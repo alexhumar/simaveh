@@ -1,4 +1,6 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures;
+using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 
@@ -7,8 +9,18 @@ namespace SiMaVeh.Domain.DataSeed
     /// <summary>
     /// Seeder de Pais
     /// </summary>
-    public class PaisSeeder
+    public class PaisSeeder : ISeeder<Pais, long>
     {
+        private readonly IFixturePais fixturePais;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public PaisSeeder()
+        {
+            fixturePais = new FixturePais();
+        }
+
         /// <summary>
         /// Genera los Paises default
         /// </summary>
@@ -17,7 +29,7 @@ namespace SiMaVeh.Domain.DataSeed
         {
             var result = new List<object>();
 
-            foreach (var paisFixture in FixturePais.Paises)
+            foreach (var paisFixture in fixturePais.GetPaises())
             {
                 result.Add(new
                 {
