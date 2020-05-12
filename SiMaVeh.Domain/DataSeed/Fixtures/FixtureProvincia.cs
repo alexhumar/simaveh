@@ -40,6 +40,30 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
                     { 22, NombreProvinciaArgentina.TierraDelFuego },
                     { 23, NombreProvinciaArgentina.Tucuman }
                 }
+            },
+            {
+                fixturePais.FindByNombre(NombrePais.Uruguay).Value.Key, new Dictionary<long, string>
+                {
+                    { 24, NombreProvinciaUruguay.Artigas },
+                    { 25, NombreProvinciaUruguay.Canelones },
+                    { 26, NombreProvinciaUruguay.CerroLargo },
+                    { 27, NombreProvinciaUruguay.Colonia },
+                    { 28, NombreProvinciaUruguay.Durazno },
+                    { 29, NombreProvinciaUruguay.Flores },
+                    { 30, NombreProvinciaUruguay.Florida },
+                    { 31, NombreProvinciaUruguay.Lavalleja },
+                    { 32, NombreProvinciaUruguay.Maldonado },
+                    { 33, NombreProvinciaUruguay.Montevideo },
+                    { 34, NombreProvinciaUruguay.Paysandú },
+                    { 35, NombreProvinciaUruguay.RioNegro },
+                    { 36, NombreProvinciaUruguay.Rivera },
+                    { 37, NombreProvinciaUruguay.Rocha },
+                    { 38, NombreProvinciaUruguay.Salto },
+                    { 39, NombreProvinciaUruguay.SanJose },
+                    { 40, NombreProvinciaUruguay.Soriano },
+                    { 41, NombreProvinciaUruguay.Tacuarembó },
+                    { 42, NombreProvinciaUruguay.TreintaYTres }
+                }
             }
         };
 
