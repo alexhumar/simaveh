@@ -16,8 +16,29 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
             {
                 fixturePais.FindByNombre(NombrePais.Argentina).Value.Key, new Dictionary<long, string>
                 {
-                    { 1, NombreProvincia.BuenosAires },
-                    { 2, NombreProvincia.Chaco }
+                    { 1, NombreProvinciaArgentina.BuenosAires },
+                    { 2, NombreProvinciaArgentina.Catamarca },
+                    { 3, NombreProvinciaArgentina.Chaco },
+                    { 4, NombreProvinciaArgentina.Chubut },
+                    { 5, NombreProvinciaArgentina.Cordoba },
+                    { 6, NombreProvinciaArgentina.Corrientes },
+                    { 7, NombreProvinciaArgentina.EntreRios },
+                    { 8, NombreProvinciaArgentina.Formosa },
+                    { 9, NombreProvinciaArgentina.Jujuy },
+                    { 10, NombreProvinciaArgentina.LaPampa },
+                    { 11, NombreProvinciaArgentina.LaRioja },
+                    { 12, NombreProvinciaArgentina.Mendoza },
+                    { 13, NombreProvinciaArgentina.Misiones },
+                    { 14, NombreProvinciaArgentina.Neuquen },
+                    { 15, NombreProvinciaArgentina.RioNegro },
+                    { 16, NombreProvinciaArgentina.Salta },
+                    { 17, NombreProvinciaArgentina.SanJuan },
+                    { 18, NombreProvinciaArgentina.SanLuis },
+                    { 19, NombreProvinciaArgentina.SantaCruz },
+                    { 20, NombreProvinciaArgentina.SantaFe },
+                    { 21, NombreProvinciaArgentina.SantiagoDelEstero },
+                    { 22, NombreProvinciaArgentina.TierraDelFuego },
+                    { 23, NombreProvinciaArgentina.Tucuman }
                 }
             }
         };

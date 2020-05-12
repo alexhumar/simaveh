@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Test.Models
         {
             Assert.IsEmpty(_argentina.Provincias);
 
-            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvincia.BuenosAires };
+            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvinciaArgentina.BuenosAires };
 
             _argentina.Agregar(_buenosAires);
 
@@ -35,7 +35,7 @@ namespace SiMaVeh.Domain.Test.Models
             Assert.IsEmpty(_argentina.Provincias);
             Assert.IsEmpty(_uruguay.Provincias);
 
-            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvincia.BuenosAires };
+            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvinciaArgentina.BuenosAires };
 
             _uruguay.Agregar(_buenosAires);
 

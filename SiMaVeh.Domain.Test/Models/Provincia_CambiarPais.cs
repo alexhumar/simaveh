@@ -19,7 +19,7 @@ namespace SiMaVeh.Domain.Test.Models
         [Test]
         public void CambiarPais_AArgenina_RetornaProvinciaConPaisSeteado()
         {
-            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvincia.BuenosAires };
+            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvinciaArgentina.BuenosAires };
 
             Assert.IsNull(_buenosAires.Pais);
             Assert.That(_argentina.Provincias, !Contains.Item(_buenosAires));
@@ -33,7 +33,7 @@ namespace SiMaVeh.Domain.Test.Models
         [Test]
         public void CambiarPais_AArgenina_RetornaProvinciaConPaisModificado()
         {
-            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvincia.BuenosAires };
+            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvinciaArgentina.BuenosAires };
             _buenosAires.Cambiar(_uruguay);
 
             Assert.AreEqual(_buenosAires.Pais, _uruguay);
@@ -50,7 +50,7 @@ namespace SiMaVeh.Domain.Test.Models
         [Test]
         public void CambiarPais_ANull_RetornaProvinciaSinPais()
         {
-            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvincia.BuenosAires };
+            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvinciaArgentina.BuenosAires };
             _buenosAires.Cambiar(_argentina);
 
             Assert.AreEqual(_buenosAires.Pais, _argentina);
