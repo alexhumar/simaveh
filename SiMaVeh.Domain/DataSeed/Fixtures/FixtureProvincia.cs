@@ -1,6 +1,7 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures
 {
@@ -82,6 +83,29 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
         public Dictionary<long, Dictionary<long, string>> GetProvincias()
         {
             return Provincias;
+        }
+
+        /// <summary>
+        /// Find by Nombre
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public KeyValuePair<long, string>? FindByNombre(string nombre)
+        {
+            KeyValuePair<long, string>? result = null;
+
+            foreach (var provinciasPais in Provincias)
+            {
+                KeyValuePair<long, string>? provincia = provinciasPais.Value.FirstOrDefault(v => v.Value == nombre);
+
+                if (provincia != null)
+                {
+                    result = provincia;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }

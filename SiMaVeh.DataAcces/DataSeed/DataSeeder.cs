@@ -9,11 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed
     {
         private readonly ISeeder<Pais, long> paisSeeder;
         private readonly ISeeder<Provincia, long> provinciaSeeder;
+        private readonly ISeeder<Partido, long> partidoSeeder;
 
         public DataSeeder()
         {
             paisSeeder = new PaisSeeder();
             provinciaSeeder = new ProvinciaSeeder();
+            partidoSeeder = new PartidoSeeder();
         }
 
         public void SeedData(ModelBuilder builder)
@@ -21,6 +23,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             //Para poder aplicar efectivamente los Seeds, hay que generar migrations.
             builder.Entity<Pais>().HasData(paisSeeder.GetSeeds());
             builder.Entity<Provincia>().HasData(provinciaSeeder.GetSeeds());
+            builder.Entity<Partido>().HasData(partidoSeeder.GetSeeds());
         }
     }
 }
