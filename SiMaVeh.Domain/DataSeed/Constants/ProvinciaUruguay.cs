@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de Departamentos de Uruguay
     /// </summary>
-    public class NombreProvinciaUruguay
+    public class ProvinciaUruguay
     {
         /// <summary>
         /// Artigas

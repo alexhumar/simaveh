@@ -12,8 +12,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
     {
         private Dictionary<long, string> Paises => new Dictionary<long, string>()
         {
-            { 1, NombrePais.Argentina },
-            { 2, NombrePais.Uruguay }
+            { 1, Pais.Argentina },
+            { 2, Pais.Uruguay }
         };
 
         /// <summary>

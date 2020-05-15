@@ -6,14 +6,14 @@ namespace SiMaVeh.Domain.Test.Models
 {
     public class Pais_AgregarProvincia
     {
-        private Pais _argentina;
-        private Pais _uruguay;
+        private Domain.Models.Pais _argentina;
+        private Domain.Models.Pais _uruguay;
 
         [SetUp]
         public void Setup()
         {
-            _argentina = new Pais { Id = 1, Nombre = NombrePais.Argentina };
-            _uruguay = new Pais { Id = 2, Nombre = NombrePais.Uruguay };
+            _argentina = new Domain.Models.Pais { Id = 1, Nombre = DataSeed.Constants.Pais.Argentina };
+            _uruguay = new Domain.Models.Pais { Id = 2, Nombre = DataSeed.Constants.Pais.Uruguay };
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Test.Models
         {
             Assert.IsEmpty(_argentina.Provincias);
 
-            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvinciaArgentina.BuenosAires };
+            var _buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
 
             _argentina.Agregar(_buenosAires);
 
@@ -35,7 +35,7 @@ namespace SiMaVeh.Domain.Test.Models
             Assert.IsEmpty(_argentina.Provincias);
             Assert.IsEmpty(_uruguay.Provincias);
 
-            var _buenosAires = new Provincia { Id = 1, Nombre = NombreProvinciaArgentina.BuenosAires };
+            var _buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
 
             _uruguay.Agregar(_buenosAires);
 

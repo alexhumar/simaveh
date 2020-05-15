@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de Partidos de Buenos Aires
     /// </summary>
-    public class NombrePartidoBuenosAires
+    public class PartidoBuenosAires
     {
         /// <summary>
         /// Adolfo Alsina

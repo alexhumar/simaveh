@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de Paises
     /// </summary>
-    public class NombrePais
+    public class Pais
     {
         /// <summary>
         /// Argentina

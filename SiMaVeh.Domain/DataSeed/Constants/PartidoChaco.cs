@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de Partidos de Chaco
     /// </summary>
-    public class NombrePartidoChaco
+    public class PartidoChaco
     {
         /// <summary>
         /// Almirante Brown

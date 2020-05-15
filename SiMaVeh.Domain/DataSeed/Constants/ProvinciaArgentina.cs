@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de Provincias de Argentina
     /// </summary>
-    public class NombreProvinciaArgentina
+    public class ProvinciaArgentina
     {
         /// <summary>
         /// Buenos Aires

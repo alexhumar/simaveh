@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de Partidos de Catamarca
     /// </summary>
-    public class NombrePartidoCatamarca
+    public class PartidoCatamarca
     {
         /// <summary>
         /// Ambato

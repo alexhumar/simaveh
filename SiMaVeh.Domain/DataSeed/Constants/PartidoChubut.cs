@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de Partidos de Chubut
     /// </summary>
-    public class NombrePartidoChubut
+    public class PartidoChubut
     {
         /// <summary>
         /// Biedma
