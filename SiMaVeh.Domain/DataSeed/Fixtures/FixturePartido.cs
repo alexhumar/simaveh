@@ -173,6 +173,57 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
                     { 150, NombrePartidoCatamarca.Tinogasta },
                     { 151, NombrePartidoCatamarca.ValleViejo }
                 }
+            },
+            {
+                fixtureProvincia.FindByNombre(NombreProvinciaArgentina.Chaco).Value.Key, new Dictionary<long, string>
+                {
+                    { 152, NombrePartidoChaco.AlmiranteBrown },
+                    { 153, NombrePartidoChaco.Bermejo },
+                    { 154, NombrePartidoChaco.Chacabuco },
+                    { 155, NombrePartidoChaco.ComandanteFernandez },
+                    { 156, NombrePartidoChaco.DoceDeOctubre },
+                    { 157, NombrePartidoChaco.DosDeAbril },
+                    { 158, NombrePartidoChaco.FrayJustoSantaMariaDeOro },
+                    { 159, NombrePartidoChaco.GeneralBelgrano },
+                    { 160, NombrePartidoChaco.GeneralDonovan },
+                    { 161, NombrePartidoChaco.GeneralGuemes },
+                    { 162, NombrePartidoChaco.Independencia },
+                    { 163, NombrePartidoChaco.Libertad },
+                    { 164, NombrePartidoChaco.LibertadorGeneralSanMartín },
+                    { 165, NombrePartidoChaco.Maipu },
+                    { 166, NombrePartidoChaco.MayorLuisJorgeFontana },
+                    { 167, NombrePartidoChaco.NuevedeJulio },
+                    { 168, NombrePartidoChaco.OHiggins },
+                    { 169, NombrePartidoChaco.PresidenciaDeLaPlaza },
+                    { 170, NombrePartidoChaco.PrimeroDeMayo },
+                    { 171, NombrePartidoChaco.Quitilipi },
+                    { 172, NombrePartidoChaco.SanFernando },
+                    { 173, NombrePartidoChaco.SanLorenzo },
+                    { 174, NombrePartidoChaco.SargentoCabral },
+                    { 175, NombrePartidoChaco.Tapenaga },
+                    { 176, NombrePartidoChaco.VeinticincoDeMayo }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(NombreProvinciaArgentina.Chubut).Value.Key, new Dictionary<long, string>
+                {
+
+                    { 177, NombrePartidoChubut.Biedma },
+                    { 178, NombrePartidoChubut.Cushamen },
+                    { 179, NombrePartidoChubut.Escalante },
+                    { 180, NombrePartidoChubut.FlorentinoAmeghino },
+                    { 181, NombrePartidoChubut.Futaleufu },
+                    { 182, NombrePartidoChubut.Gaiman },
+                    { 183, NombrePartidoChubut.Gastre },
+                    { 184, NombrePartidoChubut.Languineo },
+                    { 185, NombrePartidoChubut.Martires },
+                    { 186, NombrePartidoChubut.PasoDeIndios },
+                    { 187, NombrePartidoChubut.Rawson },
+                    { 188, NombrePartidoChubut.RioSenguer },
+                    { 189, NombrePartidoChubut.Sarmiento },
+                    { 190, NombrePartidoChubut.Tehuelches },
+                    { 191, NombrePartidoChubut.Telsen }
+                }
             }
         };
 
