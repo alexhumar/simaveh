@@ -1,7 +1,7 @@
 ﻿namespace SiMaVeh.Domain.DataSeed.Constants
 {
     /// <summary>
-    /// Constante de nombres de Partidos de Chubut
+    /// Constante de nombres de Partidos de Cordoba
     /// </summary>
     public class PartidoCordoba
     {

@@ -255,6 +255,36 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
                     { 215, PartidoCordoba.Tulumba },
                     { 216, PartidoCordoba.Union }
                 }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.Corrientes).Value.Key, new Dictionary<long, string>
+                {
+                    { 217, PartidoCorientes.Capital },
+                    { 218, PartidoCorientes.Goya },
+                    { 219, PartidoCorientes.SantoTome },
+                    { 220, PartidoCorientes.PasoDeLosLibres },
+                    { 221, PartidoCorientes.CuruzuCuatia },
+                    { 222, PartidoCorientes.Mercedes },
+                    { 223, PartidoCorientes.BellaVista },
+                    { 224, PartidoCorientes.MonteCaseros },
+                    { 225, PartidoCorientes.Ituzaingo },
+                    { 226, PartidoCorientes.Esquina },
+                    { 227, PartidoCorientes.Lavalle },
+                    { 228, PartidoCorientes.Saladas },
+                    { 229, PartidoCorientes.Concepcion },
+                    { 230, PartidoCorientes.SanRoque },
+                    { 231, PartidoCorientes.SanLuisDelPalmar },
+                    { 232, PartidoCorientes.Empedrado },
+                    { 233, PartidoCorientes.GeneralPaz },
+                    { 234, PartidoCorientes.SanCosme },
+                    { 235, PartidoCorientes.SanMartin },
+                    { 236, PartidoCorientes.SanMiguel },
+                    { 237, PartidoCorientes.Mburucuya },
+                    { 238, PartidoCorientes.Itati },
+                    { 239, PartidoCorientes.Sauce },
+                    { 240, PartidoCorientes.GeneralAlvear },
+                    { 241, PartidoCorientes.BeronDeAstrada }
+                }
             }
         };
 
