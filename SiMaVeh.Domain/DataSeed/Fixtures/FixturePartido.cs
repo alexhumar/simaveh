@@ -285,6 +285,225 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
                     { 240, PartidoCorientes.GeneralAlvear },
                     { 241, PartidoCorientes.BeronDeAstrada }
                 }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.EntreRios).Value.Key, new Dictionary<long, string>
+                {
+                    { 242, PartidoEntreRios.Colon },
+                    { 243, PartidoEntreRios.Concordia },
+                    { 244, PartidoEntreRios.Diamante },
+                    { 245, PartidoEntreRios.Federacion },
+                    { 246, PartidoEntreRios.Federal },
+                    { 247, PartidoEntreRios.Feliciano },
+                    { 248, PartidoEntreRios.Gualeguay },
+                    { 249, PartidoEntreRios.Gualeguaychu },
+                    { 250, PartidoEntreRios.IslasDelIbicuy },
+                    { 251, PartidoEntreRios.LaPaz },
+                    { 252, PartidoEntreRios.Nogoya },
+                    { 253, PartidoEntreRios.Parana },
+                    { 254, PartidoEntreRios.SanSalvador },
+                    { 255, PartidoEntreRios.Tala },
+                    { 256, PartidoEntreRios.Uruguay },
+                    { 257, PartidoEntreRios.Victoria },
+                    { 258, PartidoEntreRios.Villaguay }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.Formosa).Value.Key, new Dictionary<long, string>
+                {
+                    { 259, PartidoFormosa.Bermejo },
+                    { 260, PartidoFormosa.Formosa },
+                    { 261, PartidoFormosa.Laishi },
+                    { 262, PartidoFormosa.Matacos },
+                    { 263, PartidoFormosa.Patino },
+                    { 264, PartidoFormosa.Pilagas },
+                    { 265, PartidoFormosa.Pilcomayo },
+                    { 266, PartidoFormosa.Pirane },
+                    { 267, PartidoFormosa.RamonLista }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.Jujuy).Value.Key, new Dictionary<long, string>
+                {
+                    { 268, PartidoJujuy.Cochinoca },
+                    { 269, PartidoJujuy.DrManuelBelgrano },
+                    { 270, PartidoJujuy.ElCarmen },
+                    { 271, PartidoJujuy.Humahuaca },
+                    { 272, PartidoJujuy.Ledesma },
+                    { 273, PartidoJujuy.Palpala },
+                    { 274, PartidoJujuy.Rinconada },
+                    { 275, PartidoJujuy.SanAntonio },
+                    { 276, PartidoJujuy.SanPedro },
+                    { 277, PartidoJujuy.SantaBarbara },
+                    { 278, PartidoJujuy.SantaCatalina },
+                    { 279, PartidoJujuy.Susques },
+                    { 280, PartidoJujuy.Tilcara },
+                    { 281, PartidoJujuy.Tumbaya },
+                    { 282, PartidoJujuy.ValleGrande },
+                    { 283, PartidoJujuy.Yavi }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.LaPampa).Value.Key, new Dictionary<long, string>
+                {
+                    { 284, PartidoLaPampa.Atreuco },
+                    { 285, PartidoLaPampa.CaleuCaleu },
+                    { 286, PartidoLaPampa.Capital },
+                    { 287, PartidoLaPampa.Catrilo },
+                    { 288, PartidoLaPampa.Chalileo },
+                    { 289, PartidoLaPampa.Chapaleufu },
+                    { 290, PartidoLaPampa.ChicalCo },
+                    { 291, PartidoLaPampa.Conhelo },
+                    { 292, PartidoLaPampa.Curaco },
+                    { 293, PartidoLaPampa.Guatrache },
+                    { 294, PartidoLaPampa.Hucal },
+                    { 295, PartidoLaPampa.LihuelCalel },
+                    { 296, PartidoLaPampa.LimayMahuida },
+                    { 297, PartidoLaPampa.Loventue },
+                    { 298, PartidoLaPampa.Maraco },
+                    { 299, PartidoLaPampa.Puelen },
+                    { 300, PartidoLaPampa.QuemuQuemu },
+                    { 301, PartidoLaPampa.Rancul },
+                    { 302, PartidoLaPampa.Realico },
+                    { 303, PartidoLaPampa.Toay },
+                    { 304, PartidoLaPampa.Trenel },
+                    { 305, PartidoLaPampa.Utracan }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.LaRioja).Value.Key, new Dictionary<long, string>
+                {
+                    { 306, PartidoLaRioja.Arauco },
+                    { 307, PartidoLaRioja.Capital },
+                    { 308, PartidoLaRioja.CastroBarros },
+                    { 309, PartidoLaRioja.Chamical },
+                    { 310, PartidoLaRioja.Chilecito },
+                    { 311, PartidoLaRioja.CoronelFelipeVarela },
+                    { 312, PartidoLaRioja.Famatina },
+                    { 313, PartidoLaRioja.GeneralAngelVPenaloza },
+                    { 314, PartidoLaRioja.GeneralBelgrano },
+                    { 315, PartidoLaRioja.GeneralJuanFacundoQuiroga },
+                    { 316, PartidoLaRioja.GeneralLamadrid },
+                    { 317, PartidoLaRioja.GeneralOcampo },
+                    { 318, PartidoLaRioja.GeneralSanMartin },
+                    { 319, PartidoLaRioja.Independencia },
+                    { 320, PartidoLaRioja.RosarioVeraPenaloza },
+                    { 321, PartidoLaRioja.SanBlasDeLosSauces },
+                    { 322, PartidoLaRioja.Sanagasta },
+                    { 323, PartidoLaRioja.Vinchina }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.Mendoza).Value.Key, new Dictionary<long, string>
+                {
+                    { 324, PartidoMendoza.Capital },
+                    { 325, PartidoMendoza.GeneralAlvear },
+                    { 326, PartidoMendoza.GodoyCruz },
+                    { 327, PartidoMendoza.Guaymallen },
+                    { 328, PartidoMendoza.Junin },
+                    { 329, PartidoMendoza.LaPaz },
+                    { 330, PartidoMendoza.LasHeras },
+                    { 331, PartidoMendoza.Lavalle },
+                    { 332, PartidoMendoza.LujanDeCuyo },
+                    { 333, PartidoMendoza.Maipu },
+                    { 334, PartidoMendoza.Malargue },
+                    { 335, PartidoMendoza.Rivadavia },
+                    { 336, PartidoMendoza.SanCarlos },
+                    { 337, PartidoMendoza.GeneralSanMartin },
+                    { 338, PartidoMendoza.SanRafael },
+                    { 339, PartidoMendoza.SantaRosa },
+                    { 340, PartidoMendoza.Tunuyan },
+                    { 341, PartidoMendoza.Tupungato }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.Misiones).Value.Key, new Dictionary<long, string>
+                {
+                    { 342, PartidoMisiones.Apostoles },
+                    { 343, PartidoMisiones.Cainguas },
+                    { 344, PartidoMisiones.Candelaria },
+                    { 345, PartidoMisiones.Capital },
+                    { 346, PartidoMisiones.Concepcion },
+                    { 347, PartidoMisiones.Eldorado },
+                    { 348, PartidoMisiones.GeneralManuelBelgrano },
+                    { 349, PartidoMisiones.Guarani },
+                    { 350, PartidoMisiones.Iguazu },
+                    { 351, PartidoMisiones.LeandroNAlem },
+                    { 352, PartidoMisiones.LibertadorGeneralSanMartin },
+                    { 353, PartidoMisiones.Montecarlo },
+                    { 354, PartidoMisiones.Obera },
+                    { 355, PartidoMisiones.SanIgnacio },
+                    { 356, PartidoMisiones.SanJavier },
+                    { 357, PartidoMisiones.SanPedro },
+                    { 358, PartidoMisiones.VeinticincoDeMayo }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.Neuquen).Value.Key, new Dictionary<long, string>
+                {
+                    { 359, PartidoNeuquen.Alumine },
+                    { 360, PartidoNeuquen.Anelo },
+                    { 361, PartidoNeuquen.CatanLil },
+                    { 362, PartidoNeuquen.ChosMalal },
+                    { 363, PartidoNeuquen.CollonCura },
+                    { 364, PartidoNeuquen.Confluencia },
+                    { 365, PartidoNeuquen.Huiliches },
+                    { 366, PartidoNeuquen.Lacar },
+                    { 367, PartidoNeuquen.Loncopue },
+                    { 368, PartidoNeuquen.LosLagos },
+                    { 369, PartidoNeuquen.Minas },
+                    { 370, PartidoNeuquen.Norquin },
+                    { 371, PartidoNeuquen.Pehuenches },
+                    { 372, PartidoNeuquen.PicunLeufu },
+                    { 373, PartidoNeuquen.Picunches },
+                    { 374, PartidoNeuquen.Zapala }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.RioNegro).Value.Key, new Dictionary<long, string>
+                {
+                    { 375, PartidoRioNegro.AdolfoAlsina },
+                    { 376, PartidoRioNegro.Avellaneda },
+                    { 377, PartidoRioNegro.Bariloche },
+                    { 378, PartidoRioNegro.Conesa },
+                    { 379, PartidoRioNegro.ElCuy },
+                    { 380, PartidoRioNegro.GeneralRoca },
+                    { 381, PartidoRioNegro.NueveDeJulio },
+                    { 382, PartidoRioNegro.Norquinco },
+                    { 383, PartidoRioNegro.PichiMahuida },
+                    { 384, PartidoRioNegro.Pilcaniyeu },
+                    { 385, PartidoRioNegro.SanAntonio },
+                    { 386, PartidoRioNegro.Valcheta },
+                    { 387, PartidoRioNegro.VeinticincoDeMayo }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.Salta).Value.Key, new Dictionary<long, string>
+                {
+                    { 388, PartidoSalta.Anta },
+                    { 389, PartidoSalta.Cachi },
+                    { 390, PartidoSalta.Cafayate },
+                    { 391, PartidoSalta.Capital },
+                    { 392, PartidoSalta.Cerrillos },
+                    { 393, PartidoSalta.Chicoana },
+                    { 394, PartidoSalta.GeneralGuemes },
+                    { 395, PartidoSalta.GeneralJoseDeSanMartin },
+                    { 396, PartidoSalta.Guachipas },
+                    { 397, PartidoSalta.Iruya },
+                    { 398, PartidoSalta.LaCaldera },
+                    { 399, PartidoSalta.LaCandelaria },
+                    { 400, PartidoSalta.LaPoma },
+                    { 401, PartidoSalta.LaVina },
+                    { 402, PartidoSalta.LosAndes },
+                    { 403, PartidoSalta.Metan },
+                    { 404, PartidoSalta.Molinos },
+                    { 405, PartidoSalta.Oran },
+                    { 406, PartidoSalta.Rivadavia },
+                    { 407, PartidoSalta.RosarioDeLaFrontera },
+                    { 408, PartidoSalta.RosarioDeLerma },
+                    { 409, PartidoSalta.SanCarlos },
+                    { 410, PartidoSalta.SantaVictoria }
+                }
             }
         };
 
