@@ -504,6 +504,144 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
                     { 409, PartidoSalta.SanCarlos },
                     { 410, PartidoSalta.SantaVictoria }
                 }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.SanJuan).Value.Key, new Dictionary<long, string>
+                {
+                    { 411, PartidoSanJuan.Albardon },
+                    { 412, PartidoSanJuan.Angaco },
+                    { 413, PartidoSanJuan.Calingasta },
+                    { 414, PartidoSanJuan.Capital },
+                    { 415, PartidoSanJuan.Caucete },
+                    { 416, PartidoSanJuan.Chimbas },
+                    { 417, PartidoSanJuan.Iglesia },
+                    { 418, PartidoSanJuan.Jachal },
+                    { 419, PartidoSanJuan.NueveDeJulio },
+                    { 420, PartidoSanJuan.Pocito },
+                    { 421, PartidoSanJuan.Rawson },
+                    { 422, PartidoSanJuan.Rivadavia },
+                    { 423, PartidoSanJuan.SanMartin },
+                    { 424, PartidoSanJuan.SantaLucia },
+                    { 425, PartidoSanJuan.Sarmiento },
+                    { 426, PartidoSanJuan.Ullum },
+                    { 427, PartidoSanJuan.ValleFertil },
+                    { 428, PartidoSanJuan.VeinticincoDeMayo },
+                    { 429, PartidoSanJuan.Zonda }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.SanLuis).Value.Key, new Dictionary<long, string>
+                {
+                    { 430, PartidoSanLuis.Pueyrredon },
+                    { 431, PartidoSanLuis.Pedernera },
+                    { 432, PartidoSanLuis.Junin },
+                    { 433, PartidoSanLuis.Chacabuco },
+                    { 434, PartidoSanLuis.Ayacucho },
+                    { 435, PartidoSanLuis.CoronelPringles },
+                    { 436, PartidoSanLuis.GobernadorDupuy },
+                    { 437, PartidoSanLuis.LibertadorGeneralSanMartin },
+                    { 438, PartidoSanLuis.Belgrano }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.SantaCruz).Value.Key, new Dictionary<long, string>
+                {
+                    { 439, PartidoSantaCruz.Deseado },
+                    { 440, PartidoSantaCruz.GuerAike },
+                    { 441, PartidoSantaCruz.LagoArgentino },
+                    { 442, PartidoSantaCruz.CorpenAike },
+                    { 443, PartidoSantaCruz.Magallanes },
+                    { 444, PartidoSantaCruz.LagoBuenosAires },
+                    { 445, PartidoSantaCruz.RioChico }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.SantaFe).Value.Key, new Dictionary<long, string>
+                {
+                    { 446, PartidoSantaFe.Rosario },
+                    { 447, PartidoSantaFe.LaCapital },
+                    { 448, PartidoSantaFe.GeneralLopez },
+                    { 449, PartidoSantaFe.Castellanos },
+                    { 450, PartidoSantaFe.GeneralObligado },
+                    { 451, PartidoSantaFe.SanLorenzo },
+                    { 452, PartidoSantaFe.LasColonias },
+                    { 453, PartidoSantaFe.Constitucion },
+                    { 454, PartidoSantaFe.Caseros },
+                    { 455, PartidoSantaFe.SanJeronimo },
+                    { 456, PartidoSantaFe.SanCristobal },
+                    { 457, PartidoSantaFe.Iriondo },
+                    { 458, PartidoSantaFe.SanMartin },
+                    { 459, PartidoSantaFe.Vera },
+                    { 460, PartidoSantaFe.Belgrano },
+                    { 461, PartidoSantaFe.SanJusto },
+                    { 462, PartidoSantaFe.SanJavier },
+                    { 463, PartidoSantaFe.NueveDeJulio },
+                    { 464, PartidoSantaFe.Garay }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.SantiagoDelEstero).Value.Key, new Dictionary<long, string>
+                {
+                    { 465, PartidoSantiagoDelEstero.Aguirre },
+                    { 466, PartidoSantiagoDelEstero.Alberdi },
+                    { 467, PartidoSantiagoDelEstero.Atamisqui },
+                    { 468, PartidoSantiagoDelEstero.Avellaneda },
+                    { 469, PartidoSantiagoDelEstero.Banda },
+                    { 470, PartidoSantiagoDelEstero.Belgrano },
+                    { 471, PartidoSantiagoDelEstero.Capital },
+                    { 472, PartidoSantiagoDelEstero.Choya },
+                    { 473, PartidoSantiagoDelEstero.Copo },
+                    { 474, PartidoSantiagoDelEstero.Figueroa },
+                    { 475, PartidoSantiagoDelEstero.GeneralTaboada },
+                    { 476, PartidoSantiagoDelEstero.Guasayan },
+                    { 477, PartidoSantiagoDelEstero.Jimenez },
+                    { 478, PartidoSantiagoDelEstero.JuanFelipeIbarra },
+                    { 479, PartidoSantiagoDelEstero.Loreto },
+                    { 480, PartidoSantiagoDelEstero.Mitre },
+                    { 481, PartidoSantiagoDelEstero.Moreno },
+                    { 482, PartidoSantiagoDelEstero.OjoDeAgua },
+                    { 483, PartidoSantiagoDelEstero.Pellegrini },
+                    { 484, PartidoSantiagoDelEstero.Quebrachos },
+                    { 485, PartidoSantiagoDelEstero.RioHondo },
+                    { 486, PartidoSantiagoDelEstero.Rivadavia },
+                    { 487, PartidoSantiagoDelEstero.Robles },
+                    { 488, PartidoSantiagoDelEstero.Salavina },
+                    { 489, PartidoSantiagoDelEstero.SanMartin },
+                    { 490, PartidoSantiagoDelEstero.Sarmiento },
+                    { 491, PartidoSantiagoDelEstero.Silipica }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.TierraDelFuego).Value.Key, new Dictionary<long, string>
+                {
+                    { 492, PartidoTierraDelFuego.AntartidaArgentina },
+                    { 493, PartidoTierraDelFuego.IslasDelAtlanticoSur },
+                    { 494, PartidoTierraDelFuego.RioGrande },
+                    { 495, PartidoTierraDelFuego.Tolhuin },
+                    { 496, PartidoTierraDelFuego.Ushuaia }
+                }
+            },
+            {
+                fixtureProvincia.FindByNombre(ProvinciaArgentina.Tucuman).Value.Key, new Dictionary<long, string>
+                {
+                    { 497, PartidoTucuman.Burruyacu },
+                    { 498, PartidoTucuman.Capital },
+                    { 499, PartidoTucuman.Chicligasta },
+                    { 500, PartidoTucuman.CruzAlta },
+                    { 501, PartidoTucuman.Famailla },
+                    { 502, PartidoTucuman.Graneros },
+                    { 503, PartidoTucuman.JuanBautistaAlberdi },
+                    { 504, PartidoTucuman.LaCocha },
+                    { 505, PartidoTucuman.Leales },
+                    { 506, PartidoTucuman.Lules },
+                    { 507, PartidoTucuman.Monteros },
+                    { 508, PartidoTucuman.RioChico },
+                    { 509, PartidoTucuman.Simoca },
+                    { 510, PartidoTucuman.TafiDelValle },
+                    { 511, PartidoTucuman.TafiViejo },
+                    { 512, PartidoTucuman.Trancas },
+                    { 513, PartidoTucuman.YerbaBuena }
+                }
             }
         };
 
