@@ -228,7 +228,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
             {
                 fixtureProvincia.FindByNombre(ProvinciaArgentina.Cordoba).Value.Key, new Dictionary<long, string>
                 {
-                    { 191, PartidoCordoba.Calamuchita },
+                    { 514, PartidoCordoba.Calamuchita },
                     { 192, PartidoCordoba.Capital },
                     { 193, PartidoCordoba.Colon },
                     { 194, PartidoCordoba.CruzDelEje },
