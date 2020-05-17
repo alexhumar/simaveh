@@ -1,4 +1,5 @@
-﻿using SiMaVeh.Domain.DataSeed.Constants;
+﻿using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
+using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using System.Collections.Generic;
 
@@ -207,7 +208,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
             {
                 fixtureProvincia.FindByNombre(ProvinciaArgentina.Chubut).Value.Key, new Dictionary<long, string>
                 {
-
                     { 177, PartidoChubut.Biedma },
                     { 178, PartidoChubut.Cushamen },
                     { 179, PartidoChubut.Escalante },

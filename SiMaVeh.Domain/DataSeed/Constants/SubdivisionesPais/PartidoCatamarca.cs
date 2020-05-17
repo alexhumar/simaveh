@@ -1,4 +1,4 @@
-﻿namespace SiMaVeh.Domain.DataSeed.Constants
+﻿namespace SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais
 {
     /// <summary>
     /// Constante de nombres de Partidos de Catamarca

@@ -1,4 +1,4 @@
-﻿namespace SiMaVeh.Domain.DataSeed.Constants
+﻿namespace SiMaVeh.Domain.DataSeed.Constants.DivisionesPais
 {
     /// <summary>
     /// Constante de nombres de Departamentos de Uruguay

@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants;
+using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using SiMaVeh.Domain.DataSeed.Constants;
+using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Test.Models
