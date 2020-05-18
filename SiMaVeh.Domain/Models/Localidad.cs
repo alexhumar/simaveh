@@ -31,7 +31,9 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat(Nombre, "(", CPA, "), ", Partido?.ToString());
+            var cpa = !string.IsNullOrWhiteSpace(CPA) ? $" ({CPA}) " : " ";
+
+            return string.Concat(Nombre, cpa, Partido?.ToString());
         }
 
         /// <summary>
