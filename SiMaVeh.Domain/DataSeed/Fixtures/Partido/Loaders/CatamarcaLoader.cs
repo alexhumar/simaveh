@@ -9,9 +9,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
     {
         private readonly IFixtureProvincia fixtureProvincia;
 
-        public CatamarcaLoader()
+        public CatamarcaLoader(IFixtureProvincia fixtureProvincia)
         {
-            fixtureProvincia = new FixtureProvincia();
+            this.fixtureProvincia = fixtureProvincia;
         }
 
         public void Add(Dictionary<long, Dictionary<long, string>> dictionary)

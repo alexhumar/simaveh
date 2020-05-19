@@ -8,16 +8,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
     /// </summary>
     public class FixturePartido : IFixturePartido
     {
-        private readonly IFixtureItemKeyValueLoaderProvider<long, long, string> fixtureItemKeyValueLoaderProvider;
-        private readonly Dictionary<long, Dictionary<long, string>> partidos;
+        private readonly IPartidoLoadersProvider partidoLoadersProvider;
+        private Dictionary<long, Dictionary<long, string>> partidos;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public FixturePartido()
         {
-            fixtureItemKeyValueLoaderProvider = new PartidoLoadersProvider();
-            partidos = new Dictionary<long, Dictionary<long, string>>();
+            partidoLoadersProvider = new PartidoLoadersProvider();
 
             Initialize();
         }
@@ -33,7 +32,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
 
         private void Initialize()
         {
-            foreach (var provider in fixtureItemKeyValueLoaderProvider.GetProviders())
+            partidos = new Dictionary<long, Dictionary<long, string>>();
+
+            foreach (var provider in partidoLoadersProvider.GetProviders())
             {
                 provider.Add(partidos);
             }

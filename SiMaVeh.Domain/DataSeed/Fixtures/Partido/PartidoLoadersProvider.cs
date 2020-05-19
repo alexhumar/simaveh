@@ -1,5 +1,6 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
@@ -7,8 +8,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
     /// <summary>
     /// Provider de Loaders de Partido
     /// </summary>
-    public class PartidoLoadersProvider : IFixtureItemKeyValueLoaderProvider<long, long, string>
+    public class PartidoLoadersProvider : IPartidoLoadersProvider
     {
+        private readonly IFixtureProvincia fixtureProvincia;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public PartidoLoadersProvider()
+        {
+            fixtureProvincia = new FixtureProvincia();
+        }
+
         /// <summary>
         /// Retorna los providers de loaders de partidos
         /// </summary>
@@ -17,29 +28,29 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         {
             return new List<IFixtureItemKeyValueLoader<long, long, string>>
             {
-                new BuenosAiresLoader(),
-                new CatamarcaLoader(),
-                new ChacoLoader(),
-                new ChubutLoader(),
-                new CordobaLoader(),
-                new CorrientesLoader(),
-                new EntreRiosLoader(),
-                new FormosaLoader(),
-                new JujuyLoader(),
-                new LaPampaLoader(),
-                new LaRiojaLoader(),
-                new MendozaLoader(),
-                new MisionesLoader(),
-                new NeuquenLoader(),
-                new RioNegroLoader(),
-                new SaltaLoader(),
-                new SanJuanLoader(),
-                new SanLuisLoader(),
-                new SantaCruzLoader(),
-                new SantaFeLoader(),
-                new SantiagoDelEsteroLoader(),
-                new TierraDelFuegoLoader(),
-                new TucumanLoader()
+                new BuenosAiresLoader(fixtureProvincia),
+                new CatamarcaLoader(fixtureProvincia),
+                new ChacoLoader(fixtureProvincia),
+                new ChubutLoader(fixtureProvincia),
+                new CordobaLoader(fixtureProvincia),
+                new CorrientesLoader(fixtureProvincia),
+                new EntreRiosLoader(fixtureProvincia),
+                new FormosaLoader(fixtureProvincia),
+                new JujuyLoader(fixtureProvincia),
+                new LaPampaLoader(fixtureProvincia),
+                new LaRiojaLoader(fixtureProvincia),
+                new MendozaLoader(fixtureProvincia),
+                new MisionesLoader(fixtureProvincia),
+                new NeuquenLoader(fixtureProvincia),
+                new RioNegroLoader(fixtureProvincia),
+                new SaltaLoader(fixtureProvincia),
+                new SanJuanLoader(fixtureProvincia),
+                new SanLuisLoader(fixtureProvincia),
+                new SantaCruzLoader(fixtureProvincia),
+                new SantaFeLoader(fixtureProvincia),
+                new SantiagoDelEsteroLoader(fixtureProvincia),
+                new TierraDelFuegoLoader(fixtureProvincia),
+                new TucumanLoader(fixtureProvincia)
             };
         }
     }
