@@ -34,9 +34,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         {
             partidos = new Dictionary<long, Dictionary<long, string>>();
 
-            foreach (var provider in partidoLoadersProvider.GetProviders())
+            foreach (var loader in partidoLoadersProvider.GetLoaders())
             {
-                provider.Add(partidos);
+                loader.Load(partidos);
             }
         }
     }

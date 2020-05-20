@@ -14,7 +14,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
             this.fixtureProvincia = fixtureProvincia;
         }
 
-        public void Add(Dictionary<long, Dictionary<long, string>> dictionary)
+        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Jujuy).Value.Key, new Dictionary<long, string>
             {

@@ -5,15 +5,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
     /// <summary>
     /// Interfaz de provider de objetos para cargar items en un diccionario y subdiccionario
     /// </summary>
-    /// <typeparam name="TIdBeParent"></typeparam>
-    /// <typeparam name="TIdBeChild"></typeparam>
+    /// <typeparam name="TIdBe"></typeparam>
     /// <typeparam name="TValueBe"></typeparam>
-    public interface IFixtureItemKeyValueLoaderProvider<TIdBeParent, TIdBeChild, TValueBe>
+    public interface IFixtureKeyValueLoaderProvider<TIdBe, TValueBe>
     {
         /// <summary>
         /// Metodo para obtener los loaders
         /// </summary>
         /// <returns></returns>
-        List<IFixtureItemKeyValueLoader<TIdBeParent, TIdBeChild, TValueBe>> GetLoaders();
+        List<IFixtureKeyValueLoader<TIdBe, TValueBe>> GetLoaders();
     }
 }

@@ -23,7 +23,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
         /// Retorna los providers de loaders de provincias
         /// </summary>
         /// <returns></returns>
-        public List<IFixtureItemKeyValueLoader<long, long, string>> GetProviders()
+        public List<IFixtureItemKeyValueLoader<long, long, string>> GetLoaders()
         {
             return new List<IFixtureItemKeyValueLoader<long, long, string>>
             {

@@ -24,7 +24,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         /// Retorna los providers de loaders de partidos
         /// </summary>
         /// <returns></returns>
-        public List<IFixtureItemKeyValueLoader<long, long, string>> GetProviders()
+        public List<IFixtureItemKeyValueLoader<long, long, string>> GetLoaders()
         {
             return new List<IFixtureItemKeyValueLoader<long, long, string>>
             {

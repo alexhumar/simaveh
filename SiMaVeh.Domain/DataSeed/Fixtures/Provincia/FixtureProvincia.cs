@@ -58,9 +58,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
         {
             provincias = new Dictionary<long, Dictionary<long, string>>();
 
-            foreach (var provider in provinciaLoadersProvider.GetProviders())
+            foreach (var loader in provinciaLoadersProvider.GetLoaders())
             {
-                provider.Add(provincias);
+                loader.Load(provincias);
             }
         }
     }
