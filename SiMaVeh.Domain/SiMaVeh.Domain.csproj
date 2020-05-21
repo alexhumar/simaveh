@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataSeed\Fixtures\Localidad\Loaders\" />
     <Folder Include="Enums\" />
     <Folder Include="Validators\" />
   </ItemGroup>
