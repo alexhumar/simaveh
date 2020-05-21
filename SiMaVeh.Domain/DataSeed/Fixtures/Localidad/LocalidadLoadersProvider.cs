@@ -1,34 +1,32 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
 {
     /// <summary>
-    /// Provider de Loaders de Provincia
+    /// Provider de Loaders de Localidad
     /// </summary>
-    public class ProvinciaLoadersProvider : IProvinciaLoadersProvider
+    public class LocalidadLoadersProvider : ILocalidadLoadersProvider
     {
-        private readonly IFixturePais fixturePais;
+        private readonly IFixturePartido fixturePartido;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProvinciaLoadersProvider()
+        public LocalidadLoadersProvider()
         {
-            fixturePais = new FixturePais();
+            fixturePartido = new FixturePartido();
         }
 
         /// <summary>
-        /// Retorna los providers de loaders de provincias
+        /// Retorna los providers de loaders de localidades
         /// </summary>
         /// <returns></returns>
         public IEnumerable<IFixtureItemKeyValueLoader<long, long, string>> GetLoaders()
         {
             return new List<IFixtureItemKeyValueLoader<long, long, string>>
             {
-                new ArgentinaLoader(fixturePais),
-                new UruguayLoader(fixturePais),
+                //TODO: implementar
             };
         }
     }

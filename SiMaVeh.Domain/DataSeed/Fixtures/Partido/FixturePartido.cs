@@ -1,5 +1,6 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
 {
@@ -28,6 +29,30 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         public Dictionary<long, Dictionary<long, string>> GetPartidos()
         {
             return partidos;
+        }
+
+        /// <summary>
+        /// Find by Nombre
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public KeyValuePair<long, string>? FindByNombre(string nombre)
+        {
+            //TODO: quizas esto se pueda refinar centralizandolo en una clase base.
+            KeyValuePair<long, string>? result = null;
+
+            foreach (var localidadesPartidos in partidos)
+            {
+                KeyValuePair<long, string>? provincia = localidadesPartidos.Value.FirstOrDefault(v => v.Value == nombre);
+
+                if (provincia != null)
+                {
+                    result = provincia;
+                    break;
+                }
+            }
+
+            return result;
         }
 
         private void Initialize()

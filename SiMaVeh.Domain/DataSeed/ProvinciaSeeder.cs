@@ -29,7 +29,7 @@ namespace SiMaVeh.Domain.DataSeed
         {
             var result = new List<object>();
 
-            //TODO - por limitaciones de EFCore en torno a DataSeed, y para no ensuciar el modelo con 
+            //TODO: por limitaciones de EFCore en torno a DataSeed, y para no ensuciar el modelo con 
             //definiciones de FKs, se utilizan tipos anonimos para cargar las entidades y poder especificar la 
             //shadow property que EFCore utiliza a nivel interno (por ejemplo, PaisId en Provincia).
             //Seguir el tema para ver si en algun momento se soluciona.

@@ -3,7 +3,7 @@
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
 {
     /// <summary>
-    /// Interfaz de FixtureProvinciaLocalidad
+    /// Interfaz de FixtureLocalidad
     /// </summary>
     public interface IFixtureLocalidad
     {
@@ -12,12 +12,5 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// </summary>
         /// <returns></returns>
         Dictionary<long, Dictionary<long, string>> GetLocalidades();
-
-        /// <summary>
-        /// Find by Nombre
-        /// </summary>
-        /// <param name="nombre"></param>
-        /// <returns></returns>
-        public KeyValuePair<long, string>? FindByNombre(string nombre);
     }
 }

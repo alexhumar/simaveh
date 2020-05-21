@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures
@@ -8,14 +9,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
     /// </summary>
     public class FixtureLocalidad : IFixtureLocalidad
     {
+        private readonly ILocalidadLoadersProvider localidadLoadersProvider;
+        private Dictionary<long, Dictionary<long, string>> localidades;
+
         /// <summary>
-        /// Find by Nombre
+        /// Constructor
         /// </summary>
-        /// <param name="nombre"></param>
-        /// <returns></returns>
-        public KeyValuePair<long, string>? FindByNombre(string nombre)
+        public FixtureLocalidad()
         {
-            throw new System.NotImplementedException();
+            localidadLoadersProvider = new LocalidadLoadersProvider();
+
+            Initialize();
         }
 
         /// <summary>
@@ -24,7 +28,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
         /// <returns></returns>
         public Dictionary<long, Dictionary<long, string>> GetLocalidades()
         {
-            throw new System.NotImplementedException();
+            return localidades;
+        }
+
+        private void Initialize()
+        {
+            localidades = new Dictionary<long, Dictionary<long, string>>();
+
+            foreach (var loader in localidadLoadersProvider.GetLoaders())
+            {
+                loader.Load(localidades);
+            }
         }
     }
 }
