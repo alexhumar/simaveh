@@ -118,7 +118,7 @@
         /// <summary>
         /// Carmen de Areco
         /// </summary>
-        public const string CarmendeAreco = "Carmen de Areco";
+        public const string CarmenDeAreco = "Carmen de Areco";
 
         /// <summary>
         /// Castelli
@@ -268,7 +268,7 @@
         /// <summary>
         /// General Pueyrredón
         /// </summary>
-        public const string GeneralPueyrredón = "General Pueyrredón";
+        public const string GeneralPueyrredon = "General Pueyrredón";
 
         /// <summary>
         /// General Rodríguez
@@ -378,7 +378,7 @@
         /// <summary>
         /// Lomas de Zamora
         /// </summary>
-        public const string LomasdeZamora = "Lomas de Zamora";
+        public const string LomasDeZamora = "Lomas de Zamora";
 
         /// <summary>
         /// Luján
@@ -453,7 +453,7 @@
         /// <summary>
         /// Nueve de Julio
         /// </summary>
-        public const string NuevedeJulio = "Nueve de Julio";
+        public const string NueveDeJulio = "Nueve de Julio";
 
         /// <summary>
         /// Olavarría
