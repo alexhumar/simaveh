@@ -18,13 +18,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.SantaCruz).Value.Key, new Dictionary<long, string>
             {
-                { 439, PartidoSantaCruz.Deseado },
-                { 440, PartidoSantaCruz.GuerAike },
-                { 441, PartidoSantaCruz.LagoArgentino },
-                { 442, PartidoSantaCruz.CorpenAike },
-                { 443, PartidoSantaCruz.Magallanes },
-                { 444, PartidoSantaCruz.LagoBuenosAires },
-                { 445, PartidoSantaCruz.RioChico }
+                { 440, PartidoSantaCruz.Deseado },
+                { 441, PartidoSantaCruz.GuerAike },
+                { 442, PartidoSantaCruz.LagoArgentino },
+                { 443, PartidoSantaCruz.CorpenAike },
+                { 444, PartidoSantaCruz.Magallanes },
+                { 445, PartidoSantaCruz.LagoBuenosAires },
+                { 446, PartidoSantaCruz.RioChico }
             });
         }
     }

@@ -68,7 +68,7 @@
         /// <summary>
         /// Libertador General San Martín
         /// </summary>
-        public const string LibertadorGeneralSanMartín = "Libertador General San Martín";
+        public const string LibertadorGeneralSanMartin = "Libertador General San Martín";
 
         /// <summary>
         /// Maipú
@@ -83,7 +83,7 @@
         /// <summary>
         /// Nueve de Julio
         /// </summary>
-        public const string NuevedeJulio = "Nueve de Julio";
+        public const string NueveDeJulio = "Nueve de Julio";
 
         /// <summary>
         /// O'Higgins

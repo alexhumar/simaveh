@@ -18,23 +18,23 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Misiones).Value.Key, new Dictionary<long, string>
             {
-                { 342, PartidoMisiones.Apostoles },
-                { 343, PartidoMisiones.Cainguas },
-                { 344, PartidoMisiones.Candelaria },
-                { 345, PartidoMisiones.Capital },
-                { 346, PartidoMisiones.Concepcion },
-                { 347, PartidoMisiones.Eldorado },
-                { 348, PartidoMisiones.GeneralManuelBelgrano },
-                { 349, PartidoMisiones.Guarani },
-                { 350, PartidoMisiones.Iguazu },
-                { 351, PartidoMisiones.LeandroNAlem },
-                { 352, PartidoMisiones.LibertadorGeneralSanMartin },
-                { 353, PartidoMisiones.Montecarlo },
-                { 354, PartidoMisiones.Obera },
-                { 355, PartidoMisiones.SanIgnacio },
-                { 356, PartidoMisiones.SanJavier },
-                { 357, PartidoMisiones.SanPedro },
-                { 358, PartidoMisiones.VeinticincoDeMayo }
+                { 343, PartidoMisiones.Apostoles },
+                { 344, PartidoMisiones.Cainguas },
+                { 345, PartidoMisiones.Candelaria },
+                { 346, PartidoMisiones.Capital },
+                { 347, PartidoMisiones.Concepcion },
+                { 348, PartidoMisiones.Eldorado },
+                { 349, PartidoMisiones.GeneralManuelBelgrano },
+                { 350, PartidoMisiones.Guarani },
+                { 351, PartidoMisiones.Iguazu },
+                { 352, PartidoMisiones.LeandroNAlem },
+                { 353, PartidoMisiones.LibertadorGeneralSanMartin },
+                { 354, PartidoMisiones.Montecarlo },
+                { 355, PartidoMisiones.Obera },
+                { 356, PartidoMisiones.SanIgnacio },
+                { 357, PartidoMisiones.SanJavier },
+                { 358, PartidoMisiones.SanPedro },
+                { 359, PartidoMisiones.VeinticincoDeMayo }
             });
         }
     }

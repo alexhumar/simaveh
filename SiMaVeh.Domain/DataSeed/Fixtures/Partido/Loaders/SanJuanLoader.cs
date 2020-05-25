@@ -18,25 +18,25 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.SanJuan).Value.Key, new Dictionary<long, string>
             {
-                { 411, PartidoSanJuan.Albardon },
-                { 412, PartidoSanJuan.Angaco },
-                { 413, PartidoSanJuan.Calingasta },
-                { 414, PartidoSanJuan.Capital },
-                { 415, PartidoSanJuan.Caucete },
-                { 416, PartidoSanJuan.Chimbas },
-                { 417, PartidoSanJuan.Iglesia },
-                { 418, PartidoSanJuan.Jachal },
-                { 419, PartidoSanJuan.NueveDeJulio },
-                { 420, PartidoSanJuan.Pocito },
-                { 421, PartidoSanJuan.Rawson },
-                { 422, PartidoSanJuan.Rivadavia },
-                { 423, PartidoSanJuan.SanMartin },
-                { 424, PartidoSanJuan.SantaLucia },
-                { 425, PartidoSanJuan.Sarmiento },
-                { 426, PartidoSanJuan.Ullum },
-                { 427, PartidoSanJuan.ValleFertil },
-                { 428, PartidoSanJuan.VeinticincoDeMayo },
-                { 429, PartidoSanJuan.Zonda }
+                { 412, PartidoSanJuan.Albardon },
+                { 413, PartidoSanJuan.Angaco },
+                { 414, PartidoSanJuan.Calingasta },
+                { 415, PartidoSanJuan.Capital },
+                { 416, PartidoSanJuan.Caucete },
+                { 417, PartidoSanJuan.Chimbas },
+                { 418, PartidoSanJuan.Iglesia },
+                { 419, PartidoSanJuan.Jachal },
+                { 420, PartidoSanJuan.NueveDeJulio },
+                { 421, PartidoSanJuan.Pocito },
+                { 422, PartidoSanJuan.Rawson },
+                { 423, PartidoSanJuan.Rivadavia },
+                { 424, PartidoSanJuan.SanMartin },
+                { 425, PartidoSanJuan.SantaLucia },
+                { 426, PartidoSanJuan.Sarmiento },
+                { 427, PartidoSanJuan.Ullum },
+                { 428, PartidoSanJuan.ValleFertil },
+                { 429, PartidoSanJuan.VeinticincoDeMayo },
+                { 430, PartidoSanJuan.Zonda }
             });
         }
     }

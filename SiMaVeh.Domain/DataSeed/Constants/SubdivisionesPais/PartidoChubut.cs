@@ -51,7 +51,7 @@
         public const string Martires = "Mártires";
 
         /// <summary>
-        /// "Paso de Indios
+        /// Paso de Indios
         /// </summary>
         public const string PasoDeIndios = "Paso de Indios";
 

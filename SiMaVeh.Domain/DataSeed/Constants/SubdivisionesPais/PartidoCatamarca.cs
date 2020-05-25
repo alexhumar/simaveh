@@ -18,7 +18,7 @@
         /// <summary>
         /// Andalgalá
         /// </summary>
-        public const string Andalgal = "Andalgalá";
+        public const string Andalgala = "Andalgalá";
 
         /// <summary>
         /// Antofagasta de la Sierra

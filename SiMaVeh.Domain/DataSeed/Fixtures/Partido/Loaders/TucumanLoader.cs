@@ -18,23 +18,23 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Tucuman).Value.Key, new Dictionary<long, string>
             {
-                { 497, PartidoTucuman.Burruyacu },
-                { 498, PartidoTucuman.Capital },
-                { 499, PartidoTucuman.Chicligasta },
-                { 500, PartidoTucuman.CruzAlta },
-                { 501, PartidoTucuman.Famailla },
-                { 502, PartidoTucuman.Graneros },
-                { 503, PartidoTucuman.JuanBautistaAlberdi },
-                { 504, PartidoTucuman.LaCocha },
-                { 505, PartidoTucuman.Leales },
-                { 506, PartidoTucuman.Lules },
-                { 507, PartidoTucuman.Monteros },
-                { 508, PartidoTucuman.RioChico },
-                { 509, PartidoTucuman.Simoca },
-                { 510, PartidoTucuman.TafiDelValle },
-                { 511, PartidoTucuman.TafiViejo },
-                { 512, PartidoTucuman.Trancas },
-                { 513, PartidoTucuman.YerbaBuena }
+                { 498, PartidoTucuman.Burruyacu },
+                { 499, PartidoTucuman.Capital },
+                { 500, PartidoTucuman.Chicligasta },
+                { 501, PartidoTucuman.CruzAlta },
+                { 502, PartidoTucuman.Famailla },
+                { 503, PartidoTucuman.Graneros },
+                { 504, PartidoTucuman.JuanBautistaAlberdi },
+                { 505, PartidoTucuman.LaCocha },
+                { 506, PartidoTucuman.Leales },
+                { 507, PartidoTucuman.Lules },
+                { 508, PartidoTucuman.Monteros },
+                { 509, PartidoTucuman.RioChico },
+                { 510, PartidoTucuman.Simoca },
+                { 511, PartidoTucuman.TafiDelValle },
+                { 512, PartidoTucuman.TafiViejo },
+                { 513, PartidoTucuman.Trancas },
+                { 514, PartidoTucuman.YerbaBuena }
             });
         }
     }

@@ -18,22 +18,22 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Neuquen).Value.Key, new Dictionary<long, string>
             {
-                { 359, PartidoNeuquen.Alumine },
-                { 360, PartidoNeuquen.Anelo },
-                { 361, PartidoNeuquen.CatanLil },
-                { 362, PartidoNeuquen.ChosMalal },
-                { 363, PartidoNeuquen.CollonCura },
-                { 364, PartidoNeuquen.Confluencia },
-                { 365, PartidoNeuquen.Huiliches },
-                { 366, PartidoNeuquen.Lacar },
-                { 367, PartidoNeuquen.Loncopue },
-                { 368, PartidoNeuquen.LosLagos },
-                { 369, PartidoNeuquen.Minas },
-                { 370, PartidoNeuquen.Norquin },
-                { 371, PartidoNeuquen.Pehuenches },
-                { 372, PartidoNeuquen.PicunLeufu },
-                { 373, PartidoNeuquen.Picunches },
-                { 374, PartidoNeuquen.Zapala }
+                { 360, PartidoNeuquen.Alumine },
+                { 361, PartidoNeuquen.Anelo },
+                { 362, PartidoNeuquen.CatanLil },
+                { 363, PartidoNeuquen.ChosMalal },
+                { 364, PartidoNeuquen.CollonCura },
+                { 365, PartidoNeuquen.Confluencia },
+                { 366, PartidoNeuquen.Huiliches },
+                { 367, PartidoNeuquen.Lacar },
+                { 368, PartidoNeuquen.Loncopue },
+                { 369, PartidoNeuquen.LosLagos },
+                { 370, PartidoNeuquen.Minas },
+                { 371, PartidoNeuquen.Norquin },
+                { 372, PartidoNeuquen.Pehuenches },
+                { 373, PartidoNeuquen.PicunLeufu },
+                { 374, PartidoNeuquen.Picunches },
+                { 375, PartidoNeuquen.Zapala }
             });
         }
     }

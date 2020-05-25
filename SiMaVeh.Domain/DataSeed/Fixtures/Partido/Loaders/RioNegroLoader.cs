@@ -18,19 +18,19 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.RioNegro).Value.Key, new Dictionary<long, string>
             {
-                { 375, PartidoRioNegro.AdolfoAlsina },
-                { 376, PartidoRioNegro.Avellaneda },
-                { 377, PartidoRioNegro.Bariloche },
-                { 378, PartidoRioNegro.Conesa },
-                { 379, PartidoRioNegro.ElCuy },
-                { 380, PartidoRioNegro.GeneralRoca },
-                { 381, PartidoRioNegro.NueveDeJulio },
-                { 382, PartidoRioNegro.Norquinco },
-                { 383, PartidoRioNegro.PichiMahuida },
-                { 384, PartidoRioNegro.Pilcaniyeu },
-                { 385, PartidoRioNegro.SanAntonio },
-                { 386, PartidoRioNegro.Valcheta },
-                { 387, PartidoRioNegro.VeinticincoDeMayo }
+                { 376, PartidoRioNegro.AdolfoAlsina },
+                { 377, PartidoRioNegro.Avellaneda },
+                { 378, PartidoRioNegro.Bariloche },
+                { 379, PartidoRioNegro.Conesa },
+                { 380, PartidoRioNegro.ElCuy },
+                { 381, PartidoRioNegro.GeneralRoca },
+                { 382, PartidoRioNegro.NueveDeJulio },
+                { 383, PartidoRioNegro.Norquinco },
+                { 384, PartidoRioNegro.PichiMahuida },
+                { 385, PartidoRioNegro.Pilcaniyeu },
+                { 386, PartidoRioNegro.SanAntonio },
+                { 387, PartidoRioNegro.Valcheta },
+                { 388, PartidoRioNegro.VeinticincoDeMayo }
             });
         }
     }

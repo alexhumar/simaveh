@@ -18,23 +18,23 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.EntreRios).Value.Key, new Dictionary<long, string>
             {
-                { 242, PartidoEntreRios.Colon },
-                { 243, PartidoEntreRios.Concordia },
-                { 244, PartidoEntreRios.Diamante },
-                { 245, PartidoEntreRios.Federacion },
-                { 246, PartidoEntreRios.Federal },
-                { 247, PartidoEntreRios.Feliciano },
-                { 248, PartidoEntreRios.Gualeguay },
-                { 249, PartidoEntreRios.Gualeguaychu },
-                { 250, PartidoEntreRios.IslasDelIbicuy },
-                { 251, PartidoEntreRios.LaPaz },
-                { 252, PartidoEntreRios.Nogoya },
-                { 253, PartidoEntreRios.Parana },
-                { 254, PartidoEntreRios.SanSalvador },
-                { 255, PartidoEntreRios.Tala },
-                { 256, PartidoEntreRios.Uruguay },
-                { 257, PartidoEntreRios.Victoria },
-                { 258, PartidoEntreRios.Villaguay }
+                { 243, PartidoEntreRios.Colon },
+                { 244, PartidoEntreRios.Concordia },
+                { 245, PartidoEntreRios.Diamante },
+                { 246, PartidoEntreRios.Federacion },
+                { 247, PartidoEntreRios.Federal },
+                { 248, PartidoEntreRios.Feliciano },
+                { 249, PartidoEntreRios.Gualeguay },
+                { 250, PartidoEntreRios.Gualeguaychu },
+                { 251, PartidoEntreRios.IslasDelIbicuy },
+                { 252, PartidoEntreRios.LaPaz },
+                { 253, PartidoEntreRios.Nogoya },
+                { 254, PartidoEntreRios.Parana },
+                { 255, PartidoEntreRios.SanSalvador },
+                { 256, PartidoEntreRios.Tala },
+                { 257, PartidoEntreRios.Uruguay },
+                { 258, PartidoEntreRios.Victoria },
+                { 259, PartidoEntreRios.Villaguay }
             });
         }
     }

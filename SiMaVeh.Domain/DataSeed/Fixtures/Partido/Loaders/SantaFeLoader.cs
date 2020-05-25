@@ -18,25 +18,25 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.SantaFe).Value.Key, new Dictionary<long, string>
             {
-                { 446, PartidoSantaFe.Rosario },
-                { 447, PartidoSantaFe.LaCapital },
-                { 448, PartidoSantaFe.GeneralLopez },
-                { 449, PartidoSantaFe.Castellanos },
-                { 450, PartidoSantaFe.GeneralObligado },
-                { 451, PartidoSantaFe.SanLorenzo },
-                { 452, PartidoSantaFe.LasColonias },
-                { 453, PartidoSantaFe.Constitucion },
-                { 454, PartidoSantaFe.Caseros },
-                { 455, PartidoSantaFe.SanJeronimo },
-                { 456, PartidoSantaFe.SanCristobal },
-                { 457, PartidoSantaFe.Iriondo },
-                { 458, PartidoSantaFe.SanMartin },
-                { 459, PartidoSantaFe.Vera },
-                { 460, PartidoSantaFe.Belgrano },
-                { 461, PartidoSantaFe.SanJusto },
-                { 462, PartidoSantaFe.SanJavier },
-                { 463, PartidoSantaFe.NueveDeJulio },
-                { 464, PartidoSantaFe.Garay }
+                { 447, PartidoSantaFe.Rosario },
+                { 448, PartidoSantaFe.LaCapital },
+                { 449, PartidoSantaFe.GeneralLopez },
+                { 450, PartidoSantaFe.Castellanos },
+                { 451, PartidoSantaFe.GeneralObligado },
+                { 452, PartidoSantaFe.SanLorenzo },
+                { 453, PartidoSantaFe.LasColonias },
+                { 454, PartidoSantaFe.Constitucion },
+                { 455, PartidoSantaFe.Caseros },
+                { 456, PartidoSantaFe.SanJeronimo },
+                { 457, PartidoSantaFe.SanCristobal },
+                { 458, PartidoSantaFe.Iriondo },
+                { 459, PartidoSantaFe.SanMartin },
+                { 460, PartidoSantaFe.Vera },
+                { 461, PartidoSantaFe.Belgrano },
+                { 462, PartidoSantaFe.SanJusto },
+                { 463, PartidoSantaFe.SanJavier },
+                { 464, PartidoSantaFe.NueveDeJulio },
+                { 465, PartidoSantaFe.Garay }
             });
         }
     }

@@ -18,24 +18,24 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Mendoza).Value.Key, new Dictionary<long, string>
             {
-                { 324, PartidoMendoza.Capital },
-                { 325, PartidoMendoza.GeneralAlvear },
-                { 326, PartidoMendoza.GodoyCruz },
-                { 327, PartidoMendoza.Guaymallen },
-                { 328, PartidoMendoza.Junin },
-                { 329, PartidoMendoza.LaPaz },
-                { 330, PartidoMendoza.LasHeras },
-                { 331, PartidoMendoza.Lavalle },
-                { 332, PartidoMendoza.LujanDeCuyo },
-                { 333, PartidoMendoza.Maipu },
-                { 334, PartidoMendoza.Malargue },
-                { 335, PartidoMendoza.Rivadavia },
-                { 336, PartidoMendoza.SanCarlos },
-                { 337, PartidoMendoza.GeneralSanMartin },
-                { 338, PartidoMendoza.SanRafael },
-                { 339, PartidoMendoza.SantaRosa },
-                { 340, PartidoMendoza.Tunuyan },
-                { 341, PartidoMendoza.Tupungato }
+                { 325, PartidoMendoza.Capital },
+                { 326, PartidoMendoza.GeneralAlvear },
+                { 327, PartidoMendoza.GodoyCruz },
+                { 328, PartidoMendoza.Guaymallen },
+                { 329, PartidoMendoza.Junin },
+                { 330, PartidoMendoza.LaPaz },
+                { 331, PartidoMendoza.LasHeras },
+                { 332, PartidoMendoza.Lavalle },
+                { 333, PartidoMendoza.LujanDeCuyo },
+                { 334, PartidoMendoza.Maipu },
+                { 335, PartidoMendoza.Malargue },
+                { 336, PartidoMendoza.Rivadavia },
+                { 337, PartidoMendoza.SanCarlos },
+                { 338, PartidoMendoza.GeneralSanMartin },
+                { 339, PartidoMendoza.SanRafael },
+                { 340, PartidoMendoza.SantaRosa },
+                { 341, PartidoMendoza.Tunuyan },
+                { 342, PartidoMendoza.Tupungato }
             });
         }
     }

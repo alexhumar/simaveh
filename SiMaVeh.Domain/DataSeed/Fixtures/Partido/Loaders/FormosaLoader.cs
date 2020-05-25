@@ -18,15 +18,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Formosa).Value.Key, new Dictionary<long, string>
             {
-                { 259, PartidoFormosa.Bermejo },
-                { 260, PartidoFormosa.Formosa },
-                { 261, PartidoFormosa.Laishi },
-                { 262, PartidoFormosa.Matacos },
-                { 263, PartidoFormosa.Patino },
-                { 264, PartidoFormosa.Pilagas },
-                { 265, PartidoFormosa.Pilcomayo },
-                { 266, PartidoFormosa.Pirane },
-                { 267, PartidoFormosa.RamonLista }
+                { 260, PartidoFormosa.Bermejo },
+                { 261, PartidoFormosa.Formosa },
+                { 262, PartidoFormosa.Laishi },
+                { 263, PartidoFormosa.Matacos },
+                { 264, PartidoFormosa.Patino },
+                { 265, PartidoFormosa.Pilagas },
+                { 266, PartidoFormosa.Pilcomayo },
+                { 267, PartidoFormosa.Pirane },
+                { 268, PartidoFormosa.RamonLista }
             });
         }
     }

@@ -20,7 +20,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
             {
                 { 136, PartidoCatamarca.Ambato },
                 { 137, PartidoCatamarca.Ancasti },
-                { 138, PartidoCatamarca.Andalgal },
+                { 138, PartidoCatamarca.Andalgala },
                 { 139, PartidoCatamarca.AntofagastaDeLaSierra },
                 { 140, PartidoCatamarca.Belen },
                 { 141, PartidoCatamarca.Capayan },

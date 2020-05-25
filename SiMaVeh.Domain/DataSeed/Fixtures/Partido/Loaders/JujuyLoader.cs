@@ -18,22 +18,22 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Jujuy).Value.Key, new Dictionary<long, string>
             {
-                { 268, PartidoJujuy.Cochinoca },
-                { 269, PartidoJujuy.DrManuelBelgrano },
-                { 270, PartidoJujuy.ElCarmen },
-                { 271, PartidoJujuy.Humahuaca },
-                { 272, PartidoJujuy.Ledesma },
-                { 273, PartidoJujuy.Palpala },
-                { 274, PartidoJujuy.Rinconada },
-                { 275, PartidoJujuy.SanAntonio },
-                { 276, PartidoJujuy.SanPedro },
-                { 277, PartidoJujuy.SantaBarbara },
-                { 278, PartidoJujuy.SantaCatalina },
-                { 279, PartidoJujuy.Susques },
-                { 280, PartidoJujuy.Tilcara },
-                { 281, PartidoJujuy.Tumbaya },
-                { 282, PartidoJujuy.ValleGrande },
-                { 283, PartidoJujuy.Yavi }
+                { 269, PartidoJujuy.Cochinoca },
+                { 270, PartidoJujuy.DrManuelBelgrano },
+                { 271, PartidoJujuy.ElCarmen },
+                { 272, PartidoJujuy.Humahuaca },
+                { 273, PartidoJujuy.Ledesma },
+                { 274, PartidoJujuy.Palpala },
+                { 275, PartidoJujuy.Rinconada },
+                { 276, PartidoJujuy.SanAntonio },
+                { 277, PartidoJujuy.SanPedro },
+                { 278, PartidoJujuy.SantaBarbara },
+                { 279, PartidoJujuy.SantaCatalina },
+                { 280, PartidoJujuy.Susques },
+                { 281, PartidoJujuy.Tilcara },
+                { 282, PartidoJujuy.Tumbaya },
+                { 283, PartidoJujuy.ValleGrande },
+                { 284, PartidoJujuy.Yavi }
             });
         }
     }

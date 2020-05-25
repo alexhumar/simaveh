@@ -18,11 +18,11 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.TierraDelFuego).Value.Key, new Dictionary<long, string>
             {
-                { 492, PartidoTierraDelFuego.AntartidaArgentina },
-                { 493, PartidoTierraDelFuego.IslasDelAtlanticoSur },
-                { 494, PartidoTierraDelFuego.RioGrande },
-                { 495, PartidoTierraDelFuego.Tolhuin },
-                { 496, PartidoTierraDelFuego.Ushuaia }
+                { 493, PartidoTierraDelFuego.AntartidaArgentina },
+                { 494, PartidoTierraDelFuego.IslasDelAtlanticoSur },
+                { 495, PartidoTierraDelFuego.RioGrande },
+                { 496, PartidoTierraDelFuego.Tolhuin },
+                { 497, PartidoTierraDelFuego.Ushuaia }
             });
         }
     }

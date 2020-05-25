@@ -18,24 +18,24 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.LaRioja).Value.Key, new Dictionary<long, string>
             {
-                { 306, PartidoLaRioja.Arauco },
-                { 307, PartidoLaRioja.Capital },
-                { 308, PartidoLaRioja.CastroBarros },
-                { 309, PartidoLaRioja.Chamical },
-                { 310, PartidoLaRioja.Chilecito },
-                { 311, PartidoLaRioja.CoronelFelipeVarela },
-                { 312, PartidoLaRioja.Famatina },
-                { 313, PartidoLaRioja.GeneralAngelVPenaloza },
-                { 314, PartidoLaRioja.GeneralBelgrano },
-                { 315, PartidoLaRioja.GeneralJuanFacundoQuiroga },
-                { 316, PartidoLaRioja.GeneralLamadrid },
-                { 317, PartidoLaRioja.GeneralOcampo },
-                { 318, PartidoLaRioja.GeneralSanMartin },
-                { 319, PartidoLaRioja.Independencia },
-                { 320, PartidoLaRioja.RosarioVeraPenaloza },
-                { 321, PartidoLaRioja.SanBlasDeLosSauces },
-                { 322, PartidoLaRioja.Sanagasta },
-                { 323, PartidoLaRioja.Vinchina }
+                { 307, PartidoLaRioja.Arauco },
+                { 308, PartidoLaRioja.Capital },
+                { 309, PartidoLaRioja.CastroBarros },
+                { 310, PartidoLaRioja.Chamical },
+                { 311, PartidoLaRioja.Chilecito },
+                { 312, PartidoLaRioja.CoronelFelipeVarela },
+                { 313, PartidoLaRioja.Famatina },
+                { 314, PartidoLaRioja.GeneralAngelVPenaloza },
+                { 315, PartidoLaRioja.GeneralBelgrano },
+                { 316, PartidoLaRioja.GeneralJuanFacundoQuiroga },
+                { 317, PartidoLaRioja.GeneralLamadrid },
+                { 318, PartidoLaRioja.GeneralOcampo },
+                { 319, PartidoLaRioja.GeneralSanMartin },
+                { 320, PartidoLaRioja.Independencia },
+                { 321, PartidoLaRioja.RosarioVeraPenaloza },
+                { 322, PartidoLaRioja.SanBlasDeLosSauces },
+                { 323, PartidoLaRioja.Sanagasta },
+                { 324, PartidoLaRioja.Vinchina }
             });
         }
     }
