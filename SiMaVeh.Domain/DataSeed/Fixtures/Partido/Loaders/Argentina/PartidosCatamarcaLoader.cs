@@ -1,22 +1,21 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina
 {
-    class CatamarcaLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class PartidosCatamarcaLoader : PartidosLoader
     {
-        private readonly IFixtureProvincia fixtureProvincia;
-
-        public CatamarcaLoader(IFixtureProvincia fixtureProvincia)
+        public PartidosCatamarcaLoader(IProvinciasLoader<long, long, string> provinciasLoader)
+            : base(provinciasLoader)
         {
-            this.fixtureProvincia = fixtureProvincia;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Catamarca).Value.Key, new Dictionary<long, string>
+            partidos.Add(provinciasLoader.FindByNombre(ProvinciaArgentina.Catamarca).Key, new Dictionary<long, string>
             {
                 { 136, PartidoCatamarca.Ambato },
                 { 137, PartidoCatamarca.Ancasti },

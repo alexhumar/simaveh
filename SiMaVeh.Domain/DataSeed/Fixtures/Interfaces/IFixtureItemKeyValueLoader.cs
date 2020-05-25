@@ -3,7 +3,7 @@
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
 {
     /// <summary>
-    /// Interfaz para cargar un item a un diccionario y subdiccionario
+    /// Interfaz para retornar items en un diccionario y subdiccionario
     /// </summary>
     /// <typeparam name="TIdBeParent"></typeparam>
     /// <typeparam name="TIdBeChild"></typeparam>
@@ -11,9 +11,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
     public interface IFixtureItemKeyValueLoader<TIdBeParent, TIdBeChild, TValueBe>
     {
         /// <summary>
-        /// Metodo que carga un item en un diccionario y subdiccionario
+        /// Metodo que retorna items en un diccionario y subdiccionario
         /// </summary>
-        /// <param name="dictionary"></param>
-        void Load(Dictionary<TIdBeParent, Dictionary<TIdBeChild, TValueBe>> dictionary);
+        /// <returns></returns>
+        Dictionary<TIdBeParent, Dictionary<TIdBeChild, TValueBe>> Get();
     }
 }

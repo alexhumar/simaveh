@@ -57,12 +57,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
 
         private void Initialize()
         {
-            partidos = new Dictionary<long, Dictionary<long, string>>();
-
-            foreach (var loader in partidoLoadersProvider.GetLoaders())
-            {
-                loader.Load(partidos);
-            }
+            partidos = partidoLoadersProvider
+                .GetLoaders()
+                .SelectMany(l => l.Get())
+                .ToDictionary(x => x.Key, y => y.Value);
         }
     }
 }

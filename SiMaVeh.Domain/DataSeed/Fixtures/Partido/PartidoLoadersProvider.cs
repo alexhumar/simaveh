@@ -1,6 +1,7 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders;
-using SiMaVeh.Domain.DataSeed.Fixtures.Provincia;
+using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Argentina;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
@@ -10,14 +11,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
     /// </summary>
     public class PartidoLoadersProvider : IPartidoLoadersProvider
     {
-        private readonly IFixtureProvincia fixtureProvincia;
+        private readonly IProvinciasLoader<long, long, string> provinciasArgentinaLoader;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public PartidoLoadersProvider()
         {
-            fixtureProvincia = new FixtureProvincia();
+            provinciasArgentinaLoader = new ProvinciasArgentinaLoader(new PaisesLoader());
         }
 
         /// <summary>
@@ -28,29 +29,29 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         {
             return new List<IFixtureItemKeyValueLoader<long, long, string>>
             {
-                new BuenosAiresLoader(fixtureProvincia),
-                new CatamarcaLoader(fixtureProvincia),
-                new ChacoLoader(fixtureProvincia),
-                new ChubutLoader(fixtureProvincia),
-                new CordobaLoader(fixtureProvincia),
-                new CorrientesLoader(fixtureProvincia),
-                new EntreRiosLoader(fixtureProvincia),
-                new FormosaLoader(fixtureProvincia),
-                new JujuyLoader(fixtureProvincia),
-                new LaPampaLoader(fixtureProvincia),
-                new LaRiojaLoader(fixtureProvincia),
-                new MendozaLoader(fixtureProvincia),
-                new MisionesLoader(fixtureProvincia),
-                new NeuquenLoader(fixtureProvincia),
-                new RioNegroLoader(fixtureProvincia),
-                new SaltaLoader(fixtureProvincia),
-                new SanJuanLoader(fixtureProvincia),
-                new SanLuisLoader(fixtureProvincia),
-                new SantaCruzLoader(fixtureProvincia),
-                new SantaFeLoader(fixtureProvincia),
-                new SantiagoDelEsteroLoader(fixtureProvincia),
-                new TierraDelFuegoLoader(fixtureProvincia),
-                new TucumanLoader(fixtureProvincia)
+                new PartidosBuenosAiresLoader(provinciasArgentinaLoader),
+                new PartidosCatamarcaLoader(provinciasArgentinaLoader),
+                new PartidosChacoLoader(provinciasArgentinaLoader),
+                new PartidosChubutLoader(provinciasArgentinaLoader),
+                new PartidosCordobaLoader(provinciasArgentinaLoader),
+                new PartidosCorrientesLoader(provinciasArgentinaLoader),
+                new PartidosEntreRiosLoader(provinciasArgentinaLoader),
+                new PartidosFormosaLoader(provinciasArgentinaLoader),
+                new PartidosJujuyLoader(provinciasArgentinaLoader),
+                new PartidosLaPampaLoader(provinciasArgentinaLoader),
+                new PartidosLaRiojaLoader(provinciasArgentinaLoader),
+                new PartidosMendozaLoader(provinciasArgentinaLoader),
+                new PartidosMisionesLoader(provinciasArgentinaLoader),
+                new PartidosNeuquenLoader(provinciasArgentinaLoader),
+                new PartidosRioNegroLoader(provinciasArgentinaLoader),
+                new PartidosSaltaLoader(provinciasArgentinaLoader),
+                new PartidosSanJuanLoader(provinciasArgentinaLoader),
+                new PartidosSanLuisLoader(provinciasArgentinaLoader),
+                new PartidosSantaCruzLoader(provinciasArgentinaLoader),
+                new PartidosSantaFeLoader(provinciasArgentinaLoader),
+                new PartidosSantiagoDelEsteroLoader(provinciasArgentinaLoader),
+                new PartidosTierraDelFuegoLoader(provinciasArgentinaLoader),
+                new PartidosTucumanLoader(provinciasArgentinaLoader)
             };
         }
     }

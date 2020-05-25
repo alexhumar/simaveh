@@ -10,9 +10,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
     public interface IFixtureKeyValueLoader<TIdBe, TValueBe>
     {
         /// <summary>
-        /// Metodo que carga un item en un diccionario
+        /// Metodo que retorna la informacion organizada en un diccionario.
         /// </summary>
-        /// <param name="dictionary"></param>
-        void Load(Dictionary<TIdBe, TValueBe> dictionary);
+        /// <returns></returns>
+        Dictionary<TIdBe, TValueBe> Get();
     }
 }

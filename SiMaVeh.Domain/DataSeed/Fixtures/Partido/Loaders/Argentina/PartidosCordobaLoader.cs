@@ -1,22 +1,21 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina
 {
-    class CordobaLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class PartidosCordobaLoader : PartidosLoader
     {
-        private readonly IFixtureProvincia fixtureProvincia;
-
-        public CordobaLoader(IFixtureProvincia fixtureProvincia)
+        public PartidosCordobaLoader(IProvinciasLoader<long, long, string> provinciasLoader)
+            : base(provinciasLoader)
         {
-            this.fixtureProvincia = fixtureProvincia;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.Cordoba).Value.Key, new Dictionary<long, string>
+            partidos.Add(provinciasLoader.FindByNombre(ProvinciaArgentina.Cordoba).Key, new Dictionary<long, string>
             {
                 { 192, PartidoCordoba.Calamuchita },
                 { 193, PartidoCordoba.Capital },

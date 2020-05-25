@@ -1,22 +1,21 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina
 {
-    class SanLuisLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class PartidosSanLuisLoader : PartidosLoader
     {
-        private readonly IFixtureProvincia fixtureProvincia;
-
-        public SanLuisLoader(IFixtureProvincia fixtureProvincia)
+        public PartidosSanLuisLoader(IProvinciasLoader<long, long, string> provinciasLoader)
+            : base(provinciasLoader)
         {
-            this.fixtureProvincia = fixtureProvincia;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.SanLuis).Value.Key, new Dictionary<long, string>
+            partidos.Add(provinciasLoader.FindByNombre(ProvinciaArgentina.SanLuis).Key, new Dictionary<long, string>
             {
                 { 431, PartidoSanLuis.JuanMartinDePueyrredon },
                 { 432, PartidoSanLuis.GeneralPedernera },

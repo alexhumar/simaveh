@@ -1,22 +1,21 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina
 {
-    class EntreRiosLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class PartidosEntreRiosLoader : PartidosLoader
     {
-        private readonly IFixtureProvincia fixtureProvincia;
-
-        public EntreRiosLoader(IFixtureProvincia fixtureProvincia)
+        public PartidosEntreRiosLoader(IProvinciasLoader<long, long, string> provinciasLoader)
+            : base(provinciasLoader)
         {
-            this.fixtureProvincia = fixtureProvincia;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.EntreRios).Value.Key, new Dictionary<long, string>
+            partidos.Add(provinciasLoader.FindByNombre(ProvinciaArgentina.EntreRios).Key, new Dictionary<long, string>
             {
                 { 243, PartidoEntreRios.Colon },
                 { 244, PartidoEntreRios.Concordia },

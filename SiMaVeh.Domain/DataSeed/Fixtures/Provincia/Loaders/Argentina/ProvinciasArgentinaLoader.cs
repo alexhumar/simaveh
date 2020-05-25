@@ -1,22 +1,21 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants;
 using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Argentina
 {
-    class ArgentinaLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class ProvinciasArgentinaLoader : ProvinciasLoader
     {
-        private readonly IFixturePais fixturePais;
-
-        public ArgentinaLoader(IFixturePais fixturePais)
+        public ProvinciasArgentinaLoader(IPaisesLoader<long, string> paisesLoader)
+            : base(paisesLoader)
         {
-            this.fixturePais = fixturePais;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixturePais.FindByNombre(Pais.Argentina).Value.Key, new Dictionary<long, string>
+            provincias.Add(paisesLoader.FindByNombre(Pais.Argentina).Key, new Dictionary<long, string>
             {
                 { 1, ProvinciaArgentina.BuenosAires },
                 { 2, ProvinciaArgentina.Catamarca },

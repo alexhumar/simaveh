@@ -44,12 +44,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
 
         private void Initialize()
         {
-            paises = new Dictionary<long, string>();
-
-            foreach (var loader in paisLoadersProvider.GetLoaders())
-            {
-                loader.Load(paises);
-            }
+            paises = paisLoadersProvider
+                .GetLoaders()
+                .SelectMany(l => l.Get())
+                .ToDictionary(x => x.Key, y => y.Value);
         }
     }
 }

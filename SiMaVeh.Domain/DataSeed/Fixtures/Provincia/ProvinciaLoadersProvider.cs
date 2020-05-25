@@ -1,5 +1,7 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Argentina;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Uruguay;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
@@ -9,14 +11,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
     /// </summary>
     public class ProvinciaLoadersProvider : IProvinciaLoadersProvider
     {
-        private readonly IFixturePais fixturePais;
+        private readonly IPaisesLoader<long, string> paisesLoader;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public ProvinciaLoadersProvider()
         {
-            fixturePais = new FixturePais();
+            paisesLoader = new PaisesLoader();
         }
 
         /// <summary>
@@ -27,8 +29,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
         {
             return new List<IFixtureItemKeyValueLoader<long, long, string>>
             {
-                new ArgentinaLoader(fixturePais),
-                new UruguayLoader(fixturePais),
+                new ProvinciasArgentinaLoader(paisesLoader),
+                new ProvinciasUruguayLoader(paisesLoader),
             };
         }
     }
