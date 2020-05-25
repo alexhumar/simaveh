@@ -18,8 +18,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
         {
             dictionary.Add(fixtureProvincia.FindByNombre(ProvinciaArgentina.SanLuis).Value.Key, new Dictionary<long, string>
             {
-                { 431, PartidoSanLuis.Pueyrredon },
-                { 432, PartidoSanLuis.Pedernera },
+                { 431, PartidoSanLuis.JuanMartinDePueyrredon },
+                { 432, PartidoSanLuis.GeneralPedernera },
                 { 433, PartidoSanLuis.Junin },
                 { 434, PartidoSanLuis.Chacabuco },
                 { 435, PartidoSanLuis.Ayacucho },
