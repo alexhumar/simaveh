@@ -1,5 +1,10 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders.Argentina;
+using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Argentina;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
@@ -10,13 +15,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
     public class LocalidadLoadersProvider : ILocalidadLoadersProvider
     {
         private readonly IFixturePartido fixturePartido;
+        private readonly IProvinciasLoader<long, long, string> provinciasArgentinaLoader;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public LocalidadLoadersProvider()
         {
+            //TODO: hay que borrar FixturePartido y tomar provinciasArgentinasLoader como parametro a los new de loaders de partido
+            //para cada loader de localidad.
             fixturePartido = new FixturePartido();
+            provinciasArgentinaLoader = new ProvinciasArgentinaLoader(new PaisesLoader());
         }
 
         /// <summary>

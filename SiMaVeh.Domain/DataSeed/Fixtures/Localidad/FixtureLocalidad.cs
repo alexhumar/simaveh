@@ -1,6 +1,7 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures
 {
@@ -33,12 +34,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
 
         private void Initialize()
         {
-            localidades = new Dictionary<long, Dictionary<long, string>>();
-
-            foreach (var loader in localidadLoadersProvider.GetLoaders())
-            {
-                loader.Load(localidades);
-            }
+            localidades = localidadLoadersProvider
+                .GetLoaders()
+                .SelectMany(l => l.Get())
+                .ToDictionary(x => x.Key, y => y.Value);
         }
     }
 }
