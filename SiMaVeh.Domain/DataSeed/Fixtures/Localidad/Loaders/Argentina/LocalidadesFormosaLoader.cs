@@ -1,22 +1,21 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders.Argentina
 {
-    class FormosaLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class LocalidadesFormosaLoader : LocalidadesLoader
     {
-        private readonly IFixturePartido fixturePartido;
-
-        public FormosaLoader(IFixturePartido fixturePartido)
+        public LocalidadesFormosaLoader(IPartidosLoader<long, long, string> partidosLoader)
+            : base(partidosLoader)
         {
-            this.fixturePartido = fixturePartido;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.Bermejo).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.Bermejo).Key, new Dictionary<long, string>
             {
                 { 2078, LocalidadFormosa.LagunaYema },
                 { 2079, LocalidadFormosa.FortinSoledad },
@@ -28,7 +27,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2085, LocalidadFormosa.PozoDelMortero },
                 { 2086, LocalidadFormosa.VacaPerdida }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.Formosa).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.Formosa).Key, new Dictionary<long, string>
             {
                 { 2087, LocalidadFormosa.Formosa },
                 { 2088, LocalidadFormosa.ColoniaPastoril },
@@ -39,7 +38,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2093, LocalidadFormosa.VillaDelCarmen },
                 { 2094, LocalidadFormosa.VillaTrinidad }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.Laishi).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.Laishi).Key, new Dictionary<long, string>
             {
                 { 2095, LocalidadFormosa.SanFranciscoDeLaishi },
                 { 2096, LocalidadFormosa.BancoPayagua },
@@ -48,11 +47,11 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2099, LocalidadFormosa.Tatane },
                 { 2100, LocalidadFormosa.VillaEscolar }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.Matacos).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.Matacos).Key, new Dictionary<long, string>
             {
                 { 2101, LocalidadFormosa.IngenieroJuarez }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.Patino).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.Patino).Key, new Dictionary<long, string>
             {
                 { 2102, LocalidadFormosa.ComandanteFontana },
                 { 2103, LocalidadFormosa.BartolomeDeLasCasas },
@@ -72,7 +71,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2117, LocalidadFormosa.SubtenientePerin },
                 { 2118, LocalidadFormosa.VillaGeneralGuemes }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.Pilagas).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.Pilagas).Key, new Dictionary<long, string>
             {
                 { 2119, LocalidadFormosa.ElEspinillo },
                 { 2120, LocalidadFormosa.BuenaVista },
@@ -80,7 +79,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2122, LocalidadFormosa.PortonNegro },
                 { 2123, LocalidadFormosa.TresLagunas }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.Pilcomayo).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.Pilcomayo).Key, new Dictionary<long, string>
             {
                 { 2124, LocalidadFormosa.Clorinda },
                 { 2125, LocalidadFormosa.LagunaBlanca },
@@ -91,7 +90,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2130, LocalidadFormosa.RiachoNegro },
                 { 2131, LocalidadFormosa.SietePalmas }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.Pirane).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.Pirane).Key, new Dictionary<long, string>
             {
                 { 2132, LocalidadFormosa.Pirane },
                 { 2133, LocalidadFormosa.ElColorado },
@@ -99,7 +98,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2135, LocalidadFormosa.PaloSanto },
                 { 2136, LocalidadFormosa.VillaDosTrece }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoFormosa.RamonLista).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoFormosa.RamonLista).Key, new Dictionary<long, string>
             {
                 { 2137, LocalidadFormosa.GeneralMosconi },
                 { 2138, LocalidadFormosa.ElPotrillo }

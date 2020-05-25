@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders.Argentina
 {
-    class TierraDelFuegoLoader : LocalidadesLoader
+    class LocalidadesTierraDelFuegoLoader : LocalidadesLoader
     {
-        public TierraDelFuegoLoader(IPartidosLoader<long, long, string> partidosLoader)
+        public LocalidadesTierraDelFuegoLoader(IPartidosLoader<long, long, string> partidosLoader)
             : base(partidosLoader)
         {
         }

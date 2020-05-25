@@ -1,48 +1,47 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders.Argentina
 {
-    class NeuquenLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class LocalidadesNeuquenLoader : LocalidadesLoader
     {
-        private readonly IFixturePartido fixturePartido;
-
-        public NeuquenLoader(IFixturePartido fixturePartido)
+        public LocalidadesNeuquenLoader(IPartidosLoader<long, long, string> partidosLoader)
+            : base(partidosLoader)
         {
-            this.fixturePartido = fixturePartido;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Alumine).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Alumine).Key, new Dictionary<long, string>
             {
                 { 2830, LocalidadNeuquen.Alumine },
                 { 2831, LocalidadNeuquen.VillaPehuenia }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Anelo).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Anelo).Key, new Dictionary<long, string>
             {
                 { 2832, LocalidadNeuquen.Anelo },
                 { 2833, LocalidadNeuquen.SanPatricioDelChanar }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.CatanLil).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.CatanLil).Key, new Dictionary<long, string>
             {
                 { 2834, LocalidadNeuquen.LasColoradas }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.ChosMalal).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.ChosMalal).Key, new Dictionary<long, string>
             {
                 { 2835, LocalidadNeuquen.ChosMalal },
                 { 2836, LocalidadNeuquen.TricaoMalal },
                 { 2837, LocalidadNeuquen.CoyucoCochico },
                 { 2838, LocalidadNeuquen.VillaCuriLeuvu }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.CollonCura).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.CollonCura).Key, new Dictionary<long, string>
             {
                 { 2839, LocalidadNeuquen.PiedraDelAguila },
                 { 2840, LocalidadNeuquen.SantoTomas }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Confluencia).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Confluencia).Key, new Dictionary<long, string>
             {
                 { 2841, LocalidadNeuquen.Centenario },
                 { 2842, LocalidadNeuquen.CutralCo },
@@ -54,7 +53,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2848, LocalidadNeuquen.Senillosa },
                 { 2849, LocalidadNeuquen.VistaAlegre }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Huiliches).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Huiliches).Key, new Dictionary<long, string>
             {
                 { 2850, LocalidadNeuquen.JuninDeLosAndes },
                 { 2851, LocalidadNeuquen.AucaPan },
@@ -66,7 +65,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2857, LocalidadNeuquen.TresPuentes },
                 { 2858, LocalidadNeuquen.CampoGrande }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Lacar).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Lacar).Key, new Dictionary<long, string>
             {
                 { 2859, LocalidadNeuquen.SanMartinDeLosAndes },
                 { 2860, LocalidadNeuquen.Chimehuin },
@@ -78,7 +77,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2866, LocalidadNeuquen.LagoHermoso },
                 { 2867, LocalidadNeuquen.Caleufu }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Loncopue).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Loncopue).Key, new Dictionary<long, string>
             {
                 { 2868, LocalidadNeuquen.Loncopue },
                 { 2869, LocalidadNeuquen.CajonDeAlmanza },
@@ -90,7 +89,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2875, LocalidadNeuquen.Quintuco },
                 { 2876, LocalidadNeuquen.Huarenchenque }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.LosLagos).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.LosLagos).Key, new Dictionary<long, string>
             {
                 { 2877, LocalidadNeuquen.VillaLaAngostura },
                 { 2878, LocalidadNeuquen.VillaTraful },
@@ -106,7 +105,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2888, LocalidadNeuquen.RucaMalen },
                 { 2889, LocalidadNeuquen.VillaLlanquin }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Minas).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Minas).Key, new Dictionary<long, string>
             {
                 { 2890, LocalidadNeuquen.Andacollo },
                 { 2891, LocalidadNeuquen.Huinganco },
@@ -118,34 +117,34 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2897, LocalidadNeuquen.VillaDelNahueve },
                 { 2898, LocalidadNeuquen.BellaVista }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Norquin).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Norquin).Key, new Dictionary<long, string>
             {
                 { 2899, LocalidadNeuquen.CaviahueCopahue },
                 { 2900, LocalidadNeuquen.ElCholar },
                 { 2901, LocalidadNeuquen.ElHuecu },
                 { 2902, LocalidadNeuquen.Taquimilan }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Pehuenches).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Pehuenches).Key, new Dictionary<long, string>
             {
                 { 2903, LocalidadNeuquen.Barrancas },
                 { 2904, LocalidadNeuquen.ButaRanquil },
                 { 2905, LocalidadNeuquen.RinconDeLosSauces },
                 { 2906, LocalidadNeuquen.OctavioPico }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.PicunLeufu).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.PicunLeufu).Key, new Dictionary<long, string>
             {
                 { 2907, LocalidadNeuquen.PicunLeufu },
                 { 2908, LocalidadNeuquen.PasoAguerre },
                 { 2909, LocalidadNeuquen.ElSauce }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Picunches).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Picunches).Key, new Dictionary<long, string>
             {
                 { 2910, LocalidadNeuquen.CovuncoAbajo },
                 { 2911, LocalidadNeuquen.LasLajas },
                 { 2912, LocalidadNeuquen.BajadaDelAgrio },
                 { 2913, LocalidadNeuquen.QuiliMalal }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoNeuquen.Zapala).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoNeuquen.Zapala).Key, new Dictionary<long, string>
             {
                 { 2914, LocalidadNeuquen.MarianoMoreno },
                 { 2915, LocalidadNeuquen.Zapala },

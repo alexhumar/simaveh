@@ -1,28 +1,27 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders.Argentina
 {
-    class SantiagoDelEsteroLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class LocalidadesSantiagoDelEsteroLoader : LocalidadesLoader
     {
-        private readonly IFixturePartido fixturePartido;
-
-        public SantiagoDelEsteroLoader(IFixturePartido fixturePartido)
+        public LocalidadesSantiagoDelEsteroLoader(IPartidosLoader<long, long, string> partidosLoader)
+            : base(partidosLoader)
         {
-            this.fixturePartido = fixturePartido;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Aguirre).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Aguirre).Key, new Dictionary<long, string>
             {
                 { 3799, LocalidadSantiagoDelEstero.Casares },
                 { 3800, LocalidadSantiagoDelEstero.Pinto },
                 { 3801, LocalidadSantiagoDelEstero.Malbran }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Alberdi).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Alberdi).Key, new Dictionary<long, string>
             {
                 { 3802, LocalidadSantiagoDelEstero.CampoGallo },
                 { 3803, LocalidadSantiagoDelEstero.Donadeu },
@@ -40,7 +39,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3815, LocalidadSantiagoDelEstero.Overa },
                 { 3816, LocalidadSantiagoDelEstero.Ranchitos }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Atamisqui).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Atamisqui).Key, new Dictionary<long, string>
             {
                 { 3817, LocalidadSantiagoDelEstero.VillaAtamisqui },
                 { 3818, LocalidadSantiagoDelEstero.EstacionAtamisqui },
@@ -74,7 +73,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3846, LocalidadSantiagoDelEstero.VenturaPampa },
                 { 3847, LocalidadSantiagoDelEstero.YacuChiri }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Avellaneda).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Avellaneda).Key, new Dictionary<long, string>
             {
                 { 3848, LocalidadSantiagoDelEstero.ColoniaDora },
                 { 3849, LocalidadSantiagoDelEstero.Herrera },
@@ -109,7 +108,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3878, LocalidadSantiagoDelEstero.Vacasnioj },
                 { 3879, LocalidadSantiagoDelEstero.Yacasnioj }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Banda).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Banda).Key, new Dictionary<long, string>
             {
                 { 3880, LocalidadSantiagoDelEstero.LaBanda },
                 { 3881, LocalidadSantiagoDelEstero.Clodomira },
@@ -126,14 +125,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3892, LocalidadSantiagoDelEstero.NegraMuerta },
                 { 3893, LocalidadSantiagoDelEstero.Tramo16 }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Belgrano).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Belgrano).Key, new Dictionary<long, string>
             {
                 { 3894, LocalidadSantiagoDelEstero.Bandera },
                 { 3895, LocalidadSantiagoDelEstero.CuatroBocas },
                 { 3896, LocalidadSantiagoDelEstero.FortinInca },
                 { 3897, LocalidadSantiagoDelEstero.GuardiaEscolta }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Capital).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Capital).Key, new Dictionary<long, string>
             {
                 { 3898, LocalidadSantiagoDelEstero.SantiagoDelEstero },
                 { 3899, LocalidadSantiagoDelEstero.ElDean },
@@ -157,7 +156,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3917, LocalidadSantiagoDelEstero.Rosario },
                 { 3918, LocalidadSantiagoDelEstero.BlancoCorral }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Choya).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Choya).Key, new Dictionary<long, string>
             {
                 { 3919, LocalidadSantiagoDelEstero.Choya },
                 { 3920, LocalidadSantiagoDelEstero.Frias },
@@ -188,7 +187,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3945, LocalidadSantiagoDelEstero.VillaMercedes },
                 { 3946, LocalidadSantiagoDelEstero.SolDeMayo }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Copo).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Copo).Key, new Dictionary<long, string>
             {
                 { 3947, LocalidadSantiagoDelEstero.MonteQuemado },
                 { 3948, LocalidadSantiagoDelEstero.PampaDeLosGuanacos },
@@ -198,7 +197,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3952, LocalidadSantiagoDelEstero.SanJoseDelBoqueron },
                 { 3953, LocalidadSantiagoDelEstero.VillaMatoque }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Figueroa).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Figueroa).Key, new Dictionary<long, string>
             {
                 { 3954, LocalidadSantiagoDelEstero.BanderaBajada },
                 { 3955, LocalidadSantiagoDelEstero.CaspiCorral },
@@ -208,7 +207,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3959, LocalidadSantiagoDelEstero.VacaHuanuna },
                 { 3960, LocalidadSantiagoDelEstero.VillaFigueroa }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.GeneralTaboada).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.GeneralTaboada).Key, new Dictionary<long, string>
             {
                 { 3961, LocalidadSantiagoDelEstero.Anatuya },
                 { 3962, LocalidadSantiagoDelEstero.LosJuries },
@@ -218,7 +217,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3966, LocalidadSantiagoDelEstero.LaNena },
                 { 3967, LocalidadSantiagoDelEstero.TomasYoung }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Guasayan).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Guasayan).Key, new Dictionary<long, string>
             {
                 { 3968, LocalidadSantiagoDelEstero.SanPedroDeGuasayan },
                 { 3969, LocalidadSantiagoDelEstero.DonaLuisa },
@@ -227,7 +226,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3972, LocalidadSantiagoDelEstero.SantaCatalina },
                 { 3973, LocalidadSantiagoDelEstero.VillaGuasayan }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Jimenez).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Jimenez).Key, new Dictionary<long, string>
             {
                 { 3974, LocalidadSantiagoDelEstero.PozoHondo },
                 { 3975, LocalidadSantiagoDelEstero.ElArenal },
@@ -236,7 +235,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3978, LocalidadSantiagoDelEstero.Gramilla },
                 { 3979, LocalidadSantiagoDelEstero.TresCruces }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.JuanFelipeIbarra).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.JuanFelipeIbarra).Key, new Dictionary<long, string>
             {
                 { 3980, LocalidadSantiagoDelEstero.SunchoCorral },
                 { 3981, LocalidadSantiagoDelEstero.ElColorado },
@@ -248,7 +247,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 3987, LocalidadSantiagoDelEstero.Vilelas },
                 { 3988, LocalidadSantiagoDelEstero.Yuchan }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Loreto).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Loreto).Key, new Dictionary<long, string>
             {
                 { 3989, LocalidadSantiagoDelEstero.Ayuncha },
                 { 3990, LocalidadSantiagoDelEstero.Beltran },
@@ -270,7 +269,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4006, LocalidadSantiagoDelEstero.TioPozo },
                 { 4007, LocalidadSantiagoDelEstero.VillaVieja }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Mitre).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Mitre).Key, new Dictionary<long, string>
             {
                 { 4008, LocalidadSantiagoDelEstero.FuerteEsperanza },
                 { 4009, LocalidadSantiagoDelEstero.Abras },
@@ -278,7 +277,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4011, LocalidadSantiagoDelEstero.Captaros },
                 { 4012, LocalidadSantiagoDelEstero.Porongos }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Moreno).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Moreno).Key, new Dictionary<long, string>
             {
                 { 4013, LocalidadSantiagoDelEstero.Alhuampa },
                 { 4014, LocalidadSantiagoDelEstero.Tintina },
@@ -304,13 +303,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4034, LocalidadSantiagoDelEstero.HernanMejiaMiraval },
                 { 4035, LocalidadSantiagoDelEstero.Libertad }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.OjoDeAgua).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.OjoDeAgua).Key, new Dictionary<long, string>
             {
                 { 4036, LocalidadSantiagoDelEstero.VillaOjoDeAgua },
                 { 4037, LocalidadSantiagoDelEstero.SolDeJulio },
                 { 4038, LocalidadSantiagoDelEstero.El49 }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Pellegrini).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Pellegrini).Key, new Dictionary<long, string>
             {
                 { 4039, LocalidadSantiagoDelEstero.NuevaEsperanza },
                 { 4040, LocalidadSantiagoDelEstero.AhiVeremos },
@@ -328,7 +327,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4052, LocalidadSantiagoDelEstero.LaFragua },
                 { 4053, LocalidadSantiagoDelEstero.SanRamon }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Quebrachos).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Quebrachos).Key, new Dictionary<long, string>
             {
                 { 4054, LocalidadSantiagoDelEstero.RamirezDeVelazco },
                 { 4055, LocalidadSantiagoDelEstero.Sumampa },
@@ -340,7 +339,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4061, LocalidadSantiagoDelEstero.CampoDelCisne },
                 { 4062, LocalidadSantiagoDelEstero.HorcoTucucuna }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.RioHondo).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.RioHondo).Key, new Dictionary<long, string>
             {
                 { 4063, LocalidadSantiagoDelEstero.Chauchillas },
                 { 4064, LocalidadSantiagoDelEstero.ColoniaTinco },
@@ -350,7 +349,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4068, LocalidadSantiagoDelEstero.VillaRioHondo },
                 { 4069, LocalidadSantiagoDelEstero.Vinara }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Rivadavia).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Rivadavia).Key, new Dictionary<long, string>
             {
                 { 4070, LocalidadSantiagoDelEstero.Selva },
                 { 4071, LocalidadSantiagoDelEstero.ColoniaAlpina },
@@ -358,7 +357,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4073, LocalidadSantiagoDelEstero.Argentina },
                 { 4074, LocalidadSantiagoDelEstero.Malbran }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Robles).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Robles).Key, new Dictionary<long, string>
             {
                 { 4075, LocalidadSantiagoDelEstero.Beltran },
                 { 4076, LocalidadSantiagoDelEstero.ColoniaElSimbolar },
@@ -368,7 +367,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4080, LocalidadSantiagoDelEstero.Vilmer },
                 { 4081, LocalidadSantiagoDelEstero.LosBanegas }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Salavina).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Salavina).Key, new Dictionary<long, string>
             {
                 { 4082, LocalidadSantiagoDelEstero.CarretaPaso },
                 { 4083, LocalidadSantiagoDelEstero.ChilcaJuliana },
@@ -390,7 +389,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4099, LocalidadSantiagoDelEstero.YacuHurmana },
                 { 4100, LocalidadSantiagoDelEstero.Asingasta }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.SanMartin).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.SanMartin).Key, new Dictionary<long, string>
             {
                 { 4101, LocalidadSantiagoDelEstero.BreaPozo },
                 { 4102, LocalidadSantiagoDelEstero.EstacionRobles },
@@ -424,14 +423,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 4130, LocalidadSantiagoDelEstero.Tuamilla },
                 { 4131, LocalidadSantiagoDelEstero.VillaNueva }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Sarmiento).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Sarmiento).Key, new Dictionary<long, string>
             {
                 { 4132, LocalidadSantiagoDelEstero.Matara },
                 { 4133, LocalidadSantiagoDelEstero.Garza },
                 { 4134, LocalidadSantiagoDelEstero.SauceBajada },
                 { 4135, LocalidadSantiagoDelEstero.Guaype }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoSantiagoDelEstero.Silipica).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoSantiagoDelEstero.Silipica).Key, new Dictionary<long, string>
             {
                 { 4136, LocalidadSantiagoDelEstero.Arraga },
                 { 4137, LocalidadSantiagoDelEstero.Manogasta },

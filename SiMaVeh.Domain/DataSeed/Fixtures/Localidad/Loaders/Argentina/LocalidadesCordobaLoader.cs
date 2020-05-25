@@ -1,22 +1,21 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders.Argentina
 {
-    class CordobaLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class LocalidadesCordobaLoader : LocalidadesLoader
     {
-        private readonly IFixturePartido fixturePartido;
-
-        public CordobaLoader(IFixturePartido fixturePartido)
+        public LocalidadesCordobaLoader(IPartidosLoader<long, long, string> partidosLoader)
+            : base(partidosLoader)
         {
-            this.fixturePartido = fixturePartido;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Calamuchita).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Calamuchita).Key, new Dictionary<long, string>
             {
                 { 1285, LocalidadCordoba.Embalse },
                 { 1286, LocalidadCordoba.LaCruz },
@@ -43,11 +42,11 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1307, LocalidadCordoba.VillaCiudadParqueLosReartes },
                 { 1308, LocalidadCordoba.VillaQuillinzo }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Capital).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Capital).Key, new Dictionary<long, string>
             {
                 { 1309, LocalidadCordoba.Cordoba }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Colon).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Colon).Key, new Dictionary<long, string>
             {
                 { 1310, LocalidadCordoba.AguaDeOro },
                 { 1311, LocalidadCordoba.ColoniaCaroya },
@@ -70,7 +69,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1328, LocalidadCordoba.Tinoco },
                 { 1329, LocalidadCordoba.VillaCerroAzul }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.CruzDelEje).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.CruzDelEje).Key, new Dictionary<long, string>
             {
                 { 1330, LocalidadCordoba.CruzDelEje },
                 { 1331, LocalidadCordoba.SanMarcosSierras },
@@ -90,7 +89,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1345, LocalidadCordoba.PasoViejo },
                 { 1346, LocalidadCordoba.Tuclame }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.GeneralRoca).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.GeneralRoca).Key, new Dictionary<long, string>
             {
                 { 1347, LocalidadCordoba.Buchardo },
                 { 1348, LocalidadCordoba.DelCampillo },
@@ -106,7 +105,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1358, LocalidadCordoba.Pincen },
                 { 1359, LocalidadCordoba.Ranqueles }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.GeneralSanMartin).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.GeneralSanMartin).Key, new Dictionary<long, string>
             {
                 { 1360, LocalidadCordoba.ArroyoAlgodon },
                 { 1361, LocalidadCordoba.ArroyoCabral },
@@ -124,7 +123,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1373, LocalidadCordoba.VillaMaria },
                 { 1374, LocalidadCordoba.VillaNueva }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Ischilin).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Ischilin).Key, new Dictionary<long, string>
             {
                 { 1375, LocalidadCordoba.Avellaneda },
                 { 1376, LocalidadCordoba.CanadaDeRioPinto },
@@ -134,7 +133,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1380, LocalidadCordoba.OlivaresDeSanNicolas },
                 { 1381, LocalidadCordoba.VillaGutierrez }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.JuarezCelman).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.JuarezCelman).Key, new Dictionary<long, string>
             {
                 { 1382, LocalidadCordoba.AlejandroRoca },
                 { 1383, LocalidadCordoba.Bengolea },
@@ -154,7 +153,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1397, LocalidadCordoba.PachecoDeMelo },
                 { 1398, LocalidadCordoba.PasoDelDurazno }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.MarcosJuarez).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.MarcosJuarez).Key, new Dictionary<long, string>
             {
                 { 1399, LocalidadCordoba.AlejoLedesma },
                 { 1400, LocalidadCordoba.Arias },
@@ -179,7 +178,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1419, LocalidadCordoba.Saladillo },
                 { 1420, LocalidadCordoba.VillaElisa }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Minas).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Minas).Key, new Dictionary<long, string>
             {
                 { 1421, LocalidadCordoba.SanCarlosMinas },
                 { 1422, LocalidadCordoba.CienagaDelCoro },
@@ -190,7 +189,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1427, LocalidadCordoba.Talaini },
                 { 1428, LocalidadCordoba.Tosno }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Pocho).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Pocho).Key, new Dictionary<long, string>
             {
                 { 1429, LocalidadCordoba.Salsacate },
                 { 1430, LocalidadCordoba.Chancani },
@@ -200,7 +199,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1434, LocalidadCordoba.TalaCanada },
                 { 1435, LocalidadCordoba.VillaDePocho }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.PresidenteRoqueSaenzPena).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.PresidenteRoqueSaenzPena).Key, new Dictionary<long, string>
             {
                 { 1436, LocalidadCordoba.GeneralLevalle },
                 { 1437, LocalidadCordoba.LaCesira },
@@ -213,7 +212,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1444, LocalidadCordoba.RioBamba },
                 { 1445, LocalidadCordoba.SanJoaquin }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Punilla).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Punilla).Key, new Dictionary<long, string>
             {
                 { 1446, LocalidadCordoba.BialetMasse },
                 { 1447, LocalidadCordoba.CapillaDelMonte },
@@ -242,7 +241,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1470, LocalidadCordoba.VillaParqueSiquiman },
                 { 1471, LocalidadCordoba.VillaSantaCruzDelLago }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.RioCuarto).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.RioCuarto).Key, new Dictionary<long, string>
             {
                 { 1472, LocalidadCordoba.Achiras },
                 { 1473, LocalidadCordoba.AdeliaMaria },
@@ -274,7 +273,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1499, LocalidadCordoba.VillaElChacay },
                 { 1500, LocalidadCordoba.Washington }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.RioPrimero).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.RioPrimero).Key, new Dictionary<long, string>
             {
                 { 1501, LocalidadCordoba.LaPara },
                 { 1502, LocalidadCordoba.LaPuerta },
@@ -302,7 +301,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1524, LocalidadCordoba.PlazaDeMercedes },
                 { 1525, LocalidadCordoba.SagradaFamilia }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.RioSeco).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.RioSeco).Key, new Dictionary<long, string>
             {
                 { 1526, LocalidadCordoba.SebastianElcano },
                 { 1527, LocalidadCordoba.VillaDeMaria },
@@ -317,7 +316,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1536, LocalidadCordoba.RayoCortado },
                 { 1537, LocalidadCordoba.SantaElena }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.RioSegundo).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.RioSegundo).Key, new Dictionary<long, string>
             {
                 { 1538, LocalidadCordoba.Calchin },
                 { 1539, LocalidadCordoba.CalchinOeste },
@@ -341,7 +340,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1557, LocalidadCordoba.LosChanaritos },
                 { 1558, LocalidadCordoba.Rincon }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.SanAlberto).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.SanAlberto).Key, new Dictionary<long, string>
             {
                 { 1559, LocalidadCordoba.MinaClavero },
                 { 1560, LocalidadCordoba.Nono },
@@ -357,7 +356,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1570, LocalidadCordoba.SanVicente },
                 { 1571, LocalidadCordoba.SauceArriba }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.SanJavier).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.SanJavier).Key, new Dictionary<long, string>
             {
                 { 1572, LocalidadCordoba.LaPaz },
                 { 1573, LocalidadCordoba.SanJavierYacanto },
@@ -371,7 +370,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1581, LocalidadCordoba.LosHornillos },
                 { 1582, LocalidadCordoba.Luyaba }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.SanJusto).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.SanJusto).Key, new Dictionary<long, string>
             {
                 { 1583, LocalidadCordoba.Alicia },
                 { 1584, LocalidadCordoba.AltosDeChipion },
@@ -412,7 +411,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1619, LocalidadCordoba.VillaSanEsteban },
                 { 1620, LocalidadCordoba.ToroPujio }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.SantaMaria).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.SantaMaria).Key, new Dictionary<long, string>
             {
                 { 1621, LocalidadCordoba.AltaGracia },
                 { 1622, LocalidadCordoba.Despenaderos },
@@ -439,7 +438,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1643, LocalidadCordoba.VillaParqueSantaAna },
                 { 1644, LocalidadCordoba.VillaSanIsidro }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Sobremonte).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Sobremonte).Key, new Dictionary<long, string>
             {
                 { 1645, LocalidadCordoba.AguadaDelMonte },
                 { 1646, LocalidadCordoba.Caminiana },
@@ -451,7 +450,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1652, LocalidadCordoba.ChunaHuasi },
                 { 1653, LocalidadCordoba.PozoNuevo }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.TerceroArriba).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.TerceroArriba).Key, new Dictionary<long, string>
             {
                 { 1654, LocalidadCordoba.Almafuerte },
                 { 1655, LocalidadCordoba.Corralito },
@@ -470,7 +469,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1668, LocalidadCordoba.LasIsletillas },
                 { 1669, LocalidadCordoba.PampayastaNorte }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Totoral).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Totoral).Key, new Dictionary<long, string>
             {
                 { 1670, LocalidadCordoba.Candelaria },
                 { 1671, LocalidadCordoba.Macha },
@@ -488,7 +487,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1683, LocalidadCordoba.LosMistoles },
                 { 1684, LocalidadCordoba.Simbolar }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Tulumba).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Tulumba).Key, new Dictionary<long, string>
             {
                 { 1685, LocalidadCordoba.Dormida },
                 { 1686, LocalidadCordoba.Intihuasi },
@@ -505,7 +504,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1697, LocalidadCordoba.ElRodeo },
                 { 1698, LocalidadCordoba.RosarioDelSaladillo }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoCordoba.Union).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoCordoba.Union).Key, new Dictionary<long, string>
             {
                 { 1699, LocalidadCordoba.AltoAlegre },
                 { 1700, LocalidadCordoba.Ballesteros },

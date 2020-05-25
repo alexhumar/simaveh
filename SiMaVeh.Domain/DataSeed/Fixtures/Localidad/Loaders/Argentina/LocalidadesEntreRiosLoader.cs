@@ -1,22 +1,21 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders.Argentina
 {
-    class EntreRiosLoader : IFixtureItemKeyValueLoader<long, long, string>
+    class LocalidadesEntreRiosLoader : LocalidadesLoader
     {
-        private readonly IFixturePartido fixturePartido;
-
-        public EntreRiosLoader(IFixturePartido fixturePartido)
+        public LocalidadesEntreRiosLoader(IPartidosLoader<long, long, string> partidosLoader)
+            : base(partidosLoader)
         {
-            this.fixturePartido = fixturePartido;
         }
 
-        public void Load(Dictionary<long, Dictionary<long, string>> dictionary)
+        protected override void Initialize()
         {
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Colon).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Colon).Key, new Dictionary<long, string>
             {
                 { 1799, LocalidadEntreRios.Colon },
                 { 1800, LocalidadEntreRios.SanJose },
@@ -31,7 +30,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1809, LocalidadEntreRios.ColoniaSanAnselmoYAledanas },
                 { 1810, LocalidadEntreRios.Hambis }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Concordia).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Concordia).Key, new Dictionary<long, string>
             {
                 { 1811, LocalidadEntreRios.Concordia },
                 { 1812, LocalidadEntreRios.ColoniaAyui },
@@ -48,7 +47,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1823, LocalidadEntreRios.ElRedomon },
                 { 1824, LocalidadEntreRios.ColoniaSanJusto }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Diamante).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Diamante).Key, new Dictionary<long, string>
             {
                 { 1825, LocalidadEntreRios.Diamante },
                 { 1826, LocalidadEntreRios.GeneralRamirez },
@@ -67,7 +66,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1839, LocalidadEntreRios.EstacionCamps },
                 { 1840, LocalidadEntreRios.AldeaGrapschental }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Federacion).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Federacion).Key, new Dictionary<long, string>
             {
                 { 1841, LocalidadEntreRios.Chajari },
                 { 1842, LocalidadEntreRios.Federacion },
@@ -88,7 +87,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1857, LocalidadEntreRios.Gualeguaycito },
                 { 1858, LocalidadEntreRios.SanRoque }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Federal).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Federal).Key, new Dictionary<long, string>
             {
                 { 1859, LocalidadEntreRios.Achiras },
                 { 1860, LocalidadEntreRios.Banderas },
@@ -110,7 +109,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1876, LocalidadEntreRios.ElGatoLomaLimpia },
                 { 1877, LocalidadEntreRios.ElGramiyal }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Feliciano).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Feliciano).Key, new Dictionary<long, string>
             {
                 { 1878, LocalidadEntreRios.SanJoseDeFeliciano },
                 { 1879, LocalidadEntreRios.SanVictor },
@@ -122,7 +121,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1885, LocalidadEntreRios.LasHierras },
                 { 1886, LocalidadEntreRios.MulasGrandes }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Gualeguay).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Gualeguay).Key, new Dictionary<long, string>
             {
                 { 1887, LocalidadEntreRios.Gualeguay },
                 { 1888, LocalidadEntreRios.GeneralGalarza },
@@ -137,7 +136,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1897, LocalidadEntreRios.MonteRedondo },
                 { 1898, LocalidadEntreRios.PuntaDelMonte }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Gualeguaychu).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Gualeguaychu).Key, new Dictionary<long, string>
             {
                 { 1899, LocalidadEntreRios.Gualeguaychu },
                 { 1900, LocalidadEntreRios.Larroque },
@@ -161,7 +160,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1918, LocalidadEntreRios.RinconDelCinto },
                 { 1919, LocalidadEntreRios.RinconDelGato }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.IslasDelIbicuy).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.IslasDelIbicuy).Key, new Dictionary<long, string>
             {
                 { 1920, LocalidadEntreRios.Ceibas },
                 { 1921, LocalidadEntreRios.PuertoIbicuy },
@@ -169,7 +168,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1923, LocalidadEntreRios.Medanos },
                 { 1924, LocalidadEntreRios.Nancay }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.LaPaz).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.LaPaz).Key, new Dictionary<long, string>
             {
                 { 1925, LocalidadEntreRios.Bovril },
                 { 1926, LocalidadEntreRios.LaPaz },
@@ -199,7 +198,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1950, LocalidadEntreRios.LasToscas },
                 { 1951, LocalidadEntreRios.PicadaBeron }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Nogoya).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Nogoya).Key, new Dictionary<long, string>
             {
                 { 1952, LocalidadEntreRios.LucasGonzalez },
                 { 1953, LocalidadEntreRios.Nogoya },
@@ -219,7 +218,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 1967, LocalidadEntreRios.DistritoChiqueros },
                 { 1968, LocalidadEntreRios.Laurencena }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Parana).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Parana).Key, new Dictionary<long, string>
             {
                 { 1969, LocalidadEntreRios.Crespo },
                 { 1970, LocalidadEntreRios.MariaGrande },
@@ -271,7 +270,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2016, LocalidadEntreRios.DistritoTala },
                 { 2017, LocalidadEntreRios.Quebracho }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.SanSalvador).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.SanSalvador).Key, new Dictionary<long, string>
             {
                 { 2018, LocalidadEntreRios.SanSalvador },
                 { 2019, LocalidadEntreRios.GeneralCampos },
@@ -280,7 +279,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2022, LocalidadEntreRios.ColoniaOficialN5 },
                 { 2023, LocalidadEntreRios.WalterMoss }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Tala).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Tala).Key, new Dictionary<long, string>
             {
                 { 2024, LocalidadEntreRios.Macia },
                 { 2025, LocalidadEntreRios.RosarioDelTala },
@@ -295,7 +294,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2034, LocalidadEntreRios.SauceSur },
                 { 2035, LocalidadEntreRios.LaOllita }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Uruguay).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Uruguay).Key, new Dictionary<long, string>
             {
                 { 2036, LocalidadEntreRios.Basavilbaso },
                 { 2037, LocalidadEntreRios.ConcepcionDelUruguay },
@@ -315,7 +314,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2051, LocalidadEntreRios.Rocamora },
                 { 2052, LocalidadEntreRios.ArroyoGena }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Victoria).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Victoria).Key, new Dictionary<long, string>
             {
                 { 2053, LocalidadEntreRios.Victoria },
                 { 2054, LocalidadEntreRios.RinconDeNogoya },
@@ -328,7 +327,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders
                 { 2061, LocalidadEntreRios.LagunaDelPescado },
                 { 2062, LocalidadEntreRios.Montoya }
             });
-            dictionary.Add(fixturePartido.FindByNombre(PartidoEntreRios.Villaguay).Value.Key, new Dictionary<long, string>
+            localidades.Add(partidosLoader.FindByNombre(PartidoEntreRios.Villaguay).Key, new Dictionary<long, string>
             {
                 { 2063, LocalidadEntreRios.Villaguay },
                 { 2064, LocalidadEntreRios.VillaClara },
