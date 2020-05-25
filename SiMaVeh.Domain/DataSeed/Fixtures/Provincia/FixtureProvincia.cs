@@ -31,30 +31,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
             return provincias;
         }
 
-        /// <summary>
-        /// Find by Nombre
-        /// </summary>
-        /// <param name="nombre"></param>
-        /// <returns></returns>
-        public KeyValuePair<long, string>? FindByNombre(string nombre)
-        {
-            //TODO: quizas esto se pueda refinar centralizandolo en una clase base.
-            KeyValuePair<long, string>? result = null;
-
-            foreach (var provinciasPais in provincias)
-            {
-                KeyValuePair<long, string>? provincia = provinciasPais.Value.FirstOrDefault(v => v.Value == nombre);
-
-                if (provincia != null)
-                {
-                    result = provincia;
-                    break;
-                }
-            }
-
-            return result;
-        }
-
         private void Initialize()
         {
             provincias = provinciaLoadersProvider
