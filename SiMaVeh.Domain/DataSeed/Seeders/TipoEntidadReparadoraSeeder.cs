@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
-    /// Seeder de Pais
+    /// Seeder de Tipo Entidad Reparadora
     /// </summary>
     public class TipoEntidadReparadoraSeeder : ISeeder<TipoEntidadReparadora, long>
     {
@@ -29,12 +29,13 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         {
             var result = new List<object>();
 
-            foreach (var paisFixture in fixtureTipoEntidadReparadora.GetTiposEntidadReparadora())
+            foreach (var tipoEntidadReparadoraFixture in fixtureTipoEntidadReparadora.GetTiposEntidadReparadora())
             {
                 result.Add(new
                 {
-                    Id = paisFixture.Key,
-                    Nombre = paisFixture.Value
+                    Id = tipoEntidadReparadoraFixture.Key,
+                    tipoEntidadReparadoraFixture.Value.Nombre,
+                    tipoEntidadReparadoraFixture.Value.Descripcion
                 });
             }
 

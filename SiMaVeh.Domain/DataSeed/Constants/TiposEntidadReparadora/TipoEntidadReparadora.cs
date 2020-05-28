@@ -1,4 +1,4 @@
-﻿namespace SiMaVeh.Domain.DataSeed.Constants
+﻿namespace SiMaVeh.Domain.DataSeed.Constants.TiposEntidadReparadora
 {
     /// <summary>
     /// Constante de nombres de Tipos de Entidades Reparadoras

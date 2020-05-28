@@ -1,4 +1,4 @@
-﻿namespace SiMaVeh.Domain.DataSeed.Constants
+﻿namespace SiMaVeh.Domain.DataSeed.Constants.Paises
 {
     /// <summary>
     /// Constante de nombres de Paises

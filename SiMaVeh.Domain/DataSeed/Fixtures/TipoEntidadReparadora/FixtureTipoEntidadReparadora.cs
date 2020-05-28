@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces;
+using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
     public class FixtureTipoEntidadReparadora : IFixtureTipoEntidadReparadora
     {
         private readonly ITipoEntidadReparadoraLoadersProvider tipoEntidadReparadoraLoadersProvider;
-        private IDictionary<long, string> tiposEntidadReparadora;
+        private IDictionary<long, DatosEntidad> tiposEntidadReparadora;
 
         /// <summary>
         /// Constructor
@@ -26,7 +27,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
         /// Get Tipos Entidades Reparadoras
         /// </summary>
         /// <returns></returns>
-        public IDictionary<long, string> GetTiposEntidadReparadora()
+        public IDictionary<long, DatosEntidad> GetTiposEntidadReparadora()
         {
             return tiposEntidadReparadora;
         }

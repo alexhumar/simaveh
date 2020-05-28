@@ -1,6 +1,7 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Loaders;
+using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
@@ -14,9 +15,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
         /// Retorna los providers de loaders de tipos de entidades reparadoras
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IFixtureKeyValueLoader<long, string>> GetLoaders()
+        public IEnumerable<IFixtureKeyValueLoader<long, DatosEntidad>> GetLoaders()
         {
-            return new List<IFixtureKeyValueLoader<long, string>>
+            return new List<IFixtureKeyValueLoader<long, DatosEntidad>>
             {
                 new TipoEntidadReparadoraLoader()
             };

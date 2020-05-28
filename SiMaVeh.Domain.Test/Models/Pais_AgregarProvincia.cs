@@ -12,8 +12,8 @@ namespace SiMaVeh.Domain.Test.Models
         [SetUp]
         public void Setup()
         {
-            _argentina = new Domain.Models.Pais { Id = 1, Nombre = DataSeed.Constants.Pais.Argentina };
-            _uruguay = new Domain.Models.Pais { Id = 2, Nombre = DataSeed.Constants.Pais.Uruguay };
+            _argentina = new Domain.Models.Pais { Id = 1, Nombre = DataSeed.Constants.Paises.Pais.Argentina };
+            _uruguay = new Domain.Models.Pais { Id = 2, Nombre = DataSeed.Constants.Paises.Pais.Uruguay };
         }
 
         [Test]

@@ -27,8 +27,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Loaders
 
         private void Initialize()
         {
-            paises.Add(1, Constants.Pais.Argentina);
-            paises.Add(2, Constants.Pais.Uruguay);
+            paises.Add(1, Constants.Paises.Pais.Argentina);
+            paises.Add(2, Constants.Paises.Pais.Uruguay);
         }
     }
 }
