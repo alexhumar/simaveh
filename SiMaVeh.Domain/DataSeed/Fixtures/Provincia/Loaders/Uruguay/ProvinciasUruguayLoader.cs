@@ -1,6 +1,6 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants;
 using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
-using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base;
 using System.Collections.Generic;
 
@@ -8,14 +8,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Uruguay
 {
     class ProvinciasUruguayLoader : ProvinciasLoader
     {
-        public ProvinciasUruguayLoader(IPaisesLoader<long, string> paisesLoader)
+        public ProvinciasUruguayLoader(IPaisesLoader paisesLoader)
             : base(paisesLoader)
         {
         }
 
         protected override void Initialize()
         {
-            provincias.Add(paisesLoader.FindByNombre(Pais.Uruguay).Key, new Dictionary<long, string>
+            provincias.Add(paisesLoader.FindByNombre(Constants.Pais.Uruguay).Key, new Dictionary<long, string>
             {
                 { 24, ProvinciaUruguay.Artigas },
                 { 25, ProvinciaUruguay.Canelones },

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces
 {
     /// <summary>
     /// Interfaz de FixturePais
@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// Get Paises
         /// </summary>
         /// <returns></returns>
-        Dictionary<long, string> GetPaises();
+        IDictionary<long, string> GetPaises();
 
         /// <summary>
         /// Find by Nombre

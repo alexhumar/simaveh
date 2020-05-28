@@ -14,6 +14,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// Metodo que retorna items en un diccionario y subdiccionario
         /// </summary>
         /// <returns></returns>
-        Dictionary<TIdBeParent, Dictionary<TIdBeChild, TValueBe>> Get();
+        IDictionary<TIdBeParent, IDictionary<TIdBeChild, TValueBe>> Get();
     }
 }

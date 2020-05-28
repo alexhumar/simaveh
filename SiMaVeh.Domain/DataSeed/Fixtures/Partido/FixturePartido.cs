@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +10,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
     public class FixturePartido : IFixturePartido
     {
         private readonly IPartidoLoadersProvider partidoLoadersProvider;
-        private Dictionary<long, Dictionary<long, string>> partidos;
+        private IDictionary<long, IDictionary<long, string>> partidos;
 
         /// <summary>
         /// Constructor
@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         /// Get Provincias
         /// </summary>
         /// <returns></returns>
-        public Dictionary<long, Dictionary<long, string>> GetPartidos()
+        public IDictionary<long, IDictionary<long, string>> GetPartidos()
         {
             return partidos;
         }

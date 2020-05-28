@@ -1,13 +1,12 @@
-﻿using SiMaVeh.Domain.DataSeed.Constants;
-using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Loaders
 {
-    class PaisesLoader : IPaisesLoader<long, string>
+    class PaisesLoader : IPaisesLoader
     {
-        private readonly Dictionary<long, string> paises;
+        private readonly IDictionary<long, string> paises;
 
         public PaisesLoader()
         {
@@ -16,7 +15,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
             Initialize();
         }
 
-        public Dictionary<long, string> Get()
+        public IDictionary<long, string> Get()
         {
             return paises;
         }
@@ -28,8 +27,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders
 
         private void Initialize()
         {
-            paises.Add(1, Pais.Argentina);
-            paises.Add(2, Pais.Uruguay);
+            paises.Add(1, Constants.Pais.Argentina);
+            paises.Add(2, Constants.Pais.Uruguay);
         }
     }
 }

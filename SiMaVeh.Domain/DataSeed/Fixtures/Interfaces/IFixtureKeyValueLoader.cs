@@ -13,6 +13,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// Metodo que retorna la informacion organizada en un diccionario.
         /// </summary>
         /// <returns></returns>
-        Dictionary<TIdBe, TValueBe> Get();
+        IDictionary<TIdBe, TValueBe> Get();
     }
 }

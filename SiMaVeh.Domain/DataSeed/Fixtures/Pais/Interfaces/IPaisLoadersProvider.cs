@@ -1,4 +1,6 @@
-﻿namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces
 {
     /// <summary>
     /// Interfaz de provider de loaders de pais

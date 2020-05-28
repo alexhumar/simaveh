@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces
 {
     /// <summary>
     /// Interfaz de FixtureLocalidad
@@ -11,6 +11,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// Get Localidades
         /// </summary>
         /// <returns></returns>
-        Dictionary<long, Dictionary<long, string>> GetLocalidades();
+        IDictionary<long, IDictionary<long, string>> GetLocalidades();
     }
 }

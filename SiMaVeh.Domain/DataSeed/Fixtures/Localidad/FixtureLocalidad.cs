@@ -1,9 +1,8 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
 {
     /// <summary>
     /// Fixture con informacion de Localidades
@@ -11,7 +10,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
     public class FixtureLocalidad : IFixtureLocalidad
     {
         private readonly ILocalidadLoadersProvider localidadLoadersProvider;
-        private Dictionary<long, Dictionary<long, string>> localidades;
+        private IDictionary<long, IDictionary<long, string>> localidades;
 
         /// <summary>
         /// Constructor
@@ -27,7 +26,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
         /// Get Localidades
         /// </summary>
         /// <returns></returns>
-        public Dictionary<long, Dictionary<long, string>> GetLocalidades()
+        public IDictionary<long, IDictionary<long, string>> GetLocalidades()
         {
             return localidades;
         }

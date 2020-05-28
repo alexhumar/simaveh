@@ -1,9 +1,8 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais
 {
     /// <summary>
     /// Fixture con informacion de Paises
@@ -11,7 +10,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
     public class FixturePais : IFixturePais
     {
         private readonly IPaisLoadersProvider paisLoadersProvider;
-        private Dictionary<long, string> paises;
+        private IDictionary<long, string> paises;
 
         /// <summary>
         /// Constructor
@@ -27,7 +26,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures
         /// Get Paises
         /// </summary>
         /// <returns></returns>
-        public Dictionary<long, string> GetPaises()
+        public IDictionary<long, string> GetPaises()
         {
             return paises;
         }

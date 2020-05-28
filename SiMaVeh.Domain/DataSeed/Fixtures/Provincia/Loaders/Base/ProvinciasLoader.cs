@@ -1,20 +1,21 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base
 {
-    abstract class ProvinciasLoader : IProvinciasLoader<long, long, string>
+    abstract class ProvinciasLoader : IProvinciasLoader
     {
-        protected readonly Dictionary<long, Dictionary<long, string>> provincias;
-        protected readonly IPaisesLoader<long, string> paisesLoader;
+        protected readonly IDictionary<long, IDictionary<long, string>> provincias;
+        protected readonly IPaisesLoader paisesLoader;
 
         protected abstract void Initialize();
 
-        public ProvinciasLoader(IPaisesLoader<long, string> paisesLoader)
+        public ProvinciasLoader(IPaisesLoader paisesLoader)
         {
             this.paisesLoader = paisesLoader;
-            provincias = new Dictionary<long, Dictionary<long, string>>();
+            provincias = (IDictionary<long, IDictionary<long, string>>)new Dictionary<long, Dictionary<long, string>>();
 
             Initialize();
         }
@@ -26,7 +27,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base
                 .FirstOrDefault(p => p.Value == nombre);
         }
 
-        public Dictionary<long, Dictionary<long, string>> Get()
+        public IDictionary<long, IDictionary<long, string>> Get()
         {
             return provincias;
         }

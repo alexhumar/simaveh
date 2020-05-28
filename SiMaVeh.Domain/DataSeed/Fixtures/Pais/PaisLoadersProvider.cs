@@ -1,8 +1,9 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Loaders;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais
 {
     /// <summary>
     /// Provider de Loaders de Pais
@@ -13,7 +14,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         /// Retorna los providers de loaders de paises
         /// </summary>
         /// <returns></returns>
-        public List<IFixtureKeyValueLoader<long, string>> GetLoaders()
+        public IEnumerable<IFixtureKeyValueLoader<long, string>> GetLoaders()
         {
             return new List<IFixtureKeyValueLoader<long, string>>
             {

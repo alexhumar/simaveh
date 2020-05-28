@@ -1,18 +1,20 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Loaders.Argentina;
-using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Loaders;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Argentina;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
 {
     /// <summary>
     /// Provider de Loaders de Localidad
     /// </summary>
     public class LocalidadLoadersProvider : ILocalidadLoadersProvider
     {
-        private readonly IProvinciasLoader<long, long, string> provinciasArgentinaLoader;
+        private readonly IProvinciasLoader provinciasArgentinaLoader;
 
         /// <summary>
         /// Constructor

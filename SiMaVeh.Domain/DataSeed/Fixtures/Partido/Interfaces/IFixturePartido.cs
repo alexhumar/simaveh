@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces
 {
     /// <summary>
     /// Interfaz de FixturePartido
@@ -11,6 +11,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// Get Partidos
         /// </summary>
         /// <returns></returns>
-        Dictionary<long, Dictionary<long, string>> GetPartidos();
+        IDictionary<long, IDictionary<long, string>> GetPartidos();
     }
 }

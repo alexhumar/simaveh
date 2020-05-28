@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +10,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
     public class FixtureProvincia : IFixtureProvincia
     {
         private readonly IProvinciaLoadersProvider provinciaLoadersProvider;
-        private Dictionary<long, Dictionary<long, string>> provincias;
+        private IDictionary<long, IDictionary<long, string>> provincias;
 
         /// <summary>
         /// Constructor
@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
         /// Get Provincias
         /// </summary>
         /// <returns></returns>
-        public Dictionary<long, Dictionary<long, string>> GetProvincias()
+        public IDictionary<long, IDictionary<long, string>> GetProvincias()
         {
             return provincias;
         }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces
 {
     /// <summary>
     /// Interfaz de FixtureProvincia
@@ -11,6 +11,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// Get Provincias
         /// </summary>
         /// <returns></returns>
-        Dictionary<long, Dictionary<long, string>> GetProvincias();
+        IDictionary<long, IDictionary<long, string>> GetProvincias();
     }
 }

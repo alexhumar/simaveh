@@ -13,6 +13,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// Metodo para obtener los loaders
         /// </summary>
         /// <returns></returns>
-        List<IFixtureKeyValueLoader<TIdBe, TValueBe>> GetLoaders();
+        IEnumerable<IFixtureKeyValueLoader<TIdBe, TValueBe>> GetLoaders();
     }
 }
