@@ -1,39 +1,40 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
+using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
 {
     /// <summary>
-    /// Fixture con informacion de Provincias
+    /// Fixture con informacion de Partidos
     /// </summary>
     public class FixturePartido : IFixturePartido
     {
-        private readonly IPartidoLoadersProvider partidoLoadersProvider;
-        private IDictionary<long, IDictionary<long, string>> partidos;
+        private readonly IPartidoFixtureGettersProvider partidoFixtureGettersProvider;
+        private IDictionary<long, IEnumerable<DatosEntidad>> partidos;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public FixturePartido()
         {
-            partidoLoadersProvider = new PartidoLoadersProvider();
+            partidoFixtureGettersProvider = new PartidoFixtureGettersProvider();
 
             Initialize();
         }
 
         /// <summary>
-        /// Get Provincias
+        /// Get Partidos
         /// </summary>
         /// <returns></returns>
-        public IDictionary<long, IDictionary<long, string>> GetPartidos()
+        public IDictionary<long, IEnumerable<DatosEntidad>> GetPartidos()
         {
             return partidos;
         }
 
         private void Initialize()
         {
-            partidos = partidoLoadersProvider
+            partidos = (IDictionary<long, IEnumerable<DatosEntidad>>)partidoFixtureGettersProvider
                 .GetFixtureGetters()
                 .SelectMany(l => l.Get())
                 .ToDictionary(x => x.Key, y => y.Value);

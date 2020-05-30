@@ -37,8 +37,8 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
                 {
                     result.Add(new
                     {
-                        Id = partido.Key,
-                        Nombre = partido.Value,
+                        partido.Id,
+                        partido.Nombre,
                         ProvinciaId = idProvincia
                     });
                 }
