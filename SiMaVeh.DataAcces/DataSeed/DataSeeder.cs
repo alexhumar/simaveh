@@ -12,6 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         private readonly ISeeder<Partido, long> partidoSeeder;
         private readonly ISeeder<Localidad, long> localidadSeeder;
         private readonly ISeeder<TipoEntidadReparadora, long> tipoEntidadReparadoraSeeder;
+        private readonly ISeeder<TipoFuenteEnergia, long> tipoFuenteEnergiaSeeder;
 
         public DataSeeder()
         {
@@ -20,6 +21,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             partidoSeeder = new PartidoSeeder();
             localidadSeeder = new LocalidadSeeder();
             tipoEntidadReparadoraSeeder = new TipoEntidadReparadoraSeeder();
+            tipoFuenteEnergiaSeeder = new TipoFuenteEnergiaSeeder();
         }
 
         public void SeedData(ModelBuilder builder)
@@ -30,6 +32,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             builder.Entity<Partido>().HasData(partidoSeeder.GetSeeds());
             builder.Entity<Localidad>().HasData(localidadSeeder.GetSeeds());
             builder.Entity<TipoEntidadReparadora>().HasData(tipoEntidadReparadoraSeeder.GetSeeds());
+            builder.Entity<TipoFuenteEnergia>().HasData(tipoFuenteEnergiaSeeder.GetSeeds());
         }
     }
 }

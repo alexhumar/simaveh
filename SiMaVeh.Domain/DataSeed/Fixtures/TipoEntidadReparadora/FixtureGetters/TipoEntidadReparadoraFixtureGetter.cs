@@ -5,11 +5,17 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.FixtureGetters
 {
-    class TipoEntidadReparadoraFixtureGetter : ITipoEntidadReparadoraFixtureGetter
+    /// <summary>
+    /// Fixture Getter de Tipo Entidad Reparadora
+    /// </summary>
+    public class TipoEntidadReparadoraFixtureGetter : ITipoEntidadReparadoraFixtureGetter
     {
         private readonly DatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> tiposEntidadesReparadoras;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public TipoEntidadReparadoraFixtureGetter()
         {
             datosEntidadBuilder = new DatosEntidadBuilder();
@@ -18,6 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.FixtureGetters
             Initialize();
         }
 
+        /// <summary>
+        /// Get
+        /// </summary>
+        /// <returns></returns>
         public ICollection<DatosEntidad> Get()
         {
             return tiposEntidadesReparadoras;
@@ -26,15 +36,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.FixtureGetters
         private void Initialize()
         {
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(1,
-                Constants.TiposEntidadReparadora.DescripcionEntidadReparadora.MecanicoParticular, Constants.TiposEntidadReparadora.TipoEntidadReparadora.MecanicoParticular));
+                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.MecanicoParticular, Constants.TiposEntidadReparadora.TipoEntidadReparadora.MecanicoParticular));
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(2,
-                Constants.TiposEntidadReparadora.DescripcionEntidadReparadora.TallerMecanico, Constants.TiposEntidadReparadora.TipoEntidadReparadora.TallerMecanico));
+                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.TallerMecanico, Constants.TiposEntidadReparadora.TipoEntidadReparadora.TallerMecanico));
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(3,
-                Constants.TiposEntidadReparadora.DescripcionEntidadReparadora.EstacionDeServicio, Constants.TiposEntidadReparadora.TipoEntidadReparadora.EstacionDeServicio));
+                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.EstacionDeServicio, Constants.TiposEntidadReparadora.TipoEntidadReparadora.EstacionDeServicio));
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(4,
-                Constants.TiposEntidadReparadora.DescripcionEntidadReparadora.Lubricentro, Constants.TiposEntidadReparadora.TipoEntidadReparadora.Lubricentro));
+                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.Lubricentro, Constants.TiposEntidadReparadora.TipoEntidadReparadora.Lubricentro));
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(5,
-                Constants.TiposEntidadReparadora.DescripcionEntidadReparadora.Hogar, Constants.TiposEntidadReparadora.TipoEntidadReparadora.Hogar));
+                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.Hogar, Constants.TiposEntidadReparadora.TipoEntidadReparadora.Hogar));
         }
     }
 }
