@@ -9,8 +9,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
     class PartidoMendozaFixtureGetter : PartidoFixtureGetter
     {
-        public PartidoMendozaFixtureGetter(IProvinciaFixtureGetter provinciasLoader)
-            : base(provinciasLoader)
+        public PartidoMendozaFixtureGetter(IProvinciaFixtureGetter provinciaFixtureGetter)
+            : base(provinciaFixtureGetter)
         {
         }
 

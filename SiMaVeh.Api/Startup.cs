@@ -63,11 +63,9 @@ namespace SiMaVeh
 
             //Esto es para que se actualice la BD mediante migrations cuando arranca la Api. No es lo ideal,
             //pero como no es un modelo grande, esta bien.
-            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var siMaVehContext = scope.ServiceProvider.GetService<SiMaVehContext>();
-                siMaVehContext.Database.Migrate();
-            }
+            using var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            var siMaVehContext = scope.ServiceProvider.GetService<SiMaVehContext>();
+            siMaVehContext.Database.Migrate();
         }
     }
 }

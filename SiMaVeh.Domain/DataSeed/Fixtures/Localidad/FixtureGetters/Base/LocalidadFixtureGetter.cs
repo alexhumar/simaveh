@@ -1,4 +1,5 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base
     abstract class LocalidadFixtureGetter : ILocalidadFixtureGetter
     {
         protected readonly IPartidoFixtureGetter partidoFixtureGetter;
+        protected readonly DatosEntidadBuilder datosEntidadBuilder;
         protected readonly IDictionary<long, ICollection<DatosEntidad>> localidades;
 
         protected abstract void Initialize();
@@ -16,6 +18,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base
         public LocalidadFixtureGetter(IPartidoFixtureGetter partidoFixtureGetter)
         {
             this.partidoFixtureGetter = partidoFixtureGetter;
+            datosEntidadBuilder = new DatosEntidadBuilder();
             localidades = (IDictionary<long, ICollection<DatosEntidad>>)new Dictionary<long, List<DatosEntidad>>();
 
             Initialize();
