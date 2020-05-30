@@ -4,7 +4,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Loaders
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters
 {
     class PaisFixtureGetter : IPaisFixtureGetter
     {

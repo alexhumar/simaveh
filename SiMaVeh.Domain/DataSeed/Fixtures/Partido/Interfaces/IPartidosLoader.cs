@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces
 {
-    interface IPartidosLoader : IFixtureItemKeyValueLoader<long, long, string>
+    interface IPartidosLoader : IFixtureDetailGetter<long, long, string>
     {
         KeyValuePair<long, string> FindByNombre(string nombre);
     }

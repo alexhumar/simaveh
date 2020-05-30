@@ -34,7 +34,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
         private void Initialize()
         {
             localidades = localidadLoadersProvider
-                .GetLoaders()
+                .GetFixtureGetters()
                 .SelectMany(l => l.Get())
                 .ToDictionary(x => x.Key, y => y.Value);
         }

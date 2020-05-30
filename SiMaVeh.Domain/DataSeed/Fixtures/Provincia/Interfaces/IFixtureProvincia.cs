@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SiMaVeh.Domain.DataSeed.Models;
+using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces
 {
@@ -11,6 +12,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces
         /// Get Provincias
         /// </summary>
         /// <returns></returns>
-        IDictionary<long, IDictionary<long, string>> GetProvincias();
+        IDictionary<long, IEnumerable<DatosEntidad>> GetProvincias();
     }
 }

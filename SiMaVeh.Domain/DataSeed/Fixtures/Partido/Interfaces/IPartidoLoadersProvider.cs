@@ -5,7 +5,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces
     /// <summary>
     /// Interfaz de provider de loaders de partido
     /// </summary>
-    public interface IPartidoLoadersProvider : IFixtureItemKeyValueLoaderProvider<long, long, string>
+    public interface IPartidoLoadersProvider : IFixtureDetailGetterProvider<long, long, string>
     {
     }
 }

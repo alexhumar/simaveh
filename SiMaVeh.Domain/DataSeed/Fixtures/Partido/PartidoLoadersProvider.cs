@@ -1,9 +1,9 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Loaders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina;
+using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Argentina;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Argentina;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
@@ -13,23 +13,23 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
     /// </summary>
     public class PartidoLoadersProvider : IPartidoLoadersProvider
     {
-        private readonly IProvinciasLoader provinciasArgentinaLoader;
+        private readonly IProvinciaFixtureGetter provinciasArgentinaLoader;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public PartidoLoadersProvider()
         {
-            provinciasArgentinaLoader = new ProvinciasArgentinaLoader(new PaisFixtureGetter());
+            provinciasArgentinaLoader = new ProvinciaArgentinaFixtureGetter(new PaisFixtureGetter());
         }
 
         /// <summary>
         /// Retorna los providers de loaders de partidos
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IFixtureItemKeyValueLoader<long, long, string>> GetLoaders()
+        public IEnumerable<IFixtureDetailGetter<long, long, string>> GetFixtureGetters()
         {
-            return new List<IFixtureItemKeyValueLoader<long, long, string>>
+            return new List<IFixtureDetailGetter<long, long, string>>
             {
                 new PartidosBuenosAiresLoader(provinciasArgentinaLoader),
                 new PartidosCatamarcaLoader(provinciasArgentinaLoader),

@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Loaders.Argentina
 {
     class PartidosEntreRiosLoader : PartidosLoader
     {
-        public PartidosEntreRiosLoader(IProvinciasLoader provinciasLoader)
+        public PartidosEntreRiosLoader(IProvinciaFixtureGetter provinciasLoader)
             : base(provinciasLoader)
         {
         }
