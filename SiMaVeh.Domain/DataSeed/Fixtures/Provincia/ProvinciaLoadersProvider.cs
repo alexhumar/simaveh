@@ -13,14 +13,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
     /// </summary>
     public class ProvinciaLoadersProvider : IProvinciaLoadersProvider
     {
-        private readonly IPaisesLoader paisesLoader;
+        private readonly IPaisFixtureGetter paisesLoader;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public ProvinciaLoadersProvider()
         {
-            paisesLoader = new PaisesLoader();
+            paisesLoader = new PaisFixtureGetter();
         }
 
         /// <summary>

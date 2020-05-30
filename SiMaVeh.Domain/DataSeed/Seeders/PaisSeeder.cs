@@ -33,8 +33,8 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
             {
                 result.Add(new
                 {
-                    Id = paisFixture.Key,
-                    Nombre = paisFixture.Value
+                    paisFixture.Id,
+                    paisFixture.Nombre
                 });
             }
 

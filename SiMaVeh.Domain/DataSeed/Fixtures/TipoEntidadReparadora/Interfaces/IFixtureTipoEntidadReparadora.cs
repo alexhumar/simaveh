@@ -8,10 +8,11 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces
     /// </summary>
     public interface IFixtureTipoEntidadReparadora
     {
+        //TODO: probablemente se pueda declarar este metodo en una interfaz comun
         /// <summary>
         /// Get Tipos Entidad Reparadora
         /// </summary>
         /// <returns></returns>
-        IDictionary<long, DatosEntidad> GetTiposEntidadReparadora();
+        IEnumerable<DatosEntidad> GetTiposEntidadReparadora();
     }
 }

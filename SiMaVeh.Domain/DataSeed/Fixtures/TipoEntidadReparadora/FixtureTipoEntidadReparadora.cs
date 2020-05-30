@@ -10,15 +10,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
     /// </summary>
     public class FixtureTipoEntidadReparadora : IFixtureTipoEntidadReparadora
     {
-        private readonly ITipoEntidadReparadoraLoadersProvider tipoEntidadReparadoraLoadersProvider;
-        private IDictionary<long, DatosEntidad> tiposEntidadReparadora;
+        private readonly ITipoEntidadReparadoraFixtureGettersProvider tipoEntidadReparadoraFixtureGettersProvider;
+        private IEnumerable<DatosEntidad> tiposEntidadReparadora;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public FixtureTipoEntidadReparadora()
         {
-            tipoEntidadReparadoraLoadersProvider = new TipoEntidadReparadoraLoadersProvider();
+            tipoEntidadReparadoraFixtureGettersProvider = new TipoEntidadReparadoraFixtureGettersProvider();
 
             Initialize();
         }
@@ -27,17 +27,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
         /// Get Tipos Entidades Reparadoras
         /// </summary>
         /// <returns></returns>
-        public IDictionary<long, DatosEntidad> GetTiposEntidadReparadora()
+        public IEnumerable<DatosEntidad> GetTiposEntidadReparadora()
         {
             return tiposEntidadReparadora;
         }
 
         private void Initialize()
         {
-            tiposEntidadReparadora = tipoEntidadReparadoraLoadersProvider
-                .GetLoaders()
-                .SelectMany(l => l.Get())
-                .ToDictionary(x => x.Key, y => y.Value);
+            tiposEntidadReparadora = tipoEntidadReparadoraFixtureGettersProvider
+                .GetFixtureGetters()
+                .SelectMany(l => l.Get());
         }
     }
 }

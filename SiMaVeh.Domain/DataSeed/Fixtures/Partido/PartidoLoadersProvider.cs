@@ -20,7 +20,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         /// </summary>
         public PartidoLoadersProvider()
         {
-            provinciasArgentinaLoader = new ProvinciasArgentinaLoader(new PaisesLoader());
+            provinciasArgentinaLoader = new ProvinciasArgentinaLoader(new PaisFixtureGetter());
         }
 
         /// <summary>

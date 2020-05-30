@@ -8,11 +8,11 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Base
     abstract class ProvinciasLoader : IProvinciasLoader
     {
         protected readonly IDictionary<long, IDictionary<long, string>> provincias;
-        protected readonly IPaisesLoader paisesLoader;
+        protected readonly IPaisFixtureGetter paisesLoader;
 
         protected abstract void Initialize();
 
-        public ProvinciasLoader(IPaisesLoader paisesLoader)
+        public ProvinciasLoader(IPaisFixtureGetter paisesLoader)
         {
             this.paisesLoader = paisesLoader;
             provincias = (IDictionary<long, IDictionary<long, string>>)new Dictionary<long, Dictionary<long, string>>();

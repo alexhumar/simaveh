@@ -6,6 +6,11 @@
     public class DatosEntidad
     {
         /// <summary>
+        /// Id
+        /// </summary>
+        public long Id { get; set; }
+
+        /// <summary>
         /// Nombre
         /// </summary>
         public string Nombre { get; set; }

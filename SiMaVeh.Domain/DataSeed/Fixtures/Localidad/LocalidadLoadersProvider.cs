@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
         /// </summary>
         public LocalidadLoadersProvider()
         {
-            provinciasArgentinaLoader = new ProvinciasArgentinaLoader(new PaisesLoader());
+            provinciasArgentinaLoader = new ProvinciasArgentinaLoader(new PaisFixtureGetter());
         }
 
         /// <summary>

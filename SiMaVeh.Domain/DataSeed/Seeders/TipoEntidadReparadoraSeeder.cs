@@ -33,9 +33,9 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
             {
                 result.Add(new
                 {
-                    Id = tipoEntidadReparadoraFixture.Key,
-                    tipoEntidadReparadoraFixture.Value.Nombre,
-                    tipoEntidadReparadoraFixture.Value.Descripcion
+                    tipoEntidadReparadoraFixture.Id,
+                    tipoEntidadReparadoraFixture.Nombre,
+                    tipoEntidadReparadoraFixture.Descripcion
                 });
             }
 

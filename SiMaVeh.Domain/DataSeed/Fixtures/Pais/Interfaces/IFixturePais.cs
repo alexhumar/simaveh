@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SiMaVeh.Domain.DataSeed.Models;
+using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces
 {
@@ -11,13 +12,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces
         /// Get Paises
         /// </summary>
         /// <returns></returns>
-        IDictionary<long, string> GetPaises();
+        IEnumerable<DatosEntidad> GetPaises();
 
         /// <summary>
         /// Find by Nombre
         /// </summary>
         /// <param name="nombre"></param>
         /// <returns></returns>
-        KeyValuePair<long, string>? FindByNombre(string nombre);
+        DatosEntidad FindByNombre(string nombre);
     }
 }

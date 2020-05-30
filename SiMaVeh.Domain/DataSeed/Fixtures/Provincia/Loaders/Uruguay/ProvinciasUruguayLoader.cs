@@ -7,14 +7,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Loaders.Uruguay
 {
     class ProvinciasUruguayLoader : ProvinciasLoader
     {
-        public ProvinciasUruguayLoader(IPaisesLoader paisesLoader)
+        public ProvinciasUruguayLoader(IPaisFixtureGetter paisesLoader)
             : base(paisesLoader)
         {
         }
 
         protected override void Initialize()
         {
-            provincias.Add(paisesLoader.FindByNombre(Constants.Paises.Pais.Uruguay).Key, new Dictionary<long, string>
+            provincias.Add(paisesLoader.FindByNombre(Constants.Paises.Pais.Uruguay).Id, new Dictionary<long, string>
             {
                 { 24, ProvinciaUruguay.Artigas },
                 { 25, ProvinciaUruguay.Canelones },

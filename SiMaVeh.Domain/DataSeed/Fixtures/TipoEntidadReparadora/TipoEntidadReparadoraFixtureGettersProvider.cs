@@ -7,19 +7,19 @@ using System.Collections.Generic;
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
 {
     /// <summary>
-    /// Provider de Loaders de Tipos de Entidades Reparadoras
+    /// Provider de fixture getters de Tipos de Entidades Reparadoras
     /// </summary>
-    public class TipoEntidadReparadoraLoadersProvider : ITipoEntidadReparadoraLoadersProvider
+    public class TipoEntidadReparadoraFixtureGettersProvider : ITipoEntidadReparadoraFixtureGettersProvider
     {
         /// <summary>
-        /// Retorna los providers de loaders de tipos de entidades reparadoras
+        /// Retorna los providers de fixture getters de tipos de entidades reparadoras
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IFixtureKeyValueLoader<long, DatosEntidad>> GetLoaders()
+        public IEnumerable<IFixtureGetter<DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureKeyValueLoader<long, DatosEntidad>>
+            return new List<IFixtureGetter<DatosEntidad>>
             {
-                new TipoEntidadReparadoraLoader()
+                new TipoEntidadReparadoraFixtureGetter()
             };
         }
     }
