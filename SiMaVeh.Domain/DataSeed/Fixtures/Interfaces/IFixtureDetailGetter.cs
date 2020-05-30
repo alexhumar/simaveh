@@ -13,6 +13,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Interfaces
         /// Metodo que retorna items detail en un diccionario
         /// </summary>
         /// <returns></returns>
-        IDictionary<TIdBeParent, ICollection<TBeChild>> Get();
+        IDictionary<TIdBeParent, List<TBeChild>> Get();
     }
 }

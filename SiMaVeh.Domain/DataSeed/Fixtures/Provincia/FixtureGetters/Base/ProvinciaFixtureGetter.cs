@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Base
     {
         protected readonly IPaisFixtureGetter paisFixtureGetter;
         protected readonly DatosEntidadBuilder datosEntidadBuilder;
-        protected readonly IDictionary<long, ICollection<DatosEntidad>> provincias;
+        protected readonly IDictionary<long, List<DatosEntidad>> provincias;
 
         protected abstract void Initialize();
 
@@ -19,7 +19,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Base
         {
             this.paisFixtureGetter = paisFixtureGetter;
             datosEntidadBuilder = new DatosEntidadBuilder();
-            provincias = (IDictionary<long, ICollection<DatosEntidad>>)new Dictionary<long, List<DatosEntidad>>();
+            provincias = new Dictionary<long, List<DatosEntidad>>();
 
             Initialize();
         }
@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Base
                 .FirstOrDefault(p => p.Nombre == nombre);
         }
 
-        public IDictionary<long, ICollection<DatosEntidad>> Get()
+        public IDictionary<long, List<DatosEntidad>> Get()
         {
             return provincias;
         }
