@@ -12,6 +12,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces
         /// Get Provincias
         /// </summary>
         /// <returns></returns>
-        IDictionary<long, IEnumerable<DatosEntidad>> GetProvincias();
+        IDictionary<long, List<DatosEntidad>> GetProvincias();
     }
 }

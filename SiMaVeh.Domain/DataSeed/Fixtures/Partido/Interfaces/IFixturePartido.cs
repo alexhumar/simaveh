@@ -12,6 +12,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces
         /// Get Partidos
         /// </summary>
         /// <returns></returns>
-        IDictionary<long, IEnumerable<DatosEntidad>> GetPartidos();
+        IDictionary<long, List<DatosEntidad>> GetPartidos();
     }
 }

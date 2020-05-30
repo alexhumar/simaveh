@@ -12,6 +12,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces
         /// Get Localidades
         /// </summary>
         /// <returns></returns>
-        IDictionary<long, IEnumerable<DatosEntidad>> GetLocalidades();
+        IDictionary<long, List<DatosEntidad>> GetLocalidades();
     }
 }

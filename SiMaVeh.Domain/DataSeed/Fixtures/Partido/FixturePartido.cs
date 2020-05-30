@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
     public class FixturePartido : IFixturePartido
     {
         private readonly IPartidoFixtureGettersProvider partidoFixtureGettersProvider;
-        private IDictionary<long, IEnumerable<DatosEntidad>> partidos;
+        private IDictionary<long, List<DatosEntidad>> partidos;
 
         /// <summary>
         /// Constructor
@@ -27,14 +27,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         /// Get Partidos
         /// </summary>
         /// <returns></returns>
-        public IDictionary<long, IEnumerable<DatosEntidad>> GetPartidos()
+        public IDictionary<long, List<DatosEntidad>> GetPartidos()
         {
             return partidos;
         }
 
         private void Initialize()
         {
-            partidos = (IDictionary<long, IEnumerable<DatosEntidad>>)partidoFixtureGettersProvider
+            partidos = partidoFixtureGettersProvider
                 .GetFixtureGetters()
                 .SelectMany(l => l.Get())
                 .ToDictionary(x => x.Key, y => y.Value);

@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
     public class FixtureLocalidad : IFixtureLocalidad
     {
         private readonly ILocalidadFixtureGettersProvider localidadFixtureGettersProvider;
-        private IDictionary<long, IEnumerable<DatosEntidad>> localidades;
+        private IDictionary<long, List<DatosEntidad>> localidades;
 
         /// <summary>
         /// Constructor
@@ -27,14 +27,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
         /// Get Localidades
         /// </summary>
         /// <returns></returns>
-        public IDictionary<long, IEnumerable<DatosEntidad>> GetLocalidades()
+        public IDictionary<long, List<DatosEntidad>> GetLocalidades()
         {
             return localidades;
         }
 
         private void Initialize()
         {
-            localidades = (IDictionary<long, IEnumerable<DatosEntidad>>)localidadFixtureGettersProvider
+            localidades = localidadFixtureGettersProvider
                 .GetFixtureGetters()
                 .SelectMany(l => l.Get())
                 .ToDictionary(x => x.Key, y => y.Value);
