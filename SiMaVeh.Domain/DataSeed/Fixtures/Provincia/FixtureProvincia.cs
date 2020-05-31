@@ -6,7 +6,7 @@ using System.Linq;
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
 {
     /// <summary>
-    /// Fixture con informacion de Provincias
+    /// Fixture con informacion de provincias
     /// </summary>
     public class FixtureProvincia : IFixtureProvincia
     {
@@ -16,15 +16,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
         /// <summary>
         /// Constructor
         /// </summary>
-        public FixtureProvincia()
+        /// <param name="provinciaFixtureGettersProvider"></param>
+        public FixtureProvincia(IProvinciaFixtureGettersProvider provinciaFixtureGettersProvider)
         {
-            provinciaFixtureGettersProvider = new ProvinciaFixtureGettersProvider();
+            this.provinciaFixtureGettersProvider = provinciaFixtureGettersProvider;
 
             Initialize();
         }
 
         /// <summary>
-        /// Get Provincias
+        /// Get provincias
         /// </summary>
         /// <returns></returns>
         public IDictionary<long, List<DatosEntidad>> GetProvincias()

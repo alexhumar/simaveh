@@ -1,6 +1,5 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Argentina;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Uruguay;
@@ -11,18 +10,23 @@ using System.Collections.Generic;
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
 {
     /// <summary>
-    /// Provider de Fixture Getters de Provincia
+    /// Provider de fixture getters de provincia
     /// </summary>
     public class ProvinciaFixtureGettersProvider : IProvinciaFixtureGettersProvider
     {
+        private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly IPaisFixtureGetter paisFixtureGetter;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProvinciaFixtureGettersProvider()
+        /// <param name="datosEntidadBuilder"></param>
+        /// <param name="paisFixtureGetter"></param>
+        public ProvinciaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder,
+            IPaisFixtureGetter paisFixtureGetter)
         {
-            paisFixtureGetter = new PaisFixtureGetter(new DatosEntidadBuilder());
+            this.datosEntidadBuilder = datosEntidadBuilder;
+            this.paisFixtureGetter = paisFixtureGetter;
         }
 
         /// <summary>
@@ -33,8 +37,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
         {
             return new List<IFixtureDetailGetter<long, DatosEntidad>>
             {
-                new ProvinciaArgentinaFixtureGetter(paisFixtureGetter),
-                new ProvinciaUruguayFixtureGetter(paisFixtureGetter),
+                new ProvinciaArgentinaFixtureGetter(datosEntidadBuilder, paisFixtureGetter),
+                new ProvinciaUruguayFixtureGetter(datosEntidadBuilder, paisFixtureGetter),
             };
         }
     }

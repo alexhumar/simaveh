@@ -23,7 +23,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
         /// </summary>
         public LocalidadFixtureGettersProvider()
         {
-            provinciaArgentinaFixtureGetter = new ProvinciaArgentinaFixtureGetter(new PaisFixtureGetter(new DatosEntidadBuilder()));
+            provinciaArgentinaFixtureGetter = new ProvinciaArgentinaFixtureGetter(new DatosEntidadBuilder(), new PaisFixtureGetter(new DatosEntidadBuilder()));
         }
 
         /// <summary>

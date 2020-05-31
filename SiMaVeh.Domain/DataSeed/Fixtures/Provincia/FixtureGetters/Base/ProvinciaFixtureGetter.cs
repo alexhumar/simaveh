@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
@@ -7,18 +7,19 @@ using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Base
 {
-    abstract class ProvinciaFixtureGetter : IProvinciaFixtureGetter
+    internal abstract class ProvinciaFixtureGetter : IProvinciaFixtureGetter
     {
         protected readonly IPaisFixtureGetter paisFixtureGetter;
-        protected readonly DatosEntidadBuilder datosEntidadBuilder;
+        protected readonly IDatosEntidadBuilder datosEntidadBuilder;
         protected readonly IDictionary<long, List<DatosEntidad>> provincias;
 
         protected abstract void Initialize();
 
-        public ProvinciaFixtureGetter(IPaisFixtureGetter paisFixtureGetter)
+        public ProvinciaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+            IPaisFixtureGetter paisFixtureGetter)
         {
+            this.datosEntidadBuilder = datosEntidadBuilder;
             this.paisFixtureGetter = paisFixtureGetter;
-            datosEntidadBuilder = new DatosEntidadBuilder();
             provincias = new Dictionary<long, List<DatosEntidad>>();
 
             Initialize();

@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
+using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Models;
@@ -6,10 +7,11 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Argentina
 {
-    class ProvinciaArgentinaFixtureGetter : ProvinciaFixtureGetter
+    internal class ProvinciaArgentinaFixtureGetter : ProvinciaFixtureGetter
     {
-        public ProvinciaArgentinaFixtureGetter(IPaisFixtureGetter paisFixtureGetter)
-            : base(paisFixtureGetter)
+        public ProvinciaArgentinaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+            IPaisFixtureGetter paisFixtureGetter)
+            : base(datosEntidadBuilder, paisFixtureGetter)
         {
         }
 
