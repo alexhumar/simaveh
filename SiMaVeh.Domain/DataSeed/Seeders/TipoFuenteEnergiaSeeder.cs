@@ -1,5 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Collections.Generic;
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
-    /// Seeder de Tipo Fuente Energia
+    /// Seeder de tipo de fuente de energia
     /// </summary>
     public class TipoFuenteEnergiaSeeder : ISeeder<TipoFuenteEnergia, long>
     {
@@ -16,13 +15,14 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <summary>
         /// Constructor
         /// </summary>
-        public TipoFuenteEnergiaSeeder()
+        /// <param name="fixtureTipoFuenteEnergia"></param>
+        public TipoFuenteEnergiaSeeder(IFixtureTipoFuenteEnergia fixtureTipoFuenteEnergia)
         {
-            fixtureTipoFuenteEnergia = new FixtureTipoFuenteEnergia();
+            this.fixtureTipoFuenteEnergia = fixtureTipoFuenteEnergia;
         }
 
         /// <summary>
-        /// Genera los Tipos de Fuente Energia default
+        /// Genera los tipos de fuente de energia default
         /// </summary>
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()

@@ -6,7 +6,7 @@ using System.Linq;
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia
 {
     /// <summary>
-    /// Fixture con informacion de Tipos de Fuentes de Energia
+    /// Fixture con informacion de tipos de fuentes de energia
     /// </summary>
     public class FixtureTipoFuenteEnergia : IFixtureTipoFuenteEnergia
     {
@@ -16,15 +16,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia
         /// <summary>
         /// Constructor
         /// </summary>
-        public FixtureTipoFuenteEnergia()
+        /// <param name="tipoFuenteEnergiaFixtureGettersProvider"></param>
+        public FixtureTipoFuenteEnergia(ITipoFuenteEnergiaFixtureGettersProvider tipoFuenteEnergiaFixtureGettersProvider)
         {
-            tipoFuenteEnergiaFixtureGettersProvider = new TipoFuenteEnergiaFixtureGettersProvider();
+            this.tipoFuenteEnergiaFixtureGettersProvider = tipoFuenteEnergiaFixtureGettersProvider;
 
             Initialize();
         }
 
         /// <summary>
-        /// Get Tipos Fuente Energia
+        /// Retorna los tipos de fuente de energia default
         /// </summary>
         /// <returns></returns>
         public IEnumerable<DatosEntidad> GetTiposFuenteEnergia()

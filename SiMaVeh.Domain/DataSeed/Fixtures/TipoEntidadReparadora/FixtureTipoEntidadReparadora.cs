@@ -1,5 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +20,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
         public FixtureTipoEntidadReparadora(ITipoEntidadReparadoraFixtureGettersProvider tipoEntidadReparadoraFixtureGettersProvider)
         {
             this.tipoEntidadReparadoraFixtureGettersProvider = tipoEntidadReparadoraFixtureGettersProvider;
-
-            Initialize();
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public FixtureTipoEntidadReparadora()
-        {
-            tipoEntidadReparadoraFixtureGettersProvider = new TipoEntidadReparadoraFixtureGettersProvider(new DatosEntidadBuilder());
 
             Initialize();
         }

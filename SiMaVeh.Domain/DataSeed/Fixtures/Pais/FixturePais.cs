@@ -1,5 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
-using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +20,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais
         public FixturePais(IPaisFixtureGettersProvider paisFixtureGettersProvider)
         {
             this.paisFixtureGettersProvider = paisFixtureGettersProvider;
-
-            Initialize();
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public FixturePais()
-        {
-            paisFixtureGettersProvider = new PaisFixtureGettersProvider(new DatosEntidadBuilder());
 
             Initialize();
         }

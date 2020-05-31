@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
@@ -7,19 +7,20 @@ using System.Linq;
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters
 {
     /// <summary>
-    /// Fixture Getter de Tipo Fuente Energia
+    /// Fixture getter de tipo fuente energia
     /// </summary>
-    public class TipoFuenteEnergiaFixtureGetter : ITipoFuenteEnergiaFixtureGetter
+    internal class TipoFuenteEnergiaFixtureGetter : ITipoFuenteEnergiaFixtureGetter
     {
-        private readonly DatosEntidadBuilder datosEntidadBuilder;
+        private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> tiposFuentesEnergia;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public TipoFuenteEnergiaFixtureGetter()
+        /// <param name="datosEntidadBuilder"></param>
+        public TipoFuenteEnergiaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
-            datosEntidadBuilder = new DatosEntidadBuilder();
+            this.datosEntidadBuilder = datosEntidadBuilder;
             tiposFuentesEnergia = new List<DatosEntidad>();
 
             Initialize();
