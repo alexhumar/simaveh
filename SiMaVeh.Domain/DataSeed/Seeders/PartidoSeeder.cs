@@ -1,5 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
-using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
@@ -16,9 +15,10 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <summary>
         /// Constructor
         /// </summary>
-        public PartidoSeeder()
+        /// <param name="fixturePartido"></param>
+        public PartidoSeeder(IFixturePartido fixturePartido)
         {
-            fixturePartido = new FixturePartido();
+            this.fixturePartido = fixturePartido;
         }
 
         /// <summary>

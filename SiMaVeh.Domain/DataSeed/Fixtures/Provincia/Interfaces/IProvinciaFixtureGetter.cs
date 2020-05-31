@@ -3,8 +3,16 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces
 {
-    internal interface IProvinciaFixtureGetter : IFixtureDetailGetter<long, DatosEntidad>
+    /// <summary>
+    /// Interfaz de provincia fixture getter
+    /// </summary>
+    public interface IProvinciaFixtureGetter : IFixtureDetailGetter<long, DatosEntidad>
     {
+        /// <summary>
+        /// FindByNombre
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
         DatosEntidad FindByNombre(string nombre);
     }
 }

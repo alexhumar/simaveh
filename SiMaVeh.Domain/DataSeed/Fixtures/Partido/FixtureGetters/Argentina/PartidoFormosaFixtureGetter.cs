@@ -1,5 +1,6 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
+using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
@@ -7,10 +8,11 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    class PartidoFormosaFixtureGetter : PartidoFixtureGetter
+    internal class PartidoFormosaFixtureGetter : PartidoFixtureGetter
     {
-        public PartidoFormosaFixtureGetter(IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(provinciaFixtureGetter)
+        public PartidoFormosaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+            IProvinciaFixtureGetter provinciaFixtureGetter)
+            : base(datosEntidadBuilder, provinciaFixtureGetter)
         {
         }
 

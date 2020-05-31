@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
@@ -7,18 +7,19 @@ using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base
 {
-    abstract class PartidoFixtureGetter : IPartidoFixtureGetter
+    internal abstract class PartidoFixtureGetter : IPartidoFixtureGetter
     {
         protected readonly IProvinciaFixtureGetter provinciaFixtureGetter;
-        protected readonly DatosEntidadBuilder datosEntidadBuilder;
+        protected readonly IDatosEntidadBuilder datosEntidadBuilder;
         protected readonly IDictionary<long, List<DatosEntidad>> partidos;
 
         protected abstract void Initialize();
 
-        public PartidoFixtureGetter(IProvinciaFixtureGetter provinciaFixtureGetter)
+        public PartidoFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+            IProvinciaFixtureGetter provinciaFixtureGetter)
         {
+            this.datosEntidadBuilder = datosEntidadBuilder;
             this.provinciaFixtureGetter = provinciaFixtureGetter;
-            datosEntidadBuilder = new DatosEntidadBuilder();
             partidos = new Dictionary<long, List<DatosEntidad>>();
 
             Initialize();

@@ -16,9 +16,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         /// <summary>
         /// Constructor
         /// </summary>
-        public FixturePartido()
+        /// <param name="partidoFixtureGettersProvider"></param>
+        public FixturePartido(IPartidoFixtureGettersProvider partidoFixtureGettersProvider)
         {
-            partidoFixtureGettersProvider = new PartidoFixtureGettersProvider();
+            this.partidoFixtureGettersProvider = partidoFixtureGettersProvider;
 
             Initialize();
         }

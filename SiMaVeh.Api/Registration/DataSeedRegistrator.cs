@@ -5,6 +5,8 @@ using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
+using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora;
@@ -31,6 +33,10 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IProvinciaFixtureGettersProvider, ProvinciaFixtureGettersProvider>();
             services.AddScoped<IFixtureProvincia, FixtureProvincia>();
             services.AddScoped<ISeeder<Provincia, long>, ProvinciaSeeder>();
+
+            services.AddScoped<IPartidoFixtureGettersProvider, PartidoFixtureGettersProvider>();
+            services.AddScoped<IFixturePartido, FixturePartido>();
+            services.AddScoped<ISeeder<Partido, long>, PartidoSeeder>();
 
             services.AddScoped<ITipoEntidadReparadoraFixtureGettersProvider, TipoEntidadReparadoraFixtureGettersProvider>();
             services.AddScoped<IFixtureTipoEntidadReparadora, FixtureTipoEntidadReparadora>();

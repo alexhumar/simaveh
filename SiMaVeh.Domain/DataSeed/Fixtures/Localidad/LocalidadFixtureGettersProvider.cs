@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
@@ -16,6 +17,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
     /// </summary>
     public class LocalidadFixtureGettersProvider : ILocalidadFixtureGettersProvider
     {
+        private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly IProvinciaFixtureGetter provinciaArgentinaFixtureGetter;
 
         /// <summary>
@@ -23,7 +25,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
         /// </summary>
         public LocalidadFixtureGettersProvider()
         {
-            provinciaArgentinaFixtureGetter = new ProvinciaArgentinaFixtureGetter(new DatosEntidadBuilder(), new PaisFixtureGetter(new DatosEntidadBuilder()));
+            datosEntidadBuilder = new DatosEntidadBuilder();
+            provinciaArgentinaFixtureGetter = new ProvinciaArgentinaFixtureGetter(datosEntidadBuilder, new PaisFixtureGetter(datosEntidadBuilder));
         }
 
         /// <summary>
@@ -34,29 +37,29 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
         {
             return new List<IFixtureDetailGetter<long, DatosEntidad>>
             {
-                new LocalidadBuenosAiresFixtureGetter(new PartidoBuenosAiresFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadCatamarcaFixtureGetter(new PartidoCatamarcaFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadChacoFixtureGetter(new PartidoChacoFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadChubutFixtureGetter(new PartidoChubutFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadCordobaFixtureGetter(new PartidoCordobaFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadCorrientesFixtureGetter(new PartidoCorrientesFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadEntreRiosFixtureGetter(new PartidoEntreRiosFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadFormosaFixtureGetter(new PartidoFormosaFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadJujuyFixtureGetter(new PartidoJujuyFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadLaPampaFixtureGetter(new PartidoLaPampaFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadLaRiojaFixtureGetter(new PartidoLaRiojaFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadMendozaFixtureGetter(new PartidoMendozaFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadMisionesFixtureGetter(new PartidoMisionesFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadNeuquenFixtureGetter(new PartidoNeuquenFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadRioNegroFixtureGetter(new PartidoRioNegroFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadSaltaFixtureGetter(new PartidoSaltaFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadSanJuanFixtureGetter(new PartidoSanJuanFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadSanLuisFixtureGetter(new PartidoSanLuisFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadSantaCruzFixtureGetter(new PartidoSantaCruzFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadSantaFeFixtureGetter(new PartidoSantaFeFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadSantiagoDelEsteroFixtureGetter(new PartidoSantiagoDelEsteroFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadTierraDelFuegoFixtureGetter(new PartidoTierraDelFuegoFixtureGetter(provinciaArgentinaFixtureGetter)),
-                new LocalidadTucumanFixtureGetter(new PartidoTucumanFixtureGetter(provinciaArgentinaFixtureGetter))
+                new LocalidadBuenosAiresFixtureGetter(new PartidoBuenosAiresFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadCatamarcaFixtureGetter(new PartidoCatamarcaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadChacoFixtureGetter(new PartidoChacoFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadChubutFixtureGetter(new PartidoChubutFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadCordobaFixtureGetter(new PartidoCordobaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadCorrientesFixtureGetter(new PartidoCorrientesFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadEntreRiosFixtureGetter(new PartidoEntreRiosFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadFormosaFixtureGetter(new PartidoFormosaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadJujuyFixtureGetter(new PartidoJujuyFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadLaPampaFixtureGetter(new PartidoLaPampaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadLaRiojaFixtureGetter(new PartidoLaRiojaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadMendozaFixtureGetter(new PartidoMendozaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadMisionesFixtureGetter(new PartidoMisionesFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadNeuquenFixtureGetter(new PartidoNeuquenFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadRioNegroFixtureGetter(new PartidoRioNegroFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadSaltaFixtureGetter(new PartidoSaltaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadSanJuanFixtureGetter(new PartidoSanJuanFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadSanLuisFixtureGetter(new PartidoSanLuisFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadSantaCruzFixtureGetter(new PartidoSantaCruzFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadSantaFeFixtureGetter(new PartidoSantaFeFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadSantiagoDelEsteroFixtureGetter(new PartidoSantiagoDelEsteroFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadTierraDelFuegoFixtureGetter(new PartidoTierraDelFuegoFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
+                new LocalidadTucumanFixtureGetter(new PartidoTucumanFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter))
             };
         }
     }
