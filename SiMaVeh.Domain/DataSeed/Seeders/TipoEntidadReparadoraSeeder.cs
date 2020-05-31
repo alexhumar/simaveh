@@ -7,11 +7,20 @@ using System.Collections.Generic;
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
-    /// Seeder de Tipo Entidad Reparadora
+    /// Seeder de tipo de entidad reparadora
     /// </summary>
     public class TipoEntidadReparadoraSeeder : ISeeder<TipoEntidadReparadora, long>
     {
         private readonly IFixtureTipoEntidadReparadora fixtureTipoEntidadReparadora;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="fixtureTipoEntidadReparadora"></param>
+        public TipoEntidadReparadoraSeeder(IFixtureTipoEntidadReparadora fixtureTipoEntidadReparadora)
+        {
+            this.fixtureTipoEntidadReparadora = fixtureTipoEntidadReparadora;
+        }
 
         /// <summary>
         /// Constructor
@@ -22,7 +31,7 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         }
 
         /// <summary>
-        /// Genera los Tipos de Entidad Reparadora default
+        /// Genera los tipos de entidad reparadora default
         /// </summary>
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
