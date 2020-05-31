@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters
 {
-    class PaisFixtureGetter : IPaisFixtureGetter
+    internal class PaisFixtureGetter : IPaisFixtureGetter
     {
-        private readonly DatosEntidadBuilder datosEntidadBuilder;
+        private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> paises;
 
-        public PaisFixtureGetter()
+        public PaisFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
-            datosEntidadBuilder = new DatosEntidadBuilder();
+            this.datosEntidadBuilder = datosEntidadBuilder;
             paises = new List<DatosEntidad>();
 
             Initialize();

@@ -3,7 +3,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces
 {
-    interface IPaisFixtureGetter : IFixtureGetter<DatosEntidad>
+    internal interface IPaisFixtureGetter : IFixtureGetter<DatosEntidad>
     {
         DatosEntidad FindByNombre(string nombre);
     }

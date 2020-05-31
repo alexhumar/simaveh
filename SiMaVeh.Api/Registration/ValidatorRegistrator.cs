@@ -5,7 +5,7 @@ using SiMaVeh.Domain.Validators;
 
 namespace SiMaVeh.Api.Registration
 {
-    public class ValidatorRegistrator
+    internal class ValidatorRegistrator
     {
         public static void RegisterValidators(IServiceCollection services)
         {

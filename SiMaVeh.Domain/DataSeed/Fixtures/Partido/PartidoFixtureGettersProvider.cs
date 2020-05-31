@@ -1,4 +1,5 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
@@ -21,7 +22,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         /// </summary>
         public PartidoFixtureGettersProvider()
         {
-            provinciaArgentinaFixtureGetter = new ProvinciaArgentinaFixtureGetter(new PaisFixtureGetter());
+            provinciaArgentinaFixtureGetter = new ProvinciaArgentinaFixtureGetter(new PaisFixtureGetter(new DatosEntidadBuilder()));
         }
 
         /// <summary>

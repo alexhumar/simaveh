@@ -1,11 +1,12 @@
-﻿using SiMaVeh.Domain.DataSeed.Models;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
+using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
 {
     /// <summary>
     /// Builder de Datos Entidad
     /// </summary>
-    public class DatosEntidadBuilder
+    public class DatosEntidadBuilder : IDatosEntidadBuilder
     {
         /// <summary>
         /// Build

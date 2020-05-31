@@ -9,7 +9,7 @@ namespace SiMaVeh.Domain.DataSeed.Interfaces
     public interface ISeeder<TBe, TBeId> where TBe : DomainMember<TBeId>
     {
         /// <summary>
-        /// Obtiene los seeds para determinadas entidades.
+        /// Obtiene los seeds de una entidad determinada
         /// </summary>
         /// <returns></returns>
         IEnumerable<object> GetSeeds();

@@ -1,4 +1,5 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Argentina;
@@ -21,7 +22,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
         /// </summary>
         public ProvinciaFixtureGettersProvider()
         {
-            paisFixtureGetter = new PaisFixtureGetter();
+            paisFixtureGetter = new PaisFixtureGetter(new DatosEntidadBuilder());
         }
 
         /// <summary>

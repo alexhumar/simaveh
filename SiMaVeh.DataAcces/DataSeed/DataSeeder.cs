@@ -5,6 +5,9 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.DataSeed
 {
+    /// <summary>
+    /// Data seeder
+    /// </summary>
     public class DataSeeder : IDataSeeder
     {
         private readonly ISeeder<Pais, long> paisSeeder;
@@ -14,6 +17,33 @@ namespace SiMaVeh.DataAccess.DataSeed
         private readonly ISeeder<TipoEntidadReparadora, long> tipoEntidadReparadoraSeeder;
         private readonly ISeeder<TipoFuenteEnergia, long> tipoFuenteEnergiaSeeder;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="paisSeeder"></param>
+        /// <param name="provinciaSeeder"></param>
+        /// <param name="partidoSeeder"></param>
+        /// <param name="localidadSeeder"></param>
+        /// <param name="tipoEntidadReparadoraSeeder"></param>
+        /// <param name="tipoFuenteEnergiaSeeder"></param>
+        public DataSeeder(ISeeder<Pais, long> paisSeeder,
+            ISeeder<Provincia, long> provinciaSeeder,
+            ISeeder<Partido, long> partidoSeeder,
+            ISeeder<Localidad, long> localidadSeeder,
+            ISeeder<TipoEntidadReparadora, long> tipoEntidadReparadoraSeeder,
+            ISeeder<TipoFuenteEnergia, long> tipoFuenteEnergiaSeeder)
+        {
+            this.paisSeeder = paisSeeder;
+            this.provinciaSeeder = provinciaSeeder;
+            this.partidoSeeder = partidoSeeder;
+            this.localidadSeeder = localidadSeeder;
+            this.tipoEntidadReparadoraSeeder = tipoEntidadReparadoraSeeder;
+            this.tipoFuenteEnergiaSeeder = tipoFuenteEnergiaSeeder;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public DataSeeder()
         {
             paisSeeder = new PaisSeeder();
@@ -24,6 +54,10 @@ namespace SiMaVeh.DataAccess.DataSeed
             tipoFuenteEnergiaSeeder = new TipoFuenteEnergiaSeeder();
         }
 
+        /// <summary>
+        /// Seed data
+        /// </summary>
+        /// <param name="builder"></param>
         public void SeedData(ModelBuilder builder)
         {
             //Para poder aplicar efectivamente los Seeds, hay que generar migrations.

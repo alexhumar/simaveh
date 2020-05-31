@@ -7,7 +7,7 @@ using SiMaVeh.Helpers;
 
 namespace SiMaVeh.Api.Registration
 {
-    public class SiMaVehDIRegistrator
+    internal class SiMaVehDIRegistrator
     {
         public static void RegisterDI(IServiceCollection services)
         {
@@ -18,6 +18,7 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IDataSeeder, DataSeeder>();
 
             ValidatorRegistrator.RegisterValidators(services);
+            DataSeedRegistrator.RegisterDataSeeds(services);
         }
     }
 }

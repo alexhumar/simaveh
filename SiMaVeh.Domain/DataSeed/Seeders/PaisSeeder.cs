@@ -7,11 +7,20 @@ using System.Collections.Generic;
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
-    /// Seeder de Pais
+    /// Seeder de pais
     /// </summary>
     public class PaisSeeder : ISeeder<Pais, long>
     {
         private readonly IFixturePais fixturePais;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="fixturePais"></param>
+        public PaisSeeder(IFixturePais fixturePais)
+        {
+            this.fixturePais = fixturePais;
+        }
 
         /// <summary>
         /// Constructor
@@ -22,7 +31,7 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         }
 
         /// <summary>
-        /// Genera los Paises default
+        /// Obtiene los seeds de pais
         /// </summary>
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
