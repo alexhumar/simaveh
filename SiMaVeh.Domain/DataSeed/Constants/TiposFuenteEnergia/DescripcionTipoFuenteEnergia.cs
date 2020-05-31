@@ -16,9 +16,14 @@
         public const string Petroleo = "Destilados de petróleo";
 
         /// <summary>
-        /// Gas Natural
+        /// Gas natural
         /// </summary>
-        public const string GasNatural = "Gas Natural";
+        public const string GasNatural = "Gas natural";
+
+        /// <summary>
+        /// Variantes de alcohol
+        /// </summary>
+        public const string Alcohol = "Variantes de alcohol";
 
         /// <summary>
         /// Electricidad

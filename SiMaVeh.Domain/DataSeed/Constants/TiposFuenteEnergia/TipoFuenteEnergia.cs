@@ -21,6 +21,11 @@
         public const string GasNatural = "Gas Natural";
 
         /// <summary>
+        /// Alcohol
+        /// </summary>
+        public const string Alcohol = "Alcohol";
+
+        /// <summary>
         /// Electricidad
         /// </summary>
         public const string Electricidad = "Electricidad";
