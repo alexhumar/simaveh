@@ -5,6 +5,7 @@ using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia;
+using SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia;
 using SiMaVeh.Domain.DataSeed.Interfaces;
@@ -24,6 +25,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         private readonly ISeeder<Localidad, long> localidadSeeder;
         private readonly ISeeder<TipoEntidadReparadora, long> tipoEntidadReparadoraSeeder;
         private readonly ISeeder<TipoFuenteEnergia, long> tipoFuenteEnergiaSeeder;
+        private readonly ISeeder<TipoDocumento, long> tipoDocumentoSeeder;
 
         /// <summary>
         /// Constructor
@@ -34,12 +36,14 @@ namespace SiMaVeh.DataAccess.DataSeed
         /// <param name="localidadSeeder"></param>
         /// <param name="tipoEntidadReparadoraSeeder"></param>
         /// <param name="tipoFuenteEnergiaSeeder"></param>
+        /// <param name="tipoDocumentoSeeder"></param>
         public DataSeeder(ISeeder<Pais, long> paisSeeder,
             ISeeder<Provincia, long> provinciaSeeder,
             ISeeder<Partido, long> partidoSeeder,
             ISeeder<Localidad, long> localidadSeeder,
             ISeeder<TipoEntidadReparadora, long> tipoEntidadReparadoraSeeder,
-            ISeeder<TipoFuenteEnergia, long> tipoFuenteEnergiaSeeder)
+            ISeeder<TipoFuenteEnergia, long> tipoFuenteEnergiaSeeder,
+            ISeeder<TipoDocumento, long> tipoDocumentoSeeder)
         {
             this.paisSeeder = paisSeeder;
             this.provinciaSeeder = provinciaSeeder;
@@ -47,6 +51,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             this.localidadSeeder = localidadSeeder;
             this.tipoEntidadReparadoraSeeder = tipoEntidadReparadoraSeeder;
             this.tipoFuenteEnergiaSeeder = tipoFuenteEnergiaSeeder;
+            this.tipoDocumentoSeeder = tipoDocumentoSeeder;
         }
 
         /// <summary>
@@ -63,6 +68,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             localidadSeeder = new LocalidadSeeder(new FixtureLocalidad(new LocalidadFixtureGettersProvider(datosEntidadBuilder, paisFixtureGetter)));
             tipoEntidadReparadoraSeeder = new TipoEntidadReparadoraSeeder(new FixtureTipoEntidadReparadora(new TipoEntidadReparadoraFixtureGettersProvider(datosEntidadBuilder)));
             tipoFuenteEnergiaSeeder = new TipoFuenteEnergiaSeeder(new FixtureTipoFuenteEnergia(new TipoFuenteEnergiaFixtureGettersProvider(datosEntidadBuilder)));
+            tipoDocumentoSeeder = new TipoDocumentoSeeder(new FixtureTipoDocumento(new TipoDocumentoFixtureGettersProvider(datosEntidadBuilder)));
         }
 
         /// <summary>

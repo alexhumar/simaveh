@@ -48,15 +48,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters
         private void Initialize()
         {
             tiposFuentesEnergia.Add(datosEntidadBuilder.Build(1,
-                Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Alcohol, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Alcohol));
+                Constants.TiposFuenteEnergia.TipoFuenteEnergia.Alcohol, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Alcohol));
             tiposFuentesEnergia.Add(datosEntidadBuilder.Build(2,
-                Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Carbon, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Carbon));
+                Constants.TiposFuenteEnergia.TipoFuenteEnergia.Carbon, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Carbon));
             tiposFuentesEnergia.Add(datosEntidadBuilder.Build(3,
-                Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Electricidad, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Electricidad));
+                Constants.TiposFuenteEnergia.TipoFuenteEnergia.Electricidad, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Electricidad));
             tiposFuentesEnergia.Add(datosEntidadBuilder.Build(4,
-                Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.GasNatural, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.GasNatural));
+                Constants.TiposFuenteEnergia.TipoFuenteEnergia.GasNatural, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.GasNatural));
             tiposFuentesEnergia.Add(datosEntidadBuilder.Build(5,
-                Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Petroleo, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Petroleo));
+                Constants.TiposFuenteEnergia.TipoFuenteEnergia.Petroleo, Constants.TiposFuenteEnergia.DescripcionTipoFuenteEnergia.Petroleo));
         }
     }
 }

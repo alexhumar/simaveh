@@ -36,15 +36,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.FixtureGetters
         private void Initialize()
         {
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(1,
-                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.MecanicoParticular, Constants.TiposEntidadReparadora.TipoEntidadReparadora.MecanicoParticular));
+                Constants.TiposEntidadReparadora.TipoEntidadReparadora.MecanicoParticular, Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.MecanicoParticular));
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(2,
-                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.TallerMecanico, Constants.TiposEntidadReparadora.TipoEntidadReparadora.TallerMecanico));
+                Constants.TiposEntidadReparadora.TipoEntidadReparadora.TallerMecanico, Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.TallerMecanico));
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(3,
-                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.EstacionDeServicio, Constants.TiposEntidadReparadora.TipoEntidadReparadora.EstacionDeServicio));
+                Constants.TiposEntidadReparadora.TipoEntidadReparadora.EstacionDeServicio, Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.EstacionDeServicio));
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(4,
-                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.Lubricentro, Constants.TiposEntidadReparadora.TipoEntidadReparadora.Lubricentro));
+                Constants.TiposEntidadReparadora.TipoEntidadReparadora.Lubricentro, Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.Lubricentro));
             tiposEntidadesReparadoras.Add(datosEntidadBuilder.Build(5,
-                Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.Hogar, Constants.TiposEntidadReparadora.TipoEntidadReparadora.Hogar));
+                Constants.TiposEntidadReparadora.TipoEntidadReparadora.Hogar, Constants.TiposEntidadReparadora.DescripcionTipoEntidadReparadora.Hogar));
         }
     }
 }

@@ -11,6 +11,8 @@ using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento;
+using SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia;
@@ -51,6 +53,10 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<ITipoFuenteEnergiaFixtureGettersProvider, TipoFuenteEnergiaFixtureGettersProvider>();
             services.AddScoped<IFixtureTipoFuenteEnergia, FixtureTipoFuenteEnergia>();
             services.AddScoped<ISeeder<TipoFuenteEnergia, long>, TipoFuenteEnergiaSeeder>();
+
+            services.AddScoped<ITipoDocumentoFixtureGettersProvider, TipoDocumentoFixtureGettersProvider>();
+            services.AddScoped<IFixtureTipoDocumento, FixtureTipoDocumento>();
+            services.AddScoped<ISeeder<TipoDocumento, long>, TipoDocumentoSeeder>();
 
             services.AddScoped<IDataSeeder, DataSeeder>();
         }
