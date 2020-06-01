@@ -84,6 +84,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             builder.Entity<Localidad>().HasData(localidadSeeder.GetSeeds());
             builder.Entity<TipoEntidadReparadora>().HasData(tipoEntidadReparadoraSeeder.GetSeeds());
             builder.Entity<TipoFuenteEnergia>().HasData(tipoFuenteEnergiaSeeder.GetSeeds());
+            builder.Entity<TipoDocumento>().HasData(tipoDocumentoSeeder.GetSeeds());
         }
     }
 }
