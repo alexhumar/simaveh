@@ -1,5 +1,6 @@
 ﻿using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
+using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
@@ -7,10 +8,11 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    class LocalidadNeuquenFixtureGetter : LocalidadFixtureGetter
+    internal class LocalidadNeuquenFixtureGetter : LocalidadFixtureGetter
     {
-        public LocalidadNeuquenFixtureGetter(IPartidoFixtureGetter partidoFixtureGetter)
-            : base(partidoFixtureGetter)
+        public LocalidadNeuquenFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+            IPartidoFixtureGetter partidoFixtureGetter)
+            : base(datosEntidadBuilder, partidoFixtureGetter)
         {
         }
 

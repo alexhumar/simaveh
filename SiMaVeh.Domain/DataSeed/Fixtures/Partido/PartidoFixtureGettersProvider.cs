@@ -27,7 +27,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
             IPaisFixtureGetter paisFixtureGetter)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            provinciaArgentinaFixtureGetter = new ProvinciaArgentinaFixtureGetter(datosEntidadBuilder, paisFixtureGetter);
+            provinciaArgentinaFixtureGetter = new ProvinciaArgentinaFixtureGetter(this.datosEntidadBuilder, paisFixtureGetter);
         }
 
         /// <summary>

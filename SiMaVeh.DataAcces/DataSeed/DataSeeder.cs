@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
@@ -54,11 +55,12 @@ namespace SiMaVeh.DataAccess.DataSeed
         public DataSeeder()
         {
             var datosEntidadBuilder = new DatosEntidadBuilder();
+            var paisFixtureGetter = new PaisFixtureGetter(datosEntidadBuilder);
 
             paisSeeder = new PaisSeeder(new FixturePais(new PaisFixtureGettersProvider(datosEntidadBuilder)));
-            provinciaSeeder = new ProvinciaSeeder(new FixtureProvincia(new ProvinciaFixtureGettersProvider(datosEntidadBuilder, new PaisFixtureGetter(datosEntidadBuilder))));
-            partidoSeeder = new PartidoSeeder(new FixturePartido(new PartidoFixtureGettersProvider(datosEntidadBuilder, new PaisFixtureGetter(datosEntidadBuilder))));
-            localidadSeeder = new LocalidadSeeder();
+            provinciaSeeder = new ProvinciaSeeder(new FixtureProvincia(new ProvinciaFixtureGettersProvider(datosEntidadBuilder, paisFixtureGetter)));
+            partidoSeeder = new PartidoSeeder(new FixturePartido(new PartidoFixtureGettersProvider(datosEntidadBuilder, paisFixtureGetter)));
+            localidadSeeder = new LocalidadSeeder(new FixtureLocalidad(new LocalidadFixtureGettersProvider(datosEntidadBuilder, paisFixtureGetter)));
             tipoEntidadReparadoraSeeder = new TipoEntidadReparadoraSeeder(new FixtureTipoEntidadReparadora(new TipoEntidadReparadoraFixtureGettersProvider(datosEntidadBuilder)));
             tipoFuenteEnergiaSeeder = new TipoFuenteEnergiaSeeder(new FixtureTipoFuenteEnergia(new TipoFuenteEnergiaFixtureGettersProvider(datosEntidadBuilder)));
         }
