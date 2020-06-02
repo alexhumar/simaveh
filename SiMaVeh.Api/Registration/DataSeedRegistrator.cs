@@ -19,6 +19,8 @@ using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza;
+using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.Interfaces;
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.DataSeed.Seeders;
 using SiMaVeh.Domain.Models;
@@ -63,6 +65,10 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<ITipoTelefonoFixtureGettersProvider, TipoTelefonoFixtureGettersProvider>();
             services.AddScoped<IFixtureTipoTelefono, FixtureTipoTelefono>();
             services.AddScoped<ISeeder<TipoTelefono, long>, TipoTelefonoSeeder>();
+
+            services.AddScoped<IUbicacionPiezaFixtureGettersProvider, UbicacionPiezaFixtureGettersProvider>();
+            services.AddScoped<IFixtureUbicacionPieza, FixtureUbicacionPieza>();
+            services.AddScoped<ISeeder<UbicacionPieza, string>, UbicacionPiezaSeeder>();
 
             services.AddScoped<IDataSeeder, DataSeeder>();
         }

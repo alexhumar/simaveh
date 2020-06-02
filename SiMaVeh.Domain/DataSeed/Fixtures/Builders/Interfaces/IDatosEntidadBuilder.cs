@@ -8,12 +8,20 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
     public interface IDatosEntidadBuilder
     {
         /// <summary>
-        /// Build
+        /// Build datos entidad general
         /// </summary>
         /// <param name="id"></param>
         /// <param name="nombre"></param>
         /// <param name="descripcion"></param>
         /// <returns></returns>
         DatosEntidad Build(long id, string nombre, string descripcion = null);
+
+        /// <summary>
+        /// Build datos ubicacion pieza
+        /// </summary>
+        /// <param name="izquierda"></param>
+        /// <param name="superior"></param>
+        /// <returns></returns>
+        DatosUbicacionPieza Build(bool izquierda, bool superior);
     }
 }

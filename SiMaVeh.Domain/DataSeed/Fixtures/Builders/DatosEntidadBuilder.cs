@@ -9,7 +9,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
     public class DatosEntidadBuilder : IDatosEntidadBuilder
     {
         /// <summary>
-        /// Build
+        /// Build datos entidad general
         /// </summary>
         /// <param name="id"></param>
         /// <param name="nombre"></param>
@@ -22,6 +22,21 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
                 Descripcion = descripcion,
                 Id = id,
                 Nombre = nombre
+            };
+        }
+
+        /// <summary>
+        /// Build datos ubicacion pieza
+        /// </summary>
+        /// <param name="izquierda"></param>
+        /// <param name="superior"></param>
+        /// <returns></returns>
+        public DatosUbicacionPieza Build(bool izquierda, bool superior)
+        {
+            return new DatosUbicacionPieza
+            {
+                Izquierda = izquierda,
+                Superior = superior
             };
         }
     }
