@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de tipos de documento
     /// </summary>
-    class TipoDocumento
+    public class TipoDocumento
     {
         /// <summary>
         /// DNI

@@ -3,7 +3,7 @@
     /// <summary>
     /// Constante de nombres de Tipos de Entidades Reparadoras
     /// </summary>
-    class TipoEntidadReparadora
+    public class TipoEntidadReparadora
     {
         /// <summary>
         /// Mecánico particular

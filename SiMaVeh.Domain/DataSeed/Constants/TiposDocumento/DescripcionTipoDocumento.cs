@@ -1,6 +1,9 @@
 ﻿namespace SiMaVeh.Domain.DataSeed.Constants.TiposDocumento
 {
-    class DescripcionTipoDocumento
+    /// <summary>
+    /// Constantes de descripcion de tipos de documento
+    /// </summary>
+    public class DescripcionTipoDocumento
     {
         /// <summary>
         /// DNI
