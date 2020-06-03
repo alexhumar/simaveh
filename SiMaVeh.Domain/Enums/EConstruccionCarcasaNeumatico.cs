@@ -25,23 +25,19 @@
     public static class ConstruccionCarcasaNeumaticoParser
     {
         /// <summary>
-        /// EConstruccionCarcasaNeumaticoParser 
+        /// ToString 
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         public static string ToString(EConstruccionCarcasaNeumatico value)
         {
-            switch (value)
+            return value switch
             {
-                case EConstruccionCarcasaNeumatico.CintasOpuestas:
-                    return "B";
-                case EConstruccionCarcasaNeumatico.Diagonal:
-                    return "D";
-                case EConstruccionCarcasaNeumatico.Radial:
-                    return "R";
-                default:
-                    return "";
-            }
+                EConstruccionCarcasaNeumatico.CintasOpuestas => "B",
+                EConstruccionCarcasaNeumatico.Diagonal => "D",
+                EConstruccionCarcasaNeumatico.Radial => "R",
+                _ => string.Empty,
+            };
         }
     }
 }

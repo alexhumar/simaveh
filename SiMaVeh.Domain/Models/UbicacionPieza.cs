@@ -1,23 +1,39 @@
-﻿using System.Text;
-
-namespace SiMaVeh.Domain.Models
+﻿namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Ubicacion Pieza
     /// </summary>
     public class UbicacionPieza : DomainMember<string>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public UbicacionPieza()
+        {
+            _id = CalcularId();
+        }
+
+        private string _id;
+        /// <summary>
+        /// Id
+        /// </summary>
+        public override string Id
+        {
+            get => _id;
+            set { }
+        }
+
         private bool _izquierda;
         /// <summary>
         /// True -> Izquierda. False -> Derecha.
         /// </summary>
         public virtual bool Izquierda
         {
-            get { return _izquierda; }
+            get => _izquierda;
             set
             {
                 _izquierda = value;
-                Id = CalcularId();
+                _id = CalcularId();
             }
         }
 
@@ -27,11 +43,11 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual bool Superior
         {
-            get { return _superior; }
+            get => _superior;
             set
             {
                 _superior = value;
-                Id = CalcularId();
+                _id = CalcularId();
             }
         }
 
@@ -43,12 +59,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
-
-            sb.Append(Superior ? "(Superior, " : "(Inferior, ");
-            sb.Append(Izquierda ? "Izquierda)" : "Derecha)");
-
-            return sb.ToString();
+            return string.Concat(Superior ? "(Superior, " : "(Inferior, ", Izquierda ? "Izquierda)" : "Derecha)");
         }
 
         /// <summary>
@@ -58,9 +69,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as UbicacionPieza;
-
-            if (item == null)
+            if (!(obj is UbicacionPieza item))
                 return false;
             else
             {
@@ -79,7 +88,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return string.Concat(typeof(UbicacionPieza).FullName, Id.ToString()).GetHashCode();
+            return string.Concat(typeof(UbicacionPieza).FullName, Id).GetHashCode();
         }
 
         #endregion

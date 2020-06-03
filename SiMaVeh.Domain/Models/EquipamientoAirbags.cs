@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using SiMaVeh.Domain.Enums;
+using System.Text;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -7,35 +8,38 @@ namespace SiMaVeh.Domain.Models
     /// </summary>
     public class EquipamientoAirbags : DomainMember<long>
     {
-        /// <summary>
-        /// Airbag en Volante
-        /// </summary>
-        public virtual bool Volante { get; set; }
+        //TODO: cambiar a Id string, similar a UbicacionPieza, y hacer los ajustes pertinentes
+        //respecto a los campos que ahora son de tipo Enum.
 
         /// <summary>
-        /// Airbag en Guantera
+        /// Airbag de Conductor
         /// </summary>
-        public virtual bool Guantera { get; set; }
+        public virtual bool Conductor { get; set; }
+
+        /// <summary>
+        /// Airbag de Acompañante
+        /// </summary>
+        public virtual bool Acompanante { get; set; }
 
         /// <summary>
         /// Delantero Izquierdo
         /// </summary>
-        public virtual bool DelanteroIzquierdo { get; set; }
+        public virtual ETipoAirbagLateral DelanteroIzquierdo { get; set; }
 
         /// <summary>
         /// Delantero Derecho
         /// </summary>
-        public virtual bool DelanteroDerecho { get; set; }
+        public virtual ETipoAirbagLateral DelanteroDerecho { get; set; }
 
         /// <summary>
         /// Trasero Izquierdo
         /// </summary>
-        public virtual bool TraseroIzquierdo { get; set; }
+        public virtual ETipoAirbagLateral TraseroIzquierdo { get; set; }
 
         /// <summary>
         /// Trasero Derecho
         /// </summary>
-        public virtual bool TraseroDerecho { get; set; }
+        public virtual ETipoAirbagLateral TraseroDerecho { get; set; }
 
         #region overrides
 
@@ -48,12 +52,12 @@ namespace SiMaVeh.Domain.Models
             var ubicaciones = "(V,G,DI,DD,TI,TD)";
             var sb = new StringBuilder();
 
-            sb.Append(Volante ? "(S," : "(N,");
-            sb.Append(Guantera ? "S," : "N,");
-            sb.Append(DelanteroIzquierdo ? "S," : "N,");
-            sb.Append(DelanteroDerecho ? "S," : "N,");
-            sb.Append(TraseroIzquierdo ? "S," : "N,");
-            sb.Append(TraseroDerecho ? "S)" : "N)");
+            sb.Append(Conductor ? "(S," : "(N,");
+            sb.Append(Acompanante ? "S," : "N,");
+            sb.Append($"{ TipoAirbagLateralParser.ToString(DelanteroIzquierdo)},");
+            sb.Append($"{ TipoAirbagLateralParser.ToString(DelanteroDerecho)},");
+            sb.Append($"{ TipoAirbagLateralParser.ToString(TraseroIzquierdo)},");
+            sb.Append($"{ TipoAirbagLateralParser.ToString(TraseroDerecho)},");
 
             return string.Concat(ubicaciones, " - ", sb.ToString());
         }
@@ -65,9 +69,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as EquipamientoAirbags;
-
-            if (item == null)
+            if (!(obj is EquipamientoAirbags item))
                 return false;
             else
             {
@@ -75,7 +77,7 @@ namespace SiMaVeh.Domain.Models
                     return true;
                 else
                     return (Id == item.Id) ||
-                        (Volante == item.Volante && Guantera == item.Guantera && DelanteroIzquierdo == item.DelanteroIzquierdo &&
+                        (Conductor == item.Conductor && Acompanante == item.Acompanante && DelanteroIzquierdo == item.DelanteroIzquierdo &&
                         DelanteroDerecho == item.DelanteroDerecho && TraseroIzquierdo == item.TraseroIzquierdo &&
                         TraseroDerecho == item.TraseroDerecho);
             }

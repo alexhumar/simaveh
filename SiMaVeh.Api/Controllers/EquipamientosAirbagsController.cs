@@ -51,19 +51,19 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Obtiene si el equipamiento airbag es de guantera
+        /// Obtiene si el equipamiento airbag es de acompañante
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Si el equipamiento airbag es de guantera</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetGuantera([FromODataUri] long key)
+        public async Task<IActionResult> GetAcompanante([FromODataUri] long key)
         {
             var entity = await _repository.Find(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Guantera);
+                return Ok(entity.Acompanante);
         }
 
         /// <summary>
@@ -99,19 +99,19 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Obtiene si el equipamiento airbag es de volante
+        /// Obtiene si el equipamiento airbag es de conductor
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Si el equipamiento airbag es de volante</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetVolante([FromODataUri] long key)
+        public async Task<IActionResult> GetConductor([FromODataUri] long key)
         {
             var entity = await _repository.Find(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Volante);
+                return Ok(entity.Conductor);
         }
 
         #endregion

@@ -24,30 +24,25 @@
     }
 
     /// <summary>
-    /// ConstruccionCarcasaNeumaticoParser
+    /// TipoVehiculoNeumaticoParser
     /// </summary>
     public static class TipoVehiculoNeumaticoParser
     {
         /// <summary>
-        /// EConstruccionCarcasaNeumaticoParser 
+        /// ToString 
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         public static string ToString(ETipoVehiculoNeumatico value)
         {
-            switch (value)
+            return value switch
             {
-                case ETipoVehiculoNeumatico.Pasajero:
-                    return "P";
-                case ETipoVehiculoNeumatico.CamionLigero:
-                    return "LT";
-                case ETipoVehiculoNeumatico.TrailerEspecial:
-                    return "ST";
-                case ETipoVehiculoNeumatico.UsoTemporal:
-                    return "T";
-                default:
-                    return "";
-            }
+                ETipoVehiculoNeumatico.Pasajero => "P",
+                ETipoVehiculoNeumatico.CamionLigero => "LT",
+                ETipoVehiculoNeumatico.TrailerEspecial => "ST",
+                ETipoVehiculoNeumatico.UsoTemporal => "T",
+                _ => string.Empty,
+            };
         }
     }
 }

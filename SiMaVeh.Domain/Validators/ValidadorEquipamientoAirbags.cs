@@ -17,13 +17,13 @@ namespace SiMaVeh.Domain.Validators
                 .NotNull();
             RuleFor(x => x.DelanteroIzquierdo)
                 .NotNull();
-            RuleFor(x => x.Guantera)
+            RuleFor(x => x.Acompanante)
                 .NotNull();
             RuleFor(x => x.TraseroDerecho)
                 .NotNull();
             RuleFor(x => x.TraseroIzquierdo)
                 .NotNull();
-            RuleFor(x => x.Volante)
+            RuleFor(x => x.Conductor)
                 .NotNull();
         }
     }
