@@ -1,9 +1,9 @@
 ﻿namespace SiMaVeh.Domain.Models
 {
     /// <summary>
-    /// Moneda
+    /// Moneda - su ID almacena el código ISO alfabético de la moneda
     /// </summary>
-    public class Moneda : DomainMember<long>
+    public class Moneda : DomainMember<string>
     {
         /// <summary>
         /// Nombre
@@ -28,10 +28,10 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Moneda;
-
-            if (item == null)
+            if (!(obj is Moneda item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))

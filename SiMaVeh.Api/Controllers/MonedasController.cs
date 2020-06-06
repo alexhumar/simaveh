@@ -9,7 +9,7 @@ namespace SiMaVeh.Controllers
     /// <summary>
     /// Monedas Controller
     /// </summary>
-    public class MonedasController : GenericController<Moneda, long>
+    public class MonedasController : GenericController<Moneda, string>
     {
         /// <summary>
         /// Constructor
@@ -24,7 +24,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Nombre de la moneda</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetNombre([FromODataUri] long key)
+        public async Task<IActionResult> GetNombre([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 

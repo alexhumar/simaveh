@@ -166,7 +166,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
 
             //Monedas
-            builder.EntitySet<Moneda>(EntityTypeGetter<Moneda, long>.GetCollectionNameAsString());
+            builder.EntitySet<Moneda>(EntityTypeGetter<Moneda, string>.GetCollectionNameAsString());
             builder.EntityType<Moneda>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()

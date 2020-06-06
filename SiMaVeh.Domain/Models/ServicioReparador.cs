@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.Models
         ICollectionManager<Mantenimiento, long, ServicioReparador, long>,
         IEntityChanger<EntidadReparadora, long, ServicioReparador, long>,
         IEntityChanger<Vehiculo, long, ServicioReparador, long>,
-        IEntityChanger<Moneda, long, ServicioReparador, long>
+        IEntityChanger<Moneda, string, ServicioReparador, long>
     {
         /// <summary>
         /// Constructor

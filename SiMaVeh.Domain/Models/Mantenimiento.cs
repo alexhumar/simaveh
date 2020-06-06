@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.Models
     /// </summary>
     public class Mantenimiento : DomainMember<long>,
         IEntityChanger<Recambio, long, Mantenimiento, long>,
-        IEntityChanger<Moneda, long, Mantenimiento, long>,
+        IEntityChanger<Moneda, string, Mantenimiento, long>,
         IEntityChanger<ServicioReparador, long, Mantenimiento, long>,
         IEntityChanger<Reparador, long, Mantenimiento, long>
     {

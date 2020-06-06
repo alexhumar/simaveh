@@ -108,7 +108,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, long>(link);
+                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
                 if (moneda == null)
                     return NotFound();
 
@@ -119,7 +119,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, long>(link);
+                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
                 if (moneda == null)
                     return NotFound();
 
