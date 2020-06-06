@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags
         {
             return new List<IFixtureGetter<DatosEquipamientoAirbags>>
             {
-                new EquipamientoAirbagsPiezaFixtureGetter(datosEntidadBuilder)
+                new EquipamientoAirbagsFixtureGetter(datosEntidadBuilder)
             };
         }
     }

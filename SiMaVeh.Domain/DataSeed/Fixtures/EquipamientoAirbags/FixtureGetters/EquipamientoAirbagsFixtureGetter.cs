@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags.FixtureGetters
     /// <summary>
     /// Fixture getter de equipamiento airbags
     /// </summary>
-    internal class EquipamientoAirbagsPiezaFixtureGetter : IEquipamientoAirbagsFixtureGetter
+    internal class EquipamientoAirbagsFixtureGetter : IEquipamientoAirbagsFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEquipamientoAirbags> equipamientosAirbags;
@@ -20,7 +20,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags.FixtureGetters
         /// Constructor
         /// </summary>
         /// <param name="datosEntidadBuilder"></param>
-        public EquipamientoAirbagsPiezaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
+        public EquipamientoAirbagsFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
             equipamientosAirbags = new List<DatosEquipamientoAirbags>();
