@@ -1,5 +1,6 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
+using SiMaVeh.Domain.Enums;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
 {
@@ -37,6 +38,30 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
             {
                 Izquierda = izquierda,
                 Superior = superior
+            };
+        }
+
+        /// <summary>
+        /// Build datos equipamiento airbags
+        /// </summary>
+        /// <param name="conductor"></param>
+        /// <param name="acompanante"></param>
+        /// <param name="delanteroIzquierdo"></param>
+        /// <param name="delanteroDerecho"></param>
+        /// <param name="traseroIzquierdo"></param>
+        /// <param name="traseroDerecho"></param>
+        /// <returns></returns>
+        public DatosEquipamientoAirbags Build(bool conductor, bool acompanante, TipoAirbagLateral delanteroIzquierdo,
+            TipoAirbagLateral delanteroDerecho, TipoAirbagLateral traseroIzquierdo, TipoAirbagLateral traseroDerecho)
+        {
+            return new DatosEquipamientoAirbags
+            {
+                Acompanante = acompanante,
+                Conductor = conductor,
+                DelanteroDerecho = delanteroDerecho,
+                DelanteroIzquierdo = delanteroIzquierdo,
+                TraseroDerecho = traseroDerecho,
+                TraseroIzquierdo = traseroIzquierdo
             };
         }
     }

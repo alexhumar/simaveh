@@ -6,10 +6,16 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Equipamiento Airbags
     /// </summary>
-    public class EquipamientoAirbags : DomainMember<long>
+    public class EquipamientoAirbags : DomainMember<string>
     {
-        //TODO: cambiar a Id string, similar a UbicacionPieza, y hacer los ajustes pertinentes
-        //respecto a los campos que ahora son de tipo Enum.
+        /// <summary>
+        /// Id
+        /// </summary>
+        public override string Id
+        {
+            get => CalcularId();
+            set { }
+        }
 
         /// <summary>
         /// Airbag de Conductor
@@ -24,22 +30,22 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Delantero Izquierdo
         /// </summary>
-        public virtual ETipoAirbagLateral DelanteroIzquierdo { get; set; }
+        public virtual TipoAirbagLateral DelanteroIzquierdo { get; set; }
 
         /// <summary>
         /// Delantero Derecho
         /// </summary>
-        public virtual ETipoAirbagLateral DelanteroDerecho { get; set; }
+        public virtual TipoAirbagLateral DelanteroDerecho { get; set; }
 
         /// <summary>
         /// Trasero Izquierdo
         /// </summary>
-        public virtual ETipoAirbagLateral TraseroIzquierdo { get; set; }
+        public virtual TipoAirbagLateral TraseroIzquierdo { get; set; }
 
         /// <summary>
         /// Trasero Derecho
         /// </summary>
-        public virtual ETipoAirbagLateral TraseroDerecho { get; set; }
+        public virtual TipoAirbagLateral TraseroDerecho { get; set; }
 
         #region overrides
 
@@ -90,6 +96,16 @@ namespace SiMaVeh.Domain.Models
         public override int GetHashCode()
         {
             return string.Concat(typeof(EquipamientoAirbags).FullName, Id.ToString()).GetHashCode();
+        }
+
+        #endregion
+
+        #region private
+
+        private string CalcularId()
+        {
+            return string.Concat(Conductor ? "C" : "NC", Acompanante ? "A" : "NA", TipoAirbagLateralParser.ToString(DelanteroIzquierdo),
+                TipoAirbagLateralParser.ToString(DelanteroDerecho), TipoAirbagLateralParser.ToString(TraseroIzquierdo), TipoAirbagLateralParser.ToString(TraseroDerecho));
         }
 
         #endregion

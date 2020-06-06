@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
@@ -30,6 +31,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         private readonly ISeeder<TipoDocumento, long> tipoDocumentoSeeder;
         private readonly ISeeder<TipoTelefono, long> tipoTelefonoSeeder;
         private readonly ISeeder<UbicacionPieza, string> ubicacionPiezaSeeder;
+        private readonly ISeeder<EquipamientoAirbags, string> equipamientoAirbagsSeeder;
 
         /// <summary>
         /// Constructor
@@ -43,6 +45,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         /// <param name="tipoDocumentoSeeder"></param>
         /// <param name="tipoTelefonoSeeder"></param>
         /// <param name="ubicacionPiezaSeeder"></param>
+        /// <param name="equipamientoAirbagsSeeder"></param>
         public DataSeeder(ISeeder<Pais, long> paisSeeder,
             ISeeder<Provincia, long> provinciaSeeder,
             ISeeder<Partido, long> partidoSeeder,
@@ -51,7 +54,8 @@ namespace SiMaVeh.DataAccess.DataSeed
             ISeeder<TipoFuenteEnergia, long> tipoFuenteEnergiaSeeder,
             ISeeder<TipoDocumento, long> tipoDocumentoSeeder,
             ISeeder<TipoTelefono, long> tipoTelefonoSeeder,
-            ISeeder<UbicacionPieza, string> ubicacionPiezaSeeder)
+            ISeeder<UbicacionPieza, string> ubicacionPiezaSeeder,
+            ISeeder<EquipamientoAirbags, string> equipamientoAirbagsSeeder)
         {
             this.paisSeeder = paisSeeder;
             this.provinciaSeeder = provinciaSeeder;
@@ -62,6 +66,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             this.tipoDocumentoSeeder = tipoDocumentoSeeder;
             this.tipoTelefonoSeeder = tipoTelefonoSeeder;
             this.ubicacionPiezaSeeder = ubicacionPiezaSeeder;
+            this.equipamientoAirbagsSeeder = equipamientoAirbagsSeeder;
         }
 
         /// <summary>
@@ -81,6 +86,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             tipoDocumentoSeeder = new TipoDocumentoSeeder(new FixtureTipoDocumento(new TipoDocumentoFixtureGettersProvider(datosEntidadBuilder)));
             tipoTelefonoSeeder = new TipoTelefonoSeeder(new FixtureTipoTelefono(new TipoTelefonoFixtureGettersProvider(datosEntidadBuilder)));
             ubicacionPiezaSeeder = new UbicacionPiezaSeeder(new FixtureUbicacionPieza(new UbicacionPiezaFixtureGettersProvider(datosEntidadBuilder)));
+            equipamientoAirbagsSeeder = new EquipamientoAirbagsSeeder(new FixtureEquipamientoAirbags(new EquipamientoAirbagsFixtureGettersProvider(datosEntidadBuilder)));
         }
 
         /// <summary>
@@ -99,6 +105,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             builder.Entity<TipoDocumento>().HasData(tipoDocumentoSeeder.GetSeeds());
             builder.Entity<TipoTelefono>().HasData(tipoTelefonoSeeder.GetSeeds());
             builder.Entity<UbicacionPieza>().HasData(ubicacionPiezaSeeder.GetSeeds());
+            builder.Entity<EquipamientoAirbags>().HasData(equipamientoAirbagsSeeder.GetSeeds());
         }
     }
 }

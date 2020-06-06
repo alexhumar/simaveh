@@ -10,7 +10,7 @@ namespace SiMaVeh.DataAccess.Model
 {
     public class MyModelBuilder
     {
-        public static IEdmModel getEdmModel()
+        public static IEdmModel GetEdmModel()
         {
             var builder = new ODataConventionModelBuilder();
 
@@ -79,7 +79,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
 
             //Equipamientos Airbags
-            builder.EntitySet<EquipamientoAirbags>(EntityTypeGetter<EquipamientoAirbags, long>.GetCollectionNameAsString());
+            builder.EntitySet<EquipamientoAirbags>(EntityTypeGetter<EquipamientoAirbags, string>.GetCollectionNameAsString());
             builder.EntityType<EquipamientoAirbags>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()

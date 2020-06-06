@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.DataSeed.Models;
+using SiMaVeh.Domain.Enums;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
 {
@@ -23,5 +24,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
         /// <param name="superior"></param>
         /// <returns></returns>
         DatosUbicacionPieza Build(bool izquierda, bool superior);
+
+        /// <summary>
+        /// Build datos equipamiento airbags
+        /// </summary>
+        /// <param name="conductor"></param>
+        /// <param name="acompanante"></param>
+        /// <param name="delanteroIzquierdo"></param>
+        /// <param name="delanteroDerecho"></param>
+        /// <param name="traseroIzquierdo"></param>
+        /// <param name="traseroDerecho"></param>
+        /// <returns></returns>
+        DatosEquipamientoAirbags Build(bool conductor, bool acompanante, TipoAirbagLateral delanteroIzquierdo,
+            TipoAirbagLateral delanteroDerecho, TipoAirbagLateral traseroIzquierdo, TipoAirbagLateral traseroDerecho);
     }
 }

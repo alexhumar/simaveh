@@ -9,7 +9,7 @@ namespace SiMaVeh.Domain.Models
     public class ModeloVehiculo : DomainMember<long>,
         IEntityChanger<GrupoModelo, long, ModeloVehiculo, long>,
         IEntityChanger<Aceite, long, ModeloVehiculo, long>,
-        IEntityChanger<EquipamientoAirbags, long, ModeloVehiculo, long>,
+        IEntityChanger<EquipamientoAirbags, string, ModeloVehiculo, long>,
         IEntityChanger<TipoFuenteEnergia, long, ModeloVehiculo, long>,
         IEntityChanger<FuenteEnergia, long, ModeloVehiculo, long>,
         ICollectionManager<Repuesto, long, ModeloVehiculo, long>,

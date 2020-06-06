@@ -2,6 +2,8 @@
 using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
+using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
@@ -69,6 +71,10 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IUbicacionPiezaFixtureGettersProvider, UbicacionPiezaFixtureGettersProvider>();
             services.AddScoped<IFixtureUbicacionPieza, FixtureUbicacionPieza>();
             services.AddScoped<ISeeder<UbicacionPieza, string>, UbicacionPiezaSeeder>();
+
+            services.AddScoped<IEquipamientoAirbagsFixtureGettersProvider, EquipamientoAirbagsFixtureGettersProvider>();
+            services.AddScoped<IFixtureEquipamientoAirbags, FixtureEquipamientoAirbags>();
+            services.AddScoped<ISeeder<EquipamientoAirbags, string>, EquipamientoAirbagsSeeder>();
 
             services.AddScoped<IDataSeeder, DataSeeder>();
         }

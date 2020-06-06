@@ -212,7 +212,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var airbags = await _entityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, long>(link);
+                var airbags = await _entityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, string>(link);
                 if (airbags == null)
                     return NotFound();
 

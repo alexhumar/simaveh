@@ -22,12 +22,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo
         /// </summary>
-        public virtual ETipoVehiculoNeumatico Tipo { get; set; }
+        public virtual TipoVehiculoNeumatico Tipo { get; set; }
 
         /// <summary>
         /// Construccion Carcasa
         /// </summary>
-        public virtual EConstruccionCarcasaNeumatico ConstruccionCarcasa { get; set; }
+        public virtual ConstruccionCarcasaNeumatico ConstruccionCarcasa { get; set; }
 
         /// <summary>
         /// Relación de aspecto entre la altura del perfil y la anchura del neumático como porcentaje

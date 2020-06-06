@@ -1,9 +1,9 @@
 ﻿namespace SiMaVeh.Domain.Enums
 {
     /// <summary>
-    /// ETipoAirbagLateral
+    /// TipoAirbagLateral
     /// </summary>
-    public enum ETipoAirbagLateral
+    public enum TipoAirbagLateral
     {
         /// <summary>
         /// No posee
@@ -33,14 +33,14 @@
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToString(ETipoAirbagLateral value)
+        public static string ToString(TipoAirbagLateral value)
         {
             return value switch
             {
-                ETipoAirbagLateral.Ambos => "A",
-                ETipoAirbagLateral.Cortina => "C",
-                ETipoAirbagLateral.Lateral => "L",
-                ETipoAirbagLateral.NoPosee => "N",
+                TipoAirbagLateral.Ambos => "A",
+                TipoAirbagLateral.Cortina => "C",
+                TipoAirbagLateral.Lateral => "L",
+                TipoAirbagLateral.NoPosee => "N",
                 _ => string.Empty,
             };
         }

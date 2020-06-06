@@ -15,7 +15,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Accion
         /// </summary>
-        public virtual EAccionMantenimiento Accion { get; set; }
+        public virtual AccionMantenimiento Accion { get; set; }
 
         /// <summary>
         /// Recambio

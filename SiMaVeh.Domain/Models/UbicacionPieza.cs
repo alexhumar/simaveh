@@ -6,50 +6,23 @@
     public class UbicacionPieza : DomainMember<string>
     {
         /// <summary>
-        /// Constructor
-        /// </summary>
-        public UbicacionPieza()
-        {
-            _id = CalcularId();
-        }
-
-        private string _id;
-        /// <summary>
         /// Id
         /// </summary>
         public override string Id
         {
-            get => _id;
+            get => CalcularId();
             set { }
         }
 
-        private bool _izquierda;
         /// <summary>
         /// True -> Izquierda. False -> Derecha.
         /// </summary>
-        public virtual bool Izquierda
-        {
-            get => _izquierda;
-            set
-            {
-                _izquierda = value;
-                _id = CalcularId();
-            }
-        }
+        public virtual bool Izquierda { get; set; }
 
-        private bool _superior;
         /// <summary>
         /// True -> Superior. False -> Inferior.
         /// </summary>
-        public virtual bool Superior
-        {
-            get => _superior;
-            set
-            {
-                _superior = value;
-                _id = CalcularId();
-            }
-        }
+        public virtual bool Superior { get; set; }
 
         #region overrides
 
@@ -97,7 +70,7 @@
 
         private string CalcularId()
         {
-            return (Izquierda ? "I" : "D") + (Superior ? "S" : "I");
+            return string.Concat(Izquierda ? "I" : "D", Superior ? "S" : "I");
         }
 
         #endregion
