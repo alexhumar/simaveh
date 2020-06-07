@@ -27,6 +27,21 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
         }
 
         /// <summary>
+        /// Build datos moneda
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public DatosMoneda Build(string id, string nombre)
+        {
+            return new DatosMoneda
+            {
+                Id = id,
+                Nombre = nombre
+            };
+        }
+
+        /// <summary>
         /// Build datos ubicacion pieza
         /// </summary>
         /// <param name="izquierda"></param>

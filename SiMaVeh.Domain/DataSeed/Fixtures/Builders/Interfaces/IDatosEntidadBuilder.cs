@@ -18,6 +18,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
         DatosEntidad Build(long id, string nombre, string descripcion = null);
 
         /// <summary>
+        /// Build datos moneda
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        DatosMoneda Build(string id, string nombre);
+
+        /// <summary>
         /// Build datos ubicacion pieza
         /// </summary>
         /// <param name="izquierda"></param>

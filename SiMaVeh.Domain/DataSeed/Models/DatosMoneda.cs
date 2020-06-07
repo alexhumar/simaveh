@@ -1,9 +1,9 @@
 ﻿namespace SiMaVeh.Domain.DataSeed.Models
 {
     /// <summary>
-    /// Datos generales de entidades
+    /// Datos de moneda
     /// </summary>
-    public class DatosEntidad : DatosEntidadBase<long>
+    public class DatosMoneda : DatosEntidadBase<string>
     {
     }
 }
