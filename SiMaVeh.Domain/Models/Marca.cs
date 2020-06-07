@@ -1,4 +1,6 @@
-﻿namespace SiMaVeh.Domain.Models
+﻿using SiMaVeh.Domain.Enums;
+
+namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Marca
@@ -14,6 +16,11 @@
         /// Descripcion
         /// </summary>
         public virtual string Descripcion { get; set; }
+
+        /// <summary>
+        /// Categoría
+        /// </summary>
+        public virtual CategoriaMarca Categoria { get; set; }
 
         #region overrides
 
@@ -33,9 +40,7 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Marca;
-
-            if (item == null)
+            if (!(obj is Marca item))
                 return false;
             else
             {
@@ -43,7 +48,7 @@
                     return true;
                 else
                 {
-                    return (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper());
+                    return (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper() && Categoria == item.Categoria);
                 }
             }
         }
