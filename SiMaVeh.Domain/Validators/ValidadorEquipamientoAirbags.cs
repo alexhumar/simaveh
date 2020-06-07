@@ -14,15 +14,19 @@ namespace SiMaVeh.Domain.Validators
         public ValidadorEquipamientoAirbags()
         {
             RuleFor(x => x.DelanteroDerecho)
-                .NotNull();
+                .NotNull()
+                .IsInEnum();
             RuleFor(x => x.DelanteroIzquierdo)
-                .NotNull();
+                .NotNull()
+                .IsInEnum();
             RuleFor(x => x.Acompanante)
                 .NotNull();
             RuleFor(x => x.TraseroDerecho)
-                .NotNull();
+                .NotNull()
+                .IsInEnum();
             RuleFor(x => x.TraseroIzquierdo)
-                .NotNull();
+                .NotNull()
+                .IsInEnum();
             RuleFor(x => x.Conductor)
                 .NotNull();
         }

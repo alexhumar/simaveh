@@ -33,16 +33,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais
             return paises;
         }
 
-        /// <summary>
-        /// Find by Nombre
-        /// </summary>
-        /// <param name="nombre"></param>
-        /// <returns></returns>
-        public DatosEntidad FindByNombre(string nombre)
-        {
-            return paises.FirstOrDefault(p => p.Nombre == nombre);
-        }
-
         private void Initialize()
         {
             paises = paisFixtureGettersProvider

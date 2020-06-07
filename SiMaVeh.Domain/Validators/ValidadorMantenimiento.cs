@@ -15,6 +15,9 @@ namespace SiMaVeh.Domain.Validators
         {
             // RuleFor(x => x.MonedaMontoRecambio)
             //     .NotNull();
+            RuleFor(x => x.Accion)
+                .NotNull()
+                .IsInEnum();
             RuleFor(x => x.MontoRecambio)
                 .GreaterThanOrEqualTo(0);
             // RuleFor(x => x.Recambio)

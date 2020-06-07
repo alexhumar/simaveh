@@ -26,6 +26,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
         DatosMoneda Build(string id, string nombre);
 
         /// <summary>
+        /// Build datos marca
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <param name="categoria"></param>
+        /// <param name="descripcion"></param>
+        /// <returns></returns>
+        DatosMarca Build(long id, string nombre, CategoriaMarca categoria);
+
+        /// <summary>
         /// Build datos ubicacion pieza
         /// </summary>
         /// <param name="izquierda"></param>

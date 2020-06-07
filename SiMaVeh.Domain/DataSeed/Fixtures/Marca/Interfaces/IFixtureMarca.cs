@@ -1,17 +1,17 @@
 ﻿using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces
+namespace SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces
 {
     /// <summary>
-    /// Interfaz de FixturePais
+    /// Fixture de marca
     /// </summary>
-    public interface IFixturePais
+    public interface IFixtureMarca
     {
         /// <summary>
-        /// Get Paises
+        /// Retorna las marcas default
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DatosEntidad> GetPaises();
+        IEnumerable<DatosMarca> GetMarcas();
     }
 }

@@ -27,16 +27,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.FixtureGetters
         }
 
         /// <summary>
-        /// FindByNombre
-        /// </summary>
-        /// <param name="nombre"></param>
-        /// <returns></returns>
-        public DatosEntidad FindByNombre(string nombre)
-        {
-            return tiposTelefono.FirstOrDefault(t => t.Nombre == nombre);
-        }
-
-        /// <summary>
         /// Get
         /// </summary>
         /// <returns></returns>

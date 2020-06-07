@@ -27,16 +27,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters
         }
 
         /// <summary>
-        /// FindByNombre
-        /// </summary>
-        /// <param name="nombre"></param>
-        /// <returns></returns>
-        public DatosEntidad FindByNombre(string nombre)
-        {
-            return tiposFuentesEnergia.FirstOrDefault(t => t.Nombre == nombre);
-        }
-
-        /// <summary>
         /// Get
         /// </summary>
         /// <returns></returns>

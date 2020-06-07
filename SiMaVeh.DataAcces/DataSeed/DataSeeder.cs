@@ -2,6 +2,7 @@
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
 using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
+using SiMaVeh.Domain.DataSeed.Fixtures.Marca;
 using SiMaVeh.Domain.DataSeed.Fixtures.Moneda;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
@@ -34,6 +35,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         private readonly ISeeder<UbicacionPieza, string> ubicacionPiezaSeeder;
         private readonly ISeeder<EquipamientoAirbags, string> equipamientoAirbagsSeeder;
         private readonly ISeeder<Moneda, string> monedaSeeder;
+        private readonly ISeeder<Marca, long> marcaSeeder;
 
         /// <summary>
         /// Constructor
@@ -49,6 +51,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         /// <param name="ubicacionPiezaSeeder"></param>
         /// <param name="equipamientoAirbagsSeeder"></param>
         /// <param name="monedaSeeder"></param>
+        /// <param name="marcaSeeder"></param>
         public DataSeeder(ISeeder<Pais, long> paisSeeder,
             ISeeder<Provincia, long> provinciaSeeder,
             ISeeder<Partido, long> partidoSeeder,
@@ -59,7 +62,8 @@ namespace SiMaVeh.DataAccess.DataSeed
             ISeeder<TipoTelefono, long> tipoTelefonoSeeder,
             ISeeder<UbicacionPieza, string> ubicacionPiezaSeeder,
             ISeeder<EquipamientoAirbags, string> equipamientoAirbagsSeeder,
-            ISeeder<Moneda, string> monedaSeeder)
+            ISeeder<Moneda, string> monedaSeeder,
+            ISeeder<Marca, long> marcaSeeder)
         {
             this.paisSeeder = paisSeeder;
             this.provinciaSeeder = provinciaSeeder;
@@ -72,6 +76,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             this.ubicacionPiezaSeeder = ubicacionPiezaSeeder;
             this.equipamientoAirbagsSeeder = equipamientoAirbagsSeeder;
             this.monedaSeeder = monedaSeeder;
+            this.marcaSeeder = marcaSeeder;
         }
 
         /// <summary>
@@ -93,6 +98,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             ubicacionPiezaSeeder = new UbicacionPiezaSeeder(new FixtureUbicacionPieza(new UbicacionPiezaFixtureGettersProvider(datosEntidadBuilder)));
             equipamientoAirbagsSeeder = new EquipamientoAirbagsSeeder(new FixtureEquipamientoAirbags(new EquipamientoAirbagsFixtureGettersProvider(datosEntidadBuilder)));
             monedaSeeder = new MonedaSeeder(new FixtureMoneda(new MonedaFixtureGettersProvider(datosEntidadBuilder)));
+            marcaSeeder = new MarcaSeeder(new FixtureMarca(new MarcaFixtureGettersProvider(datosEntidadBuilder)));
         }
 
         /// <summary>
@@ -113,6 +119,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             builder.Entity<UbicacionPieza>().HasData(ubicacionPiezaSeeder.GetSeeds());
             builder.Entity<EquipamientoAirbags>().HasData(equipamientoAirbagsSeeder.GetSeeds());
             builder.Entity<Moneda>().HasData(monedaSeeder.GetSeeds());
+            builder.Entity<Marca>().HasData(marcaSeeder.GetSeeds());
         }
     }
 }

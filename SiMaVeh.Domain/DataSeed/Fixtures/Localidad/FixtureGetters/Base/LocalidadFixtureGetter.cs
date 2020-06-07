@@ -25,13 +25,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base
             Initialize();
         }
 
-        public DatosEntidad FindByNombre(string nombre)
-        {
-            return localidades
-                .SelectMany(p => p.Value)
-                .FirstOrDefault(p => p.Nombre == nombre);
-        }
-
         public IDictionary<long, List<DatosEntidad>> Get()
         {
             return localidades;

@@ -5,6 +5,5 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces
 {
     internal interface ILocalidadFixtureGetter : IFixtureDetailGetter<long, DatosEntidad>
     {
-        DatosEntidad FindByNombre(string nombre);
     }
 }

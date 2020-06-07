@@ -19,19 +19,19 @@ namespace SiMaVeh.Controllers
         #region properties
 
         /// <summary>
-        /// Obtiene la descripcion de la marca
+        /// Obtiene la categoria de la marca
         /// </summary>
         /// <param name="key"></param>
-        /// <returns>Descripcion de la marca</returns>
+        /// <returns>Categoria de la marca</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetDescripcion([FromODataUri] long key)
+        public async Task<IActionResult> GetCategoria([FromODataUri] long key)
         {
             var entity = await _repository.Find(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Descripcion);
+                return Ok(entity.Categoria);
         }
 
         /// <summary>

@@ -6,6 +6,8 @@ using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
 using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Marca;
+using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Moneda;
 using SiMaVeh.Domain.DataSeed.Fixtures.Moneda.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
@@ -81,6 +83,10 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IMonedaFixtureGettersProvider, MonedaFixtureGettersProvider>();
             services.AddScoped<IFixtureMoneda, FixtureMoneda>();
             services.AddScoped<ISeeder<Moneda, string>, MonedaSeeder>();
+
+            services.AddScoped<IMarcaFixtureGettersProvider, MarcaFixtureGettersProvider>();
+            services.AddScoped<IFixtureMarca, FixtureMarca>();
+            services.AddScoped<ISeeder<Marca, long>, MarcaSeeder>();
 
             services.AddScoped<IDataSeeder, DataSeeder>();
         }

@@ -5,6 +5,5 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.Interfaces
 {
     internal interface ITipoFuenteEnergiaFixtureGetter : IFixtureGetter<DatosEntidad>
     {
-        DatosEntidad FindByNombre(string nombre);
     }
 }

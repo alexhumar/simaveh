@@ -17,6 +17,7 @@ namespace SiMaVeh.Domain.Validators
             RuleFor(x => x.AnchuraSeccionalNominal)
                 .GreaterThan(0);
             RuleFor(x => x.ConstruccionCarcasa)
+                .NotNull()
                 .IsInEnum();
             RuleFor(x => x.DiametroLLanta)
                 .GreaterThan(0);
@@ -30,8 +31,9 @@ namespace SiMaVeh.Domain.Validators
             RuleFor(x => x.Modelo)
                 .NotNull()
                 .NotEqual(string.Empty);
-            // RuleFor(x => x.Tipo)
-            //     .NotNull();
+            RuleFor(x => x.Tipo)
+                .NotNull()
+                .IsInEnum();
         }
     }
 }

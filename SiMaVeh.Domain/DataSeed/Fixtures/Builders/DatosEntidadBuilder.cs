@@ -42,6 +42,24 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
         }
 
         /// <summary>
+        /// Build datos marca
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <param name="categoria"></param>
+        /// <param name="descripcion"></param>
+        /// <returns></returns>
+        public DatosMarca Build(long id, string nombre, CategoriaMarca categoria)
+        {
+            return new DatosMarca
+            {
+                Categoria = categoria,
+                Id = id,
+                Nombre = nombre
+            };
+        }
+
+        /// <summary>
         /// Build datos ubicacion pieza
         /// </summary>
         /// <param name="izquierda"></param>

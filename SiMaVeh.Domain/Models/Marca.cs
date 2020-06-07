@@ -13,11 +13,6 @@ namespace SiMaVeh.Domain.Models
         public virtual string Nombre { get; set; }
 
         /// <summary>
-        /// Descripcion
-        /// </summary>
-        public virtual string Descripcion { get; set; }
-
-        /// <summary>
         /// Categoría
         /// </summary>
         public virtual CategoriaMarca Categoria { get; set; }
