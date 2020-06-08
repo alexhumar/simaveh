@@ -31,7 +31,6 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
         /// <param name="id"></param>
         /// <param name="nombre"></param>
         /// <param name="categoria"></param>
-        /// <param name="descripcion"></param>
         /// <returns></returns>
         DatosMarca Build(long id, string nombre, CategoriaMarca categoria);
 
