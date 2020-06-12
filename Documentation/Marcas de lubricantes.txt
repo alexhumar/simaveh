@@ -5,9 +5,19 @@ Contact
 elf
 Feu Vert
 Ford
-Mobil 1
+Mobil
 Pennzoil
 REPSOL
 Shell
 TOTAL
 YPF
+LIQUI MOLY
+MOTUL
+RAVENOL
+Valvoline
+K2
+COMMA
+DYNAMAX
+VATOIL
+VAG
+CHAMPOIL
