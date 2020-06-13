@@ -5,12 +5,12 @@ Alliance
 Aplus
 Apollo
 Aptany
+Atlas
 Aurora
 Avon
 Backlion
 Barum
 BF Goodrich
-BFgoodrich
 BKT
 Bridgestone
 Ceat
@@ -49,6 +49,7 @@ Jinyu
 Kapsen
 Kelly
 Kenda
+Kingstar
 Kleber
 Kormoran
 Kumho
@@ -75,6 +76,7 @@ Pace
 Pirelli
 Powertrac
 Primewell
+Radar
 Rapid
 Riken
 Roadstone
@@ -87,6 +89,7 @@ Silverstone
 Sportiva
 Starfire
 Starmaxx
+Sunfull
 Sunny
 Taurus
 Tigar
@@ -95,6 +98,7 @@ Torque
 Toyo
 Tracmax
 Triangle
+UNIROYAL
 Viking
 Vredestein
 Wanli
