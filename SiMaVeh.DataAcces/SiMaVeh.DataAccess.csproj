@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200510235334_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200510235334_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20200510235525_PruebaSeeds.cs" />
     <Compile Remove="Migrations\20200510235525_PruebaSeeds.Designer.cs" />
     <Compile Remove="Migrations\20200511000145_PruebaSeeds.cs" />

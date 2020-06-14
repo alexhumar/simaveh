@@ -9,7 +9,7 @@ using SiMaVeh.DataAccess.Model;
 namespace SiMaVeh.DataAccess.Migrations
 {
     [DbContext(typeof(SiMaVehContext))]
-    [Migration("20200510235334_InitialCreate")]
+    [Migration("20200614191909_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,6 +18,20 @@ namespace SiMaVeh.DataAccess.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.CategoriaMarca", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CategoriasMarca");
+                });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Direccion", b =>
                 {
@@ -67,27 +81,26 @@ namespace SiMaVeh.DataAccess.Migrations
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.EquipamientoAirbags", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("DelanteroDerecho")
+                    b.Property<bool>("Acompanante")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("DelanteroIzquierdo")
+                    b.Property<bool>("Conductor")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("Guantera")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("DelanteroDerecho")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("TraseroDerecho")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("DelanteroIzquierdo")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("TraseroIzquierdo")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("TraseroDerecho")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("Volante")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("TraseroIzquierdo")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -168,8 +181,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<int>("Accion")
                         .HasColumnType("int");
 
-                    b.Property<long?>("MonedaMontoRecambioId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("MonedaMontoRecambioId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("MontoRecambio")
                         .HasColumnType("decimal(65,30)");
@@ -202,9 +215,6 @@ namespace SiMaVeh.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Nombre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -222,8 +232,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<long?>("AceiteRecomendadoId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("AirbagsId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("AirbagsId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<long?>("FuenteEnergiaRecomendadaId")
                         .HasColumnType("bigint");
@@ -254,9 +264,8 @@ namespace SiMaVeh.DataAccess.Migrations
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Moneda", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -492,6 +501,21 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.ToTable("KitRecambio");
                 });
 
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.MarcaCategoriaMarca", b =>
+                {
+                    b.Property<long>("CategoriaMarcaId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("MarcaId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("CategoriaMarcaId", "MarcaId");
+
+                    b.HasIndex("MarcaId");
+
+                    b.ToTable("MarcaCategoriaMarca");
+                });
+
             modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ReparadorEntidadReparadora", b =>
                 {
                     b.Property<long>("ReparadorId")
@@ -525,8 +549,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<decimal>("KilometrajeVehiculo")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<long?>("MonedaMontoManoObraId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("MonedaMontoManoObraId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("MontoManoObra")
                         .HasColumnType("decimal(65,30)");
@@ -604,11 +628,11 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<long?>("MonedaDestinoId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("MonedaDestinoId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<long?>("MonedaOrigenId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("MonedaOrigenId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -984,6 +1008,21 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Recambio", "Recambio")
                         .WithMany("KitRecambio")
                         .HasForeignKey("RecambioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.MarcaCategoriaMarca", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.CategoriaMarca", "CategoriaMarca")
+                        .WithMany("MarcaCategoriaMarca")
+                        .HasForeignKey("CategoriaMarcaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SiMaVeh.Domain.Models.Marca", "Marca")
+                        .WithMany("MarcaCategoriaMarca")
+                        .HasForeignKey("MarcaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

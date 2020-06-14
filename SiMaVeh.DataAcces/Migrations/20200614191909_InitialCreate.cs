@@ -9,17 +9,29 @@ namespace SiMaVeh.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "EquipamientosAirbags",
+                name: "CategoriasMarca",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Volante = table.Column<bool>(nullable: false),
-                    Guantera = table.Column<bool>(nullable: false),
-                    DelanteroIzquierdo = table.Column<bool>(nullable: false),
-                    DelanteroDerecho = table.Column<bool>(nullable: false),
-                    TraseroIzquierdo = table.Column<bool>(nullable: false),
-                    TraseroDerecho = table.Column<bool>(nullable: false)
+                    Nombre = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoriasMarca", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EquipamientosAirbags",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Conductor = table.Column<bool>(nullable: false),
+                    Acompanante = table.Column<bool>(nullable: false),
+                    DelanteroIzquierdo = table.Column<int>(nullable: false),
+                    DelanteroDerecho = table.Column<int>(nullable: false),
+                    TraseroIzquierdo = table.Column<int>(nullable: false),
+                    TraseroDerecho = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,8 +44,7 @@ namespace SiMaVeh.DataAccess.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -44,8 +55,7 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Monedas",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     Nombre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -156,6 +166,30 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MarcaCategoriaMarca",
+                columns: table => new
+                {
+                    CategoriaMarcaId = table.Column<long>(nullable: false),
+                    MarcaId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MarcaCategoriaMarca", x => new { x.CategoriaMarcaId, x.MarcaId });
+                    table.ForeignKey(
+                        name: "FK_MarcaCategoriaMarca_CategoriasMarca_CategoriaMarcaId",
+                        column: x => x.CategoriaMarcaId,
+                        principalTable: "CategoriasMarca",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MarcaCategoriaMarca_Marcas_MarcaId",
+                        column: x => x.MarcaId,
+                        principalTable: "Marcas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Neumaticos",
                 columns: table => new
                 {
@@ -189,8 +223,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CoeficienteCambio = table.Column<decimal>(nullable: false),
-                    MonedaOrigenId = table.Column<long>(nullable: true),
-                    MonedaDestinoId = table.Column<long>(nullable: true),
+                    MonedaOrigenId = table.Column<string>(nullable: true),
+                    MonedaDestinoId = table.Column<string>(nullable: true),
                     Fecha = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -360,7 +394,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     GrupoModeloId = table.Column<long>(nullable: true),
                     Version = table.Column<string>(nullable: true),
                     AceiteRecomendadoId = table.Column<long>(nullable: true),
-                    AirbagsId = table.Column<long>(nullable: true),
+                    AirbagsId = table.Column<string>(nullable: true),
                     TipoFuenteEnergiaId = table.Column<long>(nullable: true),
                     FuenteEnergiaRecomendadaId = table.Column<long>(nullable: true)
                 },
@@ -656,7 +690,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     EntidadReparadoraId = table.Column<long>(nullable: true),
                     VehiculoId = table.Column<long>(nullable: true),
                     MontoManoObra = table.Column<decimal>(nullable: false),
-                    MonedaMontoManoObraId = table.Column<long>(nullable: true),
+                    MonedaMontoManoObraId = table.Column<string>(nullable: true),
                     KilometrajeVehiculo = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
@@ -691,7 +725,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     Accion = table.Column<int>(nullable: false),
                     RecambioId = table.Column<long>(nullable: true),
                     MontoRecambio = table.Column<decimal>(nullable: false),
-                    MonedaMontoRecambioId = table.Column<long>(nullable: true),
+                    MonedaMontoRecambioId = table.Column<string>(nullable: true),
                     ServicioReparadorId = table.Column<long>(nullable: true),
                     ReparadorId = table.Column<long>(nullable: true)
                 },
@@ -783,6 +817,11 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "IX_Mantenimientos_ServicioReparadorId",
                 table: "Mantenimientos",
                 column: "ServicioReparadorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MarcaCategoriaMarca_MarcaId",
+                table: "MarcaCategoriaMarca",
+                column: "MarcaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ModelosVehiculo_AceiteRecomendadoId",
@@ -929,6 +968,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Mantenimientos");
 
             migrationBuilder.DropTable(
+                name: "MarcaCategoriaMarca");
+
+            migrationBuilder.DropTable(
                 name: "PeriodicidadesMantenimiento");
 
             migrationBuilder.DropTable(
@@ -945,6 +987,9 @@ namespace SiMaVeh.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "ServiciosReparadores");
+
+            migrationBuilder.DropTable(
+                name: "CategoriasMarca");
 
             migrationBuilder.DropTable(
                 name: "Recambios");
