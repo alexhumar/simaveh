@@ -58,6 +58,15 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
+            //Categorias Marca
+            builder.EntitySet<CategoriaMarca>(EntityTypeGetter<CategoriaMarca, long>.GetCollectionNameAsString());
+            builder.EntityType<CategoriaMarca>()
+                .Count(QueryOptionSetting.Allowed)
+                .Filter()
+                .OrderBy(QueryOptionSetting.Allowed)
+                .Page()
+                .Select();
+
             //Direcciones
             builder.EntitySet<Direccion>(EntityTypeGetter<Direccion, long>.GetCollectionNameAsString());
             builder.EntityType<Direccion>()

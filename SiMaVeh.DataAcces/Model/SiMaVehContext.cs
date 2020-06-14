@@ -54,6 +54,9 @@ namespace SiMaVeh.DataAccess.Model
             builder.Entity<KitRecambio>()
                 .HasKey(k => new { k.KitId, k.RecambioId });
 
+            builder.Entity<MarcaCategoriaMarca>()
+                .HasKey(k => new { k.CategoriaMarcaId, k.MarcaId });
+
             #endregion
 
             #region Data Seeding
@@ -72,6 +75,11 @@ namespace SiMaVeh.DataAccess.Model
         /// Automoviles
         /// </summary>
         public DbSet<Automovil> Automoviles { get; set; }
+
+        /// <summary>
+        /// Categorías Marca
+        /// </summary>
+        public DbSet<CategoriaMarca> CategoriasMarca { get; set; }
 
         /// <summary>
         /// Direcciones

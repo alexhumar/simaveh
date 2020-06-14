@@ -41,10 +41,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Mecanicos
         /// </summary>
-        public virtual ISet<Reparador> Reparadores
-        {
-            get { return ReparadorEntidadReparadora.Select(r => r.Reparador).ToHashSet(); }
-        }
+        public virtual ISet<Reparador> Reparadores => ReparadorEntidadReparadora.Select(r => r.Reparador).ToHashSet();
 
         /// <summary>
         /// Direccion

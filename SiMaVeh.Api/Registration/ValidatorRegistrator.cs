@@ -11,6 +11,7 @@ namespace SiMaVeh.Api.Registration
         {
             services.AddTransient<IValidator<Aceite>, ValidadorAceite>();
             services.AddTransient<IValidator<Automovil>, ValidadorAutomovil>();
+            services.AddTransient<IValidator<CategoriaMarca>, ValidadorCategoriaMarca>();
             services.AddTransient<IValidator<Direccion>, ValidadorDireccion>();
             services.AddTransient<IValidator<EntidadReparadora>, ValidadorEntidadReparadora>();
             services.AddTransient<IValidator<EquipamientoAirbags>, ValidadorEquipamientoAirbags>();

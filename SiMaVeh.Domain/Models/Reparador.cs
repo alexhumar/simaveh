@@ -22,17 +22,14 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Entidades reparadoras en las que trabaja el reparador
         /// </summary>
-        public virtual ISet<EntidadReparadora> EntidadesReparadoras
-        {
-            get { return ReparadorEntidadReparadora.Select(e => e.EntidadReparadora).ToHashSet(); }
-        }
+        public virtual ISet<EntidadReparadora> EntidadesReparadoras => ReparadorEntidadReparadora.Select(e => e.EntidadReparadora).ToHashSet();
 
         #region relations
 
         /// <summary>
         /// Relacion Reparador-EntidadReparadora
         /// </summary>
-        public virtual ISet<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; protected set; }
+        public virtual ISet<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
 
         #endregion
 
@@ -54,10 +51,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Reparador;
-
-            if (item == null)
+            if (!(obj is Reparador item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))

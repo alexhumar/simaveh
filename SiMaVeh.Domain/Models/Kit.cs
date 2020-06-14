@@ -24,13 +24,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recambios
         /// </summary>
-        public virtual ISet<Recambio> Recambios
-        {
-            get
-            {
-                return KitRecambio.Select(k => k.Recambio).ToHashSet();
-            }
-        }
+        public virtual ISet<Recambio> Recambios => KitRecambio.Select(k => k.Recambio).ToHashSet();
 
         #region overrides
 

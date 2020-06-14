@@ -12,36 +12,36 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Controllers
 {
     /// <summary>
-    /// Marcas Controller
+    /// Categorias Marca Controller
     /// </summary>
-    public class MarcasController : GenericController<Marca, long>
+    public class CategoriasMarcaController : GenericController<CategoriaMarca, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public MarcasController(IControllerParameter parameters) : base(parameters) { }
+        public CategoriasMarcaController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
         /// <summary>
-        /// Obtiene las categorías de la marca
+        /// Obtiene las marcas de la categoría
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Categoria de la marca</returns>
         /// <response code="200"></response>
         [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
-        public async Task<IActionResult> GetCategorias([FromODataUri] long key)
+        public async Task<IActionResult> GetMarcas([FromODataUri] long key)
         {
             var entity = await _repository.Find(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Categorias);
+                return Ok(entity.Marcas);
         }
 
         /// <summary>
-        /// Obtiene el nombre de la marca
+        /// Obtiene el nombre de la categoría
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Nombre de la marca</returns>
@@ -70,22 +70,22 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var marca = await _repository.Find(key);
-            if (marca == null)
+            var categoriaMarca = await _repository.Find(key);
+            if (categoriaMarca == null)
                 return NotFound();
 
-            var categoriasMarcaCollectionName = EntityTypeGetter<CategoriaMarca, long>.GetCollectionNameAsString();
+            var marcasCollectionName = EntityTypeGetter<Marca, long>.GetCollectionNameAsString();
 
-            if (navigationProperty.Equals(categoriasMarcaCollectionName))
+            if (navigationProperty.Equals(marcasCollectionName))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var categoriaMarca = await _entityGetter.TryGetEntityFromRelatedLink<CategoriaMarca, long>(link);
-                if (categoriaMarca == null)
+                var marca = await _entityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
+                if (marca == null)
                     return NotFound();
 
-                marca.Agregar(categoriaMarca);
+                categoriaMarca.Agregar(marca);
             }
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);

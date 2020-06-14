@@ -3,7 +3,7 @@
     /// <summary>
     /// CategoriaMarca
     /// </summary>
-    public enum CategoriaMarca
+    public enum ECategoriaMarca
     {
         /// <summary>
         /// Automóvil
@@ -33,14 +33,14 @@
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToString(CategoriaMarca value)
+        public static string ToString(ECategoriaMarca value)
         {
             return value switch
             {
-                CategoriaMarca.Automovil => "Automóvil",
-                CategoriaMarca.FuenteEnergia => "Fuente Energía",
-                CategoriaMarca.Neumatico => "Neumático",
-                CategoriaMarca.Repuesto => "Repuesto",
+                ECategoriaMarca.Automovil => "Automóvil",
+                ECategoriaMarca.FuenteEnergia => "Fuente Energía",
+                ECategoriaMarca.Neumatico => "Neumático",
+                ECategoriaMarca.Repuesto => "Repuesto",
                 _ => string.Empty,
             };
         }

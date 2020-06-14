@@ -28,13 +28,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Kits a los que pertenece
         /// </summary>
-        public virtual ISet<Kit> Kits
-        {
-            get
-            {
-                return KitRecambio.Select(k => k.Kit).ToHashSet();
-            }
-        }
+        public virtual ISet<Kit> Kits => KitRecambio.Select(k => k.Kit).ToHashSet();
 
         /// <summary>
         /// GetRepuestos
@@ -47,7 +41,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Relacion Kit-Recambio
         /// </summary>
-        public virtual ISet<KitRecambio> KitRecambio { get; protected set; }
+        public virtual ISet<KitRecambio> KitRecambio { get; }
 
         #endregion
 

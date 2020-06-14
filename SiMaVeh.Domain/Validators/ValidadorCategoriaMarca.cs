@@ -4,19 +4,19 @@ using SiMaVeh.Domain.Models;
 namespace SiMaVeh.Domain.Validators
 {
     /// <summary>
-    /// ValidadorMarca
+    /// ValidadorCategoriaMarca
     /// </summary>
-    public class ValidadorMarca : AbstractValidator<Marca>
+    public class ValidadorCategoriaMarca : AbstractValidator<CategoriaMarca>
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public ValidadorMarca()
+        public ValidadorCategoriaMarca()
         {
             RuleFor(x => x.Nombre)
                 .NotNull()
                 .NotEqual(string.Empty);
-            //RuleFor(x => x.Categorias)
+            //RuleFor(x => x.Marcas)
             //    .NotNull();
         }
     }

@@ -10,6 +10,6 @@ namespace SiMaVeh.Domain.DataSeed.Models
         /// <summary>
         /// Categoría
         /// </summary>
-        public CategoriaMarca Categoria { get; set; }
+        public ECategoriaMarca Categoria { get; set; }
     }
 }

@@ -11,7 +11,6 @@
   <ItemGroup>
     <Folder Include="DataSeed\Constants\Marcas\" />
     <Folder Include="DataSeed\Fixtures\Moneda\FixtureGetters\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
 
   <ItemGroup>
