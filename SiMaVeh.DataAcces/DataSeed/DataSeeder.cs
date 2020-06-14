@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
+using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca;
 using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
 using SiMaVeh.Domain.DataSeed.Fixtures.Marca;
@@ -36,6 +37,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         private readonly ISeeder<EquipamientoAirbags, string> equipamientoAirbagsSeeder;
         private readonly ISeeder<Moneda, string> monedaSeeder;
         private readonly ISeeder<Marca, long> marcaSeeder;
+        private readonly ISeeder<CategoriaMarca, long> categoriaMarcaSeeder;
 
         /// <summary>
         /// Constructor
@@ -52,6 +54,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         /// <param name="equipamientoAirbagsSeeder"></param>
         /// <param name="monedaSeeder"></param>
         /// <param name="marcaSeeder"></param>
+        /// <param name="categoriaMarcaSeeder"></param>
         public DataSeeder(ISeeder<Pais, long> paisSeeder,
             ISeeder<Provincia, long> provinciaSeeder,
             ISeeder<Partido, long> partidoSeeder,
@@ -63,7 +66,8 @@ namespace SiMaVeh.DataAccess.DataSeed
             ISeeder<UbicacionPieza, string> ubicacionPiezaSeeder,
             ISeeder<EquipamientoAirbags, string> equipamientoAirbagsSeeder,
             ISeeder<Moneda, string> monedaSeeder,
-            ISeeder<Marca, long> marcaSeeder)
+            ISeeder<Marca, long> marcaSeeder,
+            ISeeder<CategoriaMarca, long> categoriaMarcaSeeder)
         {
             this.paisSeeder = paisSeeder;
             this.provinciaSeeder = provinciaSeeder;
@@ -77,6 +81,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             this.equipamientoAirbagsSeeder = equipamientoAirbagsSeeder;
             this.monedaSeeder = monedaSeeder;
             this.marcaSeeder = marcaSeeder;
+            this.categoriaMarcaSeeder = categoriaMarcaSeeder;
         }
 
         /// <summary>
@@ -99,6 +104,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             equipamientoAirbagsSeeder = new EquipamientoAirbagsSeeder(new FixtureEquipamientoAirbags(new EquipamientoAirbagsFixtureGettersProvider(datosEntidadBuilder)));
             monedaSeeder = new MonedaSeeder(new FixtureMoneda(new MonedaFixtureGettersProvider(datosEntidadBuilder)));
             marcaSeeder = new MarcaSeeder(new FixtureMarca(new MarcaFixtureGettersProvider(datosEntidadBuilder)));
+            categoriaMarcaSeeder = new CategoriaMarcaSeeder(new FixtureCategoriaMarca(new CategoriaMarcaFixtureGettersProvider(datosEntidadBuilder)));
         }
 
         /// <summary>
@@ -120,6 +126,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             builder.Entity<EquipamientoAirbags>().HasData(equipamientoAirbagsSeeder.GetSeeds());
             builder.Entity<Moneda>().HasData(monedaSeeder.GetSeeds());
             builder.Entity<Marca>().HasData(marcaSeeder.GetSeeds());
+            builder.Entity<CategoriaMarca>().HasData(categoriaMarcaSeeder.GetSeeds());
         }
     }
 }
