@@ -1,8 +1,8 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using SiMaVeh.Domain.Enums;
-using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
-using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
+using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags.Interfaces;
+using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
@@ -17,15 +17,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
         /// </summary>
         /// <param name="calculadorIdEquipamientoAirbags"></param>
         /// <param name="calculadorIdUbicacionPieza"></param>
-        public DatosEntidadBuilder(CalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags,
-            CalculadorIdUbicacionPieza calculadorIdUbicacionPieza)
+        public DatosEntidadBuilder(ICalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags,
+            ICalculadorIdUbicacionPieza calculadorIdUbicacionPieza)
         {
             this.calculadorIdEquipamientoAirbags = calculadorIdEquipamientoAirbags;
             this.calculadorIdUbicacionPieza = calculadorIdUbicacionPieza;
         }
 
-        private readonly CalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags;
-        private readonly CalculadorIdUbicacionPieza calculadorIdUbicacionPieza;
+        private readonly ICalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags;
+        private readonly ICalculadorIdUbicacionPieza calculadorIdUbicacionPieza;
 
         /// <summary>
         /// Build datos entidad general

@@ -35,7 +35,9 @@ using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.DataSeed.Seeders;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
+using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags.Interfaces;
 using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
+using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza.Interfaces;
 using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.Api.Registration
@@ -44,8 +46,8 @@ namespace SiMaVeh.Api.Registration
     {
         public static void RegisterDataSeeds(IServiceCollection services)
         {
-            services.AddScoped<CalculadorIdEquipamientoAirbags, CalculadorIdEquipamientoAirbags>();
-            services.AddScoped<CalculadorIdUbicacionPieza, CalculadorIdUbicacionPieza>();
+            services.AddScoped<ICalculadorIdEquipamientoAirbags, CalculadorIdEquipamientoAirbags>();
+            services.AddScoped<ICalculadorIdUbicacionPieza, CalculadorIdUbicacionPieza>();
 
             services.AddScoped<IDatosEntidadBuilder, DatosEntidadBuilder>();
 

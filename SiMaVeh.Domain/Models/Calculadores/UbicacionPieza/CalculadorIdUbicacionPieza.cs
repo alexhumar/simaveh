@@ -1,11 +1,12 @@
-﻿using SiMaVeh.Domain.Models.Interfaces;
+﻿using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza.Interfaces;
+using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models.Calculadores.UbicacionPieza
 {
     /// <summary>
     /// Calculador de Id de UbicacionPieza
     /// </summary>
-    public class CalculadorIdUbicacionPieza
+    public class CalculadorIdUbicacionPieza : ICalculadorIdUbicacionPieza
     {
         /// <summary>
         /// Calcular

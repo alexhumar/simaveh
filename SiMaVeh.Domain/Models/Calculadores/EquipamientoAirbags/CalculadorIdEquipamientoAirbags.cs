@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags.Interfaces;
 using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags
@@ -6,7 +7,7 @@ namespace SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags
     /// <summary>
     /// Calculador de Id de EquipamientoAirbags
     /// </summary>
-    public class CalculadorIdEquipamientoAirbags
+    public class CalculadorIdEquipamientoAirbags : ICalculadorIdEquipamientoAirbags
     {
         /// <summary>
         /// Calcular
