@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de ubicacion pieza
     /// </summary>
-    public class UbicacionPiezaSeeder : ISeeder<UbicacionPieza, string>
+    public class UbicacionPiezaSeeder : IDomainSeeder<UbicacionPieza, string>
     {
         private readonly IFixtureUbicacionPieza fixtureUbicacionPieza;
 
@@ -27,18 +28,11 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var ubicacionPiezaFixture in fixtureUbicacionPieza.GetUbicacionesPieza())
+            return fixtureUbicacionPieza.GetUbicacionesPieza().Select(ubicacionPiezaFixture => new
             {
-                result.Add(new
-                {
-                    ubicacionPiezaFixture.Izquierda,
-                    ubicacionPiezaFixture.Superior
-                });
-            }
-
-            return result;
+                ubicacionPiezaFixture.Izquierda,
+                ubicacionPiezaFixture.Superior
+            });
         }
     }
 }

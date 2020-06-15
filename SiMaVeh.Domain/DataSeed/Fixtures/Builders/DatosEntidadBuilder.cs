@@ -1,6 +1,7 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using SiMaVeh.Domain.Enums;
+using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
 {
@@ -46,16 +47,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
         /// </summary>
         /// <param name="id"></param>
         /// <param name="nombre"></param>
-        /// <param name="categoria"></param>
+        /// <param name="categorias"></param>
         /// <returns></returns>
-        public DatosMarca Build(long id, string nombre, ECategoriaMarca categoria)
+        public DatosMarca Build(long id, string nombre, IEnumerable<DatosEntidad> categorias)
         {
-            return new DatosMarca
+            var datosMarca = new DatosMarca
             {
-                Categoria = categoria,
                 Id = id,
                 Nombre = nombre
             };
+            datosMarca.Categorias.AddRange(categorias);
+
+            return datosMarca;
         }
 
         /// <summary>

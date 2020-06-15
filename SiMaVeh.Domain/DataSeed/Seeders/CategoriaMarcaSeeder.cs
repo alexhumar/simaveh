@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de categoria de marca
     /// </summary>
-    public class CategoriaMarcaSeeder : ISeeder<CategoriaMarca, long>
+    public class CategoriaMarcaSeeder : IDomainSeeder<CategoriaMarca, long>
     {
         private readonly IFixtureCategoriaMarca fixtureCategoriaMarca;
 
@@ -27,18 +28,11 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var categoriaMarcaFixture in fixtureCategoriaMarca.GetCategoriasMarca())
+            return fixtureCategoriaMarca.GetCategoriasMarca().Select(categoriaMarcaFixture => new
             {
-                result.Add(new
-                {
-                    categoriaMarcaFixture.Id,
-                    categoriaMarcaFixture.Nombre
-                });
-            }
-
-            return result;
+                categoriaMarcaFixture.Id,
+                categoriaMarcaFixture.Nombre
+            });
         }
     }
 }

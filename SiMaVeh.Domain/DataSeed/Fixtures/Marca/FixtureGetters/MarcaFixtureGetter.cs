@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
@@ -11,15 +12,19 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Marca.FixtureGetters
     internal class MarcaFixtureGetter : IMarcaFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
+        private readonly ICategoriaMarcaFixtureGetter categoriaMarcaFixtureGetter;
         private readonly ICollection<DatosMarca> marcas;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="datosEntidadBuilder"></param>
-        public MarcaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
+        /// <param name="categoriaMarcaFixtureGetter"></param>
+        public MarcaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+            ICategoriaMarcaFixtureGetter categoriaMarcaFixtureGetter)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
+            this.categoriaMarcaFixtureGetter = categoriaMarcaFixtureGetter;
             marcas = new List<DatosMarca>();
 
             Initialize();
@@ -36,7 +41,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Marca.FixtureGetters
 
         private void Initialize()
         {
-            //TODO: implementar
+            //TODO: implementar bien, esto es una prueba de concepto.
+            var categoriaAutomovil = categoriaMarcaFixtureGetter.FindByNombre(Constants.CategoriasMarca.CategoriaMarca.Automovil);
+
+            marcas.Add(datosEntidadBuilder.Build(1, "Marca de automovil, por ejemplo", new List<DatosEntidad> { categoriaAutomovil }));
         }
     }
 }

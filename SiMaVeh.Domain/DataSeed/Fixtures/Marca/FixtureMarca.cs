@@ -25,7 +25,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Marca
         }
 
         /// <summary>
-        /// Retorna las marcas default
+        /// Retorna las marcas default, cada una con sus categorías asociadas
         /// </summary>
         /// <returns></returns>
         public IEnumerable<DatosMarca> GetMarcas()

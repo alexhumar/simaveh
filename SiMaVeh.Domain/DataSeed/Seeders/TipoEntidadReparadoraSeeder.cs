@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de tipo de entidad reparadora
     /// </summary>
-    public class TipoEntidadReparadoraSeeder : ISeeder<TipoEntidadReparadora, long>
+    public class TipoEntidadReparadoraSeeder : IDomainSeeder<TipoEntidadReparadora, long>
     {
         private readonly IFixtureTipoEntidadReparadora fixtureTipoEntidadReparadora;
 
@@ -27,19 +28,12 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var tipoEntidadReparadoraFixture in fixtureTipoEntidadReparadora.GetTiposEntidadReparadora())
+            return fixtureTipoEntidadReparadora.GetTiposEntidadReparadora().Select(tipoEntidadReparadoraFixture => new
             {
-                result.Add(new
-                {
-                    tipoEntidadReparadoraFixture.Id,
-                    tipoEntidadReparadoraFixture.Nombre,
-                    tipoEntidadReparadoraFixture.Descripcion
-                });
-            }
-
-            return result;
+                tipoEntidadReparadoraFixture.Id,
+                tipoEntidadReparadoraFixture.Nombre,
+                tipoEntidadReparadoraFixture.Descripcion
+            });
         }
     }
 }

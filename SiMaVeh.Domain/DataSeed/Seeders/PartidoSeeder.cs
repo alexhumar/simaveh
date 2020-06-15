@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de Partido
     /// </summary>
-    public class PartidoSeeder : ISeeder<Partido, long>
+    public class PartidoSeeder : IDomainSeeder<Partido, long>
     {
         private readonly IFixturePartido fixturePartido;
 
@@ -32,16 +33,12 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
             foreach (var partidosPorProvincia in fixturePartido.GetPartidos())
             {
                 var idProvincia = partidosPorProvincia.Key;
-
-                foreach (var partido in partidosPorProvincia.Value)
+                result.AddRange(partidosPorProvincia.Value.Select(partido => new
                 {
-                    result.Add(new
-                    {
-                        partido.Id,
-                        partido.Nombre,
-                        ProvinciaId = idProvincia
-                    });
-                }
+                    partido.Id,
+                    partido.Nombre,
+                    ProvinciaId = idProvincia
+                }));
             }
 
             return result;

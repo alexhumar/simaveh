@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de tipo de documento
     /// </summary>
-    public class TipoDocumentoSeeder : ISeeder<TipoDocumento, long>
+    public class TipoDocumentoSeeder : IDomainSeeder<TipoDocumento, long>
     {
         private readonly IFixtureTipoDocumento fixtureTipoDocumento;
 
@@ -27,19 +28,12 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var tipoDocumentoFixture in fixtureTipoDocumento.GetTiposDocumento())
+            return fixtureTipoDocumento.GetTiposDocumento().Select(tipoDocumentoFixture => new
             {
-                result.Add(new
-                {
-                    tipoDocumentoFixture.Id,
-                    tipoDocumentoFixture.Nombre,
-                    tipoDocumentoFixture.Descripcion
-                });
-            }
-
-            return result;
+                tipoDocumentoFixture.Id,
+                tipoDocumentoFixture.Nombre,
+                tipoDocumentoFixture.Descripcion
+            });
         }
     }
 }

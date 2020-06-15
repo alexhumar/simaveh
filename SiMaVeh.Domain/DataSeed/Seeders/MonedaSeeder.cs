@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de moneda
     /// </summary>
-    public class MonedaSeeder : ISeeder<Moneda, string>
+    public class MonedaSeeder : IDomainSeeder<Moneda, string>
     {
         private readonly IFixtureMoneda fixtureMoneda;
 
@@ -27,18 +28,11 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var monedaFixture in fixtureMoneda.GetMonedas())
+            return fixtureMoneda.GetMonedas().Select(monedaFixture => new
             {
-                result.Add(new
-                {
-                    monedaFixture.Id,
-                    monedaFixture.Nombre
-                });
-            }
-
-            return result;
+                monedaFixture.Id,
+                monedaFixture.Nombre
+            });
         }
     }
 }

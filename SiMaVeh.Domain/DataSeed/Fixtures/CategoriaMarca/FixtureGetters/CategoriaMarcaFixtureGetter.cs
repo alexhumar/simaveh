@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.FixtureGetters
 {
     /// <summary>
     /// Fixture getter de categoria de marca
     /// </summary>
-    internal class CategoriaMarcaFixtureGetter : ICategoriaMarcaFixtureGetter
+    public class CategoriaMarcaFixtureGetter : ICategoriaMarcaFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> categoriasMarca;
@@ -23,6 +24,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.FixtureGetters
             categoriasMarca = new List<DatosEntidad>();
 
             Initialize();
+        }
+
+        /// <summary>
+        /// FindByNombre
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public DatosEntidad FindByNombre(string nombre)
+        {
+            return categoriasMarca
+                .FirstOrDefault(p => p.Nombre == nombre);
         }
 
         /// <summary>

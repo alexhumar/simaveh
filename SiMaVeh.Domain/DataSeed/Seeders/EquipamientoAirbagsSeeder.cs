@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de equipamiento airbags
     /// </summary>
-    public class EquipamientoAirbagsSeeder : ISeeder<EquipamientoAirbags, string>
+    public class EquipamientoAirbagsSeeder : IDomainSeeder<EquipamientoAirbags, string>
     {
         private readonly IFixtureEquipamientoAirbags fixtureEquipamientoAirbags;
 
@@ -27,22 +28,15 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var equipamientoAirbagsFixture in fixtureEquipamientoAirbags.GetEquipamientosAirbags())
+            return fixtureEquipamientoAirbags.GetEquipamientosAirbags().Select(equipamientoAirbagsFixture => new
             {
-                result.Add(new
-                {
-                    equipamientoAirbagsFixture.Acompanante,
-                    equipamientoAirbagsFixture.Conductor,
-                    equipamientoAirbagsFixture.DelanteroDerecho,
-                    equipamientoAirbagsFixture.DelanteroIzquierdo,
-                    equipamientoAirbagsFixture.TraseroDerecho,
-                    equipamientoAirbagsFixture.TraseroIzquierdo
-                });
-            }
-
-            return result;
+                equipamientoAirbagsFixture.Acompanante,
+                equipamientoAirbagsFixture.Conductor,
+                equipamientoAirbagsFixture.DelanteroDerecho,
+                equipamientoAirbagsFixture.DelanteroIzquierdo,
+                equipamientoAirbagsFixture.TraseroDerecho,
+                equipamientoAirbagsFixture.TraseroIzquierdo
+            });
         }
     }
 }

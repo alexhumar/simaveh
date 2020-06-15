@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.Enums;
+﻿using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Models
 {
@@ -8,8 +8,16 @@ namespace SiMaVeh.Domain.DataSeed.Models
     public class DatosMarca : DatosEntidadBase<long>
     {
         /// <summary>
-        /// Categoría
+        /// Constructor
         /// </summary>
-        public ECategoriaMarca Categoria { get; set; }
+        public DatosMarca()
+        {
+            Categorias = new List<DatosEntidad>();
+        }
+
+        /// <summary>
+        /// Categorías
+        /// </summary>
+        public List<DatosEntidad> Categorias { get; }
     }
 }

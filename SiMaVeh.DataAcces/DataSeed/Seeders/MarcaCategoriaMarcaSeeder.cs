@@ -1,15 +1,15 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
 using SiMaVeh.Domain.DataSeed.Interfaces;
-using SiMaVeh.Domain.Models;
+using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SiMaVeh.Domain.DataSeed.Seeders
+namespace SiMaVeh.DataAccess.DataSeed.Seeders
 {
     /// <summary>
-    /// Seeder de marca
+    /// Seeder de relacion marca - categoria marca
     /// </summary>
-    public class MarcaSeeder : IDomainSeeder<Marca, long>
+    public class MarcaCategoriaMarcaSeeder : ISeeder<MarcaCategoriaMarca>
     {
         private readonly IFixtureMarca fixtureMarca;
 
@@ -17,7 +17,7 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// Constructor
         /// </summary>
         /// <param name="fixtureMarca"></param>
-        public MarcaSeeder(IFixtureMarca fixtureMarca)
+        public MarcaCategoriaMarcaSeeder(IFixtureMarca fixtureMarca)
         {
             this.fixtureMarca = fixtureMarca;
         }
@@ -28,11 +28,11 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            return fixtureMarca.GetMarcas().Select(marcaFixture => new
+            return fixtureMarca.GetMarcas().SelectMany(marcaFixture => marcaFixture.Categorias.Select(categoria => new
             {
-                marcaFixture.Id,
-                marcaFixture.Nombre
-            });
+                CategoriaMarcaId = categoria.Id,
+                MarcaId = marcaFixture.Id
+            }));
         }
     }
 }

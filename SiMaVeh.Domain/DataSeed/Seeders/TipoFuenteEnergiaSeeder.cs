@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de tipo de fuente de energia
     /// </summary>
-    public class TipoFuenteEnergiaSeeder : ISeeder<TipoFuenteEnergia, long>
+    public class TipoFuenteEnergiaSeeder : IDomainSeeder<TipoFuenteEnergia, long>
     {
         private readonly IFixtureTipoFuenteEnergia fixtureTipoFuenteEnergia;
 
@@ -27,19 +28,12 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var tipoFuenteEnergiaFixture in fixtureTipoFuenteEnergia.GetTiposFuenteEnergia())
+            return fixtureTipoFuenteEnergia.GetTiposFuenteEnergia().Select(tipoFuenteEnergiaFixture => new
             {
-                result.Add(new
-                {
-                    tipoFuenteEnergiaFixture.Id,
-                    tipoFuenteEnergiaFixture.Nombre,
-                    tipoFuenteEnergiaFixture.Descripcion
-                });
-            }
-
-            return result;
+                tipoFuenteEnergiaFixture.Id,
+                tipoFuenteEnergiaFixture.Nombre,
+                tipoFuenteEnergiaFixture.Descripcion
+            });
         }
     }
 }

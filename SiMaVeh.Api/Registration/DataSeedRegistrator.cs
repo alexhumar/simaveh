@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.DataAccess.DataSeed;
+using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca;
+using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
 using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags.Interfaces;
@@ -32,6 +34,7 @@ using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.Interfaces;
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.DataSeed.Seeders;
 using SiMaVeh.Domain.Models;
+using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.Api.Registration
 {
@@ -44,55 +47,58 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IPaisFixtureGetter, PaisFixtureGetter>();
             services.AddScoped<IPaisFixtureGettersProvider, PaisFixtureGettersProvider>();
             services.AddScoped<IFixturePais, FixturePais>();
-            services.AddScoped<ISeeder<Pais, long>, PaisSeeder>();
+            services.AddScoped<IDomainSeeder<Pais, long>, PaisSeeder>();
 
             services.AddScoped<IProvinciaFixtureGettersProvider, ProvinciaFixtureGettersProvider>();
             services.AddScoped<IFixtureProvincia, FixtureProvincia>();
-            services.AddScoped<ISeeder<Provincia, long>, ProvinciaSeeder>();
+            services.AddScoped<IDomainSeeder<Provincia, long>, ProvinciaSeeder>();
 
             services.AddScoped<IPartidoFixtureGettersProvider, PartidoFixtureGettersProvider>();
             services.AddScoped<IFixturePartido, FixturePartido>();
-            services.AddScoped<ISeeder<Partido, long>, PartidoSeeder>();
+            services.AddScoped<IDomainSeeder<Partido, long>, PartidoSeeder>();
 
             services.AddScoped<ILocalidadFixtureGettersProvider, LocalidadFixtureGettersProvider>();
             services.AddScoped<IFixtureLocalidad, FixtureLocalidad>();
-            services.AddScoped<ISeeder<Localidad, long>, LocalidadSeeder>();
+            services.AddScoped<IDomainSeeder<Localidad, long>, LocalidadSeeder>();
 
             services.AddScoped<ITipoEntidadReparadoraFixtureGettersProvider, TipoEntidadReparadoraFixtureGettersProvider>();
             services.AddScoped<IFixtureTipoEntidadReparadora, FixtureTipoEntidadReparadora>();
-            services.AddScoped<ISeeder<TipoEntidadReparadora, long>, TipoEntidadReparadoraSeeder>();
+            services.AddScoped<IDomainSeeder<TipoEntidadReparadora, long>, TipoEntidadReparadoraSeeder>();
 
             services.AddScoped<ITipoFuenteEnergiaFixtureGettersProvider, TipoFuenteEnergiaFixtureGettersProvider>();
             services.AddScoped<IFixtureTipoFuenteEnergia, FixtureTipoFuenteEnergia>();
-            services.AddScoped<ISeeder<TipoFuenteEnergia, long>, TipoFuenteEnergiaSeeder>();
+            services.AddScoped<IDomainSeeder<TipoFuenteEnergia, long>, TipoFuenteEnergiaSeeder>();
 
             services.AddScoped<ITipoDocumentoFixtureGettersProvider, TipoDocumentoFixtureGettersProvider>();
             services.AddScoped<IFixtureTipoDocumento, FixtureTipoDocumento>();
-            services.AddScoped<ISeeder<TipoDocumento, long>, TipoDocumentoSeeder>();
+            services.AddScoped<IDomainSeeder<TipoDocumento, long>, TipoDocumentoSeeder>();
 
             services.AddScoped<ITipoTelefonoFixtureGettersProvider, TipoTelefonoFixtureGettersProvider>();
             services.AddScoped<IFixtureTipoTelefono, FixtureTipoTelefono>();
-            services.AddScoped<ISeeder<TipoTelefono, long>, TipoTelefonoSeeder>();
+            services.AddScoped<IDomainSeeder<TipoTelefono, long>, TipoTelefonoSeeder>();
 
             services.AddScoped<IUbicacionPiezaFixtureGettersProvider, UbicacionPiezaFixtureGettersProvider>();
             services.AddScoped<IFixtureUbicacionPieza, FixtureUbicacionPieza>();
-            services.AddScoped<ISeeder<UbicacionPieza, string>, UbicacionPiezaSeeder>();
+            services.AddScoped<IDomainSeeder<UbicacionPieza, string>, UbicacionPiezaSeeder>();
 
             services.AddScoped<IEquipamientoAirbagsFixtureGettersProvider, EquipamientoAirbagsFixtureGettersProvider>();
             services.AddScoped<IFixtureEquipamientoAirbags, FixtureEquipamientoAirbags>();
-            services.AddScoped<ISeeder<EquipamientoAirbags, string>, EquipamientoAirbagsSeeder>();
+            services.AddScoped<IDomainSeeder<EquipamientoAirbags, string>, EquipamientoAirbagsSeeder>();
 
             services.AddScoped<IMonedaFixtureGettersProvider, MonedaFixtureGettersProvider>();
             services.AddScoped<IFixtureMoneda, FixtureMoneda>();
-            services.AddScoped<ISeeder<Moneda, string>, MonedaSeeder>();
+            services.AddScoped<IDomainSeeder<Moneda, string>, MonedaSeeder>();
+
+            services.AddScoped<ICategoriaMarcaFixtureGetter, CategoriaMarcaFixtureGetter>();
+            services.AddScoped<ICategoriaMarcaFixtureGettersProvider, CategoriaMarcaFixtureGettersProvider>();
+            services.AddScoped<IFixtureCategoriaMarca, FixtureCategoriaMarca>();
+            services.AddScoped<IDomainSeeder<CategoriaMarca, long>, CategoriaMarcaSeeder>();
 
             services.AddScoped<IMarcaFixtureGettersProvider, MarcaFixtureGettersProvider>();
             services.AddScoped<IFixtureMarca, FixtureMarca>();
-            services.AddScoped<ISeeder<Marca, long>, MarcaSeeder>();
+            services.AddScoped<IDomainSeeder<Marca, long>, MarcaSeeder>();
 
-            services.AddScoped<ICategoriaMarcaFixtureGettersProvider, CategoriaMarcaFixtureGettersProvider>();
-            services.AddScoped<IFixtureCategoriaMarca, FixtureCategoriaMarca>();
-            services.AddScoped<ISeeder<CategoriaMarca, long>, CategoriaMarcaSeeder>();
+            services.AddScoped<ISeeder<MarcaCategoriaMarca>, MarcaCategoriaMarcaSeeder>();
 
             services.AddScoped<IDataSeeder, DataSeeder>();
         }

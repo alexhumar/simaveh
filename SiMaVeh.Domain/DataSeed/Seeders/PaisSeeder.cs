@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de pais
     /// </summary>
-    public class PaisSeeder : ISeeder<Pais, long>
+    public class PaisSeeder : IDomainSeeder<Pais, long>
     {
         private readonly IFixturePais fixturePais;
 
@@ -27,18 +28,11 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var paisFixture in fixturePais.GetPaises())
+            return fixturePais.GetPaises().Select(paisFixture => new
             {
-                result.Add(new
-                {
-                    paisFixture.Id,
-                    paisFixture.Nombre
-                });
-            }
-
-            return result;
+                paisFixture.Id,
+                paisFixture.Nombre
+            });
         }
     }
 }

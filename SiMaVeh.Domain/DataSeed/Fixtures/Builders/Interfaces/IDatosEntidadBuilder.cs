@@ -1,5 +1,6 @@
 ﻿using SiMaVeh.Domain.DataSeed.Models;
 using SiMaVeh.Domain.Enums;
+using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
 {
@@ -30,9 +31,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <param name="nombre"></param>
-        /// <param name="categoria"></param>
+        /// <param name="categorias"></param>
         /// <returns></returns>
-        DatosMarca Build(long id, string nombre, ECategoriaMarca categoria);
+        DatosMarca Build(long id, string nombre, IEnumerable<DatosEntidad> categorias);
 
         /// <summary>
         /// Build datos ubicacion pieza

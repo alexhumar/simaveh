@@ -2,13 +2,14 @@
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de tipo de telefono
     /// </summary>
-    public class TipoTelefonoSeeder : ISeeder<TipoTelefono, long>
+    public class TipoTelefonoSeeder : IDomainSeeder<TipoTelefono, long>
     {
         private readonly IFixtureTipoTelefono fixtureTipoTelefono;
 
@@ -27,19 +28,12 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         /// <returns></returns>
         public IEnumerable<object> GetSeeds()
         {
-            var result = new List<object>();
-
-            foreach (var tipoTelefonoFixture in fixtureTipoTelefono.GetTiposTelefono())
+            return fixtureTipoTelefono.GetTiposTelefono().Select(tipoTelefonoFixture => new
             {
-                result.Add(new
-                {
-                    tipoTelefonoFixture.Id,
-                    tipoTelefonoFixture.Nombre,
-                    tipoTelefonoFixture.Descripcion
-                });
-            }
-
-            return result;
+                tipoTelefonoFixture.Id,
+                tipoTelefonoFixture.Nombre,
+                tipoTelefonoFixture.Descripcion
+            });
         }
     }
 }

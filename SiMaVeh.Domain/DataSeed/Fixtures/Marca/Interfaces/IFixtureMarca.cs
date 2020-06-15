@@ -9,7 +9,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces
     public interface IFixtureMarca
     {
         /// <summary>
-        /// Retorna las marcas default
+        /// Retorna las marcas default, cada una con sus categorías asociadas
         /// </summary>
         /// <returns></returns>
         IEnumerable<DatosMarca> GetMarcas();
