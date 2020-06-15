@@ -1,16 +1,30 @@
-﻿namespace SiMaVeh.Domain.Models
+﻿using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
+using SiMaVeh.Domain.Models.Interfaces;
+
+namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Ubicacion Pieza
     /// </summary>
-    public class UbicacionPieza : DomainMember<string>
+    public class UbicacionPieza : DomainMember<string>,
+        IUbicacionPieza
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public UbicacionPieza()
+        {
+            calculadorIdUbicacionPieza = new CalculadorIdUbicacionPieza();
+        }
+
+        private readonly CalculadorIdUbicacionPieza calculadorIdUbicacionPieza;
+
         /// <summary>
         /// Id
         /// </summary>
         public override string Id
         {
-            get => CalcularId();
+            get => calculadorIdUbicacionPieza.Calcular(this);
             set { }
         }
 
@@ -43,15 +57,12 @@
         public override bool Equals(object obj)
         {
             if (!(obj is UbicacionPieza item))
+            {
                 return false;
+            }
             else
             {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return (Id == item.Id) || (Izquierda == item.Izquierda && Superior == item.Superior);
-                }
+                return ReferenceEquals(this, item) || (Id == item.Id) || (Izquierda == item.Izquierda && Superior == item.Superior);
             }
         }
 
@@ -62,15 +73,6 @@
         public override int GetHashCode()
         {
             return string.Concat(typeof(UbicacionPieza).FullName, Id).GetHashCode();
-        }
-
-        #endregion
-
-        #region private
-
-        private string CalcularId()
-        {
-            return string.Concat(Izquierda ? "I" : "D", Superior ? "S" : "I");
         }
 
         #endregion

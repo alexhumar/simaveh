@@ -1,40 +1,46 @@
 ﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.DataSeed.Models
 {
     /// <summary>
     /// Datos de entidad EquipamientoAirbags
     /// </summary>
-    public class DatosEquipamientoAirbags
+    public class DatosEquipamientoAirbags : IEquipamientoAirbags
     {
+        /// <summary>
+        /// Id
+        /// </summary>
+        public string Id { get; set; }
+
         /// <summary>
         /// Airbag de Conductor
         /// </summary>
-        public virtual bool Conductor { get; set; }
+        public bool Conductor { get; set; }
 
         /// <summary>
         /// Airbag de Acompañante
         /// </summary>
-        public virtual bool Acompanante { get; set; }
+        public bool Acompanante { get; set; }
 
         /// <summary>
         /// Delantero Izquierdo
         /// </summary>
-        public virtual TipoAirbagLateral DelanteroIzquierdo { get; set; }
+        public TipoAirbagLateral DelanteroIzquierdo { get; set; }
 
         /// <summary>
         /// Delantero Derecho
         /// </summary>
-        public virtual TipoAirbagLateral DelanteroDerecho { get; set; }
+        public TipoAirbagLateral DelanteroDerecho { get; set; }
 
         /// <summary>
         /// Trasero Izquierdo
         /// </summary>
-        public virtual TipoAirbagLateral TraseroIzquierdo { get; set; }
+        public TipoAirbagLateral TraseroIzquierdo { get; set; }
 
         /// <summary>
         /// Trasero Derecho
         /// </summary>
-        public virtual TipoAirbagLateral TraseroDerecho { get; set; }
+        public TipoAirbagLateral TraseroDerecho { get; set; }
     }
 }

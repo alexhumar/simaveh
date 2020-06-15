@@ -30,6 +30,7 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         {
             return fixtureEquipamientoAirbags.GetEquipamientosAirbags().Select(equipamientoAirbagsFixture => new
             {
+                equipamientoAirbagsFixture.Id,
                 equipamientoAirbagsFixture.Acompanante,
                 equipamientoAirbagsFixture.Conductor,
                 equipamientoAirbagsFixture.DelanteroDerecho,

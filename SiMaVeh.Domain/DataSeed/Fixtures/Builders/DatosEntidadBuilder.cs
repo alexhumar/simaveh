@@ -1,6 +1,8 @@
 ﻿using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
+using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
@@ -10,6 +12,21 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
     /// </summary>
     public class DatosEntidadBuilder : IDatosEntidadBuilder
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="calculadorIdEquipamientoAirbags"></param>
+        /// <param name="calculadorIdUbicacionPieza"></param>
+        public DatosEntidadBuilder(CalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags,
+            CalculadorIdUbicacionPieza calculadorIdUbicacionPieza)
+        {
+            this.calculadorIdEquipamientoAirbags = calculadorIdEquipamientoAirbags;
+            this.calculadorIdUbicacionPieza = calculadorIdUbicacionPieza;
+        }
+
+        private readonly CalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags;
+        private readonly CalculadorIdUbicacionPieza calculadorIdUbicacionPieza;
+
         /// <summary>
         /// Build datos entidad general
         /// </summary>
@@ -69,11 +86,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
         /// <returns></returns>
         public DatosUbicacionPieza Build(bool izquierda, bool superior)
         {
-            return new DatosUbicacionPieza
+            var result = new DatosUbicacionPieza
             {
                 Izquierda = izquierda,
                 Superior = superior
             };
+            result.Id = calculadorIdUbicacionPieza.Calcular(result);
+
+            return result;
         }
 
         /// <summary>
@@ -89,7 +109,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
         public DatosEquipamientoAirbags Build(bool conductor, bool acompanante, TipoAirbagLateral delanteroIzquierdo,
             TipoAirbagLateral delanteroDerecho, TipoAirbagLateral traseroIzquierdo, TipoAirbagLateral traseroDerecho)
         {
-            return new DatosEquipamientoAirbags
+            var result = new DatosEquipamientoAirbags
             {
                 Acompanante = acompanante,
                 Conductor = conductor,
@@ -98,6 +118,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
                 TraseroDerecho = traseroDerecho,
                 TraseroIzquierdo = traseroIzquierdo
             };
+            result.Id = calculadorIdEquipamientoAirbags.Calcular(result);
+
+            return result;
         }
     }
 }

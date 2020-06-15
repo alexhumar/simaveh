@@ -1,10 +1,17 @@
-﻿namespace SiMaVeh.Domain.DataSeed.Models
+﻿using SiMaVeh.Domain.Models.Interfaces;
+
+namespace SiMaVeh.Domain.DataSeed.Models
 {
     /// <summary>
     /// Datos de entidad UbicacionPieza
     /// </summary>
-    public class DatosUbicacionPieza
+    public class DatosUbicacionPieza : IUbicacionPieza
     {
+        /// <summary>
+        /// Id
+        /// </summary>
+        public string Id { get; set; }
+
         /// <summary>
         /// Izquierda
         /// </summary>

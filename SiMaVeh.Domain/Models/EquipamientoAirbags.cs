@@ -1,4 +1,6 @@
 ﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
+using SiMaVeh.Domain.Models.Interfaces;
 using System.Text;
 
 namespace SiMaVeh.Domain.Models
@@ -6,14 +8,25 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Equipamiento Airbags
     /// </summary>
-    public class EquipamientoAirbags : DomainMember<string>
+    public class EquipamientoAirbags : DomainMember<string>,
+        IEquipamientoAirbags
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public EquipamientoAirbags()
+        {
+            calculadorIdEquipamientoAirbags = new CalculadorIdEquipamientoAirbags();
+        }
+
+        private readonly CalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags;
+
         /// <summary>
         /// Id
         /// </summary>
         public override string Id
         {
-            get => CalcularId();
+            get => calculadorIdEquipamientoAirbags.Calcular(this);
             set { }
         }
 
@@ -96,16 +109,6 @@ namespace SiMaVeh.Domain.Models
         public override int GetHashCode()
         {
             return string.Concat(typeof(EquipamientoAirbags).FullName, Id.ToString()).GetHashCode();
-        }
-
-        #endregion
-
-        #region private
-
-        private string CalcularId()
-        {
-            return string.Concat(Conductor ? "C" : "NC", Acompanante ? "A" : "NA", TipoAirbagLateralParser.ToString(DelanteroIzquierdo),
-                TipoAirbagLateralParser.ToString(DelanteroDerecho), TipoAirbagLateralParser.ToString(TraseroIzquierdo), TipoAirbagLateralParser.ToString(TraseroDerecho));
         }
 
         #endregion

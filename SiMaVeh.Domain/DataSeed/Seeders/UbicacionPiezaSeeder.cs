@@ -30,6 +30,7 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         {
             return fixtureUbicacionPieza.GetUbicacionesPieza().Select(ubicacionPiezaFixture => new
             {
+                ubicacionPiezaFixture.Id,
                 ubicacionPiezaFixture.Izquierda,
                 ubicacionPiezaFixture.Superior
             });

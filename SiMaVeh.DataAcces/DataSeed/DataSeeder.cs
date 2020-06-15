@@ -19,6 +19,8 @@ using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza;
 using SiMaVeh.Domain.DataSeed.Interfaces;
 using SiMaVeh.Domain.DataSeed.Seeders;
 using SiMaVeh.Domain.Models;
+using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
+using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
 using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.DataAccess.DataSeed
@@ -97,7 +99,9 @@ namespace SiMaVeh.DataAccess.DataSeed
         /// </summary>
         public DataSeeder()
         {
-            var datosEntidadBuilder = new DatosEntidadBuilder();
+            var calculadorIdEquipamientoAirbags = new CalculadorIdEquipamientoAirbags();
+            var calculadorIdUbicacionPieza = new CalculadorIdUbicacionPieza();
+            var datosEntidadBuilder = new DatosEntidadBuilder(calculadorIdEquipamientoAirbags, calculadorIdUbicacionPieza);
             var paisFixtureGetter = new PaisFixtureGetter(datosEntidadBuilder);
             var categoriaMarcaFixtureGetter = new CategoriaMarcaFixtureGetter(datosEntidadBuilder);
             var fixtureMarca = new FixtureMarca(new MarcaFixtureGettersProvider(datosEntidadBuilder, categoriaMarcaFixtureGetter));
