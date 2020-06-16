@@ -27,3 +27,4 @@ Valvoline
 VATOIL
 YPF
 ZF
+--CATEGORIA categoriaFluido

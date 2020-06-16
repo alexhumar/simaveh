@@ -244,3 +244,4 @@ YAMATO
 YATO
 ZF
 Zimmermann
+--CATEGORIA categoriaRepuesto
