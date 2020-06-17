@@ -29,7 +29,7 @@ Valvoline
 VATOIL
 YPF
 ZF
---CATEGORIA categoriaLubricante
+-FIN CATEGORIA categoriaLubricante
 Accelera
 Achilles
 Aeolus
@@ -137,7 +137,7 @@ Wanli
 Yokohama
 Zenises
 Zeta
---CATEGORIA categoriaNeumatico
+-FIN CATEGORIA categoriaNeumatico
 ABAKUS
 ABE
 ABS
@@ -384,7 +384,7 @@ YAMATO
 YATO
 ZF
 Zimmermann
---CATEGORIA categoriaRepuesto
+-FIN CATEGORIA categoriaRepuesto
 Abarth
 AC
 Acura
@@ -556,7 +556,7 @@ Westfield
 Wiesmann
 Zastava
 Zuendapp
---CATEGORIA categoriaAutomovil
+-FIN CATEGORIA categoriaAutomovil
 ABS
 AISIN
 Ate
@@ -586,7 +586,7 @@ Valvoline
 VATOIL
 YPF
 ZF
---CATEGORIA categoriaFluido
+-FIN CATEGORIA categoriaFluido
 Agira
 APE
 Aspro
@@ -623,4 +623,4 @@ REFSA
 SECHEEP
 Shell
 YPF
---CATEGORIA categoriaFuenteEnergia
+-FIN CATEGORIA categoriaFuenteEnergia
