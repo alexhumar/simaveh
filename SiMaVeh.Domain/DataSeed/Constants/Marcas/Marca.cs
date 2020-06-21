@@ -6,6 +6,11 @@
     public class Marca
     {
         /// <summary>
+        /// No especificada
+        /// </summary>
+        public const string NoEspecificada = "No especificada";
+
+        /// <summary>
         /// AISIN
         /// </summary>
         public const string AISIN = "AISIN";
