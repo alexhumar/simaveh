@@ -1,0 +1,11 @@
+En la consola de NuGet package manager -> Seleccionar como proyecto determinado SiMaVeh.DataAccess
+
+Add-Migration [nombre_migracion] -context SiMaVeh.DataAccess.Model.SiMaVehContext -o Migrations
+
+Para revertir ultima migracion:
+
+Update-Database [nombre_migracion_anterior]
+
+Luego, para eliminarla:
+
+Remove-Migration

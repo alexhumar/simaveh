@@ -1,11 +1,13 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Telefono
     /// </summary>
-    public class Telefono : DomainMember<long>, IEntityChanger<TipoTelefono, long>, IEntityChanger<Persona, long>
+    public class Telefono : DomainMember<long>,
+        IEntityChanger<TipoTelefono, long, Telefono, long>,
+        IEntityChanger<Persona, long, Telefono, long>
     {
         /// <summary>
         /// Numero
@@ -15,12 +17,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo
         /// </summary>
-        public virtual TipoTelefono TipoTelefono { get; set; }
+        public virtual TipoTelefono TipoTelefono { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Persona
         /// </summary>
-        public virtual Persona Persona { get; set; }
+        public virtual Persona Persona { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 
@@ -40,10 +42,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Telefono;
-
-            if (item == null)
+            if (!(obj is Telefono item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -72,56 +74,32 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar tipo telefono
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(TipoTelefono entity)
+        /// <returns></returns>
+        public Telefono Cambiar(TipoTelefono entity)
         {
             if (entity != null)
+            {
                 TipoTelefono = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar tipo telefono
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(TipoTelefono entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar tipo telefono
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(TipoTelefono entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar persona
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Persona entity)
+        /// <returns></returns>
+        public Telefono Cambiar(Persona entity)
         {
-            Persona?.Quitar(this);
-            entity?.Agregar(this);
-        }
+            if (Persona != entity)
+            {
+                Persona?.Quitar(this);
+                Persona = entity;
+                entity?.Agregar(this);
+            }
 
-        /// <summary>
-        /// Agregar persona
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Persona entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar persona
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Persona entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

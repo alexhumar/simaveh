@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +8,9 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Kit
     /// </summary>
-    public class Kit : Recambio, IEntityChanger<Recambio, long>
+    public class Kit : Recambio,
+        ICollectionManager<Recambio, long, Kit, long>
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public Kit()
-        {
-            // Recambios = new List<Recambio>();
-        }
-
         /// <summary>
         /// Nombre
         /// </summary>
@@ -31,13 +24,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recambios
         /// </summary>
-        public virtual IList<Recambio> Recambios
-        {
-            get
-            {
-                return KitRecambio.Select(k => k.Recambio).ToList();
-            }
-        }
+        public virtual ISet<Recambio> Recambios => KitRecambio.Select(k => k.Recambio).ToHashSet();
 
         #region overrides
 
@@ -45,12 +32,14 @@ namespace SiMaVeh.Domain.Models
         /// GetRepuestos
         /// </summary>
         /// <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
-        public override IList<Repuesto> GetRepuestos()
+        public override ISet<Repuesto> GetRepuestos()
         {
-            var repuestos = new List<Repuesto>();
+            var repuestos = new HashSet<Repuesto>();
 
             foreach (Recambio recambio in Recambios)
-                repuestos = repuestos.Concat(recambio.GetRepuestos()).ToList();
+            {
+                repuestos = repuestos.Concat(recambio.GetRepuestos()).ToHashSet();
+            }
 
             return repuestos;
         }
@@ -100,48 +89,42 @@ namespace SiMaVeh.Domain.Models
         #region IEntityChanger
 
         /// <summary>
-        /// Cambiar recambio
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Recambio entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
         /// Agregar recambio
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Recambio entity)
+        /// <returns></returns>
+        public Kit Agregar(Recambio entity)
         {
             if (entity != null)
             {
-                // Recambios?.Add(entity);
-                // entity.Kits.Add(this);
                 KitRecambio?.Add(new KitRecambio
                 {
                     Recambio = entity,
                     Kit = this
                 });
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar recambio
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Recambio entity)
+        /// <returns></returns>
+        public Kit Quitar(Recambio entity)
         {
             if (entity != null)
             {
-                // Recambios?.Remove(entity);
-                // entity.Kits.Remove(this);
                 var toRemove = KitRecambio?
-                    .Where(r => r.Recambio == entity && r.Kit == this)
-                    .FirstOrDefault();
+                    .FirstOrDefault(r => r.Recambio == entity && r.Kit == this);
                 if (toRemove != null)
+                {
                     KitRecambio.Remove(toRemove);
+                }
             }
+
+            return this;
         }
 
         #endregion

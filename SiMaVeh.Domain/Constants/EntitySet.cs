@@ -16,6 +16,11 @@
         public const string Automovil = "Automoviles";
 
         /// <summary>
+        /// CategoriaMarca
+        /// </summary>
+        public const string CategoriaMarca = "CategoriasMarca";
+
+        /// <summary>
         /// Direccion
         /// </summary>
         public const string Direccion = "Direcciones";

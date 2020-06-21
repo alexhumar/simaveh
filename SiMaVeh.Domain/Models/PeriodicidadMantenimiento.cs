@@ -1,11 +1,13 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Periodicidad Mantenimiento
     /// </summary>
-    public class PeriodicidadMantenimiento : DomainMember<long>, IEntityChanger<ModeloVehiculo, long>, IEntityChanger<Repuesto, long>
+    public class PeriodicidadMantenimiento : DomainMember<long>,
+        IEntityChanger<ModeloVehiculo, long, PeriodicidadMantenimiento, long>,
+        IEntityChanger<Repuesto, long, PeriodicidadMantenimiento, long>
     {
         /// <summary>
         /// Kilometros
@@ -30,12 +32,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Modelo Vehiculo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Target Mantenimiento
         /// </summary>
-        public virtual Repuesto TargetMantenimiento { get; set; }
+        public virtual Repuesto TargetMantenimiento { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Es periodicidad default (independiente del modelo vehiculo)
@@ -94,56 +96,32 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar modelo vehiculo
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(ModeloVehiculo entity)
+        /// <returns></returns>
+        public PeriodicidadMantenimiento Cambiar(ModeloVehiculo entity)
         {
             if (entity != null)
+            {
                 ModeloVehiculo = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(ModeloVehiculo entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(ModeloVehiculo entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar repuesto
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Repuesto entity)
+        /// <returns></returns>
+        public PeriodicidadMantenimiento Cambiar(Repuesto entity)
         {
-            TargetMantenimiento?.Quitar(this);
-            entity?.Agregar(this);
-        }
+            if (TargetMantenimiento != entity)
+            {
+                TargetMantenimiento?.Quitar(this);
+                TargetMantenimiento = entity;
+                entity?.Agregar(this);
+            }
 
-        /// <summary>
-        /// Agregar repuesto
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Repuesto entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar repuesto
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Repuesto entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

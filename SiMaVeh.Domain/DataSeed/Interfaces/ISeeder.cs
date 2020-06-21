@@ -3,15 +3,14 @@
 namespace SiMaVeh.Domain.DataSeed.Interfaces
 {
     /// <summary>
-    /// Interfaz de Seeder
+    /// Interfaz de seeder
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface ISeeder<T>
+    public interface ISeeder<TBe>
     {
         /// <summary>
-        /// Genera las entidades por default para el tipo parametrizado
+        /// Obtiene los seeds de una entidad determinada
         /// </summary>
         /// <returns></returns>
-        IEnumerable<T> GetSeeds();
+        IEnumerable<object> GetSeeds();
     }
 }

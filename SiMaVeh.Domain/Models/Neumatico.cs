@@ -1,17 +1,18 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
-using SiMaVeh.Domain.Enums;
+﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Neumatico
     /// </summary>
-    public class Neumatico : DomainMember<long>, IEntityChanger<Marca, long>
+    public class Neumatico : DomainMember<long>,
+        IEntityChanger<Marca, long, Neumatico, long>
     {
         /// <summary>
         /// Marca
         /// </summary>
-        public virtual Marca Marca { get; set; }
+        public virtual Marca Marca { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Modelo
@@ -21,12 +22,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo
         /// </summary>
-        public virtual ETipoVehiculoNeumatico Tipo { get; set; }
+        public virtual TipoVehiculoNeumatico Tipo { get; set; }
 
         /// <summary>
         /// Construccion Carcasa
         /// </summary>
-        public virtual EConstruccionCarcasaNeumatico ConstruccionCarcasa { get; set; }
+        public virtual ConstruccionCarcasaNeumatico ConstruccionCarcasa { get; set; }
 
         /// <summary>
         /// Relación de aspecto entre la altura del perfil y la anchura del neumático como porcentaje
@@ -108,28 +109,15 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar marca
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Marca entity)
+        /// <returns></returns>
+        public Neumatico Cambiar(Marca entity)
         {
             if (entity != null)
+            {
                 Marca = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Marca entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Marca entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

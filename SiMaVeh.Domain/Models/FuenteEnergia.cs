@@ -1,11 +1,13 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Combustible
     /// </summary>
-    public class FuenteEnergia : DomainMember<long>, IEntityChanger<Marca, long>, IEntityChanger<TipoFuenteEnergia, long>
+    public class FuenteEnergia : DomainMember<long>,
+        IEntityChanger<Marca, long, FuenteEnergia, long>,
+        IEntityChanger<TipoFuenteEnergia, long, FuenteEnergia, long>
     {
         /// <summary>
         /// Nombre
@@ -15,12 +17,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Marca
         /// </summary>
-        public virtual Marca Marca { get; set; }
+        public virtual Marca Marca { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Tipo de Fuente de Energia
         /// </summary>
-        public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; }
+        public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 
@@ -71,56 +73,30 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar marca
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Marca entity)
+        /// <returns></returns>
+        public FuenteEnergia Cambiar(Marca entity)
         {
             if (entity != null)
+            {
                 Marca = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Marca entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Marca entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar tipo fuente energia
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(TipoFuenteEnergia entity)
+        /// <returns></returns>
+        public FuenteEnergia Cambiar(TipoFuenteEnergia entity)
         {
             if (entity != null)
+            {
                 TipoFuenteEnergia = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar tipo fuente energia
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(TipoFuenteEnergia entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar tipo fuente energia
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(TipoFuenteEnergia entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

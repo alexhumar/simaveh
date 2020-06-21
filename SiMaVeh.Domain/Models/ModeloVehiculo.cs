@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -6,23 +6,28 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Modelo Vehiculo
     /// </summary>
-    public class ModeloVehiculo : DomainMember<long>, IEntityChanger<GrupoModelo, long>, IEntityChanger<Aceite, long>,
-        IEntityChanger<EquipamientoAirbags, long>, IEntityChanger<TipoFuenteEnergia, long>, IEntityChanger<FuenteEnergia, long>,
-        IEntityChanger<Repuesto, long>, IEntityChanger<PresionNeumatico, long>
+    public class ModeloVehiculo : DomainMember<long>,
+        IEntityChanger<GrupoModelo, long, ModeloVehiculo, long>,
+        IEntityChanger<Aceite, long, ModeloVehiculo, long>,
+        IEntityChanger<EquipamientoAirbags, string, ModeloVehiculo, long>,
+        IEntityChanger<TipoFuenteEnergia, long, ModeloVehiculo, long>,
+        IEntityChanger<FuenteEnergia, long, ModeloVehiculo, long>,
+        ICollectionManager<Repuesto, long, ModeloVehiculo, long>,
+        ICollectionManager<PresionNeumatico, long, ModeloVehiculo, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public ModeloVehiculo()
         {
-            RepuestosRecomendados = new List<Repuesto>();
-            PresionesNeumaticosRecomendadas = new List<PresionNeumatico>();
+            RepuestosRecomendados = new HashSet<Repuesto>();
+            PresionesNeumaticosRecomendadas = new HashSet<PresionNeumatico>();
         }
 
         /// <summary>
         /// Grupo Modelo
         /// </summary>
-        public virtual GrupoModelo GrupoModelo { get; set; }
+        public virtual GrupoModelo GrupoModelo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Version
@@ -32,32 +37,32 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Aceite Recomendado
         /// </summary>
-        public virtual Aceite AceiteRecomendado { get; set; }
+        public virtual Aceite AceiteRecomendado { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Airbags
         /// </summary>
-        public virtual EquipamientoAirbags Airbags { get; set; }
+        public virtual EquipamientoAirbags Airbags { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Tipo de Fuente de Energia
         /// </summary>
-        public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; }
+        public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Fuente Energia Recomendada
         /// </summary>
-        public virtual FuenteEnergia FuenteEnergiaRecomendada { get; set; }
+        public virtual FuenteEnergia FuenteEnergiaRecomendada { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Repuestos Recomendados
         /// </summary>
-        public virtual IList<Repuesto> RepuestosRecomendados { get; set; }
+        public virtual ISet<Repuesto> RepuestosRecomendados { get; protected set; }
 
         /// <summary>
         /// Presiones de Neumaticos Recomendadas
         /// </summary>
-        public virtual IList<PresionNeumatico> PresionesNeumaticosRecomendadas { get; set; }
+        public virtual ISet<PresionNeumatico> PresionesNeumaticosRecomendadas { get; protected set; }
 
         #region overrides
 
@@ -77,10 +82,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as ModeloVehiculo;
-
-            if (item == null)
+            if (!(obj is ModeloVehiculo item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -107,208 +112,147 @@ namespace SiMaVeh.Domain.Models
         #region IEntityChanger
 
         /// <summary>
-        /// Cambiar presion neumatico recomendada
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(PresionNeumatico entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Agregar presion neumatico recomendada
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(PresionNeumatico entity)
-        {
-            if (entity != null)
-            {
-                PresionesNeumaticosRecomendadas?.Add(entity);
-                entity.ModeloVehiculo = this;
-            }
-        }
-
-        /// <summary>
-        /// Quitar presion neumatico recomendada
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(PresionNeumatico entity)
-        {
-            if (entity != null)
-            {
-                PresionesNeumaticosRecomendadas?.Remove(entity);
-                if ((bool)entity.ModeloVehiculo?.Equals(this))
-                    entity.ModeloVehiculo = null;
-            }
-        }
-
-        /// <summary>
         /// Cambiar grupo modelo
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(GrupoModelo entity)
+        /// <returns></returns>
+        public ModeloVehiculo Cambiar(GrupoModelo entity)
         {
             if (entity != null)
+            {
                 GrupoModelo = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar grupo modelo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(GrupoModelo entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar grupo modelo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(GrupoModelo entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar aceite recomendado
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Aceite entity)
+        /// <returns></returns>
+        public ModeloVehiculo Cambiar(Aceite entity)
         {
             if (entity != null)
+            {
                 AceiteRecomendado = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar aceite recomendado
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Aceite entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar aceite recomendado
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Aceite entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar equipamiento airbags
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(EquipamientoAirbags entity)
+        /// <returns></returns>
+        public ModeloVehiculo Cambiar(EquipamientoAirbags entity)
         {
             if (entity != null)
+            {
                 Airbags = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar equipamiento airbags
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(EquipamientoAirbags entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar equipamiento airbags
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(EquipamientoAirbags entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar tipo fuente energia recomendada
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(TipoFuenteEnergia entity)
+        /// <returns></returns>
+        public ModeloVehiculo Cambiar(TipoFuenteEnergia entity)
         {
             if (entity != null)
+            {
                 TipoFuenteEnergia = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar tipo fuente energia recomendada
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(TipoFuenteEnergia entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar tipo fuente energia recomendada
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(TipoFuenteEnergia entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar fuente energia recomendada
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(FuenteEnergia entity)
+        /// <returns></returns>
+        public ModeloVehiculo Cambiar(FuenteEnergia entity)
         {
             if (entity != null)
+            {
                 FuenteEnergiaRecomendada = entity;
+            }
+
+            return this;
+        }
+
+        #endregion
+
+        #region ICollectionManager
+
+        /// <summary>
+        /// Agregar presion neumatico recomendada
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Agregar(PresionNeumatico entity)
+        {
+            if ((entity != null) && !PresionesNeumaticosRecomendadas.Contains(entity))
+            {
+                PresionesNeumaticosRecomendadas.Add(entity);
+                entity.Cambiar(this);
+            }
+
+            return this;
         }
 
         /// <summary>
-        /// Agregar fuente energia recomendada
+        /// Quitar presion neumatico recomendada
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(FuenteEnergia entity)
+        /// <returns></returns>
+        public ModeloVehiculo Quitar(PresionNeumatico entity)
         {
-            throw new System.NotSupportedException();
-        }
+            if ((entity != null) && PresionesNeumaticosRecomendadas.Contains(entity))
+            {
+                PresionesNeumaticosRecomendadas.Remove(entity);
+                if ((bool)entity.ModeloVehiculo?.Equals(this))
+                {
+                    entity.Cambiar((ModeloVehiculo)null);
+                }
+            }
 
-        /// <summary>
-        /// Quitar fuente energia recomendada
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(FuenteEnergia entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar repuesto recomendado
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Repuesto entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Agregar repuesto recomendado
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Repuesto entity)
+        /// <returns></returns>
+        public ModeloVehiculo Agregar(Repuesto entity)
         {
             if (entity != null)
+            {
                 RepuestosRecomendados?.Add(entity);
+            }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar repuesto recomendado
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Repuesto entity)
+        /// <returns></returns>
+        public ModeloVehiculo Quitar(Repuesto entity)
         {
             if (entity != null)
+            {
                 RepuestosRecomendados?.Remove(entity);
+            }
+
+            return this;
         }
 
         #endregion

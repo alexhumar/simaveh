@@ -1,16 +1,17 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Pieza
     /// </summary>
-    public class Pieza : TargetMantenimiento, IEntityChanger<UbicacionPieza, string>
+    public class Pieza : TargetMantenimiento,
+        IEntityChanger<UbicacionPieza, string, Pieza, long>
     {
         /// <summary>
         /// Ubicacion
         /// </summary>
-        public virtual UbicacionPieza UbicacionPieza { get; set; }
+        public virtual UbicacionPieza UbicacionPieza { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 
@@ -60,28 +61,15 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar ubicacion pieza
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(UbicacionPieza entity)
+        /// <returns></returns>
+        public Pieza Cambiar(UbicacionPieza entity)
         {
             if (entity != null)
+            {
                 UbicacionPieza = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar ubicacion pieza
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(UbicacionPieza entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar ubicacion pieza
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(UbicacionPieza entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

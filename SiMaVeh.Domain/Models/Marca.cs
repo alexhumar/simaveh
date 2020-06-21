@@ -1,19 +1,42 @@
-﻿namespace SiMaVeh.Domain.Models
+﻿using SiMaVeh.Domain.Models.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Marca
     /// </summary>
-    public class Marca : DomainMember<long>
+    public class Marca : DomainMember<long>,
+        ICollectionManager<CategoriaMarca, long, Marca, long>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Marca()
+        {
+            MarcaCategoriaMarca = new HashSet<MarcaCategoriaMarca>();
+        }
+
         /// <summary>
         /// Nombre
         /// </summary>
         public virtual string Nombre { get; set; }
 
         /// <summary>
-        /// Descripcion
+        /// Categorías
         /// </summary>
-        public virtual string Descripcion { get; set; }
+        public virtual ISet<CategoriaMarca> Categorias => MarcaCategoriaMarca.Select(m => m.CategoriaMarca).ToHashSet();
+
+        #region relations
+
+        /// <summary>
+        /// Relacion Marca-CategoriaMarca
+        /// </summary>
+        public virtual ISet<MarcaCategoriaMarca> MarcaCategoriaMarca { get; }
+
+        #endregion
 
         #region overrides
 
@@ -33,10 +56,10 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Marca;
-
-            if (item == null)
+            if (!(obj is Marca item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -55,6 +78,49 @@
         public override int GetHashCode()
         {
             return string.Concat(typeof(Marca).FullName, Id.ToString()).GetHashCode();
+        }
+
+        #endregion
+
+        #region ICollectionManager
+
+        /// <summary>
+        /// Agregar categoria
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Marca Agregar(CategoriaMarca entity)
+        {
+            if (entity != null)
+            {
+                MarcaCategoriaMarca?.Add(new MarcaCategoriaMarca
+                {
+                    Marca = this,
+                    CategoriaMarca = entity
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar categoria
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Marca Quitar(CategoriaMarca entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = MarcaCategoriaMarca?
+                    .FirstOrDefault(r => r.Marca == this && r.CategoriaMarca == entity);
+                if (toRemove != null)
+                {
+                    MarcaCategoriaMarca.Remove(toRemove);
+                }
+            }
+
+            return this;
         }
 
         #endregion

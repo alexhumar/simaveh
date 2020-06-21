@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -6,14 +6,16 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Partido
     /// </summary>
-    public class Partido : DomainMember<long>, IEntityChanger<Provincia, long>, IEntityChanger<Localidad, long>
+    public class Partido : DomainMember<long>,
+        IEntityChanger<Provincia, long, Partido, long>,
+        ICollectionManager<Localidad, long, Partido, long>
     {
         /// <summary>
         /// Partido
         /// </summary>
         public Partido()
         {
-            Localidades = new List<Localidad>();
+            Localidades = new HashSet<Localidad>();
         }
 
         /// <summary>
@@ -24,12 +26,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Provincia
         /// </summary>
-        public virtual Provincia Provincia { get; set; }
+        public virtual Provincia Provincia { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Localidades
         /// </summary>
-        public virtual IList<Localidad> Localidades { get; set; }
+        public virtual ISet<Localidad> Localidades { get; protected set; }
 
         #region overrides
 
@@ -49,10 +51,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Partido;
-
-            if (item == null)
+            if (!(obj is Partido item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -82,64 +84,56 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar provincia
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Provincia entity)
+        /// <returns></returns>
+        public Partido Cambiar(Provincia entity)
         {
-            Provincia?.Quitar(this);
-            entity?.Agregar(this);
+            if (Provincia != entity)
+            {
+                Provincia?.Quitar(this);
+                Provincia = entity;
+                entity?.Agregar(this);
+            }
+
+            return this;
         }
 
-        /// <summary>
-        /// Agregar provincia
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Provincia entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #endregion
 
-        /// <summary>
-        /// Quitar provincia
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Provincia entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar localidad
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Localidad entity)
-        {
-            throw new System.NotSupportedException();
-        }
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar localidad
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Localidad entity)
+        /// <returns></returns>
+        public Partido Agregar(Localidad entity)
         {
-            if (entity != null)
+            if ((entity != null) && !Localidades.Contains(entity))
             {
-                Localidades?.Add(entity);
-                entity.Partido = this;
+                Localidades.Add(entity);
+                entity.Cambiar(this);
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar localidad
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Localidad entity)
+        /// <returns></returns>
+        public Partido Quitar(Localidad entity)
         {
-            if (entity != null)
+            if ((entity != null) && Localidades.Contains(entity))
             {
-                Localidades?.Remove(entity);
+                Localidades.Remove(entity);
                 if ((bool)entity.Partido?.Equals(this))
-                    entity.Partido = null;
+                {
+                    entity.Cambiar(null);
+                }
             }
+
+            return this;
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -6,21 +6,23 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Vehiculo
     /// </summary>
-    public abstract class Vehiculo : DomainMember<long>, IEntityChanger<ModeloVehiculo, long>, IEntityChanger<ServicioReparador, long>,
-        IEntityChanger<Usuario, long>
+    public abstract class Vehiculo : DomainMember<long>,
+        IEntityChanger<ModeloVehiculo, long, Vehiculo, long>,
+        ICollectionManager<ServicioReparador, long, Vehiculo, long>,
+        IEntityChanger<Usuario, long, Vehiculo, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public Vehiculo()
         {
-            ServiciosReparadores = new List<ServicioReparador>();
+            ServiciosReparadores = new HashSet<ServicioReparador>();
         }
 
         /// <summary>
         /// Modelo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Kilometraje
@@ -35,12 +37,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Usuario al que pertenece
         /// </summary>
-        public virtual Usuario Usuario { get; set; }
+        public virtual Usuario Usuario { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Servicios Reparadores
         /// </summary>
-        public virtual IList<ServicioReparador> ServiciosReparadores { get; set; }
+        public virtual ISet<ServicioReparador> ServiciosReparadores { get; protected set; }
 
         #region overrides
 
@@ -68,95 +70,74 @@ namespace SiMaVeh.Domain.Models
         #region IEntityChanger
 
         /// <summary>
-        /// Cambiar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(ServicioReparador entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Agregar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(ServicioReparador entity)
-        {
-            if (entity != null)
-            {
-                ServiciosReparadores?.Add(entity);
-                entity.Vehiculo = this;
-            }
-        }
-
-        /// <summary>
-        /// Quitar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(ServicioReparador entity)
-        {
-            if (entity != null)
-            {
-                ServiciosReparadores?.Remove(entity);
-                if ((bool)entity.Vehiculo?.Equals(this))
-                    entity.Vehiculo = null;
-            }
-        }
-
-        /// <summary>
         /// Cambiar modelo vehiculo
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(ModeloVehiculo entity)
+        /// <returns></returns>
+        public Vehiculo Cambiar(ModeloVehiculo entity)
         {
             if (ModeloVehiculo != null)
+            {
                 ModeloVehiculo = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(ModeloVehiculo entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(ModeloVehiculo entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar usuario
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Usuario entity)
+        /// <returns></returns>
+        public Vehiculo Cambiar(Usuario entity)
         {
-            Usuario?.Quitar(this);
-            entity?.Agregar(this);
+            if (Usuario != entity)
+            {
+                Usuario?.Quitar(this);
+                Usuario = entity;
+                entity?.Agregar(this);
+            }
+
+            return this;
+        }
+
+        #endregion
+
+        #region ICollectionManager
+
+        /// <summary>
+        /// Agregar servicio reparador
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Vehiculo Agregar(ServicioReparador entity)
+        {
+            if ((entity != null) && !ServiciosReparadores.Contains(entity))
+            {
+                ServiciosReparadores.Add(entity);
+                entity.Cambiar(this);
+            }
+
+            return this;
         }
 
         /// <summary>
-        /// Agregar usuario
+        /// Quitar servicio reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Usuario entity)
+        /// <returns></returns>
+        public Vehiculo Quitar(ServicioReparador entity)
         {
-            throw new System.NotSupportedException();
-        }
+            if ((entity != null) && ServiciosReparadores.Contains(entity))
+            {
+                ServiciosReparadores.Remove(entity);
+                if ((bool)entity.Vehiculo?.Equals(this))
+                {
+                    entity.Cambiar((Vehiculo)null);
+                }
+            }
 
-        /// <summary>
-        /// Quitar usuario
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Usuario entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

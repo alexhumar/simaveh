@@ -19,7 +19,7 @@ namespace SiMaVeh.Domain.Validators
             RuleFor(x => x.NumeroChasis)
                 .NotNull()
                 .NotEqual(string.Empty);
-            //TODO mejorar esta validacion
+            //TODO: mejorar esta validacion
             RuleFor(x => x.Patente)
                 .NotNull()
                 .NotEqual(string.Empty);

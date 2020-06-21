@@ -15,12 +15,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Moneda Origen
         /// </summary>
-        public virtual Moneda MonedaOrigen { get; set; }
+        public virtual Moneda MonedaOrigen { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Moneda Destino
         /// </summary>
-        public virtual Moneda MonedaDestino { get; set; }
+        public virtual Moneda MonedaDestino { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Fecha
@@ -83,7 +83,9 @@ namespace SiMaVeh.Domain.Models
         public void CambiarMonedaOrigen(Moneda entity)
         {
             if (entity != null)
+            {
                 MonedaOrigen = entity;
+            }
         }
 
         /// <summary>
@@ -93,7 +95,9 @@ namespace SiMaVeh.Domain.Models
         public void CambiarMonedaDestino(Moneda entity)
         {
             if (entity != null)
+            {
                 MonedaDestino = entity;
+            }
         }
 
         #endregion

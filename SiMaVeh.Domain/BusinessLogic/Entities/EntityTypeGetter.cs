@@ -15,6 +15,7 @@ namespace SiMaVeh.Domain.BusinessLogic.Entities
         {
             { typeof(Aceite).Name, EntitySet.Aceite },
             { typeof(Automovil).Name, EntitySet.Automovil },
+            { typeof(CategoriaMarca).Name, EntitySet.CategoriaMarca },
             { typeof(Direccion).Name, EntitySet.Direccion },
             { typeof(EntidadReparadora).Name, EntitySet.EntidadReparadora },
             { typeof(EquipamientoAirbags).Name, EntitySet.EquipamientoAirbag },

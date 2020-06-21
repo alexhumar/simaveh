@@ -16,9 +16,8 @@ namespace SiMaVeh.Domain.Validators
             RuleFor(x => x.Nombre)
                 .NotNull()
                 .NotEqual(string.Empty);
-            RuleFor(x => x.Descripcion)
-                .NotNull()
-                .NotEqual(string.Empty);
+            //RuleFor(x => x.Categorias)
+            //    .NotNull();
         }
     }
 }

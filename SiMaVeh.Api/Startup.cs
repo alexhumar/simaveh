@@ -56,19 +56,16 @@ namespace SiMaVeh
 
             app.UseMvc(routeBuilder =>
             {
-                routeBuilder.MapODataServiceRoute("odata", "simaveh", MyModelBuilder.getEdmModel());
+                routeBuilder.MapODataServiceRoute("odata", "simaveh", MyModelBuilder.GetEdmModel());
                 //Work-around for issue #1175
                 routeBuilder.EnableDependencyInjection();
             });
 
             //Esto es para que se actualice la BD mediante migrations cuando arranca la Api. No es lo ideal,
             //pero como no es un modelo grande, esta bien.
-            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var siMaVehContext = scope.ServiceProvider.GetService<SiMaVehContext>();
-                siMaVehContext.ServiceProvider = scope.ServiceProvider;
-                siMaVehContext.Database.Migrate();
-            }
+            using var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            var siMaVehContext = scope.ServiceProvider.GetService<SiMaVehContext>();
+            siMaVehContext.Database.Migrate();
         }
     }
 }

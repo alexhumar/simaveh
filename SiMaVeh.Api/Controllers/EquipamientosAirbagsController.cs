@@ -9,7 +9,7 @@ namespace SiMaVeh.Controllers
     /// <summary>
     /// Equipamientos Airbags Controller
     /// </summary>
-    public class EquipamientosAirbagsController : GenericController<EquipamientoAirbags, long>
+    public class EquipamientosAirbagsController : GenericController<EquipamientoAirbags, string>
     {
         /// <summary>
         /// Constructor
@@ -24,7 +24,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Si el equipamiento airbag es delantero derecho</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetDelanteroDerecho([FromODataUri] long key)
+        public async Task<IActionResult> GetDelanteroDerecho([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 
@@ -40,7 +40,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Si el equipamiento airbag es delantero izquierdo</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetDelanteroIzquierdo([FromODataUri] long key)
+        public async Task<IActionResult> GetDelanteroIzquierdo([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 
@@ -51,19 +51,19 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Obtiene si el equipamiento airbag es de guantera
+        /// Obtiene si el equipamiento airbag es de acompañante
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Si el equipamiento airbag es de guantera</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetGuantera([FromODataUri] long key)
+        public async Task<IActionResult> GetAcompanante([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Guantera);
+                return Ok(entity.Acompanante);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Si el equipamiento airbag es trasero derecho</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetTraseroDerecho([FromODataUri] long key)
+        public async Task<IActionResult> GetTraseroDerecho([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 
@@ -88,7 +88,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Si el equipamiento airbag es trasero izquierdo</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetTraseroIzquierdo([FromODataUri] long key)
+        public async Task<IActionResult> GetTraseroIzquierdo([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 
@@ -99,19 +99,19 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Obtiene si el equipamiento airbag es de volante
+        /// Obtiene si el equipamiento airbag es de conductor
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Si el equipamiento airbag es de volante</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetVolante([FromODataUri] long key)
+        public async Task<IActionResult> GetConductor([FromODataUri] string key)
         {
             var entity = await _repository.Find(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Volante);
+                return Ok(entity.Conductor);
         }
 
         #endregion

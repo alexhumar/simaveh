@@ -1,11 +1,12 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Direccion
     /// </summary>
-    public class Direccion : DomainMember<long>, IEntityChanger<Localidad, long>
+    public class Direccion : DomainMember<long>,
+        IEntityChanger<Localidad, long, Direccion, long>
     {
         /// <summary>
         /// Calle
@@ -20,7 +21,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Localidad
         /// </summary>
-        public virtual Localidad Localidad { get; set; }
+        public virtual Localidad Localidad { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 
@@ -71,28 +72,15 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar localidad
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Localidad entity)
+        /// <returns></returns>
+        public Direccion Cambiar(Localidad entity)
         {
             if (entity != null)
+            {
                 Localidad = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar localidad
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Localidad entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar localidad
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Localidad entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

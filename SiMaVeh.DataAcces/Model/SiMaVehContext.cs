@@ -1,18 +1,18 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Relations;
-using System;
 
 namespace SiMaVeh.DataAccess.Model
 {
     public class SiMaVehContext : DbContext
     {
-        public IServiceProvider ServiceProvider { get; set; }
+        protected IDataSeeder DataSeeder { get; set; }
 
         public SiMaVehContext(DbContextOptions<SiMaVehContext> options) : base(options)
         {
+            //Esto no pude hacerlo funcionar con inyeccion de dependencias.
+            DataSeeder = new DataSeeder();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -54,11 +54,14 @@ namespace SiMaVeh.DataAccess.Model
             builder.Entity<KitRecambio>()
                 .HasKey(k => new { k.KitId, k.RecambioId });
 
+            builder.Entity<MarcaCategoriaMarca>()
+                .HasKey(k => new { k.CategoriaMarcaId, k.MarcaId });
+
             #endregion
 
             #region Data Seeding
 
-            ServiceProvider.GetService<IDataSeeder>().SeedData(builder);
+            DataSeeder.SeedData(builder);
 
             #endregion
         }
@@ -72,6 +75,11 @@ namespace SiMaVeh.DataAccess.Model
         /// Automoviles
         /// </summary>
         public DbSet<Automovil> Automoviles { get; set; }
+
+        /// <summary>
+        /// Categorías Marca
+        /// </summary>
+        public DbSet<CategoriaMarca> CategoriasMarca { get; set; }
 
         /// <summary>
         /// Direcciones

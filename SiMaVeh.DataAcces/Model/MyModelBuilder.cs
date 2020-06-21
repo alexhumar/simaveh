@@ -10,7 +10,7 @@ namespace SiMaVeh.DataAccess.Model
 {
     public class MyModelBuilder
     {
-        public static IEdmModel getEdmModel()
+        public static IEdmModel GetEdmModel()
         {
             var builder = new ODataConventionModelBuilder();
 
@@ -58,6 +58,15 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
+            //Categorias Marca
+            builder.EntitySet<CategoriaMarca>(EntityTypeGetter<CategoriaMarca, long>.GetCollectionNameAsString());
+            builder.EntityType<CategoriaMarca>()
+                .Count(QueryOptionSetting.Allowed)
+                .Filter()
+                .OrderBy(QueryOptionSetting.Allowed)
+                .Page()
+                .Select();
+
             //Direcciones
             builder.EntitySet<Direccion>(EntityTypeGetter<Direccion, long>.GetCollectionNameAsString());
             builder.EntityType<Direccion>()
@@ -79,7 +88,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
 
             //Equipamientos Airbags
-            builder.EntitySet<EquipamientoAirbags>(EntityTypeGetter<EquipamientoAirbags, long>.GetCollectionNameAsString());
+            builder.EntitySet<EquipamientoAirbags>(EntityTypeGetter<EquipamientoAirbags, string>.GetCollectionNameAsString());
             builder.EntityType<EquipamientoAirbags>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -166,7 +175,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
 
             //Monedas
-            builder.EntitySet<Moneda>(EntityTypeGetter<Moneda, long>.GetCollectionNameAsString());
+            builder.EntitySet<Moneda>(EntityTypeGetter<Moneda, string>.GetCollectionNameAsString());
             builder.EntityType<Moneda>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()

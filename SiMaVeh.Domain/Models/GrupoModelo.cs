@@ -1,11 +1,12 @@
-﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Grupo Modelo
     /// </summary>
-    public class GrupoModelo : DomainMember<long>, IEntityChanger<Marca, long>
+    public class GrupoModelo : DomainMember<long>,
+        IEntityChanger<Marca, long, GrupoModelo, long>
     {
         /// <summary>
         /// Nombre
@@ -15,7 +16,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Marca
         /// </summary>
-        public virtual Marca Marca { get; set; }
+        public virtual Marca Marca { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 
@@ -65,28 +66,15 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar marca
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Marca entity)
+        /// <returns></returns>
+        public GrupoModelo Cambiar(Marca entity)
         {
             if (entity != null)
+            {
                 Marca = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Marca entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar marca
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Marca entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion
