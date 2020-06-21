@@ -4,6 +4,7 @@ using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
+using SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
 using SiMaVeh.Domain.DataSeed.Fixtures.Marca;
 using SiMaVeh.Domain.DataSeed.Fixtures.Moneda;
@@ -44,6 +45,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         private readonly IDomainSeeder<CategoriaMarca, long> categoriaMarcaSeeder;
         private readonly IDomainSeeder<Marca, long> marcaSeeder;
         private readonly ISeeder<MarcaCategoriaMarca> marcaCategoriaMarcaSeeder;
+        private readonly IDomainSeeder<FuenteEnergia, long> fuenteEnergiaSeeder;
 
         /// <summary>
         /// Constructor
@@ -62,6 +64,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         /// <param name="categoriaMarcaSeeder"></param>
         /// <param name="marcaSeeder"></param>
         /// <param name="marcaCategoriaMarcaSeeder"></param>
+        /// <param name="fuenteEnergiaSeeder"></param>
         public DataSeeder(IDomainSeeder<Pais, long> paisSeeder,
             IDomainSeeder<Provincia, long> provinciaSeeder,
             IDomainSeeder<Partido, long> partidoSeeder,
@@ -75,7 +78,8 @@ namespace SiMaVeh.DataAccess.DataSeed
             IDomainSeeder<Moneda, string> monedaSeeder,
             IDomainSeeder<CategoriaMarca, long> categoriaMarcaSeeder,
             IDomainSeeder<Marca, long> marcaSeeder,
-            ISeeder<MarcaCategoriaMarca> marcaCategoriaMarcaSeeder)
+            ISeeder<MarcaCategoriaMarca> marcaCategoriaMarcaSeeder,
+            IDomainSeeder<FuenteEnergia, long> fuenteEnergiaSeeder)
         {
             this.paisSeeder = paisSeeder;
             this.provinciaSeeder = provinciaSeeder;
@@ -90,8 +94,8 @@ namespace SiMaVeh.DataAccess.DataSeed
             this.monedaSeeder = monedaSeeder;
             this.marcaSeeder = marcaSeeder;
             this.categoriaMarcaSeeder = categoriaMarcaSeeder;
-
             this.marcaCategoriaMarcaSeeder = marcaCategoriaMarcaSeeder;
+            this.fuenteEnergiaSeeder = fuenteEnergiaSeeder;
         }
 
         /// <summary>
@@ -119,8 +123,8 @@ namespace SiMaVeh.DataAccess.DataSeed
             monedaSeeder = new MonedaSeeder(new FixtureMoneda(new MonedaFixtureGettersProvider(datosEntidadBuilder)));
             categoriaMarcaSeeder = new CategoriaMarcaSeeder(new FixtureCategoriaMarca(new CategoriaMarcaFixtureGettersProvider(datosEntidadBuilder)));
             marcaSeeder = new MarcaSeeder(fixtureMarca);
-
             marcaCategoriaMarcaSeeder = new MarcaCategoriaMarcaSeeder(fixtureMarca);
+            fuenteEnergiaSeeder = new FuenteEnergiaSeeder(new FixtureFuenteEnergia(new FuenteEnergiaFixtureGettersProvider(datosEntidadBuilder)));
         }
 
         /// <summary>
@@ -143,8 +147,8 @@ namespace SiMaVeh.DataAccess.DataSeed
             builder.Entity<Moneda>().HasData(monedaSeeder.GetSeeds());
             builder.Entity<CategoriaMarca>().HasData(categoriaMarcaSeeder.GetSeeds());
             builder.Entity<Marca>().HasData(marcaSeeder.GetSeeds());
-
             builder.Entity<MarcaCategoriaMarca>().HasData(marcaCategoriaMarcaSeeder.GetSeeds());
+            builder.Entity<FuenteEnergia>().HasData(fuenteEnergiaSeeder.GetSeeds());
         }
     }
 }
