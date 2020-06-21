@@ -122,5 +122,24 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
 
             return result;
         }
+
+        /// <summary>
+        /// Build datos fuente energia
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <param name="marca"></param>
+        /// <param name="tipoFuenteEnergia"></param>
+        /// <returns></returns>
+        public DatosFuenteEnergia Build(long id, string nombre, DatosMarca marca, DatosEntidad tipoFuenteEnergia)
+        {
+            return new DatosFuenteEnergia
+            {
+                Id = id,
+                Marca = marca,
+                Nombre = nombre,
+                TipoFuenteEnergia = tipoFuenteEnergia
+            };
+        }
     }
 }

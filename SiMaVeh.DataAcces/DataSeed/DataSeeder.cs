@@ -7,6 +7,7 @@ using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
 using SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
 using SiMaVeh.Domain.DataSeed.Fixtures.Marca;
+using SiMaVeh.Domain.DataSeed.Fixtures.Marca.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Moneda;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
@@ -15,6 +16,7 @@ using SiMaVeh.Domain.DataSeed.Fixtures.Provincia;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia;
+using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono;
 using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza;
 using SiMaVeh.Domain.DataSeed.Interfaces;
@@ -109,6 +111,8 @@ namespace SiMaVeh.DataAccess.DataSeed
             var paisFixtureGetter = new PaisFixtureGetter(datosEntidadBuilder);
             var categoriaMarcaFixtureGetter = new CategoriaMarcaFixtureGetter(datosEntidadBuilder);
             var fixtureMarca = new FixtureMarca(new MarcaFixtureGettersProvider(datosEntidadBuilder, categoriaMarcaFixtureGetter));
+            var marcaFixtureGetter = new MarcaFixtureGetter(datosEntidadBuilder, categoriaMarcaFixtureGetter);
+            var tipoFuenteEnergiaFixtureGetter = new TipoFuenteEnergiaFixtureGetter(datosEntidadBuilder);
 
             paisSeeder = new PaisSeeder(new FixturePais(new PaisFixtureGettersProvider(datosEntidadBuilder)));
             provinciaSeeder = new ProvinciaSeeder(new FixtureProvincia(new ProvinciaFixtureGettersProvider(datosEntidadBuilder, paisFixtureGetter)));
@@ -124,7 +128,7 @@ namespace SiMaVeh.DataAccess.DataSeed
             categoriaMarcaSeeder = new CategoriaMarcaSeeder(new FixtureCategoriaMarca(new CategoriaMarcaFixtureGettersProvider(datosEntidadBuilder)));
             marcaSeeder = new MarcaSeeder(fixtureMarca);
             marcaCategoriaMarcaSeeder = new MarcaCategoriaMarcaSeeder(fixtureMarca);
-            fuenteEnergiaSeeder = new FuenteEnergiaSeeder(new FixtureFuenteEnergia(new FuenteEnergiaFixtureGettersProvider(datosEntidadBuilder)));
+            fuenteEnergiaSeeder = new FuenteEnergiaSeeder(new FixtureFuenteEnergia(new FuenteEnergiaFixtureGettersProvider(datosEntidadBuilder, marcaFixtureGetter, tipoFuenteEnergiaFixtureGetter)));
         }
 
         /// <summary>

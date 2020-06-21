@@ -13,6 +13,7 @@ using SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Marca;
+using SiMaVeh.Domain.DataSeed.Fixtures.Marca.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Moneda;
 using SiMaVeh.Domain.DataSeed.Fixtures.Moneda.Interfaces;
@@ -28,6 +29,7 @@ using SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia;
+using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
@@ -74,6 +76,7 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IFixtureTipoEntidadReparadora, FixtureTipoEntidadReparadora>();
             services.AddScoped<IDomainSeeder<TipoEntidadReparadora, long>, TipoEntidadReparadoraSeeder>();
 
+            services.AddScoped<ITipoFuenteEnergiaFixtureGetter, TipoFuenteEnergiaFixtureGetter>();
             services.AddScoped<ITipoFuenteEnergiaFixtureGettersProvider, TipoFuenteEnergiaFixtureGettersProvider>();
             services.AddScoped<IFixtureTipoFuenteEnergia, FixtureTipoFuenteEnergia>();
             services.AddScoped<IDomainSeeder<TipoFuenteEnergia, long>, TipoFuenteEnergiaSeeder>();
@@ -103,6 +106,7 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IFixtureCategoriaMarca, FixtureCategoriaMarca>();
             services.AddScoped<IDomainSeeder<CategoriaMarca, long>, CategoriaMarcaSeeder>();
 
+            services.AddScoped<IMarcaFixtureGetter, MarcaFixtureGetter>();
             services.AddScoped<IMarcaFixtureGettersProvider, MarcaFixtureGettersProvider>();
             services.AddScoped<IFixtureMarca, FixtureMarca>();
             services.AddScoped<IDomainSeeder<Marca, long>, MarcaSeeder>();

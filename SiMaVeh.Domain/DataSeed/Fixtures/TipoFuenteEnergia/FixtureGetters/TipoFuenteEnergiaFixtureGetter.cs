@@ -9,7 +9,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters
     /// <summary>
     /// Fixture getter de tipo fuente energia
     /// </summary>
-    internal class TipoFuenteEnergiaFixtureGetter : ITipoFuenteEnergiaFixtureGetter
+    public class TipoFuenteEnergiaFixtureGetter : ITipoFuenteEnergiaFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> tiposFuentesEnergia;
@@ -33,6 +33,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters
         public ICollection<DatosEntidad> Get()
         {
             return tiposFuentesEnergia;
+        }
+
+        /// <summary>
+        /// FindByNombre
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public DatosEntidad FindByNombre(string nombre)
+        {
+            return tiposFuentesEnergia.FirstOrDefault(t => t.Nombre == nombre);
         }
 
         private void Initialize()

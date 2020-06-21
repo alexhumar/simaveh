@@ -2,6 +2,8 @@
 using SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
 
@@ -13,14 +15,22 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia
     public class FuenteEnergiaFixtureGettersProvider : IFuenteEnergiaFixtureGettersProvider
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
+        private readonly IMarcaFixtureGetter marcaFixtureGetter;
+        private readonly ITipoFuenteEnergiaFixtureGetter tipoFuenteEnergiaFixtureGetter;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="datosEntidadBuilder"></param>
-        public FuenteEnergiaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
+        /// <param name="marcaFixtureGetter"></param>
+        /// <param name="tipoFuenteEnergiaFixtureGetter"></param>
+        public FuenteEnergiaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder,
+            IMarcaFixtureGetter marcaFixtureGetter,
+            ITipoFuenteEnergiaFixtureGetter tipoFuenteEnergiaFixtureGetter)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
+            this.marcaFixtureGetter = marcaFixtureGetter;
+            this.tipoFuenteEnergiaFixtureGetter = tipoFuenteEnergiaFixtureGetter;
         }
 
         /// <summary>
@@ -31,7 +41,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia
         {
             return new List<IFixtureGetter<DatosFuenteEnergia>>
             {
-                new FuenteEnergiaFixtureGetter(datosEntidadBuilder)
+                new FuenteEnergiaFixtureGetter(datosEntidadBuilder, marcaFixtureGetter, tipoFuenteEnergiaFixtureGetter)
             };
         }
     }

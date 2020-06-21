@@ -55,5 +55,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces
         /// <returns></returns>
         DatosEquipamientoAirbags Build(bool conductor, bool acompanante, TipoAirbagLateral delanteroIzquierdo,
             TipoAirbagLateral delanteroDerecho, TipoAirbagLateral traseroIzquierdo, TipoAirbagLateral traseroDerecho);
+
+        /// <summary>
+        /// Build datos fuente energia
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nombre"></param>
+        /// <param name="marca"></param>
+        /// <param name="tipoFuenteEnergia"></param>
+        /// <returns></returns>
+        DatosFuenteEnergia Build(long id, string nombre, DatosMarca marca, DatosEntidad tipoFuenteEnergia);
     }
 }
