@@ -30,7 +30,10 @@ namespace SiMaVeh.Domain.DataSeed.Seeders
         {
             return fixtureFuenteEnergia.GetFuentesEnergia().Select(fuenteEnergiaFixture => new
             {
-                //TODO: implementar.
+                fuenteEnergiaFixture.Id,
+                fuenteEnergiaFixture.Nombre,
+                MarcaId = fuenteEnergiaFixture.Marca.Id,
+                TipoFuenteEnergiaId = fuenteEnergiaFixture.TipoFuenteEnergia.Id
             });
         }
     }

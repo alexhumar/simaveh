@@ -6,6 +6,11 @@
     public class TipoFuenteEnergia
     {
         /// <summary>
+        /// Bio
+        /// </summary>
+        public const string Bio = "Bio";
+
+        /// <summary>
         /// Carbón
         /// </summary>
         public const string Carbon = "Carbón";

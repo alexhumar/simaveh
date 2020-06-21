@@ -6,6 +6,11 @@
     public class DescripcionTipoFuenteEnergia
     {
         /// <summary>
+        /// Destilados biológicos
+        /// </summary>
+        public const string Bio = "Destilados biológicos";
+
+        /// <summary>
         /// Destilados de carbón
         /// </summary>
         public const string Carbon = "Destilados de carbón";
