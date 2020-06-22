@@ -3,6 +3,9 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.Interfaces
 {
+    /// <summary>
+    /// Interfaz de CategoriaMarcaFixtureGetter
+    /// </summary>
     public interface ICategoriaMarcaFixtureGetter : IFixtureGetter<DatosEntidad>
     {
         /// <summary>
