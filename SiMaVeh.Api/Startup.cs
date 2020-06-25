@@ -24,24 +24,28 @@ namespace SiMaVeh
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<SiMaVehContext>(opt => opt
-                .UseLazyLoadingProxies()
-                .UseMySql(connection,
-                          o =>
-                          {
-                              o.EnableRetryOnFailure(); //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations.
-                              o.MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
-                          }));
-            services.AddOData();
-            services.AddMvc(options =>
-                {
-                    // add custom binder to beginning of collection
-                    // options.ModelBinderProviders.Insert(0, new ProvinciaEntityBinderProvider());
+            services
+                .AddDbContext<SiMaVehContext>(options => options
+                    .UseLazyLoadingProxies()
+                    .UseMySql(connection,
+                              mySqlOptions =>
+                              {
+                                  //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations.
+                                  mySqlOptions.EnableRetryOnFailure();
+                                  mySqlOptions.MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
+                              })
+                );
 
-                    //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
-                    options.EnableEndpointRouting = false;
-                })
-                .AddFluentValidation();
+            services.AddControllers(mvcOptions =>
+            {
+                // add custom binder to beginning of collection
+                // options.ModelBinderProviders.Insert(0, new ProvinciaEntityBinderProvider());
+
+                //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
+                mvcOptions.EnableEndpointRouting = false;
+            }).AddFluentValidation();
+
+            services.AddOData();
 
             SiMaVehDIRegistrator.RegisterDI(services);
         }
@@ -53,6 +57,12 @@ namespace SiMaVeh
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseMvc(routeBuilder =>
             {
