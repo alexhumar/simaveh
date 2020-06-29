@@ -9,14 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessLogic\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Validators\" />
+    <Folder Include="DataSeed\Fixtures\Moneda\FixtureGetters\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Update="NETStandard.Library" Version="2.1.*" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="8.5.*" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
   </ItemGroup>
 
 </Project>

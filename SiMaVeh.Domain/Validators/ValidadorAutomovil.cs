@@ -1,14 +1,13 @@
-
 using FluentValidation;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
-	/// <summary>
+    /// <summary>
     /// ValidadorAutomovil
     /// </summary>
     public class ValidadorAutomovil : AbstractValidator<Automovil>
-	{
+    {
         /// <summary>
         /// Constructor
         /// </summary>
@@ -20,7 +19,7 @@ namespace SiMaVeh.Domain.Validators
             RuleFor(x => x.NumeroChasis)
                 .NotNull()
                 .NotEqual(string.Empty);
-            //TODO mejorar esta validacion
+            //TODO: mejorar esta validacion
             RuleFor(x => x.Patente)
                 .NotNull()
                 .NotEqual(string.Empty);

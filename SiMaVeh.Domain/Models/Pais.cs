@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -6,14 +6,15 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Pais
     /// </summary>
-    public class Pais : DomainMember<long>, IEntityChanger<Provincia, long>
+    public class Pais : DomainMember<long>,
+        ICollectionManager<Provincia, long, Pais, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public Pais()
         {
-            Provincias = new List<Provincia>();
+            Provincias = new HashSet<Provincia>();
         }
 
         /// <summary>
@@ -24,7 +25,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Provincias
         /// </summary>
-        public virtual IList<Provincia> Provincias { get; set; }
+        public virtual ISet<Provincia> Provincias { get; protected set; }
 
         #region overrides
 
@@ -44,10 +45,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Pais;
-
-            if (item == null)
+            if (!(obj is Pais item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -73,39 +74,38 @@ namespace SiMaVeh.Domain.Models
         #region IEntityChanger
 
         /// <summary>
-        /// Cambiar provincia
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Provincia entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
         /// Agregar provincia
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Provincia entity)
+        /// <returns></returns>
+        public Pais Agregar(Provincia entity)
         {
-            if (entity != null)
+            if ((entity != null) && !Provincias.Contains(entity))
             {
-                Provincias?.Add(entity);
-                entity.Pais = this;
+                Provincias.Add(entity);
+                entity.Cambiar(this);
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar provincia
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Provincia entity)
+        /// <returns></returns>
+        public Pais Quitar(Provincia entity)
         {
-            if (entity != null)
+            if ((entity != null) && Provincias.Contains(entity))
             {
-                Provincias?.Remove(entity);
+                Provincias.Remove(entity);
                 if ((bool)entity.Pais?.Equals(this))
-                    entity.Pais = null;
+                {
+                    entity.Cambiar(null);
+                }
             }
+
+            return this;
         }
 
         #endregion

@@ -1,11 +1,13 @@
-﻿using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Presion Neumaticos
     /// </summary>
-    public class PresionNeumatico : DomainMember<long>, IEntityChanger<ModeloVehiculo, long>, IEntityChanger<Neumatico, long>
+    public class PresionNeumatico : DomainMember<long>,
+        IEntityChanger<ModeloVehiculo, long, PresionNeumatico, long>,
+        IEntityChanger<Neumatico, long, PresionNeumatico, long>
     {
         /// <summary>
         /// Presion en PSI de ruedas delanteras
@@ -25,12 +27,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Modelo Vehiculo
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; set; }
+        public virtual ModeloVehiculo ModeloVehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Neumatico
         /// </summary>
-        public virtual Neumatico Neumatico { get; set; }
+        public virtual Neumatico Neumatico { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region overrides
 
@@ -50,17 +52,17 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as PresionNeumatico;
-
-            if (item == null)
+            if (!(obj is PresionNeumatico item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
                     return true;
                 else
                 {
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (Neumatico.Equals(item.Neumatico) && ModeloVehiculo.Equals(item.ModeloVehiculo) && EsDefault == item.EsDefault);
                 }
             }
@@ -83,56 +85,32 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar modelo vehiculo
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(ModeloVehiculo entity)
+        /// <returns></returns>
+        public PresionNeumatico Cambiar(ModeloVehiculo entity)
         {
-            ModeloVehiculo?.Quitar(this);
-            entity?.Agregar(this);
-        }
+            if (ModeloVehiculo != entity)
+            {
+                ModeloVehiculo?.Quitar(this);
+                ModeloVehiculo = entity;
+                entity?.Agregar(this);
+            }
 
-        /// <summary>
-        /// Agregar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(ModeloVehiculo entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(ModeloVehiculo entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         /// <summary>
         /// Cambiar neumatico
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Neumatico entity)
+        /// <returns></returns>
+        public PresionNeumatico Cambiar(Neumatico entity)
         {
             if (entity != null)
+            {
                 Neumatico = entity;
-        }
+            }
 
-        /// <summary>
-        /// Agregar neumatico
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Neumatico entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar neumatico
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Neumatico entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

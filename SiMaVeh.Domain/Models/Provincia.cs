@@ -1,4 +1,4 @@
-﻿using SiMaVeh.Domain.Interfaces;
+﻿using SiMaVeh.Domain.Models.Interfaces;
 using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
@@ -6,14 +6,16 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Provincia
     /// </summary>
-    public class Provincia : DomainMember<long>, IEntityChanger<Pais, long>, IEntityChanger<Partido, long>
+    public class Provincia : DomainMember<long>,
+        IEntityChanger<Pais, long, Provincia, long>,
+        ICollectionManager<Partido, long, Provincia, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public Provincia()
         {
-            Partidos = new List<Partido>();
+            Partidos = new HashSet<Partido>();
         }
 
         /// <summary>
@@ -24,12 +26,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Pais
         /// </summary>
-        public virtual Pais Pais { get; set; }
+        public virtual Pais Pais { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Partidos
         /// </summary>
-        public virtual IList<Partido> Partidos { get; set; }
+        public virtual ISet<Partido> Partidos { get; protected set; }
 
         #region override
 
@@ -49,17 +51,17 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Provincia;
-
-            if (item == null)
+            if (!(obj is Provincia item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
                     return true;
                 else
                 {
-                    return (Id == item.Id) || 
+                    return (Id == item.Id) ||
                         (Nombre.ToUpper() == item.Nombre.ToUpper() && Pais.Equals(item.Pais));
                 }
             }
@@ -79,67 +81,59 @@ namespace SiMaVeh.Domain.Models
         #region IEntityChanger
 
         /// <summary>
-        /// Cambiar partido
+        /// Cambiar pais
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Partido entity)
+        /// <returns></returns>
+        public Provincia Cambiar(Pais entity)
         {
-            throw new System.NotSupportedException();
+            if (Pais != entity)
+            {
+                Pais?.Quitar(this);
+                Pais = entity;
+                entity?.Agregar(this);
+            }
+
+            return this;
         }
+
+        #endregion
+
+        #region ICollectionManager
 
         /// <summary>
         /// Agregar partido
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Partido entity)
+        /// <returns></returns>
+        public Provincia Agregar(Partido entity)
         {
-            if (entity != null)
+            if ((entity != null) && !Partidos.Contains(entity))
             {
-                Partidos?.Add(entity);
-                entity.Provincia = this;
+                Partidos.Add(entity);
+                entity.Cambiar(this);
             }
+
+            return this;
         }
 
         /// <summary>
         /// Quitar partido
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Partido entity)
+        /// <returns></returns>
+        public Provincia Quitar(Partido entity)
         {
-            if (entity != null)
+            if ((entity != null) && Partidos.Contains(entity))
             {
-                Partidos?.Remove(entity);
+                Partidos.Remove(entity);
                 if ((bool)entity.Provincia?.Equals(this))
-                    entity.Provincia = null;
+                {
+                    entity.Cambiar(null);
+                }
             }
-        }
 
-        /// <summary>
-        /// Cambiar pais
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Pais entity)
-        {
-            Pais?.Quitar(this);
-            entity?.Agregar(this);
-        }
-
-        /// <summary>
-        /// Agregar pais
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Pais entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar pais
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Pais entity)
-        {
-            throw new System.NotSupportedException();
+            return this;
         }
 
         #endregion

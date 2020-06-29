@@ -1,41 +1,64 @@
-﻿using System.Text;
+﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
+using SiMaVeh.Domain.Models.Interfaces;
+using System.Text;
 
 namespace SiMaVeh.Domain.Models
 {
     /// <summary>
     /// Equipamiento Airbags
     /// </summary>
-    public class EquipamientoAirbags : DomainMember<long>
+    public class EquipamientoAirbags : DomainMember<string>,
+        IEquipamientoAirbags
     {
         /// <summary>
-        /// Airbag en Volante
+        /// Constructor
         /// </summary>
-        public virtual bool Volante { get; set; }
+        public EquipamientoAirbags()
+        {
+            calculadorIdEquipamientoAirbags = new CalculadorIdEquipamientoAirbags();
+        }
+
+        private readonly CalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags;
 
         /// <summary>
-        /// Airbag en Guantera
+        /// Id
         /// </summary>
-        public virtual bool Guantera { get; set; }
+        public override string Id
+        {
+            get => calculadorIdEquipamientoAirbags.Calcular(this);
+            set { }
+        }
+
+        /// <summary>
+        /// Airbag de Conductor
+        /// </summary>
+        public virtual bool Conductor { get; set; }
+
+        /// <summary>
+        /// Airbag de Acompañante
+        /// </summary>
+        public virtual bool Acompanante { get; set; }
 
         /// <summary>
         /// Delantero Izquierdo
         /// </summary>
-        public virtual bool DelanteroIzquierdo { get; set; }
+        public virtual TipoAirbagLateral DelanteroIzquierdo { get; set; }
 
         /// <summary>
         /// Delantero Derecho
         /// </summary>
-        public virtual bool DelanteroDerecho { get; set; }
+        public virtual TipoAirbagLateral DelanteroDerecho { get; set; }
 
         /// <summary>
         /// Trasero Izquierdo
         /// </summary>
-        public virtual bool TraseroIzquierdo { get; set; }
+        public virtual TipoAirbagLateral TraseroIzquierdo { get; set; }
 
         /// <summary>
         /// Trasero Derecho
         /// </summary>
-        public virtual bool TraseroDerecho { get; set; }
+        public virtual TipoAirbagLateral TraseroDerecho { get; set; }
 
         #region overrides
 
@@ -48,16 +71,16 @@ namespace SiMaVeh.Domain.Models
             var ubicaciones = "(V,G,DI,DD,TI,TD)";
             var sb = new StringBuilder();
 
-            sb.Append(Volante ? "(S," : "(N,");
-            sb.Append(Guantera ? "S," : "N,");
-            sb.Append(DelanteroIzquierdo ? "S," : "N,");
-            sb.Append(DelanteroDerecho ? "S," : "N,");
-            sb.Append(TraseroIzquierdo ? "S," : "N,");
-            sb.Append(TraseroDerecho ? "S)" : "N)");
+            sb.Append(Conductor ? "(S," : "(N,");
+            sb.Append(Acompanante ? "S," : "N,");
+            sb.Append($"{ TipoAirbagLateralParser.ToString(DelanteroIzquierdo)},");
+            sb.Append($"{ TipoAirbagLateralParser.ToString(DelanteroDerecho)},");
+            sb.Append($"{ TipoAirbagLateralParser.ToString(TraseroIzquierdo)},");
+            sb.Append($"{ TipoAirbagLateralParser.ToString(TraseroDerecho)},");
 
             return string.Concat(ubicaciones, " - ", sb.ToString());
         }
-        
+
         /// <summary>
         /// Equals
         /// </summary>
@@ -65,9 +88,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as EquipamientoAirbags;
-
-            if (item == null)
+            if (!(obj is EquipamientoAirbags item))
                 return false;
             else
             {
@@ -75,7 +96,7 @@ namespace SiMaVeh.Domain.Models
                     return true;
                 else
                     return (Id == item.Id) ||
-                        (Volante == item.Volante && Guantera == item.Guantera && DelanteroIzquierdo == item.DelanteroIzquierdo &&
+                        (Conductor == item.Conductor && Acompanante == item.Acompanante && DelanteroIzquierdo == item.DelanteroIzquierdo &&
                         DelanteroDerecho == item.DelanteroDerecho && TraseroIzquierdo == item.TraseroIzquierdo &&
                         TraseroDerecho == item.TraseroDerecho);
             }

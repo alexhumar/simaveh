@@ -4,11 +4,11 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
-	/// <summary>
+    /// <summary>
     /// ValidadorPartido
     /// </summary>
     public class ValidadorPartido : AbstractValidator<Partido>
-	{
+    {
         /// <summary>
         /// Constructor
         /// </summary>

@@ -1,5 +1,5 @@
-﻿using SiMaVeh.Domain.Interfaces;
-using SiMaVeh.Domain.Relations;
+﻿using SiMaVeh.Domain.Models.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,17 +8,19 @@ namespace SiMaVeh.Domain.Models
     /// <summary>
     /// Entidad Reparadora
     /// </summary>
-    public class EntidadReparadora : DomainMember<long>, IEntityChanger<TipoEntidadReparadora, long>, IEntityChanger<ServicioReparador, long>,
-        IEntityChanger<Reparador, long>, IEntityChanger<Direccion, long>
+    public class EntidadReparadora : DomainMember<long>,
+        IEntityChanger<TipoEntidadReparadora, long, EntidadReparadora, long>,
+        IEntityChanger<Direccion, long, EntidadReparadora, long>,
+        ICollectionManager<ServicioReparador, long, EntidadReparadora, long>,
+        ICollectionManager<Reparador, long, EntidadReparadora, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public EntidadReparadora()
         {
-            ServiciosReparadores = new List<ServicioReparador>();
-            // Reparadores = new List<Reparador>();
-            ReparadorEntidadReparadora = new List<ReparadorEntidadReparadora>();
+            ServiciosReparadores = new HashSet<ServicioReparador>();
+            ReparadorEntidadReparadora = new HashSet<ReparadorEntidadReparadora>();
         }
 
         /// <summary>
@@ -29,32 +31,30 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Tipo Entidad
         /// </summary>
-        public virtual TipoEntidadReparadora TipoEntidadReparadora { get; set; }
+        public virtual TipoEntidadReparadora TipoEntidadReparadora { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Servicios Mecanicos
         /// </summary>
-        public virtual IList<ServicioReparador> ServiciosReparadores { get; set; }
+        public virtual ISet<ServicioReparador> ServiciosReparadores { get; protected set; }
 
         /// <summary>
         /// Mecanicos
         /// </summary>
-        public virtual IList<Reparador> Reparadores
-        {
-            get { return ReparadorEntidadReparadora.Select(r => r.Reparador).ToList(); }
-        }
+        public virtual ISet<Reparador> Reparadores => ReparadorEntidadReparadora.Select(r => r.Reparador).ToHashSet();
 
         /// <summary>
         /// Direccion
         /// </summary>
-        public virtual Direccion Direccion { get; set; }
+        public virtual Direccion Direccion { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         #region relations
 
+        //PRUEBA ARH - PROBAR PROTECTED!
         /// <summary>
         /// Relacion Reparador-EntidadReparadora
         /// </summary>
-        public virtual IList<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
+        public virtual ISet<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
 
         #endregion
 
@@ -76,10 +76,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as EntidadReparadora;
-
-            if (item == null)
+            if (!(obj is EntidadReparadora item))
+            {
                 return false;
+            }
             else
             {
                 if (ReferenceEquals(this, item))
@@ -106,137 +106,108 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar tipo entidad reparadora
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(TipoEntidadReparadora entity)
+        /// <returns></returns>
+        public EntidadReparadora Cambiar(TipoEntidadReparadora entity)
         {
             if (entity != null)
+            {
                 TipoEntidadReparadora = entity;
-        }
-
-        /// <summary>
-        /// Agregar tipo entidad reparadora
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(TipoEntidadReparadora entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Quitar tipo entidad reparadora
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(TipoEntidadReparadora entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Cambiar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(ServicioReparador entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Agregar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(ServicioReparador entity)
-        {
-            if (entity != null)
-            {
-                ServiciosReparadores?.Add(entity);
-                entity.EntidadReparadora = this;
             }
-        }
 
-        /// <summary>
-        /// Quitar servicio reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(ServicioReparador entity)
-        {
-            if (entity != null)
-            {
-                ServiciosReparadores?.Remove(entity);
-                if ((bool)entity.EntidadReparadora?.Equals(this))
-                    entity.EntidadReparadora = null;
-            }
-        }
-
-        /// <summary>
-        /// Cambiar reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Cambiar(Reparador entity)
-        {
-            throw new System.NotSupportedException();
-        }
-
-        /// <summary>
-        /// Agregar reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Agregar(Reparador entity)
-        {
-            if (entity != null)
-            {
-                // Reparadores?.Add(entity);
-                // entity.EntidadesReparadoras?.Add(this);
-                ReparadorEntidadReparadora?.Add(new ReparadorEntidadReparadora
-                {
-                    Reparador = entity,
-                    EntidadReparadora = this
-                });
-            }
-        }
-
-        /// <summary>
-        /// Quitar reparador
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Quitar(Reparador entity)
-        {
-            if (entity != null)
-            {
-                // Reparadores?.Remove(entity);
-                // entity.EntidadesReparadoras?.Remove(this);
-                var toRemove = ReparadorEntidadReparadora?
-                    .Where(r => r.Reparador == entity && r.EntidadReparadora == this)
-                    .FirstOrDefault();
-                if (toRemove != null)
-                    ReparadorEntidadReparadora.Remove(toRemove);
-            }
+            return this;
         }
 
         /// <summary>
         /// Cambiar direccion
         /// </summary>
         /// <param name="entity"></param>
-        public void Cambiar(Direccion entity)
+        /// <returns></returns>
+        public EntidadReparadora Cambiar(Direccion entity)
         {
             if (entity != null)
+            {
                 Direccion = entity;
+            }
+
+            return this;
+        }
+
+        #endregion
+
+        #region ICollectionManager
+
+        /// <summary>
+        /// Agregar servicio reparador
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public EntidadReparadora Agregar(ServicioReparador entity)
+        {
+            if ((entity != null) && !ServiciosReparadores.Contains(entity))
+            {
+                ServiciosReparadores.Add(entity);
+                entity.Cambiar(this);
+            }
+
+            return this;
         }
 
         /// <summary>
-        /// Agregar direccion
+        /// Quitar servicio reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Agregar(Direccion entity)
+        /// <returns></returns>
+        public EntidadReparadora Quitar(ServicioReparador entity)
         {
-            throw new System.NotSupportedException();
+            if ((entity != null) && ServiciosReparadores.Contains(entity))
+            {
+                ServiciosReparadores.Remove(entity);
+                if ((bool)entity.EntidadReparadora?.Equals(this))
+                {
+                    entity.Cambiar((EntidadReparadora)null);
+                }
+            }
+
+            return this;
         }
 
         /// <summary>
-        /// Quitar direccion
+        /// Agregar reparador
         /// </summary>
         /// <param name="entity"></param>
-        public void Quitar(Direccion entity)
+        /// <returns></returns>
+        public EntidadReparadora Agregar(Reparador entity)
         {
-            throw new System.NotSupportedException();
+            if (entity != null)
+            {
+                ReparadorEntidadReparadora?.Add(new ReparadorEntidadReparadora
+                {
+                    Reparador = entity,
+                    EntidadReparadora = this
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar reparador
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public EntidadReparadora Quitar(Reparador entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = ReparadorEntidadReparadora?
+                    .FirstOrDefault(r => r.Reparador == entity && r.EntidadReparadora == this);
+                if (toRemove != null)
+                {
+                    ReparadorEntidadReparadora.Remove(toRemove);
+                }
+            }
+
+            return this;
         }
 
         #endregion

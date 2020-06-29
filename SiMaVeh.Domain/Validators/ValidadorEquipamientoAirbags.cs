@@ -1,30 +1,33 @@
-
 using FluentValidation;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
-	/// <summary>
+    /// <summary>
     /// ValidadorEquipamientoAirbags
     /// </summary>
     public class ValidadorEquipamientoAirbags : AbstractValidator<EquipamientoAirbags>
-	{
+    {
         /// <summary>
         /// Constructor
         /// </summary>
         public ValidadorEquipamientoAirbags()
         {
             RuleFor(x => x.DelanteroDerecho)
-                .NotNull();
+                .NotNull()
+                .IsInEnum();
             RuleFor(x => x.DelanteroIzquierdo)
-                .NotNull();
-            RuleFor(x => x.Guantera)
+                .NotNull()
+                .IsInEnum();
+            RuleFor(x => x.Acompanante)
                 .NotNull();
             RuleFor(x => x.TraseroDerecho)
-                .NotNull();
+                .NotNull()
+                .IsInEnum();
             RuleFor(x => x.TraseroIzquierdo)
-                .NotNull();
-            RuleFor(x => x.Volante)
+                .NotNull()
+                .IsInEnum();
+            RuleFor(x => x.Conductor)
                 .NotNull();
         }
     }

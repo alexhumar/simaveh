@@ -1,7 +1,7 @@
 ﻿namespace SiMaVeh.Domain.Models
 {
     /// <summary>
-    /// Interfaz DomainMember
+    /// Clase base DomainMember
     /// </summary>
     public class DomainMember<TBeId>
     {

@@ -3,11 +3,11 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Domain.Validators
 {
-	/// <summary>
+    /// <summary>
     /// ValidadorTipoFuenteEnergia
     /// </summary>
     public class ValidadorTipoFuenteEnergia : AbstractValidator<TipoFuenteEnergia>
-	{
+    {
         /// <summary>
         /// Constructor
         /// </summary>
