@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20200510235525_PruebaSeeds.Designer.cs" />
     <Compile Remove="Migrations\20200511000145_PruebaSeeds.cs" />
     <Compile Remove="Migrations\20200511000145_PruebaSeeds.Designer.cs" />
+    <Compile Remove="Migrations\20200621215722_InitialDataSeed.cs" />
+    <Compile Remove="Migrations\20200621215722_InitialDataSeed.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

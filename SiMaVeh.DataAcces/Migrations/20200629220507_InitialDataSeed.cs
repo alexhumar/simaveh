@@ -1657,33 +1657,33 @@ namespace SiMaVeh.DataAccess.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
-                    { "Leu Rumano", "RON" },
-                    { "Dinar Serbio", "RSD" },
-                    { "Złoty", "PLN" },
-                    { "Rublo Ruso", "RUB" },
-                    { "Franco Ruandés", "RWF" },
-                    { "Rial Saudí", "SAR" },
-                    { "Guaraní", "PYG" },
-                    { "Rial Catarí", "QAR" },
-                    { "Libra De Santa Elena", "SHP" },
-                    { "Rupia Seychelense", "SCR" },
-                    { "Libra Sudanesa", "SDG" },
-                    { "Corona Sueca", "SEK" },
-                    { "Dólar De Singapur", "SGD" },
-                    { "Leone", "SLL" },
-                    { "Chelín Somalí", "SOS" },
-                    { "Libra Sursudanesa", "SSP" },
-                    { "Rupia Pakistaní", "PKR" },
-                    { "Dólar Surinamés", "SRD" },
-                    { "Dólar De Las Islas Salomón", "SBD" },
-                    { "Peso Filipino", "PHP" },
-                    { "Kwacha", "MWK" },
-                    { "Sol", "PEN" },
-                    { "Kyat", "MMK" },
-                    { "Dobra", "STN" },
-                    { "Tugrik", "MNT" },
-                    { "Pataca", "MOP" },
-                    { "Uguiya", "MRU" }
+                    { "RON", "Leu Rumano" },
+                    { "RSD", "Dinar Serbio" },
+                    { "PLN", "Złoty" },
+                    { "RUB", "Rublo Ruso" },
+                    { "RWF", "Franco Ruandés" },
+                    { "SAR", "Rial Saudí" },
+                    { "PYG", "Guaraní" },
+                    { "QAR", "Rial Catarí" },
+                    { "SHP", "Libra De Santa Elena" },
+                    { "SCR", "Rupia Seychelense" },
+                    { "SDG", "Libra Sudanesa" },
+                    { "SEK", "Corona Sueca" },
+                    { "SGD", "Dólar De Singapur" },
+                    { "SLL", "Leone" },
+                    { "SOS", "Chelín Somalí" },
+                    { "SSP", "Libra Sursudanesa" },
+                    { "PKR", "Rupia Pakistaní" },
+                    { "SRD", "Dólar Surinamés" },
+                    { "SBD", "Dólar De Las Islas Salomón" },
+                    { "PHP", "Peso Filipino" },
+                    { "MWK", "Kwacha" },
+                    { "PEN", "Sol" },
+                    { "MMK", "Kyat" },
+                    { "STN", "Dobra" },
+                    { "MNT", "Tugrik" },
+                    { "MOP", "Pataca" },
+                    { "MRU", "Uguiya" }
                 });
 
             migrationBuilder.InsertData(
@@ -1691,158 +1691,158 @@ namespace SiMaVeh.DataAccess.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
-                    { "Rupia De Mauricio", "MUR" },
-                    { "Rufiyaa", "MVR" },
-                    { "Peso Mexicano", "MXN" },
-                    { "Unidad De Inversión (UDI) Mexicana", "MXV" },
-                    { "Ringgit Malayo", "MYR" },
-                    { "Metical Mozambiqueño", "MZN" },
-                    { "Dólar Namibio", "NAD" },
-                    { "Naira", "NGN" },
-                    { "Córdoba", "NIO" },
-                    { "Corona Noruega", "NOK" },
-                    { "Rupia Nepalí", "NPR" },
-                    { "Dólar Neozelandés", "NZD" },
-                    { "Rial Omaní", "OMR" },
-                    { "Balboa", "PAB" },
-                    { "Kina", "PGK" },
-                    { "Colón Salvadoreño", "SVC" },
-                    { "Paladio (Una Onza Troy)", "XPD" },
-                    { "Lilangeni", "SZL" },
-                    { "Oro (Una Onza Troy)", "XAU" },
-                    { "Unidad Compuesta Europea (EURCO) (Unidad Del Mercados De Bonos)", "XBA" },
-                    { "Unidad Monetaria Europea (E.M.U.-6) (Unidad Del Mercado De Bonos)", "XBB" },
-                    { "Unidad Europea De Cuenta 9 (E.U.A.-9) (Unidad Del Mercado De Bonos)", "XBC" },
-                    { "Unidad Europea De Cuenta 17 (E.U.A.-17) (Unidad Del Mercado De Bonos)", "XBD" },
-                    { "Dólar Del Caribe Oriental", "XCD" },
-                    { "Derechos Especiales De Giro", "XDR" },
-                    { "Franco CFA De África Occidental", "XOF" },
-                    { "Franco CFP", "XPF" },
-                    { "Platino (Una Onza Troy)", "XPT" },
-                    { "SUCRE", "XSU" },
-                    { "Reservado Para Pruebas", "XTS" },
-                    { "Unidad De Cuenta BAD", "XUA" },
-                    { "Sin Divisa", "XXX" },
-                    { "Rial Yemení", "YER" },
-                    { "Rand", "ZAR" },
-                    { "Kwacha Zambiano", "ZMW" },
-                    { "Dólar Zimbabuense", "ZWL" },
-                    { "Denar", "MKD" },
-                    { "Plata (Una Onza Troy)", "XAG" },
-                    { "Libra Siria", "SYP" },
-                    { "Franco CFA De África Central", "XAF" },
-                    { "Vatu", "VUV" },
-                    { "Baht", "THB" },
-                    { "Somoni Tayiko", "TJS" },
-                    { "Manat Turcomano", "TMT" },
-                    { "Dinar Tunecino", "TND" },
-                    { "Paʻanga", "TOP" },
-                    { "Lira Turca", "TRY" },
-                    { "Dólar De Trinidad Y Tobago", "TTD" },
-                    { "Nuevo Dólar Taiwanés", "TWD" },
-                    { "Chelín Tanzano", "TZS" },
-                    { "Grivna", "UAH" },
-                    { "Chelín Ugandés", "UGX" },
-                    { "Dólar Estadounidense", "USD" },
-                    { "Dólar Estadounidense (Siguiente Día)", "USN" },
-                    { "Peso En Unidades Indexadas (Uruguay)", "UYI" },
-                    { "Peso Uruguayo", "UYU" },
-                    { "Unidad Previsional", "UYW" },
-                    { "Som Uzbeko", "UZS" },
-                    { "Bolívar Soberano", "VES7​" },
-                    { "Dong Vietnamita", "VND" },
-                    { "Tala", "WST" },
-                    { "Ariary Malgache", "MGA" },
-                    { "Peso Chileno", "CLP" },
-                    { "Dírham Marroquí", "MAD" },
-                    { "Pula", "BWP" },
-                    { "Rublo Bielorruso", "BYN" },
-                    { "Dólar Beliceño", "BZD" },
-                    { "Dólar Canadiense", "CAD" },
-                    { "Franco Congoleño", "CDF" },
-                    { "Euro WIR", "CHE" },
-                    { "Leu Moldavo", "MDL" },
-                    { "Franco WIR", "CHW" },
-                    { "Ngultrum", "BTN" },
-                    { "Unidad De Fomento", "CLF" },
-                    { "Peso Colombiano", "COP" },
-                    { "Unidad De Valor Real", "COU" },
-                    { "Colón Costarricense", "CRC" },
-                    { "Peso Convertible", "CUC" },
-                    { "Peso Cubano", "CUP" },
-                    { "Escudo Caboverdiano", "CVE" },
-                    { "Corona Checa", "CZK" },
-                    { "Franco Yibutiano", "DJF" },
-                    { "Yuan Chino", "CNY" },
-                    { "Dólar Bahameño", "BSD" },
-                    { "Real Brasileño", "BRL" },
-                    { "MVDOL", "BOV" },
-                    { "Dírham De Los Emiratos Árabes Unidos", "AED" },
-                    { "Afgani", "AFN" },
-                    { "Lek", "ALL" },
-                    { "Dram Armenio", "AMD" },
-                    { "Florín Antillano Neerlandés", "ANG" },
-                    { "Kwanza", "AOA" },
-                    { "Peso Argentino", "ARS" },
-                    { "Dólar Australiano", "AUD" },
-                    { "Florín Arubeño", "AWG" },
-                    { "Manat Azerbaiyano", "AZN" },
-                    { "Marco Convertible", "BAM" },
-                    { "Dólar De Barbados", "BBD" },
-                    { "Taka", "BDT" },
-                    { "Lev Búlgaro", "BGN" },
-                    { "Dinar Bareiní", "BHD" },
-                    { "Franco De Burundi", "BIF" },
-                    { "Dólar Bermudeño", "BMD" },
-                    { "Dólar De Brunéi", "BND" },
-                    { "Boliviano", "BOB" },
-                    { "Corona Danesa", "DKK" },
-                    { "Peso Dominicano", "DOP" },
-                    { "Franco Suizo", "CHF" },
-                    { "Libra Egipcia", "EGP" },
-                    { "Corona Islandesa", "ISK" },
-                    { "Dólar Jamaiquino", "JMD" },
-                    { "Dinar Jordano", "JOD" },
-                    { "Yen", "JPY" },
-                    { "Chelín Keniano", "KES" },
-                    { "Som", "KGS" },
-                    { "Riel", "KHR" },
-                    { "Franco Comorense", "KMF" },
-                    { "Won Norcoreano", "KPW" },
-                    { "Won", "KRW" },
-                    { "Dinar Kuwaití", "KWD" },
-                    { "Dinar Argelino", "DZD" },
-                    { "Tenge", "KZT" },
-                    { "Kip", "LAK" },
-                    { "Libra Libanesa", "LBP" },
-                    { "Rupia De Sri Lanka", "LKR" },
-                    { "Dólar Liberiano", "LRD" },
-                    { "Loti", "LSL" },
-                    { "Dinar Libio", "LYD" },
-                    { "Rial Iraní", "IRR" },
-                    { "Dinar Iraquí", "IQD" },
-                    { "Dólar De Las Islas Caimán", "KYD" },
-                    { "Nuevo Shéquel Israelí", "ILS" },
-                    { "Nakfa", "ERN" },
-                    { "Birr Etíope", "ETB" },
-                    { "Euro", "EUR" },
-                    { "Dólar Fiyiano", "FJD" },
-                    { "Libra Malvinense", "FKP" },
-                    { "Libra Esterlina", "GBP" },
-                    { "Lari", "GEL" },
-                    { "Libra De Gibraltar", "GIP" },
-                    { "Dalasi", "GMD" },
-                    { "Cedi Ghanés", "GHS" },
-                    { "Quetzal", "GTQ" },
-                    { "Dólar Guyanés", "GYD" },
-                    { "Dólar De Hong Kong", "HKD" },
-                    { "Lempira", "HNL" },
-                    { "Kuna", "HRK" },
-                    { "Gourde", "HTG" },
-                    { "Forinto", "HUF" },
-                    { "Rupia Indonesia", "IDR" },
-                    { "Franco Guineano", "GNF" },
-                    { "Rupia India", "INR" }
+                    { "MUR", "Rupia De Mauricio" },
+                    { "MVR", "Rufiyaa" },
+                    { "MXN", "Peso Mexicano" },
+                    { "MXV", "Unidad De Inversión (UDI) Mexicana" },
+                    { "MYR", "Ringgit Malayo" },
+                    { "MZN", "Metical Mozambiqueño" },
+                    { "NAD", "Dólar Namibio" },
+                    { "NGN", "Naira" },
+                    { "NIO", "Córdoba" },
+                    { "NOK", "Corona Noruega" },
+                    { "NPR", "Rupia Nepalí" },
+                    { "NZD", "Dólar Neozelandés" },
+                    { "OMR", "Rial Omaní" },
+                    { "PAB", "Balboa" },
+                    { "PGK", "Kina" },
+                    { "SVC", "Colón Salvadoreño" },
+                    { "XPD", "Paladio (Una Onza Troy)" },
+                    { "SZL", "Lilangeni" },
+                    { "XAU", "Oro (Una Onza Troy)" },
+                    { "XBA", "Unidad Compuesta Europea (EURCO) (Unidad Del Mercados De Bonos)" },
+                    { "XBB", "Unidad Monetaria Europea (E.M.U.-6) (Unidad Del Mercado De Bonos)" },
+                    { "XBC", "Unidad Europea De Cuenta 9 (E.U.A.-9) (Unidad Del Mercado De Bonos)" },
+                    { "XBD", "Unidad Europea De Cuenta 17 (E.U.A.-17) (Unidad Del Mercado De Bonos)" },
+                    { "XCD", "Dólar Del Caribe Oriental" },
+                    { "XDR", "Derechos Especiales De Giro" },
+                    { "XOF", "Franco CFA De África Occidental" },
+                    { "XPF", "Franco CFP" },
+                    { "XPT", "Platino (Una Onza Troy)" },
+                    { "XSU", "SUCRE" },
+                    { "XTS", "Reservado Para Pruebas" },
+                    { "XUA", "Unidad De Cuenta BAD" },
+                    { "XXX", "Sin Divisa" },
+                    { "YER", "Rial Yemení" },
+                    { "ZAR", "Rand" },
+                    { "ZMW", "Kwacha Zambiano" },
+                    { "ZWL", "Dólar Zimbabuense" },
+                    { "MKD", "Denar" },
+                    { "XAG", "Plata (Una Onza Troy)" },
+                    { "SYP", "Libra Siria" },
+                    { "XAF", "Franco CFA De África Central" },
+                    { "VUV", "Vatu" },
+                    { "THB", "Baht" },
+                    { "TJS", "Somoni Tayiko" },
+                    { "TMT", "Manat Turcomano" },
+                    { "TND", "Dinar Tunecino" },
+                    { "TOP", "Paʻanga" },
+                    { "TRY", "Lira Turca" },
+                    { "TTD", "Dólar De Trinidad Y Tobago" },
+                    { "TWD", "Nuevo Dólar Taiwanés" },
+                    { "TZS", "Chelín Tanzano" },
+                    { "UAH", "Grivna" },
+                    { "UGX", "Chelín Ugandés" },
+                    { "USD", "Dólar Estadounidense" },
+                    { "USN", "Dólar Estadounidense (Siguiente Día)" },
+                    { "UYI", "Peso En Unidades Indexadas (Uruguay)" },
+                    { "UYU", "Peso Uruguayo" },
+                    { "UYW", "Unidad Previsional" },
+                    { "UZS", "Som Uzbeko" },
+                    { "VES7​", "Bolívar Soberano" },
+                    { "VND", "Dong Vietnamita" },
+                    { "WST", "Tala" },
+                    { "MGA", "Ariary Malgache" },
+                    { "CLP", "Peso Chileno" },
+                    { "MAD", "Dírham Marroquí" },
+                    { "BWP", "Pula" },
+                    { "BYN", "Rublo Bielorruso" },
+                    { "BZD", "Dólar Beliceño" },
+                    { "CAD", "Dólar Canadiense" },
+                    { "CDF", "Franco Congoleño" },
+                    { "CHE", "Euro WIR" },
+                    { "MDL", "Leu Moldavo" },
+                    { "CHW", "Franco WIR" },
+                    { "BTN", "Ngultrum" },
+                    { "CLF", "Unidad De Fomento" },
+                    { "COP", "Peso Colombiano" },
+                    { "COU", "Unidad De Valor Real" },
+                    { "CRC", "Colón Costarricense" },
+                    { "CUC", "Peso Convertible" },
+                    { "CUP", "Peso Cubano" },
+                    { "CVE", "Escudo Caboverdiano" },
+                    { "CZK", "Corona Checa" },
+                    { "DJF", "Franco Yibutiano" },
+                    { "CNY", "Yuan Chino" },
+                    { "BSD", "Dólar Bahameño" },
+                    { "BRL", "Real Brasileño" },
+                    { "BOV", "MVDOL" },
+                    { "AED", "Dírham De Los Emiratos Árabes Unidos" },
+                    { "AFN", "Afgani" },
+                    { "ALL", "Lek" },
+                    { "AMD", "Dram Armenio" },
+                    { "ANG", "Florín Antillano Neerlandés" },
+                    { "AOA", "Kwanza" },
+                    { "ARS", "Peso Argentino" },
+                    { "AUD", "Dólar Australiano" },
+                    { "AWG", "Florín Arubeño" },
+                    { "AZN", "Manat Azerbaiyano" },
+                    { "BAM", "Marco Convertible" },
+                    { "BBD", "Dólar De Barbados" },
+                    { "BDT", "Taka" },
+                    { "BGN", "Lev Búlgaro" },
+                    { "BHD", "Dinar Bareiní" },
+                    { "BIF", "Franco De Burundi" },
+                    { "BMD", "Dólar Bermudeño" },
+                    { "BND", "Dólar De Brunéi" },
+                    { "BOB", "Boliviano" },
+                    { "DKK", "Corona Danesa" },
+                    { "DOP", "Peso Dominicano" },
+                    { "CHF", "Franco Suizo" },
+                    { "EGP", "Libra Egipcia" },
+                    { "ISK", "Corona Islandesa" },
+                    { "JMD", "Dólar Jamaiquino" },
+                    { "JOD", "Dinar Jordano" },
+                    { "JPY", "Yen" },
+                    { "KES", "Chelín Keniano" },
+                    { "KGS", "Som" },
+                    { "KHR", "Riel" },
+                    { "KMF", "Franco Comorense" },
+                    { "KPW", "Won Norcoreano" },
+                    { "KRW", "Won" },
+                    { "KWD", "Dinar Kuwaití" },
+                    { "DZD", "Dinar Argelino" },
+                    { "KZT", "Tenge" },
+                    { "LAK", "Kip" },
+                    { "LBP", "Libra Libanesa" },
+                    { "LKR", "Rupia De Sri Lanka" },
+                    { "LRD", "Dólar Liberiano" },
+                    { "LSL", "Loti" },
+                    { "LYD", "Dinar Libio" },
+                    { "IRR", "Rial Iraní" },
+                    { "IQD", "Dinar Iraquí" },
+                    { "KYD", "Dólar De Las Islas Caimán" },
+                    { "ILS", "Nuevo Shéquel Israelí" },
+                    { "ERN", "Nakfa" },
+                    { "ETB", "Birr Etíope" },
+                    { "EUR", "Euro" },
+                    { "FJD", "Dólar Fiyiano" },
+                    { "FKP", "Libra Malvinense" },
+                    { "GBP", "Libra Esterlina" },
+                    { "GEL", "Lari" },
+                    { "GIP", "Libra De Gibraltar" },
+                    { "GMD", "Dalasi" },
+                    { "GHS", "Cedi Ghanés" },
+                    { "GTQ", "Quetzal" },
+                    { "GYD", "Dólar Guyanés" },
+                    { "HKD", "Dólar De Hong Kong" },
+                    { "HNL", "Lempira" },
+                    { "HRK", "Kuna" },
+                    { "HTG", "Gourde" },
+                    { "HUF", "Forinto" },
+                    { "IDR", "Rupia Indonesia" },
+                    { "GNF", "Franco Guineano" },
+                    { "INR", "Rupia India" }
                 });
 
             migrationBuilder.InsertData(
@@ -37310,897 +37310,897 @@ namespace SiMaVeh.DataAccess.Migrations
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Afgani");
+                keyValue: "AED");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Ariary Malgache");
+                keyValue: "AFN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Baht");
+                keyValue: "ALL");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Balboa");
+                keyValue: "AMD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Birr Etíope");
+                keyValue: "ANG");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Bolívar Soberano");
+                keyValue: "AOA");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Boliviano");
+                keyValue: "ARS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Cedi Ghanés");
+                keyValue: "AUD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Chelín Keniano");
+                keyValue: "AWG");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Chelín Somalí");
+                keyValue: "AZN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Chelín Tanzano");
+                keyValue: "BAM");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Chelín Ugandés");
+                keyValue: "BBD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Colón Costarricense");
+                keyValue: "BDT");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Colón Salvadoreño");
+                keyValue: "BGN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Córdoba");
+                keyValue: "BHD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Corona Checa");
+                keyValue: "BIF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Corona Danesa");
+                keyValue: "BMD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Corona Islandesa");
+                keyValue: "BND");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Corona Noruega");
+                keyValue: "BOB");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Corona Sueca");
+                keyValue: "BOV");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dalasi");
+                keyValue: "BRL");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Denar");
+                keyValue: "BSD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Derechos Especiales De Giro");
+                keyValue: "BTN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dinar Argelino");
+                keyValue: "BWP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dinar Bareiní");
+                keyValue: "BYN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dinar Iraquí");
+                keyValue: "BZD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dinar Jordano");
+                keyValue: "CAD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dinar Kuwaití");
+                keyValue: "CDF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dinar Libio");
+                keyValue: "CHE");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dinar Serbio");
+                keyValue: "CHF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dinar Tunecino");
+                keyValue: "CHW");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dírham De Los Emiratos Árabes Unidos");
+                keyValue: "CLF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dírham Marroquí");
+                keyValue: "CLP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dobra");
+                keyValue: "CNY");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Australiano");
+                keyValue: "COP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Bahameño");
+                keyValue: "COU");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Beliceño");
+                keyValue: "CRC");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Bermudeño");
+                keyValue: "CUC");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Canadiense");
+                keyValue: "CUP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar De Barbados");
+                keyValue: "CVE");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar De Brunéi");
+                keyValue: "CZK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar De Hong Kong");
+                keyValue: "DJF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar De Las Islas Caimán");
+                keyValue: "DKK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar De Las Islas Salomón");
+                keyValue: "DOP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar De Singapur");
+                keyValue: "DZD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar De Trinidad Y Tobago");
+                keyValue: "EGP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Del Caribe Oriental");
+                keyValue: "ERN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Estadounidense");
+                keyValue: "ETB");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Estadounidense (Siguiente Día)");
+                keyValue: "EUR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Fiyiano");
+                keyValue: "FJD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Guyanés");
+                keyValue: "FKP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Jamaiquino");
+                keyValue: "GBP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Liberiano");
+                keyValue: "GEL");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Namibio");
+                keyValue: "GHS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Neozelandés");
+                keyValue: "GIP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Surinamés");
+                keyValue: "GMD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dólar Zimbabuense");
+                keyValue: "GNF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dong Vietnamita");
+                keyValue: "GTQ");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Dram Armenio");
+                keyValue: "GYD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Escudo Caboverdiano");
+                keyValue: "HKD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Euro");
+                keyValue: "HNL");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Euro WIR");
+                keyValue: "HRK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Florín Antillano Neerlandés");
+                keyValue: "HTG");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Florín Arubeño");
+                keyValue: "HUF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Forinto");
+                keyValue: "IDR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco CFA De África Central");
+                keyValue: "ILS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco CFA De África Occidental");
+                keyValue: "INR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco CFP");
+                keyValue: "IQD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco Comorense");
+                keyValue: "IRR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco Congoleño");
+                keyValue: "ISK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco De Burundi");
+                keyValue: "JMD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco Guineano");
+                keyValue: "JOD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco Ruandés");
+                keyValue: "JPY");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco Suizo");
+                keyValue: "KES");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco WIR");
+                keyValue: "KGS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Franco Yibutiano");
+                keyValue: "KHR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Gourde");
+                keyValue: "KMF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Grivna");
+                keyValue: "KPW");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Guaraní");
+                keyValue: "KRW");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Kina");
+                keyValue: "KWD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Kip");
+                keyValue: "KYD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Kuna");
+                keyValue: "KZT");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Kwacha");
+                keyValue: "LAK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Kwacha Zambiano");
+                keyValue: "LBP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Kwanza");
+                keyValue: "LKR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Kyat");
+                keyValue: "LRD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Lari");
+                keyValue: "LSL");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Lek");
+                keyValue: "LYD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Lempira");
+                keyValue: "MAD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Leone");
+                keyValue: "MDL");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Leu Moldavo");
+                keyValue: "MGA");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Leu Rumano");
+                keyValue: "MKD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Lev Búlgaro");
+                keyValue: "MMK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra De Gibraltar");
+                keyValue: "MNT");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra De Santa Elena");
+                keyValue: "MOP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra Egipcia");
+                keyValue: "MRU");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra Esterlina");
+                keyValue: "MUR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra Libanesa");
+                keyValue: "MVR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra Malvinense");
+                keyValue: "MWK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra Siria");
+                keyValue: "MXN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra Sudanesa");
+                keyValue: "MXV");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Libra Sursudanesa");
+                keyValue: "MYR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Lilangeni");
+                keyValue: "MZN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Lira Turca");
+                keyValue: "NAD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Loti");
+                keyValue: "NGN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Manat Azerbaiyano");
+                keyValue: "NIO");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Manat Turcomano");
+                keyValue: "NOK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Marco Convertible");
+                keyValue: "NPR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Metical Mozambiqueño");
+                keyValue: "NZD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "MVDOL");
+                keyValue: "OMR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Naira");
+                keyValue: "PAB");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Nakfa");
+                keyValue: "PEN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Ngultrum");
+                keyValue: "PGK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Nuevo Dólar Taiwanés");
+                keyValue: "PHP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Nuevo Shéquel Israelí");
+                keyValue: "PKR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Oro (Una Onza Troy)");
+                keyValue: "PLN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Paʻanga");
+                keyValue: "PYG");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Paladio (Una Onza Troy)");
+                keyValue: "QAR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Pataca");
+                keyValue: "RON");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Argentino");
+                keyValue: "RSD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Chileno");
+                keyValue: "RUB");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Colombiano");
+                keyValue: "RWF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Convertible");
+                keyValue: "SAR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Cubano");
+                keyValue: "SBD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Dominicano");
+                keyValue: "SCR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso En Unidades Indexadas (Uruguay)");
+                keyValue: "SDG");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Filipino");
+                keyValue: "SEK");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Mexicano");
+                keyValue: "SGD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Peso Uruguayo");
+                keyValue: "SHP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Plata (Una Onza Troy)");
+                keyValue: "SLL");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Platino (Una Onza Troy)");
+                keyValue: "SOS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Pula");
+                keyValue: "SRD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Quetzal");
+                keyValue: "SSP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rand");
+                keyValue: "STN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Real Brasileño");
+                keyValue: "SVC");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Reservado Para Pruebas");
+                keyValue: "SYP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rial Catarí");
+                keyValue: "SZL");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rial Iraní");
+                keyValue: "THB");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rial Omaní");
+                keyValue: "TJS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rial Saudí");
+                keyValue: "TMT");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rial Yemení");
+                keyValue: "TND");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Riel");
+                keyValue: "TOP");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Ringgit Malayo");
+                keyValue: "TRY");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rublo Bielorruso");
+                keyValue: "TTD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rublo Ruso");
+                keyValue: "TWD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rufiyaa");
+                keyValue: "TZS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rupia De Mauricio");
+                keyValue: "UAH");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rupia De Sri Lanka");
+                keyValue: "UGX");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rupia India");
+                keyValue: "USD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rupia Indonesia");
+                keyValue: "USN");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rupia Nepalí");
+                keyValue: "UYI");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rupia Pakistaní");
+                keyValue: "UYU");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Rupia Seychelense");
+                keyValue: "UYW");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Sin Divisa");
+                keyValue: "UZS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Sol");
+                keyValue: "VES7​");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Som");
+                keyValue: "VND");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Som Uzbeko");
+                keyValue: "VUV");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Somoni Tayiko");
+                keyValue: "WST");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "SUCRE");
+                keyValue: "XAF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Taka");
+                keyValue: "XAG");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Tala");
+                keyValue: "XAU");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Tenge");
+                keyValue: "XBA");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Tugrik");
+                keyValue: "XBB");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Uguiya");
+                keyValue: "XBC");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad Compuesta Europea (EURCO) (Unidad Del Mercados De Bonos)");
+                keyValue: "XBD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad De Cuenta BAD");
+                keyValue: "XCD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad De Fomento");
+                keyValue: "XDR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad De Inversión (UDI) Mexicana");
+                keyValue: "XOF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad De Valor Real");
+                keyValue: "XPD");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad Europea De Cuenta 17 (E.U.A.-17) (Unidad Del Mercado De Bonos)");
+                keyValue: "XPF");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad Europea De Cuenta 9 (E.U.A.-9) (Unidad Del Mercado De Bonos)");
+                keyValue: "XPT");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad Monetaria Europea (E.M.U.-6) (Unidad Del Mercado De Bonos)");
+                keyValue: "XSU");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Unidad Previsional");
+                keyValue: "XTS");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Vatu");
+                keyValue: "XUA");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Won");
+                keyValue: "XXX");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Won Norcoreano");
+                keyValue: "YER");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Yen");
+                keyValue: "ZAR");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Yuan Chino");
+                keyValue: "ZMW");
 
             migrationBuilder.DeleteData(
                 table: "Monedas",
                 keyColumn: "Id",
-                keyValue: "Złoty");
+                keyValue: "ZWL");
 
             migrationBuilder.DeleteData(
                 table: "Provincias",
