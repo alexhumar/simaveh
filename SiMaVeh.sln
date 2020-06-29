@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Api", "SiMaVeh.Api.csproj", "{3E3F0C0D-E227-4425-8368-AC518A072425}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Api", "SiMaVeh.Api\SiMaVeh.Api.csproj", "{3E3F0C0D-E227-4425-8368-AC518A072425}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Domain", "..\SiMaVeh.Domain\SiMaVeh.Domain.csproj", "{7B610946-49C1-4777-824F-4750A249CEE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Domain", "SiMaVeh.Domain\SiMaVeh.Domain.csproj", "{7B610946-49C1-4777-824F-4750A249CEE1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.DataAccess", "..\SiMaVeh.DataAcces\SiMaVeh.DataAccess.csproj", "{5ED19B56-BF39-410D-B45A-B7C86C76A193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.DataAccess", "SiMaVeh.DataAcces\SiMaVeh.DataAccess.csproj", "{5ED19B56-BF39-410D-B45A-B7C86C76A193}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiMaVeh.Domain.Test", "..\SiMaVeh.Domain.Test\SiMaVeh.Domain.Test.csproj", "{ADCEF814-641C-46EE-8CC0-AE931BC496E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiMaVeh.Domain.Test", "SiMaVeh.Domain.Test\SiMaVeh.Domain.Test.csproj", "{ADCEF814-641C-46EE-8CC0-AE931BC496E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
