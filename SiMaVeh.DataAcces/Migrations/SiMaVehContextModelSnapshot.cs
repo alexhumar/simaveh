@@ -14,7 +14,7 @@ namespace SiMaVeh.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.CategoriaMarca", b =>
@@ -43602,898 +43602,898 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "Dírham De Los Emiratos Árabes Unidos",
-                            Nombre = "AED"
+                            Id = "AED",
+                            Nombre = "Dírham De Los Emiratos Árabes Unidos"
                         },
                         new
                         {
-                            Id = "Afgani",
-                            Nombre = "AFN"
+                            Id = "AFN",
+                            Nombre = "Afgani"
                         },
                         new
                         {
-                            Id = "Lek",
-                            Nombre = "ALL"
+                            Id = "ALL",
+                            Nombre = "Lek"
                         },
                         new
                         {
-                            Id = "Dram Armenio",
-                            Nombre = "AMD"
+                            Id = "AMD",
+                            Nombre = "Dram Armenio"
                         },
                         new
                         {
-                            Id = "Florín Antillano Neerlandés",
-                            Nombre = "ANG"
+                            Id = "ANG",
+                            Nombre = "Florín Antillano Neerlandés"
                         },
                         new
                         {
-                            Id = "Kwanza",
-                            Nombre = "AOA"
+                            Id = "AOA",
+                            Nombre = "Kwanza"
                         },
                         new
                         {
-                            Id = "Peso Argentino",
-                            Nombre = "ARS"
+                            Id = "ARS",
+                            Nombre = "Peso Argentino"
                         },
                         new
                         {
-                            Id = "Dólar Australiano",
-                            Nombre = "AUD"
+                            Id = "AUD",
+                            Nombre = "Dólar Australiano"
                         },
                         new
                         {
-                            Id = "Florín Arubeño",
-                            Nombre = "AWG"
+                            Id = "AWG",
+                            Nombre = "Florín Arubeño"
                         },
                         new
                         {
-                            Id = "Manat Azerbaiyano",
-                            Nombre = "AZN"
+                            Id = "AZN",
+                            Nombre = "Manat Azerbaiyano"
                         },
                         new
                         {
-                            Id = "Marco Convertible",
-                            Nombre = "BAM"
+                            Id = "BAM",
+                            Nombre = "Marco Convertible"
                         },
                         new
                         {
-                            Id = "Dólar De Barbados",
-                            Nombre = "BBD"
+                            Id = "BBD",
+                            Nombre = "Dólar De Barbados"
                         },
                         new
                         {
-                            Id = "Taka",
-                            Nombre = "BDT"
+                            Id = "BDT",
+                            Nombre = "Taka"
                         },
                         new
                         {
-                            Id = "Lev Búlgaro",
-                            Nombre = "BGN"
+                            Id = "BGN",
+                            Nombre = "Lev Búlgaro"
                         },
                         new
                         {
-                            Id = "Dinar Bareiní",
-                            Nombre = "BHD"
+                            Id = "BHD",
+                            Nombre = "Dinar Bareiní"
                         },
                         new
                         {
-                            Id = "Franco De Burundi",
-                            Nombre = "BIF"
+                            Id = "BIF",
+                            Nombre = "Franco De Burundi"
                         },
                         new
                         {
-                            Id = "Dólar Bermudeño",
-                            Nombre = "BMD"
+                            Id = "BMD",
+                            Nombre = "Dólar Bermudeño"
                         },
                         new
                         {
-                            Id = "Dólar De Brunéi",
-                            Nombre = "BND"
+                            Id = "BND",
+                            Nombre = "Dólar De Brunéi"
                         },
                         new
                         {
-                            Id = "Boliviano",
-                            Nombre = "BOB"
+                            Id = "BOB",
+                            Nombre = "Boliviano"
                         },
                         new
                         {
-                            Id = "MVDOL",
-                            Nombre = "BOV"
+                            Id = "BOV",
+                            Nombre = "MVDOL"
                         },
                         new
                         {
-                            Id = "Real Brasileño",
-                            Nombre = "BRL"
+                            Id = "BRL",
+                            Nombre = "Real Brasileño"
                         },
                         new
                         {
-                            Id = "Dólar Bahameño",
-                            Nombre = "BSD"
+                            Id = "BSD",
+                            Nombre = "Dólar Bahameño"
                         },
                         new
                         {
-                            Id = "Ngultrum",
-                            Nombre = "BTN"
+                            Id = "BTN",
+                            Nombre = "Ngultrum"
                         },
                         new
                         {
-                            Id = "Pula",
-                            Nombre = "BWP"
+                            Id = "BWP",
+                            Nombre = "Pula"
                         },
                         new
                         {
-                            Id = "Rublo Bielorruso",
-                            Nombre = "BYN"
+                            Id = "BYN",
+                            Nombre = "Rublo Bielorruso"
                         },
                         new
                         {
-                            Id = "Dólar Beliceño",
-                            Nombre = "BZD"
+                            Id = "BZD",
+                            Nombre = "Dólar Beliceño"
                         },
                         new
                         {
-                            Id = "Dólar Canadiense",
-                            Nombre = "CAD"
+                            Id = "CAD",
+                            Nombre = "Dólar Canadiense"
                         },
                         new
                         {
-                            Id = "Franco Congoleño",
-                            Nombre = "CDF"
+                            Id = "CDF",
+                            Nombre = "Franco Congoleño"
                         },
                         new
                         {
-                            Id = "Euro WIR",
-                            Nombre = "CHE"
+                            Id = "CHE",
+                            Nombre = "Euro WIR"
                         },
                         new
                         {
-                            Id = "Franco Suizo",
-                            Nombre = "CHF"
+                            Id = "CHF",
+                            Nombre = "Franco Suizo"
                         },
                         new
                         {
-                            Id = "Franco WIR",
-                            Nombre = "CHW"
+                            Id = "CHW",
+                            Nombre = "Franco WIR"
                         },
                         new
                         {
-                            Id = "Unidad De Fomento",
-                            Nombre = "CLF"
+                            Id = "CLF",
+                            Nombre = "Unidad De Fomento"
                         },
                         new
                         {
-                            Id = "Peso Chileno",
-                            Nombre = "CLP"
+                            Id = "CLP",
+                            Nombre = "Peso Chileno"
                         },
                         new
                         {
-                            Id = "Yuan Chino",
-                            Nombre = "CNY"
+                            Id = "CNY",
+                            Nombre = "Yuan Chino"
                         },
                         new
                         {
-                            Id = "Peso Colombiano",
-                            Nombre = "COP"
+                            Id = "COP",
+                            Nombre = "Peso Colombiano"
                         },
                         new
                         {
-                            Id = "Unidad De Valor Real",
-                            Nombre = "COU"
+                            Id = "COU",
+                            Nombre = "Unidad De Valor Real"
                         },
                         new
                         {
-                            Id = "Colón Costarricense",
-                            Nombre = "CRC"
+                            Id = "CRC",
+                            Nombre = "Colón Costarricense"
                         },
                         new
                         {
-                            Id = "Peso Convertible",
-                            Nombre = "CUC"
+                            Id = "CUC",
+                            Nombre = "Peso Convertible"
                         },
                         new
                         {
-                            Id = "Peso Cubano",
-                            Nombre = "CUP"
+                            Id = "CUP",
+                            Nombre = "Peso Cubano"
                         },
                         new
                         {
-                            Id = "Escudo Caboverdiano",
-                            Nombre = "CVE"
+                            Id = "CVE",
+                            Nombre = "Escudo Caboverdiano"
                         },
                         new
                         {
-                            Id = "Corona Checa",
-                            Nombre = "CZK"
+                            Id = "CZK",
+                            Nombre = "Corona Checa"
                         },
                         new
                         {
-                            Id = "Franco Yibutiano",
-                            Nombre = "DJF"
+                            Id = "DJF",
+                            Nombre = "Franco Yibutiano"
                         },
                         new
                         {
-                            Id = "Corona Danesa",
-                            Nombre = "DKK"
+                            Id = "DKK",
+                            Nombre = "Corona Danesa"
                         },
                         new
                         {
-                            Id = "Peso Dominicano",
-                            Nombre = "DOP"
+                            Id = "DOP",
+                            Nombre = "Peso Dominicano"
                         },
                         new
                         {
-                            Id = "Dinar Argelino",
-                            Nombre = "DZD"
+                            Id = "DZD",
+                            Nombre = "Dinar Argelino"
                         },
                         new
                         {
-                            Id = "Libra Egipcia",
-                            Nombre = "EGP"
+                            Id = "EGP",
+                            Nombre = "Libra Egipcia"
                         },
                         new
                         {
-                            Id = "Nakfa",
-                            Nombre = "ERN"
+                            Id = "ERN",
+                            Nombre = "Nakfa"
                         },
                         new
                         {
-                            Id = "Birr Etíope",
-                            Nombre = "ETB"
+                            Id = "ETB",
+                            Nombre = "Birr Etíope"
                         },
                         new
                         {
-                            Id = "Euro",
-                            Nombre = "EUR"
+                            Id = "EUR",
+                            Nombre = "Euro"
                         },
                         new
                         {
-                            Id = "Dólar Fiyiano",
-                            Nombre = "FJD"
+                            Id = "FJD",
+                            Nombre = "Dólar Fiyiano"
                         },
                         new
                         {
-                            Id = "Libra Malvinense",
-                            Nombre = "FKP"
+                            Id = "FKP",
+                            Nombre = "Libra Malvinense"
                         },
                         new
                         {
-                            Id = "Libra Esterlina",
-                            Nombre = "GBP"
+                            Id = "GBP",
+                            Nombre = "Libra Esterlina"
                         },
                         new
                         {
-                            Id = "Lari",
-                            Nombre = "GEL"
+                            Id = "GEL",
+                            Nombre = "Lari"
                         },
                         new
                         {
-                            Id = "Cedi Ghanés",
-                            Nombre = "GHS"
+                            Id = "GHS",
+                            Nombre = "Cedi Ghanés"
                         },
                         new
                         {
-                            Id = "Libra De Gibraltar",
-                            Nombre = "GIP"
+                            Id = "GIP",
+                            Nombre = "Libra De Gibraltar"
                         },
                         new
                         {
-                            Id = "Dalasi",
-                            Nombre = "GMD"
+                            Id = "GMD",
+                            Nombre = "Dalasi"
                         },
                         new
                         {
-                            Id = "Franco Guineano",
-                            Nombre = "GNF"
+                            Id = "GNF",
+                            Nombre = "Franco Guineano"
                         },
                         new
                         {
-                            Id = "Quetzal",
-                            Nombre = "GTQ"
+                            Id = "GTQ",
+                            Nombre = "Quetzal"
                         },
                         new
                         {
-                            Id = "Dólar Guyanés",
-                            Nombre = "GYD"
+                            Id = "GYD",
+                            Nombre = "Dólar Guyanés"
                         },
                         new
                         {
-                            Id = "Dólar De Hong Kong",
-                            Nombre = "HKD"
+                            Id = "HKD",
+                            Nombre = "Dólar De Hong Kong"
                         },
                         new
                         {
-                            Id = "Lempira",
-                            Nombre = "HNL"
+                            Id = "HNL",
+                            Nombre = "Lempira"
                         },
                         new
                         {
-                            Id = "Kuna",
-                            Nombre = "HRK"
+                            Id = "HRK",
+                            Nombre = "Kuna"
                         },
                         new
                         {
-                            Id = "Gourde",
-                            Nombre = "HTG"
+                            Id = "HTG",
+                            Nombre = "Gourde"
                         },
                         new
                         {
-                            Id = "Forinto",
-                            Nombre = "HUF"
+                            Id = "HUF",
+                            Nombre = "Forinto"
                         },
                         new
                         {
-                            Id = "Rupia Indonesia",
-                            Nombre = "IDR"
+                            Id = "IDR",
+                            Nombre = "Rupia Indonesia"
                         },
                         new
                         {
-                            Id = "Nuevo Shéquel Israelí",
-                            Nombre = "ILS"
+                            Id = "ILS",
+                            Nombre = "Nuevo Shéquel Israelí"
                         },
                         new
                         {
-                            Id = "Rupia India",
-                            Nombre = "INR"
+                            Id = "INR",
+                            Nombre = "Rupia India"
                         },
                         new
                         {
-                            Id = "Dinar Iraquí",
-                            Nombre = "IQD"
+                            Id = "IQD",
+                            Nombre = "Dinar Iraquí"
                         },
                         new
                         {
-                            Id = "Rial Iraní",
-                            Nombre = "IRR"
+                            Id = "IRR",
+                            Nombre = "Rial Iraní"
                         },
                         new
                         {
-                            Id = "Corona Islandesa",
-                            Nombre = "ISK"
+                            Id = "ISK",
+                            Nombre = "Corona Islandesa"
                         },
                         new
                         {
-                            Id = "Dólar Jamaiquino",
-                            Nombre = "JMD"
+                            Id = "JMD",
+                            Nombre = "Dólar Jamaiquino"
                         },
                         new
                         {
-                            Id = "Dinar Jordano",
-                            Nombre = "JOD"
+                            Id = "JOD",
+                            Nombre = "Dinar Jordano"
                         },
                         new
                         {
-                            Id = "Yen",
-                            Nombre = "JPY"
+                            Id = "JPY",
+                            Nombre = "Yen"
                         },
                         new
                         {
-                            Id = "Chelín Keniano",
-                            Nombre = "KES"
+                            Id = "KES",
+                            Nombre = "Chelín Keniano"
                         },
                         new
                         {
-                            Id = "Som",
-                            Nombre = "KGS"
+                            Id = "KGS",
+                            Nombre = "Som"
                         },
                         new
                         {
-                            Id = "Riel",
-                            Nombre = "KHR"
+                            Id = "KHR",
+                            Nombre = "Riel"
                         },
                         new
                         {
-                            Id = "Franco Comorense",
-                            Nombre = "KMF"
+                            Id = "KMF",
+                            Nombre = "Franco Comorense"
                         },
                         new
                         {
-                            Id = "Won Norcoreano",
-                            Nombre = "KPW"
+                            Id = "KPW",
+                            Nombre = "Won Norcoreano"
                         },
                         new
                         {
-                            Id = "Won",
-                            Nombre = "KRW"
+                            Id = "KRW",
+                            Nombre = "Won"
                         },
                         new
                         {
-                            Id = "Dinar Kuwaití",
-                            Nombre = "KWD"
+                            Id = "KWD",
+                            Nombre = "Dinar Kuwaití"
                         },
                         new
                         {
-                            Id = "Dólar De Las Islas Caimán",
-                            Nombre = "KYD"
+                            Id = "KYD",
+                            Nombre = "Dólar De Las Islas Caimán"
                         },
                         new
                         {
-                            Id = "Tenge",
-                            Nombre = "KZT"
+                            Id = "KZT",
+                            Nombre = "Tenge"
                         },
                         new
                         {
-                            Id = "Kip",
-                            Nombre = "LAK"
+                            Id = "LAK",
+                            Nombre = "Kip"
                         },
                         new
                         {
-                            Id = "Libra Libanesa",
-                            Nombre = "LBP"
+                            Id = "LBP",
+                            Nombre = "Libra Libanesa"
                         },
                         new
                         {
-                            Id = "Rupia De Sri Lanka",
-                            Nombre = "LKR"
+                            Id = "LKR",
+                            Nombre = "Rupia De Sri Lanka"
                         },
                         new
                         {
-                            Id = "Dólar Liberiano",
-                            Nombre = "LRD"
+                            Id = "LRD",
+                            Nombre = "Dólar Liberiano"
                         },
                         new
                         {
-                            Id = "Loti",
-                            Nombre = "LSL"
+                            Id = "LSL",
+                            Nombre = "Loti"
                         },
                         new
                         {
-                            Id = "Dinar Libio",
-                            Nombre = "LYD"
+                            Id = "LYD",
+                            Nombre = "Dinar Libio"
                         },
                         new
                         {
-                            Id = "Dírham Marroquí",
-                            Nombre = "MAD"
+                            Id = "MAD",
+                            Nombre = "Dírham Marroquí"
                         },
                         new
                         {
-                            Id = "Leu Moldavo",
-                            Nombre = "MDL"
+                            Id = "MDL",
+                            Nombre = "Leu Moldavo"
                         },
                         new
                         {
-                            Id = "Ariary Malgache",
-                            Nombre = "MGA"
+                            Id = "MGA",
+                            Nombre = "Ariary Malgache"
                         },
                         new
                         {
-                            Id = "Denar",
-                            Nombre = "MKD"
+                            Id = "MKD",
+                            Nombre = "Denar"
                         },
                         new
                         {
-                            Id = "Kyat",
-                            Nombre = "MMK"
+                            Id = "MMK",
+                            Nombre = "Kyat"
                         },
                         new
                         {
-                            Id = "Tugrik",
-                            Nombre = "MNT"
+                            Id = "MNT",
+                            Nombre = "Tugrik"
                         },
                         new
                         {
-                            Id = "Pataca",
-                            Nombre = "MOP"
+                            Id = "MOP",
+                            Nombre = "Pataca"
                         },
                         new
                         {
-                            Id = "Uguiya",
-                            Nombre = "MRU"
+                            Id = "MRU",
+                            Nombre = "Uguiya"
                         },
                         new
                         {
-                            Id = "Rupia De Mauricio",
-                            Nombre = "MUR"
+                            Id = "MUR",
+                            Nombre = "Rupia De Mauricio"
                         },
                         new
                         {
-                            Id = "Rufiyaa",
-                            Nombre = "MVR"
+                            Id = "MVR",
+                            Nombre = "Rufiyaa"
                         },
                         new
                         {
-                            Id = "Kwacha",
-                            Nombre = "MWK"
+                            Id = "MWK",
+                            Nombre = "Kwacha"
                         },
                         new
                         {
-                            Id = "Peso Mexicano",
-                            Nombre = "MXN"
+                            Id = "MXN",
+                            Nombre = "Peso Mexicano"
                         },
                         new
                         {
-                            Id = "Unidad De Inversión (UDI) Mexicana",
-                            Nombre = "MXV"
+                            Id = "MXV",
+                            Nombre = "Unidad De Inversión (UDI) Mexicana"
                         },
                         new
                         {
-                            Id = "Ringgit Malayo",
-                            Nombre = "MYR"
+                            Id = "MYR",
+                            Nombre = "Ringgit Malayo"
                         },
                         new
                         {
-                            Id = "Metical Mozambiqueño",
-                            Nombre = "MZN"
+                            Id = "MZN",
+                            Nombre = "Metical Mozambiqueño"
                         },
                         new
                         {
-                            Id = "Dólar Namibio",
-                            Nombre = "NAD"
+                            Id = "NAD",
+                            Nombre = "Dólar Namibio"
                         },
                         new
                         {
-                            Id = "Naira",
-                            Nombre = "NGN"
+                            Id = "NGN",
+                            Nombre = "Naira"
                         },
                         new
                         {
-                            Id = "Córdoba",
-                            Nombre = "NIO"
+                            Id = "NIO",
+                            Nombre = "Córdoba"
                         },
                         new
                         {
-                            Id = "Corona Noruega",
-                            Nombre = "NOK"
+                            Id = "NOK",
+                            Nombre = "Corona Noruega"
                         },
                         new
                         {
-                            Id = "Rupia Nepalí",
-                            Nombre = "NPR"
+                            Id = "NPR",
+                            Nombre = "Rupia Nepalí"
                         },
                         new
                         {
-                            Id = "Dólar Neozelandés",
-                            Nombre = "NZD"
+                            Id = "NZD",
+                            Nombre = "Dólar Neozelandés"
                         },
                         new
                         {
-                            Id = "Rial Omaní",
-                            Nombre = "OMR"
+                            Id = "OMR",
+                            Nombre = "Rial Omaní"
                         },
                         new
                         {
-                            Id = "Balboa",
-                            Nombre = "PAB"
+                            Id = "PAB",
+                            Nombre = "Balboa"
                         },
                         new
                         {
-                            Id = "Sol",
-                            Nombre = "PEN"
+                            Id = "PEN",
+                            Nombre = "Sol"
                         },
                         new
                         {
-                            Id = "Kina",
-                            Nombre = "PGK"
+                            Id = "PGK",
+                            Nombre = "Kina"
                         },
                         new
                         {
-                            Id = "Peso Filipino",
-                            Nombre = "PHP"
+                            Id = "PHP",
+                            Nombre = "Peso Filipino"
                         },
                         new
                         {
-                            Id = "Rupia Pakistaní",
-                            Nombre = "PKR"
+                            Id = "PKR",
+                            Nombre = "Rupia Pakistaní"
                         },
                         new
                         {
-                            Id = "Złoty",
-                            Nombre = "PLN"
+                            Id = "PLN",
+                            Nombre = "Złoty"
                         },
                         new
                         {
-                            Id = "Guaraní",
-                            Nombre = "PYG"
+                            Id = "PYG",
+                            Nombre = "Guaraní"
                         },
                         new
                         {
-                            Id = "Rial Catarí",
-                            Nombre = "QAR"
+                            Id = "QAR",
+                            Nombre = "Rial Catarí"
                         },
                         new
                         {
-                            Id = "Leu Rumano",
-                            Nombre = "RON"
+                            Id = "RON",
+                            Nombre = "Leu Rumano"
                         },
                         new
                         {
-                            Id = "Dinar Serbio",
-                            Nombre = "RSD"
+                            Id = "RSD",
+                            Nombre = "Dinar Serbio"
                         },
                         new
                         {
-                            Id = "Rublo Ruso",
-                            Nombre = "RUB"
+                            Id = "RUB",
+                            Nombre = "Rublo Ruso"
                         },
                         new
                         {
-                            Id = "Franco Ruandés",
-                            Nombre = "RWF"
+                            Id = "RWF",
+                            Nombre = "Franco Ruandés"
                         },
                         new
                         {
-                            Id = "Rial Saudí",
-                            Nombre = "SAR"
+                            Id = "SAR",
+                            Nombre = "Rial Saudí"
                         },
                         new
                         {
-                            Id = "Dólar De Las Islas Salomón",
-                            Nombre = "SBD"
+                            Id = "SBD",
+                            Nombre = "Dólar De Las Islas Salomón"
                         },
                         new
                         {
-                            Id = "Rupia Seychelense",
-                            Nombre = "SCR"
+                            Id = "SCR",
+                            Nombre = "Rupia Seychelense"
                         },
                         new
                         {
-                            Id = "Libra Sudanesa",
-                            Nombre = "SDG"
+                            Id = "SDG",
+                            Nombre = "Libra Sudanesa"
                         },
                         new
                         {
-                            Id = "Corona Sueca",
-                            Nombre = "SEK"
+                            Id = "SEK",
+                            Nombre = "Corona Sueca"
                         },
                         new
                         {
-                            Id = "Dólar De Singapur",
-                            Nombre = "SGD"
+                            Id = "SGD",
+                            Nombre = "Dólar De Singapur"
                         },
                         new
                         {
-                            Id = "Libra De Santa Elena",
-                            Nombre = "SHP"
+                            Id = "SHP",
+                            Nombre = "Libra De Santa Elena"
                         },
                         new
                         {
-                            Id = "Leone",
-                            Nombre = "SLL"
+                            Id = "SLL",
+                            Nombre = "Leone"
                         },
                         new
                         {
-                            Id = "Chelín Somalí",
-                            Nombre = "SOS"
+                            Id = "SOS",
+                            Nombre = "Chelín Somalí"
                         },
                         new
                         {
-                            Id = "Dólar Surinamés",
-                            Nombre = "SRD"
+                            Id = "SRD",
+                            Nombre = "Dólar Surinamés"
                         },
                         new
                         {
-                            Id = "Libra Sursudanesa",
-                            Nombre = "SSP"
+                            Id = "SSP",
+                            Nombre = "Libra Sursudanesa"
                         },
                         new
                         {
-                            Id = "Dobra",
-                            Nombre = "STN"
+                            Id = "STN",
+                            Nombre = "Dobra"
                         },
                         new
                         {
-                            Id = "Colón Salvadoreño",
-                            Nombre = "SVC"
+                            Id = "SVC",
+                            Nombre = "Colón Salvadoreño"
                         },
                         new
                         {
-                            Id = "Libra Siria",
-                            Nombre = "SYP"
+                            Id = "SYP",
+                            Nombre = "Libra Siria"
                         },
                         new
                         {
-                            Id = "Lilangeni",
-                            Nombre = "SZL"
+                            Id = "SZL",
+                            Nombre = "Lilangeni"
                         },
                         new
                         {
-                            Id = "Baht",
-                            Nombre = "THB"
+                            Id = "THB",
+                            Nombre = "Baht"
                         },
                         new
                         {
-                            Id = "Somoni Tayiko",
-                            Nombre = "TJS"
+                            Id = "TJS",
+                            Nombre = "Somoni Tayiko"
                         },
                         new
                         {
-                            Id = "Manat Turcomano",
-                            Nombre = "TMT"
+                            Id = "TMT",
+                            Nombre = "Manat Turcomano"
                         },
                         new
                         {
-                            Id = "Dinar Tunecino",
-                            Nombre = "TND"
+                            Id = "TND",
+                            Nombre = "Dinar Tunecino"
                         },
                         new
                         {
-                            Id = "Paʻanga",
-                            Nombre = "TOP"
+                            Id = "TOP",
+                            Nombre = "Paʻanga"
                         },
                         new
                         {
-                            Id = "Lira Turca",
-                            Nombre = "TRY"
+                            Id = "TRY",
+                            Nombre = "Lira Turca"
                         },
                         new
                         {
-                            Id = "Dólar De Trinidad Y Tobago",
-                            Nombre = "TTD"
+                            Id = "TTD",
+                            Nombre = "Dólar De Trinidad Y Tobago"
                         },
                         new
                         {
-                            Id = "Nuevo Dólar Taiwanés",
-                            Nombre = "TWD"
+                            Id = "TWD",
+                            Nombre = "Nuevo Dólar Taiwanés"
                         },
                         new
                         {
-                            Id = "Chelín Tanzano",
-                            Nombre = "TZS"
+                            Id = "TZS",
+                            Nombre = "Chelín Tanzano"
                         },
                         new
                         {
-                            Id = "Grivna",
-                            Nombre = "UAH"
+                            Id = "UAH",
+                            Nombre = "Grivna"
                         },
                         new
                         {
-                            Id = "Chelín Ugandés",
-                            Nombre = "UGX"
+                            Id = "UGX",
+                            Nombre = "Chelín Ugandés"
                         },
                         new
                         {
-                            Id = "Dólar Estadounidense",
-                            Nombre = "USD"
+                            Id = "USD",
+                            Nombre = "Dólar Estadounidense"
                         },
                         new
                         {
-                            Id = "Dólar Estadounidense (Siguiente Día)",
-                            Nombre = "USN"
+                            Id = "USN",
+                            Nombre = "Dólar Estadounidense (Siguiente Día)"
                         },
                         new
                         {
-                            Id = "Peso En Unidades Indexadas (Uruguay)",
-                            Nombre = "UYI"
+                            Id = "UYI",
+                            Nombre = "Peso En Unidades Indexadas (Uruguay)"
                         },
                         new
                         {
-                            Id = "Peso Uruguayo",
-                            Nombre = "UYU"
+                            Id = "UYU",
+                            Nombre = "Peso Uruguayo"
                         },
                         new
                         {
-                            Id = "Unidad Previsional",
-                            Nombre = "UYW"
+                            Id = "UYW",
+                            Nombre = "Unidad Previsional"
                         },
                         new
                         {
-                            Id = "Som Uzbeko",
-                            Nombre = "UZS"
+                            Id = "UZS",
+                            Nombre = "Som Uzbeko"
                         },
                         new
                         {
-                            Id = "Bolívar Soberano",
-                            Nombre = "VES7​"
+                            Id = "VES7​",
+                            Nombre = "Bolívar Soberano"
                         },
                         new
                         {
-                            Id = "Dong Vietnamita",
-                            Nombre = "VND"
+                            Id = "VND",
+                            Nombre = "Dong Vietnamita"
                         },
                         new
                         {
-                            Id = "Vatu",
-                            Nombre = "VUV"
+                            Id = "VUV",
+                            Nombre = "Vatu"
                         },
                         new
                         {
-                            Id = "Tala",
-                            Nombre = "WST"
+                            Id = "WST",
+                            Nombre = "Tala"
                         },
                         new
                         {
-                            Id = "Franco CFA De África Central",
-                            Nombre = "XAF"
+                            Id = "XAF",
+                            Nombre = "Franco CFA De África Central"
                         },
                         new
                         {
-                            Id = "Plata (Una Onza Troy)",
-                            Nombre = "XAG"
+                            Id = "XAG",
+                            Nombre = "Plata (Una Onza Troy)"
                         },
                         new
                         {
-                            Id = "Oro (Una Onza Troy)",
-                            Nombre = "XAU"
+                            Id = "XAU",
+                            Nombre = "Oro (Una Onza Troy)"
                         },
                         new
                         {
-                            Id = "Unidad Compuesta Europea (EURCO) (Unidad Del Mercados De Bonos)",
-                            Nombre = "XBA"
+                            Id = "XBA",
+                            Nombre = "Unidad Compuesta Europea (EURCO) (Unidad Del Mercados De Bonos)"
                         },
                         new
                         {
-                            Id = "Unidad Monetaria Europea (E.M.U.-6) (Unidad Del Mercado De Bonos)",
-                            Nombre = "XBB"
+                            Id = "XBB",
+                            Nombre = "Unidad Monetaria Europea (E.M.U.-6) (Unidad Del Mercado De Bonos)"
                         },
                         new
                         {
-                            Id = "Unidad Europea De Cuenta 9 (E.U.A.-9) (Unidad Del Mercado De Bonos)",
-                            Nombre = "XBC"
+                            Id = "XBC",
+                            Nombre = "Unidad Europea De Cuenta 9 (E.U.A.-9) (Unidad Del Mercado De Bonos)"
                         },
                         new
                         {
-                            Id = "Unidad Europea De Cuenta 17 (E.U.A.-17) (Unidad Del Mercado De Bonos)",
-                            Nombre = "XBD"
+                            Id = "XBD",
+                            Nombre = "Unidad Europea De Cuenta 17 (E.U.A.-17) (Unidad Del Mercado De Bonos)"
                         },
                         new
                         {
-                            Id = "Dólar Del Caribe Oriental",
-                            Nombre = "XCD"
+                            Id = "XCD",
+                            Nombre = "Dólar Del Caribe Oriental"
                         },
                         new
                         {
-                            Id = "Derechos Especiales De Giro",
-                            Nombre = "XDR"
+                            Id = "XDR",
+                            Nombre = "Derechos Especiales De Giro"
                         },
                         new
                         {
-                            Id = "Franco CFA De África Occidental",
-                            Nombre = "XOF"
+                            Id = "XOF",
+                            Nombre = "Franco CFA De África Occidental"
                         },
                         new
                         {
-                            Id = "Paladio (Una Onza Troy)",
-                            Nombre = "XPD"
+                            Id = "XPD",
+                            Nombre = "Paladio (Una Onza Troy)"
                         },
                         new
                         {
-                            Id = "Franco CFP",
-                            Nombre = "XPF"
+                            Id = "XPF",
+                            Nombre = "Franco CFP"
                         },
                         new
                         {
-                            Id = "Platino (Una Onza Troy)",
-                            Nombre = "XPT"
+                            Id = "XPT",
+                            Nombre = "Platino (Una Onza Troy)"
                         },
                         new
                         {
-                            Id = "SUCRE",
-                            Nombre = "XSU"
+                            Id = "XSU",
+                            Nombre = "SUCRE"
                         },
                         new
                         {
-                            Id = "Reservado Para Pruebas",
-                            Nombre = "XTS"
+                            Id = "XTS",
+                            Nombre = "Reservado Para Pruebas"
                         },
                         new
                         {
-                            Id = "Unidad De Cuenta BAD",
-                            Nombre = "XUA"
+                            Id = "XUA",
+                            Nombre = "Unidad De Cuenta BAD"
                         },
                         new
                         {
-                            Id = "Sin Divisa",
-                            Nombre = "XXX"
+                            Id = "XXX",
+                            Nombre = "Sin Divisa"
                         },
                         new
                         {
-                            Id = "Rial Yemení",
-                            Nombre = "YER"
+                            Id = "YER",
+                            Nombre = "Rial Yemení"
                         },
                         new
                         {
-                            Id = "Rand",
-                            Nombre = "ZAR"
+                            Id = "ZAR",
+                            Nombre = "Rand"
                         },
                         new
                         {
-                            Id = "Kwacha Zambiano",
-                            Nombre = "ZMW"
+                            Id = "ZMW",
+                            Nombre = "Kwacha Zambiano"
                         },
                         new
                         {
-                            Id = "Dólar Zimbabuense",
-                            Nombre = "ZWL"
+                            Id = "ZWL",
+                            Nombre = "Dólar Zimbabuense"
                         });
                 });
 
