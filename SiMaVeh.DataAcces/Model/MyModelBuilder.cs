@@ -265,7 +265,9 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
 
             //builder.EntitySet<Recambio>(EntityTypeGetter<Recambio, long>.GetCollectionNameAsString());
-            builder.EntityType<Recambio>().Ignore(r => r.KitRecambio);
+            builder.EntityType<Recambio>()
+                .Abstract()
+                .Ignore(r => r.KitRecambio);
 
             //Reparadores
             builder.EntitySet<Reparador>(EntityTypeGetter<Reparador, long>.GetCollectionNameAsString());
@@ -378,7 +380,8 @@ namespace SiMaVeh.DataAccess.Model
 
             //builder.EntitySet<Vehiculo>(EntityTypeGetter<Vehiculo, long>.GetCollectionNameAsString());
 
-            builder.EntitySet<Vehiculo>(EntitySet.Vehiculo).EntityType.Abstract();
+            builder.EntityType<Vehiculo>()
+                .Abstract();
 
             var model = builder.GetEdmModel();
 

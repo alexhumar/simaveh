@@ -13,14 +13,14 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Controllers
 {
     /// <summary>
-    /// Automovil Controller
+    /// Automoviles Controller
     /// </summary>
-    public class AutomovilController : GenericController<Automovil, long>
+    public class AutomovilesController : GenericController<Automovil, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public AutomovilController(IControllerParameter parameters) : base(parameters) { }
+        public AutomovilesController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 

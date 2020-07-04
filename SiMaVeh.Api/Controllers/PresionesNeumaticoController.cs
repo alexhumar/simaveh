@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Controllers
 {
     /// <summary>
-    /// Presiones Neumaticos Controller
+    /// Presiones Neumatico Controller
     /// </summary>
-    public class PresionesNeumaticosController : GenericController<PresionNeumatico, long>
+    public class PresionesNeumaticoController : GenericController<PresionNeumatico, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public PresionesNeumaticosController(IControllerParameter parameters) : base(parameters) { }
+        public PresionesNeumaticoController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
