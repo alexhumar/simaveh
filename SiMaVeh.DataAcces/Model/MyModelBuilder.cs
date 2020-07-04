@@ -90,6 +90,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<EntidadReparadora>().Ignore(e => e.ReparadorEntidadReparadora);
 
             //Equipamientos Airbags
             builder.EntitySet<EquipamientoAirbags>(EntityTypeGetter<EquipamientoAirbags, string>.GetCollectionNameAsString());
@@ -138,6 +139,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            //builder.EntityType<Kit>().Ignore(k => k.KitRecambio);
 
             //Localidades
             builder.EntitySet<Localidad>(EntityTypeGetter<Localidad, long>.GetCollectionNameAsString());
@@ -257,11 +259,13 @@ namespace SiMaVeh.DataAccess.Model
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
                 .Filter()
+                .Filter()
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
 
             //builder.EntitySet<Recambio>(EntityTypeGetter<Recambio, long>.GetCollectionNameAsString());
+            builder.EntityType<Recambio>().Ignore(r => r.KitRecambio);
 
             //Reparadores
             builder.EntitySet<Reparador>(EntityTypeGetter<Reparador, long>.GetCollectionNameAsString());
@@ -272,6 +276,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<Reparador>().Ignore(r => r.ReparadorEntidadReparadora);
 
             //Repuestos
             builder.EntitySet<Repuesto>(EntityTypeGetter<Repuesto, long>.GetCollectionNameAsString());
@@ -282,6 +287,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            //builder.EntityType<Repuesto>().Ignore(r => r.KitRecambio);
 
             //Servicios Reparadores
             builder.EntitySet<ServicioReparador>(EntityTypeGetter<ServicioReparador, long>.GetCollectionNameAsString());
