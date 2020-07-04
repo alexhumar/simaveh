@@ -13,14 +13,15 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Controllers
 {
     /// <summary>
-    /// Kits Controller
+    /// Kits Recambio Controller
+    /// NOTA: si lo denomino KitsController, no funciona la ruta.
     /// </summary>
-    public class KitsController : GenericController<Kit, long>
+    public class KitsRecambiosController : GenericController<Kit, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public KitsController(IControllerParameter parameters) : base(parameters) { }
+        public KitsRecambiosController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 

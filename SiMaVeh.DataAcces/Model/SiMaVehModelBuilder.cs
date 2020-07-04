@@ -3,12 +3,11 @@ using Microsoft.AspNet.OData.Query;
 using Microsoft.OData.Edm;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
-using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.Model
 {
-    public class MyModelBuilder
+    public class SiMaVehModelBuilder
     {
         public static IEdmModel GetEdmModel()
         {
