@@ -33,7 +33,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetDescripcion([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -50,7 +50,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
         public async Task<IActionResult> GetKits([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -67,7 +67,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMarca([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -83,7 +83,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -100,7 +100,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
         public async Task<IActionResult> GetRecambios([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -124,7 +124,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var kit = await _repository.Find(key);
+            var kit = await repository.Find(key);
             if (kit == null)
                 return NotFound();
 
@@ -138,7 +138,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var anotherKit = await _entityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
+                var anotherKit = await entityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
                 if (anotherKit == null)
                     return NotFound();
 
@@ -149,10 +149,10 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                Recambio anotherKit = await _entityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
+                Recambio anotherKit = await entityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
                 if (anotherKit == null)
                 {
-                    anotherKit = await _entityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
+                    anotherKit = await entityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
 
                     if (anotherKit == null)
                         return NotFound();
@@ -165,7 +165,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var marca = await _entityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
+                var marca = await entityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
                     return NotFound();
 
@@ -174,7 +174,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

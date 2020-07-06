@@ -32,7 +32,7 @@ namespace SiMaVeh.Controllers
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
             //El $value anda solo!
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -55,7 +55,7 @@ namespace SiMaVeh.Controllers
                 return NotFound();
 
             return Ok(partido.Select(p => p.Provincia).FirstOrDefault());*/
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -72,7 +72,7 @@ namespace SiMaVeh.Controllers
         public async Task<IActionResult> GetLocalidades([FromODataUri] long key)
         {
             //return await Task.Run(() => _repository.GetCollection().Where(p => p.Id == key).SelectMany(p => p.Localidades));
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -95,7 +95,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var partido = await _repository.Find(key);
+            var partido = await repository.Find(key);
             if (partido == null)
                 return NotFound();
 
@@ -107,7 +107,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var localidad = await _entityGetter.TryGetEntityFromRelatedLink<Localidad, long>(link);
+                var localidad = await entityGetter.TryGetEntityFromRelatedLink<Localidad, long>(link);
                 if (localidad == null)
                     return NotFound();
 
@@ -118,7 +118,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var provincia = await _entityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
+                var provincia = await entityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
                 if (provincia == null)
                     return NotFound();
 
@@ -127,7 +127,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

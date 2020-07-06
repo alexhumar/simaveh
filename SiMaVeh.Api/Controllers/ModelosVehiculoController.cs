@@ -35,7 +35,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetAceiteRecomendado([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -52,7 +52,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetAirbags([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -69,7 +69,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetFuenteEnergiaRecomendada([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -86,7 +86,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetGrupoModelo([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -103,7 +103,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
         public async Task<IActionResult> GetPresionesNeumaticosRecomendadas([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -120,7 +120,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
         public async Task<IActionResult> GetRepuestosRecomendados([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -137,7 +137,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipoFuenteEnergia([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -154,7 +154,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetVersion([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -177,7 +177,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var modeloVehiculo = await _repository.Find(key);
+            var modeloVehiculo = await repository.Find(key);
             if (modeloVehiculo == null)
                 return NotFound();
 
@@ -190,7 +190,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var grupoModelo = await _entityGetter.TryGetEntityFromRelatedLink<GrupoModelo, long>(link);
+                var grupoModelo = await entityGetter.TryGetEntityFromRelatedLink<GrupoModelo, long>(link);
                 if (grupoModelo == null)
                     return NotFound();
 
@@ -201,7 +201,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var aceite = await _entityGetter.TryGetEntityFromRelatedLink<Aceite, long>(link);
+                var aceite = await entityGetter.TryGetEntityFromRelatedLink<Aceite, long>(link);
                 if (aceite == null)
                     return NotFound();
 
@@ -212,7 +212,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var airbags = await _entityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, string>(link);
+                var airbags = await entityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, string>(link);
                 if (airbags == null)
                     return NotFound();
 
@@ -223,7 +223,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoFuenteEnergia = await _entityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
+                var tipoFuenteEnergia = await entityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
                 if (tipoFuenteEnergia == null)
                     return NotFound();
 
@@ -234,7 +234,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var fuenteEnergia = await _entityGetter.TryGetEntityFromRelatedLink<FuenteEnergia, long>(link);
+                var fuenteEnergia = await entityGetter.TryGetEntityFromRelatedLink<FuenteEnergia, long>(link);
                 if (fuenteEnergia == null)
                     return NotFound();
 
@@ -245,7 +245,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var repuesto = await _entityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
+                var repuesto = await entityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
                 if (repuesto == null)
                     return NotFound();
 
@@ -256,7 +256,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var presionNeumatico = await _entityGetter.TryGetEntityFromRelatedLink<PresionNeumatico, long>(link);
+                var presionNeumatico = await entityGetter.TryGetEntityFromRelatedLink<PresionNeumatico, long>(link);
                 if (presionNeumatico == null)
                     return NotFound();
 
@@ -265,7 +265,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }
@@ -279,20 +279,20 @@ namespace SiMaVeh.Controllers
         /// <returns></returns>
         public override IActionResult DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
         {
-            var modeloVehiculo = _repository.Find(key).Result;
+            var modeloVehiculo = repository.Find(key).Result;
             if (modeloVehiculo == null)
                 return NotFound();
 
             if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
-                var repuesto = new Repository<Repuesto, long>(_context).Find(Convert.ToInt64(relatedKey)).Result;
+                var repuesto = new Repository<Repuesto, long>(context).Find(Convert.ToInt64(relatedKey)).Result;
                 if (repuesto == null)
                     return NotFound();
 
                 modeloVehiculo.Quitar(repuesto);
             }
 
-            _repository.SaveChangesAsync();
+            repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

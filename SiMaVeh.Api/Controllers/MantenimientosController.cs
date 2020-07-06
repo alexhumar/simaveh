@@ -31,7 +31,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetAccion([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -48,7 +48,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMonedaMontoRecambio([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -64,7 +64,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetMontoRecambio([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -81,7 +81,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetRecambio([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -98,7 +98,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetReparador([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -115,7 +115,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetServicioReparador([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -138,7 +138,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var mantenimiento = await _repository.Find(key);
+            var mantenimiento = await repository.Find(key);
             if (mantenimiento == null)
                 return NotFound();
 
@@ -151,7 +151,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var recambio = await _entityGetter.TryGetEntityFromRelatedLink<Recambio, long>(link);
+                var recambio = await entityGetter.TryGetEntityFromRelatedLink<Recambio, long>(link);
                 if (recambio == null)
                     return NotFound();
 
@@ -162,7 +162,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
+                var moneda = await entityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
                 if (moneda == null)
                     return NotFound();
 
@@ -173,7 +173,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var servicioReparador = await _entityGetter.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
+                var servicioReparador = await entityGetter.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
                 if (servicioReparador == null)
                     return NotFound();
 
@@ -184,7 +184,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var reparador = await _entityGetter.TryGetEntityFromRelatedLink<Reparador, long>(link);
+                var reparador = await entityGetter.TryGetEntityFromRelatedLink<Reparador, long>(link);
                 if (reparador == null)
                     return NotFound();
 
@@ -193,7 +193,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

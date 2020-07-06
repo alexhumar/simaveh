@@ -33,7 +33,7 @@ namespace SiMaVeh.Controllers
         public async Task<IActionResult> GetProvincias([FromODataUri] long key)
         {
             //return await Task.Run(() => _repository.GetCollection().Where(p => p.Id == key).SelectMany(p => p.Provincias));
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -49,7 +49,7 @@ namespace SiMaVeh.Controllers
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
             //El $value anda solo!
-            var entity = await _repository.Find(key);
+            var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
@@ -71,7 +71,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var pais = await _repository.Find(key);
+            var pais = await repository.Find(key);
             if (pais == null)
                 return NotFound();
 
@@ -82,7 +82,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var provincia = await _entityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
+                var provincia = await entityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
                 if (provincia == null)
                     return NotFound();
 
@@ -91,7 +91,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }
