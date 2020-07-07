@@ -44,7 +44,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Entidades reparadoras del reparador</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetEntidadesReparadoras([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -52,7 +52,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.EntidadesReparadoras.AsQueryable());
+                return Ok(entity.EntidadesReparadoras);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Telefonos del reparador</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetTelefonos([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -98,7 +98,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Telefonos.AsQueryable());
+                return Ok(entity.Telefonos);
         }
 
         /// <summary>

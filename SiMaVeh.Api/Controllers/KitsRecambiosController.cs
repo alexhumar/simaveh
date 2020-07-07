@@ -47,7 +47,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Kits del kit</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetKits([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -55,7 +55,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Kits.AsQueryable());
+                return Ok(entity.Kits);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Recambios del kit</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetRecambios([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -105,7 +105,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Recambios.AsQueryable());
+                return Ok(entity.Recambios);
         }
 
         /// <summary>

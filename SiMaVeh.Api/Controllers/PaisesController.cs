@@ -29,16 +29,15 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Lista de provincias del pais</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetProvincias([FromODataUri] long key)
         {
-            //return await Task.Run(() => _repository.GetCollection().Where(p => p.Id == key).SelectMany(p => p.Provincias));
             var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Provincias.AsQueryable());
+                return Ok(entity.Provincias);
         }
 
         /// <summary>
@@ -48,7 +47,6 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            //El $value anda solo!
             var entity = await repository.Find(key);
 
             if (entity == null)

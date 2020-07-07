@@ -127,7 +127,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Servicios reparadores del automovil</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetServiciosReparadores([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -135,7 +135,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.ServiciosReparadores.AsQueryable());
+                return Ok(entity.ServiciosReparadores);
         }
 
         /// <summary>

@@ -91,7 +91,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Mantenimientos del servicio reparador</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetMantenimientos([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -99,7 +99,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Mantenimientos.AsQueryable());
+                return Ok(entity.Mantenimientos);
         }
 
         /// <summary>

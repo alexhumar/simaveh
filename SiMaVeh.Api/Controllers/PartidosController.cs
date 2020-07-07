@@ -31,7 +31,6 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            //El $value anda solo!
             var entity = await repository.Find(key);
 
             if (entity == null)
@@ -49,12 +48,6 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetProvincia([FromODataUri] long key)
         {
-            /*IQueryable<Partido> partido = await Task.Run(() => _repository.GetCollection().Where(p => p.Id == key));
-
-            if (partido.Count() == 0)
-                return NotFound();
-
-            return Ok(partido.Select(p => p.Provincia).FirstOrDefault());*/
             var entity = await repository.Find(key);
 
             if (entity == null)
@@ -68,16 +61,15 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Lista de localidades del partido</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetLocalidades([FromODataUri] long key)
         {
-            //return await Task.Run(() => _repository.GetCollection().Where(p => p.Id == key).SelectMany(p => p.Localidades));
             var entity = await repository.Find(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Localidades.AsQueryable());
+                return Ok(entity.Localidades);
         }
 
         /// <summary>

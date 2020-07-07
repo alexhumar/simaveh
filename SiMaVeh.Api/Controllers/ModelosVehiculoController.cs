@@ -100,7 +100,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Presiones de neumaticos recomendada del modelo vehiculo</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetPresionesNeumaticosRecomendadas([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -108,7 +108,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.PresionesNeumaticosRecomendadas.AsQueryable());
+                return Ok(entity.PresionesNeumaticosRecomendadas);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Repuestos recomendados del modelo vehiculo</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetRepuestosRecomendados([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -125,7 +125,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.RepuestosRecomendados.AsQueryable());
+                return Ok(entity.RepuestosRecomendados);
         }
 
         /// <summary>

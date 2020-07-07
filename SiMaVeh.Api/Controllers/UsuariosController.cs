@@ -74,7 +74,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Telefonos del usuario</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetTelefonos([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -82,7 +82,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Telefonos.AsQueryable());
+                return Ok(entity.Telefonos);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Vehiculos del usuario</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetVehiculos([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -114,7 +114,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Vehiculos.AsQueryable());
+                return Ok(entity.Vehiculos);
         }
 
         /// <summary>

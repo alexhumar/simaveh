@@ -60,7 +60,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Lista de entidades</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop, PageSize = QueryConstants.PageSize)]
+        [EnableQuery(/*MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop,*/ PageSize = QueryConstants.PageSize)]
         public virtual async Task</*PageResult*/IQueryable<TBe>> Get(/*ODataQueryOptions<TBe> options*/)
         {
             //Con este codigo comentado se consigue un resultado paginado y con el inlinecount seteado, pero no soporta expand.

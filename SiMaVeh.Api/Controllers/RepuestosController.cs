@@ -44,7 +44,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Kits a los que pertenece el repuesto</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetKits([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -52,7 +52,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Kits.AsQueryable());
+                return Ok(entity.Kits);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Periodicidades de mantenimiento del repuesto</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetPeriodicidadesMantenimiento([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
@@ -84,7 +84,7 @@ namespace SiMaVeh.Controllers
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.PeriodicidadesMantenimiento.AsQueryable());
+                return Ok(entity.PeriodicidadesMantenimiento);
         }
 
         /// <summary>

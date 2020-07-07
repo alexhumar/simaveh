@@ -29,7 +29,7 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Categoria de la marca</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetMarcas([FromODataUri] long key)
         {
             var entity = await repository.Find(key);
