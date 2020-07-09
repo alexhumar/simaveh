@@ -15,7 +15,7 @@ namespace SiMaVeh.DataAccess.Repository
     /// <typeparam name="TBeId"></typeparam>
     public class Repository<TBe, TBeId> : IRepository<TBe, TBeId> where TBe : DomainMember<TBeId>
     {
-        private readonly SiMaVehContext _context;
+        private readonly SiMaVehContext context;
 
         /// <summary>
         /// Constructor
@@ -23,10 +23,8 @@ namespace SiMaVeh.DataAccess.Repository
         /// <param name="context"></param>
         public Repository(SiMaVehContext context)
         {
-            _context = context;
+            this.context = context;
         }
-
-        #region ITodoRepository
 
         /// <summary>
         /// GetAll (async)
@@ -34,7 +32,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public async Task<IEnumerable<TBe>> GetAllAsync()
         {
-            return await Task.Run(() => _context.Set<TBe>().ToListAsync());
+            return await context.Set<TBe>().ToListAsync();
         }
 
         /// <summary>
@@ -44,7 +42,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public async Task<int> Add(TBe item)
         {
-            _context.Set<TBe>().Add(item);
+            context.Set<TBe>().Add(item);
 
             return await SaveChangesAsync();
         }
@@ -56,7 +54,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public async Task<TBe> Find(TBeId key)
         {
-            return await _context.Set<TBe>().FindAsync(key);
+            return await context.Set<TBe>().FindAsync(key);
         }
 
         /// <summary>
@@ -67,7 +65,7 @@ namespace SiMaVeh.DataAccess.Repository
         public async Task<int> Remove(TBeId key)
         {
             var entity = await Find(key);
-            _context.Set<TBe>().Remove(entity);
+            context.Set<TBe>().Remove(entity);
 
             return await SaveChangesAsync();
         }
@@ -79,7 +77,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public async Task<int> Remove(TBe elem)
         {
-            _context.Set<TBe>().Remove(elem);
+            context.Set<TBe>().Remove(elem);
 
             return await SaveChangesAsync();
         }
@@ -106,15 +104,15 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public IQueryable<TBe> GetCollection()
         {
-            return _context.Set<TBe>();
+            return context.Set<TBe>();
         }
 
         /// <summary>
         /// Dispose
         /// </summary>
-        public void Dispose()
+        public async Task Dispose()
         {
-            _context.Dispose();
+            await context.DisposeAsync();
         }
 
         /// <summary>
@@ -124,7 +122,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public EntityEntry<TBe> Entry(TBe element)
         {
-            return _context.Entry(element);
+            return context.Entry(element);
         }
 
         /// <summary>
@@ -133,8 +131,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public Task<int> SaveChangesAsync()
         {
-            return _context.SaveChangesAsync();
+            return context.SaveChangesAsync();
         }
-        #endregion
     }
 }

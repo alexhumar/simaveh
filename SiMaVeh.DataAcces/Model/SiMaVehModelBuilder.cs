@@ -11,24 +11,16 @@ namespace SiMaVeh.DataAccess.Model
     {
         public static IEdmModel GetEdmModel()
         {
+            //OrderBy es para que me permita ordenar incluso si estoy accediendo por navigation property
+            //El Expand choca bastante con el Page. Si al Page se le pasan parametros, cuando se trata de acceder
+            //a un recurso por GET y usando un $expand, da error. Hay que usar el Page sin parametros y en el Action
+            //del controller asociado especificar el tamanio de pagina. Page es deseable usarlo ya que habilita a
+            //$top y $skip.
+            //Para que quede todo masomenos andando, tuve que sacar de los controllers el PageSize, que parece que
+            //eso es lo que realmente choca con el expand. Saque eso y anda todo bien, pero no tengo paginacion
+            //implicita, sino que la tengo que hacer con $skip y $top. Tampoco funciona si se parametriza a .Page().
+
             var builder = new ODataConventionModelBuilder();
-
-            // var products = builder.EntitySet<Product>("Products");
-            // var categories = builder.EntitySet<Category>("Categories");
-
-            // products.EntityType
-            //         .Count()
-            //         .Filter()
-            //         .Expand(1, new string[] { "Category" })
-            //         .Page(5, 2)
-            //         .OrderBy(new string[] { "ID", "Name" });
-
-            // categories.EntityType
-            //         .Count()
-            //         .Filter()
-            //         .Expand(1, new string[] { "Products" })
-            //         .Page(5, 2)
-            //         .OrderBy(new string[] { "ID", "Name" });
 
             //Aceites
             builder.EntitySet<Aceite>(EntityTypeGetter<Aceite, long>.GetCollectionNameAsString());
@@ -38,14 +30,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            //OrderBy es para que me permita ordenar incluso si estoy accediendo por navigation property
-            //El Expand choca bastante con el Page. Si al Page se le pasan parametros, cuando se trata de acceder
-            //a un recurso por GET y usando un $expand, da error. Hay que usar el Page sin parametros y en el Action
-            //del controller asociado especificar el tamanio de pagina. Page es deseable usarlo ya que habilita a
-            //$top y $skip.
-            //Para que quede todo masomenos andando, tuve que sacar de los controllers el PageSize, que parece que
-            //eso es lo que realmente choca con el expand. Saque eso y anda todo bien, pero no tengo paginacion
-            //implicita, sino que la tengo que hacer con $skip y $top. Tampoco funciona si se parametriza a .Page().
 
             //Automoviles
             builder.EntitySet<Automovil>(EntityTypeGetter<Automovil, long>.GetCollectionNameAsString());
@@ -382,9 +366,7 @@ namespace SiMaVeh.DataAccess.Model
             builder.EntityType<Vehiculo>()
                 .Abstract();
 
-            var model = builder.GetEdmModel();
-
-            return model;
+            return builder.GetEdmModel();
         }
     }
 }

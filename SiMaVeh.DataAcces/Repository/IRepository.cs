@@ -62,7 +62,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <summary>
         /// Dispose
         /// </summary>
-        void Dispose();
+        Task Dispose();
 
         /// <summary>
         /// Entry
