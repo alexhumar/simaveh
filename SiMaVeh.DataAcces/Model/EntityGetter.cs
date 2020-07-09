@@ -1,5 +1,5 @@
-﻿using SiMaVeh.DataAccess.Repository;
-using SiMaVeh.DataAccess.Model;
+﻿using SiMaVeh.DataAccess.Model;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;

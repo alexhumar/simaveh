@@ -17,10 +17,10 @@ namespace SiMaVeh.DataAccess.Model
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //Las invocaciones al método ToTable de las clases derivadas se realiza en pos de
+            //Se debe invocar al método ToTable de las clases derivadas en pos de
             //activar la modalidad (TPT - Table Per Type). 
-            //Como esto al dia de hoy (04/05/2020) no es soportada por EF Core, pero lo será
-            //en versiones posteriores, se deja el codigo comentado.
+            //Esto al dia de hoy (04/05/2020) no es soportado por EF Core, pero lo será
+            //en versiones posteriores.
 
             //builder.Entity<Automovil>().ToTable("Automoviles");
             //builder.Entity<Pieza>().ToTable("Piezas");
@@ -30,10 +30,7 @@ namespace SiMaVeh.DataAccess.Model
             //builder.Entity<Kit>().ToTable("Kits");
             //builder.Entity<Repuesto>().ToTable("Repuestos");
 
-            builder.Entity<Reparador>()
-                .Ignore(r => r.EntidadesReparadoras);
-                //.ToTable("Reparadores");
-
+            builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
             builder.Entity<Recambio>().Ignore(r => r.Kits);
             builder.Entity<EntidadReparadora>().Ignore(er => er.Reparadores);
 
