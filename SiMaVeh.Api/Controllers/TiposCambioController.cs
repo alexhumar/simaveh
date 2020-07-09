@@ -29,7 +29,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetCoeficienteCambio([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -44,7 +44,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetFecha([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -60,7 +60,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMonedaDestino([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -76,7 +76,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMonedaOrigen([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -99,7 +99,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var tipoCambio = await repository.Find(key);
+            var tipoCambio = await repository.FindAsync(key);
             if (tipoCambio == null)
                 return NotFound();
 

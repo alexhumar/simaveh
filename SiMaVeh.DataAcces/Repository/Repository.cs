@@ -27,7 +27,7 @@ namespace SiMaVeh.DataAccess.Repository
         }
 
         /// <summary>
-        /// GetAll (async)
+        /// GetAllAsync
         /// </summary>
         /// <returns></returns>
         public async Task<IEnumerable<TBe>> GetAllAsync()
@@ -36,11 +36,11 @@ namespace SiMaVeh.DataAccess.Repository
         }
 
         /// <summary>
-        /// Add (async)
+        /// AddAsync
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async Task<int> Add(TBe item)
+        public async Task<int> AddAsync(TBe item)
         {
             context.Set<TBe>().Add(item);
 
@@ -48,34 +48,34 @@ namespace SiMaVeh.DataAccess.Repository
         }
 
         /// <summary>
-        /// Find (async)
+        /// FindAsync
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<TBe> Find(TBeId key)
+        public async Task<TBe> FindAsync(TBeId key)
         {
             return await context.Set<TBe>().FindAsync(key);
         }
 
         /// <summary>
-        /// Remove (async)
+        /// RemoveAsync
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<int> Remove(TBeId key)
+        public async Task<int> RemoveAsync(TBeId key)
         {
-            var entity = await Find(key);
+            var entity = await FindAsync(key);
             context.Set<TBe>().Remove(entity);
 
             return await SaveChangesAsync();
         }
 
         /// <summary>
-        /// Remove (async)
+        /// RemoveAsync
         /// </summary>
         /// <param name="elem"></param>
         /// <returns></returns>
-        public async Task<int> Remove(TBe elem)
+        public async Task<int> RemoveAsync(TBe elem)
         {
             context.Set<TBe>().Remove(elem);
 
@@ -83,13 +83,13 @@ namespace SiMaVeh.DataAccess.Repository
         }
 
         /// <summary>
-        /// Update
+        /// UpdateAsync
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async Task<int> Update(TBe item)
+        public async Task<int> UpdateAsync(TBe item)
         {
-            var entity = await Find((TBeId)item.GetType().GetProperty("Id").GetValue(item));
+            var entity = await FindAsync((TBeId)item.GetType().GetProperty("Id").GetValue(item));
             if (entity != null)
             {
                 Entry(entity).CurrentValues.SetValues(item);
@@ -99,18 +99,18 @@ namespace SiMaVeh.DataAccess.Repository
         }
 
         /// <summary>
-        /// GetCollection
+        /// GetCollectionAsync
         /// </summary>
         /// <returns></returns>
-        public IQueryable<TBe> GetCollection()
+        public async Task<IQueryable<TBe>> GetCollectionAsync()
         {
-            return context.Set<TBe>();
+            return await Task.Run(() => context.Set<TBe>().AsQueryable());
         }
 
         /// <summary>
-        /// Dispose
+        /// DisposeAsync
         /// </summary>
-        public async Task Dispose()
+        public async Task DisposeAsync()
         {
             await context.DisposeAsync();
         }

@@ -52,7 +52,7 @@ namespace SiMaVeh.Controllers
         /// <returns>Si existe entidad</returns>
         protected async Task<bool> ExisteEntidad(TBeId key)
         {
-            return await repository.Find(key) != null;
+            return await repository.FindAsync(key) != null;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace SiMaVeh.Controllers
             //     Request.GetNextPageLink(QueryConstants.PageSize),
             //     (results as IEnumerable<TBe>).Count());
 
-            return await Task.Run(() => repository.GetCollection());
+            return await repository.GetCollectionAsync();
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace SiMaVeh.Controllers
 
             IList<TBe> result = new List<TBe>();
 
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity != null)
             {
@@ -120,7 +120,7 @@ namespace SiMaVeh.Controllers
 
             try
             {
-                await repository.Add(entity);
+                await repository.AddAsync(entity);
             }
             catch (Exception e)
             {
@@ -156,7 +156,7 @@ namespace SiMaVeh.Controllers
 
             try
             {
-                await repository.Update(entity);
+                await repository.UpdateAsync(entity);
             }
             catch (Exception e)
             {
@@ -180,7 +180,7 @@ namespace SiMaVeh.Controllers
                 return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
             }
 
-            var existingEntity = await repository.Find(key);
+            var existingEntity = await repository.FindAsync(key);
             if (existingEntity == null)
             {
                 return NotFound();
@@ -208,13 +208,13 @@ namespace SiMaVeh.Controllers
         /// <response code="204"></response>
         public virtual async Task<IActionResult> Delete([FromODataUri] TBeId key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
             if (entity == null)
             {
                 return NotFound();
             }
 
-            await repository.Remove(entity);
+            await repository.RemoveAsync(entity);
 
             return NoContent();
         }

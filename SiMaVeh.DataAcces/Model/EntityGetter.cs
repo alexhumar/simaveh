@@ -41,7 +41,7 @@ namespace SiMaVeh.Helpers
 
             try
             {
-                result = await repo.Find(relatedKey);
+                result = await repo.FindAsync(relatedKey);
             }
             catch (Exception)
             {

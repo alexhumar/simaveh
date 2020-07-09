@@ -30,7 +30,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -47,7 +47,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetProvincia([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -63,7 +63,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetLocalidades([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -86,7 +86,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var partido = await repository.Find(key);
+            var partido = await repository.FindAsync(key);
             if (partido == null)
                 return NotFound();
 

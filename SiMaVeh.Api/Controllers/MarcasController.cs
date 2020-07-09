@@ -32,7 +32,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetCategorias([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -48,7 +48,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -70,7 +70,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var marca = await repository.Find(key);
+            var marca = await repository.FindAsync(key);
             if (marca == null)
                 return NotFound();
 
