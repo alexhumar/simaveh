@@ -1,4 +1,4 @@
---Las pruebas basicas de relacion many to many entre Reparadores y EntidadesReparadoras salio OK!
+/*Las pruebas basicas de relacion many to many entre Reparadores y EntidadesReparadoras salio OK!*/
 
 INSERT INTO direcciones (Id, Calle, NumeroCalle, LocalidadId) VALUES (1, "Centenario", 5070, 715);
 INSERT INTO direcciones (Id, Calle, NumeroCalle, LocalidadId) VALUES (2, "Brasil", 436, 715);
