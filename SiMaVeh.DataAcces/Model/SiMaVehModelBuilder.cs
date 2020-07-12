@@ -122,7 +122,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            //builder.EntityType<Kit>().Ignore(k => k.KitRecambio);
 
             //Localidades
             builder.EntitySet<Localidad>(EntityTypeGetter<Localidad, long>.GetCollectionNameAsString());
@@ -272,7 +271,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            //builder.EntityType<Repuesto>().Ignore(r => r.KitRecambio);
 
             //Servicios Reparadores
             builder.EntitySet<ServicioReparador>(EntityTypeGetter<ServicioReparador, long>.GetCollectionNameAsString());

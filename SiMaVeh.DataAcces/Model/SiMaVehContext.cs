@@ -30,9 +30,12 @@ namespace SiMaVeh.DataAccess.Model
             //builder.Entity<Kit>().ToTable("Kits");
             //builder.Entity<Repuesto>().ToTable("Repuestos");
 
-            builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
-            builder.Entity<Recambio>().Ignore(r => r.Kits);
+            builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
             builder.Entity<EntidadReparadora>().Ignore(er => er.Reparadores);
+            builder.Entity<Kit>().Ignore(r => r.Recambios);
+            builder.Entity<Marca>().Ignore(m => m.Categorias);
+            builder.Entity<Recambio>().Ignore(r => r.Kits);
+            builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
 
             builder.Entity<UbicacionPieza>()
                 .Property(k => k.Id).ValueGeneratedNever();
