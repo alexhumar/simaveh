@@ -29,7 +29,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNumero([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -45,7 +45,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetPersona([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -61,7 +61,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipo([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -84,7 +84,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var telefono = await _repository.Find(key);
+            var telefono = await repository.FindAsync(key);
             if (telefono == null)
                 return NotFound();
 
@@ -96,7 +96,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoTelefono = await _entityGetter.TryGetEntityFromRelatedLink<TipoTelefono, long>(link);
+                var tipoTelefono = await entityGetter.TryGetEntityFromRelatedLink<TipoTelefono, long>(link);
                 if (tipoTelefono == null)
                     return NotFound();
 
@@ -107,7 +107,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var persona = await _entityGetter.TryGetEntityFromRelatedLink<Persona, long>(link);
+                var persona = await entityGetter.TryGetEntityFromRelatedLink<Persona, long>(link);
                 if (persona == null)
                     return NotFound();
 
@@ -116,7 +116,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

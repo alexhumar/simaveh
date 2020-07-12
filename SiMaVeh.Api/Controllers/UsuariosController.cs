@@ -6,7 +6,6 @@ using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -31,7 +30,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetApellido([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -46,7 +45,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -61,7 +60,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNumeroDocumento([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -74,15 +73,15 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Telefonos del usuario</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetTelefonos([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Telefonos.AsQueryable());
+                return Ok(entity.Telefonos);
         }
 
         /// <summary>
@@ -93,7 +92,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipoDocumento([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -106,15 +105,15 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Vehiculos del usuario</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetVehiculos([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Vehiculos.AsQueryable());
+                return Ok(entity.Vehiculos);
         }
 
         /// <summary>
@@ -133,7 +132,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var usuario = await _repository.Find(key);
+            var usuario = await repository.FindAsync(key);
             if (usuario == null)
                 return NotFound();
 
@@ -146,7 +145,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var automovil = await _entityGetter.TryGetEntityFromRelatedLink<Automovil, long>(link);
+                var automovil = await entityGetter.TryGetEntityFromRelatedLink<Automovil, long>(link);
                 if (automovil == null)
                     return NotFound();
 
@@ -157,7 +156,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var telefono = await _entityGetter.TryGetEntityFromRelatedLink<Telefono, long>(link);
+                var telefono = await entityGetter.TryGetEntityFromRelatedLink<Telefono, long>(link);
                 if (telefono == null)
                     return NotFound();
 
@@ -168,7 +167,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoDocumento = await _entityGetter.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
+                var tipoDocumento = await entityGetter.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
                 if (tipoDocumento == null)
                     return NotFound();
 
@@ -177,7 +176,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

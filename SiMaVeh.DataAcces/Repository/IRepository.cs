@@ -13,14 +13,14 @@ namespace SiMaVeh.DataAccess.Repository
     public interface IRepository<TBe, TBeId> where TBe : class
     {
         /// <summary>
-        /// Add (async)
+        /// Add async
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        Task<int> Add(TBe element);
+        Task<int> AddAsync(TBe element);
 
         /// <summary>
-        /// GetAll (async)
+        /// GetAllAsync
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<TBe>> GetAllAsync();
@@ -29,40 +29,40 @@ namespace SiMaVeh.DataAccess.Repository
         /// GetCollection
         /// </summary>
         /// <returns></returns>
-        IQueryable<TBe> GetCollection();
+        Task<IQueryable<TBe>> GetCollectionAsync();
 
         /// <summary>
-        /// Find (async)
+        /// FindAsync
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<TBe> Find(TBeId key);
+        Task<TBe> FindAsync(TBeId key);
 
         /// <summary>
-        /// Remove (async)
+        /// RemoveAsync
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<int> Remove(TBeId key);
+        Task<int> RemoveAsync(TBeId key);
 
         /// <summary>
-        /// Remove (async)
+        /// RemoveAsync
         /// </summary>
         /// <param name="elem"></param>
         /// <returns></returns>
-        Task<int> Remove(TBe elem);
+        Task<int> RemoveAsync(TBe elem);
 
         /// <summary>
-        /// Update (async)
+        /// UpdateAsync
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        Task<int> Update(TBe element);
+        Task<int> UpdateAsync(TBe element);
 
         /// <summary>
-        /// Dispose
+        /// DisposeAsync
         /// </summary>
-        void Dispose();
+        Task DisposeAsync();
 
         /// <summary>
         /// Entry

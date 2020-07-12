@@ -66,7 +66,7 @@ namespace SiMaVeh
 
             app.UseMvc(routeBuilder =>
             {
-                routeBuilder.MapODataServiceRoute("odata", "simaveh", MyModelBuilder.GetEdmModel());
+                routeBuilder.MapODataServiceRoute("odata", "simaveh", SiMaVehModelBuilder.GetEdmModel());
                 //Work-around for issue #1175
                 routeBuilder.EnableDependencyInjection();
             });

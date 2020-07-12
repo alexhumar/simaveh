@@ -3,33 +3,24 @@ using Microsoft.AspNet.OData.Query;
 using Microsoft.OData.Edm;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
-using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.Model
 {
-    public class MyModelBuilder
+    public class SiMaVehModelBuilder
     {
         public static IEdmModel GetEdmModel()
         {
+            //OrderBy es para que me permita ordenar incluso si estoy accediendo por navigation property
+            //El Expand choca bastante con el Page. Si al Page se le pasan parametros, cuando se trata de acceder
+            //a un recurso por GET y usando un $expand, da error. Hay que usar el Page sin parametros y en el Action
+            //del controller asociado especificar el tamanio de pagina. Page es deseable usarlo ya que habilita a
+            //$top y $skip.
+            //Para que quede todo masomenos andando, tuve que sacar de los controllers el PageSize, que parece que
+            //eso es lo que realmente choca con el expand. Saque eso y anda todo bien, pero no tengo paginacion
+            //implicita, sino que la tengo que hacer con $skip y $top. Tampoco funciona si se parametriza a .Page().
+
             var builder = new ODataConventionModelBuilder();
-
-            // var products = builder.EntitySet<Product>("Products");
-            // var categories = builder.EntitySet<Category>("Categories");
-
-            // products.EntityType
-            //         .Count()
-            //         .Filter()
-            //         .Expand(1, new string[] { "Category" })
-            //         .Page(5, 2)
-            //         .OrderBy(new string[] { "ID", "Name" });
-
-            // categories.EntityType
-            //         .Count()
-            //         .Filter()
-            //         .Expand(1, new string[] { "Products" })
-            //         .Page(5, 2)
-            //         .OrderBy(new string[] { "ID", "Name" });
 
             //Aceites
             builder.EntitySet<Aceite>(EntityTypeGetter<Aceite, long>.GetCollectionNameAsString());
@@ -39,14 +30,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            //OrderBy es para que me permita ordenar incluso si estoy accediendo por navigation property
-            //El Expand choca bastante con el Page. Si al Page se le pasan parametros, cuando se trata de acceder
-            //a un recurso por GET y usando un $expand, da error. Hay que usar el Page sin parametros y en el Action
-            //del controller asociado especificar el tamanio de pagina. Page es deseable usarlo ya que habilita a
-            //$top y $skip.
-            //Para que quede todo masomenos andando, tuve que sacar de los controllers el PageSize, que parece que
-            //eso es lo que realmente choca con el expand. Saque eso y anda todo bien, pero no tengo paginacion
-            //implicita, sino que la tengo que hacer con $skip y $top. Tampoco funciona si se parametriza a .Page().
 
             //Automoviles
             builder.EntitySet<Automovil>(EntityTypeGetter<Automovil, long>.GetCollectionNameAsString());
@@ -62,10 +45,14 @@ namespace SiMaVeh.DataAccess.Model
             builder.EntitySet<CategoriaMarca>(EntityTypeGetter<CategoriaMarca, long>.GetCollectionNameAsString());
             builder.EntityType<CategoriaMarca>()
                 .Count(QueryOptionSetting.Allowed)
+                .Expand(QueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            //NOTA: para acceder a la propiedad Marcas de CategoriaMarca, la invocacion es: CategoriasMarca([Id])/Marcas,
+            //y, debido al Expand, se puede acceder asi: CategoriasMarca([Id])?$expand=Marcas
+            builder.EntityType<CategoriaMarca>().Ignore(c => c.MarcaCategoriaMarca);
 
             //Direcciones
             builder.EntitySet<Direccion>(EntityTypeGetter<Direccion, long>.GetCollectionNameAsString());
@@ -86,6 +73,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<EntidadReparadora>().Ignore(e => e.ReparadorEntidadReparadora);
 
             //Equipamientos Airbags
             builder.EntitySet<EquipamientoAirbags>(EntityTypeGetter<EquipamientoAirbags, string>.GetCollectionNameAsString());
@@ -159,10 +147,12 @@ namespace SiMaVeh.DataAccess.Model
             builder.EntitySet<Marca>(EntityTypeGetter<Marca, long>.GetCollectionNameAsString());
             builder.EntityType<Marca>()
                 .Count(QueryOptionSetting.Allowed)
+                .Expand(QueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<Marca>().Ignore(m => m.MarcaCategoriaMarca);
 
             //Modelos Vehiculo
             builder.EntitySet<ModeloVehiculo>(EntityTypeGetter<ModeloVehiculo, long>.GetCollectionNameAsString());
@@ -251,11 +241,15 @@ namespace SiMaVeh.DataAccess.Model
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
                 .Filter()
+                .Filter()
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
 
             //builder.EntitySet<Recambio>(EntityTypeGetter<Recambio, long>.GetCollectionNameAsString());
+            builder.EntityType<Recambio>()
+                .Abstract()
+                .Ignore(r => r.KitRecambio);
 
             //Reparadores
             builder.EntitySet<Reparador>(EntityTypeGetter<Reparador, long>.GetCollectionNameAsString());
@@ -266,6 +260,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<Reparador>().Ignore(r => r.ReparadorEntidadReparadora);
 
             //Repuestos
             builder.EntitySet<Repuesto>(EntityTypeGetter<Repuesto, long>.GetCollectionNameAsString());
@@ -366,11 +361,10 @@ namespace SiMaVeh.DataAccess.Model
 
             //builder.EntitySet<Vehiculo>(EntityTypeGetter<Vehiculo, long>.GetCollectionNameAsString());
 
-            builder.EntitySet<Vehiculo>(EntitySet.Vehiculo).EntityType.Abstract();
+            builder.EntityType<Vehiculo>()
+                .Abstract();
 
-            var model = builder.GetEdmModel();
-
-            return model;
+            return builder.GetEdmModel();
         }
     }
 }

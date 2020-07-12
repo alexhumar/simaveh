@@ -21,6 +21,9 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual string Descripcion { get; set; }
 
+        //TODO: el get/expand de esta relacion no esta funcionando. Debe haber un problema con que se trate de una clase abstracta
+        //ya que cuando realizo las modificaciones para que esta coleccion devuelva repuestos, funciona bien.
+        //El EntitySet KitRecambio viene sin registros.
         /// <summary>
         /// Recambios
         /// </summary>
