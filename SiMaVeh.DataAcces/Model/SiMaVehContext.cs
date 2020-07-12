@@ -30,6 +30,8 @@ namespace SiMaVeh.DataAccess.Model
             //builder.Entity<Kit>().ToTable("Kits");
             //builder.Entity<Repuesto>().ToTable("Repuestos");
 
+            //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
+            //no tire excepcion al notar que no tienen setter.
             builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
             builder.Entity<EntidadReparadora>().Ignore(e => e.Reparadores);
             builder.Entity<Kit>().Ignore(k => k.Recambios);
@@ -37,13 +39,11 @@ namespace SiMaVeh.DataAccess.Model
             builder.Entity<Recambio>().Ignore(r => r.Kits);
             builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
 
+            //El Id de estas entidades se genera en base al valor de sus propiedades.
             builder.Entity<EquipamientoAirbags>()
                 .Property(e => e.Id).ValueGeneratedNever();
             builder.Entity<UbicacionPieza>()
                 .Property(u => u.Id).ValueGeneratedNever();
-
-            //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
-            //no tire excepcion al notar que no tienen setter.
 
             #region Relaciones
 
