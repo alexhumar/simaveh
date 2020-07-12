@@ -31,14 +31,16 @@ namespace SiMaVeh.DataAccess.Model
             //builder.Entity<Repuesto>().ToTable("Repuestos");
 
             builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
-            builder.Entity<EntidadReparadora>().Ignore(er => er.Reparadores);
-            builder.Entity<Kit>().Ignore(r => r.Recambios);
+            builder.Entity<EntidadReparadora>().Ignore(e => e.Reparadores);
+            builder.Entity<Kit>().Ignore(k => k.Recambios);
             builder.Entity<Marca>().Ignore(m => m.Categorias);
             builder.Entity<Recambio>().Ignore(r => r.Kits);
             builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
 
+            builder.Entity<EquipamientoAirbags>()
+                .Property(e => e.Id).ValueGeneratedNever();
             builder.Entity<UbicacionPieza>()
-                .Property(k => k.Id).ValueGeneratedNever();
+                .Property(u => u.Id).ValueGeneratedNever();
 
             //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
             //no tire excepcion al notar que no tienen setter.
