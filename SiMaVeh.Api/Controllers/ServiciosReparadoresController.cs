@@ -7,7 +7,6 @@ using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -33,7 +32,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetEntidadReparadora([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -48,7 +47,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetFechaFin([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -63,7 +62,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetFechaInicio([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -78,7 +77,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetKilometrajeVehiculo([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -91,15 +90,15 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Mantenimientos del servicio reparador</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetMantenimientos([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Mantenimientos.AsQueryable());
+                return Ok(entity.Mantenimientos);
         }
 
         /// <summary>
@@ -110,7 +109,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMonedaMontoManoObra([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -125,7 +124,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetMontoManoObra([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -141,7 +140,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetVehiculo([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -166,7 +165,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var servicioReparador = await _repository.Find(key);
+            var servicioReparador = await repository.FindAsync(key);
             if (servicioReparador == null)
                 return NotFound();
 
@@ -179,7 +178,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var mantenimiento = await _entityGetter.TryGetEntityFromRelatedLink<Mantenimiento, long>(link);
+                var mantenimiento = await entityGetter.TryGetEntityFromRelatedLink<Mantenimiento, long>(link);
                 if (mantenimiento == null)
                     return NotFound();
 
@@ -190,7 +189,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var vehiculo = await _entityGetter.TryGetEntityFromRelatedLink<Vehiculo, long>(link);
+                var vehiculo = await entityGetter.TryGetEntityFromRelatedLink<Vehiculo, long>(link);
                 if (vehiculo == null)
                     return NotFound();
 
@@ -201,7 +200,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var entidadReparadora = await _entityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
+                var entidadReparadora = await entityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
                 if (entidadReparadora == null)
                     return NotFound();
 
@@ -212,7 +211,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await _entityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
+                var moneda = await entityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
                 if (moneda == null)
                     return NotFound();
 
@@ -221,7 +220,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

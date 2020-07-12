@@ -53,7 +53,7 @@
         /// <summary>
         /// Kit
         /// </summary>
-        public const string Kit = "Kits";
+        public const string Kit = "KitsRecambios";
 
         /// <summary>
         /// Localidad

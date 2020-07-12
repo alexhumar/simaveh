@@ -3,7 +3,7 @@
     /// <summary>
     /// Query Constants
     /// </summary>
-    public static class QueryConstants
+    public class QueryConstants
     {
         /// <summary>
         /// MaxItemsPerPage
@@ -28,6 +28,6 @@
         /// <summary>
         /// PageSize
         /// </summary>
-        public const int PageSize = 15;
+        public const int PageSize = 25;
     }
 }

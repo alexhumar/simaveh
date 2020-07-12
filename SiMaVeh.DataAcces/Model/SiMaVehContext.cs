@@ -17,10 +17,12 @@ namespace SiMaVeh.DataAccess.Model
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //Las invocaciones al método ToTable de las clases derivadas se realiza en pos de
+            #region TODO: estrategia de persistencia de jerarquias en varias tablas (TPT)
+
+            //Se debe invocar al método ToTable de las clases derivadas en pos de
             //activar la modalidad (TPT - Table Per Type). 
-            //Como esto al dia de hoy (04/05/2020) no es soportada por EF Core, pero lo será
-            //en versiones posteriores, se deja el codigo comentado.
+            //Esto al dia de hoy (04/05/2020) no es soportado por EF Core, pero lo será
+            //en versiones posteriores.
 
             //builder.Entity<Automovil>().ToTable("Automoviles");
             //builder.Entity<Pieza>().ToTable("Piezas");
@@ -30,20 +32,41 @@ namespace SiMaVeh.DataAccess.Model
             //builder.Entity<Kit>().ToTable("Kits");
             //builder.Entity<Repuesto>().ToTable("Repuestos");
 
-            builder.Entity<Reparador>()
-                .Ignore(r => r.EntidadesReparadoras);
-                //.ToTable("Reparadores");
+            #endregion
 
-            builder.Entity<Recambio>().Ignore(r => r.Kits);
-            builder.Entity<EntidadReparadora>().Ignore(er => er.Reparadores);
+            #region estrategia de persistencia de jerarquias en una sola tabla (TPH)
 
-            builder.Entity<UbicacionPieza>()
-                .Property(k => k.Id).ValueGeneratedNever();
+            //TODO: configurar los discriminators del modelo. Hay que regenerar las migrations.
+            //builder.Entity<Vehiculo>()
+            //    .HasDiscriminator<string>("TipoVehiculo")
+            //    .HasValue<Automovil>("A");
+
+            #endregion
+
+            #region ignore para propiedades calculadas
 
             //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
             //no tire excepcion al notar que no tienen setter.
+            builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
+            builder.Entity<EntidadReparadora>().Ignore(e => e.Reparadores);
+            builder.Entity<Kit>().Ignore(k => k.Recambios);
+            builder.Entity<Marca>().Ignore(m => m.Categorias);
+            builder.Entity<Recambio>().Ignore(r => r.Kits);
+            builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
 
-            #region Relaciones
+            #endregion
+
+            #region configuracion de Ids autogenerados
+
+            //El Id de estas entidades se genera en base al valor de sus propiedades.
+            builder.Entity<EquipamientoAirbags>()
+                .Property(e => e.Id).ValueGeneratedNever();
+            builder.Entity<UbicacionPieza>()
+                .Property(u => u.Id).ValueGeneratedNever();
+
+            #endregion
+
+            #region configuracion de relaciones many-to-many
 
             //Esto es necesario ya que EF Core al dia de hoy (14/01/2019)
             //no soporta relaciones Many-To-Many con colecciones directamente.
@@ -59,7 +82,7 @@ namespace SiMaVeh.DataAccess.Model
 
             #endregion
 
-            #region Data Seeding
+            #region data seeding
 
             DataSeeder.SeedData(builder);
 

@@ -1,10 +1,10 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
-using SiMaVeh.Domain.DataSeed.Interfaces;
+﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SiMaVeh.Domain.DataSeed.Seeders
+namespace SiMaVeh.DataAccess.DataSeed.Seeders
 {
     /// <summary>
     /// Seeder de pais

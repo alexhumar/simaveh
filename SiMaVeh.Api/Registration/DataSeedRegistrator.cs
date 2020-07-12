@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.DataAccess.DataSeed.Seeders;
+using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca;
@@ -35,8 +36,6 @@ using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza;
 using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.Interfaces;
-using SiMaVeh.Domain.DataSeed.Interfaces;
-using SiMaVeh.Domain.DataSeed.Seeders;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags.Interfaces;
