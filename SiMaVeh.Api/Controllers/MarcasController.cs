@@ -29,10 +29,10 @@ namespace SiMaVeh.Controllers
         /// <param name="key"></param>
         /// <returns>Categoria de la marca</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetCategorias([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -48,7 +48,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -70,7 +70,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var marca = await _repository.Find(key);
+            var marca = await repository.FindAsync(key);
             if (marca == null)
                 return NotFound();
 
@@ -81,7 +81,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var categoriaMarca = await _entityGetter.TryGetEntityFromRelatedLink<CategoriaMarca, long>(link);
+                var categoriaMarca = await entityGetter.TryGetEntityFromRelatedLink<CategoriaMarca, long>(link);
                 if (categoriaMarca == null)
                     return NotFound();
 
@@ -90,7 +90,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

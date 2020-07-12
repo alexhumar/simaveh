@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SiMaVeh.Domain.DataSeed.Interfaces
+namespace SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces
 {
     /// <summary>
     /// Interfaz de seeder

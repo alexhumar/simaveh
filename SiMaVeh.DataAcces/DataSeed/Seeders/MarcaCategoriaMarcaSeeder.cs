@@ -1,5 +1,5 @@
-﻿using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
-using SiMaVeh.Domain.DataSeed.Interfaces;
+﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
+using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
 using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;

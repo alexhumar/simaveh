@@ -6,7 +6,6 @@ using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -29,16 +28,15 @@ namespace SiMaVeh.Controllers
         /// </summary>
         /// <returns>Lista de provincias del pais</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop)]
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetProvincias([FromODataUri] long key)
         {
-            //return await Task.Run(() => _repository.GetCollection().Where(p => p.Id == key).SelectMany(p => p.Provincias));
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Provincias.AsQueryable());
+                return Ok(entity.Provincias);
         }
 
         /// <summary>
@@ -48,8 +46,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            //El $value anda solo!
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -71,7 +68,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var pais = await _repository.Find(key);
+            var pais = await repository.FindAsync(key);
             if (pais == null)
                 return NotFound();
 
@@ -82,7 +79,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var provincia = await _entityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
+                var provincia = await entityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
                 if (provincia == null)
                     return NotFound();
 
@@ -91,7 +88,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

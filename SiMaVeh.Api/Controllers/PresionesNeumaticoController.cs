@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Controllers
 {
     /// <summary>
-    /// Presiones Neumaticos Controller
+    /// Presiones Neumatico Controller
     /// </summary>
-    public class PresionesNeumaticosController : GenericController<PresionNeumatico, long>
+    public class PresionesNeumaticoController : GenericController<PresionNeumatico, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public PresionesNeumaticosController(IControllerParameter parameters) : base(parameters) { }
+        public PresionesNeumaticoController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -30,7 +30,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetEsDefault([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -47,7 +47,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetModeloVehiculo([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -64,7 +64,7 @@ namespace SiMaVeh.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetNeumatico([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -80,7 +80,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetRuedasDelanteras([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -96,7 +96,7 @@ namespace SiMaVeh.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetRuedasTraseras([FromODataUri] long key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
@@ -119,7 +119,7 @@ namespace SiMaVeh.Controllers
             if (link == null)
                 return BadRequest();
 
-            var presionNeumatico = await _repository.Find(key);
+            var presionNeumatico = await repository.FindAsync(key);
             if (presionNeumatico == null)
                 return NotFound();
 
@@ -131,7 +131,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var modeloVehiculo = await _entityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
+                var modeloVehiculo = await entityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
                 if (modeloVehiculo == null)
                     return NotFound();
 
@@ -142,7 +142,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var neumatico = await _entityGetter.TryGetEntityFromRelatedLink<Neumatico, long>(link);
+                var neumatico = await entityGetter.TryGetEntityFromRelatedLink<Neumatico, long>(link);
                 if (neumatico == null)
                     return NotFound();
 
@@ -151,7 +151,7 @@ namespace SiMaVeh.Controllers
             else
                 return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await _repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

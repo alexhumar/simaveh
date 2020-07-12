@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Controllers.Parametrization;
 using SiMaVeh.Api.ErrorManagement;
-using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Model;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 using System;
@@ -16,33 +16,33 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Controllers
 {
     /// <summary>
-    /// Paises Controller
+    /// Generic Controller
     /// </summary>
     public class GenericController<TBe, TBeId> : ODataController where TBe : DomainMember<TBeId>
     {
         /// <summary>
-        /// _context
+        /// context
         /// </summary>
-        protected readonly SiMaVehContext _context;
+        protected readonly SiMaVehContext context;
 
         /// <summary>
-        /// _repository
+        /// repository
         /// </summary>
-        protected readonly IRepository<TBe, TBeId> _repository;
+        protected readonly IRepository<TBe, TBeId> repository;
 
         /// <summary>
-        /// _entityGetter
+        /// entityGetter
         /// </summary>
-        protected readonly IEntityGetter _entityGetter;
+        protected readonly IEntityGetter entityGetter;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public GenericController(IControllerParameter parameters)
         {
-            _context = parameters.Context;
-            _repository = new Repository<TBe, TBeId>(_context);
-            _entityGetter = parameters.EntityGetter;
+            context = parameters.Context;
+            repository = new Repository<TBe, TBeId>(context);
+            entityGetter = parameters.EntityGetter;
         }
 
         /// <summary>
@@ -52,15 +52,15 @@ namespace SiMaVeh.Controllers
         /// <returns>Si existe entidad</returns>
         protected async Task<bool> ExisteEntidad(TBeId key)
         {
-            return await _repository.Find(key) != null;
+            return await repository.FindAsync(key) != null;
         }
 
         /// <summary>
-        /// Obtiene todos los Paises
+        /// Obtiene todas las entidades, sin filtrar
         /// </summary>
         /// <returns>Lista de entidades</returns>
         /// <response code="200"></response>
-        [EnableQuery(MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop, PageSize = QueryConstants.PageSize)]
+        [EnableQuery(/*MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop,*/ PageSize = QueryConstants.PageSize)]
         public virtual async Task</*PageResult*/IQueryable<TBe>> Get(/*ODataQueryOptions<TBe> options*/)
         {
             //Con este codigo comentado se consigue un resultado paginado y con el inlinecount seteado, pero no soporta expand.
@@ -76,11 +76,11 @@ namespace SiMaVeh.Controllers
             //     Request.GetNextPageLink(QueryConstants.PageSize),
             //     (results as IEnumerable<TBe>).Count());
 
-            return await Task.Run(() => _repository.GetCollection());
+            return await repository.GetCollectionAsync();
         }
 
         /// <summary>
-        /// Obtiene un Pais dado un Id
+        /// Obtiene una entidad dado su key
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Una entidad o null</returns>
@@ -95,16 +95,18 @@ namespace SiMaVeh.Controllers
 
             IList<TBe> result = new List<TBe>();
 
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
 
             if (entity != null)
+            {
                 result.Add(entity);
+            }
 
             return SingleResult.Create(result.AsQueryable());
         }
 
         /// <summary>
-        /// Crea un Pais
+        /// Crea una entidad
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>Entidad creada</returns>
@@ -112,11 +114,13 @@ namespace SiMaVeh.Controllers
         public virtual async Task<IActionResult> Post([FromBody] TBe entity)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+            }
 
             try
             {
-                await _repository.Add(entity);
+                await repository.AddAsync(entity);
             }
             catch (Exception e)
             {
@@ -127,7 +131,7 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Actualiza un Pais existente (HTTP PUT)
+        /// Actualiza una entidad existente
         /// </summary>
         /// <param name="key"></param>
         /// <param name="entity"></param>
@@ -136,17 +140,23 @@ namespace SiMaVeh.Controllers
         public virtual async Task<IActionResult> Put([FromODataUri] TBeId key, [FromBody] TBe entity)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+            }
 
             if (!await ExisteEntidad(key))
+            {
                 return NotFound();
+            }
 
             if (!key.Equals(entity.Id))
+            {
                 return BadRequest();
+            }
 
             try
             {
-                await _repository.Update(entity);
+                await repository.UpdateAsync(entity);
             }
             catch (Exception e)
             {
@@ -157,7 +167,7 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Actualiza un Pais existente (HTTP PATCH)
+        /// Actualiza una entidad existente
         /// </summary>
         /// <param name="key"></param>
         /// <param name="entity"></param>
@@ -166,17 +176,21 @@ namespace SiMaVeh.Controllers
         public virtual async Task<IActionResult> Patch([FromODataUri] TBeId key, [FromBody] Delta<TBe> entity)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+            }
 
-            var existingEntity = await _repository.Find(key);
+            var existingEntity = await repository.FindAsync(key);
             if (existingEntity == null)
+            {
                 return NotFound();
+            }
 
             entity.Patch(existingEntity);
 
             try
             {
-                await _repository.SaveChangesAsync();
+                await repository.SaveChangesAsync();
             }
             catch (Exception e)
             {
@@ -187,18 +201,20 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Borra un Pais existente
+        /// Borra una entidad existente
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Sin return</returns>
         /// <response code="204"></response>
         public virtual async Task<IActionResult> Delete([FromODataUri] TBeId key)
         {
-            var entity = await _repository.Find(key);
+            var entity = await repository.FindAsync(key);
             if (entity == null)
+            {
                 return NotFound();
+            }
 
-            await _repository.Remove(entity);
+            await repository.RemoveAsync(entity);
 
             return NoContent();
         }

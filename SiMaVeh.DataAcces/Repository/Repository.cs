@@ -15,7 +15,7 @@ namespace SiMaVeh.DataAccess.Repository
     /// <typeparam name="TBeId"></typeparam>
     public class Repository<TBe, TBeId> : IRepository<TBe, TBeId> where TBe : DomainMember<TBeId>
     {
-        private readonly SiMaVehContext _context;
+        private readonly SiMaVehContext context;
 
         /// <summary>
         /// Constructor
@@ -23,75 +23,73 @@ namespace SiMaVeh.DataAccess.Repository
         /// <param name="context"></param>
         public Repository(SiMaVehContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
-        #region ITodoRepository
-
         /// <summary>
-        /// GetAll (async)
+        /// GetAllAsync
         /// </summary>
         /// <returns></returns>
         public async Task<IEnumerable<TBe>> GetAllAsync()
         {
-            return await Task.Run(() => _context.Set<TBe>().ToListAsync());
+            return await context.Set<TBe>().ToListAsync();
         }
 
         /// <summary>
-        /// Add (async)
+        /// AddAsync
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async Task<int> Add(TBe item)
+        public async Task<int> AddAsync(TBe item)
         {
-            _context.Set<TBe>().Add(item);
+            context.Set<TBe>().Add(item);
 
             return await SaveChangesAsync();
         }
 
         /// <summary>
-        /// Find (async)
+        /// FindAsync
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<TBe> Find(TBeId key)
+        public async Task<TBe> FindAsync(TBeId key)
         {
-            return await _context.Set<TBe>().FindAsync(key);
+            return await context.Set<TBe>().FindAsync(key);
         }
 
         /// <summary>
-        /// Remove (async)
+        /// RemoveAsync
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<int> Remove(TBeId key)
+        public async Task<int> RemoveAsync(TBeId key)
         {
-            var entity = await Find(key);
-            _context.Set<TBe>().Remove(entity);
+            var entity = await FindAsync(key);
+            context.Set<TBe>().Remove(entity);
 
             return await SaveChangesAsync();
         }
 
         /// <summary>
-        /// Remove (async)
+        /// RemoveAsync
         /// </summary>
         /// <param name="elem"></param>
         /// <returns></returns>
-        public async Task<int> Remove(TBe elem)
+        public async Task<int> RemoveAsync(TBe elem)
         {
-            _context.Set<TBe>().Remove(elem);
+            context.Set<TBe>().Remove(elem);
 
             return await SaveChangesAsync();
         }
 
         /// <summary>
-        /// Update
+        /// UpdateAsync
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async Task<int> Update(TBe item)
+        public async Task<int> UpdateAsync(TBe item)
         {
-            var entity = await Find((TBeId)item.GetType().GetProperty("Id").GetValue(item));
+            var entity = await FindAsync((TBeId)item.GetType().GetProperty("Id").GetValue(item));
             if (entity != null)
             {
                 Entry(entity).CurrentValues.SetValues(item);
@@ -101,20 +99,20 @@ namespace SiMaVeh.DataAccess.Repository
         }
 
         /// <summary>
-        /// GetCollection
+        /// GetCollectionAsync
         /// </summary>
         /// <returns></returns>
-        public IQueryable<TBe> GetCollection()
+        public async Task<IQueryable<TBe>> GetCollectionAsync()
         {
-            return _context.Set<TBe>();
+            return await Task.Run(() => context.Set<TBe>().AsQueryable());
         }
 
         /// <summary>
-        /// Dispose
+        /// DisposeAsync
         /// </summary>
-        public void Dispose()
+        public async Task DisposeAsync()
         {
-            _context.Dispose();
+            await context.DisposeAsync();
         }
 
         /// <summary>
@@ -124,7 +122,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public EntityEntry<TBe> Entry(TBe element)
         {
-            return _context.Entry(element);
+            return context.Entry(element);
         }
 
         /// <summary>
@@ -133,8 +131,7 @@ namespace SiMaVeh.DataAccess.Repository
         /// <returns></returns>
         public Task<int> SaveChangesAsync()
         {
-            return _context.SaveChangesAsync();
+            return context.SaveChangesAsync();
         }
-        #endregion
     }
 }

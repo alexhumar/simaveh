@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.Api.Controllers.Parametrization;
 using SiMaVeh.DataAccess.DataSeed;
+using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
-using SiMaVeh.Domain.DataSeed.Seeders;
 using SiMaVeh.Helpers;
 
 namespace SiMaVeh.Api.Registration
