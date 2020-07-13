@@ -17,6 +17,9 @@ namespace SiMaVeh.DataAccess.Model
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //TODO: todas estas acciones estaria bueno llevarlas a clases aparte. De hecho,
+            //la configuracion de la jerarquia a tablas denota una suerte de strategy.
+
             #region TODO: estrategia de persistencia de jerarquias en varias tablas (TPT)
 
             //Se debe invocar al método ToTable de las clases derivadas en pos de
@@ -28,80 +31,18 @@ namespace SiMaVeh.DataAccess.Model
             //builder.Entity<Pieza>().ToTable("Piezas");
             //builder.Entity<Fluido>().ToTable("Fluidos");
             //builder.Entity<Aceite>().ToTable("Aceites");
+            //builder.Entity<Reparador>().ToTable("Reparadores");
             //builder.Entity<Usuario>().ToTable("Usuarios");
             //builder.Entity<Kit>().ToTable("Kits");
             //builder.Entity<Repuesto>().ToTable("Repuestos");
 
             #endregion
 
-            #region estrategia de persistencia de jerarquias en una sola tabla (TPH)
-
-            builder.Entity<Persona>()
-                .HasDiscriminator<string>("Tipo")
-                .HasValue<Reparador>("R")
-                .HasValue<Usuario>("U");
-
-            builder.Entity<Recambio>()
-                .HasDiscriminator<string>("Tipo")
-                .HasValue<Kit>("K")
-                .HasValue<Repuesto>("R");
-
-            builder.Entity<TargetMantenimiento>()
-                .HasDiscriminator<string>("Tipo")
-                .HasValue<Aceite>("A")
-                .HasValue<Fluido>("F")
-                .HasValue<Pieza>("P");
-
-            builder.Entity<Vehiculo>()
-                .HasDiscriminator<string>("Tipo")
-                .HasValue<Automovil>("A");
-
-            #endregion
-
-            #region ignore para propiedades calculadas
-
-            //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
-            //no tire excepcion al notar que no tienen setter.
-            builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
-            builder.Entity<EntidadReparadora>().Ignore(e => e.Reparadores);
-            builder.Entity<Kit>().Ignore(k => k.Repuestos);
-            builder.Entity<Marca>().Ignore(m => m.Categorias);
-            builder.Entity<Repuesto>().Ignore(r => r.Kits);
-            builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
-
-            #endregion
-
-            #region configuracion de Ids autogenerados
-
-            //El Id de estas entidades se genera en base al valor de sus propiedades.
-            builder.Entity<EquipamientoAirbags>()
-                .Property(e => e.Id).ValueGeneratedNever();
-            builder.Entity<UbicacionPieza>()
-                .Property(u => u.Id).ValueGeneratedNever();
-
-            #endregion
-
-            #region configuracion de relaciones many-to-many
-
-            //Esto es necesario ya que EF Core al dia de hoy (14/01/2019)
-            //no soporta relaciones Many-To-Many con colecciones directamente.
-            //Hay que modelarlas con un objeto relacion.
-            builder.Entity<ReparadorEntidadReparadora>()
-                .HasKey(k => new { k.ReparadorId, k.EntidadReparadoraId });
-
-            builder.Entity<KitRepuesto>()
-                .HasKey(k => new { k.KitId, k.RepuestoId });
-
-            builder.Entity<MarcaCategoriaMarca>()
-                .HasKey(k => new { k.CategoriaMarcaId, k.MarcaId });
-
-            #endregion
-
-            #region data seeding
-
-            DataSeeder.SeedData(builder);
-
-            #endregion
+            ConfigurarJerarquiasTPH(builder);
+            ConfigurarPropiedadesCalculadas(builder);
+            ConfigurarIDsAutogenerados(builder);
+            ConfigurarRelacionesManyToMany(builder);
+            SembrarDatos(builder);
         }
 
         /// <summary>
@@ -288,5 +229,73 @@ namespace SiMaVeh.DataAccess.Model
         /// Vehiculos
         /// </summary>
         public DbSet<Vehiculo> Vehiculos { get; set; }
+
+        #region private
+
+        private void ConfigurarJerarquiasTPH(ModelBuilder builder)
+        {
+            builder.Entity<Persona>()
+                .HasDiscriminator<string>("Tipo")
+                .HasValue<Reparador>("R")
+                .HasValue<Usuario>("U");
+
+            builder.Entity<Recambio>()
+                .HasDiscriminator<string>("Tipo")
+                .HasValue<Kit>("K")
+                .HasValue<Repuesto>("R");
+
+            builder.Entity<TargetMantenimiento>()
+                .HasDiscriminator<string>("Tipo")
+                .HasValue<Aceite>("A")
+                .HasValue<Fluido>("F")
+                .HasValue<Pieza>("P");
+
+            builder.Entity<Vehiculo>()
+                .HasDiscriminator<string>("Tipo")
+                .HasValue<Automovil>("A");
+        }
+
+        private void ConfigurarPropiedadesCalculadas(ModelBuilder builder)
+        {
+            //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
+            //no tire excepcion al notar que no tienen setter.
+            builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
+            builder.Entity<EntidadReparadora>().Ignore(e => e.Reparadores);
+            builder.Entity<Kit>().Ignore(k => k.Repuestos);
+            builder.Entity<Marca>().Ignore(m => m.Categorias);
+            builder.Entity<Repuesto>().Ignore(r => r.Kits);
+            builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
+        }
+
+        private void ConfigurarIDsAutogenerados(ModelBuilder builder)
+        {
+            //El Id de estas entidades se genera en base al valor de sus propiedades.
+            builder.Entity<EquipamientoAirbags>()
+                .Property(e => e.Id).ValueGeneratedNever();
+            builder.Entity<UbicacionPieza>()
+                .Property(u => u.Id).ValueGeneratedNever();
+        }
+
+        private void ConfigurarRelacionesManyToMany(ModelBuilder builder)
+        {
+            //Esto es necesario ya que EF Core al dia de hoy (14/01/2019)
+            //no soporta relaciones Many-To-Many con colecciones directamente.
+            //Hay que modelarlas con un objeto relacion.
+            builder.Entity<ReparadorEntidadReparadora>()
+                .HasKey(k => new { k.ReparadorId, k.EntidadReparadoraId });
+
+            builder.Entity<KitRepuesto>()
+                .HasKey(k => new { k.KitId, k.RepuestoId });
+
+            builder.Entity<MarcaCategoriaMarca>()
+                .HasKey(k => new { k.CategoriaMarcaId, k.MarcaId });
+        }
+
+        private void SembrarDatos(ModelBuilder builder)
+        {
+            DataSeeder.SeedData(builder);
+        }
+
+        #endregion
     }
 }
