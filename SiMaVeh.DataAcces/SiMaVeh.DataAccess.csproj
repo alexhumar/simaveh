@@ -11,8 +11,12 @@
     <Compile Remove="Migrations\20200510235525_PruebaSeeds.Designer.cs" />
     <Compile Remove="Migrations\20200511000145_PruebaSeeds.cs" />
     <Compile Remove="Migrations\20200511000145_PruebaSeeds.Designer.cs" />
+    <Compile Remove="Migrations\20200614191909_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200614191909_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20200621215722_InitialDataSeed.cs" />
     <Compile Remove="Migrations\20200621215722_InitialDataSeed.Designer.cs" />
+    <Compile Remove="Migrations\20200629220507_InitialDataSeed.cs" />
+    <Compile Remove="Migrations\20200629220507_InitialDataSeed.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +33,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SiMaVeh.Domain\SiMaVeh.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -36,10 +36,25 @@ namespace SiMaVeh.DataAccess.Model
 
             #region estrategia de persistencia de jerarquias en una sola tabla (TPH)
 
-            //TODO: configurar los discriminators del modelo. Hay que regenerar las migrations.
-            //builder.Entity<Vehiculo>()
-            //    .HasDiscriminator<string>("TipoVehiculo")
-            //    .HasValue<Automovil>("A");
+            builder.Entity<Persona>()
+                .HasDiscriminator<string>("Tipo")
+                .HasValue<Reparador>("R")
+                .HasValue<Usuario>("U");
+
+            builder.Entity<Recambio>()
+                .HasDiscriminator<string>("Tipo")
+                .HasValue<Kit>("K")
+                .HasValue<Repuesto>("R");
+
+            builder.Entity<TargetMantenimiento>()
+                .HasDiscriminator<string>("Tipo")
+                .HasValue<Aceite>("A")
+                .HasValue<Fluido>("F")
+                .HasValue<Pieza>("P");
+
+            builder.Entity<Vehiculo>()
+                .HasDiscriminator<string>("Tipo")
+                .HasValue<Automovil>("A");
 
             #endregion
 
