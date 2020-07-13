@@ -41,23 +41,6 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Obtiene los kits del kit
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns>Kits del kit</returns>
-        /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
-        public async Task<IActionResult> GetKits([FromODataUri] long key)
-        {
-            var entity = await repository.FindAsync(key);
-
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Kits);
-        }
-
-        /// <summary>
         /// Obtiene la marca del kit
         /// </summary>
         /// <param name="key"></param>
@@ -91,25 +74,24 @@ namespace SiMaVeh.Controllers
         }
 
         /// <summary>
-        /// Obtiene los recambios del kit
+        /// Obtiene los repuestos del kit
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Recambios del kit</returns>
         /// <response code="200"></response>
         [EnableQuery(PageSize = QueryConstants.PageSize)]
-        public async Task<IActionResult> GetRecambios([FromODataUri] long key)
+        public async Task<IActionResult> GetRepuestos([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
             if (entity == null)
                 return NotFound();
             else
-                return Ok(entity.Recambios);
+                return Ok(entity.Repuestos);
         }
 
         /// <summary>
-        /// Asocia un kit existente en la coleccion de kits del kit.
-        /// O asocia un recambio existente en la coleccion de recambios mantenimiento del kit.
+        /// Asocia un repuesto existente en la coleccion de repuesto del kit.
         /// O modifica la marca asociada al kit.
         /// </summary>
         /// <param name="key"></param>
@@ -127,37 +109,19 @@ namespace SiMaVeh.Controllers
             if (kit == null)
                 return NotFound();
 
-            var kitsCollectionName = EntityTypeGetter<Kit, long>.GetCollectionNameAsString();
-            var recambiosCollectionName = EntityTypeGetter<Recambio, long>.GetCollectionNameAsString();
+            var repuestosCollectionName = EntityTypeGetter<Repuesto, long>.GetCollectionNameAsString();
             var marcaTypeName = EntityTypeGetter<Marca, long>.GetTypeAsString();
 
-            if (navigationProperty.Equals(kitsCollectionName))
+            if (navigationProperty.Equals(repuestosCollectionName))
             {
-                //El kit se agrega a un kit existente
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var anotherKit = await entityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
-                if (anotherKit == null)
+                var repuesto = await entityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
+                if (repuesto == null)
                     return NotFound();
 
-                (kit as Recambio).Agregar(anotherKit);
-            }
-            else if (navigationProperty.Equals(recambiosCollectionName))
-            {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                Recambio anotherKit = await entityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
-                if (anotherKit == null)
-                {
-                    anotherKit = await entityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
-
-                    if (anotherKit == null)
-                        return NotFound();
-                }
-
-                kit.Agregar(anotherKit);
+                kit.Agregar(repuesto);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {

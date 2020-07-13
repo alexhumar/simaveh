@@ -64,9 +64,9 @@ namespace SiMaVeh.DataAccess.Model
             //no tire excepcion al notar que no tienen setter.
             builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
             builder.Entity<EntidadReparadora>().Ignore(e => e.Reparadores);
-            builder.Entity<Kit>().Ignore(k => k.Recambios);
+            builder.Entity<Kit>().Ignore(k => k.Repuestos);
             builder.Entity<Marca>().Ignore(m => m.Categorias);
-            builder.Entity<Recambio>().Ignore(r => r.Kits);
+            builder.Entity<Repuesto>().Ignore(r => r.Kits);
             builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
 
             #endregion
@@ -89,8 +89,8 @@ namespace SiMaVeh.DataAccess.Model
             builder.Entity<ReparadorEntidadReparadora>()
                 .HasKey(k => new { k.ReparadorId, k.EntidadReparadoraId });
 
-            builder.Entity<KitRecambio>()
-                .HasKey(k => new { k.KitId, k.RecambioId });
+            builder.Entity<KitRepuesto>()
+                .HasKey(k => new { k.KitId, k.RepuestoId });
 
             builder.Entity<MarcaCategoriaMarca>()
                 .HasKey(k => new { k.CategoriaMarcaId, k.MarcaId });

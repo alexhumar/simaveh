@@ -1,5 +1,7 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -8,6 +10,7 @@ namespace SiMaVeh.Domain.Models
     /// </summary>
     public class Repuesto : Recambio,
         IEntityChanger<TargetMantenimiento, long, Repuesto, long>,
+        ICollectionManager<Kit, long, Repuesto, long>,
         ICollectionManager<PeriodicidadMantenimiento, long, Repuesto, long>
     {
         /// <summary>
@@ -33,21 +36,12 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual ISet<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; protected set; }
 
-        #region overrides
-
         /// <summary>
-        /// GetRepuestos
+        /// Kits
         /// </summary>
-        /// <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
-        public override ISet<Repuesto> GetRepuestos()
-        {
-            var repuestos = new HashSet<Repuesto>
-            {
-                this
-            };
+        public virtual ISet<Kit> Kits => KitRepuesto.Select(k => k.Kit).ToHashSet();
 
-            return repuestos;
-        }
+        #region overrides
 
         /// <summary>
         /// ToString
@@ -65,20 +59,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Repuesto item))
-            {
-                return false;
-            }
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return (Id == item.Id) ||
-                        (CodigoIdentificador == item.CodigoIdentificador && TargetMantenimiento.Equals(item.TargetMantenimiento));
-                }
-            }
+            return obj is Repuesto item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (CodigoIdentificador == item.CodigoIdentificador && TargetMantenimiento.Equals(item.TargetMantenimiento)));
         }
 
         /// <summary>
@@ -112,6 +94,45 @@ namespace SiMaVeh.Domain.Models
         #endregion
 
         #region ICollectionManager
+
+        /// <summary>
+        /// Agregar kit
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Repuesto Agregar(Kit entity)
+        {
+            if (entity != null)
+            {
+                KitRepuesto?.Add(new KitRepuesto
+                {
+                    Repuesto = this,
+                    Kit = entity
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar Kit
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Repuesto Quitar(Kit entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = KitRepuesto?
+                    .FirstOrDefault(r => r.Repuesto == this && r.Kit == entity);
+                if (toRemove != null)
+                {
+                    KitRepuesto.Remove(toRemove);
+                }
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Agregar periodicidad mantenimiento

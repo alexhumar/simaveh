@@ -1,9 +1,9 @@
 ﻿namespace SiMaVeh.Domain.Models.Relations
 {
     /// <summary>
-    /// Relacion many-to-many Kit-Recambio
+    /// Relacion many-to-many Kit-Repuesto
     /// </summary>
-    public class KitRecambio
+    public class KitRepuesto
     {
         /// <summary>
         /// Id. Kit
@@ -16,13 +16,13 @@
         public virtual Kit Kit { get; set; }
 
         /// <summary>
-        /// Id. Recambio
+        /// Id. Repuesto
         /// </summary>
-        public virtual long RecambioId { get; set; }
+        public virtual long RepuestoId { get; set; }
 
         /// <summary>
-        /// Recambio
+        /// Repuesto
         /// </summary>
-        public virtual Recambio Recambio { get; set; }
+        public virtual Repuesto Repuesto { get; set; }
     }
 }
