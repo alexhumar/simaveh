@@ -13,9 +13,9 @@ namespace SiMaVeh.DataAccess.Model
 
         public SiMaVehContext(DbContextOptions<SiMaVehContext> options) : base(options)
         {
-            //Esto no pude hacerlo funcionar con inyeccion de dependencias.
-            dataSeeder = new DataSeeder();
+            //Todo esto no pude hacerlo funcionar con inyeccion de dependencias.
             configuradorContext = new ConfiguradorSiMaVehContext(new RecuperadorConfiguradoresContext());
+            dataSeeder = new DataSeeder();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
