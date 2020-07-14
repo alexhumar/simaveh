@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Controllers
 {
     /// <summary>
-    /// Kits Recambio Controller
+    /// Kits Repuestos Controller
     /// NOTA: si lo denomino KitsController, no funciona la ruta.
     /// </summary>
-    public class KitsRecambiosController : GenericController<Kit, long>
+    public class KitsRepuestosController : GenericController<Kit, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public KitsRecambiosController(IControllerParameter parameters) : base(parameters) { }
+        public KitsRepuestosController(IControllerParameter parameters) : base(parameters) { }
 
         #region properties
 
@@ -77,7 +77,7 @@ namespace SiMaVeh.Controllers
         /// Obtiene los repuestos del kit
         /// </summary>
         /// <param name="key"></param>
-        /// <returns>Recambios del kit</returns>
+        /// <returns>Repuestos del kit</returns>
         /// <response code="200"></response>
         [EnableQuery(PageSize = QueryConstants.PageSize)]
         public async Task<IActionResult> GetRepuestos([FromODataUri] long key)

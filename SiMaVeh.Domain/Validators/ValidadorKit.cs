@@ -15,7 +15,7 @@ namespace SiMaVeh.Domain.Validators
         {
             Include(new ValidadorRecambio());
 
-            // RuleFor(x => x.Recambios)
+            // RuleFor(x => x.Repuestos)
             //     .Must(y => y.Count > 0);
         }
     }
