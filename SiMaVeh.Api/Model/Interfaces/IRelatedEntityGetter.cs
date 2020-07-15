@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Domain.BusinessLogic.Entities.Interfaces
+namespace SiMaVeh.Api.Model.Interfaces
 {
     /// <summary>
     /// IRelatedEntityGetter

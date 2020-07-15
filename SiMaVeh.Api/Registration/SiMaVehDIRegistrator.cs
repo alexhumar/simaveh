@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.Api.Model;
+using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.DataAccess.DataSeed.Seeders;
-using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
-using SiMaVeh.Helpers;
 
 namespace SiMaVeh.Api.Registration
 {

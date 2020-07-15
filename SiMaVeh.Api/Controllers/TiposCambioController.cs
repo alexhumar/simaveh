@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Tipos Cambio Controller

@@ -1,12 +1,12 @@
-﻿using SiMaVeh.DataAccess.Model;
+﻿using SiMaVeh.Api.Model.Interfaces;
+using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities;
-using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Helpers
+namespace SiMaVeh.Api.Model
 {
     /// <summary>
     /// RelatedEntityGetter
@@ -32,10 +32,9 @@ namespace SiMaVeh.Helpers
         /// <returns></returns>
         public async Task<TLinkBe> TryGetEntityFromRelatedLink<TLinkBe, TLinkBeId>(Uri link) where TLinkBe : DomainMember<TLinkBeId>
         {
-            //TODO: este metodo tiene un problema: que va a parar a una capa de DataAccess y usa el UriParser. Lo que hay que hacer es que en vez de recibir un link,
-            //desde afuera (hay que ver algun metodo a nivel Api) se le pase una relatedKey ya procesada con el UriParser, que a fin de cuentas es de la capa de Api.
-            TLinkBeId relatedKey = DataAccess.Model.UriParser.GetKeyFromUri<TLinkBeId>(
-                EntityTypeGetter<TLinkBe, TLinkBeId>.GetCollectionNameAsString(), link);
+            TLinkBeId relatedKey = Utils.UriParser
+                .GetKeyFromUri<TLinkBeId>(EntityTypeGetter<TLinkBe, TLinkBeId>.GetCollectionNameAsString(), link);
+
             IRepository<TLinkBe, TLinkBeId> repo = new Repository<TLinkBe, TLinkBeId>(context);
 
             try

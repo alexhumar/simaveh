@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities;
@@ -11,7 +11,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Modelos Vehiculo Controller

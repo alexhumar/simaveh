@@ -1,7 +1,7 @@
+using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Model;
-using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
-namespace SiMaVeh.Api.Controllers.Parametrization
+namespace SiMaVeh.Api.Controllers.Parametrization.Interfaces
 {
     /// <summary>
     /// Interface IControllerParameter
