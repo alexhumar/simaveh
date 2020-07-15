@@ -30,12 +30,7 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as TargetMantenimiento;
-
-            if (item == null)
-                return false;
-            else
-                return (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper());
+            return obj is TargetMantenimiento item && ((Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper()));
         }
 
         /// <summary>

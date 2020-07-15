@@ -88,18 +88,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is EquipamientoAirbags item))
-                return false;
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                    return (Id == item.Id) ||
-                        (Conductor == item.Conductor && Acompanante == item.Acompanante && DelanteroIzquierdo == item.DelanteroIzquierdo &&
-                        DelanteroDerecho == item.DelanteroDerecho && TraseroIzquierdo == item.TraseroIzquierdo &&
-                        TraseroDerecho == item.TraseroDerecho);
-            }
+            return obj is EquipamientoAirbags item &&
+                (ReferenceEquals(this, item) ||
+                (Id == item.Id) ||
+                (Conductor == item.Conductor && Acompanante == item.Acompanante &&
+                DelanteroIzquierdo == item.DelanteroIzquierdo && DelanteroDerecho == item.DelanteroDerecho &&
+                TraseroIzquierdo == item.TraseroIzquierdo && TraseroDerecho == item.TraseroDerecho));
         }
 
         /// <summary>

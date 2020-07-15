@@ -274,7 +274,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     Apellido = table.Column<string>(nullable: true),
                     NumeroDocumento = table.Column<string>(nullable: true),
                     TipoDocumentoId = table.Column<long>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false)
+                    Tipo = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -322,7 +322,7 @@ namespace SiMaVeh.DataAccess.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
+                    Tipo = table.Column<string>(nullable: false),
                     ViscosidadSAEBajaTemperatura = table.Column<int>(nullable: true),
                     ViscosidadSAEAltaTemperatura = table.Column<int>(nullable: true),
                     UbicacionPiezaId = table.Column<string>(nullable: true)
@@ -490,7 +490,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     MarcaId = table.Column<long>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
+                    Tipo = table.Column<string>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     CodigoIdentificador = table.Column<string>(nullable: true),
@@ -530,7 +530,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     Kilometraje = table.Column<decimal>(nullable: false),
                     AnioFabricacion = table.Column<int>(nullable: false),
                     UsuarioId = table.Column<long>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
+                    Tipo = table.Column<string>(nullable: false),
                     Patente = table.Column<string>(nullable: true),
                     NumeroChasis = table.Column<string>(nullable: true),
                     CodigoColorPintura = table.Column<string>(nullable: true)
@@ -574,24 +574,24 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "KitRecambio",
+                name: "KitRepuesto",
                 columns: table => new
                 {
                     KitId = table.Column<long>(nullable: false),
-                    RecambioId = table.Column<long>(nullable: false)
+                    RepuestoId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KitRecambio", x => new { x.KitId, x.RecambioId });
+                    table.PrimaryKey("PK_KitRepuesto", x => new { x.KitId, x.RepuestoId });
                     table.ForeignKey(
-                        name: "FK_KitRecambio_Recambios_KitId",
+                        name: "FK_KitRepuesto_Recambios_KitId",
                         column: x => x.KitId,
                         principalTable: "Recambios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_KitRecambio_Recambios_RecambioId",
-                        column: x => x.RecambioId,
+                        name: "FK_KitRepuesto_Recambios_RepuestoId",
+                        column: x => x.RepuestoId,
                         principalTable: "Recambios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -789,9 +789,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 column: "MarcaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_KitRecambio_RecambioId",
-                table: "KitRecambio",
-                column: "RecambioId");
+                name: "IX_KitRepuesto_RepuestoId",
+                table: "KitRepuesto",
+                column: "RepuestoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Localidades_PartidoId",
@@ -962,7 +962,7 @@ namespace SiMaVeh.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "KitRecambio");
+                name: "KitRepuesto");
 
             migrationBuilder.DropTable(
                 name: "Mantenimientos");

@@ -62,21 +62,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as PeriodicidadMantenimiento;
-
-            if (item == null)
-                return false;
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return (Id == item.Id) ||
-                        (TargetMantenimiento.Equals(item.TargetMantenimiento) && ModeloVehiculo.Equals(item.ModeloVehiculo) &&
-                        EsDefault == item.EsDefault);
-                }
-            }
+            return obj is PeriodicidadMantenimiento item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (TargetMantenimiento.Equals(item.TargetMantenimiento) && ModeloVehiculo.Equals(item.ModeloVehiculo) && EsDefault == item.EsDefault));
         }
 
         /// <summary>

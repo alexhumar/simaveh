@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Provincias Controller
@@ -99,7 +99,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var partido = await entityGetter.TryGetEntityFromRelatedLink<Partido, long>(link);
+                var partido = await relatedEntityGetter.TryGetEntityFromRelatedLink<Partido, long>(link);
                 if (partido == null)
                     return NotFound();
 
@@ -110,7 +110,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var pais = await entityGetter.TryGetEntityFromRelatedLink<Pais, long>(link);
+                var pais = await relatedEntityGetter.TryGetEntityFromRelatedLink<Pais, long>(link);
                 if (pais == null)
                     return NotFound();
 

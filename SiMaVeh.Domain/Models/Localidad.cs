@@ -43,17 +43,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Localidad item))
-            {
-                return false;
-            }
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                    return (Id == item.Id) || (CPA == item.CPA) || (Nombre == item.Nombre && Partido.Equals(item.Partido));
-            }
+            return obj is Localidad item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (CPA == item.CPA) || (Nombre == item.Nombre && Partido.Equals(item.Partido)));
         }
 
         /// <summary>

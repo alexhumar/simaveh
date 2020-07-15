@@ -80,23 +80,12 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is ServicioReparador item))
-            {
-                return false;
-            }
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return (Id == item.Id) ||
-                        (Vehiculo.Equals(item.Vehiculo) && EntidadReparadora.Equals(item.EntidadReparadora) &&
-                        FechaInicio == item.FechaInicio && FechaFin == item.FechaFin &&
-                        MontoManoObra == item.MontoManoObra && MonedaMontoManoObra.Equals(item.MonedaMontoManoObra) &&
-                        KilometrajeVehiculo == item.KilometrajeVehiculo);
-                }
-            }
+            return obj is ServicioReparador item &&
+                (ReferenceEquals(this, item) ||
+                (Id == item.Id) ||
+                (Vehiculo.Equals(item.Vehiculo) && EntidadReparadora.Equals(item.EntidadReparadora) &&
+                FechaInicio == item.FechaInicio && FechaFin == item.FechaFin && MontoManoObra == item.MontoManoObra &&
+                MonedaMontoManoObra.Equals(item.MonedaMontoManoObra) && KilometrajeVehiculo == item.KilometrajeVehiculo));
         }
 
         /// <summary>

@@ -41,18 +41,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Direccion;
-
-            if (item == null)
-                return false;
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                    return (Id == item.Id) ||
-                        (Calle == item.Calle && NumeroCalle == item.NumeroCalle && Localidad.Equals(item.Localidad));
-            }
+            return obj is Direccion item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Calle == item.Calle && NumeroCalle == item.NumeroCalle && Localidad.Equals(item.Localidad)));
         }
 
         /// <summary>
