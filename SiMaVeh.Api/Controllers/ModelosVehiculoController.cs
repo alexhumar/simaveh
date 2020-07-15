@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities;
@@ -11,7 +11,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Modelos Vehiculo Controller
@@ -189,7 +189,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var grupoModelo = await entityGetter.TryGetEntityFromRelatedLink<GrupoModelo, long>(link);
+                var grupoModelo = await relatedEntityGetter.TryGetEntityFromRelatedLink<GrupoModelo, long>(link);
                 if (grupoModelo == null)
                     return NotFound();
 
@@ -200,7 +200,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var aceite = await entityGetter.TryGetEntityFromRelatedLink<Aceite, long>(link);
+                var aceite = await relatedEntityGetter.TryGetEntityFromRelatedLink<Aceite, long>(link);
                 if (aceite == null)
                     return NotFound();
 
@@ -211,7 +211,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var airbags = await entityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, string>(link);
+                var airbags = await relatedEntityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, string>(link);
                 if (airbags == null)
                     return NotFound();
 
@@ -222,7 +222,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoFuenteEnergia = await entityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
+                var tipoFuenteEnergia = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
                 if (tipoFuenteEnergia == null)
                     return NotFound();
 
@@ -233,7 +233,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var fuenteEnergia = await entityGetter.TryGetEntityFromRelatedLink<FuenteEnergia, long>(link);
+                var fuenteEnergia = await relatedEntityGetter.TryGetEntityFromRelatedLink<FuenteEnergia, long>(link);
                 if (fuenteEnergia == null)
                     return NotFound();
 
@@ -244,7 +244,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var repuesto = await entityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
+                var repuesto = await relatedEntityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
                 if (repuesto == null)
                     return NotFound();
 
@@ -255,7 +255,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var presionNeumatico = await entityGetter.TryGetEntityFromRelatedLink<PresionNeumatico, long>(link);
+                var presionNeumatico = await relatedEntityGetter.TryGetEntityFromRelatedLink<PresionNeumatico, long>(link);
                 if (presionNeumatico == null)
                     return NotFound();
 

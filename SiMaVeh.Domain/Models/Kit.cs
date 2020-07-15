@@ -9,7 +9,7 @@ namespace SiMaVeh.Domain.Models
     /// Kit
     /// </summary>
     public class Kit : Recambio,
-        ICollectionManager<Recambio, long, Kit, long>
+        ICollectionManager<Repuesto, long, Kit, long>
     {
         /// <summary>
         /// Nombre
@@ -21,31 +21,12 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual string Descripcion { get; set; }
 
-        //TODO: el get/expand de esta relacion no esta funcionando. Debe haber un problema con que se trate de una clase abstracta
-        //ya que cuando realizo las modificaciones para que esta coleccion devuelva repuestos, funciona bien.
-        //El EntitySet KitRecambio viene sin registros.
         /// <summary>
-        /// Recambios
+        /// Repuestos
         /// </summary>
-        public virtual ISet<Recambio> Recambios => KitRecambio.Select(k => k.Recambio).ToHashSet();
+        public virtual ISet<Repuesto> Repuestos => KitRepuesto.Select(k => k.Repuesto).ToHashSet();
 
         #region overrides
-
-        /// <summary>
-        /// GetRepuestos
-        /// </summary>
-        /// <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
-        public override ISet<Repuesto> GetRepuestos()
-        {
-            var repuestos = new HashSet<Repuesto>();
-
-            foreach (Recambio recambio in Recambios)
-            {
-                repuestos = repuestos.Concat(recambio.GetRepuestos()).ToHashSet();
-            }
-
-            return repuestos;
-        }
 
         /// <summary>
         /// ToString
@@ -63,19 +44,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Kit;
-
-            if (item == null)
-                return false;
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper());
-                }
-            }
+            return obj is Kit item && (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper()));
         }
 
         /// <summary>
@@ -89,20 +58,20 @@ namespace SiMaVeh.Domain.Models
 
         #endregion
 
-        #region IEntityChanger
+        #region ICollectionManager
 
         /// <summary>
-        /// Agregar recambio
+        /// Agregar repuesto
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public Kit Agregar(Recambio entity)
+        public Kit Agregar(Repuesto entity)
         {
             if (entity != null)
             {
-                KitRecambio?.Add(new KitRecambio
+                KitRepuesto?.Add(new KitRepuesto
                 {
-                    Recambio = entity,
+                    Repuesto = entity,
                     Kit = this
                 });
             }
@@ -111,19 +80,19 @@ namespace SiMaVeh.Domain.Models
         }
 
         /// <summary>
-        /// Quitar recambio
+        /// Quitar repuesto
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public Kit Quitar(Recambio entity)
+        public Kit Quitar(Repuesto entity)
         {
             if (entity != null)
             {
-                var toRemove = KitRecambio?
-                    .FirstOrDefault(r => r.Recambio == entity && r.Kit == this);
+                var toRemove = KitRepuesto?
+                    .FirstOrDefault(r => r.Repuesto == entity && r.Kit == this);
                 if (toRemove != null)
                 {
-                    KitRecambio.Remove(toRemove);
+                    KitRepuesto.Remove(toRemove);
                 }
             }
 

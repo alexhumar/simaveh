@@ -47713,14 +47713,14 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<string>("Apellido")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Nombre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("NumeroDocumento")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<long?>("TipoDocumentoId")
@@ -47732,7 +47732,7 @@ namespace SiMaVeh.DataAccess.Migrations
 
                     b.ToTable("Personas");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Persona");
+                    b.HasDiscriminator<string>("Tipo").HasValue("Persona");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.PresionNeumatico", b =>
@@ -48044,12 +48044,12 @@ namespace SiMaVeh.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<long?>("MarcaId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -48057,22 +48057,22 @@ namespace SiMaVeh.DataAccess.Migrations
 
                     b.ToTable("Recambios");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Recambio");
+                    b.HasDiscriminator<string>("Tipo").HasValue("Recambio");
                 });
 
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.KitRecambio", b =>
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.KitRepuesto", b =>
                 {
                     b.Property<long>("KitId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("RecambioId")
+                    b.Property<long>("RepuestoId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("KitId", "RecambioId");
+                    b.HasKey("KitId", "RepuestoId");
 
-                    b.HasIndex("RecambioId");
+                    b.HasIndex("RepuestoId");
 
-                    b.ToTable("KitRecambio");
+                    b.ToTable("KitRepuesto");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.MarcaCategoriaMarca", b =>
@@ -51284,18 +51284,18 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
+                    b.Property<string>("Nombre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("Tipo")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
                     b.ToTable("TargetsMantenimiento");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("TargetMantenimiento");
+                    b.HasDiscriminator<string>("Tipo").HasValue("TargetMantenimiento");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Telefono", b =>
@@ -51608,15 +51608,15 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<int>("AnioFabricacion")
                         .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<decimal>("Kilometraje")
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<long?>("ModeloVehiculoId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<long?>("UsuarioId")
                         .HasColumnType("bigint");
@@ -51629,21 +51629,21 @@ namespace SiMaVeh.DataAccess.Migrations
 
                     b.ToTable("Vehiculos");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Vehiculo");
+                    b.HasDiscriminator<string>("Tipo").HasValue("Vehiculo");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Reparador", b =>
                 {
                     b.HasBaseType("SiMaVeh.Domain.Models.Persona");
 
-                    b.HasDiscriminator().HasValue("Reparador");
+                    b.HasDiscriminator().HasValue("R");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Usuario", b =>
                 {
                     b.HasBaseType("SiMaVeh.Domain.Models.Persona");
 
-                    b.HasDiscriminator().HasValue("Usuario");
+                    b.HasDiscriminator().HasValue("U");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Kit", b =>
@@ -51656,7 +51656,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasDiscriminator().HasValue("Kit");
+                    b.HasDiscriminator().HasValue("K");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Repuesto", b =>
@@ -51676,7 +51676,7 @@ namespace SiMaVeh.DataAccess.Migrations
 
                     b.HasIndex("TargetMantenimientoId");
 
-                    b.HasDiscriminator().HasValue("Repuesto");
+                    b.HasDiscriminator().HasValue("R");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Aceite", b =>
@@ -51689,14 +51689,14 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<int>("ViscosidadSAEBajaTemperatura")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Aceite");
+                    b.HasDiscriminator().HasValue("A");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Fluido", b =>
                 {
                     b.HasBaseType("SiMaVeh.Domain.Models.TargetMantenimiento");
 
-                    b.HasDiscriminator().HasValue("Fluido");
+                    b.HasDiscriminator().HasValue("F");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Pieza", b =>
@@ -51708,7 +51708,7 @@ namespace SiMaVeh.DataAccess.Migrations
 
                     b.HasIndex("UbicacionPiezaId");
 
-                    b.HasDiscriminator().HasValue("Pieza");
+                    b.HasDiscriminator().HasValue("P");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Automovil", b =>
@@ -51724,7 +51724,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<string>("Patente")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasDiscriminator().HasValue("Automovil");
+                    b.HasDiscriminator().HasValue("A");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Direccion", b =>
@@ -51869,17 +51869,17 @@ namespace SiMaVeh.DataAccess.Migrations
                         .HasForeignKey("MarcaId");
                 });
 
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.KitRecambio", b =>
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.KitRepuesto", b =>
                 {
                     b.HasOne("SiMaVeh.Domain.Models.Kit", "Kit")
-                        .WithMany()
+                        .WithMany("KitRepuesto")
                         .HasForeignKey("KitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SiMaVeh.Domain.Models.Recambio", "Recambio")
-                        .WithMany("KitRecambio")
-                        .HasForeignKey("RecambioId")
+                    b.HasOne("SiMaVeh.Domain.Models.Repuesto", "Repuesto")
+                        .WithMany("KitRepuesto")
+                        .HasForeignKey("RepuestoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

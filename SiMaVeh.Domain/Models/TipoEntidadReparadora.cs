@@ -33,19 +33,8 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as TipoEntidadReparadora;
-
-            if (item == null)
-                return false;
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper());
-                }
-            }
+            return obj is TipoEntidadReparadora item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper()));
         }
 
         /// <summary>

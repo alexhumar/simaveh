@@ -56,14 +56,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is UbicacionPieza item))
-            {
-                return false;
-            }
-            else
-            {
-                return ReferenceEquals(this, item) || (Id == item.Id) || (Izquierda == item.Izquierda && Superior == item.Superior);
-            }
+            return obj is UbicacionPieza item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Izquierda == item.Izquierda && Superior == item.Superior));
         }
 
         /// <summary>

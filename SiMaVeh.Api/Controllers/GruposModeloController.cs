@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Grupos Modelo Controller
@@ -80,7 +80,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var marca = await entityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
+                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
                     return NotFound();
 

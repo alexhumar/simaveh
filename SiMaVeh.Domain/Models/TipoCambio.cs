@@ -46,21 +46,9 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as TipoCambio;
-
-            if (item == null)
-                return false;
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return (Id == item.Id) ||
-                        (MonedaOrigen.Equals(item.MonedaOrigen) && MonedaDestino.Equals(item.MonedaDestino) &&
-                        Fecha == item.Fecha && CoeficienteCambio == item.CoeficienteCambio);
-                }
-            }
+            return obj is TipoCambio item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (MonedaOrigen.Equals(item.MonedaOrigen) &&
+                MonedaDestino.Equals(item.MonedaDestino) && Fecha == item.Fecha && CoeficienteCambio == item.CoeficienteCambio));
         }
 
         /// <summary>

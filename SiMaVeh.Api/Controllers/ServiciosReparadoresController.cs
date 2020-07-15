@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Constants;
@@ -10,7 +10,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Servicios Reparadores Controller
@@ -178,7 +178,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var mantenimiento = await entityGetter.TryGetEntityFromRelatedLink<Mantenimiento, long>(link);
+                var mantenimiento = await relatedEntityGetter.TryGetEntityFromRelatedLink<Mantenimiento, long>(link);
                 if (mantenimiento == null)
                     return NotFound();
 
@@ -189,7 +189,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var vehiculo = await entityGetter.TryGetEntityFromRelatedLink<Vehiculo, long>(link);
+                var vehiculo = await relatedEntityGetter.TryGetEntityFromRelatedLink<Vehiculo, long>(link);
                 if (vehiculo == null)
                     return NotFound();
 
@@ -200,7 +200,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var entidadReparadora = await entityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
+                var entidadReparadora = await relatedEntityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
                 if (entidadReparadora == null)
                     return NotFound();
 
@@ -211,7 +211,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await entityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
+                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
                 if (moneda == null)
                     return NotFound();
 

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Registration;
 using SiMaVeh.DataAccess.Model;
 
-namespace SiMaVeh
+namespace SiMaVeh.Api
 {
     public class Startup
     {
