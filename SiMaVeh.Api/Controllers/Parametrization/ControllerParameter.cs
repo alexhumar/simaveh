@@ -11,10 +11,12 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         /// <summary>
         /// Constructor
         /// </summary>
-        public ControllerParameter(SiMaVehContext context, IEntityGetter entityGetter)
+        /// <param name="context"></param>
+        /// <param name="relatedEntityGetter"></param>
+        public ControllerParameter(SiMaVehContext context, IRelatedEntityGetter relatedEntityGetter)
         {
             Context = context;
-            EntityGetter = entityGetter;
+            RelatedEntityGetter = relatedEntityGetter;
         }
 
         /// <summary>
@@ -23,8 +25,8 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         public SiMaVehContext Context { get; set; }
 
         /// <summary>
-        /// EntityGetter
+        /// RelatedEntityGetter
         /// </summary>
-        public IEntityGetter EntityGetter { get; set; }
+        public IRelatedEntityGetter RelatedEntityGetter { get; set; }
     }
 }

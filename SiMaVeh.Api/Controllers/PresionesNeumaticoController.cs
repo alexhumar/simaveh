@@ -131,7 +131,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var modeloVehiculo = await entityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
+                var modeloVehiculo = await relatedEntityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
                 if (modeloVehiculo == null)
                     return NotFound();
 
@@ -142,7 +142,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var neumatico = await entityGetter.TryGetEntityFromRelatedLink<Neumatico, long>(link);
+                var neumatico = await relatedEntityGetter.TryGetEntityFromRelatedLink<Neumatico, long>(link);
                 if (neumatico == null)
                     return NotFound();
 

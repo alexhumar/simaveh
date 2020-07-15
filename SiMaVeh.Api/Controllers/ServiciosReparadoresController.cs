@@ -178,7 +178,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var mantenimiento = await entityGetter.TryGetEntityFromRelatedLink<Mantenimiento, long>(link);
+                var mantenimiento = await relatedEntityGetter.TryGetEntityFromRelatedLink<Mantenimiento, long>(link);
                 if (mantenimiento == null)
                     return NotFound();
 
@@ -189,7 +189,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var vehiculo = await entityGetter.TryGetEntityFromRelatedLink<Vehiculo, long>(link);
+                var vehiculo = await relatedEntityGetter.TryGetEntityFromRelatedLink<Vehiculo, long>(link);
                 if (vehiculo == null)
                     return NotFound();
 
@@ -200,7 +200,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var entidadReparadora = await entityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
+                var entidadReparadora = await relatedEntityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
                 if (entidadReparadora == null)
                     return NotFound();
 
@@ -211,7 +211,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var moneda = await entityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
+                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
                 if (moneda == null)
                     return NotFound();
 

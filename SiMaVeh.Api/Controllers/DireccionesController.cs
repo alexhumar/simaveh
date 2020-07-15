@@ -93,7 +93,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var localidad = await entityGetter.TryGetEntityFromRelatedLink<Localidad, long>(link);
+                var localidad = await relatedEntityGetter.TryGetEntityFromRelatedLink<Localidad, long>(link);
                 if (localidad == null)
                     return NotFound();
 

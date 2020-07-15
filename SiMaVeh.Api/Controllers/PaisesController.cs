@@ -79,7 +79,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var provincia = await entityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
+                var provincia = await relatedEntityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
                 if (provincia == null)
                     return NotFound();
 

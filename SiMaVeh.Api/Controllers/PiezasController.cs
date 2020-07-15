@@ -96,7 +96,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var ubicacionPieza = await entityGetter.TryGetEntityFromRelatedLink<UbicacionPieza, string>(link);
+                var ubicacionPieza = await relatedEntityGetter.TryGetEntityFromRelatedLink<UbicacionPieza, string>(link);
                 if (ubicacionPieza == null)
                     return NotFound();
 

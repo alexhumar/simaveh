@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Domain.BusinessLogic.Entities.Interfaces
 {
     /// <summary>
-    /// IEntityGetter
+    /// IRelatedEntityGetter
     /// </summary>
-    public interface IEntityGetter
+    public interface IRelatedEntityGetter
     {
         /// <summary>
         /// TryGetEntityFromRelatedLink

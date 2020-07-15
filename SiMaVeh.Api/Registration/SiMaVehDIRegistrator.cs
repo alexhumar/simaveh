@@ -11,7 +11,7 @@ namespace SiMaVeh.Api.Registration
     {
         public static void RegisterDI(IServiceCollection services)
         {
-            services.AddScoped<IEntityGetter, EntityGetter>();
+            services.AddScoped<IRelatedEntityGetter, RelatedEntityGetter>();
             services.AddScoped<IControllerParameter, ControllerParameter>();
             services.AddScoped<PaisSeeder, PaisSeeder>();
             services.AddScoped<ProvinciaSeeder, ProvinciaSeeder>();

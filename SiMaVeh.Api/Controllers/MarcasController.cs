@@ -81,7 +81,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var categoriaMarca = await entityGetter.TryGetEntityFromRelatedLink<CategoriaMarca, long>(link);
+                var categoriaMarca = await relatedEntityGetter.TryGetEntityFromRelatedLink<CategoriaMarca, long>(link);
                 if (categoriaMarca == null)
                     return NotFound();
 

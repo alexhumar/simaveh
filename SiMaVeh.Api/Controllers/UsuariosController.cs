@@ -145,7 +145,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var automovil = await entityGetter.TryGetEntityFromRelatedLink<Automovil, long>(link);
+                var automovil = await relatedEntityGetter.TryGetEntityFromRelatedLink<Automovil, long>(link);
                 if (automovil == null)
                     return NotFound();
 
@@ -156,7 +156,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var telefono = await entityGetter.TryGetEntityFromRelatedLink<Telefono, long>(link);
+                var telefono = await relatedEntityGetter.TryGetEntityFromRelatedLink<Telefono, long>(link);
                 if (telefono == null)
                     return NotFound();
 
@@ -167,7 +167,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoDocumento = await entityGetter.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
+                var tipoDocumento = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
                 if (tipoDocumento == null)
                     return NotFound();
 

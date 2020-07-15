@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Helpers
 {
     /// <summary>
-    /// EntityGetter
+    /// RelatedEntityGetter
     /// </summary>
-    public class EntityGetter : IEntityGetter
+    public class RelatedEntityGetter : IRelatedEntityGetter
     {
         /// <summary>
-        /// _context
+        /// context
         /// </summary>
-        protected readonly SiMaVehContext _context;
+        private readonly SiMaVehContext context;
 
-        public EntityGetter(SiMaVehContext context)
+        public RelatedEntityGetter(SiMaVehContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         /// <summary>
@@ -36,19 +36,16 @@ namespace SiMaVeh.Helpers
             //desde afuera (hay que ver algun metodo a nivel Api) se le pase una relatedKey ya procesada con el UriParser, que a fin de cuentas es de la capa de Api.
             TLinkBeId relatedKey = DataAccess.Model.UriParser.GetKeyFromUri<TLinkBeId>(
                 EntityTypeGetter<TLinkBe, TLinkBeId>.GetCollectionNameAsString(), link);
-            IRepository<TLinkBe, TLinkBeId> repo = new Repository<TLinkBe, TLinkBeId>(_context);
-            TLinkBe result;
+            IRepository<TLinkBe, TLinkBeId> repo = new Repository<TLinkBe, TLinkBeId>(context);
 
             try
             {
-                result = await repo.FindAsync(relatedKey);
+                return await repo.FindAsync(relatedKey);
             }
             catch (Exception)
             {
-                result = null;
+                return null;
             }
-
-            return result;
         }
     }
 }

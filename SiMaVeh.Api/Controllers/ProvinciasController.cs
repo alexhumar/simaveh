@@ -99,7 +99,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var partido = await entityGetter.TryGetEntityFromRelatedLink<Partido, long>(link);
+                var partido = await relatedEntityGetter.TryGetEntityFromRelatedLink<Partido, long>(link);
                 if (partido == null)
                     return NotFound();
 
@@ -110,7 +110,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var pais = await entityGetter.TryGetEntityFromRelatedLink<Pais, long>(link);
+                var pais = await relatedEntityGetter.TryGetEntityFromRelatedLink<Pais, long>(link);
                 if (pais == null)
                     return NotFound();
 

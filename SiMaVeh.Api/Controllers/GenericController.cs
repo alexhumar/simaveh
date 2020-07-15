@@ -31,9 +31,9 @@ namespace SiMaVeh.Controllers
         protected readonly IRepository<TBe, TBeId> repository;
 
         /// <summary>
-        /// entityGetter
+        /// relatedEntityGetter
         /// </summary>
-        protected readonly IEntityGetter entityGetter;
+        protected readonly IRelatedEntityGetter relatedEntityGetter;
 
         /// <summary>
         /// Constructor
@@ -42,7 +42,7 @@ namespace SiMaVeh.Controllers
         {
             context = parameters.Context;
             repository = new Repository<TBe, TBeId>(context);
-            entityGetter = parameters.EntityGetter;
+            relatedEntityGetter = parameters.RelatedEntityGetter;
         }
 
         /// <summary>

@@ -11,11 +11,11 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         /// <summary>
         /// Context
         /// </summary>
-        SiMaVehContext Context { get; set; }
+        SiMaVehContext Context { get; }
 
         /// <summary>
-        /// EntityGetter
+        /// RelatedEntityGetter
         /// </summary>
-        IEntityGetter EntityGetter { get; set; }
+        IRelatedEntityGetter RelatedEntityGetter { get; }
     }
 }

@@ -96,7 +96,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoTelefono = await entityGetter.TryGetEntityFromRelatedLink<TipoTelefono, long>(link);
+                var tipoTelefono = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoTelefono, long>(link);
                 if (tipoTelefono == null)
                     return NotFound();
 
@@ -107,7 +107,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var persona = await entityGetter.TryGetEntityFromRelatedLink<Persona, long>(link);
+                var persona = await relatedEntityGetter.TryGetEntityFromRelatedLink<Persona, long>(link);
                 if (persona == null)
                     return NotFound();
 

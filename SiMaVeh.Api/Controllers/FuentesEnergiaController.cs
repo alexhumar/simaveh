@@ -99,7 +99,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var tipoFuenteEnergia = await entityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
+                var tipoFuenteEnergia = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
                 if (tipoFuenteEnergia == null)
                     return NotFound();
 
@@ -110,7 +110,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var marca = await entityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
+                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
                     return NotFound();
 
