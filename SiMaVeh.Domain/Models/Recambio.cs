@@ -1,7 +1,6 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
 using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -9,15 +8,14 @@ namespace SiMaVeh.Domain.Models
     /// Recambio
     /// </summary>
     public abstract class Recambio : DomainMember<long>,
-        IEntityChanger<Marca, long, Recambio, long>,
-        ICollectionManager<Kit, long, Recambio, long>
+        IEntityChanger<Marca, long, Recambio, long>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public Recambio()
         {
-            KitRecambio = new HashSet<KitRecambio>();
+            KitRepuesto = new HashSet<KitRepuesto>();
         }
 
         /// <summary>
@@ -25,23 +23,12 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual Marca Marca { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
-        /// <summary>
-        /// Kits a los que pertenece
-        /// </summary>
-        public virtual ISet<Kit> Kits => KitRecambio.Select(k => k.Kit).ToHashSet();
-
-        /// <summary>
-        /// GetRepuestos
-        /// </summary>
-        /// <returns>Repuesto o Lista de repuestos para el caso de los kits</returns>
-        public abstract ISet<Repuesto> GetRepuestos();
-
         #region relations
 
         /// <summary>
-        /// Relacion Kit-Recambio
+        /// Relacion Kit-Repuesto
         /// </summary>
-        public virtual ISet<KitRecambio> KitRecambio { get; }
+        public virtual ISet<KitRepuesto> KitRepuesto { get; }
 
         #endregion
 
@@ -80,49 +67,6 @@ namespace SiMaVeh.Domain.Models
             if (entity != null)
             {
                 Marca = entity;
-            }
-
-            return this;
-        }
-
-        #endregion
-
-        #region ICollectionManager
-
-        /// <summary>
-        /// Agregar kit
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public Recambio Agregar(Kit entity)
-        {
-            if (entity != null)
-            {
-                KitRecambio?.Add(new KitRecambio
-                {
-                    Recambio = this,
-                    Kit = entity
-                });
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Quitar Kit
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public Recambio Quitar(Kit entity)
-        {
-            if (entity != null)
-            {
-                var toRemove = KitRecambio?
-                    .FirstOrDefault(r => r.Recambio == this && r.Kit == entity);
-                if (toRemove != null)
-                {
-                    KitRecambio.Remove(toRemove);
-                }
             }
 
             return this;

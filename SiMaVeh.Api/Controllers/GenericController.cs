@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Api.ErrorManagement;
+using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
-using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Generic Controller
@@ -31,9 +31,9 @@ namespace SiMaVeh.Controllers
         protected readonly IRepository<TBe, TBeId> repository;
 
         /// <summary>
-        /// entityGetter
+        /// relatedEntityGetter
         /// </summary>
-        protected readonly IEntityGetter entityGetter;
+        protected readonly IRelatedEntityGetter relatedEntityGetter;
 
         /// <summary>
         /// Constructor
@@ -42,7 +42,7 @@ namespace SiMaVeh.Controllers
         {
             context = parameters.Context;
             repository = new Repository<TBe, TBeId>(context);
-            entityGetter = parameters.EntityGetter;
+            relatedEntityGetter = parameters.RelatedEntityGetter;
         }
 
         /// <summary>

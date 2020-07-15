@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
@@ -9,7 +9,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Repuestos Controller
@@ -134,7 +134,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var kit = await entityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
+                var kit = await relatedEntityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
                 if (kit == null)
                     return NotFound();
 
@@ -145,7 +145,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Post))
                     return BadRequest();
 
-                var periodicidadMantenimiento = await entityGetter.TryGetEntityFromRelatedLink<PeriodicidadMantenimiento, long>(link);
+                var periodicidadMantenimiento = await relatedEntityGetter.TryGetEntityFromRelatedLink<PeriodicidadMantenimiento, long>(link);
                 if (periodicidadMantenimiento == null)
                     return NotFound();
 
@@ -156,7 +156,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var marca = await entityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
+                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
                     return NotFound();
 
@@ -167,7 +167,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var targetMantenimiento = await entityGetter.TryGetEntityFromRelatedLink<TargetMantenimiento, long>(link);
+                var targetMantenimiento = await relatedEntityGetter.TryGetEntityFromRelatedLink<TargetMantenimiento, long>(link);
                 if (targetMantenimiento == null)
                     return NotFound();
 

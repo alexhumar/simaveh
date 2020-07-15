@@ -31,17 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Pieza;
-
-            if (item == null)
-                return false;
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                    return base.Equals(obj);
-            }
+            return obj is Pieza item && (ReferenceEquals(this, item) || base.Equals(obj));
         }
 
         /// <summary>

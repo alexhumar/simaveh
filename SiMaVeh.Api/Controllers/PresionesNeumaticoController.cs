@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.Controllers.Parametrization;
+using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Controllers
+namespace SiMaVeh.Api.Controllers
 {
     /// <summary>
     /// Presiones Neumatico Controller
@@ -131,7 +131,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var modeloVehiculo = await entityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
+                var modeloVehiculo = await relatedEntityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
                 if (modeloVehiculo == null)
                     return NotFound();
 
@@ -142,7 +142,7 @@ namespace SiMaVeh.Controllers
                 if (!Request.Method.Equals(HttpConstants.Put))
                     return BadRequest();
 
-                var neumatico = await entityGetter.TryGetEntityFromRelatedLink<Neumatico, long>(link);
+                var neumatico = await relatedEntityGetter.TryGetEntityFromRelatedLink<Neumatico, long>(link);
                 if (neumatico == null)
                     return NotFound();
 

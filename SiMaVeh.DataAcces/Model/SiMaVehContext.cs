@@ -1,92 +1,27 @@
 using Microsoft.EntityFrameworkCore;
 using SiMaVeh.DataAccess.DataSeed;
+using SiMaVeh.DataAccess.Model.ConfiguradoresContext;
+using SiMaVeh.DataAccess.Model.ConfiguradoresContext.Interfaces;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.DataAccess.Model
 {
     public class SiMaVehContext : DbContext
     {
-        protected IDataSeeder DataSeeder { get; set; }
+        private readonly IConfiguradorContext configuradorContext;
+        private readonly IDataSeeder dataSeeder;
 
         public SiMaVehContext(DbContextOptions<SiMaVehContext> options) : base(options)
         {
-            //Esto no pude hacerlo funcionar con inyeccion de dependencias.
-            DataSeeder = new DataSeeder();
+            //Todo esto no pude hacerlo funcionar con inyeccion de dependencias.
+            configuradorContext = new ConfiguradorSiMaVehContext(new RecuperadorConfiguradoresContext());
+            dataSeeder = new DataSeeder();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            #region TODO: estrategia de persistencia de jerarquias en varias tablas (TPT)
-
-            //Se debe invocar al método ToTable de las clases derivadas en pos de
-            //activar la modalidad (TPT - Table Per Type). 
-            //Esto al dia de hoy (04/05/2020) no es soportado por EF Core, pero lo será
-            //en versiones posteriores.
-
-            //builder.Entity<Automovil>().ToTable("Automoviles");
-            //builder.Entity<Pieza>().ToTable("Piezas");
-            //builder.Entity<Fluido>().ToTable("Fluidos");
-            //builder.Entity<Aceite>().ToTable("Aceites");
-            //builder.Entity<Usuario>().ToTable("Usuarios");
-            //builder.Entity<Kit>().ToTable("Kits");
-            //builder.Entity<Repuesto>().ToTable("Repuestos");
-
-            #endregion
-
-            #region estrategia de persistencia de jerarquias en una sola tabla (TPH)
-
-            //TODO: configurar los discriminators del modelo. Hay que regenerar las migrations.
-            //builder.Entity<Vehiculo>()
-            //    .HasDiscriminator<string>("TipoVehiculo")
-            //    .HasValue<Automovil>("A");
-
-            #endregion
-
-            #region ignore para propiedades calculadas
-
-            //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
-            //no tire excepcion al notar que no tienen setter.
-            builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
-            builder.Entity<EntidadReparadora>().Ignore(e => e.Reparadores);
-            builder.Entity<Kit>().Ignore(k => k.Recambios);
-            builder.Entity<Marca>().Ignore(m => m.Categorias);
-            builder.Entity<Recambio>().Ignore(r => r.Kits);
-            builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
-
-            #endregion
-
-            #region configuracion de Ids autogenerados
-
-            //El Id de estas entidades se genera en base al valor de sus propiedades.
-            builder.Entity<EquipamientoAirbags>()
-                .Property(e => e.Id).ValueGeneratedNever();
-            builder.Entity<UbicacionPieza>()
-                .Property(u => u.Id).ValueGeneratedNever();
-
-            #endregion
-
-            #region configuracion de relaciones many-to-many
-
-            //Esto es necesario ya que EF Core al dia de hoy (14/01/2019)
-            //no soporta relaciones Many-To-Many con colecciones directamente.
-            //Hay que modelarlas con un objeto relacion.
-            builder.Entity<ReparadorEntidadReparadora>()
-                .HasKey(k => new { k.ReparadorId, k.EntidadReparadoraId });
-
-            builder.Entity<KitRecambio>()
-                .HasKey(k => new { k.KitId, k.RecambioId });
-
-            builder.Entity<MarcaCategoriaMarca>()
-                .HasKey(k => new { k.CategoriaMarcaId, k.MarcaId });
-
-            #endregion
-
-            #region data seeding
-
-            DataSeeder.SeedData(builder);
-
-            #endregion
+            configuradorContext.Configurar(builder);
+            dataSeeder.SeedData(builder);
         }
 
         /// <summary>

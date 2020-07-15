@@ -60,21 +60,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Mantenimiento item))
-            {
-                return false;
-            }
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return (Id == item.Id) ||
-                        (Accion.Equals(item.Accion) && Recambio.Equals(item.Recambio) && ServicioReparador.Equals(item.ServicioReparador) &&
-                        Reparador.Equals(item.Reparador));
-                }
-            }
+            return obj is Mantenimiento item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Accion.Equals(item.Accion) && Recambio.Equals(item.Recambio) && ServicioReparador.Equals(item.ServicioReparador) && Reparador.Equals(item.Reparador)));
         }
 
         /// <summary>
