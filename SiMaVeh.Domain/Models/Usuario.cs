@@ -40,19 +40,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Usuario item))
-            {
-                return false;
-            }
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                {
-                    return base.Equals(obj);
-                }
-            }
+            return obj is Usuario item && (ReferenceEquals(this, item) || base.Equals(obj));
         }
 
         /// <summary>

@@ -33,17 +33,7 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var item = obj as Aceite;
-
-            if (item == null)
-                return false;
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                    return base.Equals(obj);
-            }
+            return obj is Aceite item && (ReferenceEquals(this, item) || base.Equals(obj));
         }
 
         /// <summary>

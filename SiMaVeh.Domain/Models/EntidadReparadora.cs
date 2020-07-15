@@ -76,17 +76,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is EntidadReparadora item))
-            {
-                return false;
-            }
-            else
-            {
-                if (ReferenceEquals(this, item))
-                    return true;
-                else
-                    return (Id == item.Id) || (Nombre == item.Nombre && TipoEntidadReparadora.Equals(item.TipoEntidadReparadora));
-            }
+            return obj is EntidadReparadora item &&
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre == item.Nombre && TipoEntidadReparadora.Equals(item.TipoEntidadReparadora)));
         }
 
         /// <summary>
