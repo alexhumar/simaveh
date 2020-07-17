@@ -22,8 +22,7 @@ namespace SiMaVeh.Api.Utils
             try
             {
                 var oDataUriParser = new ODataUriParser(SiMaVehModelBuilder.GetEdmModel(),
-                    new Uri($"{uri.Scheme}://{uri.Host}:{uri.Port}/{UriConstants.PrefijoRutaOData}/", UriKind.RelativeOrAbsolute),
-                    new Uri(uri.AbsoluteUri, UriKind.RelativeOrAbsolute));
+                    new Uri($"{uri.Scheme}://{uri.Host}:{uri.Port}/{UriConstants.PrefijoRutaOData}/"), uri);
                 var oDataKeySegment = (KeySegment)oDataUriParser.ParsePath().LastSegment;
 
                 if (oDataKeySegment != null && oDataKeySegment.Keys.Any())
