@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Registration;
 using SiMaVeh.DataAccess.Model;
 
@@ -66,7 +67,7 @@ namespace SiMaVeh.Api
 
             app.UseMvc(routeBuilder =>
             {
-                routeBuilder.MapODataServiceRoute("odata", "simaveh", SiMaVehModelBuilder.GetEdmModel());
+                routeBuilder.MapODataServiceRoute("odata", UriConstants.PrefijoRutaOData, SiMaVehModelBuilder.GetEdmModel());
                 //Work-around for issue #1175
                 routeBuilder.EnableDependencyInjection();
             });

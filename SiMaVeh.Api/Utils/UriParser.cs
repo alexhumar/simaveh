@@ -1,38 +1,39 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using Microsoft.OData.UriParser;
+using SiMaVeh.Api.Constants;
+using SiMaVeh.DataAccess.Model;
+using System;
+using System.Linq;
 
 namespace SiMaVeh.Api.Utils
 {
     /// <summary>
     /// UriParser
     /// </summary>
-    public static class UriParser
+    public class UriParser
     {
         /// <summary>
-        /// GetKeyFromUri
+        /// GetKeyFromRelatedEntityUri
         /// </summary>
         /// <typeparam name="TKey"></typeparam>
-        /// <param name="entityName"></param>
         /// <param name="uri"></param>
         /// <returns></returns>
-        public static TKey GetKeyFromUri<TKey>(string entityName, Uri uri)
+        public static TKey GetKeyFromRelatedEntityUri<TKey>(Uri uri)
         {
-            //Este patron me termina quedando por ejemplo @"(Provincias\()(\w+)(\))"
-            //Si yo tengo la uri /simaveh/Provincias(1) me quedan 4 grupos despues de procesar el string:
-            //0 - Provincias(1). 1 - Provincias(. 2 - 1. 3 - ).
-            //Me alcanza con tomar el grupo 2!
-            var pattern = string.Format(@"({0}\()(\w+)(\))", entityName);
-            var match = Regex.Match(uri.AbsoluteUri, pattern);
-            var key = "0";
-
-            if (match.Success)
-            {
-                key = match.Groups[2].Value;
-            }
-
             try
             {
-                return (TKey)Convert.ChangeType(key, typeof(TKey));
+                var oDataUriParser = new ODataUriParser(SiMaVehModelBuilder.GetEdmModel(),
+                    new Uri($"{uri.Scheme}://{uri.Host}:{uri.Port}/{UriConstants.PrefijoRutaOData}/", UriKind.RelativeOrAbsolute),
+                    new Uri(uri.AbsoluteUri, UriKind.RelativeOrAbsolute));
+                var oDataKeySegment = (KeySegment)oDataUriParser.ParsePath().LastSegment;
+
+                if (oDataKeySegment != null && oDataKeySegment.Keys.Any())
+                {
+                    var clave = oDataKeySegment.Keys.FirstOrDefault().Value;
+
+                    return (TKey)Convert.ChangeType(clave, typeof(TKey));
+                }
+
+                return default;
             }
             catch (Exception)
             {
