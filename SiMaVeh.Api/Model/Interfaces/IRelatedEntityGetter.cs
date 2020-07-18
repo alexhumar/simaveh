@@ -7,7 +7,7 @@ namespace SiMaVeh.Api.Model.Interfaces
     /// <summary>
     /// Interfaz de RelatedEntityGetter
     /// </summary>
-    internal interface IRelatedEntityGetter
+    public interface IRelatedEntityGetter
     {
         /// <summary>
         /// TryGetEntityFromRelatedLink
