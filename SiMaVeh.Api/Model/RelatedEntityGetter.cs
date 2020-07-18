@@ -1,7 +1,7 @@
 ﻿using SiMaVeh.Api.Model.Interfaces;
+using SiMaVeh.Api.Utils.Interfaces;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Threading.Tasks;
@@ -11,16 +11,28 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// RelatedEntityGetter
     /// </summary>
-    public class RelatedEntityGetter : IRelatedEntityGetter
+    internal class RelatedEntityGetter : IRelatedEntityGetter
     {
         /// <summary>
         /// context
         /// </summary>
         private readonly SiMaVehContext context;
 
-        public RelatedEntityGetter(SiMaVehContext context)
+        /// <summary>
+        /// uriParser
+        /// </summary>
+        private readonly IUriParser uriParser;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="uriParser"></param>
+        public RelatedEntityGetter(SiMaVehContext context,
+            IUriParser uriParser)
         {
             this.context = context;
+            this.uriParser = uriParser;
         }
 
         /// <summary>
@@ -32,14 +44,12 @@ namespace SiMaVeh.Api.Model
         /// <returns></returns>
         public async Task<TLinkBe> TryGetEntityFromRelatedLink<TLinkBe, TLinkBeId>(Uri link) where TLinkBe : DomainMember<TLinkBeId>
         {
-            TLinkBeId relatedKey = Utils.UriParser
-                .GetKeyFromUri<TLinkBeId>(EntityTypeGetter<TLinkBe, TLinkBeId>.GetCollectionNameAsString(), link);
-
-            IRepository<TLinkBe, TLinkBeId> repo = new Repository<TLinkBe, TLinkBeId>(context);
-
             try
             {
-                return await repo.FindAsync(relatedKey);
+                var relatedKey = uriParser.GetKeyFromRelatedEntityUri<TLinkBeId>(link);
+                var repository = new Repository<TLinkBe, TLinkBeId>(context);
+
+                return await repository.FindAsync(relatedKey);
             }
             catch (Exception)
             {

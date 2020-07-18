@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using SiMaVeh.Api.ErrorManagement.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -7,24 +8,26 @@ namespace SiMaVeh.Api.ErrorManagement
     /// <summary>
     /// Genera y procesa errores del sistema
     /// </summary>
-    public class ErrorsBuilder
+    internal class ErrorsBuilder : IErrorsBuilder
     {
         /// <summary>
         /// Genera una lista de errores a partir del modelstate
         /// </summary>
         /// <typeparam name="modelState"></typeparam>
         /// <returns></returns>
-        public static IList<string> BuildErrors(ModelStateDictionary modelState)
+        public IList<string> BuildErrors(ModelStateDictionary modelState)
         {
             var result = new List<string>();
 
-            foreach (var ms in modelState.Values)
+            foreach (var modelStateEntry in modelState.Values)
             {
-                foreach (var error in ms.Errors)
+                foreach (var modelError in modelStateEntry.Errors)
                 {
-                    var message = (error.Exception != null ? error.Exception.Message : error.ErrorMessage).Trim();
+                    var message = (modelError.Exception != null ? modelError.Exception.Message : modelError.ErrorMessage).Trim();
                     if (!string.IsNullOrEmpty(message))
+                    {
                         result.Add(message);
+                    }
                 }
             }
 
@@ -36,7 +39,7 @@ namespace SiMaVeh.Api.ErrorManagement
         /// </summary>
         /// <typeparam name="e"></typeparam>
         /// <returns></returns>
-        public static IList<string> BuildErrors(Exception e)
+        public IList<string> BuildErrors(Exception e)
         {
             return new List<string> { e.InnerException.Message };
         }

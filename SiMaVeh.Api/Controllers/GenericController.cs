@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Api.ErrorManagement;
+using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -36,13 +37,26 @@ namespace SiMaVeh.Api.Controllers
         protected readonly IRelatedEntityGetter relatedEntityGetter;
 
         /// <summary>
+        /// entityTypeGetter
+        /// </summary>
+        protected readonly IEntityTypeGetter entityTypeGetter;
+
+        /// <summary>
+        /// errorsBuilder
+        /// </summary>
+        protected readonly IErrorsBuilder errorsBuilder;
+
+        /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="parameters"></param>
         public GenericController(IControllerParameter parameters)
         {
             context = parameters.Context;
             repository = new Repository<TBe, TBeId>(context);
             relatedEntityGetter = parameters.RelatedEntityGetter;
+            entityTypeGetter = parameters.EntityTypeGetter;
+            errorsBuilder = parameters.ErrorsBuilder;
         }
 
         /// <summary>
@@ -115,7 +129,7 @@ namespace SiMaVeh.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
 
             try
@@ -124,7 +138,7 @@ namespace SiMaVeh.Api.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode(500, errorsBuilder.BuildErrors(e));
             }
 
             return Created(entity);
@@ -141,7 +155,7 @@ namespace SiMaVeh.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
 
             if (!await ExisteEntidad(key))
@@ -160,7 +174,7 @@ namespace SiMaVeh.Api.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode(500, errorsBuilder.BuildErrors(e));
             }
 
             return Updated(entity);
@@ -177,7 +191,7 @@ namespace SiMaVeh.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
 
             var existingEntity = await repository.FindAsync(key);
@@ -194,7 +208,7 @@ namespace SiMaVeh.Api.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode(500, errorsBuilder.BuildErrors(e));
             }
 
             return Updated(existingEntity);
@@ -226,9 +240,9 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        public virtual IActionResult DeleteRef([FromODataUri] TBeId key, string navigationProperty, [FromBody] Uri link)
+        public virtual async Task<IActionResult> DeleteRef([FromODataUri] TBeId key, string navigationProperty, [FromBody] Uri link)
         {
-            return StatusCode((int)HttpStatusCode.NotImplemented);
+            return await Task.Run(() => StatusCode((int)HttpStatusCode.NotImplemented));
         }
 
         /// <summary>
@@ -238,9 +252,9 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="relatedKey"></param>
         /// <param name="navigationProperty"></param>
         /// <returns></returns>
-        public virtual IActionResult DeleteRef([FromODataUri] TBeId key, [FromODataUri] string relatedKey, string navigationProperty)
+        public virtual async Task<IActionResult> DeleteRef([FromODataUri] TBeId key, [FromODataUri] string relatedKey, string navigationProperty)
         {
-            return StatusCode((int)HttpStatusCode.NotImplemented);
+            return await Task.Run(() => StatusCode((int)HttpStatusCode.NotImplemented));
         }
     }
 }

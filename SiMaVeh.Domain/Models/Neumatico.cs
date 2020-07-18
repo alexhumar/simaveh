@@ -1,4 +1,6 @@
 ﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Enums.Parsers;
+using SiMaVeh.Domain.Enums.Parsers.Interfaces;
 using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
@@ -9,6 +11,9 @@ namespace SiMaVeh.Domain.Models
     public class Neumatico : DomainMember<long>,
         IEntityChanger<Marca, long, Neumatico, long>
     {
+        private readonly IEnumParser<TipoVehiculoNeumatico> tipoVehiculoNeumaticoParser;
+        private readonly IEnumParser<ConstruccionCarcasaNeumatico> construccionCarcasaNeumaticoParser;
+
         /// <summary>
         /// Marca
         /// </summary>
@@ -56,6 +61,15 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual string IndiceVelocidad { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Neumatico()
+        {
+            tipoVehiculoNeumaticoParser = new TipoVehiculoNeumaticoParser();
+            construccionCarcasaNeumaticoParser = new ConstruccionCarcasaNeumaticoParser();
+        }
+
         #region overrides
 
         /// <summary>
@@ -64,8 +78,8 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat(Marca?.ToString(), Modelo, TipoVehiculoNeumaticoParser.ToString(Tipo),
-                AnchuraSeccionalNominal, "/", RelacionAnchoAlto?.ToString(), ConstruccionCarcasaNeumaticoParser.ToString(ConstruccionCarcasa),
+            return string.Concat(Marca?.ToString(), Modelo, tipoVehiculoNeumaticoParser.ToString(Tipo),
+                AnchuraSeccionalNominal, "/", RelacionAnchoAlto?.ToString(), construccionCarcasaNeumaticoParser.ToString(ConstruccionCarcasa),
                 DiametroLLanta, " ", IndiceCarga, IndiceVelocidad);
         }
 

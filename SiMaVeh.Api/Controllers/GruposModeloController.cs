@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -18,7 +17,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public GruposModeloController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public GruposModeloController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -33,10 +36,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Marca);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Marca);
         }
 
         /// <summary>
@@ -49,10 +49,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -63,31 +60,40 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var grupoModelo = await repository.FindAsync(key);
             if (grupoModelo == null)
+            {
                 return NotFound();
+            }
 
-            var marcaTypeName = EntityTypeGetter<Marca, long>.GetTypeAsString();
+            var marcaTypeName = entityTypeGetter.GetTypeAsString<Marca, long>();
 
             if (navigationProperty.Equals(marcaTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
+                {
                     return NotFound();
+                }
 
                 grupoModelo.Cambiar(marca);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 

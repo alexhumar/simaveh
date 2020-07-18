@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public CategoriasMarcaController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public CategoriasMarcaController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -34,10 +37,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Marcas);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Marcas);
         }
 
         /// <summary>
@@ -50,10 +50,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -64,31 +61,40 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var categoriaMarca = await repository.FindAsync(key);
             if (categoriaMarca == null)
+            {
                 return NotFound();
+            }
 
-            var marcasCollectionName = EntityTypeGetter<Marca, long>.GetCollectionNameAsString();
+            var marcaCollectionName = entityTypeGetter.GetCollectionNameAsString<Marca, long>();
 
-            if (navigationProperty.Equals(marcasCollectionName))
+            if (navigationProperty.Equals(marcaCollectionName))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
+                {
                     return BadRequest();
+                }
 
                 var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
+                {
                     return NotFound();
+                }
 
                 categoriaMarca.Agregar(marca);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 

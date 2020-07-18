@@ -14,25 +14,4 @@
         /// </summary>
         Reemplazo
     }
-
-    /// <summary>
-    /// AccionMantenimientoParser
-    /// </summary>
-    public static class AccionMantenimientoParser
-    {
-        /// <summary>
-        /// ToString 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static string ToString(AccionMantenimiento value)
-        {
-            return value switch
-            {
-                AccionMantenimiento.Reemplazo => "Reemplazo",
-                AccionMantenimiento.Reparacion => "Reparación",
-                _ => string.Empty,
-            };
-        }
-    }
 }

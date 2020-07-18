@@ -1,4 +1,6 @@
 ﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Enums.Parsers;
+using SiMaVeh.Domain.Enums.Parsers.Interfaces;
 using SiMaVeh.Domain.Models.Interfaces;
 
 namespace SiMaVeh.Domain.Models
@@ -12,6 +14,8 @@ namespace SiMaVeh.Domain.Models
         IEntityChanger<ServicioReparador, long, Mantenimiento, long>,
         IEntityChanger<Reparador, long, Mantenimiento, long>
     {
+        private readonly IEnumParser<AccionMantenimiento> accionMantenimientoParser;
+
         /// <summary>
         /// Accion
         /// </summary>
@@ -42,6 +46,14 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual Reparador Reparador { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Mantenimiento()
+        {
+            accionMantenimientoParser = new AccionMantenimientoParser();
+        }
+
         #region overrides
 
         /// <summary>
@@ -50,7 +62,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("(", AccionMantenimientoParser.ToString(Accion), ") ", Recambio?.ToString());
+            return string.Concat("(", accionMantenimientoParser.ToString(Accion), ") ", Recambio?.ToString());
         }
 
         /// <summary>

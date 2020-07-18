@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public PaisesController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public PaisesController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -33,10 +36,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Provincias);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Provincias);
         }
 
         /// <summary>
@@ -48,10 +48,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -62,31 +59,40 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var pais = await repository.FindAsync(key);
             if (pais == null)
+            {
                 return NotFound();
+            }
 
-            var provinciaCollectionName = EntityTypeGetter<Provincia, long>.GetCollectionNameAsString();
+            var provinciaCollectionName = entityTypeGetter.GetCollectionNameAsString<Provincia, long>();
 
             if (navigationProperty.Equals(provinciaCollectionName))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
+                {
                     return BadRequest();
+                }
 
                 var provincia = await relatedEntityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
                 if (provincia == null)
+                {
                     return NotFound();
+                }
 
                 pais.Agregar(provincia);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 

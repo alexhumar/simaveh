@@ -1,4 +1,5 @@
-﻿using SiMaVeh.Domain.Constants;
+﻿using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 
@@ -7,11 +8,9 @@ namespace SiMaVeh.Domain.BusinessLogic.Entities
     /// <summary>
     /// EntityTypeGetter
     /// </summary>
-    /// <typeparam name="TBe"></typeparam>
-    /// <typeparam name="TBeId"></typeparam>
-    public static class EntityTypeGetter<TBe, TBeId> where TBe : DomainMember<TBeId>
+    public class EntityTypeGetter : IEntityTypeGetter
     {
-        private static readonly IDictionary<string, string> colecciones = new Dictionary<string, string>()
+        private readonly IDictionary<string, string> colecciones = new Dictionary<string, string>()
         {
             { typeof(Aceite).Name, EntitySet.Aceite },
             { typeof(Automovil).Name, EntitySet.Automovil },
@@ -55,8 +54,10 @@ namespace SiMaVeh.Domain.BusinessLogic.Entities
         /// <summary>
         /// GetTypeAsString
         /// </summary>
+        /// <typeparam name="TBe"></typeparam>
+        /// <typeparam name="TBeId"></typeparam>
         /// <returns></returns>
-        public static string GetTypeAsString()
+        public string GetTypeAsString<TBe, TBeId>() where TBe : DomainMember<TBeId>
         {
             return typeof(TBe).Name;
         }
@@ -64,8 +65,10 @@ namespace SiMaVeh.Domain.BusinessLogic.Entities
         /// <summary>
         /// GetCollectionNameAsString
         /// </summary>
+        /// <typeparam name="TBe"></typeparam>
+        /// <typeparam name="TBeId"></typeparam>
         /// <returns></returns>
-        public static string GetCollectionNameAsString()
+        public string GetCollectionNameAsString<TBe, TBeId>() where TBe : DomainMember<TBeId>
         {
             colecciones.TryGetValue(typeof(TBe).Name, out string collectionName);
 

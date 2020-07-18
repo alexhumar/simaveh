@@ -14,7 +14,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public AceitesController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public AceitesController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -28,10 +32,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Descripcion);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Descripcion);
         }
 
         /// <summary>
@@ -44,10 +45,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -60,10 +58,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.ViscosidadSAEAltaTemperatura);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.ViscosidadSAEAltaTemperatura);
         }
 
         /// <summary>
@@ -76,10 +71,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.ViscosidadSAEBajaTemperatura);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.ViscosidadSAEBajaTemperatura);
         }
 
         #endregion

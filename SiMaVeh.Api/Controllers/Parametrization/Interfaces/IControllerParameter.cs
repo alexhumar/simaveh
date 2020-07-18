@@ -1,5 +1,7 @@
+using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Model;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
 namespace SiMaVeh.Api.Controllers.Parametrization.Interfaces
 {
@@ -17,5 +19,15 @@ namespace SiMaVeh.Api.Controllers.Parametrization.Interfaces
         /// RelatedEntityGetter
         /// </summary>
         IRelatedEntityGetter RelatedEntityGetter { get; }
+
+        /// <summary>
+        /// RelatedEntityGetter
+        /// </summary>
+        IEntityTypeGetter EntityTypeGetter { get; }
+
+        /// <summary>
+        /// ErrorsBuilder
+        /// </summary>
+        IErrorsBuilder ErrorsBuilder { get; }
     }
 }

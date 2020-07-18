@@ -1,9 +1,9 @@
 ﻿namespace SiMaVeh.Domain.Constants
 {
     /// <summary>
-    /// Entity Set Names
+    /// Constantes de entity sets
     /// </summary>
-    public static class EntitySet
+    public class EntitySet
     {
         /// <summary>
         /// Aceite

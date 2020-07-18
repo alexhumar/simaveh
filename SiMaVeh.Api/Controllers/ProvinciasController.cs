@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Linq;
@@ -20,7 +19,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProvinciasController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public ProvinciasController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -33,10 +36,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -50,10 +50,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Pais);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Pais);
         }
 
         /// <summary>
@@ -66,10 +63,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Partidos.AsQueryable());
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Partidos.AsQueryable());
         }
 
         /// <summary>
@@ -81,43 +75,56 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var provincia = await repository.FindAsync(key);
             if (provincia == null)
+            {
                 return NotFound();
+            }
 
-            var partidoCollectionName = EntityTypeGetter<Partido, long>.GetCollectionNameAsString();
-            var paisTypeName = EntityTypeGetter<Pais, long>.GetTypeAsString();
+            var partidoCollectionName = entityTypeGetter.GetCollectionNameAsString<Partido, long>();
+            var paisTypeName = entityTypeGetter.GetTypeAsString<Pais, long>();
 
             if (navigationProperty.Equals(partidoCollectionName))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
+                {
                     return BadRequest();
+                }
 
                 var partido = await relatedEntityGetter.TryGetEntityFromRelatedLink<Partido, long>(link);
                 if (partido == null)
+                {
                     return NotFound();
+                }
 
                 provincia.Agregar(partido);
             }
             else if (navigationProperty.Equals(paisTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var pais = await relatedEntityGetter.TryGetEntityFromRelatedLink<Pais, long>(link);
                 if (pais == null)
+                {
                     return NotFound();
+                }
 
                 provincia.Cambiar(pais);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 

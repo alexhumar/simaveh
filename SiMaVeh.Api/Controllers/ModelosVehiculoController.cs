@@ -4,7 +4,6 @@ using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Repository;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -21,7 +20,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public ModelosVehiculoController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public ModelosVehiculoController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -36,10 +39,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.AceiteRecomendado);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.AceiteRecomendado);
         }
 
         /// <summary>
@@ -53,10 +53,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Airbags);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Airbags);
         }
 
         /// <summary>
@@ -70,10 +67,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.FuenteEnergiaRecomendada);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.FuenteEnergiaRecomendada);
         }
 
         /// <summary>
@@ -87,10 +81,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.GrupoModelo);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.GrupoModelo);
         }
 
         /// <summary>
@@ -104,10 +95,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.PresionesNeumaticosRecomendadas);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.PresionesNeumaticosRecomendadas);
         }
 
         /// <summary>
@@ -121,10 +109,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.RepuestosRecomendados);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.RepuestosRecomendados);
         }
 
         /// <summary>
@@ -138,10 +123,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.TipoFuenteEnergia);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.TipoFuenteEnergia);
         }
 
         /// <summary>
@@ -155,10 +137,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Version);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Version);
         }
 
         /// <summary>
@@ -170,99 +149,131 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var modeloVehiculo = await repository.FindAsync(key);
             if (modeloVehiculo == null)
+            {
                 return NotFound();
+            }
 
-            var grupoModeloTypeName = EntityTypeGetter<GrupoModelo, long>.GetTypeAsString();
-            var tipoFuenteEnergiaTypeName = EntityTypeGetter<TipoFuenteEnergia, long>.GetTypeAsString();
-
+            var grupoModeloTypeName = entityTypeGetter.GetTypeAsString<GrupoModelo, long>();
+            var tipoFuenteEnergiaTypeName = entityTypeGetter.GetTypeAsString<TipoFuenteEnergia, long>();
 
             if (navigationProperty.Equals(grupoModeloTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var grupoModelo = await relatedEntityGetter.TryGetEntityFromRelatedLink<GrupoModelo, long>(link);
                 if (grupoModelo == null)
+                {
                     return NotFound();
+                }
 
                 modeloVehiculo.Cambiar(grupoModelo);
             }
             else if (navigationProperty.Equals(EntityProperty.AceiteRecomendado))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var aceite = await relatedEntityGetter.TryGetEntityFromRelatedLink<Aceite, long>(link);
                 if (aceite == null)
+                {
                     return NotFound();
+                }
 
                 modeloVehiculo.Cambiar(aceite);
             }
             else if (navigationProperty.Equals(EntityProperty.Airbags))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var airbags = await relatedEntityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, string>(link);
                 if (airbags == null)
+                {
                     return NotFound();
+                }
 
                 modeloVehiculo.Cambiar(airbags);
             }
             else if (navigationProperty.Equals(tipoFuenteEnergiaTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var tipoFuenteEnergia = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
                 if (tipoFuenteEnergia == null)
+                {
                     return NotFound();
+                }
 
                 modeloVehiculo.Cambiar(tipoFuenteEnergia);
             }
             else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var fuenteEnergia = await relatedEntityGetter.TryGetEntityFromRelatedLink<FuenteEnergia, long>(link);
                 if (fuenteEnergia == null)
+                {
                     return NotFound();
+                }
 
                 modeloVehiculo.Cambiar(fuenteEnergia);
             }
             else if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
+                {
                     return BadRequest();
+                }
 
                 var repuesto = await relatedEntityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
                 if (repuesto == null)
+                {
                     return NotFound();
+                }
 
                 modeloVehiculo.Agregar(repuesto);
             }
             else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
+                {
                     return BadRequest();
+                }
 
                 var presionNeumatico = await relatedEntityGetter.TryGetEntityFromRelatedLink<PresionNeumatico, long>(link);
                 if (presionNeumatico == null)
+                {
                     return NotFound();
+                }
 
                 modeloVehiculo.Agregar(presionNeumatico);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 
@@ -276,22 +287,27 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="relatedKey"></param>
         /// <param name="navigationProperty"></param>
         /// <returns></returns>
-        public override IActionResult DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
         {
-            var modeloVehiculo = repository.FindAsync(key).Result;
+            var modeloVehiculo = await repository.FindAsync(key);
             if (modeloVehiculo == null)
+            {
                 return NotFound();
+            }
 
             if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
-                var repuesto = new Repository<Repuesto, long>(context).FindAsync(Convert.ToInt64(relatedKey)).Result;
+                //TODO: a nuevo metodo en RelatedEntityGetter
+                var repuesto = await new Repository<Repuesto, long>(context).FindAsync(Convert.ToInt64(relatedKey));
                 if (repuesto == null)
+                {
                     return NotFound();
+                }
 
                 modeloVehiculo.Quitar(repuesto);
             }
 
-            repository.SaveChangesAsync();
+            await repository.SaveChangesAsync();
 
             return StatusCode((int)HttpStatusCode.NoContent);
         }

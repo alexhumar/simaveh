@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
@@ -36,6 +37,9 @@ using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza;
 using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.Interfaces;
+using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Enums.Parsers;
+using SiMaVeh.Domain.Enums.Parsers.Interfaces;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags.Interfaces;
@@ -45,10 +49,18 @@ using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.Api.Registration
 {
-    internal class DataSeedRegistrator
+    /// <summary>
+    /// Registrador de dependencias DataSeed
+    /// </summary>
+    internal class DataSeedDependencyRegistrator : IDependencyRegistrator
     {
-        public static void RegisterDataSeeds(IServiceCollection services)
+        /// <summary>
+        /// Registro de dependencias en la coleccion de servicios
+        /// </summary>
+        /// <param name="services"></param>
+        public void Register(IServiceCollection services)
         {
+            services.AddScoped<IEnumParser<TipoAirbagLateral>, TipoAirbagLateralParser>();
             services.AddScoped<ICalculadorIdEquipamientoAirbags, CalculadorIdEquipamientoAirbags>();
             services.AddScoped<ICalculadorIdUbicacionPieza, CalculadorIdUbicacionPieza>();
 
