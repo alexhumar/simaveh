@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -18,7 +17,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public NeumaticosController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public NeumaticosController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -32,10 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.AnchuraSeccionalNominal);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.AnchuraSeccionalNominal);
         }
 
         /// <summary>
@@ -48,10 +48,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.ConstruccionCarcasa);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.ConstruccionCarcasa);
         }
 
         /// <summary>
@@ -64,10 +61,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.DiametroLLanta);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.DiametroLLanta);
         }
 
         /// <summary>
@@ -80,10 +74,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.IndiceCarga);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.IndiceCarga);
         }
 
         /// <summary>
@@ -96,10 +87,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.IndiceVelocidad);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.IndiceVelocidad);
         }
 
         /// <summary>
@@ -113,10 +101,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Marca);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Marca);
         }
 
         /// <summary>
@@ -129,10 +114,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Modelo);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Modelo);
         }
 
         /// <summary>
@@ -145,10 +127,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.RelacionAnchoAlto);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.RelacionAnchoAlto);
         }
 
         /// <summary>
@@ -161,10 +140,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Tipo);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Tipo);
         }
 
         /// <summary>
@@ -175,31 +151,40 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var neumatico = await repository.FindAsync(key);
             if (neumatico == null)
+            {
                 return NotFound();
+            }
 
-            var marcaTypeName = EntityTypeGetter<Marca, long>.GetTypeAsString();
+            var marcaTypeName = entityTypeGetter.GetTypeAsString<Marca, long>();
 
             if (navigationProperty.Equals(marcaTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
+                {
                     return NotFound();
+                }
 
                 neumatico.Cambiar(marca);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 

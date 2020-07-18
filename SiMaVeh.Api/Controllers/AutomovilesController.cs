@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public AutomovilesController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public AutomovilesController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -33,10 +36,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.AnioFabricacion);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.AnioFabricacion);
         }
 
         /// <summary>
@@ -49,10 +49,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.CodigoColorPintura);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.CodigoColorPintura);
         }
 
         /// <summary>
@@ -65,10 +62,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Kilometraje);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Kilometraje);
         }
 
         /// <summary>
@@ -82,10 +76,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.ModeloVehiculo);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.ModeloVehiculo);
         }
 
         /// <summary>
@@ -98,10 +89,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.NumeroChasis);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.NumeroChasis);
         }
 
         /// <summary>
@@ -114,10 +102,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Patente);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Patente);
         }
 
         /// <summary>
@@ -131,10 +116,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.ServiciosReparadores);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.ServiciosReparadores);
         }
 
         /// <summary>
@@ -148,10 +130,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Usuario);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Usuario);
         }
 
         /// <summary>
@@ -164,55 +143,72 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var automovil = await repository.FindAsync(key);
             if (automovil == null)
+            {
                 return NotFound();
+            }
 
-            var servicioReparadorCollectionName = EntityTypeGetter<ServicioReparador, long>.GetCollectionNameAsString();
-            var modeloVehiculoTypeName = EntityTypeGetter<ModeloVehiculo, long>.GetTypeAsString();
-            var usuarioTypeName = EntityTypeGetter<Usuario, long>.GetTypeAsString();
+            var servicioReparadorCollectionName = entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>();
+            var modeloVehiculoTypeName = entityTypeGetter.GetTypeAsString<ModeloVehiculo, long>();
+            var usuarioTypeName = entityTypeGetter.GetTypeAsString<Usuario, long>();
 
             if (navigationProperty.Equals(servicioReparadorCollectionName))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
+                {
                     return BadRequest();
+                }
 
                 var servicioReparador = await relatedEntityGetter.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
                 if (servicioReparador == null)
+                {
                     return NotFound();
+                }
 
                 automovil.Agregar(servicioReparador);
             }
             else if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var modeloVehiculo = await relatedEntityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
                 if (modeloVehiculo == null)
+                {
                     return NotFound();
+                }
 
                 automovil.Cambiar(modeloVehiculo);
             }
             else if (navigationProperty.Equals(usuarioTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var usuario = await relatedEntityGetter.TryGetEntityFromRelatedLink<Usuario, long>(link);
                 if (usuario == null)
+                {
                     return NotFound();
+                }
 
                 automovil.Cambiar(usuario);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 

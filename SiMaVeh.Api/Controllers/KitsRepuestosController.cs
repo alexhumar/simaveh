@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -20,7 +19,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public KitsRepuestosController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public KitsRepuestosController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -34,10 +37,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Descripcion);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Descripcion);
         }
 
         /// <summary>
@@ -51,10 +51,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Marca);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Marca);
         }
 
         /// <summary>
@@ -67,10 +64,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -84,10 +78,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Repuestos);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Repuestos);
         }
 
         /// <summary>
@@ -99,43 +90,56 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var kit = await repository.FindAsync(key);
             if (kit == null)
+            {
                 return NotFound();
+            }
 
-            var repuestosCollectionName = EntityTypeGetter<Repuesto, long>.GetCollectionNameAsString();
-            var marcaTypeName = EntityTypeGetter<Marca, long>.GetTypeAsString();
+            var repuestoCollectionName = entityTypeGetter.GetCollectionNameAsString<Repuesto, long>();
+            var marcaTypeName = entityTypeGetter.GetTypeAsString<Marca, long>();
 
-            if (navigationProperty.Equals(repuestosCollectionName))
+            if (navigationProperty.Equals(repuestoCollectionName))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
+                {
                     return BadRequest();
+                }
 
                 var repuesto = await relatedEntityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
                 if (repuesto == null)
+                {
                     return NotFound();
+                }
 
                 kit.Agregar(repuesto);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
                 if (marca == null)
+                {
                     return NotFound();
+                }
 
                 kit.Cambiar(marca);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 

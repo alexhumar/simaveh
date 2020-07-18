@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -18,7 +17,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public PiezasController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public PiezasController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -32,10 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Descripcion);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Descripcion);
         }
 
         /// <summary>
@@ -48,10 +48,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -65,10 +62,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.UbicacionPieza);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.UbicacionPieza);
         }
 
         /// <summary>
@@ -79,31 +73,40 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var fuenteEnergia = await repository.FindAsync(key);
             if (fuenteEnergia == null)
+            {
                 return NotFound();
+            }
 
-            var ubicacionPiezaTypeName = EntityTypeGetter<UbicacionPieza, string>.GetTypeAsString();
+            var ubicacionPiezaTypeName = entityTypeGetter.GetTypeAsString<UbicacionPieza, string>();
 
             if (navigationProperty.Equals(ubicacionPiezaTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var ubicacionPieza = await relatedEntityGetter.TryGetEntityFromRelatedLink<UbicacionPieza, string>(link);
                 if (ubicacionPieza == null)
+                {
                     return NotFound();
+                }
 
                 fuenteEnergia.Cambiar(ubicacionPieza);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 

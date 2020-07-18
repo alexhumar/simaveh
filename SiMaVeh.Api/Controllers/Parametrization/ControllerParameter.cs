@@ -1,6 +1,7 @@
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Model;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
 namespace SiMaVeh.Api.Controllers.Parametrization
 {
@@ -14,10 +15,14 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         /// </summary>
         /// <param name="context"></param>
         /// <param name="relatedEntityGetter"></param>
-        public ControllerParameter(SiMaVehContext context, IRelatedEntityGetter relatedEntityGetter)
+        /// <param name="entityTypeGetter"></param>
+        public ControllerParameter(SiMaVehContext context,
+            IRelatedEntityGetter relatedEntityGetter,
+            IEntityTypeGetter entityTypeGetter)
         {
             Context = context;
             RelatedEntityGetter = relatedEntityGetter;
+            EntityTypeGetter = entityTypeGetter;
         }
 
         /// <summary>
@@ -29,5 +34,10 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         /// RelatedEntityGetter
         /// </summary>
         public IRelatedEntityGetter RelatedEntityGetter { get; set; }
+
+        /// <summary>
+        /// RelatedEntityGetter
+        /// </summary>
+        public IEntityTypeGetter EntityTypeGetter { get; set; }
     }
 }

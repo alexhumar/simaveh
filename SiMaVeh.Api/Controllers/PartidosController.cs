@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public PartidosController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public PartidosController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -32,10 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -49,10 +49,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Provincia);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Provincia);
         }
 
         /// <summary>
@@ -65,10 +62,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Localidades);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Localidades);
         }
 
         /// <summary>
@@ -80,43 +74,56 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="link"></param>
         /// <returns></returns>
         [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] int key,
-        string navigationProperty, [FromBody] Uri link)
+        public async Task<IActionResult> CreateRef([FromODataUri] int key, string navigationProperty, [FromBody] Uri link)
         {
             if (link == null)
+            {
                 return BadRequest();
+            }
 
             var partido = await repository.FindAsync(key);
             if (partido == null)
+            {
                 return NotFound();
+            }
 
-            var localidadCollectionName = EntityTypeGetter<Localidad, long>.GetCollectionNameAsString();
-            var provinciaTypeName = EntityTypeGetter<Provincia, long>.GetTypeAsString();
+            var localidadCollectionName = entityTypeGetter.GetCollectionNameAsString<Localidad, long>();
+            var provinciaTypeName = entityTypeGetter.GetTypeAsString<Provincia, long>();
 
             if (navigationProperty.Equals(localidadCollectionName))
             {
                 if (!Request.Method.Equals(HttpConstants.Post))
+                {
                     return BadRequest();
+                }
 
                 var localidad = await relatedEntityGetter.TryGetEntityFromRelatedLink<Localidad, long>(link);
                 if (localidad == null)
+                {
                     return NotFound();
+                }
 
                 partido.Agregar(localidad);
             }
             else if (navigationProperty.Equals(provinciaTypeName))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
+                {
                     return BadRequest();
+                }
 
                 var provincia = await relatedEntityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
                 if (provincia == null)
+                {
                     return NotFound();
+                }
 
                 partido.Cambiar(provincia);
             }
             else
+            {
                 return StatusCode((int)HttpStatusCode.NotImplemented);
+            }
 
             await repository.SaveChangesAsync();
 
