@@ -1,13 +1,21 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Validators;
 
 namespace SiMaVeh.Api.Registration
 {
-    internal class ValidatorRegistrator
+    /// <summary>
+    /// Registrador de validadores de domain
+    /// </summary>
+    internal class ValidatorDependencyRegistrator : IDependencyRegistrator
     {
-        public static void RegisterValidators(IServiceCollection services)
+        /// <summary>
+        /// Registro de dependencias en la coleccion de servicios
+        /// </summary>
+        /// <param name="services"></param>
+        public void Register(IServiceCollection services)
         {
             services.AddTransient<IValidator<Aceite>, ValidadorAceite>();
             services.AddTransient<IValidator<Automovil>, ValidadorAutomovil>();

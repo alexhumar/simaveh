@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
@@ -45,9 +46,16 @@ using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.Api.Registration
 {
-    internal class DataSeedRegistrator
+    /// <summary>
+    /// Registrador de dependencias DataSeed
+    /// </summary>
+    internal class DataSeedDependencyRegistrator : IDependencyRegistrator
     {
-        public static void RegisterDataSeeds(IServiceCollection services)
+        /// <summary>
+        /// Registro de dependencias en la coleccion de servicios
+        /// </summary>
+        /// <param name="services"></param>
+        public void Register(IServiceCollection services)
         {
             services.AddScoped<ICalculadorIdEquipamientoAirbags, CalculadorIdEquipamientoAirbags>();
             services.AddScoped<ICalculadorIdUbicacionPieza, CalculadorIdUbicacionPieza>();

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Api.Model.Interfaces
 {
     /// <summary>
-    /// IRelatedEntityGetter
+    /// Interfaz de RelatedEntityGetter
     /// </summary>
-    public interface IRelatedEntityGetter
+    internal interface IRelatedEntityGetter
     {
         /// <summary>
         /// TryGetEntityFromRelatedLink

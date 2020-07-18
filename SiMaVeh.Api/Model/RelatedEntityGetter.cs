@@ -1,4 +1,5 @@
 ﻿using SiMaVeh.Api.Model.Interfaces;
+using SiMaVeh.Api.Utils.Interfaces;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
@@ -10,16 +11,28 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// RelatedEntityGetter
     /// </summary>
-    public class RelatedEntityGetter : IRelatedEntityGetter
+    internal class RelatedEntityGetter : IRelatedEntityGetter
     {
         /// <summary>
         /// context
         /// </summary>
         private readonly SiMaVehContext context;
 
-        public RelatedEntityGetter(SiMaVehContext context)
+        /// <summary>
+        /// uriParser
+        /// </summary>
+        private readonly IUriParser uriParser;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="uriParser"></param>
+        public RelatedEntityGetter(SiMaVehContext context,
+            IUriParser uriParser)
         {
             this.context = context;
+            this.uriParser = uriParser;
         }
 
         /// <summary>
@@ -33,7 +46,7 @@ namespace SiMaVeh.Api.Model
         {
             try
             {
-                var relatedKey = Utils.UriParser.GetKeyFromRelatedEntityUri<TLinkBeId>(link);
+                var relatedKey = uriParser.GetKeyFromRelatedEntityUri<TLinkBeId>(link);
                 var repository = new Repository<TLinkBe, TLinkBeId>(context);
 
                 return await repository.FindAsync(relatedKey);

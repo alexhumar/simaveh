@@ -8,20 +8,35 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Registration;
+using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess.Model;
+using SiMaVeh.DataAccess.Model.Interfaces;
+using SiMaVeh.Domain.BusinessLogic.Entities;
 
 namespace SiMaVeh.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        private readonly IModelBuilder modelBuilder;
+        private readonly ISiMaVehDependencyRegistratorBuilder siMaVehDependencyRegistratorBuilder;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            modelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
+            siMaVehDependencyRegistratorBuilder = new SiMaVehDependencyRegistratorBuilder();
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
@@ -48,10 +63,14 @@ namespace SiMaVeh.Api
 
             services.AddOData();
 
-            SiMaVehDIRegistrator.RegisterDI(services);
+            siMaVehDependencyRegistratorBuilder.BuildRegistrator().Register(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -67,7 +86,7 @@ namespace SiMaVeh.Api
 
             app.UseMvc(routeBuilder =>
             {
-                routeBuilder.MapODataServiceRoute("odata", UriConstants.PrefijoRutaOData, SiMaVehModelBuilder.GetEdmModel());
+                routeBuilder.MapODataServiceRoute("odata", UriConstants.PrefijoRutaOData, modelBuilder.GetEdmModel());
                 //Work-around for issue #1175
                 routeBuilder.EnableDependencyInjection();
             });

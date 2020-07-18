@@ -2,14 +2,26 @@ using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.OData.Edm;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
+using SiMaVeh.DataAccess.Model.Interfaces;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.Model
 {
-    public class SiMaVehModelBuilder
+    public class SiMaVehModelBuilder : IModelBuilder
     {
-        public static IEdmModel GetEdmModel()
+        private readonly IEntityTypeGetter entityTypeGetter;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="entityTypeGetter"></param>
+        public SiMaVehModelBuilder(IEntityTypeGetter entityTypeGetter)
+        {
+            this.entityTypeGetter = entityTypeGetter;
+        }
+
+        public IEdmModel GetEdmModel()
         {
             //OrderBy es para que me permita ordenar incluso si estoy accediendo por navigation property
             //El Expand choca bastante con el Page. Si al Page se le pasan parametros, cuando se trata de acceder
@@ -24,7 +36,7 @@ namespace SiMaVeh.DataAccess.Model
 
             var builder = new ODataConventionModelBuilder();
 
-            builder.EntitySet<Aceite>(EntityTypeGetter<Aceite, long>.GetCollectionNameAsString());
+            builder.EntitySet<Aceite>(entityTypeGetter.GetCollectionNameAsString<Aceite, long>());
             builder.EntityType<Aceite>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -32,7 +44,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Automovil>(EntityTypeGetter<Automovil, long>.GetCollectionNameAsString());
+            builder.EntitySet<Automovil>(entityTypeGetter.GetCollectionNameAsString<Automovil, long>());
             builder.EntityType<Automovil>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -41,7 +53,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<CategoriaMarca>(EntityTypeGetter<CategoriaMarca, long>.GetCollectionNameAsString());
+            builder.EntitySet<CategoriaMarca>(entityTypeGetter.GetCollectionNameAsString<CategoriaMarca, long>());
             builder.EntityType<CategoriaMarca>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -53,7 +65,7 @@ namespace SiMaVeh.DataAccess.Model
             //y, debido al Expand, se puede acceder asi: CategoriasMarca([Id])?$expand=Marcas
             builder.EntityType<CategoriaMarca>().Ignore(c => c.MarcaCategoriaMarca);
 
-            builder.EntitySet<Direccion>(EntityTypeGetter<Direccion, long>.GetCollectionNameAsString());
+            builder.EntitySet<Direccion>(entityTypeGetter.GetCollectionNameAsString<Direccion, long>());
             builder.EntityType<Direccion>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -62,7 +74,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<EntidadReparadora>(EntityTypeGetter<EntidadReparadora, long>.GetCollectionNameAsString());
+            builder.EntitySet<EntidadReparadora>(entityTypeGetter.GetCollectionNameAsString<EntidadReparadora, long>());
             builder.EntityType<EntidadReparadora>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -72,7 +84,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
             builder.EntityType<EntidadReparadora>().Ignore(e => e.ReparadorEntidadReparadora);
 
-            builder.EntitySet<EquipamientoAirbags>(EntityTypeGetter<EquipamientoAirbags, string>.GetCollectionNameAsString());
+            builder.EntitySet<EquipamientoAirbags>(entityTypeGetter.GetCollectionNameAsString<EquipamientoAirbags, string>());
             builder.EntityType<EquipamientoAirbags>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -80,7 +92,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Fluido>(EntityTypeGetter<Fluido, long>.GetCollectionNameAsString());
+            builder.EntitySet<Fluido>(entityTypeGetter.GetCollectionNameAsString<Fluido, long>());
             builder.EntityType<Fluido>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -88,7 +100,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<FuenteEnergia>(EntityTypeGetter<FuenteEnergia, long>.GetCollectionNameAsString());
+            builder.EntitySet<FuenteEnergia>(entityTypeGetter.GetCollectionNameAsString<FuenteEnergia, long>());
             builder.EntityType<FuenteEnergia>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -97,7 +109,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<GrupoModelo>(EntityTypeGetter<GrupoModelo, long>.GetCollectionNameAsString());
+            builder.EntitySet<GrupoModelo>(entityTypeGetter.GetCollectionNameAsString<GrupoModelo, long>());
             builder.EntityType<GrupoModelo>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -106,7 +118,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Kit>(EntityTypeGetter<Kit, long>.GetCollectionNameAsString());
+            builder.EntitySet<Kit>(entityTypeGetter.GetCollectionNameAsString<Kit, long>());
             builder.EntityType<Kit>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -115,7 +127,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Localidad>(EntityTypeGetter<Localidad, long>.GetCollectionNameAsString());
+            builder.EntitySet<Localidad>(entityTypeGetter.GetCollectionNameAsString<Localidad, long>());
             builder.EntityType<Localidad>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -124,7 +136,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Mantenimiento>(EntityTypeGetter<Mantenimiento, long>.GetCollectionNameAsString());
+            builder.EntitySet<Mantenimiento>(entityTypeGetter.GetCollectionNameAsString<Mantenimiento, long>());
             builder.EntityType<Mantenimiento>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -133,7 +145,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Marca>(EntityTypeGetter<Marca, long>.GetCollectionNameAsString());
+            builder.EntitySet<Marca>(entityTypeGetter.GetCollectionNameAsString<Marca, long>());
             builder.EntityType<Marca>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -143,7 +155,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
             builder.EntityType<Marca>().Ignore(m => m.MarcaCategoriaMarca);
 
-            builder.EntitySet<ModeloVehiculo>(EntityTypeGetter<ModeloVehiculo, long>.GetCollectionNameAsString());
+            builder.EntitySet<ModeloVehiculo>(entityTypeGetter.GetCollectionNameAsString<ModeloVehiculo, long>());
             builder.EntityType<ModeloVehiculo>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -152,7 +164,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Moneda>(EntityTypeGetter<Moneda, string>.GetCollectionNameAsString());
+            builder.EntitySet<Moneda>(entityTypeGetter.GetCollectionNameAsString<Moneda, string>());
             builder.EntityType<Moneda>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -160,7 +172,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Neumatico>(EntityTypeGetter<Neumatico, long>.GetCollectionNameAsString());
+            builder.EntitySet<Neumatico>(entityTypeGetter.GetCollectionNameAsString<Neumatico, long>());
             builder.EntityType<Neumatico>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -169,7 +181,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Pais>(EntityTypeGetter<Pais, long>.GetCollectionNameAsString());
+            builder.EntitySet<Pais>(entityTypeGetter.GetCollectionNameAsString<Pais, long>());
             builder.EntityType<Pais>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -178,7 +190,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Partido>(EntityTypeGetter<Partido, long>.GetCollectionNameAsString());
+            builder.EntitySet<Partido>(entityTypeGetter.GetCollectionNameAsString<Partido, long>());
             builder.EntityType<Partido>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -187,7 +199,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<PeriodicidadMantenimiento>(EntityTypeGetter<PeriodicidadMantenimiento, long>.GetCollectionNameAsString());
+            builder.EntitySet<PeriodicidadMantenimiento>(entityTypeGetter.GetCollectionNameAsString<PeriodicidadMantenimiento, long>());
             builder.EntityType<PeriodicidadMantenimiento>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -196,7 +208,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Pieza>(EntityTypeGetter<Pieza, long>.GetCollectionNameAsString());
+            builder.EntitySet<Pieza>(entityTypeGetter.GetCollectionNameAsString<Pieza, long>());
             builder.EntityType<Pieza>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -205,7 +217,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<PresionNeumatico>(EntityTypeGetter<PresionNeumatico, long>.GetCollectionNameAsString());
+            builder.EntitySet<PresionNeumatico>(entityTypeGetter.GetCollectionNameAsString<PresionNeumatico, long>());
             builder.EntityType<PresionNeumatico>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -214,11 +226,10 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Provincia>(EntityTypeGetter<Provincia, long>.GetCollectionNameAsString());
+            builder.EntitySet<Provincia>(entityTypeGetter.GetCollectionNameAsString<Provincia, long>());
             builder.EntityType<Provincia>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
-                .Filter()
                 .Filter()
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
@@ -228,7 +239,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Abstract()
                 .Ignore(r => r.KitRepuesto);
 
-            builder.EntitySet<Reparador>(EntityTypeGetter<Reparador, long>.GetCollectionNameAsString());
+            builder.EntitySet<Reparador>(entityTypeGetter.GetCollectionNameAsString<Reparador, long>());
             builder.EntityType<Reparador>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -238,7 +249,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
             builder.EntityType<Reparador>().Ignore(r => r.ReparadorEntidadReparadora);
 
-            builder.EntitySet<Repuesto>(EntityTypeGetter<Repuesto, long>.GetCollectionNameAsString());
+            builder.EntitySet<Repuesto>(entityTypeGetter.GetCollectionNameAsString<Repuesto, long>());
             builder.EntityType<Repuesto>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -247,7 +258,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<ServicioReparador>(EntityTypeGetter<ServicioReparador, long>.GetCollectionNameAsString());
+            builder.EntitySet<ServicioReparador>(entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>());
             builder.EntityType<ServicioReparador>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -256,7 +267,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Telefono>(EntityTypeGetter<Telefono, long>.GetCollectionNameAsString());
+            builder.EntitySet<Telefono>(entityTypeGetter.GetCollectionNameAsString<Telefono, long>());
             builder.EntityType<Telefono>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -265,7 +276,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<TipoCambio>(EntityTypeGetter<TipoCambio, long>.GetCollectionNameAsString());
+            builder.EntitySet<TipoCambio>(entityTypeGetter.GetCollectionNameAsString<TipoCambio, long>());
             builder.EntityType<TipoCambio>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)
@@ -274,7 +285,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<TipoDocumento>(EntityTypeGetter<TipoDocumento, long>.GetCollectionNameAsString());
+            builder.EntitySet<TipoDocumento>(entityTypeGetter.GetCollectionNameAsString<TipoDocumento, long>());
             builder.EntityType<TipoDocumento>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -282,7 +293,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<TipoEntidadReparadora>(EntityTypeGetter<TipoEntidadReparadora, long>.GetCollectionNameAsString());
+            builder.EntitySet<TipoEntidadReparadora>(entityTypeGetter.GetCollectionNameAsString<TipoEntidadReparadora, long>());
             builder.EntityType<TipoEntidadReparadora>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -290,7 +301,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<TipoFuenteEnergia>(EntityTypeGetter<TipoFuenteEnergia, long>.GetCollectionNameAsString());
+            builder.EntitySet<TipoFuenteEnergia>(entityTypeGetter.GetCollectionNameAsString<TipoFuenteEnergia, long>());
             builder.EntityType<TipoFuenteEnergia>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -298,7 +309,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<TipoTelefono>(EntityTypeGetter<TipoTelefono, long>.GetCollectionNameAsString());
+            builder.EntitySet<TipoTelefono>(entityTypeGetter.GetCollectionNameAsString<TipoTelefono, long>());
             builder.EntityType<TipoTelefono>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -306,7 +317,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<UbicacionPieza>(EntityTypeGetter<UbicacionPieza, string>.GetCollectionNameAsString());
+            builder.EntitySet<UbicacionPieza>(entityTypeGetter.GetCollectionNameAsString<UbicacionPieza, string>());
             builder.EntityType<UbicacionPieza>()
                 .Count(QueryOptionSetting.Allowed)
                 .Filter()
@@ -314,7 +325,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
-            builder.EntitySet<Usuario>(EntityTypeGetter<Usuario, long>.GetCollectionNameAsString());
+            builder.EntitySet<Usuario>(entityTypeGetter.GetCollectionNameAsString<Usuario, long>());
             builder.EntityType<Usuario>()
                 .Count(QueryOptionSetting.Allowed)
                 .Expand(QueryConstants.MaxDepthNav)

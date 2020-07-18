@@ -7,7 +7,7 @@ namespace SiMaVeh.Api.Controllers.Parametrization.Interfaces
     /// <summary>
     /// Interface IControllerParameter
     /// </summary>
-    public interface IControllerParameter
+    internal interface IControllerParameter
     {
         /// <summary>
         /// Context

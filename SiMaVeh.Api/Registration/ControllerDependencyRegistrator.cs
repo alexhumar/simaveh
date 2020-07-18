@@ -3,26 +3,29 @@ using SiMaVeh.Api.Controllers.Parametrization;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Api.Model;
 using SiMaVeh.Api.Model.Interfaces;
-using SiMaVeh.DataAccess.DataSeed;
-using SiMaVeh.DataAccess.DataSeed.Seeders;
+using SiMaVeh.Api.Registration.Interfaces;
+using SiMaVeh.Api.Utils;
+using SiMaVeh.Api.Utils.Interfaces;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 
 namespace SiMaVeh.Api.Registration
 {
-    internal class SiMaVehDIRegistrator
+    /// <summary>
+    /// Registrador de dependencias de controllers
+    /// </summary>
+    internal class ControllerDependencyRegistrator : IDependencyRegistrator
     {
-        public static void RegisterDI(IServiceCollection services)
+        /// <summary>
+        /// Registro de dependencias en la coleccion de servicios
+        /// </summary>
+        /// <param name="services"></param>
+        public void Register(IServiceCollection services)
         {
+            services.AddScoped<IUriParser, ODataUriParser>();
             services.AddScoped<IRelatedEntityGetter, RelatedEntityGetter>();
             services.AddScoped<IEntityTypeGetter, EntityTypeGetter>();
             services.AddScoped<IControllerParameter, ControllerParameter>();
-            services.AddScoped<PaisSeeder, PaisSeeder>();
-            services.AddScoped<ProvinciaSeeder, ProvinciaSeeder>();
-            services.AddScoped<IDataSeeder, DataSeeder>();
-
-            ValidatorRegistrator.RegisterValidators(services);
-            DataSeedRegistrator.RegisterDataSeeds(services);
         }
     }
 }
