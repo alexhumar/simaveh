@@ -37,6 +37,9 @@ using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza;
 using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.Interfaces;
+using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Enums.Parsers;
+using SiMaVeh.Domain.Enums.Parsers.Interfaces;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags.Interfaces;
@@ -57,6 +60,7 @@ namespace SiMaVeh.Api.Registration
         /// <param name="services"></param>
         public void Register(IServiceCollection services)
         {
+            services.AddScoped<IEnumParser<TipoAirbagLateral>, TipoAirbagLateralParser>();
             services.AddScoped<ICalculadorIdEquipamientoAirbags, CalculadorIdEquipamientoAirbags>();
             services.AddScoped<ICalculadorIdUbicacionPieza, CalculadorIdUbicacionPieza>();
 

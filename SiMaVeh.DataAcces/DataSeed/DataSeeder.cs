@@ -20,6 +20,7 @@ using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters;
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono;
 using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza;
+using SiMaVeh.Domain.Enums.Parsers;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
 using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
@@ -104,7 +105,7 @@ namespace SiMaVeh.DataAccess.DataSeed
         /// </summary>
         public DataSeeder()
         {
-            var calculadorIdEquipamientoAirbags = new CalculadorIdEquipamientoAirbags();
+            var calculadorIdEquipamientoAirbags = new CalculadorIdEquipamientoAirbags(new TipoAirbagLateralParser());
             var calculadorIdUbicacionPieza = new CalculadorIdUbicacionPieza();
             var datosEntidadBuilder = new DatosEntidadBuilder(calculadorIdEquipamientoAirbags, calculadorIdUbicacionPieza);
             var paisFixtureGetter = new PaisFixtureGetter(datosEntidadBuilder);
