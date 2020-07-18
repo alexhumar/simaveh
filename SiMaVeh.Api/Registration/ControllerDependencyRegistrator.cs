@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SiMaVeh.Api.Controllers.Parametrization;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.Api.ErrorManagement;
+using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.Api.Registration.Interfaces;
@@ -22,9 +24,10 @@ namespace SiMaVeh.Api.Registration
         /// <param name="services"></param>
         public void Register(IServiceCollection services)
         {
-            services.AddScoped<IUriParser, ODataUriParser>();
+            services.AddScoped<IUriParser, UriParser>();
             services.AddScoped<IRelatedEntityGetter, RelatedEntityGetter>();
             services.AddScoped<IEntityTypeGetter, EntityTypeGetter>();
+            services.AddScoped<IErrorsBuilder, ErrorsBuilder>();
             services.AddScoped<IControllerParameter, ControllerParameter>();
         }
     }

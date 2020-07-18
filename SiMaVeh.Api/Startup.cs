@@ -17,8 +17,7 @@ namespace SiMaVeh.Api
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
+        private readonly IConfiguration configuration;
         private readonly IModelBuilder modelBuilder;
         private readonly ISiMaVehDependencyRegistratorBuilder siMaVehDependencyRegistratorBuilder;
 
@@ -28,7 +27,7 @@ namespace SiMaVeh.Api
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
             modelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
             siMaVehDependencyRegistratorBuilder = new SiMaVehDependencyRegistratorBuilder();
         }
@@ -39,7 +38,7 @@ namespace SiMaVeh.Api
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration.GetConnectionString("DefaultConnection");
+            var connection = configuration.GetConnectionString("DefaultConnection");
             services
                 .AddDbContext<SiMaVehContext>(options => options
                     .UseLazyLoadingProxies()

@@ -10,7 +10,7 @@ namespace SiMaVeh.Api.Utils
     /// <summary>
     /// UriParser
     /// </summary>
-    internal class ODataUriParser : IUriParser
+    internal class UriParser : IUriParser
     {
         private readonly IModelBuilder modelBuilder;
 
@@ -18,7 +18,7 @@ namespace SiMaVeh.Api.Utils
         /// Constructor
         /// </summary>
         /// <param name="modelBuilder"></param>
-        public ODataUriParser(IModelBuilder modelBuilder)
+        public UriParser(IModelBuilder modelBuilder)
         {
             this.modelBuilder = modelBuilder;
         }
@@ -33,7 +33,7 @@ namespace SiMaVeh.Api.Utils
         {
             try
             {
-                var oDataUriParser = new Microsoft.OData.UriParser.ODataUriParser(modelBuilder.GetEdmModel(),
+                var oDataUriParser = new ODataUriParser(modelBuilder.GetEdmModel(),
                     new Uri($"{uri.Scheme}://{uri.Host}:{uri.Port}/{UriConstants.PrefijoRutaOData}/"), uri);
                 var oDataKeySegment = (KeySegment)oDataUriParser.ParsePath().LastSegment;
 

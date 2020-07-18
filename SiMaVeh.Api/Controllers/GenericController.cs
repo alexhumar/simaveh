@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Api.ErrorManagement;
+using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Model;
@@ -42,6 +42,11 @@ namespace SiMaVeh.Api.Controllers
         protected readonly IEntityTypeGetter entityTypeGetter;
 
         /// <summary>
+        /// errorsBuilder
+        /// </summary>
+        protected readonly IErrorsBuilder errorsBuilder;
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="parameters"></param>
@@ -51,6 +56,7 @@ namespace SiMaVeh.Api.Controllers
             repository = new Repository<TBe, TBeId>(context);
             relatedEntityGetter = parameters.RelatedEntityGetter;
             entityTypeGetter = parameters.EntityTypeGetter;
+            errorsBuilder = parameters.ErrorsBuilder;
         }
 
         /// <summary>
@@ -123,7 +129,7 @@ namespace SiMaVeh.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
 
             try
@@ -132,7 +138,7 @@ namespace SiMaVeh.Api.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode(500, errorsBuilder.BuildErrors(e));
             }
 
             return Created(entity);
@@ -149,7 +155,7 @@ namespace SiMaVeh.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
 
             if (!await ExisteEntidad(key))
@@ -168,7 +174,7 @@ namespace SiMaVeh.Api.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode(500, errorsBuilder.BuildErrors(e));
             }
 
             return Updated(entity);
@@ -185,7 +191,7 @@ namespace SiMaVeh.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
 
             var existingEntity = await repository.FindAsync(key);
@@ -202,7 +208,7 @@ namespace SiMaVeh.Api.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode(500, errorsBuilder.BuildErrors(e));
             }
 
             return Updated(existingEntity);

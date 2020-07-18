@@ -1,4 +1,5 @@
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
@@ -16,13 +17,16 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         /// <param name="context"></param>
         /// <param name="relatedEntityGetter"></param>
         /// <param name="entityTypeGetter"></param>
+        /// <param name="errorsBuilder"></param>
         public ControllerParameter(SiMaVehContext context,
             IRelatedEntityGetter relatedEntityGetter,
-            IEntityTypeGetter entityTypeGetter)
+            IEntityTypeGetter entityTypeGetter,
+            IErrorsBuilder errorsBuilder)
         {
             Context = context;
             RelatedEntityGetter = relatedEntityGetter;
             EntityTypeGetter = entityTypeGetter;
+            ErrorsBuilder = errorsBuilder;
         }
 
         /// <summary>
@@ -39,5 +43,10 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         /// RelatedEntityGetter
         /// </summary>
         public IEntityTypeGetter EntityTypeGetter { get; set; }
+
+        /// <summary>
+        /// ErrorsBuilder
+        /// </summary>
+        public IErrorsBuilder ErrorsBuilder { get; set; }
     }
 }
