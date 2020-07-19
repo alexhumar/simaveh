@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Api.Model
 {
     /// <summary>
-    /// RelatedEntityChanger
+    /// RelatedEntityAdder
     /// </summary>
-    internal class RelatedEntityChanger : IRelatedEntityChanger
+    internal class RelatedEntityAdder : IRelatedEntityAdder
     {
         private readonly SiMaVehContext context;
         private readonly IRelatedEntityGetter relatedEntityGetter;
@@ -23,7 +23,7 @@ namespace SiMaVeh.Api.Model
         /// </summary>
         /// <param name="context"></param>
         /// <param name="relatedEntityGetter"></param>
-        public RelatedEntityChanger(SiMaVehContext context,
+        public RelatedEntityAdder(SiMaVehContext context,
             IRelatedEntityGetter relatedEntityGetter)
         {
 
@@ -32,7 +32,7 @@ namespace SiMaVeh.Api.Model
         }
 
         /// <summary>
-        /// TryChangeRelatedEntity
+        /// TryAddRelatedEntityAsync
         /// </summary>
         /// <typeparam name="TTargetBe"></typeparam>
         /// <typeparam name="TTargetBeId"></typeparam>
@@ -42,14 +42,13 @@ namespace SiMaVeh.Api.Model
         /// <param name="link"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri link, TTargetBeId key)
-            where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
+        public async Task<HttpStatusCode> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri link, TTargetBeId key)
+            where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
             try
             {
-                //TODO: reemplazar HttpConstants por HttpMethods
-                if ((link == null) || !HttpMethods.IsPut(request.Method))
+                if ((link == null) || !HttpMethods.IsPost(request.Method))
                 {
                     return HttpStatusCode.BadRequest;
                 }
@@ -68,7 +67,7 @@ namespace SiMaVeh.Api.Model
                     return HttpStatusCode.NotFound;
                 }
 
-                mainBe.Cambiar(relatedBe);
+                mainBe.Agregar(relatedBe);
 
                 await repositoryMainBe.SaveChangesAsync();
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
@@ -115,7 +116,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             var resultado = HttpStatusCode.NotImplemented;
@@ -125,19 +126,19 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(recambioTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Recambio, long>(Request, link, repository, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Recambio, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(EntityProperty.MonedaMontoRecambio))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Moneda, string>(Request, link, repository, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Moneda, string>(Request, link, key);
             }
             else if (navigationProperty.Equals(servicioReparadorTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, ServicioReparador, long>(Request, link, repository, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, ServicioReparador, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(reparadorTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Reparador, long>(Request, link, repository, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Reparador, long>(Request, link, key);
             }
 
             return ResultFromEnum(resultado);

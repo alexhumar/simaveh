@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Api.Model.Interfaces
 {
     /// <summary>
-    /// Interfaz de RelatedEntityChanger
+    /// Interfaz de RelatedEntityAdder
     /// </summary>
-    public interface IRelatedEntityChanger
+    public interface IRelatedEntityAdder
     {
         /// <summary>
-        /// TryChangeRelatedEntity
+        /// TryAddRelatedEntityAsync
         /// </summary>
         /// <typeparam name="TTargetBe"></typeparam>
         /// <typeparam name="TTargetBeId"></typeparam>
@@ -23,8 +23,8 @@ namespace SiMaVeh.Api.Model.Interfaces
         /// <param name="link"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri link, TTargetBeId key)
-            where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
+        Task<HttpStatusCode> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri link, TTargetBeId key)
+            where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>;
     }
 }

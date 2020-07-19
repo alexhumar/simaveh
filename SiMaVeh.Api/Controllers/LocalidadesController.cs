@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Domain.Models;
 using System;
@@ -71,7 +72,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             var resultado = HttpStatusCode.NotImplemented;
@@ -79,7 +80,7 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(partidoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Localidad, long, Partido, long>(Request, link, repository, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Localidad, long, Partido, long>(Request, link, key);
             }
 
             return ResultFromEnum(resultado);

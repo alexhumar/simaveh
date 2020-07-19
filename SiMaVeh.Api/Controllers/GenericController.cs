@@ -42,6 +42,11 @@ namespace SiMaVeh.Api.Controllers
         protected readonly IRelatedEntityChanger relatedEntityChanger;
 
         /// <summary>
+        /// relatedEntityAdder
+        /// </summary>
+        protected readonly IRelatedEntityAdder relatedEntityAdder;
+
+        /// <summary>
         /// entityTypeGetter
         /// </summary>
         protected readonly IEntityTypeGetter entityTypeGetter;
@@ -61,6 +66,7 @@ namespace SiMaVeh.Api.Controllers
             repository = new Repository<TBe, TBeId>(context);
             relatedEntityGetter = parameters.RelatedEntityGetter;
             relatedEntityChanger = parameters.RelatedEntityChanger;
+            relatedEntityAdder = parameters.RelatedEntityAdder;
             entityTypeGetter = parameters.EntityTypeGetter;
             errorsBuilder = parameters.ErrorsBuilder;
         }
