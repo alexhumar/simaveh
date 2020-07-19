@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Domain.Models;
 using System;
@@ -75,42 +74,15 @@ namespace SiMaVeh.Api.Controllers
         [AcceptVerbs("POST", "PUT")]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var localidad = await repository.FindAsync(key);
-            if (localidad == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var partidoTypeName = entityTypeGetter.GetTypeAsString<Partido, long>();
 
             if (navigationProperty.Equals(partidoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var partido = await relatedEntityGetter.TryGetEntityFromRelatedLink<Partido, long>(link);
-                if (partido == null)
-                {
-                    return NotFound();
-                }
-
-                localidad.Cambiar(partido);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Localidad, long, Partido, long>(Request, link, repository, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

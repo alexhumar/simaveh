@@ -37,6 +37,11 @@ namespace SiMaVeh.Api.Controllers
         protected readonly IRelatedEntityGetter relatedEntityGetter;
 
         /// <summary>
+        /// relatedEntityChanger
+        /// </summary>
+        protected readonly IRelatedEntityChanger relatedEntityChanger;
+
+        /// <summary>
         /// entityTypeGetter
         /// </summary>
         protected readonly IEntityTypeGetter entityTypeGetter;
@@ -55,8 +60,22 @@ namespace SiMaVeh.Api.Controllers
             context = parameters.Context;
             repository = new Repository<TBe, TBeId>(context);
             relatedEntityGetter = parameters.RelatedEntityGetter;
+            relatedEntityChanger = parameters.RelatedEntityChanger;
             entityTypeGetter = parameters.EntityTypeGetter;
             errorsBuilder = parameters.ErrorsBuilder;
+        }
+
+        protected IActionResult ResultFromEnum(HttpStatusCode httpStatusCode)
+        {
+            return httpStatusCode switch
+            {
+                HttpStatusCode.BadRequest => BadRequest(),
+                HttpStatusCode.NoContent => NoContent(),
+                HttpStatusCode.NotFound => NotFound(),
+                HttpStatusCode.NotImplemented => StatusCode((int)HttpStatusCode.NoContent),
+                HttpStatusCode.InternalServerError => StatusCode((int)HttpStatusCode.InternalServerError),
+                _ => Ok(),
+            };
         }
 
         /// <summary>
