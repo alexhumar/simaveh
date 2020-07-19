@@ -48,7 +48,6 @@ namespace SiMaVeh.Api.Model
         {
             try
             {
-                //TODO: reemplazar HttpConstants por HttpMethods
                 if ((link == null) || !HttpMethods.IsPut(request.Method))
                 {
                     return HttpStatusCode.BadRequest;

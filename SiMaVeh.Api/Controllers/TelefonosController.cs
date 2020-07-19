@@ -71,61 +71,23 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var telefono = await repository.FindAsync(key);
-            if (telefono == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var tipoTelefonoTypeName = entityTypeGetter.GetTypeAsString<TipoTelefono, long>();
             var personaTypeName = entityTypeGetter.GetTypeAsString<Persona, long>();
 
             if (navigationProperty.Equals(tipoTelefonoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var tipoTelefono = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoTelefono, long>(link);
-                if (tipoTelefono == null)
-                {
-                    return NotFound();
-                }
-
-                telefono.Cambiar(tipoTelefono);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Telefono, long, TipoTelefono, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(personaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var persona = await relatedEntityGetter.TryGetEntityFromRelatedLink<Persona, long>(link);
-                if (persona == null)
-                {
-                    return NotFound();
-                }
-
-                telefono.Cambiar(persona);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Telefono, long, Persona, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

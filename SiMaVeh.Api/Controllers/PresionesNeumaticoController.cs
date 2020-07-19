@@ -100,61 +100,23 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var presionNeumatico = await repository.FindAsync(key);
-            if (presionNeumatico == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var modeloVehiculoTypeName = entityTypeGetter.GetTypeAsString<ModeloVehiculo, long>();
             var neumaticoTypeName = entityTypeGetter.GetTypeAsString<Neumatico, long>();
 
             if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var modeloVehiculo = await relatedEntityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
-                if (modeloVehiculo == null)
-                {
-                    return NotFound();
-                }
-
-                presionNeumatico.Cambiar(modeloVehiculo);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PresionNeumatico, long, ModeloVehiculo, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(neumaticoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var neumatico = await relatedEntityGetter.TryGetEntityFromRelatedLink<Neumatico, long>(link);
-                if (neumatico == null)
-                {
-                    return NotFound();
-                }
-
-                presionNeumatico.Cambiar(neumatico);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PresionNeumatico, long, Neumatico, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

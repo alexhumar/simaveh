@@ -72,45 +72,18 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var fuenteEnergia = await repository.FindAsync(key);
-            if (fuenteEnergia == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var ubicacionPiezaTypeName = entityTypeGetter.GetTypeAsString<UbicacionPieza, string>();
 
             if (navigationProperty.Equals(ubicacionPiezaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var ubicacionPieza = await relatedEntityGetter.TryGetEntityFromRelatedLink<UbicacionPieza, string>(link);
-                if (ubicacionPieza == null)
-                {
-                    return NotFound();
-                }
-
-                fuenteEnergia.Cambiar(ubicacionPieza);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Pieza, long, UbicacionPieza, string>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

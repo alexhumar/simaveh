@@ -148,136 +148,43 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var modeloVehiculo = await repository.FindAsync(key);
-            if (modeloVehiculo == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var grupoModeloTypeName = entityTypeGetter.GetTypeAsString<GrupoModelo, long>();
             var tipoFuenteEnergiaTypeName = entityTypeGetter.GetTypeAsString<TipoFuenteEnergia, long>();
 
             if (navigationProperty.Equals(grupoModeloTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var grupoModelo = await relatedEntityGetter.TryGetEntityFromRelatedLink<GrupoModelo, long>(link);
-                if (grupoModelo == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Cambiar(grupoModelo);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, GrupoModelo, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(EntityProperty.AceiteRecomendado))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var aceite = await relatedEntityGetter.TryGetEntityFromRelatedLink<Aceite, long>(link);
-                if (aceite == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Cambiar(aceite);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, Aceite, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(EntityProperty.Airbags))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var airbags = await relatedEntityGetter.TryGetEntityFromRelatedLink<EquipamientoAirbags, string>(link);
-                if (airbags == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Cambiar(airbags);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, EquipamientoAirbags, string>(Request, link, key);
             }
             else if (navigationProperty.Equals(tipoFuenteEnergiaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var tipoFuenteEnergia = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
-                if (tipoFuenteEnergia == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Cambiar(tipoFuenteEnergia);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, TipoFuenteEnergia, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var fuenteEnergia = await relatedEntityGetter.TryGetEntityFromRelatedLink<FuenteEnergia, long>(link);
-                if (fuenteEnergia == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Cambiar(fuenteEnergia);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var repuesto = await relatedEntityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
-                if (repuesto == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Agregar(repuesto);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var presionNeumatico = await relatedEntityGetter.TryGetEntityFromRelatedLink<PresionNeumatico, long>(link);
-                if (presionNeumatico == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Agregar(presionNeumatico);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         /// <summary>

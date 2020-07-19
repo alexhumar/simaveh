@@ -74,61 +74,23 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var fuenteEnergia = await repository.FindAsync(key);
-            if (fuenteEnergia == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var tipoFuenteEnergiaTypeName = entityTypeGetter.GetTypeAsString<TipoFuenteEnergia, long>();
             var marcaTypeName = entityTypeGetter.GetTypeAsString<Marca, long>();
 
             if (navigationProperty.Equals(tipoFuenteEnergiaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var tipoFuenteEnergia = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoFuenteEnergia, long>(link);
-                if (tipoFuenteEnergia == null)
-                {
-                    return NotFound();
-                }
-
-                fuenteEnergia.Cambiar(tipoFuenteEnergia);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<FuenteEnergia, long, TipoFuenteEnergia, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
-                if (marca == null)
-                {
-                    return NotFound();
-                }
-
-                fuenteEnergia.Cambiar(marca);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<FuenteEnergia, long, Marca, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

@@ -84,9 +84,11 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
+            //TODO: ver como aplicar relatedEntityChanger aqui. Quizas convenga hacer dos metodos especificos de dicha clase,
+            //uno para MonedaOrigen, y otro para MonedaDestino...
             if (link == null)
             {
                 return BadRequest();
@@ -98,17 +100,19 @@ namespace SiMaVeh.Api.Controllers
                 return NotFound();
             }
 
+            var resultado = HttpStatusCode.NotImplemented;
+
             if (navigationProperty.Equals(EntityProperty.MonedaOrigen))
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                 {
-                    return BadRequest();
+                    resultado = HttpStatusCode.BadRequest;
                 }
 
                 var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
                 if (moneda == null)
                 {
-                    return NotFound();
+                    resultado = HttpStatusCode.NotFound;
                 }
 
                 tipoCambio.CambiarMonedaOrigen(moneda);
@@ -117,25 +121,21 @@ namespace SiMaVeh.Api.Controllers
             {
                 if (!Request.Method.Equals(HttpConstants.Put))
                 {
-                    return BadRequest();
+                    resultado = HttpStatusCode.BadRequest;
                 }
 
                 var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
                 if (moneda == null)
                 {
-                    return NotFound();
+                    resultado = HttpStatusCode.NotFound;
                 }
 
                 tipoCambio.CambiarMonedaDestino(moneda);
             }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
-            }
 
             await repository.SaveChangesAsync();
 
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

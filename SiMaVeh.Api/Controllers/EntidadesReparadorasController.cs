@@ -105,20 +105,10 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var entidadReparadora = await repository.FindAsync(key);
-            if (entidadReparadora == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var reparadorCollectionName = entityTypeGetter.GetCollectionNameAsString<Reparador, long>();
             var servicioReparadorCollectionName = entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>();
             var direccionTypeName = entityTypeGetter.GetTypeAsString<Direccion, long>();
@@ -126,72 +116,22 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(reparadorCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var reparador = await relatedEntityGetter.TryGetEntityFromRelatedLink<Reparador, long>(link);
-                if (reparador == null)
-                {
-                    return NotFound();
-                }
-
-                entidadReparadora.Agregar(reparador);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<EntidadReparadora, long, Reparador, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(servicioReparadorCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var servicioReparador = await relatedEntityGetter.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
-                if (servicioReparador == null)
-                {
-                    return NotFound();
-                }
-
-                entidadReparadora.Agregar(servicioReparador);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<EntidadReparadora, long, ServicioReparador, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(direccionTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var direccion = await relatedEntityGetter.TryGetEntityFromRelatedLink<Direccion, long>(link);
-                if (direccion == null)
-                {
-                    return NotFound();
-                }
-
-                entidadReparadora.Cambiar(direccion);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<EntidadReparadora, long, Direccion, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(tipoEntidadTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var tipoEntidad = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoEntidadReparadora, long>(link);
-                if (tipoEntidad == null)
-                {
-                    return NotFound();
-                }
-
-                entidadReparadora.Cambiar(tipoEntidad);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<EntidadReparadora, long, TipoEntidadReparadora, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion
