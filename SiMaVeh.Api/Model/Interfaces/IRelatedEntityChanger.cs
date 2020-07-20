@@ -26,5 +26,23 @@ namespace SiMaVeh.Api.Model.Interfaces
         Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri link, TTargetBeId key)
             where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>;
+
+        /// <summary>
+        /// TryChangeMonedaOrigenAsync
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="link"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, Uri link, long key);
+
+        /// <summary>
+        /// TryChangeMonedaDestinoAsync
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="link"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, Uri link, long key);
     }
 }

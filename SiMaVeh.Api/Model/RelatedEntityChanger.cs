@@ -15,6 +15,8 @@ namespace SiMaVeh.Api.Model
     /// </summary>
     internal class RelatedEntityChanger : IRelatedEntityChanger
     {
+        //TODO: mejorar la implementacion de estos metodos. Sobre todo los de tipo cambio.
+
         private readonly SiMaVehContext context;
         private readonly IRelatedEntityGetter relatedEntityGetter;
 
@@ -70,6 +72,90 @@ namespace SiMaVeh.Api.Model
                 mainBe.Cambiar(relatedBe);
 
                 await repositoryMainBe.SaveChangesAsync();
+
+                return HttpStatusCode.NoContent;
+            }
+            catch (Exception)
+            {
+                return HttpStatusCode.InternalServerError;
+            }
+        }
+
+        /// <summary>
+        /// TryChangeMonedaOrigenAsync
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="link"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public async Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, Uri link, long key)
+        {
+            try
+            {
+                if (link == null || !HttpMethods.IsPut(request.Method))
+                {
+                    return HttpStatusCode.BadRequest;
+                }
+
+                var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
+
+                var tipoCambio = await repositoryTipoCambio.FindAsync(key);
+                if (tipoCambio == null)
+                {
+                    return HttpStatusCode.NotFound;
+                }
+
+                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
+                if (moneda == null)
+                {
+                    return HttpStatusCode.NotFound;
+                }
+
+                tipoCambio.CambiarMonedaOrigen(moneda);
+
+                await repositoryTipoCambio.SaveChangesAsync();
+
+                return HttpStatusCode.NoContent;
+            }
+            catch (Exception)
+            {
+                return HttpStatusCode.InternalServerError;
+            }
+        }
+
+        /// <summary>
+        /// TryChangeMonedaDestinoAsync
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="link"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public async Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, Uri link, long key)
+        {
+            try
+            {
+                if (link == null || !HttpMethods.IsPut(request.Method))
+                {
+                    return HttpStatusCode.BadRequest;
+                }
+
+                var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
+
+                var tipoCambio = await repositoryTipoCambio.FindAsync(key);
+                if (tipoCambio == null)
+                {
+                    return HttpStatusCode.NotFound;
+                }
+
+                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
+                if (moneda == null)
+                {
+                    return HttpStatusCode.NotFound;
+                }
+
+                tipoCambio.CambiarMonedaDestino(moneda);
+
+                await repositoryTipoCambio.SaveChangesAsync();
 
                 return HttpStatusCode.NoContent;
             }
