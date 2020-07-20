@@ -150,45 +150,18 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var neumatico = await repository.FindAsync(key);
-            if (neumatico == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var marcaTypeName = entityTypeGetter.GetTypeAsString<Marca, long>();
 
             if (navigationProperty.Equals(marcaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
-                if (marca == null)
-                {
-                    return NotFound();
-                }
-
-                neumatico.Cambiar(marca);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Neumatico, long, Marca, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

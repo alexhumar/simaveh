@@ -73,61 +73,23 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] int key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var partido = await repository.FindAsync(key);
-            if (partido == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var localidadCollectionName = entityTypeGetter.GetCollectionNameAsString<Localidad, long>();
             var provinciaTypeName = entityTypeGetter.GetTypeAsString<Provincia, long>();
 
             if (navigationProperty.Equals(localidadCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var localidad = await relatedEntityGetter.TryGetEntityFromRelatedLink<Localidad, long>(link);
-                if (localidad == null)
-                {
-                    return NotFound();
-                }
-
-                partido.Agregar(localidad);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Partido, long, Localidad, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(provinciaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var provincia = await relatedEntityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
-                if (provincia == null)
-                {
-                    return NotFound();
-                }
-
-                partido.Cambiar(provincia);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Partido, long, Provincia, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         /*/// <summary>

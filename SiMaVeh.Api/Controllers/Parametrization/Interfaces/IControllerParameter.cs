@@ -21,6 +21,16 @@ namespace SiMaVeh.Api.Controllers.Parametrization.Interfaces
         IRelatedEntityGetter RelatedEntityGetter { get; }
 
         /// <summary>
+        /// RelatedEntityChanger
+        /// </summary>
+        IRelatedEntityChanger RelatedEntityChanger { get; }
+
+        /// <summary>
+        /// RelatedEntityAdder
+        /// </summary>
+        IRelatedEntityAdder RelatedEntityAdder { get; }
+
+        /// <summary>
         /// RelatedEntityGetter
         /// </summary>
         IEntityTypeGetter EntityTypeGetter { get; }

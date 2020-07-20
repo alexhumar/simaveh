@@ -60,45 +60,18 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var categoriaMarca = await repository.FindAsync(key);
-            if (categoriaMarca == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var marcaCollectionName = entityTypeGetter.GetCollectionNameAsString<Marca, long>();
 
             if (navigationProperty.Equals(marcaCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
-                if (marca == null)
-                {
-                    return NotFound();
-                }
-
-                categoriaMarca.Agregar(marca);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<CategoriaMarca, long, Marca, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

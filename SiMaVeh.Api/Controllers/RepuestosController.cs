@@ -100,20 +100,10 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var repuesto = await repository.FindAsync(key);
-            if (repuesto == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var kitCollectionName = entityTypeGetter.GetCollectionNameAsString<Kit, long>();
             var periodicidadMantenimientoCollectionName = entityTypeGetter.GetCollectionNameAsString<PeriodicidadMantenimiento, long>();
             var marcaTypeName = entityTypeGetter.GetTypeAsString<Marca, long>();
@@ -121,72 +111,22 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(kitCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var kit = await relatedEntityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
-                if (kit == null)
-                {
-                    return NotFound();
-                }
-
-                repuesto.Agregar(kit);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, Kit, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(periodicidadMantenimientoCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var periodicidadMantenimiento = await relatedEntityGetter.TryGetEntityFromRelatedLink<PeriodicidadMantenimiento, long>(link);
-                if (periodicidadMantenimiento == null)
-                {
-                    return NotFound();
-                }
-
-                repuesto.Agregar(periodicidadMantenimiento);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, PeriodicidadMantenimiento, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
-                if (marca == null)
-                {
-                    return NotFound();
-                }
-
-                repuesto.Cambiar(marca);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Recambio, long, Marca, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(targetMantenimientoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var targetMantenimiento = await relatedEntityGetter.TryGetEntityFromRelatedLink<TargetMantenimiento, long>(link);
-                if (targetMantenimiento == null)
-                {
-                    return NotFound();
-                }
-
-                repuesto.Cambiar(targetMantenimiento);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Repuesto, long, TargetMantenimiento, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

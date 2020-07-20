@@ -110,77 +110,28 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var reparador = await repository.FindAsync(key);
-            if (reparador == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var entidadReparadorCollectionName = entityTypeGetter.GetCollectionNameAsString<EntidadReparadora, long>();
             var tipoDocumentoTypeName = entityTypeGetter.GetTypeAsString<TipoDocumento, long>();
             var telefonoCollectionName = entityTypeGetter.GetCollectionNameAsString<Telefono, long>();
 
             if (navigationProperty.Equals(entidadReparadorCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var entidadReparadora = await relatedEntityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
-                if (entidadReparadora == null)
-                {
-                    return NotFound();
-                }
-
-                reparador.Agregar(entidadReparadora);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Reparador, long, EntidadReparadora, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(telefonoCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var telefono = await relatedEntityGetter.TryGetEntityFromRelatedLink<Telefono, long>(link);
-                if (telefono == null)
-                {
-                    return NotFound();
-                }
-
-                reparador.Agregar(telefono);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Persona, long, Telefono, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(tipoDocumentoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var tipoDocumento = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
-                if (tipoDocumento == null)
-                {
-                    return NotFound();
-                }
-
-                reparador.Cambiar(tipoDocumento);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Persona, long, TipoDocumento, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

@@ -84,58 +84,21 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var tipoCambio = await repository.FindAsync(key);
-            if (tipoCambio == null)
-            {
-                return NotFound();
-            }
+            var resultado = HttpStatusCode.NotImplemented;
 
             if (navigationProperty.Equals(EntityProperty.MonedaOrigen))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
-                if (moneda == null)
-                {
-                    return NotFound();
-                }
-
-                tipoCambio.CambiarMonedaOrigen(moneda);
+                resultado = await relatedEntityChanger.TryChangeMonedaOrigenAsync(Request, link, key);
             }
             else if (navigationProperty.Equals(EntityProperty.MonedaDestino))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
-                if (moneda == null)
-                {
-                    return NotFound();
-                }
-
-                tipoCambio.CambiarMonedaDestino(moneda);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeMonedaDestinoAsync(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion

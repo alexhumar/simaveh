@@ -142,77 +142,28 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-            {
-                return BadRequest();
-            }
-
-            var automovil = await repository.FindAsync(key);
-            if (automovil == null)
-            {
-                return NotFound();
-            }
-
+            var resultado = HttpStatusCode.NotImplemented;
             var servicioReparadorCollectionName = entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>();
             var modeloVehiculoTypeName = entityTypeGetter.GetTypeAsString<ModeloVehiculo, long>();
             var usuarioTypeName = entityTypeGetter.GetTypeAsString<Usuario, long>();
 
             if (navigationProperty.Equals(servicioReparadorCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                {
-                    return BadRequest();
-                }
-
-                var servicioReparador = await relatedEntityGetter.TryGetEntityFromRelatedLink<ServicioReparador, long>(link);
-                if (servicioReparador == null)
-                {
-                    return NotFound();
-                }
-
-                automovil.Agregar(servicioReparador);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Vehiculo, long, ServicioReparador, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var modeloVehiculo = await relatedEntityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
-                if (modeloVehiculo == null)
-                {
-                    return NotFound();
-                }
-
-                automovil.Cambiar(modeloVehiculo);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Vehiculo, long, ModeloVehiculo, long>(Request, link, key);
             }
             else if (navigationProperty.Equals(usuarioTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                {
-                    return BadRequest();
-                }
-
-                var usuario = await relatedEntityGetter.TryGetEntityFromRelatedLink<Usuario, long>(link);
-                if (usuario == null)
-                {
-                    return NotFound();
-                }
-
-                automovil.Cambiar(usuario);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.NotImplemented);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Vehiculo, long, Usuario, long>(Request, link, key);
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromEnum(resultado);
         }
 
         #endregion
