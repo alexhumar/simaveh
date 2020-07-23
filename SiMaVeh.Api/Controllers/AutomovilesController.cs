@@ -163,7 +163,7 @@ namespace SiMaVeh.Api.Controllers
                 resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Vehiculo, long, Usuario, long>(Request, link, key);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

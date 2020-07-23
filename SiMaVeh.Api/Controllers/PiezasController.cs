@@ -83,7 +83,7 @@ namespace SiMaVeh.Api.Controllers
                 resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Pieza, long, UbicacionPieza, string>(Request, link, key);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

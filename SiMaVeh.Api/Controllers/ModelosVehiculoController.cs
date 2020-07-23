@@ -184,7 +184,7 @@ namespace SiMaVeh.Api.Controllers
                 resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, link, key);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         /// <summary>
@@ -196,27 +196,14 @@ namespace SiMaVeh.Api.Controllers
         /// <returns></returns>
         public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
         {
-            var modeloVehiculo = await repository.FindAsync(key);
-            if (modeloVehiculo == null)
-            {
-                return NotFound();
-            }
+            var resultado = HttpStatusCode.NotImplemented;
 
             if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
-                //TODO: a nuevo metodo en RelatedEntityGetter
-                var repuesto = await new Repository<Repuesto, long>(context).FindAsync(Convert.ToInt64(relatedKey));
-                if (repuesto == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Quitar(repuesto);
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, key, Convert.ToInt64(relatedKey));
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

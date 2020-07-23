@@ -28,6 +28,7 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IRelatedEntityGetter, RelatedEntityGetter>();
             services.AddScoped<IRelatedEntityChanger, RelatedEntityChanger>();
             services.AddScoped<IRelatedEntityAdder, RelatedEntityAdder>();
+            services.AddScoped<IRelatedEntityRemover, RelatedEntityRemover>();
             services.AddScoped<IEntityTypeGetter, EntityTypeGetter>();
             services.AddScoped<IErrorsBuilder, ErrorsBuilder>();
             services.AddScoped<IControllerParameter, ControllerParameter>();

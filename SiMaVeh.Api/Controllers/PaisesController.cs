@@ -69,7 +69,7 @@ namespace SiMaVeh.Api.Controllers
                 resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Pais, long, Provincia, long>(Request, link, key);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         /*/// <summary>

@@ -36,6 +36,27 @@ namespace SiMaVeh.Api.Model
         }
 
         /// <summary>
+        /// Obtiene una entidad a partir de la key pasada por parametro
+        /// </summary>
+        /// <typeparam name="TLinkBe"></typeparam>
+        /// <typeparam name="TLinkBeId"></typeparam>
+        /// <param name="link"></param>
+        /// <returns></returns>
+        public async Task<TLinkBe> TryGetEntityFromRelatedKey<TLinkBe, TLinkBeId>(TLinkBeId key) where TLinkBe : DomainMember<TLinkBeId>
+        {
+            try
+            {
+                var repository = new Repository<TLinkBe, TLinkBeId>(context);
+
+                return await repository.FindAsync(key);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Obtiene una entidad a partir del link odata pasado como parametro
         /// </summary>
         /// <typeparam name="TLinkBe"></typeparam>
@@ -47,9 +68,8 @@ namespace SiMaVeh.Api.Model
             try
             {
                 var relatedKey = uriParser.GetKeyFromRelatedEntityUri<TLinkBeId>(link);
-                var repository = new Repository<TLinkBe, TLinkBeId>(context);
 
-                return await repository.FindAsync(relatedKey);
+                return await TryGetEntityFromRelatedKey<TLinkBe, TLinkBeId>(relatedKey);
             }
             catch (Exception)
             {

@@ -47,6 +47,11 @@ namespace SiMaVeh.Api.Controllers
         protected readonly IRelatedEntityAdder relatedEntityAdder;
 
         /// <summary>
+        /// relatedEntityRemover
+        /// </summary>
+        protected readonly IRelatedEntityRemover relatedEntityRemover;
+
+        /// <summary>
         /// entityTypeGetter
         /// </summary>
         protected readonly IEntityTypeGetter entityTypeGetter;
@@ -67,11 +72,12 @@ namespace SiMaVeh.Api.Controllers
             relatedEntityGetter = parameters.RelatedEntityGetter;
             relatedEntityChanger = parameters.RelatedEntityChanger;
             relatedEntityAdder = parameters.RelatedEntityAdder;
+            relatedEntityRemover = parameters.RelatedEntityRemover;
             entityTypeGetter = parameters.EntityTypeGetter;
             errorsBuilder = parameters.ErrorsBuilder;
         }
 
-        protected IActionResult ResultFromEnum(HttpStatusCode httpStatusCode)
+        protected IActionResult ResultFromHttpStatusCode(HttpStatusCode httpStatusCode)
         {
             return httpStatusCode switch
             {
