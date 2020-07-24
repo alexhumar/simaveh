@@ -258,9 +258,8 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <param name="key"></param>
         /// <param name="navigationProperty"></param>
-        /// <param name="link"></param>
         /// <returns></returns>
-        public virtual async Task<IActionResult> DeleteRef([FromODataUri] TBeId key, string navigationProperty, [FromBody] Uri link)
+        public virtual async Task<IActionResult> DeleteRef([FromODataUri] TBeId key, string navigationProperty)
         {
             return await Task.Run(() => StatusCode((int)HttpStatusCode.NotImplemented));
         }

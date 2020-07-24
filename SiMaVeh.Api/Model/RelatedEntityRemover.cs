@@ -39,10 +39,10 @@ namespace SiMaVeh.Api.Model
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="request"></param>
-        /// <param name="key"></param>
-        /// <param name="relatedKey"></param>
+        /// <param name="targetBeKey"></param>
+        /// <param name="relatedBeKey"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId key, TRelatedBeId relatedKey)
+        public async Task<HttpStatusCode> TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId targetBeKey, TRelatedBeId relatedBeKey)
             where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
@@ -53,23 +53,65 @@ namespace SiMaVeh.Api.Model
                     return HttpStatusCode.BadRequest;
                 }
 
-                var repositoryMainBe = new Repository<TTargetBe, TTargetBeId>(context);
+                var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
 
-                var mainBe = await repositoryMainBe.FindAsync(key);
-                if (mainBe == null)
+                var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
+                if (targetBe == null)
                 {
                     return HttpStatusCode.NotFound;
                 }
 
-                var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedKey<TRelatedBe, TRelatedBeId>(relatedKey);
+                var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedKey<TRelatedBe, TRelatedBeId>(relatedBeKey);
                 if (relatedBe == null)
                 {
                     return HttpStatusCode.NotFound;
                 }
 
-                mainBe.Quitar(relatedBe);
+                targetBe.Quitar(relatedBe);
 
-                await repositoryMainBe.SaveChangesAsync();
+                await repositoryTargetBe.SaveChangesAsync();
+
+                return HttpStatusCode.NoContent;
+            }
+            catch (Exception)
+            {
+                return HttpStatusCode.InternalServerError;
+            }
+        }
+
+        /// <summary>
+        /// TryRemoveRelatedEntityAsync
+        /// </summary>
+        /// <typeparam name="TTargetBe"></typeparam>
+        /// <typeparam name="TTargetBeId"></typeparam>
+        /// <typeparam name="TRelatedBe"></typeparam>
+        /// <typeparam name="TRelatedBeId"></typeparam>
+        /// <param name="request"></param>
+        /// <param name="link"></param>
+        /// <param name="targetBeKey"></param>
+        /// <returns></returns>
+        public async Task<HttpStatusCode> TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId targetBeKey)
+            where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
+            where TRelatedBe : DomainMember<TRelatedBeId>
+        {
+            try
+            {
+                if (!HttpMethods.IsDelete(request.Method))
+                {
+                    return HttpStatusCode.BadRequest;
+                }
+
+                var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
+
+                var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
+                if (targetBe == null)
+                {
+                    return HttpStatusCode.NotFound;
+                }
+
+                targetBe.Cambiar(null);
+
+                await repositoryTargetBe.SaveChangesAsync();
 
                 return HttpStatusCode.NoContent;
             }

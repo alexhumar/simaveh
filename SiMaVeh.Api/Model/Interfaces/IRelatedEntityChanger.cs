@@ -20,10 +20,10 @@ namespace SiMaVeh.Api.Model.Interfaces
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="request"></param>
-        /// <param name="link"></param>
-        /// <param name="key"></param>
+        /// <param name="relatedBeLink"></param>
+        /// <param name="targetBeKey"></param>
         /// <returns></returns>
-        Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri link, TTargetBeId key)
+        Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri relatedBeLink, TTargetBeId targetBeKey)
             where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>;
 
@@ -31,18 +31,18 @@ namespace SiMaVeh.Api.Model.Interfaces
         /// TryChangeMonedaOrigenAsync
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="link"></param>
-        /// <param name="key"></param>
+        /// <param name="monedaLink"></param>
+        /// <param name="tipoCambioKey"></param>
         /// <returns></returns>
-        Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, Uri link, long key);
+        Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, Uri monedaLink, long tipoCambioKey);
 
         /// <summary>
         /// TryChangeMonedaDestinoAsync
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="link"></param>
-        /// <param name="key"></param>
+        /// <param name="monedaLink"></param>
+        /// <param name="tipoCambioKey"></param>
         /// <returns></returns>
-        Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, Uri link, long key);
+        Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, Uri monedaLink, long tipoCambioKey);
     }
 }

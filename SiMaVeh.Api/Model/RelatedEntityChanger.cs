@@ -41,37 +41,37 @@ namespace SiMaVeh.Api.Model
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="request"></param>
-        /// <param name="link"></param>
-        /// <param name="key"></param>
+        /// <param name="relatedBeLink"></param>
+        /// <param name="targetBeKey"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri link, TTargetBeId key)
+        public async Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri relatedBeLink, TTargetBeId targetBeKey)
             where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
             try
             {
-                if ((link == null) || !HttpMethods.IsPut(request.Method))
+                if ((relatedBeLink == null) || !HttpMethods.IsPut(request.Method))
                 {
                     return HttpStatusCode.BadRequest;
                 }
 
-                var repositoryMainBe = new Repository<TTargetBe, TTargetBeId>(context);
+                var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
 
-                var mainBe = await repositoryMainBe.FindAsync(key);
-                if (mainBe == null)
+                var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
+                if (targetBe == null)
                 {
                     return HttpStatusCode.NotFound;
                 }
 
-                var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(link);
+                var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(relatedBeLink);
                 if (relatedBe == null)
                 {
                     return HttpStatusCode.NotFound;
                 }
 
-                mainBe.Cambiar(relatedBe);
+                targetBe.Cambiar(relatedBe);
 
-                await repositoryMainBe.SaveChangesAsync();
+                await repositoryTargetBe.SaveChangesAsync();
 
                 return HttpStatusCode.NoContent;
             }
@@ -85,27 +85,27 @@ namespace SiMaVeh.Api.Model
         /// TryChangeMonedaOrigenAsync
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="link"></param>
-        /// <param name="key"></param>
+        /// <param name="monedaLink"></param>
+        /// <param name="tipoCambioKey"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, Uri link, long key)
+        public async Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, Uri monedaLink, long tipoCambioKey)
         {
             try
             {
-                if (link == null || !HttpMethods.IsPut(request.Method))
+                if (monedaLink == null || !HttpMethods.IsPut(request.Method))
                 {
                     return HttpStatusCode.BadRequest;
                 }
 
                 var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
 
-                var tipoCambio = await repositoryTipoCambio.FindAsync(key);
+                var tipoCambio = await repositoryTipoCambio.FindAsync(tipoCambioKey);
                 if (tipoCambio == null)
                 {
                     return HttpStatusCode.NotFound;
                 }
 
-                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
+                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(monedaLink);
                 if (moneda == null)
                 {
                     return HttpStatusCode.NotFound;
@@ -127,27 +127,27 @@ namespace SiMaVeh.Api.Model
         /// TryChangeMonedaDestinoAsync
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="link"></param>
-        /// <param name="key"></param>
+        /// <param name="monedaLink"></param>
+        /// <param name="tipoCambioKey"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, Uri link, long key)
+        public async Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, Uri monedaLink, long tipoCambioKey)
         {
             try
             {
-                if (link == null || !HttpMethods.IsPut(request.Method))
+                if (monedaLink == null || !HttpMethods.IsPut(request.Method))
                 {
                     return HttpStatusCode.BadRequest;
                 }
 
                 var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
 
-                var tipoCambio = await repositoryTipoCambio.FindAsync(key);
+                var tipoCambio = await repositoryTipoCambio.FindAsync(tipoCambioKey);
                 if (tipoCambio == null)
                 {
                     return HttpStatusCode.NotFound;
                 }
 
-                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
+                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(monedaLink);
                 if (moneda == null)
                 {
                     return HttpStatusCode.NotFound;
