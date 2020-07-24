@@ -126,19 +126,19 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(recambioTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Recambio, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Recambio, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.MonedaMontoRecambio))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Moneda, string>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Moneda, string>(Request, key, link);
             }
             else if (navigationProperty.Equals(servicioReparadorTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, ServicioReparador, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, ServicioReparador, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(reparadorTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Reparador, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Mantenimiento, long, Reparador, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

@@ -83,11 +83,11 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(tipoFuenteEnergiaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<FuenteEnergia, long, TipoFuenteEnergia, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<FuenteEnergia, long, TipoFuenteEnergia, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<FuenteEnergia, long, Marca, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<FuenteEnergia, long, Marca, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

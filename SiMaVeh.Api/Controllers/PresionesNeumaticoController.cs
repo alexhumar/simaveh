@@ -109,11 +109,11 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PresionNeumatico, long, ModeloVehiculo, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PresionNeumatico, long, ModeloVehiculo, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(neumaticoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PresionNeumatico, long, Neumatico, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PresionNeumatico, long, Neumatico, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

@@ -80,7 +80,7 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(partidoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Localidad, long, Partido, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Localidad, long, Partido, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

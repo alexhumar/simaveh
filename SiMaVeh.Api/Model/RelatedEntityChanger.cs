@@ -41,10 +41,10 @@ namespace SiMaVeh.Api.Model
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="request"></param>
-        /// <param name="relatedBeLink"></param>
         /// <param name="targetBeKey"></param>
+        /// <param name="relatedBeLink"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri relatedBeLink, TTargetBeId targetBeKey)
+        public async Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId targetBeKey, Uri relatedBeLink)
             where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
@@ -85,10 +85,10 @@ namespace SiMaVeh.Api.Model
         /// TryChangeMonedaOrigenAsync
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="monedaLink"></param>
         /// <param name="tipoCambioKey"></param>
+        /// <param name="monedaLink"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, Uri monedaLink, long tipoCambioKey)
+        public async Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, long tipoCambioKey, Uri monedaLink)
         {
             try
             {
@@ -127,10 +127,10 @@ namespace SiMaVeh.Api.Model
         /// TryChangeMonedaDestinoAsync
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="monedaLink"></param>
         /// <param name="tipoCambioKey"></param>
+        /// <param name="monedaLink"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, Uri monedaLink, long tipoCambioKey)
+        public async Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, long tipoCambioKey, Uri monedaLink)
         {
             try
             {

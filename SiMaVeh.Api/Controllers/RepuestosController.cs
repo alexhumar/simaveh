@@ -111,19 +111,19 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(kitCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, Kit, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(periodicidadMantenimientoCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, PeriodicidadMantenimiento, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, PeriodicidadMantenimiento, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Recambio, long, Marca, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Recambio, long, Marca, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(targetMantenimientoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Repuesto, long, TargetMantenimiento, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Repuesto, long, TargetMantenimiento, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

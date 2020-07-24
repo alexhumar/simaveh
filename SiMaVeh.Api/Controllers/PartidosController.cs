@@ -82,11 +82,11 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(localidadCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Partido, long, Localidad, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Partido, long, Localidad, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(provinciaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Partido, long, Provincia, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Partido, long, Provincia, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

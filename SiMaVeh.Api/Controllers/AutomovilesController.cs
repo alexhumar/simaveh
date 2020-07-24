@@ -152,15 +152,15 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(servicioReparadorCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Vehiculo, long, ServicioReparador, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Vehiculo, long, ServicioReparador, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Vehiculo, long, ModeloVehiculo, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Vehiculo, long, ModeloVehiculo, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(usuarioTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Vehiculo, long, Usuario, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Vehiculo, long, Usuario, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

@@ -157,31 +157,31 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(grupoModeloTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, GrupoModelo, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, GrupoModelo, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.AceiteRecomendado))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, Aceite, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, Aceite, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.Airbags))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, EquipamientoAirbags, string>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, EquipamientoAirbags, string>(Request, key, link);
             }
             else if (navigationProperty.Equals(tipoFuenteEnergiaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, TipoFuenteEnergia, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, TipoFuenteEnergia, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

@@ -80,7 +80,7 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(ubicacionPiezaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Pieza, long, UbicacionPieza, string>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Pieza, long, UbicacionPieza, string>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

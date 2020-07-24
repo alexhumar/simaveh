@@ -66,7 +66,7 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(provinciaCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Pais, long, Provincia, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Pais, long, Provincia, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

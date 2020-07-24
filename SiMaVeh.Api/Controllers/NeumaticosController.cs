@@ -158,7 +158,7 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(marcaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Neumatico, long, Marca, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Neumatico, long, Marca, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

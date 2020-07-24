@@ -116,19 +116,19 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(reparadorCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<EntidadReparadora, long, Reparador, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<EntidadReparadora, long, Reparador, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(servicioReparadorCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<EntidadReparadora, long, ServicioReparador, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<EntidadReparadora, long, ServicioReparador, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(direccionTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<EntidadReparadora, long, Direccion, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<EntidadReparadora, long, Direccion, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(tipoEntidadTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<EntidadReparadora, long, TipoEntidadReparadora, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<EntidadReparadora, long, TipoEntidadReparadora, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

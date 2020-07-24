@@ -67,9 +67,9 @@ namespace SiMaVeh.Api.Model
         {
             try
             {
-                var relatedKey = uriParser.GetKeyFromRelatedEntityUri<TLinkBeId>(link);
+                var key = uriParser.GetKeyFromRelatedEntityUri<TLinkBeId>(link);
 
-                return await TryGetEntityFromRelatedKey<TLinkBe, TLinkBeId>(relatedKey);
+                return await TryGetEntityFromRelatedKey<TLinkBe, TLinkBeId>(key);
             }
             catch (Exception)
             {

@@ -39,10 +39,10 @@ namespace SiMaVeh.Api.Model
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="request"></param>
-        /// <param name="relatedBeLink"></param>
         /// <param name="targetBeKey"></param>
+        /// <param name="relatedBeLink"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri relatedBeLink, TTargetBeId targetBeKey)
+        public async Task<HttpStatusCode> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId targetBeKey, Uri relatedBeLink)
             where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {

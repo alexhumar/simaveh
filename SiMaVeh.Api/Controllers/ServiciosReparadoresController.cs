@@ -147,19 +147,19 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(mantenimientoCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ServicioReparador, long, Mantenimiento, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ServicioReparador, long, Mantenimiento, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(vehiculoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ServicioReparador, long, Vehiculo, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ServicioReparador, long, Vehiculo, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(entidadReparadoraTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ServicioReparador, long, EntidadReparadora, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ServicioReparador, long, EntidadReparadora, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.MonedaMontoManoObra))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ServicioReparador, long, Moneda, string>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ServicioReparador, long, Moneda, string>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);

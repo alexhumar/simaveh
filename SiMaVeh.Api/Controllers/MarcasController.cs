@@ -68,7 +68,7 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(categoriaMarcaCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Marca, long, CategoriaMarca, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Marca, long, CategoriaMarca, long>(Request, key, link);
             }
 
             return ResultFromHttpStatusCode(resultado);
