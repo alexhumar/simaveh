@@ -72,26 +72,6 @@ namespace SiMaVeh.Api.Controllers
             return ResultFromHttpStatusCode(resultado);
         }
 
-        ///// <summary>
-        ///// Borra la referencia de una provincia de la coleccion de provincias del pais
-        ///// </summary>
-        ///// <param name="key"></param>
-        ///// <param name="relatedKey"></param>
-        ///// <param name="navigationProperty"></param>
-        ///// <returns></returns>
-        //public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
-        //{
-        //    var resultado = HttpStatusCode.NotImplemented;
-        //    var provinciaCollectionName = entityTypeGetter.GetCollectionNameAsString<Provincia, long>();
-
-        //    if (navigationProperty.Equals(provinciaCollectionName))
-        //    {
-        //        resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Pais, long, Provincia, long>(Request, key, Convert.ToInt64(relatedKey));
-        //    }
-
-        //    return ResultFromHttpStatusCode(resultado);
-        //}
-
         #endregion
     }
 }

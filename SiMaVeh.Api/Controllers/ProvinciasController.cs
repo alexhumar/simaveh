@@ -94,7 +94,7 @@ namespace SiMaVeh.Api.Controllers
         }
 
         ///// <summary>
-        ///// Borra la referencia al Pais, dependiendo del navigationProperty
+        ///// Borra la referencia al pais - no aplica pero lo dejo para saber como se implementa en caso de llegar a necesitarlo en alguna entidad
         ///// </summary>
         ///// <param name="key"></param>
         ///// <param name="navigationProperty"></param>
@@ -108,26 +108,6 @@ namespace SiMaVeh.Api.Controllers
         //    if (navigationProperty.Equals(paisTypeName))
         //    {
         //        resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Provincia, long, Pais, long>(Request, key);
-        //    }
-
-        //    return ResultFromHttpStatusCode(resultado);
-        //}
-
-        ///// <summary>
-        ///// Borra la referencia de un Partido en la coleccion de Partidos.
-        ///// </summary>
-        ///// <param name="key"></param>
-        ///// <param name="relatedKey"></param>
-        ///// <param name="navigationProperty"></param>
-        ///// <returns></returns>
-        //public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
-        //{
-        //    var resultado = HttpStatusCode.NotImplemented;
-        //    var partidoCollectionName = entityTypeGetter.GetCollectionNameAsString<Partido, long>();
-
-        //    if (navigationProperty.Equals(partidoCollectionName))
-        //    {
-        //        resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Provincia, long, Partido, long>(Request, key, Convert.ToInt64(relatedKey));
         //    }
 
         //    return ResultFromHttpStatusCode(resultado);

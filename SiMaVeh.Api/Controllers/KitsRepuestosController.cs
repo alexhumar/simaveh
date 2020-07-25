@@ -108,6 +108,26 @@ namespace SiMaVeh.Api.Controllers
             return ResultFromHttpStatusCode(resultado);
         }
 
+        /// <summary>
+        /// Borra la referencia de un repuesto en la coleccion de repuestos.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+            var repuestoCollectionName = entityTypeGetter.GetCollectionNameAsString<Repuesto, long>();
+
+            if (navigationProperty.Equals(repuestoCollectionName))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Kit, long, Repuesto, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
+        }
+
         #endregion
     }
 }

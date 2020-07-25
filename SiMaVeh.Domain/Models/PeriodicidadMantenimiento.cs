@@ -35,9 +35,9 @@ namespace SiMaVeh.Domain.Models
         public virtual ModeloVehiculo ModeloVehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
-        /// Target Mantenimiento
+        /// Repuesto
         /// </summary>
-        public virtual Repuesto TargetMantenimiento { get; set; /*el set no puede ser protected porque rompe OData*/ }
+        public virtual Repuesto Repuesto { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
         /// Es periodicidad default (independiente del modelo vehiculo)
@@ -52,7 +52,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("Periodicidad ", TargetMantenimiento?.ToString(), " - ", ModeloVehiculo?.ToString());
+            return string.Concat("Periodicidad ", Repuesto?.ToString(), " - ", ModeloVehiculo?.ToString());
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace SiMaVeh.Domain.Models
         public override bool Equals(object obj)
         {
             return obj is PeriodicidadMantenimiento item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (TargetMantenimiento.Equals(item.TargetMantenimiento) && ModeloVehiculo.Equals(item.ModeloVehiculo) && EsDefault == item.EsDefault));
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Repuesto.Equals(item.Repuesto) && ModeloVehiculo.Equals(item.ModeloVehiculo) && EsDefault == item.EsDefault));
         }
 
         /// <summary>
@@ -101,10 +101,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public PeriodicidadMantenimiento Cambiar(Repuesto entity)
         {
-            if (TargetMantenimiento != entity)
+            if (Repuesto != entity)
             {
-                TargetMantenimiento?.Quitar(this);
-                TargetMantenimiento = entity;
+                Repuesto?.Quitar(this);
+                Repuesto = entity;
                 entity?.Agregar(this);
             }
 

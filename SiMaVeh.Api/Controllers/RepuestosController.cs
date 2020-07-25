@@ -129,6 +129,26 @@ namespace SiMaVeh.Api.Controllers
             return ResultFromHttpStatusCode(resultado);
         }
 
+        /// <summary>
+        /// Borra la referencia de un kit en la coleccion de kits.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+            var kitCollectionName = entityTypeGetter.GetCollectionNameAsString<Kit, long>();
+
+            if (navigationProperty.Equals(kitCollectionName))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
+        }
+
         #endregion
     }
 }

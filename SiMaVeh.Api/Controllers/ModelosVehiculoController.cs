@@ -189,6 +189,7 @@ namespace SiMaVeh.Api.Controllers
 
         /// <summary>
         /// Borra la referencia de un repuesto en la coleccion de repuestos recomendados.
+        /// O borra la referencia de una presion de neumatico en la coleccion de presiones de neumaticos recomendadas.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="relatedKey"></param>
@@ -198,9 +199,15 @@ namespace SiMaVeh.Api.Controllers
         {
             var resultado = HttpStatusCode.NotImplemented;
 
+            //TODO: revisar RepuestosRecomendados y PresionesNeumaticosRecomendadas ya que deberian ser many to many
+
             if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+            else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, key, Convert.ToInt64(relatedKey));
             }
 
             return ResultFromHttpStatusCode(resultado);

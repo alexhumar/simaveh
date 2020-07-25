@@ -74,6 +74,26 @@ namespace SiMaVeh.Api.Controllers
             return ResultFromHttpStatusCode(resultado);
         }
 
+        /// <summary>
+        /// Borra la referencia de una categoria en la coleccion de categorias.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+            var categoriaMarcaCollectionName = entityTypeGetter.GetCollectionNameAsString<CategoriaMarca, long>();
+
+            if (navigationProperty.Equals(categoriaMarcaCollectionName))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Marca, long, CategoriaMarca, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
+        }
+
         #endregion
     }
 }
