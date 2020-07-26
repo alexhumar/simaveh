@@ -1,9 +1,9 @@
 ﻿namespace SiMaVeh.Domain.Constants
 {
     /// <summary>
-    /// Property Constants
+    /// Constantes de entidades
     /// </summary>
-    public static class EntityProperty
+    public class EntityProperty
     {
         /// <summary>
         /// AceiteRecomendado
@@ -54,5 +54,15 @@
         /// TargetMantenimiento
         /// </summary>
         public const string TargetMantenimiento = "TargetMantenimiento";
+
+        /// <summary>
+        /// Categorias
+        /// </summary>
+        public const string Categorias = "Categorias";
+
+        /// <summary>
+        /// Kits
+        /// </summary>
+        public const string Kits = "Kits";
     }
 }

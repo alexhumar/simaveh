@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SiMaVeh.Domain.Models.Interfaces;
+using System;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -68,24 +69,30 @@ namespace SiMaVeh.Domain.Models
         /// Cambiar moneda origen
         /// </summary>
         /// <param name="entity"></param>
-        public void CambiarMonedaOrigen(Moneda entity)
+        /// <returns></returns>
+        public TipoCambio CambiarMonedaOrigen(Moneda entity)
         {
             if (entity != null)
             {
                 MonedaOrigen = entity;
             }
+
+            return this;
         }
 
         /// <summary>
         /// Cambiar moneda destino
         /// </summary>
         /// <param name="entity"></param>
-        public void CambiarMonedaDestino(Moneda entity)
+        /// <returns></returns>
+        public TipoCambio CambiarMonedaDestino(Moneda entity)
         {
             if (entity != null)
             {
                 MonedaDestino = entity;
             }
+
+            return this;
         }
 
         #endregion

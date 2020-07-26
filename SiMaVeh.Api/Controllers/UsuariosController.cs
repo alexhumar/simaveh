@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public UsuariosController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public UsuariosController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -32,10 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Apellido);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Apellido);
         }
 
         /// <summary>
@@ -47,10 +47,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -62,10 +59,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.NumeroDocumento);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.NumeroDocumento);
         }
 
         /// <summary>
@@ -78,10 +72,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Telefonos);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Telefonos);
         }
 
         /// <summary>
@@ -94,10 +85,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.TipoDocumento);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.TipoDocumento);
         }
 
         /// <summary>
@@ -110,10 +98,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Vehiculos);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Vehiculos);
         }
 
         /// <summary>
@@ -125,60 +110,28 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-                return BadRequest();
+            var resultado = HttpStatusCode.NotImplemented;
+            var vehiculoCollectionName = entityTypeGetter.GetCollectionNameAsString<Vehiculo, long>();
+            var tipoDocumentoTypeName = entityTypeGetter.GetTypeAsString<TipoDocumento, long>();
+            var telefonoCollectionName = entityTypeGetter.GetCollectionNameAsString<Telefono, long>();
 
-            var usuario = await repository.FindAsync(key);
-            if (usuario == null)
-                return NotFound();
-
-            var vehiculosCollectionName = EntityTypeGetter<Vehiculo, long>.GetCollectionNameAsString();
-            var tipoDocumentoTypeName = EntityTypeGetter<TipoDocumento, long>.GetTypeAsString();
-            var telefonosCollectionName = EntityTypeGetter<Telefono, long>.GetCollectionNameAsString();
-
-            if (navigationProperty.Equals(vehiculosCollectionName))
+            if (navigationProperty.Equals(vehiculoCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                var automovil = await relatedEntityGetter.TryGetEntityFromRelatedLink<Automovil, long>(link);
-                if (automovil == null)
-                    return NotFound();
-
-                usuario.Agregar(automovil);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Usuario, long, Vehiculo, long>(Request, key, link);
             }
-            else if (navigationProperty.Equals(telefonosCollectionName))
+            else if (navigationProperty.Equals(telefonoCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                var telefono = await relatedEntityGetter.TryGetEntityFromRelatedLink<Telefono, long>(link);
-                if (telefono == null)
-                    return NotFound();
-
-                usuario.Agregar(telefono);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Persona, long, Telefono, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(tipoDocumentoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var tipoDocumento = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
-                if (tipoDocumento == null)
-                    return NotFound();
-
-                usuario.Cambiar(tipoDocumento);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Persona, long, TipoDocumento, long>(Request, key, link);
             }
-            else
-                return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

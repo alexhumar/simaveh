@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -18,7 +17,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public TelefonosController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public TelefonosController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -31,10 +34,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Numero);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Numero);
         }
 
         /// <summary>
@@ -47,10 +47,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Persona);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Persona);
         }
 
         /// <summary>
@@ -63,10 +60,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.TipoTelefono);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.TipoTelefono);
         }
 
         /// <summary>
@@ -77,48 +71,23 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-                return BadRequest();
-
-            var telefono = await repository.FindAsync(key);
-            if (telefono == null)
-                return NotFound();
-
-            var tipoTelefonoTypeName = EntityTypeGetter<TipoTelefono, long>.GetTypeAsString();
-            var personaTypeName = EntityTypeGetter<Persona, long>.GetTypeAsString();
+            var resultado = HttpStatusCode.NotImplemented;
+            var tipoTelefonoTypeName = entityTypeGetter.GetTypeAsString<TipoTelefono, long>();
+            var personaTypeName = entityTypeGetter.GetTypeAsString<Persona, long>();
 
             if (navigationProperty.Equals(tipoTelefonoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var tipoTelefono = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoTelefono, long>(link);
-                if (tipoTelefono == null)
-                    return NotFound();
-
-                telefono.Cambiar(tipoTelefono);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Telefono, long, TipoTelefono, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(personaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var persona = await relatedEntityGetter.TryGetEntityFromRelatedLink<Persona, long>(link);
-                if (persona == null)
-                    return NotFound();
-
-                telefono.Cambiar(persona);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Telefono, long, Persona, long>(Request, key, link);
             }
-            else
-                return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

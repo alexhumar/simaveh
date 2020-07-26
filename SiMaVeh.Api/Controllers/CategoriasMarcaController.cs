@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public CategoriasMarcaController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public CategoriasMarcaController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -34,10 +37,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Marcas);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Marcas);
         }
 
         /// <summary>
@@ -50,10 +50,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -63,36 +60,38 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-                return BadRequest();
+            var resultado = HttpStatusCode.NotImplemented;
+            var marcaCollectionName = entityTypeGetter.GetCollectionNameAsString<Marca, long>();
 
-            var categoriaMarca = await repository.FindAsync(key);
-            if (categoriaMarca == null)
-                return NotFound();
-
-            var marcasCollectionName = EntityTypeGetter<Marca, long>.GetCollectionNameAsString();
-
-            if (navigationProperty.Equals(marcasCollectionName))
+            if (navigationProperty.Equals(marcaCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
-                if (marca == null)
-                    return NotFound();
-
-                categoriaMarca.Agregar(marca);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<CategoriaMarca, long, Marca, long>(Request, key, link);
             }
-            else
-                return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await repository.SaveChangesAsync();
+            return ResultFromHttpStatusCode(resultado);
+        }
 
-            return StatusCode((int)HttpStatusCode.NoContent);
+        /// <summary>
+        /// Borra la referencia de una marca en la coleccion de marcas.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+            var marcaCollectionName = entityTypeGetter.GetCollectionNameAsString<Marca, long>();
+
+            if (navigationProperty.Equals(marcaCollectionName))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<CategoriaMarca, long, Marca, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

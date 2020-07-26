@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Domain.BusinessLogic.Entities;
-using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +17,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public PeriodicidadesMantenimientoController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public PeriodicidadesMantenimientoController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -33,10 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Anios);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Anios);
         }
 
         /// <summary>
@@ -49,10 +48,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Dias);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Dias);
         }
 
         /// <summary>
@@ -65,10 +61,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.EsDefault);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.EsDefault);
         }
 
         /// <summary>
@@ -81,10 +74,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Kilometros);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Kilometros);
         }
 
         /// <summary>
@@ -97,10 +87,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Meses);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Meses);
         }
 
         /// <summary>
@@ -114,10 +101,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.ModeloVehiculo);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.ModeloVehiculo);
         }
 
         /// <summary>
@@ -127,14 +111,11 @@ namespace SiMaVeh.Api.Controllers
         /// <returns>Repuesto de la periodicidad mantenimiento</returns>
         /// <response code="200"></response>
         [EnableQuery]
-        public async Task<IActionResult> GetTargetMantenimiento([FromODataUri] long key)
+        public async Task<IActionResult> GetRepuesto([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.TargetMantenimiento);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Repuesto);
         }
 
         /// <summary>
@@ -145,47 +126,23 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-                return BadRequest();
-
-            var periodicidadMantenimiento = await repository.FindAsync(key);
-            if (periodicidadMantenimiento == null)
-                return NotFound();
-
-            var modeloVehiculoTypeName = EntityTypeGetter<ModeloVehiculo, long>.GetTypeAsString();
+            var resultado = HttpStatusCode.NotImplemented;
+            var modeloVehiculoTypeName = entityTypeGetter.GetTypeAsString<ModeloVehiculo, long>();
+            var repuestoTypeName = entityTypeGetter.GetTypeAsString<Repuesto, long>();
 
             if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var modeloVehiculo = await relatedEntityGetter.TryGetEntityFromRelatedLink<ModeloVehiculo, long>(link);
-                if (modeloVehiculo == null)
-                    return NotFound();
-
-                periodicidadMantenimiento.Cambiar(modeloVehiculo);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PeriodicidadMantenimiento, long, ModeloVehiculo, long>(Request, key, link);
             }
-            else if (navigationProperty.Equals(EntityProperty.TargetMantenimiento))
+            else if (navigationProperty.Equals(repuestoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var repuesto = await relatedEntityGetter.TryGetEntityFromRelatedLink<Repuesto, long>(link);
-                if (repuesto == null)
-                    return NotFound();
-
-                periodicidadMantenimiento.Cambiar(repuesto);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PeriodicidadMantenimiento, long, Repuesto, long>(Request, key, link);
             }
-            else
-                return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion
