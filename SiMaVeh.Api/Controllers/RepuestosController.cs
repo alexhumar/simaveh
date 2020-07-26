@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -139,9 +140,8 @@ namespace SiMaVeh.Api.Controllers
         public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
         {
             var resultado = HttpStatusCode.NotImplemented;
-            var kitCollectionName = entityTypeGetter.GetCollectionNameAsString<Kit, long>();
 
-            if (navigationProperty.Equals(kitCollectionName))
+            if (navigationProperty.Equals(EntityProperty.Kits))
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, Convert.ToInt64(relatedKey));
             }

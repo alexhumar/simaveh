@@ -84,7 +84,7 @@ namespace SiMaVeh.Api.Controllers
                 HttpStatusCode.BadRequest => BadRequest(),
                 HttpStatusCode.NoContent => NoContent(),
                 HttpStatusCode.NotFound => NotFound(),
-                HttpStatusCode.NotImplemented => StatusCode((int)HttpStatusCode.NoContent),
+                HttpStatusCode.NotImplemented => StatusCode((int)HttpStatusCode.NotImplemented),
                 HttpStatusCode.InternalServerError => StatusCode((int)HttpStatusCode.InternalServerError),
                 _ => Ok(),
             };
