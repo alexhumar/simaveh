@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +19,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public RepuestosController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public RepuestosController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -32,10 +36,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.CodigoIdentificador);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.CodigoIdentificador);
         }
 
         /// <summary>
@@ -48,10 +49,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Kits);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Kits);
         }
 
         /// <summary>
@@ -64,10 +62,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Marca);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Marca);
         }
 
         /// <summary>
@@ -80,10 +75,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.PeriodicidadesMantenimiento);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.PeriodicidadesMantenimiento);
         }
 
         /// <summary>
@@ -96,10 +88,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.TargetMantenimiento);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.TargetMantenimiento);
         }
 
         /// <summary>
@@ -112,73 +101,52 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-                return BadRequest();
+            var resultado = HttpStatusCode.NotImplemented;
+            var kitCollectionName = entityTypeGetter.GetCollectionNameAsString<Kit, long>();
+            var periodicidadMantenimientoCollectionName = entityTypeGetter.GetCollectionNameAsString<PeriodicidadMantenimiento, long>();
+            var marcaTypeName = entityTypeGetter.GetTypeAsString<Marca, long>();
+            var targetMantenimientoTypeName = entityTypeGetter.GetTypeAsString<TargetMantenimiento, long>();
 
-            var repuesto = await repository.FindAsync(key);
-            if (repuesto == null)
-                return NotFound();
-
-            var kitsCollectionName = EntityTypeGetter<Kit, long>.GetCollectionNameAsString();
-            var periodicidadMantenimientoCollectionName = EntityTypeGetter<PeriodicidadMantenimiento, long>.GetCollectionNameAsString();
-            var marcaTypeName = EntityTypeGetter<Marca, long>.GetTypeAsString();
-            var targetMantenimientoTypeName = EntityTypeGetter<TargetMantenimiento, long>.GetTypeAsString();
-
-            if (navigationProperty.Equals(kitsCollectionName))
+            if (navigationProperty.Equals(kitCollectionName))
             {
-                //El repuesto se agrega a un kit existente
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                var kit = await relatedEntityGetter.TryGetEntityFromRelatedLink<Kit, long>(link);
-                if (kit == null)
-                    return NotFound();
-
-                repuesto.Agregar(kit);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(periodicidadMantenimientoCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                var periodicidadMantenimiento = await relatedEntityGetter.TryGetEntityFromRelatedLink<PeriodicidadMantenimiento, long>(link);
-                if (periodicidadMantenimiento == null)
-                    return NotFound();
-
-                repuesto.Agregar(periodicidadMantenimiento);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, PeriodicidadMantenimiento, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var marca = await relatedEntityGetter.TryGetEntityFromRelatedLink<Marca, long>(link);
-                if (marca == null)
-                    return NotFound();
-
-                repuesto.Cambiar(marca);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Recambio, long, Marca, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(targetMantenimientoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var targetMantenimiento = await relatedEntityGetter.TryGetEntityFromRelatedLink<TargetMantenimiento, long>(link);
-                if (targetMantenimiento == null)
-                    return NotFound();
-
-                repuesto.Cambiar(targetMantenimiento);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Repuesto, long, TargetMantenimiento, long>(Request, key, link);
             }
-            else
-                return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await repository.SaveChangesAsync();
+            return ResultFromHttpStatusCode(resultado);
+        }
 
-            return StatusCode((int)HttpStatusCode.NoContent);
+        /// <summary>
+        /// Borra la referencia de un kit en la coleccion de kits.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+
+            if (navigationProperty.Equals(EntityProperty.Kits))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

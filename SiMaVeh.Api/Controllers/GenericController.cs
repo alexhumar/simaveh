@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Api.ErrorManagement;
+using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
+using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -36,13 +37,57 @@ namespace SiMaVeh.Api.Controllers
         protected readonly IRelatedEntityGetter relatedEntityGetter;
 
         /// <summary>
+        /// relatedEntityChanger
+        /// </summary>
+        protected readonly IRelatedEntityChanger relatedEntityChanger;
+
+        /// <summary>
+        /// relatedEntityAdder
+        /// </summary>
+        protected readonly IRelatedEntityAdder relatedEntityAdder;
+
+        /// <summary>
+        /// relatedEntityRemover
+        /// </summary>
+        protected readonly IRelatedEntityRemover relatedEntityRemover;
+
+        /// <summary>
+        /// entityTypeGetter
+        /// </summary>
+        protected readonly IEntityTypeGetter entityTypeGetter;
+
+        /// <summary>
+        /// errorsBuilder
+        /// </summary>
+        protected readonly IErrorsBuilder errorsBuilder;
+
+        /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="parameters"></param>
         public GenericController(IControllerParameter parameters)
         {
             context = parameters.Context;
             repository = new Repository<TBe, TBeId>(context);
             relatedEntityGetter = parameters.RelatedEntityGetter;
+            relatedEntityChanger = parameters.RelatedEntityChanger;
+            relatedEntityAdder = parameters.RelatedEntityAdder;
+            relatedEntityRemover = parameters.RelatedEntityRemover;
+            entityTypeGetter = parameters.EntityTypeGetter;
+            errorsBuilder = parameters.ErrorsBuilder;
+        }
+
+        protected IActionResult ResultFromHttpStatusCode(HttpStatusCode httpStatusCode)
+        {
+            return httpStatusCode switch
+            {
+                HttpStatusCode.BadRequest => BadRequest(),
+                HttpStatusCode.NoContent => NoContent(),
+                HttpStatusCode.NotFound => NotFound(),
+                HttpStatusCode.NotImplemented => StatusCode((int)HttpStatusCode.NotImplemented),
+                HttpStatusCode.InternalServerError => StatusCode((int)HttpStatusCode.InternalServerError),
+                _ => Ok(),
+            };
         }
 
         /// <summary>
@@ -60,22 +105,9 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Lista de entidades</returns>
         /// <response code="200"></response>
-        [EnableQuery(/*MaxSkip = QueryConstants.MaxSkip, MaxTop = QueryConstants.MaxTop,*/ PageSize = QueryConstants.PageSize)]
-        public virtual async Task</*PageResult*/IQueryable<TBe>> Get(/*ODataQueryOptions<TBe> options*/)
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        public virtual async Task<IQueryable<TBe>> Get()
         {
-            //Con este codigo comentado se consigue un resultado paginado y con el inlinecount seteado, pero no soporta expand.
-            // ODataQuerySettings settings = new ODataQuerySettings()
-            // {
-            //     PageSize = QueryConstants.PageSize
-            // };
-
-            // IQueryable results = options.ApplyTo(await Task.Run(() => _repository.GetCollection()), settings);
-
-            // return new PageResult<TBe>(
-            //     results as IEnumerable<TBe>, 
-            //     Request.GetNextPageLink(QueryConstants.PageSize),
-            //     (results as IEnumerable<TBe>).Count());
-
             return await repository.GetCollectionAsync();
         }
 
@@ -88,11 +120,6 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public virtual async Task<SingleResult<TBe>> Get([FromODataUri] TBeId key)
         {
-            //Esto lo comparo asi porque si comparo directamente con el Equals, Linq me tira error. Tener cuidado con esto, si algun
-            //dia se me da por tener claves compuestas. Como son todas long, por ahora esto funciona bien. Pero si fueran compuestas,
-            //el ToString podria devolver un valor que no sea unico.
-            //IQueryable<TBe> result = await Task.Run(() => _repository.GetCollection().Where(p => p.Id.ToString() == key.ToString()));
-
             IList<TBe> result = new List<TBe>();
 
             var entity = await repository.FindAsync(key);
@@ -113,21 +140,21 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="201"></response>
         public virtual async Task<IActionResult> Post([FromBody] TBe entity)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
-            }
-
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(errorsBuilder.BuildErrors(ModelState));
+                }
+
                 await repository.AddAsync(entity);
+
+                return Created(entity);
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode((int)HttpStatusCode.InternalServerError, errorsBuilder.BuildErrors(e));
             }
-
-            return Created(entity);
         }
 
         /// <summary>
@@ -139,31 +166,31 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="204"></response>
         public virtual async Task<IActionResult> Put([FromODataUri] TBeId key, [FromBody] TBe entity)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
-            }
-
-            if (!await ExisteEntidad(key))
-            {
-                return NotFound();
-            }
-
-            if (!key.Equals(entity.Id))
-            {
-                return BadRequest();
-            }
-
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(errorsBuilder.BuildErrors(ModelState));
+                }
+
+                if (!key.Equals(entity.Id))
+                {
+                    return BadRequest();
+                }
+
+                if (!await ExisteEntidad(key))
+                {
+                    return NotFound();
+                }
+
                 await repository.UpdateAsync(entity);
+
+                return Updated(entity);
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode((int)HttpStatusCode.InternalServerError, errorsBuilder.BuildErrors(e));
             }
-
-            return Updated(entity);
         }
 
         /// <summary>
@@ -175,29 +202,29 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="204"></response>
         public virtual async Task<IActionResult> Patch([FromODataUri] TBeId key, [FromBody] Delta<TBe> entity)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ErrorsBuilder.BuildErrors(ModelState));
-            }
-
-            var existingEntity = await repository.FindAsync(key);
-            if (existingEntity == null)
-            {
-                return NotFound();
-            }
-
-            entity.Patch(existingEntity);
-
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(errorsBuilder.BuildErrors(ModelState));
+                }
+
+                var existingEntity = await repository.FindAsync(key);
+                if (existingEntity == null)
+                {
+                    return NotFound();
+                }
+
+                entity.Patch(existingEntity);
+
                 await repository.SaveChangesAsync();
+
+                return Updated(existingEntity);
             }
             catch (Exception e)
             {
-                return StatusCode(500, ErrorsBuilder.BuildErrors(e));
+                return StatusCode((int)HttpStatusCode.InternalServerError, errorsBuilder.BuildErrors(e));
             }
-
-            return Updated(existingEntity);
         }
 
         /// <summary>
@@ -208,15 +235,22 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="204"></response>
         public virtual async Task<IActionResult> Delete([FromODataUri] TBeId key)
         {
-            var entity = await repository.FindAsync(key);
-            if (entity == null)
+            try
             {
-                return NotFound();
+                var entity = await repository.FindAsync(key);
+                if (entity == null)
+                {
+                    return NotFound();
+                }
+
+                await repository.RemoveAsync(entity);
+
+                return NoContent();
             }
-
-            await repository.RemoveAsync(entity);
-
-            return NoContent();
+            catch (Exception e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, errorsBuilder.BuildErrors(e));
+            }
         }
 
         /// <summary>
@@ -224,11 +258,10 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <param name="key"></param>
         /// <param name="navigationProperty"></param>
-        /// <param name="link"></param>
         /// <returns></returns>
-        public virtual IActionResult DeleteRef([FromODataUri] TBeId key, string navigationProperty, [FromBody] Uri link)
+        public virtual async Task<IActionResult> DeleteRef([FromODataUri] TBeId key, string navigationProperty)
         {
-            return StatusCode((int)HttpStatusCode.NotImplemented);
+            return await Task.Run(() => StatusCode((int)HttpStatusCode.NotImplemented));
         }
 
         /// <summary>
@@ -238,9 +271,9 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="relatedKey"></param>
         /// <param name="navigationProperty"></param>
         /// <returns></returns>
-        public virtual IActionResult DeleteRef([FromODataUri] TBeId key, [FromODataUri] string relatedKey, string navigationProperty)
+        public virtual async Task<IActionResult> DeleteRef([FromODataUri] TBeId key, [FromODataUri] string relatedKey, string navigationProperty)
         {
-            return StatusCode((int)HttpStatusCode.NotImplemented);
+            return await Task.Run(() => StatusCode((int)HttpStatusCode.NotImplemented));
         }
     }
 }

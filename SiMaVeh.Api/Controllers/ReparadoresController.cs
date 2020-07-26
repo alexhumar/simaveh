@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public ReparadoresController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public ReparadoresController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -32,10 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Apellido);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Apellido);
         }
 
         /// <summary>
@@ -48,10 +48,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.EntidadesReparadoras);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.EntidadesReparadoras);
         }
 
         /// <summary>
@@ -63,10 +60,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -78,10 +72,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.NumeroDocumento);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.NumeroDocumento);
         }
 
         /// <summary>
@@ -94,10 +85,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Telefonos);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Telefonos);
         }
 
         /// <summary>
@@ -110,10 +98,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.TipoDocumento);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.TipoDocumento);
         }
 
         /// <summary>
@@ -125,60 +110,48 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-                return BadRequest();
+            var resultado = HttpStatusCode.NotImplemented;
+            var entidadReparadorCollectionName = entityTypeGetter.GetCollectionNameAsString<EntidadReparadora, long>();
+            var tipoDocumentoTypeName = entityTypeGetter.GetTypeAsString<TipoDocumento, long>();
+            var telefonoCollectionName = entityTypeGetter.GetCollectionNameAsString<Telefono, long>();
 
-            var reparador = await repository.FindAsync(key);
-            if (reparador == null)
-                return NotFound();
-
-            var entidadesReparadorasCollectionName = EntityTypeGetter<EntidadReparadora, long>.GetCollectionNameAsString();
-            var tipoDocumentoTypeName = EntityTypeGetter<TipoDocumento, long>.GetTypeAsString();
-            var telefonosCollectionName = EntityTypeGetter<Telefono, long>.GetCollectionNameAsString();
-
-            if (navigationProperty.Equals(entidadesReparadorasCollectionName))
+            if (navigationProperty.Equals(entidadReparadorCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                var entidadReparadora = await relatedEntityGetter.TryGetEntityFromRelatedLink<EntidadReparadora, long>(link);
-                if (entidadReparadora == null)
-                    return NotFound();
-
-                reparador.Agregar(entidadReparadora);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Reparador, long, EntidadReparadora, long>(Request, key, link);
             }
-            else if (navigationProperty.Equals(telefonosCollectionName))
+            else if (navigationProperty.Equals(telefonoCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                var telefono = await relatedEntityGetter.TryGetEntityFromRelatedLink<Telefono, long>(link);
-                if (telefono == null)
-                    return NotFound();
-
-                reparador.Agregar(telefono);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Persona, long, Telefono, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(tipoDocumentoTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var tipoDocumento = await relatedEntityGetter.TryGetEntityFromRelatedLink<TipoDocumento, long>(link);
-                if (tipoDocumento == null)
-                    return NotFound();
-
-                reparador.Cambiar(tipoDocumento);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Persona, long, TipoDocumento, long>(Request, key, link);
             }
-            else
-                return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await repository.SaveChangesAsync();
+            return ResultFromHttpStatusCode(resultado);
+        }
 
-            return StatusCode((int)HttpStatusCode.NoContent);
+        /// <summary>
+        /// Borra la referencia de una entidad reparadora en la coleccion de entidades reparadoras.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+            var entidadReparadoraCollectionName = entityTypeGetter.GetCollectionNameAsString<EntidadReparadora, long>();
+
+            if (navigationProperty.Equals(entidadReparadoraCollectionName))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Reparador, long, EntidadReparadora, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

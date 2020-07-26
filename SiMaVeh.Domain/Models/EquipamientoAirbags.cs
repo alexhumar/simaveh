@@ -1,4 +1,6 @@
 ﻿using SiMaVeh.Domain.Enums;
+using SiMaVeh.Domain.Enums.Parsers;
+using SiMaVeh.Domain.Enums.Parsers.Interfaces;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
 using SiMaVeh.Domain.Models.Interfaces;
 using System.Text;
@@ -11,14 +13,7 @@ namespace SiMaVeh.Domain.Models
     public class EquipamientoAirbags : DomainMember<string>,
         IEquipamientoAirbags
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public EquipamientoAirbags()
-        {
-            calculadorIdEquipamientoAirbags = new CalculadorIdEquipamientoAirbags();
-        }
-
+        private readonly IEnumParser<TipoAirbagLateral> tipoAirbagLateralParser;
         private readonly CalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags;
 
         /// <summary>
@@ -60,6 +55,15 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual TipoAirbagLateral TraseroDerecho { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public EquipamientoAirbags()
+        {
+            tipoAirbagLateralParser = new TipoAirbagLateralParser();
+            calculadorIdEquipamientoAirbags = new CalculadorIdEquipamientoAirbags(tipoAirbagLateralParser);
+        }
+
         #region overrides
 
         /// <summary>
@@ -73,10 +77,10 @@ namespace SiMaVeh.Domain.Models
 
             sb.Append(Conductor ? "(S," : "(N,");
             sb.Append(Acompanante ? "S," : "N,");
-            sb.Append($"{ TipoAirbagLateralParser.ToString(DelanteroIzquierdo)},");
-            sb.Append($"{ TipoAirbagLateralParser.ToString(DelanteroDerecho)},");
-            sb.Append($"{ TipoAirbagLateralParser.ToString(TraseroIzquierdo)},");
-            sb.Append($"{ TipoAirbagLateralParser.ToString(TraseroDerecho)},");
+            sb.Append($"{ tipoAirbagLateralParser.ToString(DelanteroIzquierdo)},");
+            sb.Append($"{ tipoAirbagLateralParser.ToString(DelanteroDerecho)},");
+            sb.Append($"{ tipoAirbagLateralParser.ToString(TraseroIzquierdo)},");
+            sb.Append($"{ tipoAirbagLateralParser.ToString(TraseroDerecho)},");
 
             return string.Concat(ubicaciones, " - ", sb.ToString());
         }

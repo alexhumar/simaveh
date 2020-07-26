@@ -18,26 +18,4 @@
         /// </summary>
         Radial
     }
-
-    /// <summary>
-    /// ConstruccionCarcasaNeumaticoParser
-    /// </summary>
-    public static class ConstruccionCarcasaNeumaticoParser
-    {
-        /// <summary>
-        /// ToString 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static string ToString(ConstruccionCarcasaNeumatico value)
-        {
-            return value switch
-            {
-                ConstruccionCarcasaNeumatico.CintasOpuestas => "B",
-                ConstruccionCarcasaNeumatico.Diagonal => "D",
-                ConstruccionCarcasaNeumatico.Radial => "R",
-                _ => string.Empty,
-            };
-        }
-    }
 }

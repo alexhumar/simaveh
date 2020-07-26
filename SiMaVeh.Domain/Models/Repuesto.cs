@@ -160,7 +160,7 @@ namespace SiMaVeh.Domain.Models
             if ((entity != null) && PeriodicidadesMantenimiento.Contains(entity))
             {
                 PeriodicidadesMantenimiento.Remove(entity);
-                if ((bool)entity.TargetMantenimiento?.Equals(this))
+                if ((bool)entity.Repuesto?.Equals(this))
                 {
                     entity.Cambiar((Repuesto)null);
                 }

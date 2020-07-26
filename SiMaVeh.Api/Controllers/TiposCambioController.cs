@@ -18,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public TiposCambioController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public TiposCambioController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -31,10 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.CoeficienteCambio);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.CoeficienteCambio);
         }
 
         /// <summary>
@@ -46,10 +47,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Fecha);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Fecha);
         }
 
         /// <summary>
@@ -62,10 +60,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.MonedaDestino);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.MonedaDestino);
         }
 
         /// <summary>
@@ -78,10 +73,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.MonedaOrigen);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.MonedaOrigen);
         }
 
         /// <summary>
@@ -92,45 +84,21 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] long key,
-        string navigationProperty, [FromBody] Uri link)
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
+        public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-                return BadRequest();
-
-            var tipoCambio = await repository.FindAsync(key);
-            if (tipoCambio == null)
-                return NotFound();
+            var resultado = HttpStatusCode.NotImplemented;
 
             if (navigationProperty.Equals(EntityProperty.MonedaOrigen))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
-                if (moneda == null)
-                    return NotFound();
-
-                tipoCambio.CambiarMonedaOrigen(moneda);
+                resultado = await relatedEntityChanger.TryChangeMonedaOrigenAsync(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.MonedaDestino))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(link);
-                if (moneda == null)
-                    return NotFound();
-
-                tipoCambio.CambiarMonedaDestino(moneda);
+                resultado = await relatedEntityChanger.TryChangeMonedaDestinoAsync(Request, key, link);
             }
-            else
-                return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

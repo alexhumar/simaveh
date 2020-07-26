@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.Domain.BusinessLogic.Entities;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -19,7 +18,11 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public PartidosController(IControllerParameter parameters) : base(parameters) { }
+        /// <param name="parameters"></param>
+        public PartidosController(IControllerParameter parameters)
+            : base(parameters)
+        {
+        }
 
         #region properties
 
@@ -32,10 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Nombre);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -49,10 +49,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Provincia);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Provincia);
         }
 
         /// <summary>
@@ -65,10 +62,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            if (entity == null)
-                return NotFound();
-            else
-                return Ok(entity.Localidades);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Localidades);
         }
 
         /// <summary>
@@ -79,115 +73,24 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="navigationProperty"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        [AcceptVerbs("POST", "PUT")]
-        public async Task<IActionResult> CreateRef([FromODataUri] int key,
-        string navigationProperty, [FromBody] Uri link)
+        [AcceptVerbs(HttpConstants.Post, HttpConstants.Put)]
+        public async Task<IActionResult> CreateRef([FromODataUri] int key, string navigationProperty, [FromBody] Uri link)
         {
-            if (link == null)
-                return BadRequest();
-
-            var partido = await repository.FindAsync(key);
-            if (partido == null)
-                return NotFound();
-
-            var localidadCollectionName = EntityTypeGetter<Localidad, long>.GetCollectionNameAsString();
-            var provinciaTypeName = EntityTypeGetter<Provincia, long>.GetTypeAsString();
+            var resultado = HttpStatusCode.NotImplemented;
+            var localidadCollectionName = entityTypeGetter.GetCollectionNameAsString<Localidad, long>();
+            var provinciaTypeName = entityTypeGetter.GetTypeAsString<Provincia, long>();
 
             if (navigationProperty.Equals(localidadCollectionName))
             {
-                if (!Request.Method.Equals(HttpConstants.Post))
-                    return BadRequest();
-
-                var localidad = await relatedEntityGetter.TryGetEntityFromRelatedLink<Localidad, long>(link);
-                if (localidad == null)
-                    return NotFound();
-
-                partido.Agregar(localidad);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Partido, long, Localidad, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(provinciaTypeName))
             {
-                if (!Request.Method.Equals(HttpConstants.Put))
-                    return BadRequest();
-
-                var provincia = await relatedEntityGetter.TryGetEntityFromRelatedLink<Provincia, long>(link);
-                if (provincia == null)
-                    return NotFound();
-
-                partido.Cambiar(provincia);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Partido, long, Provincia, long>(Request, key, link);
             }
-            else
-                return StatusCode((int)HttpStatusCode.NotImplemented);
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromHttpStatusCode(resultado);
         }
-
-        /*/// <summary>
-        /// Borra la referencia a la Provincia, dependiendo del navigationProperty
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="navigationProperty"></param>
-        /// <param name="link"></param>
-        /// <returns></returns>
-        //public async Task<IActionResult> DeleteRef([FromODataUri] int key,
-        public IActionResult DeleteRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
-        {
-            //var partido = await _repository.GetCollection().SingleOrDefaultAsync(p => p.Id == key);
-            //if (partido == null)
-            //    return NotFound();
-
-            //switch (navigationProperty)
-            //{
-            //    case "Provincia":
-            //        partido.Provincia.QuitarPartido(partido);
-            //        break;
-
-            //    default:
-            //        return StatusCode(HttpStatusCode.NotImplemented);
-            //}
-            //await _repository.SaveChangesAsync();
-
-            //return StatusCode(HttpStatusCode.NoContent);
-
-            return StatusCode(HttpStatusCode.NotImplemented);
-        }
-
-        /// <summary>
-        /// Borra la referencia de una Localidad en la coleccion de Localidades.
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="relatedKey"></param>
-        /// <param name="navigationProperty"></param>
-        /// <returns></returns>
-        //public async Task<IActionResult> DeleteRef([FromODataUri] int key,
-        public IActionResult DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
-        {
-            //var partido = await _repository.GetCollection().SingleOrDefaultAsync(p => p.Id == key);
-            //if (partido == null)
-            //    return NotFound();
-
-            //switch (navigationProperty)
-            //{
-            //    case "Localidades":
-            //        var idLocalidad = Convert.ToInt64(relatedKey);
-            //        var localidad = await _repositoryLocalidad.GetCollection().SingleOrDefaultAsync(p => p.Id == idLocalidad);
-
-            //        if (localidad == null)
-            //            return NotFound();
-
-            //        partido.QuitarLocalidad(localidad);
-            //        break;
-            //    default:
-            //        return StatusCode(HttpStatusCode.NotImplemented);
-
-            //}
-            //await _repository.SaveChangesAsync();
-
-            //return StatusCode(HttpStatusCode.NoContent);
-
-            return StatusCode(HttpStatusCode.NotImplemented);
-        }*/
 
         #endregion
     }
