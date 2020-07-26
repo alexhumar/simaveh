@@ -47,6 +47,11 @@ namespace SiMaVeh.Api.Controllers
         protected readonly IRelatedEntityAdder relatedEntityAdder;
 
         /// <summary>
+        /// relatedEntityRemover
+        /// </summary>
+        protected readonly IRelatedEntityRemover relatedEntityRemover;
+
+        /// <summary>
         /// entityTypeGetter
         /// </summary>
         protected readonly IEntityTypeGetter entityTypeGetter;
@@ -67,18 +72,19 @@ namespace SiMaVeh.Api.Controllers
             relatedEntityGetter = parameters.RelatedEntityGetter;
             relatedEntityChanger = parameters.RelatedEntityChanger;
             relatedEntityAdder = parameters.RelatedEntityAdder;
+            relatedEntityRemover = parameters.RelatedEntityRemover;
             entityTypeGetter = parameters.EntityTypeGetter;
             errorsBuilder = parameters.ErrorsBuilder;
         }
 
-        protected IActionResult ResultFromEnum(HttpStatusCode httpStatusCode)
+        protected IActionResult ResultFromHttpStatusCode(HttpStatusCode httpStatusCode)
         {
             return httpStatusCode switch
             {
                 HttpStatusCode.BadRequest => BadRequest(),
                 HttpStatusCode.NoContent => NoContent(),
                 HttpStatusCode.NotFound => NotFound(),
-                HttpStatusCode.NotImplemented => StatusCode((int)HttpStatusCode.NoContent),
+                HttpStatusCode.NotImplemented => StatusCode((int)HttpStatusCode.NotImplemented),
                 HttpStatusCode.InternalServerError => StatusCode((int)HttpStatusCode.InternalServerError),
                 _ => Ok(),
             };
@@ -252,9 +258,8 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <param name="key"></param>
         /// <param name="navigationProperty"></param>
-        /// <param name="link"></param>
         /// <returns></returns>
-        public virtual async Task<IActionResult> DeleteRef([FromODataUri] TBeId key, string navigationProperty, [FromBody] Uri link)
+        public virtual async Task<IActionResult> DeleteRef([FromODataUri] TBeId key, string navigationProperty)
         {
             return await Task.Run(() => StatusCode((int)HttpStatusCode.NotImplemented));
         }

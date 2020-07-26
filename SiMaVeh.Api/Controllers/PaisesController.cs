@@ -66,48 +66,11 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(provinciaCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Pais, long, Provincia, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Pais, long, Provincia, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
-
-        /*/// <summary>
-        /// Borra una Provincia de la coleccion de Provincias del Pais
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="relatedKey"></param>
-        /// <param name="navigationProperty"></param>
-        /// <returns></returns>
-        //public async Task<IActionResult> DeleteRef([FromODataUri] int key,
-        public IActionResult DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
-        {
-            //var pais = await _repository.GetCollection().SingleOrDefaultAsync(p => p.Id == key);
-            //if (pais == null)
-            //    return NotFound();
-
-            //switch (navigationProperty)
-            //{
-            //    case "Provincias":
-
-            //        var idProvincia = Convert.ToInt64(relatedKey);
-            //        var provincia = await _repositoryProvincia.GetCollection().SingleOrDefaultAsync(p => p.Id == idProvincia);
-
-            //        if (provincia == null)
-            //            return NotFound();
-
-            //        pais.QuitarProvincia(provincia);
-            //        break;
-
-            //    default:
-            //        return StatusCode(HttpStatusCode.NotImplemented);
-            //}
-            //await _repository.SaveChangesAsync();
-
-            //return StatusCode(HttpStatusCode.NoContent);
-
-            return StatusCode(HttpStatusCode.NotImplemented);
-        }*/
 
         #endregion
     }

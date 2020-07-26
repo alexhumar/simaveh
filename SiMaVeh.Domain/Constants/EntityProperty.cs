@@ -54,5 +54,15 @@
         /// TargetMantenimiento
         /// </summary>
         public const string TargetMantenimiento = "TargetMantenimiento";
+
+        /// <summary>
+        /// Categorias
+        /// </summary>
+        public const string Categorias = "Categorias";
+
+        /// <summary>
+        /// Kits
+        /// </summary>
+        public const string Kits = "Kits";
     }
 }

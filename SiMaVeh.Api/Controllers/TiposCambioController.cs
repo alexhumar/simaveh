@@ -91,14 +91,14 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(EntityProperty.MonedaOrigen))
             {
-                resultado = await relatedEntityChanger.TryChangeMonedaOrigenAsync(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeMonedaOrigenAsync(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.MonedaDestino))
             {
-                resultado = await relatedEntityChanger.TryChangeMonedaDestinoAsync(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeMonedaDestinoAsync(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

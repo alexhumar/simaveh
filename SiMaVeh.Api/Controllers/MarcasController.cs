@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -68,10 +69,29 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(categoriaMarcaCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Marca, long, CategoriaMarca, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Marca, long, CategoriaMarca, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
+        }
+
+        /// <summary>
+        /// Borra la referencia de una categoria en la coleccion de categorias.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+
+            if (navigationProperty.Equals(EntityProperty.Categorias))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Marca, long, CategoriaMarca, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

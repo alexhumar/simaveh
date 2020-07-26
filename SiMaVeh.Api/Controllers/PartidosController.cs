@@ -82,81 +82,15 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(localidadCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Partido, long, Localidad, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Partido, long, Localidad, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(provinciaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Partido, long, Provincia, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Partido, long, Provincia, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
-
-        /*/// <summary>
-        /// Borra la referencia a la Provincia, dependiendo del navigationProperty
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="navigationProperty"></param>
-        /// <param name="link"></param>
-        /// <returns></returns>
-        //public async Task<IActionResult> DeleteRef([FromODataUri] int key,
-        public IActionResult DeleteRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
-        {
-            //var partido = await _repository.GetCollection().SingleOrDefaultAsync(p => p.Id == key);
-            //if (partido == null)
-            //    return NotFound();
-
-            //switch (navigationProperty)
-            //{
-            //    case "Provincia":
-            //        partido.Provincia.QuitarPartido(partido);
-            //        break;
-
-            //    default:
-            //        return StatusCode(HttpStatusCode.NotImplemented);
-            //}
-            //await _repository.SaveChangesAsync();
-
-            //return StatusCode(HttpStatusCode.NoContent);
-
-            return StatusCode(HttpStatusCode.NotImplemented);
-        }
-
-        /// <summary>
-        /// Borra la referencia de una Localidad en la coleccion de Localidades.
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="relatedKey"></param>
-        /// <param name="navigationProperty"></param>
-        /// <returns></returns>
-        //public async Task<IActionResult> DeleteRef([FromODataUri] int key,
-        public IActionResult DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
-        {
-            //var partido = await _repository.GetCollection().SingleOrDefaultAsync(p => p.Id == key);
-            //if (partido == null)
-            //    return NotFound();
-
-            //switch (navigationProperty)
-            //{
-            //    case "Localidades":
-            //        var idLocalidad = Convert.ToInt64(relatedKey);
-            //        var localidad = await _repositoryLocalidad.GetCollection().SingleOrDefaultAsync(p => p.Id == idLocalidad);
-
-            //        if (localidad == null)
-            //            return NotFound();
-
-            //        partido.QuitarLocalidad(localidad);
-            //        break;
-            //    default:
-            //        return StatusCode(HttpStatusCode.NotImplemented);
-
-            //}
-            //await _repository.SaveChangesAsync();
-
-            //return StatusCode(HttpStatusCode.NoContent);
-
-            return StatusCode(HttpStatusCode.NotImplemented);
-        }*/
 
         #endregion
     }

@@ -83,81 +83,35 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(partidoCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Provincia, long, Partido, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Provincia, long, Partido, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(paisTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Provincia, long, Pais, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Provincia, long, Pais, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
-        /*/// <summary>
-        /// Borra la referencia al Pais, dependiendo del navigationProperty
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="navigationProperty"></param>
-        /// <param name="link"></param>
-        /// <returns></returns>
-        //public async Task<IActionResult> DeleteRef([FromODataUri] int key,
-        public IActionResult DeleteRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
-        {
-            //var provincia = await _repository.GetCollection().SingleOrDefaultAsync(p => p.Id == key);
-            //if (provincia == null)
-            //    return NotFound();
+        ///// <summary>
+        ///// Borra la referencia al pais - no aplica pero lo dejo para saber como se implementa en caso de llegar a necesitarlo en alguna entidad
+        ///// </summary>
+        ///// <param name="key"></param>
+        ///// <param name="navigationProperty"></param>
+        ///// <param name="link"></param>
+        ///// <returns></returns>
+        //public override async Task<IActionResult> DeleteRef([FromODataUri] long key, string navigationProperty)
+        //{
+        //    var resultado = HttpStatusCode.NotImplemented;
+        //    var paisTypeName = entityTypeGetter.GetTypeAsString<Pais, long>();
 
-            //switch (navigationProperty)
-            //{
-            //    case "Pais":
-            //        provincia.Pais.QuitarProvincia(provincia);
-            //        break;
+        //    if (navigationProperty.Equals(paisTypeName))
+        //    {
+        //        resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Provincia, long, Pais, long>(Request, key);
+        //    }
 
-            //    default:
-            //        return StatusCode(HttpStatusCode.NotImplemented);
-            //}
-            //await _repository.SaveChangesAsync();
-
-            //return StatusCode(HttpStatusCode.NoContent);
-
-            return StatusCode(HttpStatusCode.NotImplemented);
-        }
-
-        /// <summary>
-        /// Borra la referencia de un Partido en la coleccion de Partidos.
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="relatedKey"></param>
-        /// <param name="navigationProperty"></param>
-        /// <returns></returns>
-        //public async Task<IActionResult> DeleteRef([FromODataUri] int key,
-        public IActionResult DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
-        {
-            //var provincia = await _repository.GetCollection().SingleOrDefaultAsync(p => p.Id == key);
-            //if (provincia == null)
-            //    return NotFound();
-
-            //switch (navigationProperty)
-            //{
-            //    case "Partidos":
-            //        var idPartido = Convert.ToInt64(relatedKey);
-            //        var partido = await _repositoryPartido.GetCollection().SingleOrDefaultAsync(p => p.Id == idPartido);
-
-            //        if (partido == null)
-            //            return NotFound();
-
-            //        provincia.QuitarPartido(partido);
-            //        break;
-            //    default:
-            //        return StatusCode(HttpStatusCode.NotImplemented);
-
-            //}
-            //await _repository.SaveChangesAsync();
-
-            //return StatusCode(HttpStatusCode.NoContent);
-
-            return StatusCode(HttpStatusCode.NotImplemented);
-        }*/
+        //    return ResultFromHttpStatusCode(resultado);
+        //}
 
         #endregion
     }

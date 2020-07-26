@@ -54,6 +54,7 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual FuenteEnergia FuenteEnergiaRecomendada { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
+        //TODO - esta relacion hay que hacerla many-to-many
         /// <summary>
         /// Repuestos Recomendados
         /// </summary>

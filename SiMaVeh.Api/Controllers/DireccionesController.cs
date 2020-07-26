@@ -79,10 +79,10 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(localidadTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Direccion, long, Localidad, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Direccion, long, Localidad, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

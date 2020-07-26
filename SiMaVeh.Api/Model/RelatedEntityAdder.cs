@@ -39,37 +39,37 @@ namespace SiMaVeh.Api.Model
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="request"></param>
-        /// <param name="link"></param>
-        /// <param name="key"></param>
+        /// <param name="targetBeKey"></param>
+        /// <param name="relatedBeLink"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, Uri link, TTargetBeId key)
+        public async Task<HttpStatusCode> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId targetBeKey, Uri relatedBeLink)
             where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
             try
             {
-                if ((link == null) || !HttpMethods.IsPost(request.Method))
+                if ((relatedBeLink == null) || !HttpMethods.IsPost(request.Method))
                 {
                     return HttpStatusCode.BadRequest;
                 }
 
-                var repositoryMainBe = new Repository<TTargetBe, TTargetBeId>(context);
+                var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
 
-                var mainBe = await repositoryMainBe.FindAsync(key);
-                if (mainBe == null)
+                var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
+                if (targetBe == null)
                 {
                     return HttpStatusCode.NotFound;
                 }
 
-                var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(link);
+                var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(relatedBeLink);
                 if (relatedBe == null)
                 {
                     return HttpStatusCode.NotFound;
                 }
 
-                mainBe.Agregar(relatedBe);
+                targetBe.Agregar(relatedBe);
 
-                await repositoryMainBe.SaveChangesAsync();
+                await repositoryTargetBe.SaveChangesAsync();
 
                 return HttpStatusCode.NoContent;
             }

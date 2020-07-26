@@ -80,14 +80,14 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(tipoTelefonoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Telefono, long, TipoTelefono, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Telefono, long, TipoTelefono, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(personaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Telefono, long, Persona, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Telefono, long, Persona, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

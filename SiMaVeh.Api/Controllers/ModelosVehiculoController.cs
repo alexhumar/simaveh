@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -157,38 +156,39 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(grupoModeloTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, GrupoModelo, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, GrupoModelo, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.AceiteRecomendado))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, Aceite, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, Aceite, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.Airbags))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, EquipamientoAirbags, string>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, EquipamientoAirbags, string>(Request, key, link);
             }
             else if (navigationProperty.Equals(tipoFuenteEnergiaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, TipoFuenteEnergia, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, TipoFuenteEnergia, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         /// <summary>
         /// Borra la referencia de un repuesto en la coleccion de repuestos recomendados.
+        /// O borra la referencia de una presion de neumatico en la coleccion de presiones de neumaticos recomendadas.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="relatedKey"></param>
@@ -196,27 +196,20 @@ namespace SiMaVeh.Api.Controllers
         /// <returns></returns>
         public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
         {
-            var modeloVehiculo = await repository.FindAsync(key);
-            if (modeloVehiculo == null)
-            {
-                return NotFound();
-            }
+            var resultado = HttpStatusCode.NotImplemented;
+
+            //TODO: revisar RepuestosRecomendados y PresionesNeumaticosRecomendadas ya que deberian ser many to many
 
             if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
-                //TODO: a nuevo metodo en RelatedEntityGetter
-                var repuesto = await new Repository<Repuesto, long>(context).FindAsync(Convert.ToInt64(relatedKey));
-                if (repuesto == null)
-                {
-                    return NotFound();
-                }
-
-                modeloVehiculo.Quitar(repuesto);
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+            else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, key, Convert.ToInt64(relatedKey));
             }
 
-            await repository.SaveChangesAsync();
-
-            return StatusCode((int)HttpStatusCode.NoContent);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

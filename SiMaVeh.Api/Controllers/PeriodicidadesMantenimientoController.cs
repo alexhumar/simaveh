@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -112,11 +111,11 @@ namespace SiMaVeh.Api.Controllers
         /// <returns>Repuesto de la periodicidad mantenimiento</returns>
         /// <response code="200"></response>
         [EnableQuery]
-        public async Task<IActionResult> GetTargetMantenimiento([FromODataUri] long key)
+        public async Task<IActionResult> GetRepuesto([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.TargetMantenimiento);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.Repuesto);
         }
 
         /// <summary>
@@ -132,17 +131,18 @@ namespace SiMaVeh.Api.Controllers
         {
             var resultado = HttpStatusCode.NotImplemented;
             var modeloVehiculoTypeName = entityTypeGetter.GetTypeAsString<ModeloVehiculo, long>();
+            var repuestoTypeName = entityTypeGetter.GetTypeAsString<Repuesto, long>();
 
             if (navigationProperty.Equals(modeloVehiculoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PeriodicidadMantenimiento, long, ModeloVehiculo, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PeriodicidadMantenimiento, long, ModeloVehiculo, long>(Request, key, link);
             }
-            else if (navigationProperty.Equals(EntityProperty.TargetMantenimiento))
+            else if (navigationProperty.Equals(repuestoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PeriodicidadMantenimiento, long, Repuesto, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PeriodicidadMantenimiento, long, Repuesto, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

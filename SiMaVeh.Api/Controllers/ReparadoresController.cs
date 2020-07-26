@@ -120,18 +120,38 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(entidadReparadorCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Reparador, long, EntidadReparadora, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Reparador, long, EntidadReparadora, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(telefonoCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Persona, long, Telefono, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Persona, long, Telefono, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(tipoDocumentoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Persona, long, TipoDocumento, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Persona, long, TipoDocumento, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
+        }
+
+        /// <summary>
+        /// Borra la referencia de una entidad reparadora en la coleccion de entidades reparadoras.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+            var entidadReparadoraCollectionName = entityTypeGetter.GetCollectionNameAsString<EntidadReparadora, long>();
+
+            if (navigationProperty.Equals(entidadReparadoraCollectionName))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Reparador, long, EntidadReparadora, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

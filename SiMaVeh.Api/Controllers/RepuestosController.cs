@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -111,22 +112,41 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(kitCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, Kit, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(periodicidadMantenimientoCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, PeriodicidadMantenimiento, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, PeriodicidadMantenimiento, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Recambio, long, Marca, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Recambio, long, Marca, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(targetMantenimientoTypeName))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Repuesto, long, TargetMantenimiento, long>(Request, link, key);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<Repuesto, long, TargetMantenimiento, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
+        }
+
+        /// <summary>
+        /// Borra la referencia de un kit en la coleccion de kits.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+
+            if (navigationProperty.Equals(EntityProperty.Kits))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion

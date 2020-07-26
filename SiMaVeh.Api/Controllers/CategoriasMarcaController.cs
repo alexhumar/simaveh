@@ -68,10 +68,30 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(marcaCollectionName))
             {
-                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<CategoriaMarca, long, Marca, long>(Request, link, key);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<CategoriaMarca, long, Marca, long>(Request, key, link);
             }
 
-            return ResultFromEnum(resultado);
+            return ResultFromHttpStatusCode(resultado);
+        }
+
+        /// <summary>
+        /// Borra la referencia de una marca en la coleccion de marcas.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+            var marcaCollectionName = entityTypeGetter.GetCollectionNameAsString<Marca, long>();
+
+            if (navigationProperty.Equals(marcaCollectionName))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<CategoriaMarca, long, Marca, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+
+            return ResultFromHttpStatusCode(resultado);
         }
 
         #endregion
