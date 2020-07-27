@@ -94,6 +94,7 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Asocia un kit existente en la coleccion de kits del repuesto.
         /// O asocia una periodicidad mantenimiento existente en la coleccion de periodicidades mantenimiento del repuesto.
+        /// O asocia un modelo vehiculo a la coleccion de recomendaciones modelo vehiculo.
         /// O modifica la marca asociada al repuesto.
         /// O modifica el target mantenimiento asociado al repuesto.
         /// </summary>
@@ -105,18 +106,21 @@ namespace SiMaVeh.Api.Controllers
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             var resultado = HttpStatusCode.NotImplemented;
-            var kitCollectionName = entityTypeGetter.GetCollectionNameAsString<Kit, long>();
             var periodicidadMantenimientoCollectionName = entityTypeGetter.GetCollectionNameAsString<PeriodicidadMantenimiento, long>();
             var marcaTypeName = entityTypeGetter.GetTypeAsString<Marca, long>();
             var targetMantenimientoTypeName = entityTypeGetter.GetTypeAsString<TargetMantenimiento, long>();
 
-            if (navigationProperty.Equals(kitCollectionName))
+            if (navigationProperty.Equals(EntityProperty.Kits))
             {
                 resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(periodicidadMantenimientoCollectionName))
             {
                 resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, PeriodicidadMantenimiento, long>(Request, key, link);
+            }
+            else if (navigationProperty.Equals(EntityProperty.RecomendacionesModeloVehiculo))
+            {
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<Repuesto, long, ModeloVehiculo, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(marcaTypeName))
             {
@@ -132,6 +136,7 @@ namespace SiMaVeh.Api.Controllers
 
         /// <summary>
         /// Borra la referencia de un kit en la coleccion de kits.
+        /// O borra la referencia de un modelo vehiculo en la coleccion de recomendaciones modelo vehiculo.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="relatedKey"></param>
@@ -144,6 +149,10 @@ namespace SiMaVeh.Api.Controllers
             if (navigationProperty.Equals(EntityProperty.Kits))
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Repuesto, long, Kit, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+            else if (navigationProperty.Equals(EntityProperty.RecomendacionesModeloVehiculo))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<Repuesto, long, ModeloVehiculo, long>(Request, key, Convert.ToInt64(relatedKey));
             }
 
             return ResultFromHttpStatusCode(resultado);

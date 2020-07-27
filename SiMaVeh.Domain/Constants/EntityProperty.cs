@@ -64,5 +64,10 @@
         /// Kits
         /// </summary>
         public const string Kits = "Kits";
+
+        /// <summary>
+        /// RecomendacionesModeloVehiculo
+        /// </summary>
+        public const string RecomendacionesModeloVehiculo = "RecomendacionesModeloVehiculo";
     }
 }

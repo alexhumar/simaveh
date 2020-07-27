@@ -1,5 +1,7 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -20,7 +22,7 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public ModeloVehiculo()
         {
-            RepuestosRecomendados = new HashSet<Repuesto>();
+            ModeloVehiculoRepuesto = new HashSet<ModeloVehiculoRepuesto>();
             PresionesNeumaticosRecomendadas = new HashSet<PresionNeumatico>();
         }
 
@@ -54,16 +56,24 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public virtual FuenteEnergia FuenteEnergiaRecomendada { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
-        //TODO - esta relacion hay que hacerla many-to-many
         /// <summary>
         /// Repuestos Recomendados
         /// </summary>
-        public virtual ISet<Repuesto> RepuestosRecomendados { get; protected set; }
+        public virtual ISet<Repuesto> RepuestosRecomendados => ModeloVehiculoRepuesto.Select(m => m.Repuesto).ToHashSet();
 
         /// <summary>
         /// Presiones de Neumaticos Recomendadas
         /// </summary>
         public virtual ISet<PresionNeumatico> PresionesNeumaticosRecomendadas { get; protected set; }
+
+        #region relations
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-Repuesto
+        /// </summary>
+        public virtual ISet<ModeloVehiculoRepuesto> ModeloVehiculoRepuesto { get; }
+
+        #endregion
 
         #region overrides
 
@@ -223,7 +233,11 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                RepuestosRecomendados?.Add(entity);
+                ModeloVehiculoRepuesto?.Add(new ModeloVehiculoRepuesto
+                {
+                    Repuesto = entity,
+                    ModeloVehiculo = this
+                });
             }
 
             return this;
@@ -238,7 +252,12 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                RepuestosRecomendados?.Remove(entity);
+                var toRemove = ModeloVehiculoRepuesto?
+                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.Repuesto == entity);
+                if (toRemove != null)
+                {
+                    ModeloVehiculoRepuesto.Remove(toRemove);
+                }
             }
 
             return this;

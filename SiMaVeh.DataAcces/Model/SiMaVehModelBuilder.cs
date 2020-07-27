@@ -163,6 +163,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoRepuesto);
 
             builder.EntitySet<Moneda>(entityTypeGetter.GetCollectionNameAsString<Moneda, string>());
             builder.EntityType<Moneda>()
@@ -257,6 +258,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<Repuesto>().Ignore(m => m.ModeloVehiculoRepuesto);
 
             builder.EntitySet<ServicioReparador>(entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>());
             builder.EntityType<ServicioReparador>()

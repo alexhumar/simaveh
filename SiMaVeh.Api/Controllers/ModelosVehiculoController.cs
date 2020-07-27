@@ -198,7 +198,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var resultado = HttpStatusCode.NotImplemented;
 
-            //TODO: revisar RepuestosRecomendados y PresionesNeumaticosRecomendadas ya que deberian ser many to many
+            //TODO: revisar PresionesNeumaticosRecomendadas ya que deberia ser many to many
 
             if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {

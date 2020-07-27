@@ -19,6 +19,9 @@ namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 
             builder.Entity<MarcaCategoriaMarca>()
                 .HasKey(k => new { k.CategoriaMarcaId, k.MarcaId });
+
+            builder.Entity<ModeloVehiculoRepuesto>()
+                .HasKey(k => new { k.ModeloVehiculoId, k.RepuestoId });
         }
     }
 }
