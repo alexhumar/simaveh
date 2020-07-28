@@ -198,8 +198,6 @@ namespace SiMaVeh.Api.Controllers
         {
             var resultado = HttpStatusCode.NotImplemented;
 
-            //TODO: revisar PresionesNeumaticosRecomendadas ya que deberia ser many to many
-
             if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, key, Convert.ToInt64(relatedKey));

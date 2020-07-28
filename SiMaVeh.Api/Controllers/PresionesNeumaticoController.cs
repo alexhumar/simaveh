@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -26,30 +28,30 @@ namespace SiMaVeh.Api.Controllers
         #region properties
 
         /// <summary>
-        /// Obtiene si la presion neumatico es default
+        /// Obtiene si la presion neumatico se corresponde a condicion de vehiculo cargado
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Si la presion neumatico es default</returns>
         /// <response code="200"></response>
-        public async Task<IActionResult> GetEsDefault([FromODataUri] long key)
+        public async Task<IActionResult> GetVehiculoCargado([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.EsDefault);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.VehiculoCargado);
         }
 
         /// <summary>
-        /// Obtiene el modelo vehiculo de la presion neumatico
+        /// Obtiene las recomendaciones de modelo vehiculo
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Modelo vehiculo de la presion neumatico</returns>
         /// <response code="200"></response>
-        [EnableQuery]
-        public async Task<IActionResult> GetModeloVehiculo([FromODataUri] long key)
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.ModeloVehiculo);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>
@@ -93,7 +95,7 @@ namespace SiMaVeh.Api.Controllers
         }
 
         /// <summary>
-        /// Modifica el modelo vehiculo asociado a la presion neumatico.
+        /// Agrega un modelo vehiculo asociado a la coleccion de recomendaciones de modelo vehiculo.
         /// O modifica el neumatico asociado a la presion neumatico.
         /// </summary>
         /// <param name="key"></param>
@@ -104,16 +106,34 @@ namespace SiMaVeh.Api.Controllers
         public async Task<IActionResult> CreateRef([FromODataUri] long key, string navigationProperty, [FromBody] Uri link)
         {
             var resultado = HttpStatusCode.NotImplemented;
-            var modeloVehiculoTypeName = entityTypeGetter.GetTypeAsString<ModeloVehiculo, long>();
             var neumaticoTypeName = entityTypeGetter.GetTypeAsString<Neumatico, long>();
 
-            if (navigationProperty.Equals(modeloVehiculoTypeName))
+            if (navigationProperty.Equals(EntityProperty.RecomendacionesModeloVehiculo))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PresionNeumatico, long, ModeloVehiculo, long>(Request, key, link);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<PresionNeumatico, long, ModeloVehiculo, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(neumaticoTypeName))
             {
                 resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<PresionNeumatico, long, Neumatico, long>(Request, key, link);
+            }
+
+            return ResultFromHttpStatusCode(resultado);
+        }
+
+        /// <summary>
+        /// Borra la referencia de un modelo de vehiculo asociado a la coleccion de recomendaciones de modelo vehiculo.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+
+            if (navigationProperty.Equals(EntityProperty.RecomendacionesModeloVehiculo))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<PresionNeumatico, long, ModeloVehiculo, long>(Request, key, Convert.ToInt64(relatedKey));
             }
 
             return ResultFromHttpStatusCode(resultado);

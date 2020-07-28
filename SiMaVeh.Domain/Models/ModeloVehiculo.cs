@@ -23,7 +23,7 @@ namespace SiMaVeh.Domain.Models
         public ModeloVehiculo()
         {
             ModeloVehiculoRepuesto = new HashSet<ModeloVehiculoRepuesto>();
-            PresionesNeumaticosRecomendadas = new HashSet<PresionNeumatico>();
+            ModeloVehiculoPresionNeumatico = new HashSet<ModeloVehiculoPresionNeumatico>();
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Presiones de Neumaticos Recomendadas
         /// </summary>
-        public virtual ISet<PresionNeumatico> PresionesNeumaticosRecomendadas { get; protected set; }
+        public virtual ISet<PresionNeumatico> PresionesNeumaticosRecomendadas => ModeloVehiculoPresionNeumatico.Select(m => m.PresionNeumatico).ToHashSet();
 
         #region relations
 
@@ -72,6 +72,11 @@ namespace SiMaVeh.Domain.Models
         /// Relacion ModeloVehiculo-Repuesto
         /// </summary>
         public virtual ISet<ModeloVehiculoRepuesto> ModeloVehiculoRepuesto { get; }
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-PresionNeumatico
+        /// </summary>
+        public virtual ISet<ModeloVehiculoPresionNeumatico> ModeloVehiculoPresionNeumatico { get; }
 
         #endregion
 
@@ -196,10 +201,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ModeloVehiculo Agregar(PresionNeumatico entity)
         {
-            if ((entity != null) && !PresionesNeumaticosRecomendadas.Contains(entity))
+            if (entity != null)
             {
-                PresionesNeumaticosRecomendadas.Add(entity);
-                entity.Cambiar(this);
+                ModeloVehiculoPresionNeumatico?.Add(new ModeloVehiculoPresionNeumatico
+                {
+                    ModeloVehiculo = this,
+                    PresionNeumatico = entity
+                });
             }
 
             return this;
@@ -212,12 +220,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ModeloVehiculo Quitar(PresionNeumatico entity)
         {
-            if ((entity != null) && PresionesNeumaticosRecomendadas.Contains(entity))
+            if (entity != null)
             {
-                PresionesNeumaticosRecomendadas.Remove(entity);
-                if ((bool)entity.ModeloVehiculo?.Equals(this))
+                var toRemove = ModeloVehiculoPresionNeumatico?
+                    .FirstOrDefault(m => m.PresionNeumatico == entity && m.ModeloVehiculo == this);
+                if (toRemove != null)
                 {
-                    entity.Cambiar((ModeloVehiculo)null);
+                    ModeloVehiculoPresionNeumatico.Remove(toRemove);
                 }
             }
 
