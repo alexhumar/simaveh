@@ -36,6 +36,11 @@ namespace SiMaVeh.Domain.Models
         public virtual bool VehiculoCargado { get; set; }
 
         /// <summary>
+        /// Especifica si la presión es independiente de un neumático en especial
+        /// </summary>
+        public virtual bool EsUniversal => Neumatico == null;
+
+        /// <summary>
         /// Neumatico
         /// </summary>
         public virtual Neumatico Neumatico { get; set; /*el set no puede ser protected porque rompe OData*/ }

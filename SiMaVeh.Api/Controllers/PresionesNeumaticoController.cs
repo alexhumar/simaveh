@@ -31,13 +31,26 @@ namespace SiMaVeh.Api.Controllers
         /// Obtiene si la presion neumatico se corresponde a condicion de vehiculo cargado
         /// </summary>
         /// <param name="key"></param>
-        /// <returns>Si la presion neumatico es default</returns>
+        /// <returns>Si la presion neumatico es para vehiculo cargado</returns>
         /// <response code="200"></response>
         public async Task<IActionResult> GetVehiculoCargado([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
             return entity == null ? NotFound() : (IActionResult)Ok(entity.VehiculoCargado);
+        }
+
+        /// <summary>
+        /// Obtiene si la presion neumatico es independiente de un neumático en especial
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Si la presion neumatico es universal</returns>
+        /// <response code="200"></response>
+        public async Task<IActionResult> GetEsUniversal([FromODataUri] long key)
+        {
+            var entity = await repository.FindAsync(key);
+
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.EsUniversal);
         }
 
         /// <summary>
