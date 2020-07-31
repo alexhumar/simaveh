@@ -6,9 +6,9 @@
     public class EntityProperty
     {
         /// <summary>
-        /// AceiteRecomendado
+        /// AceitesRecomendados
         /// </summary>
-        public const string AceiteRecomendado = "AceiteRecomendado";
+        public const string AceitesRecomendados = "AceitesRecomendados";
 
         /// <summary>
         /// Airbags
@@ -16,9 +16,9 @@
         public const string Airbags = "Airbags";
 
         /// <summary>
-        /// FuenteEnergiaRecomendada
+        /// FuentesEnergiaRecomendadas
         /// </summary>
-        public const string FuenteEnergiaRecomendada = "FuenteEnergiaRecomendada";
+        public const string FuentesEnergiaRecomendadas = "FuentesEnergiaRecomendadas";
 
         /// <summary>
         /// MonedaDestino

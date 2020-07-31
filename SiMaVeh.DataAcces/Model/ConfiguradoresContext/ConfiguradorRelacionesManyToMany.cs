@@ -28,6 +28,11 @@ namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 
             builder.Entity<ModeloVehiculoFuenteEnergia>()
                 .HasKey(k => new { k.ModeloVehiculoId, k.FuenteEnergiaId });
+
+            builder.Entity<ModeloVehiculoAceite>()
+                .HasKey(k => new { k.ModeloVehiculoId, k.AceiteId });
+
+            //TODO: hay que revisar los controllers de las nuevas relaciones porque me falto implementar algunos endpoints...
         }
     }
 }

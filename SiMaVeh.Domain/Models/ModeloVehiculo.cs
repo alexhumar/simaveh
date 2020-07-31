@@ -10,9 +10,9 @@ namespace SiMaVeh.Domain.Models
     /// </summary>
     public class ModeloVehiculo : DomainMember<long>,
         IEntityChanger<GrupoModelo, long, ModeloVehiculo, long>,
-        IEntityChanger<Aceite, long, ModeloVehiculo, long>,
         IEntityChanger<EquipamientoAirbags, string, ModeloVehiculo, long>,
         IEntityChanger<TipoFuenteEnergia, long, ModeloVehiculo, long>,
+        ICollectionManager<Aceite, long, ModeloVehiculo, long>,
         ICollectionManager<FuenteEnergia, long, ModeloVehiculo, long>,
         ICollectionManager<Repuesto, long, ModeloVehiculo, long>,
         ICollectionManager<PresionNeumatico, long, ModeloVehiculo, long>
@@ -25,6 +25,7 @@ namespace SiMaVeh.Domain.Models
             ModeloVehiculoRepuesto = new HashSet<ModeloVehiculoRepuesto>();
             ModeloVehiculoPresionNeumatico = new HashSet<ModeloVehiculoPresionNeumatico>();
             ModeloVehiculoFuenteEnergia = new HashSet<ModeloVehiculoFuenteEnergia>();
+            ModeloVehiculoAceite = new HashSet<ModeloVehiculoAceite>();
         }
 
         /// <summary>
@@ -38,11 +39,6 @@ namespace SiMaVeh.Domain.Models
         public virtual string Version { get; set; }
 
         /// <summary>
-        /// Aceite Recomendado
-        /// </summary>
-        public virtual Aceite AceiteRecomendado { get; set; /*el set no puede ser protected porque rompe OData*/ }
-
-        /// <summary>
         /// Airbags
         /// </summary>
         public virtual EquipamientoAirbags Airbags { get; set; /*el set no puede ser protected porque rompe OData*/ }
@@ -51,6 +47,11 @@ namespace SiMaVeh.Domain.Models
         /// Tipo de Fuente de Energia
         /// </summary>
         public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; /*el set no puede ser protected porque rompe OData*/ }
+
+        /// <summary>
+        /// Aceites Recomendados
+        /// </summary>
+        public virtual ISet<Aceite> AceitesRecomendados => ModeloVehiculoAceite.Select(m => m.Aceite).ToHashSet();
 
         /// <summary>
         /// Fuentes Energia Recomendadas
@@ -83,6 +84,11 @@ namespace SiMaVeh.Domain.Models
         /// Relacion ModeloVehiculo-FuenteEnergia
         /// </summary>
         public virtual ISet<ModeloVehiculoFuenteEnergia> ModeloVehiculoFuenteEnergia { get; }
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-Aceite
+        /// </summary>
+        public virtual ISet<ModeloVehiculoAceite> ModeloVehiculoAceite { get; }
 
         #endregion
 
@@ -131,21 +137,6 @@ namespace SiMaVeh.Domain.Models
             if (entity != null)
             {
                 GrupoModelo = entity;
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Cambiar aceite recomendado
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public ModeloVehiculo Cambiar(Aceite entity)
-        {
-            if (entity != null)
-            {
-                AceiteRecomendado = entity;
             }
 
             return this;
@@ -296,6 +287,45 @@ namespace SiMaVeh.Domain.Models
                 if (toRemove != null)
                 {
                     ModeloVehiculoFuenteEnergia.Remove(toRemove);
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Agregar aceite recomendado
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Agregar(Aceite entity)
+        {
+            if (entity != null)
+            {
+                ModeloVehiculoAceite?.Add(new ModeloVehiculoAceite
+                {
+                    Aceite = entity,
+                    ModeloVehiculo = this
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar aceite recomendado
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Quitar(Aceite entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = ModeloVehiculoAceite?
+                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.Aceite == entity);
+                if (toRemove != null)
+                {
+                    ModeloVehiculoAceite.Remove(toRemove);
                 }
             }
 

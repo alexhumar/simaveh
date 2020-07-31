@@ -28,17 +28,17 @@ namespace SiMaVeh.Api.Controllers
         #region properties
 
         /// <summary>
-        /// Obtiene el aceite recomendado del modelo vehiculo
+        /// Obtiene los aceites recomendados del modelo vehiculo
         /// </summary>
         /// <param name="key"></param>
-        /// <returns>Aceite recomendado del modelo vehiculo</returns>
+        /// <returns>Aceites recomendados del modelo vehiculo</returns>
         /// <response code="200"></response>
-        [EnableQuery]
-        public async Task<IActionResult> GetAceiteRecomendado([FromODataUri] long key)
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        public async Task<IActionResult> GetAceitesRecomendados([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.AceiteRecomendado);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.AceitesRecomendados);
         }
 
         /// <summary>
@@ -56,13 +56,13 @@ namespace SiMaVeh.Api.Controllers
         }
 
         /// <summary>
-        /// Obtiene la fuente de energia recomendada del modelo vehiculo
+        /// Obtiene las fuentes de energia recomendadas del modelo vehiculo
         /// </summary>
         /// <param name="key"></param>
-        /// <returns>Fuente de energia del modelo vehiculo</returns>
+        /// <returns>Fuentes de energia del modelo vehiculo</returns>
         /// <response code="200"></response>
-        [EnableQuery]
-        public async Task<IActionResult> GetFuenteEnergiaRecomendada([FromODataUri] long key)
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        public async Task<IActionResult> GetFuentesEnergiaRecomendadas([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
@@ -158,10 +158,6 @@ namespace SiMaVeh.Api.Controllers
             {
                 resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, GrupoModelo, long>(Request, key, link);
             }
-            else if (navigationProperty.Equals(EntityProperty.AceiteRecomendado))
-            {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, Aceite, long>(Request, key, link);
-            }
             else if (navigationProperty.Equals(EntityProperty.Airbags))
             {
                 resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, EquipamientoAirbags, string>(Request, key, link);
@@ -170,7 +166,11 @@ namespace SiMaVeh.Api.Controllers
             {
                 resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, TipoFuenteEnergia, long>(Request, key, link);
             }
-            else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
+            else if (navigationProperty.Equals(EntityProperty.AceitesRecomendados))
+            {
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, Aceite, long>(Request, key, link);
+            }
+            else if (navigationProperty.Equals(EntityProperty.FuentesEnergiaRecomendadas))
             {
                 resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, key, link);
             }
@@ -190,6 +190,7 @@ namespace SiMaVeh.Api.Controllers
         /// Borra la referencia de un repuesto en la coleccion de repuestos recomendados.
         /// O borra la referencia de una presion de neumatico en la coleccion de presiones de neumaticos recomendadas.
         /// O borra la referencia de una fuente de energia en la coleccion de fuentes de energia recomendadas.
+        /// O borra la referencia de un aceite en la coleccion de aceites recomendados.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="relatedKey"></param>
@@ -207,9 +208,13 @@ namespace SiMaVeh.Api.Controllers
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, key, Convert.ToInt64(relatedKey));
             }
-            else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
+            else if (navigationProperty.Equals(EntityProperty.FuentesEnergiaRecomendadas))
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+            else if (navigationProperty.Equals(EntityProperty.AceitesRecomendados))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, Aceite, long>(Request, key, Convert.ToInt64(relatedKey));
             }
 
             return ResultFromHttpStatusCode(resultado);
