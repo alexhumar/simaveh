@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -76,6 +77,20 @@ namespace SiMaVeh.Api.Controllers
             var entity = await repository.FindAsync(key);
 
             return entity == null ? NotFound() : (IActionResult)Ok(entity.ViscosidadSAEBajaTemperatura);
+        }
+
+        /// <summary>
+        /// Obtiene las recomendaciones de modelo vehiculo
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Modelo vehiculo de la presion neumatico</returns>
+        /// <response code="200"></response>
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
+        {
+            var entity = await repository.FindAsync(key);
+
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>

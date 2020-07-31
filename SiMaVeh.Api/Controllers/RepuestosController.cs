@@ -92,6 +92,20 @@ namespace SiMaVeh.Api.Controllers
         }
 
         /// <summary>
+        /// Obtiene las recomendaciones de modelo vehiculo
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Modelo vehiculo de la presion neumatico</returns>
+        /// <response code="200"></response>
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
+        {
+            var entity = await repository.FindAsync(key);
+
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.RecomendacionesModeloVehiculo);
+        }
+
+        /// <summary>
         /// Asocia un kit existente en la coleccion de kits del repuesto.
         /// O asocia una periodicidad mantenimiento existente en la coleccion de periodicidades mantenimiento del repuesto.
         /// O asocia un modelo vehiculo a la coleccion de recomendaciones modelo vehiculo.
