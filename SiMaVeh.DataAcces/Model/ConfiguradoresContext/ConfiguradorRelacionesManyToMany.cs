@@ -25,6 +25,9 @@ namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 
             builder.Entity<ModeloVehiculoPresionNeumatico>()
                 .HasKey(k => new { k.ModeloVehiculoId, k.PresionNeumaticoId });
+
+            builder.Entity<ModeloVehiculoFuenteEnergia>()
+                .HasKey(k => new { k.ModeloVehiculoId, k.FuenteEnergiaId });
         }
     }
 }

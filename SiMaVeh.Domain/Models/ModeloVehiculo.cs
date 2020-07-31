@@ -13,7 +13,7 @@ namespace SiMaVeh.Domain.Models
         IEntityChanger<Aceite, long, ModeloVehiculo, long>,
         IEntityChanger<EquipamientoAirbags, string, ModeloVehiculo, long>,
         IEntityChanger<TipoFuenteEnergia, long, ModeloVehiculo, long>,
-        IEntityChanger<FuenteEnergia, long, ModeloVehiculo, long>,
+        ICollectionManager<FuenteEnergia, long, ModeloVehiculo, long>,
         ICollectionManager<Repuesto, long, ModeloVehiculo, long>,
         ICollectionManager<PresionNeumatico, long, ModeloVehiculo, long>
     {
@@ -24,6 +24,7 @@ namespace SiMaVeh.Domain.Models
         {
             ModeloVehiculoRepuesto = new HashSet<ModeloVehiculoRepuesto>();
             ModeloVehiculoPresionNeumatico = new HashSet<ModeloVehiculoPresionNeumatico>();
+            ModeloVehiculoFuenteEnergia = new HashSet<ModeloVehiculoFuenteEnergia>();
         }
 
         /// <summary>
@@ -52,9 +53,9 @@ namespace SiMaVeh.Domain.Models
         public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
-        /// Fuente Energia Recomendada
+        /// Fuentes Energia Recomendadas
         /// </summary>
-        public virtual FuenteEnergia FuenteEnergiaRecomendada { get; set; /*el set no puede ser protected porque rompe OData*/ }
+        public virtual ISet<FuenteEnergia> FuentesEnergiaRecomendadas => ModeloVehiculoFuenteEnergia.Select(m => m.FuenteEnergia).ToHashSet();
 
         /// <summary>
         /// Repuestos Recomendados
@@ -77,6 +78,11 @@ namespace SiMaVeh.Domain.Models
         /// Relacion ModeloVehiculo-PresionNeumatico
         /// </summary>
         public virtual ISet<ModeloVehiculoPresionNeumatico> ModeloVehiculoPresionNeumatico { get; }
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-FuenteEnergia
+        /// </summary>
+        public virtual ISet<ModeloVehiculoFuenteEnergia> ModeloVehiculoFuenteEnergia { get; }
 
         #endregion
 
@@ -175,21 +181,6 @@ namespace SiMaVeh.Domain.Models
             return this;
         }
 
-        /// <summary>
-        /// Cambiar fuente energia recomendada
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public ModeloVehiculo Cambiar(FuenteEnergia entity)
-        {
-            if (entity != null)
-            {
-                FuenteEnergiaRecomendada = entity;
-            }
-
-            return this;
-        }
-
         #endregion
 
         #region ICollectionManager
@@ -266,6 +257,45 @@ namespace SiMaVeh.Domain.Models
                 if (toRemove != null)
                 {
                     ModeloVehiculoRepuesto.Remove(toRemove);
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Agregar fuente energia recomendada
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Agregar(FuenteEnergia entity)
+        {
+            if (entity != null)
+            {
+                ModeloVehiculoFuenteEnergia?.Add(new ModeloVehiculoFuenteEnergia
+                {
+                    FuenteEnergia = entity,
+                    ModeloVehiculo = this
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar fuente energia recomendada
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Quitar(FuenteEnergia entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = ModeloVehiculoFuenteEnergia?
+                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.FuenteEnergia == entity);
+                if (toRemove != null)
+                {
+                    ModeloVehiculoFuenteEnergia.Remove(toRemove);
                 }
             }
 

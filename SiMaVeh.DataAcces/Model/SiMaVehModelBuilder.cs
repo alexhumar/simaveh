@@ -108,6 +108,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<FuenteEnergia>().Ignore(f => f.ModeloVehiculoFuenteEnergia);
 
             builder.EntitySet<GrupoModelo>(entityTypeGetter.GetCollectionNameAsString<GrupoModelo, long>());
             builder.EntityType<GrupoModelo>()
@@ -165,6 +166,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
             builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoRepuesto);
             builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoPresionNeumatico);
+            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoFuenteEnergia);
 
             builder.EntitySet<Moneda>(entityTypeGetter.GetCollectionNameAsString<Moneda, string>());
             builder.EntityType<Moneda>()

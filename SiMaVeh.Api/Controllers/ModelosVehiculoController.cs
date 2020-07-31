@@ -66,7 +66,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.FuenteEnergiaRecomendada);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.FuentesEnergiaRecomendadas);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace SiMaVeh.Api.Controllers
             }
             else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
             {
-                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, key, link);
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, key, link);
             }
             else if (navigationProperty.Equals(EntityProperty.RepuestosRecomendados))
             {
@@ -189,6 +189,7 @@ namespace SiMaVeh.Api.Controllers
         /// <summary>
         /// Borra la referencia de un repuesto en la coleccion de repuestos recomendados.
         /// O borra la referencia de una presion de neumatico en la coleccion de presiones de neumaticos recomendadas.
+        /// O borra la referencia de una fuente de energia en la coleccion de fuentes de energia recomendadas.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="relatedKey"></param>
@@ -205,6 +206,10 @@ namespace SiMaVeh.Api.Controllers
             else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, key, Convert.ToInt64(relatedKey));
+            }
+            else if (navigationProperty.Equals(EntityProperty.FuenteEnergiaRecomendada))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, FuenteEnergia, long>(Request, key, Convert.ToInt64(relatedKey));
             }
 
             return ResultFromHttpStatusCode(resultado);
