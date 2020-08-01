@@ -41,9 +41,9 @@
         public const string MonedaOrigen = "MonedaOrigen";
 
         /// <summary>
-        /// PresionesNeumaticosRecomendadas
+        /// PresionesNeumaticoRecomendadas
         /// </summary>
-        public const string PresionesNeumaticosRecomendadas = "PresionesNeumaticosRecomendadas";
+        public const string PresionesNeumaticoRecomendadas = "PresionesNeumaticoRecomendadas";
 
         /// <summary>
         /// RepuestosRecomendados

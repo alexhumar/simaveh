@@ -84,17 +84,17 @@ namespace SiMaVeh.Api.Controllers
         }
 
         /// <summary>
-        /// Obtiene las presiones de neumaticos recomendada del modelo vehiculo
+        /// Obtiene las presiones de neumatico recomendadas del modelo vehiculo
         /// </summary>
         /// <param name="key"></param>
-        /// <returns>Presiones de neumaticos recomendada del modelo vehiculo</returns>
+        /// <returns>Presiones de neumatico recomendadas del modelo vehiculo</returns>
         /// <response code="200"></response>
         [EnableQuery(PageSize = QueryConstants.PageSize)]
-        public async Task<IActionResult> GetPresionesNeumaticosRecomendadas([FromODataUri] long key)
+        public async Task<IActionResult> GetPresionesNeumaticoRecomendadas([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.PresionesNeumaticosRecomendadas);
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.PresionesNeumaticoRecomendadas);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace SiMaVeh.Api.Controllers
             {
                 resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, key, link);
             }
-            else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
+            else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticoRecomendadas))
             {
                 resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, key, link);
             }
@@ -204,7 +204,7 @@ namespace SiMaVeh.Api.Controllers
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, Repuesto, long>(Request, key, Convert.ToInt64(relatedKey));
             }
-            else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticosRecomendadas))
+            else if (navigationProperty.Equals(EntityProperty.PresionesNeumaticoRecomendadas))
             {
                 resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<ModeloVehiculo, long, PresionNeumatico, long>(Request, key, Convert.ToInt64(relatedKey));
             }

@@ -64,9 +64,9 @@ namespace SiMaVeh.Domain.Models
         public virtual ISet<Repuesto> RepuestosRecomendados => ModeloVehiculoRepuesto.Select(m => m.Repuesto).ToHashSet();
 
         /// <summary>
-        /// Presiones de Neumaticos Recomendadas
+        /// Presiones de Neumatico Recomendadas
         /// </summary>
-        public virtual ISet<PresionNeumatico> PresionesNeumaticosRecomendadas => ModeloVehiculoPresionNeumatico.Select(m => m.PresionNeumatico).ToHashSet();
+        public virtual ISet<PresionNeumatico> PresionesNeumaticoRecomendadas => ModeloVehiculoPresionNeumatico.Select(m => m.PresionNeumatico).ToHashSet();
 
         #region relations
 
