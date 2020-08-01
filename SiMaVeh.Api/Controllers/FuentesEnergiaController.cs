@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -67,8 +69,23 @@ namespace SiMaVeh.Api.Controllers
         }
 
         /// <summary>
+        /// Obtiene las recomendaciones de modelo vehiculo
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Modelo vehiculo de la presion neumatico</returns>
+        /// <response code="200"></response>
+        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
+        {
+            var entity = await repository.FindAsync(key);
+
+            return entity == null ? NotFound() : (IActionResult)Ok(entity.RecomendacionesModeloVehiculo);
+        }
+
+        /// <summary>
         /// Modifica el tipo fuente energia asociado a la fuente energia.
         /// O modifica la marca asociada a la fuente energia.
+        /// O agrega un modelo de vehiculo a la coleccion de recomendaciones de modelos de vehiculo.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="navigationProperty"></param>
@@ -88,6 +105,29 @@ namespace SiMaVeh.Api.Controllers
             else if (navigationProperty.Equals(marcaTypeName))
             {
                 resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<FuenteEnergia, long, Marca, long>(Request, key, link);
+            }
+            else if (navigationProperty.Equals(EntityProperty.RecomendacionesModeloVehiculo))
+            {
+                resultado = await relatedEntityAdder.TryAddRelatedEntityAsync<FuenteEnergia, long, ModeloVehiculo, long>(Request, key, link);
+            }
+
+            return ResultFromHttpStatusCode(resultado);
+        }
+
+        /// <summary>
+        /// Borra la referencia de un modelo de vehiculo en la coleccion de recomendaciones de modelos de vehiculo.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="relatedKey"></param>
+        /// <param name="navigationProperty"></param>
+        /// <returns></returns>
+        public override async Task<IActionResult> DeleteRef([FromODataUri] long key, [FromODataUri] string relatedKey, string navigationProperty)
+        {
+            var resultado = HttpStatusCode.NotImplemented;
+
+            if (navigationProperty.Equals(EntityProperty.RecomendacionesModeloVehiculo))
+            {
+                resultado = await relatedEntityRemover.TryRemoveRelatedEntityAsync<FuenteEnergia, long, ModeloVehiculo, long>(Request, key, Convert.ToInt64(relatedKey));
             }
 
             return ResultFromHttpStatusCode(resultado);
