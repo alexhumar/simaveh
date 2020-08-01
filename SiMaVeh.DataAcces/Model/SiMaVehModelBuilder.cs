@@ -43,6 +43,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<Aceite>().Ignore(a => a.ModeloVehiculoAceite);
 
             builder.EntitySet<Automovil>(entityTypeGetter.GetCollectionNameAsString<Automovil, long>());
             builder.EntityType<Automovil>()
@@ -108,6 +109,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<FuenteEnergia>().Ignore(f => f.ModeloVehiculoFuenteEnergia);
 
             builder.EntitySet<GrupoModelo>(entityTypeGetter.GetCollectionNameAsString<GrupoModelo, long>());
             builder.EntityType<GrupoModelo>()
@@ -163,6 +165,10 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoRepuesto);
+            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoPresionNeumatico);
+            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoFuenteEnergia);
+            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoAceite);
 
             builder.EntitySet<Moneda>(entityTypeGetter.GetCollectionNameAsString<Moneda, string>());
             builder.EntityType<Moneda>()
@@ -225,6 +231,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<PresionNeumatico>().Ignore(p => p.ModeloVehiculoPresionNeumatico);
 
             builder.EntitySet<Provincia>(entityTypeGetter.GetCollectionNameAsString<Provincia, long>());
             builder.EntityType<Provincia>()
@@ -257,6 +264,7 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
+            builder.EntityType<Repuesto>().Ignore(r => r.ModeloVehiculoRepuesto);
 
             builder.EntitySet<ServicioReparador>(entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>());
             builder.EntityType<ServicioReparador>()

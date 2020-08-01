@@ -16,7 +16,7 @@
         public virtual Reparador Reparador { get; set; }
 
         /// <summary>
-        /// Id. EntidadReparadora
+        /// Id. Entidad Reparadora
         /// </summary>
         public virtual long EntidadReparadoraId { get; set; }
 
