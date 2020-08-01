@@ -11,13 +11,15 @@ namespace SiMaVeh.Domain.Models
     public class Repuesto : Recambio,
         IEntityChanger<TargetMantenimiento, long, Repuesto, long>,
         ICollectionManager<Kit, long, Repuesto, long>,
-        ICollectionManager<PeriodicidadMantenimiento, long, Repuesto, long>
+        ICollectionManager<PeriodicidadMantenimiento, long, Repuesto, long>,
+        ICollectionManager<ModeloVehiculo, long, Repuesto, long>
     {
         /// <summary>
         /// Repuesto
         /// </summary>
         public Repuesto()
         {
+            ModeloVehiculoRepuesto = new HashSet<ModeloVehiculoRepuesto>();
             PeriodicidadesMantenimiento = new HashSet<PeriodicidadMantenimiento>();
         }
 
@@ -40,6 +42,20 @@ namespace SiMaVeh.Domain.Models
         /// Kits
         /// </summary>
         public virtual ISet<Kit> Kits => KitRepuesto.Select(k => k.Kit).ToHashSet();
+
+        /// <summary>
+        /// Recomendaciones Modelo Vehiculo
+        /// </summary>
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo => ModeloVehiculoRepuesto.Select(m => m.ModeloVehiculo).ToHashSet();
+
+        #region relations
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-Repuesto
+        /// </summary>
+        public virtual ISet<ModeloVehiculoRepuesto> ModeloVehiculoRepuesto { get; }
+
+        #endregion
 
         #region overrides
 
@@ -163,6 +179,45 @@ namespace SiMaVeh.Domain.Models
                 if ((bool)entity.Repuesto?.Equals(this))
                 {
                     entity.Cambiar((Repuesto)null);
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Agregar modelo vehiculo
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Repuesto Agregar(ModeloVehiculo entity)
+        {
+            if (entity != null)
+            {
+                ModeloVehiculoRepuesto?.Add(new ModeloVehiculoRepuesto
+                {
+                    ModeloVehiculo = entity,
+                    Repuesto = this
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar modelo vehiculo
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Repuesto Quitar(ModeloVehiculo entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = ModeloVehiculoRepuesto?
+                    .FirstOrDefault(r => r.Repuesto == this && r.ModeloVehiculo == entity);
+                if (toRemove != null)
+                {
+                    ModeloVehiculoRepuesto.Remove(toRemove);
                 }
             }
 

@@ -6,9 +6,9 @@
     public class EntityProperty
     {
         /// <summary>
-        /// AceiteRecomendado
+        /// AceitesRecomendados
         /// </summary>
-        public const string AceiteRecomendado = "AceiteRecomendado";
+        public const string AceitesRecomendados = "AceitesRecomendados";
 
         /// <summary>
         /// Airbags
@@ -16,9 +16,9 @@
         public const string Airbags = "Airbags";
 
         /// <summary>
-        /// FuenteEnergiaRecomendada
+        /// FuentesEnergiaRecomendadas
         /// </summary>
-        public const string FuenteEnergiaRecomendada = "FuenteEnergiaRecomendada";
+        public const string FuentesEnergiaRecomendadas = "FuentesEnergiaRecomendadas";
 
         /// <summary>
         /// MonedaDestino
@@ -41,9 +41,9 @@
         public const string MonedaOrigen = "MonedaOrigen";
 
         /// <summary>
-        /// PresionesNeumaticosRecomendadas
+        /// PresionesNeumaticoRecomendadas
         /// </summary>
-        public const string PresionesNeumaticosRecomendadas = "PresionesNeumaticosRecomendadas";
+        public const string PresionesNeumaticoRecomendadas = "PresionesNeumaticoRecomendadas";
 
         /// <summary>
         /// RepuestosRecomendados
@@ -64,5 +64,10 @@
         /// Kits
         /// </summary>
         public const string Kits = "Kits";
+
+        /// <summary>
+        /// RecomendacionesModeloVehiculo
+        /// </summary>
+        public const string RecomendacionesModeloVehiculo = "RecomendacionesModeloVehiculo";
     }
 }

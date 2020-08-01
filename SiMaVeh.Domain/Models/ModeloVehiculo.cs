@@ -1,5 +1,7 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -8,10 +10,10 @@ namespace SiMaVeh.Domain.Models
     /// </summary>
     public class ModeloVehiculo : DomainMember<long>,
         IEntityChanger<GrupoModelo, long, ModeloVehiculo, long>,
-        IEntityChanger<Aceite, long, ModeloVehiculo, long>,
         IEntityChanger<EquipamientoAirbags, string, ModeloVehiculo, long>,
         IEntityChanger<TipoFuenteEnergia, long, ModeloVehiculo, long>,
-        IEntityChanger<FuenteEnergia, long, ModeloVehiculo, long>,
+        ICollectionManager<Aceite, long, ModeloVehiculo, long>,
+        ICollectionManager<FuenteEnergia, long, ModeloVehiculo, long>,
         ICollectionManager<Repuesto, long, ModeloVehiculo, long>,
         ICollectionManager<PresionNeumatico, long, ModeloVehiculo, long>
     {
@@ -20,8 +22,10 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public ModeloVehiculo()
         {
-            RepuestosRecomendados = new HashSet<Repuesto>();
-            PresionesNeumaticosRecomendadas = new HashSet<PresionNeumatico>();
+            ModeloVehiculoRepuesto = new HashSet<ModeloVehiculoRepuesto>();
+            ModeloVehiculoPresionNeumatico = new HashSet<ModeloVehiculoPresionNeumatico>();
+            ModeloVehiculoFuenteEnergia = new HashSet<ModeloVehiculoFuenteEnergia>();
+            ModeloVehiculoAceite = new HashSet<ModeloVehiculoAceite>();
         }
 
         /// <summary>
@@ -35,11 +39,6 @@ namespace SiMaVeh.Domain.Models
         public virtual string Version { get; set; }
 
         /// <summary>
-        /// Aceite Recomendado
-        /// </summary>
-        public virtual Aceite AceiteRecomendado { get; set; /*el set no puede ser protected porque rompe OData*/ }
-
-        /// <summary>
         /// Airbags
         /// </summary>
         public virtual EquipamientoAirbags Airbags { get; set; /*el set no puede ser protected porque rompe OData*/ }
@@ -50,20 +49,48 @@ namespace SiMaVeh.Domain.Models
         public virtual TipoFuenteEnergia TipoFuenteEnergia { get; set; /*el set no puede ser protected porque rompe OData*/ }
 
         /// <summary>
-        /// Fuente Energia Recomendada
+        /// Aceites Recomendados
         /// </summary>
-        public virtual FuenteEnergia FuenteEnergiaRecomendada { get; set; /*el set no puede ser protected porque rompe OData*/ }
+        public virtual ISet<Aceite> AceitesRecomendados => ModeloVehiculoAceite.Select(m => m.Aceite).ToHashSet();
 
-        //TODO - esta relacion hay que hacerla many-to-many
+        /// <summary>
+        /// Fuentes Energia Recomendadas
+        /// </summary>
+        public virtual ISet<FuenteEnergia> FuentesEnergiaRecomendadas => ModeloVehiculoFuenteEnergia.Select(m => m.FuenteEnergia).ToHashSet();
+
         /// <summary>
         /// Repuestos Recomendados
         /// </summary>
-        public virtual ISet<Repuesto> RepuestosRecomendados { get; protected set; }
+        public virtual ISet<Repuesto> RepuestosRecomendados => ModeloVehiculoRepuesto.Select(m => m.Repuesto).ToHashSet();
 
         /// <summary>
-        /// Presiones de Neumaticos Recomendadas
+        /// Presiones de Neumatico Recomendadas
         /// </summary>
-        public virtual ISet<PresionNeumatico> PresionesNeumaticosRecomendadas { get; protected set; }
+        public virtual ISet<PresionNeumatico> PresionesNeumaticoRecomendadas => ModeloVehiculoPresionNeumatico.Select(m => m.PresionNeumatico).ToHashSet();
+
+        #region relations
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-Repuesto
+        /// </summary>
+        public virtual ISet<ModeloVehiculoRepuesto> ModeloVehiculoRepuesto { get; }
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-PresionNeumatico
+        /// </summary>
+        public virtual ISet<ModeloVehiculoPresionNeumatico> ModeloVehiculoPresionNeumatico { get; }
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-FuenteEnergia
+        /// </summary>
+        public virtual ISet<ModeloVehiculoFuenteEnergia> ModeloVehiculoFuenteEnergia { get; }
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-Aceite
+        /// </summary>
+        public virtual ISet<ModeloVehiculoAceite> ModeloVehiculoAceite { get; }
+
+        #endregion
 
         #region overrides
 
@@ -116,21 +143,6 @@ namespace SiMaVeh.Domain.Models
         }
 
         /// <summary>
-        /// Cambiar aceite recomendado
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public ModeloVehiculo Cambiar(Aceite entity)
-        {
-            if (entity != null)
-            {
-                AceiteRecomendado = entity;
-            }
-
-            return this;
-        }
-
-        /// <summary>
         /// Cambiar equipamiento airbags
         /// </summary>
         /// <param name="entity"></param>
@@ -160,21 +172,6 @@ namespace SiMaVeh.Domain.Models
             return this;
         }
 
-        /// <summary>
-        /// Cambiar fuente energia recomendada
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public ModeloVehiculo Cambiar(FuenteEnergia entity)
-        {
-            if (entity != null)
-            {
-                FuenteEnergiaRecomendada = entity;
-            }
-
-            return this;
-        }
-
         #endregion
 
         #region ICollectionManager
@@ -186,10 +183,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ModeloVehiculo Agregar(PresionNeumatico entity)
         {
-            if ((entity != null) && !PresionesNeumaticosRecomendadas.Contains(entity))
+            if (entity != null)
             {
-                PresionesNeumaticosRecomendadas.Add(entity);
-                entity.Cambiar(this);
+                ModeloVehiculoPresionNeumatico?.Add(new ModeloVehiculoPresionNeumatico
+                {
+                    ModeloVehiculo = this,
+                    PresionNeumatico = entity
+                });
             }
 
             return this;
@@ -202,12 +202,13 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public ModeloVehiculo Quitar(PresionNeumatico entity)
         {
-            if ((entity != null) && PresionesNeumaticosRecomendadas.Contains(entity))
+            if (entity != null)
             {
-                PresionesNeumaticosRecomendadas.Remove(entity);
-                if ((bool)entity.ModeloVehiculo?.Equals(this))
+                var toRemove = ModeloVehiculoPresionNeumatico?
+                    .FirstOrDefault(m => m.PresionNeumatico == entity && m.ModeloVehiculo == this);
+                if (toRemove != null)
                 {
-                    entity.Cambiar((ModeloVehiculo)null);
+                    ModeloVehiculoPresionNeumatico.Remove(toRemove);
                 }
             }
 
@@ -223,7 +224,11 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                RepuestosRecomendados?.Add(entity);
+                ModeloVehiculoRepuesto?.Add(new ModeloVehiculoRepuesto
+                {
+                    Repuesto = entity,
+                    ModeloVehiculo = this
+                });
             }
 
             return this;
@@ -238,7 +243,90 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                RepuestosRecomendados?.Remove(entity);
+                var toRemove = ModeloVehiculoRepuesto?
+                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.Repuesto == entity);
+                if (toRemove != null)
+                {
+                    ModeloVehiculoRepuesto.Remove(toRemove);
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Agregar fuente energia recomendada
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Agregar(FuenteEnergia entity)
+        {
+            if (entity != null)
+            {
+                ModeloVehiculoFuenteEnergia?.Add(new ModeloVehiculoFuenteEnergia
+                {
+                    FuenteEnergia = entity,
+                    ModeloVehiculo = this
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar fuente energia recomendada
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Quitar(FuenteEnergia entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = ModeloVehiculoFuenteEnergia?
+                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.FuenteEnergia == entity);
+                if (toRemove != null)
+                {
+                    ModeloVehiculoFuenteEnergia.Remove(toRemove);
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Agregar aceite recomendado
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Agregar(Aceite entity)
+        {
+            if (entity != null)
+            {
+                ModeloVehiculoAceite?.Add(new ModeloVehiculoAceite
+                {
+                    Aceite = entity,
+                    ModeloVehiculo = this
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar aceite recomendado
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public ModeloVehiculo Quitar(Aceite entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = ModeloVehiculoAceite?
+                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.Aceite == entity);
+                if (toRemove != null)
+                {
+                    ModeloVehiculoAceite.Remove(toRemove);
+                }
             }
 
             return this;

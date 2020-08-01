@@ -11,7 +11,7 @@
         public virtual long CategoriaMarcaId { get; set; }
 
         /// <summary>
-        /// CategoriaMarca
+        /// Categoria Marca
         /// </summary>
         public virtual CategoriaMarca CategoriaMarca { get; set; }
 

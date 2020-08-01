@@ -339,6 +339,62 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ModelosVehiculo",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    GrupoModeloId = table.Column<long>(nullable: true),
+                    Version = table.Column<string>(nullable: true),
+                    AirbagsId = table.Column<string>(nullable: true),
+                    TipoFuenteEnergiaId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModelosVehiculo", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ModelosVehiculo_EquipamientosAirbags_AirbagsId",
+                        column: x => x.AirbagsId,
+                        principalTable: "EquipamientosAirbags",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ModelosVehiculo_GruposModelo_GrupoModeloId",
+                        column: x => x.GrupoModeloId,
+                        principalTable: "GruposModelo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ModelosVehiculo_TiposFuenteEnergia_TipoFuenteEnergiaId",
+                        column: x => x.TipoFuenteEnergiaId,
+                        principalTable: "TiposFuenteEnergia",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PresionesNeumaticos",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    RuedasDelanteras = table.Column<decimal>(nullable: false),
+                    RuedasTraseras = table.Column<decimal>(nullable: false),
+                    VehiculoCargado = table.Column<bool>(nullable: false),
+                    NeumaticoId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PresionesNeumaticos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PresionesNeumaticos_Neumaticos_NeumaticoId",
+                        column: x => x.NeumaticoId,
+                        principalTable: "Neumaticos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Partidos",
                 columns: table => new
                 {
@@ -386,104 +442,6 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ModelosVehiculo",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    GrupoModeloId = table.Column<long>(nullable: true),
-                    Version = table.Column<string>(nullable: true),
-                    AceiteRecomendadoId = table.Column<long>(nullable: true),
-                    AirbagsId = table.Column<string>(nullable: true),
-                    TipoFuenteEnergiaId = table.Column<long>(nullable: true),
-                    FuenteEnergiaRecomendadaId = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ModelosVehiculo", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ModelosVehiculo_TargetsMantenimiento_AceiteRecomendadoId",
-                        column: x => x.AceiteRecomendadoId,
-                        principalTable: "TargetsMantenimiento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ModelosVehiculo_EquipamientosAirbags_AirbagsId",
-                        column: x => x.AirbagsId,
-                        principalTable: "EquipamientosAirbags",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ModelosVehiculo_FuentesEnergia_FuenteEnergiaRecomendadaId",
-                        column: x => x.FuenteEnergiaRecomendadaId,
-                        principalTable: "FuentesEnergia",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ModelosVehiculo_GruposModelo_GrupoModeloId",
-                        column: x => x.GrupoModeloId,
-                        principalTable: "GruposModelo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ModelosVehiculo_TiposFuenteEnergia_TipoFuenteEnergiaId",
-                        column: x => x.TipoFuenteEnergiaId,
-                        principalTable: "TiposFuenteEnergia",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Localidades",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    CPA = table.Column<string>(nullable: true),
-                    PartidoId = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Localidades", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Localidades_Partidos_PartidoId",
-                        column: x => x.PartidoId,
-                        principalTable: "Partidos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PresionesNeumaticos",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RuedasDelanteras = table.Column<decimal>(nullable: false),
-                    RuedasTraseras = table.Column<decimal>(nullable: false),
-                    EsDefault = table.Column<bool>(nullable: false),
-                    ModeloVehiculoId = table.Column<long>(nullable: true),
-                    NeumaticoId = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PresionesNeumaticos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PresionesNeumaticos_ModelosVehiculo_ModeloVehiculoId",
-                        column: x => x.ModeloVehiculoId,
-                        principalTable: "ModelosVehiculo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PresionesNeumaticos_Neumaticos_NeumaticoId",
-                        column: x => x.NeumaticoId,
-                        principalTable: "Neumaticos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Recambios",
                 columns: table => new
                 {
@@ -494,8 +452,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     CodigoIdentificador = table.Column<string>(nullable: true),
-                    TargetMantenimientoId = table.Column<long>(nullable: true),
-                    ModeloVehiculoId = table.Column<long>(nullable: true)
+                    TargetMantenimientoId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -507,17 +464,59 @@ namespace SiMaVeh.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Recambios_ModelosVehiculo_ModeloVehiculoId",
-                        column: x => x.ModeloVehiculoId,
-                        principalTable: "ModelosVehiculo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Recambios_TargetsMantenimiento_TargetMantenimientoId",
                         column: x => x.TargetMantenimientoId,
                         principalTable: "TargetsMantenimiento",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModeloVehiculoAceite",
+                columns: table => new
+                {
+                    ModeloVehiculoId = table.Column<long>(nullable: false),
+                    AceiteId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModeloVehiculoAceite", x => new { x.ModeloVehiculoId, x.AceiteId });
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoAceite_TargetsMantenimiento_AceiteId",
+                        column: x => x.AceiteId,
+                        principalTable: "TargetsMantenimiento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoAceite_ModelosVehiculo_ModeloVehiculoId",
+                        column: x => x.ModeloVehiculoId,
+                        principalTable: "ModelosVehiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModeloVehiculoFuenteEnergia",
+                columns: table => new
+                {
+                    ModeloVehiculoId = table.Column<long>(nullable: false),
+                    FuenteEnergiaId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModeloVehiculoFuenteEnergia", x => new { x.ModeloVehiculoId, x.FuenteEnergiaId });
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoFuenteEnergia_FuentesEnergia_FuenteEnergiaId",
+                        column: x => x.FuenteEnergiaId,
+                        principalTable: "FuentesEnergia",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoFuenteEnergia_ModelosVehiculo_ModeloVehiculoId",
+                        column: x => x.ModeloVehiculoId,
+                        principalTable: "ModelosVehiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -553,22 +552,46 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Direcciones",
+                name: "ModeloVehiculoPresionNeumatico",
+                columns: table => new
+                {
+                    ModeloVehiculoId = table.Column<long>(nullable: false),
+                    PresionNeumaticoId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModeloVehiculoPresionNeumatico", x => new { x.ModeloVehiculoId, x.PresionNeumaticoId });
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoPresionNeumatico_ModelosVehiculo_ModeloVehicul~",
+                        column: x => x.ModeloVehiculoId,
+                        principalTable: "ModelosVehiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoPresionNeumatico_PresionesNeumaticos_PresionNe~",
+                        column: x => x.PresionNeumaticoId,
+                        principalTable: "PresionesNeumaticos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Localidades",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Calle = table.Column<string>(nullable: true),
-                    NumeroCalle = table.Column<int>(nullable: false),
-                    LocalidadId = table.Column<long>(nullable: true)
+                    Nombre = table.Column<string>(nullable: true),
+                    CPA = table.Column<string>(nullable: true),
+                    PartidoId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Direcciones", x => x.Id);
+                    table.PrimaryKey("PK_Localidades", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Direcciones_Localidades_LocalidadId",
-                        column: x => x.LocalidadId,
-                        principalTable: "Localidades",
+                        name: "FK_Localidades_Partidos_PartidoId",
+                        column: x => x.PartidoId,
+                        principalTable: "Partidos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -598,6 +621,30 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ModeloVehiculoRepuesto",
+                columns: table => new
+                {
+                    ModeloVehiculoId = table.Column<long>(nullable: false),
+                    RepuestoId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModeloVehiculoRepuesto", x => new { x.ModeloVehiculoId, x.RepuestoId });
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoRepuesto_ModelosVehiculo_ModeloVehiculoId",
+                        column: x => x.ModeloVehiculoId,
+                        principalTable: "ModelosVehiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoRepuesto_Recambios_RepuestoId",
+                        column: x => x.RepuestoId,
+                        principalTable: "Recambios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PeriodicidadesMantenimiento",
                 columns: table => new
                 {
@@ -608,7 +655,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     Meses = table.Column<int>(nullable: false),
                     Anios = table.Column<int>(nullable: false),
                     ModeloVehiculoId = table.Column<long>(nullable: true),
-                    TargetMantenimientoId = table.Column<long>(nullable: true),
+                    RepuestoId = table.Column<long>(nullable: true),
                     EsDefault = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -621,9 +668,30 @@ namespace SiMaVeh.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PeriodicidadesMantenimiento_Recambios_TargetMantenimientoId",
-                        column: x => x.TargetMantenimientoId,
+                        name: "FK_PeriodicidadesMantenimiento_Recambios_RepuestoId",
+                        column: x => x.RepuestoId,
                         principalTable: "Recambios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Direcciones",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Calle = table.Column<string>(nullable: true),
+                    NumeroCalle = table.Column<int>(nullable: false),
+                    LocalidadId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Direcciones", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Direcciones_Localidades_LocalidadId",
+                        column: x => x.LocalidadId,
+                        principalTable: "Localidades",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -824,19 +892,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 column: "MarcaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ModelosVehiculo_AceiteRecomendadoId",
-                table: "ModelosVehiculo",
-                column: "AceiteRecomendadoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ModelosVehiculo_AirbagsId",
                 table: "ModelosVehiculo",
                 column: "AirbagsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ModelosVehiculo_FuenteEnergiaRecomendadaId",
-                table: "ModelosVehiculo",
-                column: "FuenteEnergiaRecomendadaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ModelosVehiculo_GrupoModeloId",
@@ -847,6 +905,26 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "IX_ModelosVehiculo_TipoFuenteEnergiaId",
                 table: "ModelosVehiculo",
                 column: "TipoFuenteEnergiaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ModeloVehiculoAceite_AceiteId",
+                table: "ModeloVehiculoAceite",
+                column: "AceiteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ModeloVehiculoFuenteEnergia_FuenteEnergiaId",
+                table: "ModeloVehiculoFuenteEnergia",
+                column: "FuenteEnergiaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ModeloVehiculoPresionNeumatico_PresionNeumaticoId",
+                table: "ModeloVehiculoPresionNeumatico",
+                column: "PresionNeumaticoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ModeloVehiculoRepuesto_RepuestoId",
+                table: "ModeloVehiculoRepuesto",
+                column: "RepuestoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Neumaticos_MarcaId",
@@ -864,19 +942,14 @@ namespace SiMaVeh.DataAccess.Migrations
                 column: "ModeloVehiculoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PeriodicidadesMantenimiento_TargetMantenimientoId",
+                name: "IX_PeriodicidadesMantenimiento_RepuestoId",
                 table: "PeriodicidadesMantenimiento",
-                column: "TargetMantenimientoId");
+                column: "RepuestoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Personas_TipoDocumentoId",
                 table: "Personas",
                 column: "TipoDocumentoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PresionesNeumaticos_ModeloVehiculoId",
-                table: "PresionesNeumaticos",
-                column: "ModeloVehiculoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PresionesNeumaticos_NeumaticoId",
@@ -892,11 +965,6 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "IX_Recambios_MarcaId",
                 table: "Recambios",
                 column: "MarcaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Recambios_ModeloVehiculoId",
-                table: "Recambios",
-                column: "ModeloVehiculoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Recambios_TargetMantenimientoId",
@@ -971,10 +1039,19 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "MarcaCategoriaMarca");
 
             migrationBuilder.DropTable(
-                name: "PeriodicidadesMantenimiento");
+                name: "ModeloVehiculoAceite");
 
             migrationBuilder.DropTable(
-                name: "PresionesNeumaticos");
+                name: "ModeloVehiculoFuenteEnergia");
+
+            migrationBuilder.DropTable(
+                name: "ModeloVehiculoPresionNeumatico");
+
+            migrationBuilder.DropTable(
+                name: "ModeloVehiculoRepuesto");
+
+            migrationBuilder.DropTable(
+                name: "PeriodicidadesMantenimiento");
 
             migrationBuilder.DropTable(
                 name: "ReparadorEntidadReparadora");
@@ -992,10 +1069,13 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "CategoriasMarca");
 
             migrationBuilder.DropTable(
-                name: "Recambios");
+                name: "FuentesEnergia");
 
             migrationBuilder.DropTable(
-                name: "Neumaticos");
+                name: "PresionesNeumaticos");
+
+            migrationBuilder.DropTable(
+                name: "Recambios");
 
             migrationBuilder.DropTable(
                 name: "TiposTelefono");
@@ -1010,6 +1090,12 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Vehiculos");
 
             migrationBuilder.DropTable(
+                name: "Neumaticos");
+
+            migrationBuilder.DropTable(
+                name: "TargetsMantenimiento");
+
+            migrationBuilder.DropTable(
                 name: "Direcciones");
 
             migrationBuilder.DropTable(
@@ -1022,31 +1108,25 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Personas");
 
             migrationBuilder.DropTable(
-                name: "Localidades");
+                name: "UbicacionesPieza");
 
             migrationBuilder.DropTable(
-                name: "TargetsMantenimiento");
+                name: "Localidades");
 
             migrationBuilder.DropTable(
                 name: "EquipamientosAirbags");
 
             migrationBuilder.DropTable(
-                name: "FuentesEnergia");
+                name: "GruposModelo");
 
             migrationBuilder.DropTable(
-                name: "GruposModelo");
+                name: "TiposFuenteEnergia");
 
             migrationBuilder.DropTable(
                 name: "TiposDocumento");
 
             migrationBuilder.DropTable(
                 name: "Partidos");
-
-            migrationBuilder.DropTable(
-                name: "UbicacionesPieza");
-
-            migrationBuilder.DropTable(
-                name: "TiposFuenteEnergia");
 
             migrationBuilder.DropTable(
                 name: "Marcas");

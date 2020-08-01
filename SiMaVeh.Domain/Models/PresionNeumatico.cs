@@ -1,4 +1,7 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
+using SiMaVeh.Domain.Models.Relations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -6,9 +9,17 @@ namespace SiMaVeh.Domain.Models
     /// Presion Neumaticos
     /// </summary>
     public class PresionNeumatico : DomainMember<long>,
-        IEntityChanger<ModeloVehiculo, long, PresionNeumatico, long>,
+        ICollectionManager<ModeloVehiculo, long, PresionNeumatico, long>,
         IEntityChanger<Neumatico, long, PresionNeumatico, long>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public PresionNeumatico()
+        {
+            ModeloVehiculoPresionNeumatico = new HashSet<ModeloVehiculoPresionNeumatico>();
+        }
+
         /// <summary>
         /// Presion en PSI de ruedas delanteras
         /// </summary>
@@ -20,19 +31,33 @@ namespace SiMaVeh.Domain.Models
         public virtual decimal RuedasTraseras { get; set; }
 
         /// <summary>
-        /// Es presion default (para cualquier neumatico)
+        /// Es presion de vehículo cargado
         /// </summary>
-        public virtual bool EsDefault { get; set; }
+        public virtual bool VehiculoCargado { get; set; }
 
         /// <summary>
-        /// Modelo Vehiculo
+        /// Especifica si la presión es independiente de un neumático en especial
         /// </summary>
-        public virtual ModeloVehiculo ModeloVehiculo { get; set; /*el set no puede ser protected porque rompe OData*/ }
+        public virtual bool EsUniversal => Neumatico == null;
 
         /// <summary>
         /// Neumatico
         /// </summary>
         public virtual Neumatico Neumatico { get; set; /*el set no puede ser protected porque rompe OData*/ }
+
+        /// <summary>
+        /// Recomendaciones Modelo Vehiculo
+        /// </summary>
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo => ModeloVehiculoPresionNeumatico.Select(m => m.ModeloVehiculo).ToHashSet();
+
+        #region relations
+
+        /// <summary>
+        /// Relacion ModeloVehiculo-PresionNeumatico
+        /// </summary>
+        public virtual ISet<ModeloVehiculoPresionNeumatico> ModeloVehiculoPresionNeumatico { get; }
+
+        #endregion
 
         #region overrides
 
@@ -42,7 +67,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ") ", ModeloVehiculo?.ToString());
+            return string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ") ", RecomendacionesModeloVehiculo?.ToString());
         }
 
         /// <summary>
@@ -53,7 +78,7 @@ namespace SiMaVeh.Domain.Models
         public override bool Equals(object obj)
         {
             return obj is PresionNeumatico item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Neumatico.Equals(item.Neumatico) && ModeloVehiculo.Equals(item.ModeloVehiculo) && EsDefault == item.EsDefault));
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Neumatico.Equals(item.Neumatico) && RecomendacionesModeloVehiculo.Equals(item.RecomendacionesModeloVehiculo) && VehiculoCargado == item.VehiculoCargado));
         }
 
         /// <summary>
@@ -70,23 +95,6 @@ namespace SiMaVeh.Domain.Models
         #region IEntityChanger
 
         /// <summary>
-        /// Cambiar modelo vehiculo
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public PresionNeumatico Cambiar(ModeloVehiculo entity)
-        {
-            if (ModeloVehiculo != entity)
-            {
-                ModeloVehiculo?.Quitar(this);
-                ModeloVehiculo = entity;
-                entity?.Agregar(this);
-            }
-
-            return this;
-        }
-
-        /// <summary>
         /// Cambiar neumatico
         /// </summary>
         /// <param name="entity"></param>
@@ -96,6 +104,49 @@ namespace SiMaVeh.Domain.Models
             if (entity != null)
             {
                 Neumatico = entity;
+            }
+
+            return this;
+        }
+
+        #endregion
+
+        #region ICollectionManager
+
+        /// <summary>
+        /// Agregar modelo de vehiculo
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public PresionNeumatico Agregar(ModeloVehiculo entity)
+        {
+            if (entity != null)
+            {
+                ModeloVehiculoPresionNeumatico?.Add(new ModeloVehiculoPresionNeumatico
+                {
+                    ModeloVehiculo = entity,
+                    PresionNeumatico = this
+                });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Quitar modelo de vehiculo
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public PresionNeumatico Quitar(ModeloVehiculo entity)
+        {
+            if (entity != null)
+            {
+                var toRemove = ModeloVehiculoPresionNeumatico?
+                    .FirstOrDefault(m => m.PresionNeumatico == this && m.ModeloVehiculo == entity);
+                if (toRemove != null)
+                {
+                    ModeloVehiculoPresionNeumatico.Remove(toRemove);
+                }
             }
 
             return this;
