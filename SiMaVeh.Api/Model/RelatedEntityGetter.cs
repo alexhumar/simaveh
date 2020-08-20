@@ -44,16 +44,9 @@ namespace SiMaVeh.Api.Model
         /// <returns></returns>
         public async Task<TLinkBe> TryGetEntityFromRelatedKey<TLinkBe, TLinkBeId>(TLinkBeId key) where TLinkBe : DomainMember<TLinkBeId>
         {
-            try
-            {
-                var repository = new Repository<TLinkBe, TLinkBeId>(context);
+            var repository = new Repository<TLinkBe, TLinkBeId>(context);
 
-                return await repository.FindAsync(key);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return await repository.FindAsync(key);
         }
 
         /// <summary>
@@ -65,16 +58,9 @@ namespace SiMaVeh.Api.Model
         /// <returns></returns>
         public async Task<TLinkBe> TryGetEntityFromRelatedLink<TLinkBe, TLinkBeId>(Uri link) where TLinkBe : DomainMember<TLinkBeId>
         {
-            try
-            {
-                var key = uriParser.GetKeyFromRelatedEntityUri<TLinkBeId>(link);
+            var key = uriParser.GetKeyFromRelatedEntityUri<TLinkBeId>(link);
 
-                return await TryGetEntityFromRelatedKey<TLinkBe, TLinkBeId>(key);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return await TryGetEntityFromRelatedKey<TLinkBe, TLinkBeId>(key);
         }
     }
 }

@@ -31,25 +31,18 @@ namespace SiMaVeh.Api.Utils
         /// <returns></returns>
         public TKey GetKeyFromRelatedEntityUri<TKey>(Uri uri)
         {
-            try
+            var oDataUriParser = new ODataUriParser(modelBuilder.GetEdmModel(),
+                new Uri($"{uri.Scheme}://{uri.Host}:{uri.Port}/{UriConstants.PrefijoRutaOData}/"), uri);
+            var oDataKeySegment = (KeySegment)oDataUriParser.ParsePath().LastSegment;
+
+            if (oDataKeySegment != null && oDataKeySegment.Keys.Any())
             {
-                var oDataUriParser = new ODataUriParser(modelBuilder.GetEdmModel(),
-                    new Uri($"{uri.Scheme}://{uri.Host}:{uri.Port}/{UriConstants.PrefijoRutaOData}/"), uri);
-                var oDataKeySegment = (KeySegment)oDataUriParser.ParsePath().LastSegment;
+                var clave = oDataKeySegment.Keys.FirstOrDefault().Value;
 
-                if (oDataKeySegment != null && oDataKeySegment.Keys.Any())
-                {
-                    var clave = oDataKeySegment.Keys.FirstOrDefault().Value;
-
-                    return (TKey)Convert.ChangeType(clave, typeof(TKey));
-                }
-
-                return default;
+                return (TKey)Convert.ChangeType(clave, typeof(TKey));
             }
-            catch (Exception)
-            {
-                return default;
-            }
+
+            return default;
         }
     }
 }

@@ -48,37 +48,30 @@ namespace SiMaVeh.Api.Model
             where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
-            try
+            if ((relatedBeLink == null) || !HttpMethods.IsPut(request.Method))
             {
-                if ((relatedBeLink == null) || !HttpMethods.IsPut(request.Method))
-                {
-                    return HttpStatusCode.BadRequest;
-                }
-
-                var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
-
-                var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
-                if (targetBe == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
-
-                var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(relatedBeLink);
-                if (relatedBe == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
-
-                targetBe.Cambiar(relatedBe);
-
-                await repositoryTargetBe.SaveChangesAsync();
-
-                return HttpStatusCode.NoContent;
+                return HttpStatusCode.BadRequest;
             }
-            catch (Exception)
+
+            var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
+
+            var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
+            if (targetBe == null)
             {
-                return HttpStatusCode.InternalServerError;
+                return HttpStatusCode.NotFound;
             }
+
+            var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(relatedBeLink);
+            if (relatedBe == null)
+            {
+                return HttpStatusCode.NotFound;
+            }
+
+            targetBe.Cambiar(relatedBe);
+
+            await repositoryTargetBe.SaveChangesAsync();
+
+            return HttpStatusCode.NoContent;
         }
 
         /// <summary>
@@ -90,37 +83,30 @@ namespace SiMaVeh.Api.Model
         /// <returns></returns>
         public async Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, long tipoCambioKey, Uri monedaLink)
         {
-            try
+            if (monedaLink == null || !HttpMethods.IsPut(request.Method))
             {
-                if (monedaLink == null || !HttpMethods.IsPut(request.Method))
-                {
-                    return HttpStatusCode.BadRequest;
-                }
-
-                var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
-
-                var tipoCambio = await repositoryTipoCambio.FindAsync(tipoCambioKey);
-                if (tipoCambio == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
-
-                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(monedaLink);
-                if (moneda == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
-
-                tipoCambio.CambiarMonedaOrigen(moneda);
-
-                await repositoryTipoCambio.SaveChangesAsync();
-
-                return HttpStatusCode.NoContent;
+                return HttpStatusCode.BadRequest;
             }
-            catch (Exception)
+
+            var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
+
+            var tipoCambio = await repositoryTipoCambio.FindAsync(tipoCambioKey);
+            if (tipoCambio == null)
             {
-                return HttpStatusCode.InternalServerError;
+                return HttpStatusCode.NotFound;
             }
+
+            var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(monedaLink);
+            if (moneda == null)
+            {
+                return HttpStatusCode.NotFound;
+            }
+
+            tipoCambio.CambiarMonedaOrigen(moneda);
+
+            await repositoryTipoCambio.SaveChangesAsync();
+
+            return HttpStatusCode.NoContent;
         }
 
         /// <summary>
@@ -132,37 +118,30 @@ namespace SiMaVeh.Api.Model
         /// <returns></returns>
         public async Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, long tipoCambioKey, Uri monedaLink)
         {
-            try
+            if (monedaLink == null || !HttpMethods.IsPut(request.Method))
             {
-                if (monedaLink == null || !HttpMethods.IsPut(request.Method))
-                {
-                    return HttpStatusCode.BadRequest;
-                }
-
-                var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
-
-                var tipoCambio = await repositoryTipoCambio.FindAsync(tipoCambioKey);
-                if (tipoCambio == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
-
-                var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(monedaLink);
-                if (moneda == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
-
-                tipoCambio.CambiarMonedaDestino(moneda);
-
-                await repositoryTipoCambio.SaveChangesAsync();
-
-                return HttpStatusCode.NoContent;
+                return HttpStatusCode.BadRequest;
             }
-            catch (Exception)
+
+            var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
+
+            var tipoCambio = await repositoryTipoCambio.FindAsync(tipoCambioKey);
+            if (tipoCambio == null)
             {
-                return HttpStatusCode.InternalServerError;
+                return HttpStatusCode.NotFound;
             }
+
+            var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(monedaLink);
+            if (moneda == null)
+            {
+                return HttpStatusCode.NotFound;
+            }
+
+            tipoCambio.CambiarMonedaDestino(moneda);
+
+            await repositoryTipoCambio.SaveChangesAsync();
+
+            return HttpStatusCode.NoContent;
         }
     }
 }

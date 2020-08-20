@@ -46,37 +46,30 @@ namespace SiMaVeh.Api.Model
             where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
-            try
+            if ((relatedBeLink == null) || !HttpMethods.IsPost(request.Method))
             {
-                if ((relatedBeLink == null) || !HttpMethods.IsPost(request.Method))
-                {
-                    return HttpStatusCode.BadRequest;
-                }
-
-                var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
-
-                var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
-                if (targetBe == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
-
-                var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(relatedBeLink);
-                if (relatedBe == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
-
-                targetBe.Agregar(relatedBe);
-
-                await repositoryTargetBe.SaveChangesAsync();
-
-                return HttpStatusCode.NoContent;
+                return HttpStatusCode.BadRequest;
             }
-            catch (Exception)
+
+            var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
+
+            var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
+            if (targetBe == null)
             {
-                return HttpStatusCode.InternalServerError;
+                return HttpStatusCode.NotFound;
             }
+
+            var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(relatedBeLink);
+            if (relatedBe == null)
+            {
+                return HttpStatusCode.NotFound;
+            }
+
+            targetBe.Agregar(relatedBe);
+
+            await repositoryTargetBe.SaveChangesAsync();
+
+            return HttpStatusCode.NoContent;
         }
     }
 }
