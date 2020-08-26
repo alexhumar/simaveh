@@ -50,8 +50,7 @@ namespace SiMaVeh.Api
                               mySqlOptions =>
                               {
                                   //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations.
-                                  mySqlOptions.EnableRetryOnFailure();
-                                  mySqlOptions.MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
+                                  mySqlOptions.EnableRetryOnFailure().MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
                               })
                 );
 
