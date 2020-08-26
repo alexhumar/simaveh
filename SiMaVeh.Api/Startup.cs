@@ -7,8 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
-using SiMaVeh.Api.ErrorManagement;
-using SiMaVeh.Api.ErrorManagement.Filters;
+using SiMaVeh.Api.Extensions;
 using SiMaVeh.Api.Registration;
 using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess.Model;
@@ -22,7 +21,6 @@ namespace SiMaVeh.Api
         private readonly IConfiguration configuration;
         private readonly IModelBuilder modelBuilder;
         private readonly ISiMaVehDependencyRegistratorBuilder siMaVehDependencyRegistratorBuilder;
-        private readonly ResponseExceptionFilter responseExceptionFilter;
 
         /// <summary>
         /// Constructor
@@ -33,7 +31,6 @@ namespace SiMaVeh.Api
             this.configuration = configuration;
             modelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
             siMaVehDependencyRegistratorBuilder = new SiMaVehDependencyRegistratorBuilder();
-            responseExceptionFilter = new ResponseExceptionFilter(new ErrorsBuilder());
         }
 
         /// <summary>
@@ -61,7 +58,6 @@ namespace SiMaVeh.Api
 
                 //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
                 mvcOptions.EnableEndpointRouting = false;
-                mvcOptions.Filters.Add(responseExceptionFilter);
             }).AddFluentValidation();
 
             services.AddOData();
@@ -81,6 +77,8 @@ namespace SiMaVeh.Api
                 //Las excepciones se manejan mediante la clase ResponseExceptionFilter
                 //app.UseDeveloperExceptionPage();
             }
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseHttpsRedirection();
 
