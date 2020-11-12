@@ -8,7 +8,6 @@ using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -140,21 +139,14 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="201"></response>
         public virtual async Task<IActionResult> Post([FromBody] TBe entity)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(errorsBuilder.BuildErrors(ModelState));
-                }
-
-                await repository.AddAsync(entity);
-
-                return Created(entity);
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
-            catch (Exception e)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, errorsBuilder.BuildErrors(e));
-            }
+
+            await repository.AddAsync(entity);
+
+            return Created(entity);
         }
 
         /// <summary>
@@ -166,31 +158,24 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="204"></response>
         public virtual async Task<IActionResult> Put([FromODataUri] TBeId key, [FromBody] TBe entity)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(errorsBuilder.BuildErrors(ModelState));
-                }
-
-                if (!key.Equals(entity.Id))
-                {
-                    return BadRequest();
-                }
-
-                if (!await ExisteEntidad(key))
-                {
-                    return NotFound();
-                }
-
-                await repository.UpdateAsync(entity);
-
-                return Updated(entity);
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
-            catch (Exception e)
+
+            if (!key.Equals(entity.Id))
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, errorsBuilder.BuildErrors(e));
+                return BadRequest();
             }
+
+            if (!await ExisteEntidad(key))
+            {
+                return NotFound();
+            }
+
+            await repository.UpdateAsync(entity);
+
+            return Updated(entity);
         }
 
         /// <summary>
@@ -202,29 +187,22 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="204"></response>
         public virtual async Task<IActionResult> Patch([FromODataUri] TBeId key, [FromBody] Delta<TBe> entity)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(errorsBuilder.BuildErrors(ModelState));
-                }
-
-                var existingEntity = await repository.FindAsync(key);
-                if (existingEntity == null)
-                {
-                    return NotFound();
-                }
-
-                entity.Patch(existingEntity);
-
-                await repository.SaveChangesAsync();
-
-                return Updated(existingEntity);
+                return BadRequest(errorsBuilder.BuildErrors(ModelState));
             }
-            catch (Exception e)
+
+            var existingEntity = await repository.FindAsync(key);
+            if (existingEntity == null)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, errorsBuilder.BuildErrors(e));
+                return NotFound();
             }
+
+            entity.Patch(existingEntity);
+
+            await repository.SaveChangesAsync();
+
+            return Updated(existingEntity);
         }
 
         /// <summary>
@@ -235,22 +213,15 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="204"></response>
         public virtual async Task<IActionResult> Delete([FromODataUri] TBeId key)
         {
-            try
+            var entity = await repository.FindAsync(key);
+            if (entity == null)
             {
-                var entity = await repository.FindAsync(key);
-                if (entity == null)
-                {
-                    return NotFound();
-                }
-
-                await repository.RemoveAsync(entity);
-
-                return NoContent();
+                return NotFound();
             }
-            catch (Exception e)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, errorsBuilder.BuildErrors(e));
-            }
+
+            await repository.RemoveAsync(entity);
+
+            return NoContent();
         }
 
         /// <summary>

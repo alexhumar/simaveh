@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Extensions;
 using SiMaVeh.Api.Registration;
 using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess.Model;
@@ -46,8 +47,7 @@ namespace SiMaVeh.Api
                               mySqlOptions =>
                               {
                                   //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations.
-                                  mySqlOptions.EnableRetryOnFailure();
-                                  mySqlOptions.MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
+                                  mySqlOptions.EnableRetryOnFailure().MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
                               })
                 );
 
@@ -74,8 +74,11 @@ namespace SiMaVeh.Api
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //Las excepciones se manejan mediante la clase ResponseExceptionFilter
+                //app.UseDeveloperExceptionPage();
             }
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseHttpsRedirection();
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SiMaVeh.Api.ErrorManagement.Interfaces;
+using SiMaVeh.Domain.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -41,7 +42,17 @@ namespace SiMaVeh.Api.ErrorManagement
         /// <returns></returns>
         public IList<string> BuildErrors(Exception e)
         {
-            return new List<string> { e.InnerException.Message };
+            return new List<string> { e.GetDetalle() };
+        }
+
+        /// <summary>
+        /// Genera un mensaje de error a partir de una excepcion
+        /// </summary>
+        /// <typeparam name="e"></typeparam>
+        /// <returns></returns>
+        public string BuildError(Exception e)
+        {
+            return e.GetDetalle();
         }
     }
 }
