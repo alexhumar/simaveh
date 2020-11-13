@@ -10,10 +10,9 @@ namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
             return new List<IConfiguradorContext>
             {
                 //new ConfiguradorJerarquiaTPH(),
-                //new ConfiguradorPropiedadesCalculadas(),
+                new ConfiguradorPropiedadesCalculadas(),
                 new ConfiguradorJerarquiaTPT(),
-                new ConfiguradorIDsAutogenerados(),
-                new ConfiguradorRelacionesManyToMany()
+                new ConfiguradorIDsAutogenerados()
             };
         }
     }

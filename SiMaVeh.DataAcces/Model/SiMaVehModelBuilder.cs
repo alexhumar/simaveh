@@ -53,6 +53,8 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
+            //NOTA: para acceder a la propiedad Marcas de CategoriaMarca, la invocacion es: CategoriasMarca([Id])/Marcas,
+            //y, debido al Expand, se puede acceder asi: CategoriasMarca([Id])?$expand=Marcas
             builder.EntitySet<CategoriaMarca>(entityTypeGetter.GetCollectionNameAsString<CategoriaMarca, long>());
             builder.EntityType<CategoriaMarca>()
                 .Count(QueryOptionSetting.Allowed)
@@ -61,8 +63,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            //NOTA: para acceder a la propiedad Marcas de CategoriaMarca, la invocacion es: CategoriasMarca([Id])/Marcas,
-            //y, debido al Expand, se puede acceder asi: CategoriasMarca([Id])?$expand=Marcas
 
             builder.EntitySet<Direccion>(entityTypeGetter.GetCollectionNameAsString<Direccion, long>());
             builder.EntityType<Direccion>()
