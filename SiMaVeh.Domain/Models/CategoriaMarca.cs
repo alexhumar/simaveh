@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +15,7 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public CategoriaMarca()
         {
-            MarcaCategoriaMarca = new HashSet<MarcaCategoriaMarca>();
+            Marcas = new HashSet<Marca>();
         }
 
         /// <summary>
@@ -27,16 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Marcas
         /// </summary>
-        public virtual ISet<Marca> Marcas => MarcaCategoriaMarca.Select(m => m.Marca).ToHashSet();
-
-        #region relations
-
-        /// <summary>
-        /// Relacion Marca-CategoriaMarca
-        /// </summary>
-        public virtual ISet<MarcaCategoriaMarca> MarcaCategoriaMarca { get; }
-
-        #endregion
+        public virtual ISet<Marca> Marcas { get; protected set; }
 
         #region overrides
 
@@ -82,11 +72,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                MarcaCategoriaMarca?.Add(new MarcaCategoriaMarca
-                {
-                    Marca = entity,
-                    CategoriaMarca = this
-                });
+                Marcas?.Add(entity);
             }
 
             return this;
@@ -101,11 +87,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = MarcaCategoriaMarca?
-                    .FirstOrDefault(r => r.CategoriaMarca == this && r.Marca == entity);
+                var toRemove = Marcas?.FirstOrDefault(m => m == entity);
                 if (toRemove != null)
                 {
-                    MarcaCategoriaMarca.Remove(toRemove);
+                    Marcas.Remove(toRemove);
                 }
             }
 

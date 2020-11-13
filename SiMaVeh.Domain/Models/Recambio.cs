@@ -1,6 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.Models
 {
@@ -11,26 +9,9 @@ namespace SiMaVeh.Domain.Models
         IEntityChanger<Marca, long, Recambio, long>
     {
         /// <summary>
-        /// Constructor
-        /// </summary>
-        public Recambio()
-        {
-            KitRepuesto = new HashSet<KitRepuesto>();
-        }
-
-        /// <summary>
         /// Marca
         /// </summary>
         public virtual Marca Marca { get; set; /*el set no puede ser protected porque rompe OData*/ }
-
-        #region relations
-
-        /// <summary>
-        /// Relacion Kit-Repuesto
-        /// </summary>
-        public virtual ISet<KitRepuesto> KitRepuesto { get; }
-
-        #endregion
 
         #region overrides
 

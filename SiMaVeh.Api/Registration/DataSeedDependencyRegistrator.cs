@@ -45,7 +45,6 @@ using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags.Interfaces;
 using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
 using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.Api.Registration
 {
@@ -122,7 +121,7 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IFixtureMarca, FixtureMarca>();
             services.AddScoped<IDomainSeeder<Marca, long>, MarcaSeeder>();
 
-            services.AddScoped<ISeeder<MarcaCategoriaMarca>, MarcaCategoriaMarcaSeeder>();
+            //services.AddScoped<ISeeder<MarcaCategoriaMarca>, MarcaCategoriaMarcaSeeder>();
 
             services.AddScoped<IFuenteEnergiaFixtureGettersProvider, FuenteEnergiaFixtureGettersProvider>();
             services.AddScoped<IFixtureFuenteEnergia, FixtureFuenteEnergia>();
