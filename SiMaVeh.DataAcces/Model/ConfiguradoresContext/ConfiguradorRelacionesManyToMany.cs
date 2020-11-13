@@ -16,6 +16,12 @@ namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
             builder.Entity<Marca>().HasMany(m => m.Categorias).WithMany(c => c.Marcas);
             builder.Entity<CategoriaMarca>().HasMany(c => c.Marcas).WithMany(m => m.Categorias);
 
+            builder.Entity<Reparador>().HasMany(r => r.EntidadesReparadoras).WithMany(e => e.Reparadores);
+            builder.Entity<EntidadReparadora>().HasMany(e => e.Reparadores).WithMany(r => r.EntidadesReparadoras);
+
+            builder.Entity<Kit>().HasMany(k => k.Repuestos).WithMany(r => r.Kits);
+            builder.Entity<Repuesto>().HasMany(r => r.Kits).WithMany(k => k.Repuestos);
+
             //builder.Entity<ReparadorEntidadReparadora>()
             //    .HasKey(k => new { k.ReparadorId, k.EntidadReparadoraId });
 
