@@ -44,6 +44,7 @@ namespace SiMaVeh.Api
                 .AddDbContext<SiMaVehContext>(options => options
                     .UseLazyLoadingProxies()
                     .UseMySql(connection,
+                              ServerVersion.AutoDetect(connection),
                               mySqlOptions =>
                               {
                                   //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations.
