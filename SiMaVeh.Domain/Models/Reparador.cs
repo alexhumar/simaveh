@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Entidades reparadoras en las que trabaja el reparador
         /// </summary>
-        public virtual ISet<EntidadReparadora> EntidadesReparadoras { get; protected set; }
+        public virtual ISet<EntidadReparadora> EntidadesReparadoras { get; private set; }
 
         #region overrides
 
@@ -66,7 +66,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                EntidadesReparadoras?.Add(entity);
+                EntidadesReparadoras.Add(entity);
             }
 
             return this;
@@ -81,7 +81,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = EntidadesReparadoras?.FirstOrDefault(e => e == entity);
+                var toRemove = EntidadesReparadoras.FirstOrDefault(e => e == entity);
                 if (toRemove != null)
                 {
                     EntidadesReparadoras.Remove(toRemove);

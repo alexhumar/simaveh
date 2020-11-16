@@ -25,7 +25,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Provincias
         /// </summary>
-        public virtual ISet<Provincia> Provincias { get; protected set; }
+        public virtual ISet<Provincia> Provincias { get; private set; }
 
         #region overrides
 

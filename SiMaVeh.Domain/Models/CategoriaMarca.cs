@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Marcas
         /// </summary>
-        public virtual ISet<Marca> Marcas { get; protected set; }
+        public virtual ISet<Marca> Marcas { get; private set; }
 
         #region overrides
 
@@ -72,7 +72,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Marcas?.Add(entity);
+                Marcas.Add(entity);
             }
 
             return this;
@@ -87,7 +87,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = Marcas?.FirstOrDefault(m => m == entity);
+                var toRemove = Marcas.FirstOrDefault(m => m == entity);
                 if (toRemove != null)
                 {
                     Marcas.Remove(toRemove);

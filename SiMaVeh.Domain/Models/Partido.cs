@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Localidades
         /// </summary>
-        public virtual ISet<Localidad> Localidades { get; protected set; }
+        public virtual ISet<Localidad> Localidades { get; private set; }
 
         #region overrides
 

@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recomendaciones Modelo Vehiculo
         /// </summary>
-        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; protected set; }
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; private set; }
 
         #region overrides
 
@@ -77,7 +77,7 @@ namespace SiMaVeh.Domain.Models
             //TODO: evaluar hacer una extension de HashSet para generalizar este comportamiento.
             if (entity != null)
             {
-                RecomendacionesModeloVehiculo?.Add(entity);
+                RecomendacionesModeloVehiculo.Add(entity);
             }
 
             return this;
@@ -94,7 +94,7 @@ namespace SiMaVeh.Domain.Models
             //Y en este caso alcanzaria con invocar al remove de la coleccion me parece.
             if (entity != null)
             {
-                var toRemove = RecomendacionesModeloVehiculo?.FirstOrDefault(m => m == entity);
+                var toRemove = RecomendacionesModeloVehiculo.FirstOrDefault(m => m == entity);
                 if (toRemove != null)
                 {
                     RecomendacionesModeloVehiculo.Remove(toRemove);

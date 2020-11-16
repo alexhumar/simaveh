@@ -35,12 +35,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Servicios Mecanicos
         /// </summary>
-        public virtual ISet<ServicioReparador> ServiciosReparadores { get; protected set; }
+        public virtual ISet<ServicioReparador> ServiciosReparadores { get; private set; }
 
         /// <summary>
         /// Mecanicos
         /// </summary>
-        public virtual ISet<Reparador> Reparadores { get; protected set; }
+        public virtual ISet<Reparador> Reparadores { get; private set; }
 
         /// <summary>
         /// Direccion
@@ -160,7 +160,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Reparadores?.Add(entity);
+                Reparadores.Add(entity);
             }
 
             return this;
@@ -175,7 +175,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = Reparadores?.FirstOrDefault(r => r == entity);
+                var toRemove = Reparadores.FirstOrDefault(r => r == entity);
                 if (toRemove != null)
                 {
                     Reparadores.Remove(toRemove);

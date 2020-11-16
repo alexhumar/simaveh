@@ -20,7 +20,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Vehiculos
         /// </summary>
-        public virtual ISet<Vehiculo> Vehiculos { get; protected set; }
+        public virtual ISet<Vehiculo> Vehiculos { get; private set; }
 
         #region overrides
 

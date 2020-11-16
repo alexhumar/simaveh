@@ -47,7 +47,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recomendaciones Modelo Vehiculo
         /// </summary>
-        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; protected set; }
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; private set; }
 
         #region overrides
 
@@ -112,7 +112,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                RecomendacionesModeloVehiculo?.Add(entity);
+                RecomendacionesModeloVehiculo.Add(entity);
             }
 
             return this;
@@ -127,7 +127,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = RecomendacionesModeloVehiculo?.FirstOrDefault(m => m == entity);
+                var toRemove = RecomendacionesModeloVehiculo.FirstOrDefault(m => m == entity);
                 if (toRemove != null)
                 {
                     RecomendacionesModeloVehiculo.Remove(toRemove);

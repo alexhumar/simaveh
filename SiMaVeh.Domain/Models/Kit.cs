@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Repuestos
         /// </summary>
-        public virtual ISet<Repuesto> Repuestos { get; protected set; }
+        public virtual ISet<Repuesto> Repuestos { get; private set; }
 
         #region overrides
 
@@ -76,7 +76,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Repuestos?.Add(entity);
+                Repuestos.Add(entity);
             }
 
             return this;
@@ -91,7 +91,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = Repuestos?.FirstOrDefault(r => r == entity);
+                var toRemove = Repuestos.FirstOrDefault(r => r == entity);
                 if (toRemove != null)
                 {
                     Repuestos.Remove(toRemove);

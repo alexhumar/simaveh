@@ -36,17 +36,17 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Periodicidades Mantenimiento
         /// </summary>
-        public virtual ISet<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; protected set; }
+        public virtual ISet<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; private set; }
 
         /// <summary>
         /// Kits
         /// </summary>
-        public virtual ISet<Kit> Kits { get; protected set; }
+        public virtual ISet<Kit> Kits { get; private set; }
 
         /// <summary>
         /// Recomendaciones Modelo Vehiculo
         /// </summary>
-        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; protected set; }
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; private set; }
 
         #region overrides
 
@@ -111,7 +111,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                Kits?.Add(entity);
+                Kits.Add(entity);
             }
 
             return this;
@@ -126,7 +126,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = Kits?.FirstOrDefault(k => k == entity);
+                var toRemove = Kits.FirstOrDefault(k => k == entity);
                 if (toRemove != null)
                 {
                     Kits.Remove(toRemove);
@@ -180,7 +180,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                RecomendacionesModeloVehiculo?.Add(entity);
+                RecomendacionesModeloVehiculo.Add(entity);
             }
 
             return this;
@@ -195,7 +195,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = RecomendacionesModeloVehiculo?.FirstOrDefault(m => m == entity);
+                var toRemove = RecomendacionesModeloVehiculo.FirstOrDefault(m => m == entity);
                 if (toRemove != null)
                 {
                     RecomendacionesModeloVehiculo.Remove(toRemove);

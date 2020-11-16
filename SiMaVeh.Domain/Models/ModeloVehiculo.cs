@@ -50,22 +50,22 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Aceites Recomendados
         /// </summary>
-        public virtual ISet<Aceite> AceitesRecomendados { get; protected set; }
+        public virtual ISet<Aceite> AceitesRecomendados { get; private set; }
 
         /// <summary>
         /// Fuentes Energia Recomendadas
         /// </summary>
-        public virtual ISet<FuenteEnergia> FuentesEnergiaRecomendadas { get; protected set; }
+        public virtual ISet<FuenteEnergia> FuentesEnergiaRecomendadas { get; private set; }
 
         /// <summary>
         /// Repuestos Recomendados
         /// </summary>
-        public virtual ISet<Repuesto> RepuestosRecomendados { get; protected set; }
+        public virtual ISet<Repuesto> RepuestosRecomendados { get; private set; }
 
         /// <summary>
         /// Presiones de Neumatico Recomendadas
         /// </summary>
-        public virtual ISet<PresionNeumatico> PresionesNeumaticoRecomendadas { get; protected set; }
+        public virtual ISet<PresionNeumatico> PresionesNeumaticoRecomendadas { get; private set; }
 
         #region overrides
 
@@ -160,7 +160,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                PresionesNeumaticoRecomendadas?.Add(entity);
+                PresionesNeumaticoRecomendadas.Add(entity);
             }
 
             return this;
@@ -175,7 +175,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = PresionesNeumaticoRecomendadas?.FirstOrDefault(p => p == entity);
+                var toRemove = PresionesNeumaticoRecomendadas.FirstOrDefault(p => p == entity);
                 if (toRemove != null)
                 {
                     PresionesNeumaticoRecomendadas.Remove(toRemove);
@@ -194,7 +194,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                RepuestosRecomendados?.Add(entity);
+                RepuestosRecomendados.Add(entity);
             }
 
             return this;
@@ -209,7 +209,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = RepuestosRecomendados?.FirstOrDefault(r => r == entity);
+                var toRemove = RepuestosRecomendados.FirstOrDefault(r => r == entity);
                 if (toRemove != null)
                 {
                     RepuestosRecomendados.Remove(toRemove);
@@ -228,7 +228,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                FuentesEnergiaRecomendadas?.Add(entity);
+                FuentesEnergiaRecomendadas.Add(entity);
             }
 
             return this;
@@ -243,7 +243,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = FuentesEnergiaRecomendadas?.FirstOrDefault(f => f == entity);
+                var toRemove = FuentesEnergiaRecomendadas.FirstOrDefault(f => f == entity);
                 if (toRemove != null)
                 {
                     FuentesEnergiaRecomendadas.Remove(toRemove);
@@ -262,7 +262,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                AceitesRecomendados?.Add(entity);
+                AceitesRecomendados.Add(entity);
             }
 
             return this;
@@ -277,7 +277,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = AceitesRecomendados?.FirstOrDefault(a => a == entity);
+                var toRemove = AceitesRecomendados.FirstOrDefault(a => a == entity);
                 if (toRemove != null)
                 {
                     AceitesRecomendados.Remove(toRemove);
