@@ -12,7 +12,8 @@ namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
                 //new ConfiguradorJerarquiaTPH(),
                 new ConfiguradorPropiedadesCalculadas(),
                 new ConfiguradorJerarquiaTPT(),
-                new ConfiguradorIDsAutogenerados()
+                new ConfiguradorIDsAutogenerados(),
+                new ConfiguradorRelacionesManyToMany()
             };
         }
     }

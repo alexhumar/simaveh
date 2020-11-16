@@ -1,15 +1,15 @@
 ﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
+using SiMaVeh.DataAccess.Model.Relations;
 using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SiMaVeh.DataAccess.DataSeed.Seeders
 {
-    //TODO: arreglar para compatibilizar con el nuevo esquema!
     /// <summary>
     /// Seeder de relacion marca - categoria marca
     /// </summary>
-    public class MarcaCategoriaMarcaSeeder /*: ISeeder<MarcaCategoriaMarca>*/
+    public class MarcaCategoriaMarcaSeeder : ISeeder<MarcaCategoriaMarca>
     {
         private readonly IFixtureMarca fixtureMarca;
 

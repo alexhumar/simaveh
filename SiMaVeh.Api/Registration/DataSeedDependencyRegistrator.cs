@@ -3,6 +3,7 @@ using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
+using SiMaVeh.DataAccess.Model.Relations;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca;
@@ -121,7 +122,7 @@ namespace SiMaVeh.Api.Registration
             services.AddScoped<IFixtureMarca, FixtureMarca>();
             services.AddScoped<IDomainSeeder<Marca, long>, MarcaSeeder>();
 
-            //services.AddScoped<ISeeder<MarcaCategoriaMarca>, MarcaCategoriaMarcaSeeder>();
+            services.AddScoped<ISeeder<MarcaCategoriaMarca>, MarcaCategoriaMarcaSeeder>();
 
             services.AddScoped<IFuenteEnergiaFixtureGettersProvider, FuenteEnergiaFixtureGettersProvider>();
             services.AddScoped<IFixtureFuenteEnergia, FixtureFuenteEnergia>();
