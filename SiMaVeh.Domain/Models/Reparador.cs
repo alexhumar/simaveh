@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,22 +15,13 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public Reparador()
         {
-            ReparadorEntidadReparadora = new HashSet<ReparadorEntidadReparadora>();
+            EntidadesReparadoras = new HashSet<EntidadReparadora>();
         }
 
         /// <summary>
         /// Entidades reparadoras en las que trabaja el reparador
         /// </summary>
-        public virtual ISet<EntidadReparadora> EntidadesReparadoras => ReparadorEntidadReparadora.Select(e => e.EntidadReparadora).ToHashSet();
-
-        #region relations
-
-        /// <summary>
-        /// Relacion Reparador-EntidadReparadora
-        /// </summary>
-        public virtual ISet<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
-
-        #endregion
+        public virtual ISet<EntidadReparadora> EntidadesReparadoras { get; private set; }
 
         #region overrides
 
@@ -76,11 +66,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                ReparadorEntidadReparadora?.Add(new ReparadorEntidadReparadora
-                {
-                    Reparador = this,
-                    EntidadReparadora = entity
-                });
+                EntidadesReparadoras.Add(entity);
             }
 
             return this;
@@ -95,11 +81,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = ReparadorEntidadReparadora?
-                    .FirstOrDefault(r => r.Reparador == this && r.EntidadReparadora == entity);
+                var toRemove = EntidadesReparadoras.FirstOrDefault(e => e == entity);
                 if (toRemove != null)
                 {
-                    ReparadorEntidadReparadora.Remove(toRemove);
+                    EntidadesReparadoras.Remove(toRemove);
                 }
             }
 

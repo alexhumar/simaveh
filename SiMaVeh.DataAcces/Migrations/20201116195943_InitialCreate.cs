@@ -12,9 +12,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "CategoriasMarca",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,13 +25,13 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "EquipamientosAirbags",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    Conductor = table.Column<bool>(nullable: false),
-                    Acompanante = table.Column<bool>(nullable: false),
-                    DelanteroIzquierdo = table.Column<int>(nullable: false),
-                    DelanteroDerecho = table.Column<int>(nullable: false),
-                    TraseroIzquierdo = table.Column<int>(nullable: false),
-                    TraseroDerecho = table.Column<int>(nullable: false)
+                    Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
+                    Conductor = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Acompanante = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    DelanteroIzquierdo = table.Column<int>(type: "int", nullable: false),
+                    DelanteroDerecho = table.Column<int>(type: "int", nullable: false),
+                    TraseroIzquierdo = table.Column<int>(type: "int", nullable: false),
+                    TraseroDerecho = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,9 +42,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Marcas",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,8 +55,8 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Monedas",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    Nombre = table.Column<string>(nullable: true)
+                    Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,9 +67,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Paises",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,13 +77,27 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TargetsMantenimiento",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Descripcion = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TargetsMantenimiento", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TiposDocumento",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Descripcion = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,10 +108,10 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "TiposEntidadReparadora",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Descripcion = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -108,10 +122,10 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "TiposFuenteEnergia",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Descripcion = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -122,10 +136,10 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "TiposTelefono",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Descripcion = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -136,9 +150,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "UbicacionesPieza",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    Izquierda = table.Column<bool>(nullable: false),
-                    Superior = table.Column<bool>(nullable: false)
+                    Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
+                    Izquierda = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Superior = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -149,10 +163,10 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "GruposModelo",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    MarcaId = table.Column<long>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    MarcaId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -169,8 +183,8 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "MarcaCategoriaMarca",
                 columns: table => new
                 {
-                    CategoriaMarcaId = table.Column<long>(nullable: false),
-                    MarcaId = table.Column<long>(nullable: false)
+                    CategoriaMarcaId = table.Column<long>(type: "bigint", nullable: false),
+                    MarcaId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,17 +207,17 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Neumaticos",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    MarcaId = table.Column<long>(nullable: true),
-                    Modelo = table.Column<string>(nullable: true),
-                    Tipo = table.Column<int>(nullable: false),
-                    ConstruccionCarcasa = table.Column<int>(nullable: false),
-                    RelacionAnchoAlto = table.Column<int>(nullable: true),
-                    DiametroLLanta = table.Column<int>(nullable: false),
-                    AnchuraSeccionalNominal = table.Column<int>(nullable: false),
-                    IndiceCarga = table.Column<int>(nullable: false),
-                    IndiceVelocidad = table.Column<string>(nullable: true)
+                    MarcaId = table.Column<long>(type: "bigint", nullable: true),
+                    Modelo = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Tipo = table.Column<int>(type: "int", nullable: false),
+                    ConstruccionCarcasa = table.Column<int>(type: "int", nullable: false),
+                    RelacionAnchoAlto = table.Column<int>(type: "int", nullable: true),
+                    DiametroLLanta = table.Column<int>(type: "int", nullable: false),
+                    AnchuraSeccionalNominal = table.Column<int>(type: "int", nullable: false),
+                    IndiceCarga = table.Column<int>(type: "int", nullable: false),
+                    IndiceVelocidad = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -217,15 +231,34 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Recambios",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    MarcaId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Recambios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Recambios_Marcas_MarcaId",
+                        column: x => x.MarcaId,
+                        principalTable: "Marcas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TiposCambio",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CoeficienteCambio = table.Column<decimal>(nullable: false),
-                    MonedaOrigenId = table.Column<string>(nullable: true),
-                    MonedaDestinoId = table.Column<string>(nullable: true),
-                    Fecha = table.Column<DateTime>(nullable: false)
+                    CoeficienteCambio = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    MonedaOrigenId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true),
+                    MonedaDestinoId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true),
+                    Fecha = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -248,10 +281,10 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Provincias",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    PaisId = table.Column<long>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    PaisId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -265,16 +298,53 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Aceites",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ViscosidadSAEBajaTemperatura = table.Column<int>(type: "int", nullable: false),
+                    ViscosidadSAEAltaTemperatura = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Aceites", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Aceites_TargetsMantenimiento_Id",
+                        column: x => x.Id,
+                        principalTable: "TargetsMantenimiento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Fluidos",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fluidos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Fluidos_TargetsMantenimiento_Id",
+                        column: x => x.Id,
+                        principalTable: "TargetsMantenimiento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Personas",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    Apellido = table.Column<string>(nullable: true),
-                    NumeroDocumento = table.Column<string>(nullable: true),
-                    TipoDocumentoId = table.Column<long>(nullable: true),
-                    Tipo = table.Column<string>(nullable: false)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Apellido = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    NumeroDocumento = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    TipoDocumentoId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -291,11 +361,11 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "FuentesEnergia",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    MarcaId = table.Column<long>(nullable: true),
-                    TipoFuenteEnergiaId = table.Column<long>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    MarcaId = table.Column<long>(type: "bigint", nullable: true),
+                    TipoFuenteEnergiaId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -315,23 +385,24 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TargetsMantenimiento",
+                name: "Piezas",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true),
-                    Tipo = table.Column<string>(nullable: false),
-                    ViscosidadSAEBajaTemperatura = table.Column<int>(nullable: true),
-                    ViscosidadSAEAltaTemperatura = table.Column<int>(nullable: true),
-                    UbicacionPiezaId = table.Column<string>(nullable: true)
+                    UbicacionPiezaId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TargetsMantenimiento", x => x.Id);
+                    table.PrimaryKey("PK_Piezas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TargetsMantenimiento_UbicacionesPieza_UbicacionPiezaId",
+                        name: "FK_Piezas_TargetsMantenimiento_Id",
+                        column: x => x.Id,
+                        principalTable: "TargetsMantenimiento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Piezas_UbicacionesPieza_UbicacionPiezaId",
                         column: x => x.UbicacionPiezaId,
                         principalTable: "UbicacionesPieza",
                         principalColumn: "Id",
@@ -342,12 +413,12 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "ModelosVehiculo",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    GrupoModeloId = table.Column<long>(nullable: true),
-                    Version = table.Column<string>(nullable: true),
-                    AirbagsId = table.Column<string>(nullable: true),
-                    TipoFuenteEnergiaId = table.Column<long>(nullable: true)
+                    GrupoModeloId = table.Column<long>(type: "bigint", nullable: true),
+                    Version = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    AirbagsId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true),
+                    TipoFuenteEnergiaId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -376,12 +447,12 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "PresionesNeumaticos",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RuedasDelanteras = table.Column<decimal>(nullable: false),
-                    RuedasTraseras = table.Column<decimal>(nullable: false),
-                    VehiculoCargado = table.Column<bool>(nullable: false),
-                    NeumaticoId = table.Column<long>(nullable: true)
+                    RuedasDelanteras = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    RuedasTraseras = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    VehiculoCargado = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    NeumaticoId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -395,13 +466,59 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Kits",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Descripcion = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Kits", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Kits_Recambios_Id",
+                        column: x => x.Id,
+                        principalTable: "Recambios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Repuestos",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CodigoIdentificador = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    TargetMantenimientoId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Repuestos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Repuestos_Recambios_Id",
+                        column: x => x.Id,
+                        principalTable: "Recambios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Repuestos_TargetsMantenimiento_TargetMantenimientoId",
+                        column: x => x.TargetMantenimientoId,
+                        principalTable: "TargetsMantenimiento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Partidos",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    ProvinciaId = table.Column<long>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ProvinciaId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -415,14 +532,32 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Reparadores",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reparadores", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reparadores_Personas_Id",
+                        column: x => x.Id,
+                        principalTable: "Personas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Telefonos",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Numero = table.Column<int>(nullable: false),
-                    TipoTelefonoId = table.Column<long>(nullable: true),
-                    PersonaId = table.Column<long>(nullable: true)
+                    Numero = table.Column<int>(type: "int", nullable: false),
+                    TipoTelefonoId = table.Column<long>(type: "bigint", nullable: true),
+                    PersonaId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -442,49 +577,37 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Recambios",
+                name: "Usuarios",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    MarcaId = table.Column<long>(nullable: true),
-                    Tipo = table.Column<string>(nullable: false),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true),
-                    CodigoIdentificador = table.Column<string>(nullable: true),
-                    TargetMantenimientoId = table.Column<long>(nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recambios", x => x.Id);
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Recambios_Marcas_MarcaId",
-                        column: x => x.MarcaId,
-                        principalTable: "Marcas",
+                        name: "FK_Usuarios_Personas_Id",
+                        column: x => x.Id,
+                        principalTable: "Personas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Recambios_TargetsMantenimiento_TargetMantenimientoId",
-                        column: x => x.TargetMantenimientoId,
-                        principalTable: "TargetsMantenimiento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ModeloVehiculoAceite",
                 columns: table => new
                 {
-                    ModeloVehiculoId = table.Column<long>(nullable: false),
-                    AceiteId = table.Column<long>(nullable: false)
+                    ModeloVehiculoId = table.Column<long>(type: "bigint", nullable: false),
+                    AceiteId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModeloVehiculoAceite", x => new { x.ModeloVehiculoId, x.AceiteId });
+                    table.PrimaryKey("PK_ModeloVehiculoAceite", x => new { x.AceiteId, x.ModeloVehiculoId });
                     table.ForeignKey(
-                        name: "FK_ModeloVehiculoAceite_TargetsMantenimiento_AceiteId",
+                        name: "FK_ModeloVehiculoAceite_Aceites_AceiteId",
                         column: x => x.AceiteId,
-                        principalTable: "TargetsMantenimiento",
+                        principalTable: "Aceites",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -499,12 +622,12 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "ModeloVehiculoFuenteEnergia",
                 columns: table => new
                 {
-                    ModeloVehiculoId = table.Column<long>(nullable: false),
-                    FuenteEnergiaId = table.Column<long>(nullable: false)
+                    ModeloVehiculoId = table.Column<long>(type: "bigint", nullable: false),
+                    FuenteEnergiaId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModeloVehiculoFuenteEnergia", x => new { x.ModeloVehiculoId, x.FuenteEnergiaId });
+                    table.PrimaryKey("PK_ModeloVehiculoFuenteEnergia", x => new { x.FuenteEnergiaId, x.ModeloVehiculoId });
                     table.ForeignKey(
                         name: "FK_ModeloVehiculoFuenteEnergia_FuentesEnergia_FuenteEnergiaId",
                         column: x => x.FuenteEnergiaId,
@@ -520,43 +643,11 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vehiculos",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ModeloVehiculoId = table.Column<long>(nullable: true),
-                    Kilometraje = table.Column<decimal>(nullable: false),
-                    AnioFabricacion = table.Column<int>(nullable: false),
-                    UsuarioId = table.Column<long>(nullable: true),
-                    Tipo = table.Column<string>(nullable: false),
-                    Patente = table.Column<string>(nullable: true),
-                    NumeroChasis = table.Column<string>(nullable: true),
-                    CodigoColorPintura = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Vehiculos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Vehiculos_ModelosVehiculo_ModeloVehiculoId",
-                        column: x => x.ModeloVehiculoId,
-                        principalTable: "ModelosVehiculo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Vehiculos_Personas_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Personas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ModeloVehiculoPresionNeumatico",
                 columns: table => new
                 {
-                    ModeloVehiculoId = table.Column<long>(nullable: false),
-                    PresionNeumaticoId = table.Column<long>(nullable: false)
+                    ModeloVehiculoId = table.Column<long>(type: "bigint", nullable: false),
+                    PresionNeumaticoId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -576,14 +667,93 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "KitRepuesto",
+                columns: table => new
+                {
+                    KitId = table.Column<long>(type: "bigint", nullable: false),
+                    RepuestoId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_KitRepuesto", x => new { x.KitId, x.RepuestoId });
+                    table.ForeignKey(
+                        name: "FK_KitRepuesto_Kits_KitId",
+                        column: x => x.KitId,
+                        principalTable: "Kits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_KitRepuesto_Repuestos_RepuestoId",
+                        column: x => x.RepuestoId,
+                        principalTable: "Repuestos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModeloVehiculoRepuesto",
+                columns: table => new
+                {
+                    ModeloVehiculoId = table.Column<long>(type: "bigint", nullable: false),
+                    RepuestoId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModeloVehiculoRepuesto", x => new { x.ModeloVehiculoId, x.RepuestoId });
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoRepuesto_ModelosVehiculo_ModeloVehiculoId",
+                        column: x => x.ModeloVehiculoId,
+                        principalTable: "ModelosVehiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ModeloVehiculoRepuesto_Repuestos_RepuestoId",
+                        column: x => x.RepuestoId,
+                        principalTable: "Repuestos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PeriodicidadesMantenimiento",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Kilometros = table.Column<long>(type: "bigint", nullable: false),
+                    Dias = table.Column<int>(type: "int", nullable: false),
+                    Meses = table.Column<int>(type: "int", nullable: false),
+                    Anios = table.Column<int>(type: "int", nullable: false),
+                    ModeloVehiculoId = table.Column<long>(type: "bigint", nullable: true),
+                    RepuestoId = table.Column<long>(type: "bigint", nullable: true),
+                    EsDefault = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PeriodicidadesMantenimiento", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PeriodicidadesMantenimiento_ModelosVehiculo_ModeloVehiculoId",
+                        column: x => x.ModeloVehiculoId,
+                        principalTable: "ModelosVehiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PeriodicidadesMantenimiento_Repuestos_RepuestoId",
+                        column: x => x.RepuestoId,
+                        principalTable: "Repuestos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Localidades",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    CPA = table.Column<string>(nullable: true),
-                    PartidoId = table.Column<long>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    CPA = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    PartidoId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -597,80 +767,29 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "KitRepuesto",
+                name: "Vehiculos",
                 columns: table => new
                 {
-                    KitId = table.Column<long>(nullable: false),
-                    RepuestoId = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_KitRepuesto", x => new { x.KitId, x.RepuestoId });
-                    table.ForeignKey(
-                        name: "FK_KitRepuesto_Recambios_KitId",
-                        column: x => x.KitId,
-                        principalTable: "Recambios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_KitRepuesto_Recambios_RepuestoId",
-                        column: x => x.RepuestoId,
-                        principalTable: "Recambios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ModeloVehiculoRepuesto",
-                columns: table => new
-                {
-                    ModeloVehiculoId = table.Column<long>(nullable: false),
-                    RepuestoId = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ModeloVehiculoRepuesto", x => new { x.ModeloVehiculoId, x.RepuestoId });
-                    table.ForeignKey(
-                        name: "FK_ModeloVehiculoRepuesto_ModelosVehiculo_ModeloVehiculoId",
-                        column: x => x.ModeloVehiculoId,
-                        principalTable: "ModelosVehiculo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ModeloVehiculoRepuesto_Recambios_RepuestoId",
-                        column: x => x.RepuestoId,
-                        principalTable: "Recambios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PeriodicidadesMantenimiento",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Kilometros = table.Column<long>(nullable: false),
-                    Dias = table.Column<int>(nullable: false),
-                    Meses = table.Column<int>(nullable: false),
-                    Anios = table.Column<int>(nullable: false),
-                    ModeloVehiculoId = table.Column<long>(nullable: true),
-                    RepuestoId = table.Column<long>(nullable: true),
-                    EsDefault = table.Column<bool>(nullable: false)
+                    ModeloVehiculoId = table.Column<long>(type: "bigint", nullable: true),
+                    Kilometraje = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    AnioFabricacion = table.Column<int>(type: "int", nullable: false),
+                    UsuarioId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PeriodicidadesMantenimiento", x => x.Id);
+                    table.PrimaryKey("PK_Vehiculos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PeriodicidadesMantenimiento_ModelosVehiculo_ModeloVehiculoId",
+                        name: "FK_Vehiculos_ModelosVehiculo_ModeloVehiculoId",
                         column: x => x.ModeloVehiculoId,
                         principalTable: "ModelosVehiculo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PeriodicidadesMantenimiento_Recambios_RepuestoId",
-                        column: x => x.RepuestoId,
-                        principalTable: "Recambios",
+                        name: "FK_Vehiculos_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -679,11 +798,11 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Direcciones",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Calle = table.Column<string>(nullable: true),
-                    NumeroCalle = table.Column<int>(nullable: false),
-                    LocalidadId = table.Column<long>(nullable: true)
+                    Calle = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    NumeroCalle = table.Column<int>(type: "int", nullable: false),
+                    LocalidadId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -697,14 +816,35 @@ namespace SiMaVeh.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Automoviles",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Patente = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    NumeroChasis = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    CodigoColorPintura = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Automoviles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Automoviles_Vehiculos_Id",
+                        column: x => x.Id,
+                        principalTable: "Vehiculos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EntidadesReparadoras",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(nullable: true),
-                    TipoEntidadReparadoraId = table.Column<long>(nullable: true),
-                    DireccionId = table.Column<long>(nullable: true)
+                    Nombre = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    TipoEntidadReparadoraId = table.Column<long>(type: "bigint", nullable: true),
+                    DireccionId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -727,12 +867,12 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "ReparadorEntidadReparadora",
                 columns: table => new
                 {
-                    ReparadorId = table.Column<long>(nullable: false),
-                    EntidadReparadoraId = table.Column<long>(nullable: false)
+                    ReparadorId = table.Column<long>(type: "bigint", nullable: false),
+                    EntidadReparadoraId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReparadorEntidadReparadora", x => new { x.ReparadorId, x.EntidadReparadoraId });
+                    table.PrimaryKey("PK_ReparadorEntidadReparadora", x => new { x.EntidadReparadoraId, x.ReparadorId });
                     table.ForeignKey(
                         name: "FK_ReparadorEntidadReparadora_EntidadesReparadoras_EntidadRepar~",
                         column: x => x.EntidadReparadoraId,
@@ -740,9 +880,9 @@ namespace SiMaVeh.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ReparadorEntidadReparadora_Personas_ReparadorId",
+                        name: "FK_ReparadorEntidadReparadora_Reparadores_ReparadorId",
                         column: x => x.ReparadorId,
-                        principalTable: "Personas",
+                        principalTable: "Reparadores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -751,15 +891,15 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "ServiciosReparadores",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FechaInicio = table.Column<DateTime>(nullable: false),
-                    FechaFin = table.Column<DateTime>(nullable: false),
-                    EntidadReparadoraId = table.Column<long>(nullable: true),
-                    VehiculoId = table.Column<long>(nullable: true),
-                    MontoManoObra = table.Column<decimal>(nullable: false),
-                    MonedaMontoManoObraId = table.Column<string>(nullable: true),
-                    KilometrajeVehiculo = table.Column<decimal>(nullable: false)
+                    FechaInicio = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    FechaFin = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    EntidadReparadoraId = table.Column<long>(type: "bigint", nullable: true),
+                    VehiculoId = table.Column<long>(type: "bigint", nullable: true),
+                    MontoManoObra = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    MonedaMontoManoObraId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true),
+                    KilometrajeVehiculo = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -788,14 +928,14 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Mantenimientos",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Accion = table.Column<int>(nullable: false),
-                    RecambioId = table.Column<long>(nullable: true),
-                    MontoRecambio = table.Column<decimal>(nullable: false),
-                    MonedaMontoRecambioId = table.Column<string>(nullable: true),
-                    ServicioReparadorId = table.Column<long>(nullable: true),
-                    ReparadorId = table.Column<long>(nullable: true)
+                    Accion = table.Column<int>(type: "int", nullable: false),
+                    RecambioId = table.Column<long>(type: "bigint", nullable: true),
+                    MontoRecambio = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    MonedaMontoRecambioId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true),
+                    ServicioReparadorId = table.Column<long>(type: "bigint", nullable: true),
+                    ReparadorId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -813,9 +953,9 @@ namespace SiMaVeh.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Mantenimientos_Personas_ReparadorId",
+                        name: "FK_Mantenimientos_Reparadores_ReparadorId",
                         column: x => x.ReparadorId,
-                        principalTable: "Personas",
+                        principalTable: "Reparadores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -907,14 +1047,14 @@ namespace SiMaVeh.DataAccess.Migrations
                 column: "TipoFuenteEnergiaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ModeloVehiculoAceite_AceiteId",
+                name: "IX_ModeloVehiculoAceite_ModeloVehiculoId",
                 table: "ModeloVehiculoAceite",
-                column: "AceiteId");
+                column: "ModeloVehiculoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ModeloVehiculoFuenteEnergia_FuenteEnergiaId",
+                name: "IX_ModeloVehiculoFuenteEnergia_ModeloVehiculoId",
                 table: "ModeloVehiculoFuenteEnergia",
-                column: "FuenteEnergiaId");
+                column: "ModeloVehiculoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ModeloVehiculoPresionNeumatico_PresionNeumaticoId",
@@ -952,6 +1092,11 @@ namespace SiMaVeh.DataAccess.Migrations
                 column: "TipoDocumentoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Piezas_UbicacionPiezaId",
+                table: "Piezas",
+                column: "UbicacionPiezaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PresionesNeumaticos_NeumaticoId",
                 table: "PresionesNeumaticos",
                 column: "NeumaticoId");
@@ -967,14 +1112,14 @@ namespace SiMaVeh.DataAccess.Migrations
                 column: "MarcaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recambios_TargetMantenimientoId",
-                table: "Recambios",
-                column: "TargetMantenimientoId");
+                name: "IX_ReparadorEntidadReparadora_ReparadorId",
+                table: "ReparadorEntidadReparadora",
+                column: "ReparadorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReparadorEntidadReparadora_EntidadReparadoraId",
-                table: "ReparadorEntidadReparadora",
-                column: "EntidadReparadoraId");
+                name: "IX_Repuestos_TargetMantenimientoId",
+                table: "Repuestos",
+                column: "TargetMantenimientoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServiciosReparadores_EntidadReparadoraId",
@@ -990,11 +1135,6 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "IX_ServiciosReparadores_VehiculoId",
                 table: "ServiciosReparadores",
                 column: "VehiculoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TargetsMantenimiento_UbicacionPiezaId",
-                table: "TargetsMantenimiento",
-                column: "UbicacionPiezaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Telefonos_PersonaId",
@@ -1030,6 +1170,12 @@ namespace SiMaVeh.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Automoviles");
+
+            migrationBuilder.DropTable(
+                name: "Fluidos");
+
+            migrationBuilder.DropTable(
                 name: "KitRepuesto");
 
             migrationBuilder.DropTable(
@@ -1054,6 +1200,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "PeriodicidadesMantenimiento");
 
             migrationBuilder.DropTable(
+                name: "Piezas");
+
+            migrationBuilder.DropTable(
                 name: "ReparadorEntidadReparadora");
 
             migrationBuilder.DropTable(
@@ -1063,10 +1212,16 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "TiposCambio");
 
             migrationBuilder.DropTable(
+                name: "Kits");
+
+            migrationBuilder.DropTable(
                 name: "ServiciosReparadores");
 
             migrationBuilder.DropTable(
                 name: "CategoriasMarca");
+
+            migrationBuilder.DropTable(
+                name: "Aceites");
 
             migrationBuilder.DropTable(
                 name: "FuentesEnergia");
@@ -1075,7 +1230,13 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "PresionesNeumaticos");
 
             migrationBuilder.DropTable(
-                name: "Recambios");
+                name: "Repuestos");
+
+            migrationBuilder.DropTable(
+                name: "UbicacionesPieza");
+
+            migrationBuilder.DropTable(
+                name: "Reparadores");
 
             migrationBuilder.DropTable(
                 name: "TiposTelefono");
@@ -1093,6 +1254,9 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "Neumaticos");
 
             migrationBuilder.DropTable(
+                name: "Recambios");
+
+            migrationBuilder.DropTable(
                 name: "TargetsMantenimiento");
 
             migrationBuilder.DropTable(
@@ -1105,10 +1269,7 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "ModelosVehiculo");
 
             migrationBuilder.DropTable(
-                name: "Personas");
-
-            migrationBuilder.DropTable(
-                name: "UbicacionesPieza");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Localidades");
@@ -1123,13 +1284,16 @@ namespace SiMaVeh.DataAccess.Migrations
                 name: "TiposFuenteEnergia");
 
             migrationBuilder.DropTable(
-                name: "TiposDocumento");
+                name: "Personas");
 
             migrationBuilder.DropTable(
                 name: "Partidos");
 
             migrationBuilder.DropTable(
                 name: "Marcas");
+
+            migrationBuilder.DropTable(
+                name: "TiposDocumento");
 
             migrationBuilder.DropTable(
                 name: "Provincias");

@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +16,7 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public PresionNeumatico()
         {
-            ModeloVehiculoPresionNeumatico = new HashSet<ModeloVehiculoPresionNeumatico>();
+            RecomendacionesModeloVehiculo = new HashSet<ModeloVehiculo>();
         }
 
         /// <summary>
@@ -48,16 +47,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recomendaciones Modelo Vehiculo
         /// </summary>
-        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo => ModeloVehiculoPresionNeumatico.Select(m => m.ModeloVehiculo).ToHashSet();
-
-        #region relations
-
-        /// <summary>
-        /// Relacion ModeloVehiculo-PresionNeumatico
-        /// </summary>
-        public virtual ISet<ModeloVehiculoPresionNeumatico> ModeloVehiculoPresionNeumatico { get; }
-
-        #endregion
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; private set; }
 
         #region overrides
 
@@ -122,11 +112,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                ModeloVehiculoPresionNeumatico?.Add(new ModeloVehiculoPresionNeumatico
-                {
-                    ModeloVehiculo = entity,
-                    PresionNeumatico = this
-                });
+                RecomendacionesModeloVehiculo.Add(entity);
             }
 
             return this;
@@ -141,11 +127,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = ModeloVehiculoPresionNeumatico?
-                    .FirstOrDefault(m => m.PresionNeumatico == this && m.ModeloVehiculo == entity);
+                var toRemove = RecomendacionesModeloVehiculo.FirstOrDefault(m => m == entity);
                 if (toRemove != null)
                 {
-                    ModeloVehiculoPresionNeumatico.Remove(toRemove);
+                    RecomendacionesModeloVehiculo.Remove(toRemove);
                 }
             }
 

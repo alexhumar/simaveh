@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +15,7 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public Aceite()
         {
-            ModeloVehiculoAceite = new HashSet<ModeloVehiculoAceite>();
+            RecomendacionesModeloVehiculo = new HashSet<ModeloVehiculo>();
         }
 
         /// <summary>
@@ -32,16 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recomendaciones Modelo Vehiculo
         /// </summary>
-        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo => ModeloVehiculoAceite.Select(m => m.ModeloVehiculo).ToHashSet();
-
-        #region relations
-
-        /// <summary>
-        /// Relacion ModeloVehiculo-Aceite
-        /// </summary>
-        public virtual ISet<ModeloVehiculoAceite> ModeloVehiculoAceite { get; }
-
-        #endregion
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; private set; }
 
         #region overrides
 
@@ -84,13 +74,10 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Aceite Agregar(ModeloVehiculo entity)
         {
+            //TODO: evaluar hacer una extension de HashSet para generalizar este comportamiento.
             if (entity != null)
             {
-                ModeloVehiculoAceite?.Add(new ModeloVehiculoAceite
-                {
-                    Aceite = this,
-                    ModeloVehiculo = entity
-                });
+                RecomendacionesModeloVehiculo.Add(entity);
             }
 
             return this;
@@ -103,13 +90,14 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Aceite Quitar(ModeloVehiculo entity)
         {
+            //TODO: evaluar hacer una extension de HashSet para generalizar este comportamiento.
+            //Y en este caso alcanzaria con invocar al remove de la coleccion me parece.
             if (entity != null)
             {
-                var toRemove = ModeloVehiculoAceite?
-                    .FirstOrDefault(m => m.ModeloVehiculo == entity && m.Aceite == this);
+                var toRemove = RecomendacionesModeloVehiculo.FirstOrDefault(m => m == entity);
                 if (toRemove != null)
                 {
-                    ModeloVehiculoAceite.Remove(toRemove);
+                    RecomendacionesModeloVehiculo.Remove(toRemove);
                 }
             }
 

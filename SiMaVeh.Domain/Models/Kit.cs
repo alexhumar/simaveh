@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,6 +10,14 @@ namespace SiMaVeh.Domain.Models
     public class Kit : Recambio,
         ICollectionManager<Repuesto, long, Kit, long>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Kit()
+        {
+            Repuestos = new HashSet<Repuesto>();
+        }
+
         /// <summary>
         /// Nombre
         /// </summary>
@@ -24,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Repuestos
         /// </summary>
-        public virtual ISet<Repuesto> Repuestos => KitRepuesto.Select(k => k.Repuesto).ToHashSet();
+        public virtual ISet<Repuesto> Repuestos { get; private set; }
 
         #region overrides
 
@@ -69,11 +76,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                KitRepuesto?.Add(new KitRepuesto
-                {
-                    Repuesto = entity,
-                    Kit = this
-                });
+                Repuestos.Add(entity);
             }
 
             return this;
@@ -88,11 +91,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = KitRepuesto?
-                    .FirstOrDefault(r => r.Repuesto == entity && r.Kit == this);
+                var toRemove = Repuestos.FirstOrDefault(r => r == entity);
                 if (toRemove != null)
                 {
-                    KitRepuesto.Remove(toRemove);
+                    Repuestos.Remove(toRemove);
                 }
             }
 

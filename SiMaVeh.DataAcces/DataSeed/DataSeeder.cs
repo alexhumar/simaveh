@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
+using SiMaVeh.DataAccess.Model.Relations;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.FixtureGetters;
@@ -24,7 +25,6 @@ using SiMaVeh.Domain.Enums.Parsers;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
 using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
-using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.DataAccess.DataSeed
 {
