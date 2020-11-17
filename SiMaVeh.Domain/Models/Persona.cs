@@ -41,7 +41,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Telefonos
         /// </summary>
-        public virtual ISet<Telefono> Telefonos { get; private set; }
+        public virtual ISet<Telefono> Telefonos { get; init; }
 
         #region overrides
 

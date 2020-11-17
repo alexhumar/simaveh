@@ -50,22 +50,22 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Aceites Recomendados
         /// </summary>
-        public virtual ISet<Aceite> AceitesRecomendados { get; private set; }
+        public virtual ISet<Aceite> AceitesRecomendados { get; init; }
 
         /// <summary>
         /// Fuentes Energia Recomendadas
         /// </summary>
-        public virtual ISet<FuenteEnergia> FuentesEnergiaRecomendadas { get; private set; }
+        public virtual ISet<FuenteEnergia> FuentesEnergiaRecomendadas { get; init; }
 
         /// <summary>
         /// Repuestos Recomendados
         /// </summary>
-        public virtual ISet<Repuesto> RepuestosRecomendados { get; private set; }
+        public virtual ISet<Repuesto> RepuestosRecomendados { get; init; }
 
         /// <summary>
         /// Presiones de Neumatico Recomendadas
         /// </summary>
-        public virtual ISet<PresionNeumatico> PresionesNeumaticoRecomendadas { get; private set; }
+        public virtual ISet<PresionNeumatico> PresionesNeumaticoRecomendadas { get; init; }
 
         #region overrides
 

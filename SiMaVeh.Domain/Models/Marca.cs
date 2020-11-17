@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Categorías
         /// </summary>
-        public virtual ISet<CategoriaMarca> Categorias { get; private set; }
+        public virtual ISet<CategoriaMarca> Categorias { get; init; }
 
         #region overrides
 

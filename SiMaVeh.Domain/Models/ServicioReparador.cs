@@ -24,7 +24,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Mantenimientos
         /// </summary>
-        public virtual ISet<Mantenimiento> Mantenimientos { get; private set; }
+        public virtual ISet<Mantenimiento> Mantenimientos { get; init; }
 
         /// <summary>
         /// Fecha Inicio

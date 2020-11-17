@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Repuestos
         /// </summary>
-        public virtual ISet<Repuesto> Repuestos { get; private set; }
+        public virtual ISet<Repuesto> Repuestos { get; init; }
 
         #region overrides
 
