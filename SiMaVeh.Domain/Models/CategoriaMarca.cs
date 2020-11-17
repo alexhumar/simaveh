@@ -26,7 +26,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Marcas
         /// </summary>
-        public virtual ISet<Marca> Marcas { get; private set; }
+        public virtual ISet<Marca> Marcas { get; init; }
 
         #region overrides
 

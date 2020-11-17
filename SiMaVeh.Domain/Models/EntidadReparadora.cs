@@ -35,12 +35,12 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Servicios Mecanicos
         /// </summary>
-        public virtual ISet<ServicioReparador> ServiciosReparadores { get; private set; }
+        public virtual ISet<ServicioReparador> ServiciosReparadores { get; init; }
 
         /// <summary>
         /// Mecanicos
         /// </summary>
-        public virtual ISet<Reparador> Reparadores { get; private set; }
+        public virtual ISet<Reparador> Reparadores { get; init; }
 
         /// <summary>
         /// Direccion

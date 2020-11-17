@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Recomendaciones Modelo Vehiculo
         /// </summary>
-        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; private set; }
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; init; }
 
         #region overrides
 

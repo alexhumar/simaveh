@@ -36,17 +36,17 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Periodicidades Mantenimiento
         /// </summary>
-        public virtual ISet<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; private set; }
+        public virtual ISet<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; init; }
 
         /// <summary>
         /// Kits
         /// </summary>
-        public virtual ISet<Kit> Kits { get; private set; }
+        public virtual ISet<Kit> Kits { get; init; }
 
         /// <summary>
         /// Recomendaciones Modelo Vehiculo
         /// </summary>
-        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; private set; }
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; init; }
 
         #region overrides
 

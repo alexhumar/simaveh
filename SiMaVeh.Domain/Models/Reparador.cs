@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Entidades reparadoras en las que trabaja el reparador
         /// </summary>
-        public virtual ISet<EntidadReparadora> EntidadesReparadoras { get; private set; }
+        public virtual ISet<EntidadReparadora> EntidadesReparadoras { get; init; }
 
         #region overrides
 

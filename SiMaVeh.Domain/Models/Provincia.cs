@@ -31,7 +31,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Partidos
         /// </summary>
-        public virtual ISet<Partido> Partidos { get; private set; }
+        public virtual ISet<Partido> Partidos { get; init; }
 
         #region override
 
