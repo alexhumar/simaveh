@@ -39,6 +39,8 @@ namespace SiMaVeh.Api
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            siMaVehDependencyRegistratorBuilder.BuildRegistrator().Register(services);
+
             var connection = configuration.GetConnectionString("DefaultConnection");
             services
                 .AddDbContext<SiMaVehContext>(options => options
@@ -64,8 +66,6 @@ namespace SiMaVeh.Api
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
             services.AddOData();
-
-            siMaVehDependencyRegistratorBuilder.BuildRegistrator().Register(services);
         }
 
         /// <summary>

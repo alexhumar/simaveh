@@ -1,30 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
 using SiMaVeh.DataAccess.Model.Relations;
-using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
-using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca;
-using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.FixtureGetters;
-using SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags;
-using SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia;
-using SiMaVeh.Domain.DataSeed.Fixtures.Localidad;
-using SiMaVeh.Domain.DataSeed.Fixtures.Marca;
-using SiMaVeh.Domain.DataSeed.Fixtures.Marca.FixtureGetters;
-using SiMaVeh.Domain.DataSeed.Fixtures.Moneda;
-using SiMaVeh.Domain.DataSeed.Fixtures.Pais;
-using SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters;
-using SiMaVeh.Domain.DataSeed.Fixtures.Partido;
-using SiMaVeh.Domain.DataSeed.Fixtures.Provincia;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono;
-using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza;
-using SiMaVeh.Domain.Enums.Parsers;
 using SiMaVeh.Domain.Models;
-using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
-using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
 
 namespace SiMaVeh.DataAccess.DataSeed
 {
@@ -98,37 +75,6 @@ namespace SiMaVeh.DataAccess.DataSeed
             this.categoriaMarcaSeeder = categoriaMarcaSeeder;
             this.marcaCategoriaMarcaSeeder = marcaCategoriaMarcaSeeder;
             this.fuenteEnergiaSeeder = fuenteEnergiaSeeder;
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public DataSeeder()
-        {
-            var calculadorIdEquipamientoAirbags = new CalculadorIdEquipamientoAirbags(new TipoAirbagLateralParser());
-            var calculadorIdUbicacionPieza = new CalculadorIdUbicacionPieza();
-            var datosEntidadBuilder = new DatosEntidadBuilder(calculadorIdEquipamientoAirbags, calculadorIdUbicacionPieza);
-            var paisFixtureGetter = new PaisFixtureGetter(datosEntidadBuilder);
-            var categoriaMarcaFixtureGetter = new CategoriaMarcaFixtureGetter(datosEntidadBuilder);
-            var fixtureMarca = new FixtureMarca(new MarcaFixtureGettersProvider(datosEntidadBuilder, categoriaMarcaFixtureGetter));
-            var marcaFixtureGetter = new MarcaFixtureGetter(datosEntidadBuilder, categoriaMarcaFixtureGetter);
-            var tipoFuenteEnergiaFixtureGetter = new TipoFuenteEnergiaFixtureGetter(datosEntidadBuilder);
-
-            paisSeeder = new PaisSeeder(new FixturePais(new PaisFixtureGettersProvider(datosEntidadBuilder)));
-            provinciaSeeder = new ProvinciaSeeder(new FixtureProvincia(new ProvinciaFixtureGettersProvider(datosEntidadBuilder, paisFixtureGetter)));
-            partidoSeeder = new PartidoSeeder(new FixturePartido(new PartidoFixtureGettersProvider(datosEntidadBuilder, paisFixtureGetter)));
-            localidadSeeder = new LocalidadSeeder(new FixtureLocalidad(new LocalidadFixtureGettersProvider(datosEntidadBuilder, paisFixtureGetter)));
-            tipoEntidadReparadoraSeeder = new TipoEntidadReparadoraSeeder(new FixtureTipoEntidadReparadora(new TipoEntidadReparadoraFixtureGettersProvider(datosEntidadBuilder)));
-            tipoFuenteEnergiaSeeder = new TipoFuenteEnergiaSeeder(new FixtureTipoFuenteEnergia(new TipoFuenteEnergiaFixtureGettersProvider(datosEntidadBuilder)));
-            tipoDocumentoSeeder = new TipoDocumentoSeeder(new FixtureTipoDocumento(new TipoDocumentoFixtureGettersProvider(datosEntidadBuilder)));
-            tipoTelefonoSeeder = new TipoTelefonoSeeder(new FixtureTipoTelefono(new TipoTelefonoFixtureGettersProvider(datosEntidadBuilder)));
-            ubicacionPiezaSeeder = new UbicacionPiezaSeeder(new FixtureUbicacionPieza(new UbicacionPiezaFixtureGettersProvider(datosEntidadBuilder)));
-            equipamientoAirbagsSeeder = new EquipamientoAirbagsSeeder(new FixtureEquipamientoAirbags(new EquipamientoAirbagsFixtureGettersProvider(datosEntidadBuilder)));
-            monedaSeeder = new MonedaSeeder(new FixtureMoneda(new MonedaFixtureGettersProvider(datosEntidadBuilder)));
-            categoriaMarcaSeeder = new CategoriaMarcaSeeder(new FixtureCategoriaMarca(new CategoriaMarcaFixtureGettersProvider(datosEntidadBuilder)));
-            marcaSeeder = new MarcaSeeder(fixtureMarca);
-            marcaCategoriaMarcaSeeder = new MarcaCategoriaMarcaSeeder(fixtureMarca);
-            fuenteEnergiaSeeder = new FuenteEnergiaSeeder(new FixtureFuenteEnergia(new FuenteEnergiaFixtureGettersProvider(datosEntidadBuilder, marcaFixtureGetter, tipoFuenteEnergiaFixtureGetter)));
         }
 
         /// <summary>
