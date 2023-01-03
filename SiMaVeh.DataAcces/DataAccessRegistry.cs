@@ -4,7 +4,6 @@ using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Model.Interfaces;
 using SiMaVeh.DataAccess.Model.Relations;
-using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess
