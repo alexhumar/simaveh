@@ -25,7 +25,7 @@ namespace SiMaVeh.Api.ErrorManagement
                 foreach (var modelError in modelStateEntry.Errors)
                 {
                     var message = (modelError.Exception != null ? modelError.Exception.Message : modelError.ErrorMessage).Trim();
-                    if (!string.IsNullOrEmpty(message))
+                    if (!string.IsNullOrWhiteSpace(message))
                     {
                         result.Add(message);
                     }
