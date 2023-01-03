@@ -1,4 +1,5 @@
 ﻿using FluentValidation.AspNetCore;
+using Lamar;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,8 +11,10 @@ using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Extensions;
 using SiMaVeh.Api.Registration;
 using SiMaVeh.Api.Registration.Interfaces;
+using SiMaVeh.DataAccess;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Model.Interfaces;
+using SiMaVeh.Domain;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 
 namespace SiMaVeh.Api
@@ -66,6 +69,13 @@ namespace SiMaVeh.Api
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
             services.AddOData();
+        }
+
+        public void ConfigureContainer(ServiceRegistry services)
+        {
+            services.IncludeRegistry<ApiRegistry>();
+            services.IncludeRegistry<DomainRegistry>();
+            services.IncludeRegistry<DataAccessRegistry>();
         }
 
         /// <summary>
