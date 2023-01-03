@@ -13,7 +13,7 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// RelatedEntityChanger
     /// </summary>
-    internal class RelatedEntityChanger : IRelatedEntityChanger
+    public class RelatedEntityChanger : IRelatedEntityChanger
     {
         //TODO: mejorar la implementacion de estos metodos. Sobre todo los de tipo cambio.
 

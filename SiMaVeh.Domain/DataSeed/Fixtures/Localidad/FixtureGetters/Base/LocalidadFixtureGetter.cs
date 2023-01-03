@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base
 {
-    internal abstract class LocalidadFixtureGetter : ILocalidadFixtureGetter
+    public abstract class LocalidadFixtureGetter : ILocalidadFixtureGetter
     {
         protected readonly IPartidoFixtureGetter partidoFixtureGetter;
         protected readonly IDatosEntidadBuilder datosEntidadBuilder;

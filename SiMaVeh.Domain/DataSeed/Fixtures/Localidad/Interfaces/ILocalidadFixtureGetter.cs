@@ -3,7 +3,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces
 {
-    internal interface ILocalidadFixtureGetter : IFixtureDetailGetter<long, DatosEntidad>
+    public interface ILocalidadFixtureGetter : IFixtureDetailGetter<long, DatosEntidad>
     {
     }
 }

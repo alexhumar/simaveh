@@ -3,7 +3,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces
 {
-    internal interface IPartidoFixtureGetter : IFixtureDetailGetter<long, DatosEntidad>
+    public interface IPartidoFixtureGetter : IFixtureDetailGetter<long, DatosEntidad>
     {
         DatosEntidad FindByNombre(string nombre);
     }

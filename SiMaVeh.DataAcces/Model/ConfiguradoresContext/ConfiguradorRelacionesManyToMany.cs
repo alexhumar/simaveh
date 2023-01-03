@@ -5,7 +5,7 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 {
-    internal class ConfiguradorRelacionesManyToMany : IConfiguradorContext
+    public class ConfiguradorRelacionesManyToMany : IConfiguradorContext
     {
         public void Configurar(ModelBuilder builder)
         {

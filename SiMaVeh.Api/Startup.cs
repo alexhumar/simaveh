@@ -9,8 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Extensions;
-using SiMaVeh.Api.Registration;
-using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Model.Interfaces;
@@ -23,7 +21,6 @@ namespace SiMaVeh.Api
     {
         private readonly IConfiguration configuration;
         private readonly IModelBuilder modelBuilder;
-        private readonly ISiMaVehDependencyRegistratorBuilder siMaVehDependencyRegistratorBuilder;
 
         /// <summary>
         /// Constructor
@@ -33,7 +30,6 @@ namespace SiMaVeh.Api
         {
             this.configuration = configuration;
             modelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
-            siMaVehDependencyRegistratorBuilder = new SiMaVehDependencyRegistratorBuilder();
         }
 
         /// <summary>
@@ -42,8 +38,6 @@ namespace SiMaVeh.Api
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            siMaVehDependencyRegistratorBuilder.BuildRegistrator().Register(services);
-
             var connection = configuration.GetConnectionString("DefaultConnection");
             services
                 .AddDbContext<SiMaVehContext>(options => options

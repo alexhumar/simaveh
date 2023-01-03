@@ -9,7 +9,7 @@ namespace SiMaVeh.Api.Controllers.Parametrization
     /// <summary>
     /// Singleton que encapsula los objetos necesarios para inyectar en el GenericController
     /// </summary>
-    internal class ControllerParameter : IControllerParameter
+    public class ControllerParameter : IControllerParameter
     {
         /// <summary>
         /// Constructor

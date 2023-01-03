@@ -13,7 +13,7 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// RelatedEntityAdder
     /// </summary>
-    internal class RelatedEntityAdder : IRelatedEntityAdder
+    public class RelatedEntityAdder : IRelatedEntityAdder
     {
         private readonly SiMaVehContext context;
         private readonly IRelatedEntityGetter relatedEntityGetter;

@@ -12,7 +12,7 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// RelatedEntityRemover
     /// </summary>
-    internal class RelatedEntityRemover : IRelatedEntityRemover
+    public class RelatedEntityRemover : IRelatedEntityRemover
     {
         private readonly SiMaVehContext context;
         private readonly IRelatedEntityGetter relatedEntityGetter;

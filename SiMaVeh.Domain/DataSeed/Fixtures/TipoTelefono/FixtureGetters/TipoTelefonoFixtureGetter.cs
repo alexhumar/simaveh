@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.FixtureGetters
     /// <summary>
     /// Fixture getter de tipo telefono
     /// </summary>
-    internal class TipoTelefonoFixtureGetter : ITipoTelefonoFixtureGetter
+    public class TipoTelefonoFixtureGetter : ITipoTelefonoFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> tiposTelefono;

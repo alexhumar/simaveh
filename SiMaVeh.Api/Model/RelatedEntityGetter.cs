@@ -11,7 +11,7 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// RelatedEntityGetter
     /// </summary>
-    internal class RelatedEntityGetter : IRelatedEntityGetter
+    public class RelatedEntityGetter : IRelatedEntityGetter
     {
         /// <summary>
         /// context

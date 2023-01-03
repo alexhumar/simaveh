@@ -9,7 +9,7 @@ namespace SiMaVeh.Api.ErrorManagement
     /// <summary>
     /// Genera y procesa errores del sistema
     /// </summary>
-    internal class ErrorsBuilder : IErrorsBuilder
+    public class ErrorsBuilder : IErrorsBuilder
     {
         /// <summary>
         /// Genera una lista de errores a partir del modelstate
