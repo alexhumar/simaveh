@@ -22,15 +22,13 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         /// <param name="entityTypeGetter"></param>
         /// <param name="errorsBuilder"></param>
         public ControllerParameter(SiMaVehContext context,
-            IRelatedEntityGetter relatedEntityGetter,
-            IRelatedEntityChanger relatedEntityChanger,
-            IRelatedEntityAdder relatedEntityAdder,
-            IRelatedEntityRemover relatedEntityRemover,
+            IODataRelatedEntityChanger relatedEntityChanger,
+            IODataRelatedEntityAdder relatedEntityAdder,
+            IODataRelatedEntityRemover relatedEntityRemover,
             IEntityTypeGetter entityTypeGetter,
             IErrorsBuilder errorsBuilder)
         {
             Context = context;
-            RelatedEntityGetter = relatedEntityGetter;
             RelatedEntityChanger = relatedEntityChanger;
             RelatedEntityAdder = relatedEntityAdder;
             RelatedEntityRemover = relatedEntityRemover;
@@ -44,24 +42,19 @@ namespace SiMaVeh.Api.Controllers.Parametrization
         public SiMaVehContext Context { get; set; }
 
         /// <summary>
-        /// RelatedEntityGetter
-        /// </summary>
-        public IRelatedEntityGetter RelatedEntityGetter { get; set; }
-
-        /// <summary>
         /// RelatedEntityChanger
         /// </summary>
-        public IRelatedEntityChanger RelatedEntityChanger { get; set; }
+        public IODataRelatedEntityChanger RelatedEntityChanger { get; set; }
 
         /// <summary>
         /// RelatedEntityAdder
         /// </summary>
-        public IRelatedEntityAdder RelatedEntityAdder { get; set; }
+        public IODataRelatedEntityAdder RelatedEntityAdder { get; set; }
 
         /// <summary>
         /// RelatedEntityRemover
         /// </summary>
-        public IRelatedEntityRemover RelatedEntityRemover { get; set; }
+        public IODataRelatedEntityRemover RelatedEntityRemover { get; set; }
 
         /// <summary>
         /// RelatedEntityGetter

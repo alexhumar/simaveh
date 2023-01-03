@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SiMaVeh.Api.Model.Interfaces;
-using SiMaVeh.DataAccess.Model;
-using SiMaVeh.DataAccess.Repository;
+using SiMaVeh.DataAccess.Model.Interfaces;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Interfaces;
 using System.Net;
@@ -10,24 +9,19 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Api.Model
 {
     /// <summary>
-    /// RelatedEntityRemover
+    /// ODataRelatedEntityRemover
     /// </summary>
-    public class RelatedEntityRemover : IRelatedEntityRemover
+    public class ODataRelatedEntityRemover : IODataRelatedEntityRemover
     {
-        private readonly SiMaVehContext context;
-        private readonly IRelatedEntityGetter relatedEntityGetter;
+        private readonly IRelatedEntityRemover relatedEntityRemover;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="relatedEntityGetter"></param>
-        public RelatedEntityRemover(SiMaVehContext context,
-            IRelatedEntityGetter relatedEntityGetter)
+        /// <param name="relatedEntityRemover"></param>
+        public ODataRelatedEntityRemover(IRelatedEntityRemover relatedEntityRemover)
         {
-
-            this.context = context;
-            this.relatedEntityGetter = relatedEntityGetter;
+            this.relatedEntityRemover = relatedEntityRemover;
         }
 
         /// <summary>
@@ -50,25 +44,9 @@ namespace SiMaVeh.Api.Model
                 return HttpStatusCode.BadRequest;
             }
 
-            var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
+            var result = await relatedEntityRemover.TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(targetBeKey, relatedBeKey);
 
-            var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
-            if (targetBe == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedKey<TRelatedBe, TRelatedBeId>(relatedBeKey);
-            if (relatedBe == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            targetBe.Quitar(relatedBe);
-
-            await repositoryTargetBe.SaveChangesAsync();
-
-            return HttpStatusCode.NoContent;
+            return result ? HttpStatusCode.NoContent : HttpStatusCode.NotFound;
         }
 
         /// <summary>
@@ -91,19 +69,9 @@ namespace SiMaVeh.Api.Model
                 return HttpStatusCode.BadRequest;
             }
 
-            var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
+            var result = await relatedEntityRemover.TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(targetBeKey);
 
-            var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
-            if (targetBe == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            targetBe.Cambiar(null);
-
-            await repositoryTargetBe.SaveChangesAsync();
-
-            return HttpStatusCode.NoContent;
+            return result ? HttpStatusCode.NoContent : HttpStatusCode.NotFound;
         }
     }
 }

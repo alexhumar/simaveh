@@ -25,24 +25,19 @@ namespace SiMaVeh.Api.Controllers
         protected readonly IRepository<TBe, TBeId> repository;
 
         /// <summary>
-        /// relatedEntityGetter
-        /// </summary>
-        protected readonly IRelatedEntityGetter relatedEntityGetter;
-
-        /// <summary>
         /// relatedEntityChanger
         /// </summary>
-        protected readonly IRelatedEntityChanger relatedEntityChanger;
+        protected readonly IODataRelatedEntityChanger relatedEntityChanger;
 
         /// <summary>
         /// relatedEntityAdder
         /// </summary>
-        protected readonly IRelatedEntityAdder relatedEntityAdder;
+        protected readonly IODataRelatedEntityAdder relatedEntityAdder;
 
         /// <summary>
         /// relatedEntityRemover
         /// </summary>
-        protected readonly IRelatedEntityRemover relatedEntityRemover;
+        protected readonly IODataRelatedEntityRemover relatedEntityRemover;
 
         /// <summary>
         /// entityTypeGetter
@@ -61,7 +56,6 @@ namespace SiMaVeh.Api.Controllers
         public GenericController(IControllerParameter parameters)
         {
             repository = new Repository<TBe, TBeId>(parameters.Context);
-            relatedEntityGetter = parameters.RelatedEntityGetter;
             relatedEntityChanger = parameters.RelatedEntityChanger;
             relatedEntityAdder = parameters.RelatedEntityAdder;
             relatedEntityRemover = parameters.RelatedEntityRemover;

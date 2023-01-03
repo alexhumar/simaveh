@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SiMaVeh.Api.Model.Interfaces;
-using SiMaVeh.DataAccess.Model;
-using SiMaVeh.DataAccess.Repository;
+using SiMaVeh.Api.Utils.Interfaces;
+using SiMaVeh.DataAccess.Model.Interfaces;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Interfaces;
 using System;
@@ -11,26 +11,25 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Api.Model
 {
     /// <summary>
-    /// RelatedEntityChanger
+    /// ODataRelatedEntityChanger
     /// </summary>
-    public class RelatedEntityChanger : IRelatedEntityChanger
+    public class ODataRelatedEntityChanger : IODataRelatedEntityChanger
     {
         //TODO: mejorar la implementacion de estos metodos. Sobre todo los de tipo cambio.
 
-        private readonly SiMaVehContext context;
-        private readonly IRelatedEntityGetter relatedEntityGetter;
+        private readonly IUriParser uriParser;
+        private readonly IRelatedEntityChanger relatedEntityChanger;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="relatedEntityGetter"></param>
-        public RelatedEntityChanger(SiMaVehContext context,
-            IRelatedEntityGetter relatedEntityGetter)
+        /// <param name="uriParser"></param>
+        /// <param name="relatedEntityChanger"></param>
+        public ODataRelatedEntityChanger(IUriParser uriParser,
+            IRelatedEntityChanger relatedEntityChanger)
         {
-
-            this.context = context;
-            this.relatedEntityGetter = relatedEntityGetter;
+            this.uriParser = uriParser;
+            this.relatedEntityChanger = relatedEntityChanger;
         }
 
         /// <summary>
@@ -53,25 +52,10 @@ namespace SiMaVeh.Api.Model
                 return HttpStatusCode.BadRequest;
             }
 
-            var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
+            var relatedBeKey = uriParser.GetKeyFromRelatedEntityUri<TRelatedBeId>(relatedBeLink);
+            var result = await relatedEntityChanger.TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(targetBeKey, relatedBeKey);
 
-            var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
-            if (targetBe == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(relatedBeLink);
-            if (relatedBe == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            targetBe.Cambiar(relatedBe);
-
-            await repositoryTargetBe.SaveChangesAsync();
-
-            return HttpStatusCode.NoContent;
+            return result ? HttpStatusCode.NoContent : HttpStatusCode.NotFound;
         }
 
         /// <summary>
@@ -88,25 +72,10 @@ namespace SiMaVeh.Api.Model
                 return HttpStatusCode.BadRequest;
             }
 
-            var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
+            var monedaKey = uriParser.GetKeyFromRelatedEntityUri<string>(monedaLink);
+            var result = await relatedEntityChanger.TryChangeMonedaOrigenAsync(tipoCambioKey, monedaKey);
 
-            var tipoCambio = await repositoryTipoCambio.FindAsync(tipoCambioKey);
-            if (tipoCambio == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(monedaLink);
-            if (moneda == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            tipoCambio.CambiarMonedaOrigen(moneda);
-
-            await repositoryTipoCambio.SaveChangesAsync();
-
-            return HttpStatusCode.NoContent;
+            return result ? HttpStatusCode.NoContent : HttpStatusCode.NotFound;
         }
 
         /// <summary>
@@ -123,25 +92,10 @@ namespace SiMaVeh.Api.Model
                 return HttpStatusCode.BadRequest;
             }
 
-            var repositoryTipoCambio = new Repository<TipoCambio, long>(context);
+            var monedaKey = uriParser.GetKeyFromRelatedEntityUri<string>(monedaLink);
+            var result = await relatedEntityChanger.TryChangeMonedaDestinoAsync(tipoCambioKey, monedaKey);
 
-            var tipoCambio = await repositoryTipoCambio.FindAsync(tipoCambioKey);
-            if (tipoCambio == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            var moneda = await relatedEntityGetter.TryGetEntityFromRelatedLink<Moneda, string>(monedaLink);
-            if (moneda == null)
-            {
-                return HttpStatusCode.NotFound;
-            }
-
-            tipoCambio.CambiarMonedaDestino(moneda);
-
-            await repositoryTipoCambio.SaveChangesAsync();
-
-            return HttpStatusCode.NoContent;
+            return result ? HttpStatusCode.NoContent : HttpStatusCode.NotFound;
         }
     }
 }

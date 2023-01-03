@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using SiMaVeh.Api.Model.Interfaces;
-using SiMaVeh.DataAccess.Model;
+﻿using SiMaVeh.DataAccess.Model.Interfaces;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Interfaces;
-using System;
-using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Api.Model
+namespace SiMaVeh.DataAccess.Model
 {
     /// <summary>
     /// RelatedEntityAdder
@@ -16,19 +12,19 @@ namespace SiMaVeh.Api.Model
     public class RelatedEntityAdder : IRelatedEntityAdder
     {
         private readonly SiMaVehContext context;
-        private readonly IRelatedEntityGetter relatedEntityGetter;
+        private readonly IGenericEntityGetter genericEntityGetter;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="relatedEntityGetter"></param>
+        /// <param name="genericEntityGetter"></param>
         public RelatedEntityAdder(SiMaVehContext context,
-            IRelatedEntityGetter relatedEntityGetter)
+            IGenericEntityGetter genericEntityGetter)
         {
 
             this.context = context;
-            this.relatedEntityGetter = relatedEntityGetter;
+            this.genericEntityGetter = genericEntityGetter;
         }
 
         /// <summary>
@@ -38,38 +34,32 @@ namespace SiMaVeh.Api.Model
         /// <typeparam name="TTargetBeId"></typeparam>
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
-        /// <param name="request"></param>
         /// <param name="targetBeKey"></param>
-        /// <param name="relatedBeLink"></param>
+        /// <param name="relatedBeKey"></param>
         /// <returns></returns>
-        public async Task<HttpStatusCode> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId targetBeKey, Uri relatedBeLink)
+        public async Task<bool> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(TTargetBeId targetBeKey, TRelatedBeId relatedBeKey)
             where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
-            if ((relatedBeLink == null) || !HttpMethods.IsPost(request.Method))
-            {
-                return HttpStatusCode.BadRequest;
-            }
-
             var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
 
             var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
             if (targetBe == null)
             {
-                return HttpStatusCode.NotFound;
+                return false;
             }
 
-            var relatedBe = await relatedEntityGetter.TryGetEntityFromRelatedLink<TRelatedBe, TRelatedBeId>(relatedBeLink);
+            var relatedBe = await genericEntityGetter.TryGetEntity<TRelatedBe, TRelatedBeId>(relatedBeKey);
             if (relatedBe == null)
             {
-                return HttpStatusCode.NotFound;
+                return false;
             }
 
             targetBe.Agregar(relatedBe);
 
             await repositoryTargetBe.SaveChangesAsync();
 
-            return HttpStatusCode.NoContent;
+            return true;
         }
     }
 }
