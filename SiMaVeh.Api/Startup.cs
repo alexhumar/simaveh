@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Extensions;
 using SiMaVeh.Api.Registration;
 using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess.Model;
@@ -43,11 +44,11 @@ namespace SiMaVeh.Api
                 .AddDbContext<SiMaVehContext>(options => options
                     .UseLazyLoadingProxies()
                     .UseMySql(connection,
+                              ServerVersion.AutoDetect(connection),
                               mySqlOptions =>
                               {
                                   //Esto es para reintentar automaticamente comandos fallidos a la BD. Lo habilite a raiz del uso de Migrations.
-                                  mySqlOptions.EnableRetryOnFailure();
-                                  mySqlOptions.MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
+                                  mySqlOptions.EnableRetryOnFailure().MigrationsAssembly(typeof(SiMaVehContext).Assembly.FullName);
                               })
                 );
 
@@ -58,7 +59,9 @@ namespace SiMaVeh.Api
 
                 //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
                 mvcOptions.EnableEndpointRouting = false;
-            }).AddFluentValidation();
+            });
+
+            services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
             services.AddOData();
 
@@ -74,8 +77,11 @@ namespace SiMaVeh.Api
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //Las excepciones se manejan mediante la clase ResponseExceptionFilter
+                //app.UseDeveloperExceptionPage();
             }
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseHttpsRedirection();
 

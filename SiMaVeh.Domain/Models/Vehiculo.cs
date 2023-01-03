@@ -42,7 +42,7 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Servicios Reparadores
         /// </summary>
-        public virtual ISet<ServicioReparador> ServiciosReparadores { get; protected set; }
+        public virtual ISet<ServicioReparador> ServiciosReparadores { get; init; }
 
         #region overrides
 

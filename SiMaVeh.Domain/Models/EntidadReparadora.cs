@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,7 +19,7 @@ namespace SiMaVeh.Domain.Models
         public EntidadReparadora()
         {
             ServiciosReparadores = new HashSet<ServicioReparador>();
-            ReparadorEntidadReparadora = new HashSet<ReparadorEntidadReparadora>();
+            Reparadores = new HashSet<Reparador>();
         }
 
         /// <summary>
@@ -36,27 +35,17 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Servicios Mecanicos
         /// </summary>
-        public virtual ISet<ServicioReparador> ServiciosReparadores { get; protected set; }
+        public virtual ISet<ServicioReparador> ServiciosReparadores { get; init; }
 
         /// <summary>
         /// Mecanicos
         /// </summary>
-        public virtual ISet<Reparador> Reparadores => ReparadorEntidadReparadora.Select(r => r.Reparador).ToHashSet();
+        public virtual ISet<Reparador> Reparadores { get; init; }
 
         /// <summary>
         /// Direccion
         /// </summary>
         public virtual Direccion Direccion { get; set; /*el set no puede ser protected porque rompe OData*/ }
-
-        #region relations
-
-        //PRUEBA ARH - PROBAR PROTECTED!
-        /// <summary>
-        /// Relacion Reparador-EntidadReparadora
-        /// </summary>
-        public virtual ISet<ReparadorEntidadReparadora> ReparadorEntidadReparadora { get; }
-
-        #endregion
 
         #region overrides
 
@@ -171,11 +160,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                ReparadorEntidadReparadora?.Add(new ReparadorEntidadReparadora
-                {
-                    Reparador = entity,
-                    EntidadReparadora = this
-                });
+                Reparadores.Add(entity);
             }
 
             return this;
@@ -190,11 +175,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = ReparadorEntidadReparadora?
-                    .FirstOrDefault(r => r.Reparador == entity && r.EntidadReparadora == this);
+                var toRemove = Reparadores.FirstOrDefault(r => r == entity);
                 if (toRemove != null)
                 {
-                    ReparadorEntidadReparadora.Remove(toRemove);
+                    Reparadores.Remove(toRemove);
                 }
             }
 

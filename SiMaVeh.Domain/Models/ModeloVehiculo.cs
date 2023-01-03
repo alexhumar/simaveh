@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,10 +21,10 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public ModeloVehiculo()
         {
-            ModeloVehiculoRepuesto = new HashSet<ModeloVehiculoRepuesto>();
-            ModeloVehiculoPresionNeumatico = new HashSet<ModeloVehiculoPresionNeumatico>();
-            ModeloVehiculoFuenteEnergia = new HashSet<ModeloVehiculoFuenteEnergia>();
-            ModeloVehiculoAceite = new HashSet<ModeloVehiculoAceite>();
+            RepuestosRecomendados = new HashSet<Repuesto>();
+            PresionesNeumaticoRecomendadas = new HashSet<PresionNeumatico>();
+            FuentesEnergiaRecomendadas = new HashSet<FuenteEnergia>();
+            AceitesRecomendados = new HashSet<Aceite>();
         }
 
         /// <summary>
@@ -51,46 +50,22 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Aceites Recomendados
         /// </summary>
-        public virtual ISet<Aceite> AceitesRecomendados => ModeloVehiculoAceite.Select(m => m.Aceite).ToHashSet();
+        public virtual ISet<Aceite> AceitesRecomendados { get; init; }
 
         /// <summary>
         /// Fuentes Energia Recomendadas
         /// </summary>
-        public virtual ISet<FuenteEnergia> FuentesEnergiaRecomendadas => ModeloVehiculoFuenteEnergia.Select(m => m.FuenteEnergia).ToHashSet();
+        public virtual ISet<FuenteEnergia> FuentesEnergiaRecomendadas { get; init; }
 
         /// <summary>
         /// Repuestos Recomendados
         /// </summary>
-        public virtual ISet<Repuesto> RepuestosRecomendados => ModeloVehiculoRepuesto.Select(m => m.Repuesto).ToHashSet();
+        public virtual ISet<Repuesto> RepuestosRecomendados { get; init; }
 
         /// <summary>
         /// Presiones de Neumatico Recomendadas
         /// </summary>
-        public virtual ISet<PresionNeumatico> PresionesNeumaticoRecomendadas => ModeloVehiculoPresionNeumatico.Select(m => m.PresionNeumatico).ToHashSet();
-
-        #region relations
-
-        /// <summary>
-        /// Relacion ModeloVehiculo-Repuesto
-        /// </summary>
-        public virtual ISet<ModeloVehiculoRepuesto> ModeloVehiculoRepuesto { get; }
-
-        /// <summary>
-        /// Relacion ModeloVehiculo-PresionNeumatico
-        /// </summary>
-        public virtual ISet<ModeloVehiculoPresionNeumatico> ModeloVehiculoPresionNeumatico { get; }
-
-        /// <summary>
-        /// Relacion ModeloVehiculo-FuenteEnergia
-        /// </summary>
-        public virtual ISet<ModeloVehiculoFuenteEnergia> ModeloVehiculoFuenteEnergia { get; }
-
-        /// <summary>
-        /// Relacion ModeloVehiculo-Aceite
-        /// </summary>
-        public virtual ISet<ModeloVehiculoAceite> ModeloVehiculoAceite { get; }
-
-        #endregion
+        public virtual ISet<PresionNeumatico> PresionesNeumaticoRecomendadas { get; init; }
 
         #region overrides
 
@@ -185,11 +160,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                ModeloVehiculoPresionNeumatico?.Add(new ModeloVehiculoPresionNeumatico
-                {
-                    ModeloVehiculo = this,
-                    PresionNeumatico = entity
-                });
+                PresionesNeumaticoRecomendadas.Add(entity);
             }
 
             return this;
@@ -204,11 +175,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = ModeloVehiculoPresionNeumatico?
-                    .FirstOrDefault(m => m.PresionNeumatico == entity && m.ModeloVehiculo == this);
+                var toRemove = PresionesNeumaticoRecomendadas.FirstOrDefault(p => p == entity);
                 if (toRemove != null)
                 {
-                    ModeloVehiculoPresionNeumatico.Remove(toRemove);
+                    PresionesNeumaticoRecomendadas.Remove(toRemove);
                 }
             }
 
@@ -224,11 +194,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                ModeloVehiculoRepuesto?.Add(new ModeloVehiculoRepuesto
-                {
-                    Repuesto = entity,
-                    ModeloVehiculo = this
-                });
+                RepuestosRecomendados.Add(entity);
             }
 
             return this;
@@ -243,11 +209,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = ModeloVehiculoRepuesto?
-                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.Repuesto == entity);
+                var toRemove = RepuestosRecomendados.FirstOrDefault(r => r == entity);
                 if (toRemove != null)
                 {
-                    ModeloVehiculoRepuesto.Remove(toRemove);
+                    RepuestosRecomendados.Remove(toRemove);
                 }
             }
 
@@ -263,11 +228,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                ModeloVehiculoFuenteEnergia?.Add(new ModeloVehiculoFuenteEnergia
-                {
-                    FuenteEnergia = entity,
-                    ModeloVehiculo = this
-                });
+                FuentesEnergiaRecomendadas.Add(entity);
             }
 
             return this;
@@ -282,11 +243,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = ModeloVehiculoFuenteEnergia?
-                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.FuenteEnergia == entity);
+                var toRemove = FuentesEnergiaRecomendadas.FirstOrDefault(f => f == entity);
                 if (toRemove != null)
                 {
-                    ModeloVehiculoFuenteEnergia.Remove(toRemove);
+                    FuentesEnergiaRecomendadas.Remove(toRemove);
                 }
             }
 
@@ -302,11 +262,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                ModeloVehiculoAceite?.Add(new ModeloVehiculoAceite
-                {
-                    Aceite = entity,
-                    ModeloVehiculo = this
-                });
+                AceitesRecomendados.Add(entity);
             }
 
             return this;
@@ -321,11 +277,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = ModeloVehiculoAceite?
-                    .FirstOrDefault(m => m.ModeloVehiculo == this && m.Aceite == entity);
+                var toRemove = AceitesRecomendados.FirstOrDefault(a => a == entity);
                 if (toRemove != null)
                 {
-                    ModeloVehiculoAceite.Remove(toRemove);
+                    AceitesRecomendados.Remove(toRemove);
                 }
             }
 

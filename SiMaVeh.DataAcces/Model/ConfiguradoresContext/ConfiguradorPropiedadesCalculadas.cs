@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SiMaVeh.DataAccess.Model.ConfiguradoresContext.Interfaces;
-using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 {
@@ -8,14 +7,10 @@ namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
     {
         public void Configurar(ModelBuilder builder)
         {
-            //Los Ignore son para que el LazyLoading ignore las propiedades calculadas y
-            //no tire excepcion al notar que no tienen setter.
-            builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
-            builder.Entity<EntidadReparadora>().Ignore(e => e.Reparadores);
-            builder.Entity<Kit>().Ignore(k => k.Repuestos);
-            builder.Entity<Marca>().Ignore(m => m.Categorias);
-            builder.Entity<Repuesto>().Ignore(r => r.Kits);
-            builder.Entity<Reparador>().Ignore(r => r.EntidadesReparadoras);
+            //Configurar aqui los Ignore, en caso de ser necesarios, para que el LazyLoading 
+            //ignore las propiedades calculadas y no tire excepcion al notar que no tienen setter.
+            //Ejemplo:
+            //builder.Entity<CategoriaMarca>().Ignore(c => c.Marcas);
         }
     }
 }

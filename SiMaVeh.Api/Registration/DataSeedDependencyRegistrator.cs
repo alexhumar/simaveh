@@ -3,6 +3,7 @@ using SiMaVeh.Api.Registration.Interfaces;
 using SiMaVeh.DataAccess.DataSeed;
 using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
+using SiMaVeh.DataAccess.Model.Relations;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca;
@@ -45,7 +46,6 @@ using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags;
 using SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags.Interfaces;
 using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza;
 using SiMaVeh.Domain.Models.Calculadores.UbicacionPieza.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 
 namespace SiMaVeh.Api.Registration
 {

@@ -1,4 +1,6 @@
-﻿namespace SiMaVeh.Domain.Models.Relations
+﻿using SiMaVeh.Domain.Models;
+
+namespace SiMaVeh.DataAccess.Model.Relations
 {
     /// <summary>
     /// Relacion many-to-many Reparador-Entidad Reparadora

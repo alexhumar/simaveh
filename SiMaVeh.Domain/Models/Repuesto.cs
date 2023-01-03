@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.Domain.Models.Interfaces;
-using SiMaVeh.Domain.Models.Relations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,7 +18,8 @@ namespace SiMaVeh.Domain.Models
         /// </summary>
         public Repuesto()
         {
-            ModeloVehiculoRepuesto = new HashSet<ModeloVehiculoRepuesto>();
+            Kits = new HashSet<Kit>();
+            RecomendacionesModeloVehiculo = new HashSet<ModeloVehiculo>();
             PeriodicidadesMantenimiento = new HashSet<PeriodicidadMantenimiento>();
         }
 
@@ -36,26 +36,17 @@ namespace SiMaVeh.Domain.Models
         /// <summary>
         /// Periodicidades Mantenimiento
         /// </summary>
-        public virtual ISet<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; protected set; }
+        public virtual ISet<PeriodicidadMantenimiento> PeriodicidadesMantenimiento { get; init; }
 
         /// <summary>
         /// Kits
         /// </summary>
-        public virtual ISet<Kit> Kits => KitRepuesto.Select(k => k.Kit).ToHashSet();
+        public virtual ISet<Kit> Kits { get; init; }
 
         /// <summary>
         /// Recomendaciones Modelo Vehiculo
         /// </summary>
-        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo => ModeloVehiculoRepuesto.Select(m => m.ModeloVehiculo).ToHashSet();
-
-        #region relations
-
-        /// <summary>
-        /// Relacion ModeloVehiculo-Repuesto
-        /// </summary>
-        public virtual ISet<ModeloVehiculoRepuesto> ModeloVehiculoRepuesto { get; }
-
-        #endregion
+        public virtual ISet<ModeloVehiculo> RecomendacionesModeloVehiculo { get; init; }
 
         #region overrides
 
@@ -120,11 +111,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                KitRepuesto?.Add(new KitRepuesto
-                {
-                    Repuesto = this,
-                    Kit = entity
-                });
+                Kits.Add(entity);
             }
 
             return this;
@@ -139,11 +126,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = KitRepuesto?
-                    .FirstOrDefault(r => r.Repuesto == this && r.Kit == entity);
+                var toRemove = Kits.FirstOrDefault(k => k == entity);
                 if (toRemove != null)
                 {
-                    KitRepuesto.Remove(toRemove);
+                    Kits.Remove(toRemove);
                 }
             }
 
@@ -194,11 +180,7 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                ModeloVehiculoRepuesto?.Add(new ModeloVehiculoRepuesto
-                {
-                    ModeloVehiculo = entity,
-                    Repuesto = this
-                });
+                RecomendacionesModeloVehiculo.Add(entity);
             }
 
             return this;
@@ -213,11 +195,10 @@ namespace SiMaVeh.Domain.Models
         {
             if (entity != null)
             {
-                var toRemove = ModeloVehiculoRepuesto?
-                    .FirstOrDefault(r => r.Repuesto == this && r.ModeloVehiculo == entity);
+                var toRemove = RecomendacionesModeloVehiculo.FirstOrDefault(m => m == entity);
                 if (toRemove != null)
                 {
-                    ModeloVehiculoRepuesto.Remove(toRemove);
+                    RecomendacionesModeloVehiculo.Remove(toRemove);
                 }
             }
 
