@@ -3,7 +3,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags.Interfaces
 {
-    internal interface IEquipamientoAirbagsFixtureGetter : IFixtureGetter<DatosEquipamientoAirbags>
+    public interface IEquipamientoAirbagsFixtureGetter : IFixtureGetter<DatosEquipamientoAirbags>
     {
     }
 }

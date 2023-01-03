@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
+using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
@@ -37,7 +38,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.VehiculoCargado);
+            return entity == null ? NotFound() : Ok(entity.VehiculoCargado);
         }
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.EsUniversal);
+            return entity == null ? NotFound() : Ok(entity.EsUniversal);
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.RecomendacionesModeloVehiculo);
+            return entity == null ? NotFound() : Ok(entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Neumatico);
+            return entity == null ? NotFound() : Ok(entity.Neumatico);
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.RuedasDelanteras);
+            return entity == null ? NotFound() : Ok(entity.RuedasDelanteras);
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.RuedasTraseras);
+            return entity == null ? NotFound() : Ok(entity.RuedasTraseras);
         }
 
         /// <summary>

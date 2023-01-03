@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Threading.Tasks;
@@ -31,7 +31,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Descripcion);
+            return entity == null ? NotFound() : Ok(entity.Descripcion);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
+            return entity == null ? NotFound() : Ok(entity.Nombre);
         }
 
         #endregion

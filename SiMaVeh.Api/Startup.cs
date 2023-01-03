@@ -1,17 +1,18 @@
 ﻿using FluentValidation.AspNetCore;
-using Microsoft.AspNet.OData.Extensions;
+using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Extensions;
-using SiMaVeh.Api.Registration;
-using SiMaVeh.Api.Registration.Interfaces;
+using SiMaVeh.DataAccess;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Model.Interfaces;
+using SiMaVeh.Domain;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 
 namespace SiMaVeh.Api
@@ -20,7 +21,6 @@ namespace SiMaVeh.Api
     {
         private readonly IConfiguration configuration;
         private readonly IModelBuilder modelBuilder;
-        private readonly ISiMaVehDependencyRegistratorBuilder siMaVehDependencyRegistratorBuilder;
 
         /// <summary>
         /// Constructor
@@ -30,7 +30,6 @@ namespace SiMaVeh.Api
         {
             this.configuration = configuration;
             modelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
-            siMaVehDependencyRegistratorBuilder = new SiMaVehDependencyRegistratorBuilder();
         }
 
         /// <summary>
@@ -59,13 +58,16 @@ namespace SiMaVeh.Api
 
                 //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
                 mvcOptions.EnableEndpointRouting = false;
-            });
+            }).AddOData(opt => opt.AddRouteComponents(UriConstants.PrefijoRutaOData, modelBuilder.GetEdmModel()));
 
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+        }
 
-            services.AddOData();
-
-            siMaVehDependencyRegistratorBuilder.BuildRegistrator().Register(services);
+        public void ConfigureContainer(ServiceRegistry services)
+        {
+            services.IncludeRegistry<ApiRegistry>();
+            services.IncludeRegistry<DomainRegistry>();
+            services.IncludeRegistry<DataAccessRegistry>();
         }
 
         /// <summary>
@@ -89,11 +91,9 @@ namespace SiMaVeh.Api
 
             app.UseAuthorization();
 
-            app.UseMvc(routeBuilder =>
+            app.UseEndpoints(endpoints =>
             {
-                routeBuilder.MapODataServiceRoute("odata", UriConstants.PrefijoRutaOData, modelBuilder.GetEdmModel());
-                //Work-around for issue #1175
-                routeBuilder.EnableDependencyInjection();
+                endpoints.MapControllers();
             });
 
             //Esto es para que se actualice la BD mediante migrations cuando arranca la Api. No es lo ideal,

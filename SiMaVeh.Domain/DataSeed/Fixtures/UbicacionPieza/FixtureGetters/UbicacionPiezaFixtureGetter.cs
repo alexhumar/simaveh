@@ -9,7 +9,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.FixtureGetters
     /// <summary>
     /// Fixture getter de ubicacion pieza
     /// </summary>
-    internal class UbicacionPiezaFixtureGetter : IUbicacionPiezaFixtureGetter
+    public class UbicacionPiezaFixtureGetter : IUbicacionPiezaFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosUbicacionPieza> ubicacionesPieza;

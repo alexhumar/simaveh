@@ -2,7 +2,7 @@
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext.Interfaces
 {
-    internal interface IRecuperadorConfiguradoresContext
+    public interface IRecuperadorConfiguradoresContext
     {
         IEnumerable<IConfiguradorContext> GetConfiguradoresContext();
     }

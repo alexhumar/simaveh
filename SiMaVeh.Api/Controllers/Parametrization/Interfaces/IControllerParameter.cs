@@ -16,24 +16,19 @@ namespace SiMaVeh.Api.Controllers.Parametrization.Interfaces
         SiMaVehContext Context { get; }
 
         /// <summary>
-        /// RelatedEntityGetter
-        /// </summary>
-        IRelatedEntityGetter RelatedEntityGetter { get; }
-
-        /// <summary>
         /// RelatedEntityChanger
         /// </summary>
-        IRelatedEntityChanger RelatedEntityChanger { get; }
+        IODataRelatedEntityChanger RelatedEntityChanger { get; }
 
         /// <summary>
         /// RelatedEntityAdder
         /// </summary>
-        IRelatedEntityAdder RelatedEntityAdder { get; }
+        IODataRelatedEntityAdder RelatedEntityAdder { get; }
 
         /// <summary>
         /// RelatedEntityRemover
         /// </summary>
-        IRelatedEntityRemover RelatedEntityRemover { get; }
+        IODataRelatedEntityRemover RelatedEntityRemover { get; }
 
         /// <summary>
         /// RelatedEntityGetter

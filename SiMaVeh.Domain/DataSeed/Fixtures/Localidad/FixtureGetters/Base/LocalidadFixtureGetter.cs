@@ -3,11 +3,10 @@ using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base
 {
-    internal abstract class LocalidadFixtureGetter : ILocalidadFixtureGetter
+    public abstract class LocalidadFixtureGetter : ILocalidadFixtureGetter
     {
         protected readonly IPartidoFixtureGetter partidoFixtureGetter;
         protected readonly IDatosEntidadBuilder datosEntidadBuilder;

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using SiMaVeh.DataAccess.DataSeed;
-using SiMaVeh.DataAccess.Model.ConfiguradoresContext;
 using SiMaVeh.DataAccess.Model.ConfiguradoresContext.Interfaces;
 using SiMaVeh.Domain.Models;
 
@@ -8,19 +7,20 @@ namespace SiMaVeh.DataAccess.Model
 {
     public class SiMaVehContext : DbContext
     {
-        private readonly IConfiguradorContext configuradorContext;
+        private readonly IConfiguradorSiMaVehContext configuradorSiMaVehContext;
         private readonly IDataSeeder dataSeeder;
 
-        public SiMaVehContext(DbContextOptions<SiMaVehContext> options) : base(options)
+        public SiMaVehContext(DbContextOptions<SiMaVehContext> options,
+            IDataSeeder dataSeeder,
+            IConfiguradorSiMaVehContext configuradorSiMaVehContext) : base(options)
         {
-            //Todo esto no pude hacerlo funcionar con inyeccion de dependencias.
-            configuradorContext = new ConfiguradorSiMaVehContext(new RecuperadorConfiguradoresContext());
-            dataSeeder = new DataSeeder();
+            this.configuradorSiMaVehContext = configuradorSiMaVehContext;
+            this.dataSeeder = dataSeeder;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            configuradorContext.Configurar(builder);
+            configuradorSiMaVehContext.Configurar(builder);
             dataSeeder.SeedData(builder);
         }
 

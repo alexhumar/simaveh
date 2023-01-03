@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    internal class LocalidadRioNegroFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadRioNegroFixtureGetter : LocalidadFixtureGetter
     {
         public LocalidadRioNegroFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
             IPartidoFixtureGetter partidoFixtureGetter)

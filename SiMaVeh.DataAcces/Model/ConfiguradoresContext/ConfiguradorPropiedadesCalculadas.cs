@@ -3,7 +3,7 @@ using SiMaVeh.DataAccess.Model.ConfiguradoresContext.Interfaces;
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 {
-    internal class ConfiguradorPropiedadesCalculadas : IConfiguradorContext
+    public class ConfiguradorPropiedadesCalculadas : IConfiguradorContext
     {
         public void Configurar(ModelBuilder builder)
         {

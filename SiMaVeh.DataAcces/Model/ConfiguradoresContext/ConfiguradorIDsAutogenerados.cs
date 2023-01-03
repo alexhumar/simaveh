@@ -4,7 +4,7 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 {
-    internal class ConfiguradorIDsAutogenerados : IConfiguradorContext
+    public class ConfiguradorIDsAutogenerados : IConfiguradorContext
     {
         public void Configurar(ModelBuilder builder)
         {
