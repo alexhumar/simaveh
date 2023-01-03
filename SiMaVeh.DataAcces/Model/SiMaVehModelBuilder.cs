@@ -43,7 +43,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            builder.EntityType<Aceite>().Ignore(a => a.ModeloVehiculoAceite);
 
             builder.EntitySet<Automovil>(entityTypeGetter.GetCollectionNameAsString<Automovil, long>());
             builder.EntityType<Automovil>()
@@ -54,6 +53,8 @@ namespace SiMaVeh.DataAccess.Model
                 .Page()
                 .Select();
 
+            //NOTA: para acceder a la propiedad Marcas de CategoriaMarca, la invocacion es: CategoriasMarca([Id])/Marcas,
+            //y, debido al Expand, se puede acceder asi: CategoriasMarca([Id])?$expand=Marcas
             builder.EntitySet<CategoriaMarca>(entityTypeGetter.GetCollectionNameAsString<CategoriaMarca, long>());
             builder.EntityType<CategoriaMarca>()
                 .Count(QueryOptionSetting.Allowed)
@@ -62,9 +63,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            //NOTA: para acceder a la propiedad Marcas de CategoriaMarca, la invocacion es: CategoriasMarca([Id])/Marcas,
-            //y, debido al Expand, se puede acceder asi: CategoriasMarca([Id])?$expand=Marcas
-            builder.EntityType<CategoriaMarca>().Ignore(c => c.MarcaCategoriaMarca);
 
             builder.EntitySet<Direccion>(entityTypeGetter.GetCollectionNameAsString<Direccion, long>());
             builder.EntityType<Direccion>()
@@ -83,7 +81,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            builder.EntityType<EntidadReparadora>().Ignore(e => e.ReparadorEntidadReparadora);
 
             builder.EntitySet<EquipamientoAirbags>(entityTypeGetter.GetCollectionNameAsString<EquipamientoAirbags, string>());
             builder.EntityType<EquipamientoAirbags>()
@@ -109,7 +106,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            builder.EntityType<FuenteEnergia>().Ignore(f => f.ModeloVehiculoFuenteEnergia);
 
             builder.EntitySet<GrupoModelo>(entityTypeGetter.GetCollectionNameAsString<GrupoModelo, long>());
             builder.EntityType<GrupoModelo>()
@@ -155,7 +151,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            builder.EntityType<Marca>().Ignore(m => m.MarcaCategoriaMarca);
 
             builder.EntitySet<ModeloVehiculo>(entityTypeGetter.GetCollectionNameAsString<ModeloVehiculo, long>());
             builder.EntityType<ModeloVehiculo>()
@@ -165,10 +160,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoRepuesto);
-            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoPresionNeumatico);
-            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoFuenteEnergia);
-            builder.EntityType<ModeloVehiculo>().Ignore(m => m.ModeloVehiculoAceite);
 
             builder.EntitySet<Moneda>(entityTypeGetter.GetCollectionNameAsString<Moneda, string>());
             builder.EntityType<Moneda>()
@@ -231,7 +222,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            builder.EntityType<PresionNeumatico>().Ignore(p => p.ModeloVehiculoPresionNeumatico);
 
             builder.EntitySet<Provincia>(entityTypeGetter.GetCollectionNameAsString<Provincia, long>());
             builder.EntityType<Provincia>()
@@ -243,8 +233,7 @@ namespace SiMaVeh.DataAccess.Model
                 .Select();
 
             builder.EntityType<Recambio>()
-                .Abstract()
-                .Ignore(r => r.KitRepuesto);
+                .Abstract();
 
             builder.EntitySet<Reparador>(entityTypeGetter.GetCollectionNameAsString<Reparador, long>());
             builder.EntityType<Reparador>()
@@ -254,7 +243,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            builder.EntityType<Reparador>().Ignore(r => r.ReparadorEntidadReparadora);
 
             builder.EntitySet<Repuesto>(entityTypeGetter.GetCollectionNameAsString<Repuesto, long>());
             builder.EntityType<Repuesto>()
@@ -264,7 +252,6 @@ namespace SiMaVeh.DataAccess.Model
                 .OrderBy(QueryOptionSetting.Allowed)
                 .Page()
                 .Select();
-            builder.EntityType<Repuesto>().Ignore(r => r.ModeloVehiculoRepuesto);
 
             builder.EntitySet<ServicioReparador>(entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>());
             builder.EntityType<ServicioReparador>()

@@ -1,9 +1,11 @@
-﻿namespace SiMaVeh.Domain.Models.Relations
+﻿using SiMaVeh.Domain.Models;
+
+namespace SiMaVeh.DataAccess.Model.Relations
 {
     /// <summary>
-    /// Relacion many-to-many Modelo Vehiculo-Aceite
+    /// Relacion many-to-many Modelo Vehiculo-Repuesto
     /// </summary>
-    public class ModeloVehiculoAceite
+    public class ModeloVehiculoRepuesto
     {
         /// <summary>
         /// Id. Modelo Vehiculo
@@ -16,13 +18,13 @@
         public virtual ModeloVehiculo ModeloVehiculo { get; set; }
 
         /// <summary>
-        /// Id. Aceite
+        /// Id. Repuesto
         /// </summary>
-        public virtual long AceiteId { get; set; }
+        public virtual long RepuestoId { get; set; }
 
         /// <summary>
-        /// Aceite
+        /// Repuesto
         /// </summary>
-        public virtual Aceite Aceite { get; set; }
+        public virtual Repuesto Repuesto { get; set; }
     }
 }

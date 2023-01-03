@@ -9,15 +9,120 @@ using SiMaVeh.DataAccess.Model;
 namespace SiMaVeh.DataAccess.Migrations
 {
     [DbContext(typeof(SiMaVehContext))]
-    [Migration("20200801153359_InitialCreate")]
+    [Migration("20201116195943_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.6")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64)
+                .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.KitRepuesto", b =>
+                {
+                    b.Property<long>("KitId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("RepuestoId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("KitId", "RepuestoId");
+
+                    b.HasIndex("RepuestoId");
+
+                    b.ToTable("KitRepuesto");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.MarcaCategoriaMarca", b =>
+                {
+                    b.Property<long>("CategoriaMarcaId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("MarcaId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("CategoriaMarcaId", "MarcaId");
+
+                    b.HasIndex("MarcaId");
+
+                    b.ToTable("MarcaCategoriaMarca");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ModeloVehiculoAceite", b =>
+                {
+                    b.Property<long>("AceiteId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ModeloVehiculoId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("AceiteId", "ModeloVehiculoId");
+
+                    b.HasIndex("ModeloVehiculoId");
+
+                    b.ToTable("ModeloVehiculoAceite");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ModeloVehiculoFuenteEnergia", b =>
+                {
+                    b.Property<long>("FuenteEnergiaId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ModeloVehiculoId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("FuenteEnergiaId", "ModeloVehiculoId");
+
+                    b.HasIndex("ModeloVehiculoId");
+
+                    b.ToTable("ModeloVehiculoFuenteEnergia");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ModeloVehiculoPresionNeumatico", b =>
+                {
+                    b.Property<long>("ModeloVehiculoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PresionNeumaticoId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("ModeloVehiculoId", "PresionNeumaticoId");
+
+                    b.HasIndex("PresionNeumaticoId");
+
+                    b.ToTable("ModeloVehiculoPresionNeumatico");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ModeloVehiculoRepuesto", b =>
+                {
+                    b.Property<long>("ModeloVehiculoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("RepuestoId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("ModeloVehiculoId", "RepuestoId");
+
+                    b.HasIndex("RepuestoId");
+
+                    b.ToTable("ModeloVehiculoRepuesto");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ReparadorEntidadReparadora", b =>
+                {
+                    b.Property<long>("EntidadReparadoraId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ReparadorId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("EntidadReparadoraId", "ReparadorId");
+
+                    b.HasIndex("ReparadorId");
+
+                    b.ToTable("ReparadorEntidadReparadora");
+                });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.CategoriaMarca", b =>
                 {
@@ -389,10 +494,6 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<string>("NumeroDocumento")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<long?>("TipoDocumentoId")
                         .HasColumnType("bigint");
 
@@ -401,8 +502,6 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasIndex("TipoDocumentoId");
 
                     b.ToTable("Personas");
-
-                    b.HasDiscriminator<string>("Tipo").HasValue("Persona");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.PresionNeumatico", b =>
@@ -458,122 +557,11 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<long?>("MarcaId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MarcaId");
 
                     b.ToTable("Recambios");
-
-                    b.HasDiscriminator<string>("Tipo").HasValue("Recambio");
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.KitRepuesto", b =>
-                {
-                    b.Property<long>("KitId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("RepuestoId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("KitId", "RepuestoId");
-
-                    b.HasIndex("RepuestoId");
-
-                    b.ToTable("KitRepuesto");
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.MarcaCategoriaMarca", b =>
-                {
-                    b.Property<long>("CategoriaMarcaId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("MarcaId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("CategoriaMarcaId", "MarcaId");
-
-                    b.HasIndex("MarcaId");
-
-                    b.ToTable("MarcaCategoriaMarca");
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ModeloVehiculoAceite", b =>
-                {
-                    b.Property<long>("ModeloVehiculoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AceiteId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("ModeloVehiculoId", "AceiteId");
-
-                    b.HasIndex("AceiteId");
-
-                    b.ToTable("ModeloVehiculoAceite");
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ModeloVehiculoFuenteEnergia", b =>
-                {
-                    b.Property<long>("ModeloVehiculoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("FuenteEnergiaId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("ModeloVehiculoId", "FuenteEnergiaId");
-
-                    b.HasIndex("FuenteEnergiaId");
-
-                    b.ToTable("ModeloVehiculoFuenteEnergia");
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ModeloVehiculoPresionNeumatico", b =>
-                {
-                    b.Property<long>("ModeloVehiculoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PresionNeumaticoId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("ModeloVehiculoId", "PresionNeumaticoId");
-
-                    b.HasIndex("PresionNeumaticoId");
-
-                    b.ToTable("ModeloVehiculoPresionNeumatico");
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ModeloVehiculoRepuesto", b =>
-                {
-                    b.Property<long>("ModeloVehiculoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("RepuestoId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("ModeloVehiculoId", "RepuestoId");
-
-                    b.HasIndex("RepuestoId");
-
-                    b.ToTable("ModeloVehiculoRepuesto");
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ReparadorEntidadReparadora", b =>
-                {
-                    b.Property<long>("ReparadorId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("EntidadReparadoraId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("ReparadorId", "EntidadReparadoraId");
-
-                    b.HasIndex("EntidadReparadoraId");
-
-                    b.ToTable("ReparadorEntidadReparadora");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.ServicioReparador", b =>
@@ -626,15 +614,9 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.HasKey("Id");
 
                     b.ToTable("TargetsMantenimiento");
-
-                    b.HasDiscriminator<string>("Tipo").HasValue("TargetMantenimiento");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Telefono", b =>
@@ -787,10 +769,6 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<long?>("ModeloVehiculoId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<long?>("UsuarioId")
                         .HasColumnType("bigint");
 
@@ -801,22 +779,20 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Vehiculos");
-
-                    b.HasDiscriminator<string>("Tipo").HasValue("Vehiculo");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Reparador", b =>
                 {
                     b.HasBaseType("SiMaVeh.Domain.Models.Persona");
 
-                    b.HasDiscriminator().HasValue("R");
+                    b.ToTable("Reparadores");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Usuario", b =>
                 {
                     b.HasBaseType("SiMaVeh.Domain.Models.Persona");
 
-                    b.HasDiscriminator().HasValue("U");
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Kit", b =>
@@ -829,7 +805,7 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasDiscriminator().HasValue("K");
+                    b.ToTable("Kits");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Repuesto", b =>
@@ -844,7 +820,7 @@ namespace SiMaVeh.DataAccess.Migrations
 
                     b.HasIndex("TargetMantenimientoId");
 
-                    b.HasDiscriminator().HasValue("R");
+                    b.ToTable("Repuestos");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Aceite", b =>
@@ -857,14 +833,14 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<int>("ViscosidadSAEBajaTemperatura")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("A");
+                    b.ToTable("Aceites");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Fluido", b =>
                 {
                     b.HasBaseType("SiMaVeh.Domain.Models.TargetMantenimiento");
 
-                    b.HasDiscriminator().HasValue("F");
+                    b.ToTable("Fluidos");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Pieza", b =>
@@ -876,7 +852,7 @@ namespace SiMaVeh.DataAccess.Migrations
 
                     b.HasIndex("UbicacionPiezaId");
 
-                    b.HasDiscriminator().HasValue("P");
+                    b.ToTable("Piezas");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Automovil", b =>
@@ -892,7 +868,140 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.Property<string>("Patente")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasDiscriminator().HasValue("A");
+                    b.ToTable("Automoviles");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.KitRepuesto", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.Kit", "Kit")
+                        .WithMany()
+                        .HasForeignKey("KitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SiMaVeh.Domain.Models.Repuesto", "Repuesto")
+                        .WithMany()
+                        .HasForeignKey("RepuestoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kit");
+
+                    b.Navigation("Repuesto");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.MarcaCategoriaMarca", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.CategoriaMarca", "CategoriaMarca")
+                        .WithMany()
+                        .HasForeignKey("CategoriaMarcaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SiMaVeh.Domain.Models.Marca", "Marca")
+                        .WithMany()
+                        .HasForeignKey("MarcaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CategoriaMarca");
+
+                    b.Navigation("Marca");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ModeloVehiculoAceite", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.Aceite", "Aceite")
+                        .WithMany()
+                        .HasForeignKey("AceiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SiMaVeh.Domain.Models.ModeloVehiculo", "ModeloVehiculo")
+                        .WithMany()
+                        .HasForeignKey("ModeloVehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aceite");
+
+                    b.Navigation("ModeloVehiculo");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ModeloVehiculoFuenteEnergia", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.FuenteEnergia", "FuenteEnergia")
+                        .WithMany()
+                        .HasForeignKey("FuenteEnergiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SiMaVeh.Domain.Models.ModeloVehiculo", "ModeloVehiculo")
+                        .WithMany()
+                        .HasForeignKey("ModeloVehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FuenteEnergia");
+
+                    b.Navigation("ModeloVehiculo");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ModeloVehiculoPresionNeumatico", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.ModeloVehiculo", "ModeloVehiculo")
+                        .WithMany()
+                        .HasForeignKey("ModeloVehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SiMaVeh.Domain.Models.PresionNeumatico", "PresionNeumatico")
+                        .WithMany()
+                        .HasForeignKey("PresionNeumaticoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ModeloVehiculo");
+
+                    b.Navigation("PresionNeumatico");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ModeloVehiculoRepuesto", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.ModeloVehiculo", "ModeloVehiculo")
+                        .WithMany()
+                        .HasForeignKey("ModeloVehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SiMaVeh.Domain.Models.Repuesto", "Repuesto")
+                        .WithMany()
+                        .HasForeignKey("RepuestoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ModeloVehiculo");
+
+                    b.Navigation("Repuesto");
+                });
+
+            modelBuilder.Entity("SiMaVeh.DataAccess.Model.Relations.ReparadorEntidadReparadora", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.EntidadReparadora", "EntidadReparadora")
+                        .WithMany()
+                        .HasForeignKey("EntidadReparadoraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SiMaVeh.Domain.Models.Reparador", "Reparador")
+                        .WithMany()
+                        .HasForeignKey("ReparadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EntidadReparadora");
+
+                    b.Navigation("Reparador");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Direccion", b =>
@@ -900,6 +1009,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Localidad", "Localidad")
                         .WithMany()
                         .HasForeignKey("LocalidadId");
+
+                    b.Navigation("Localidad");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.EntidadReparadora", b =>
@@ -911,6 +1022,10 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.TipoEntidadReparadora", "TipoEntidadReparadora")
                         .WithMany()
                         .HasForeignKey("TipoEntidadReparadoraId");
+
+                    b.Navigation("Direccion");
+
+                    b.Navigation("TipoEntidadReparadora");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.FuenteEnergia", b =>
@@ -922,6 +1037,10 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.TipoFuenteEnergia", "TipoFuenteEnergia")
                         .WithMany()
                         .HasForeignKey("TipoFuenteEnergiaId");
+
+                    b.Navigation("Marca");
+
+                    b.Navigation("TipoFuenteEnergia");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.GrupoModelo", b =>
@@ -929,6 +1048,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Marca", "Marca")
                         .WithMany()
                         .HasForeignKey("MarcaId");
+
+                    b.Navigation("Marca");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Localidad", b =>
@@ -936,6 +1057,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Partido", "Partido")
                         .WithMany("Localidades")
                         .HasForeignKey("PartidoId");
+
+                    b.Navigation("Partido");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Mantenimiento", b =>
@@ -955,6 +1078,14 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.ServicioReparador", "ServicioReparador")
                         .WithMany("Mantenimientos")
                         .HasForeignKey("ServicioReparadorId");
+
+                    b.Navigation("MonedaMontoRecambio");
+
+                    b.Navigation("Recambio");
+
+                    b.Navigation("Reparador");
+
+                    b.Navigation("ServicioReparador");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.ModeloVehiculo", b =>
@@ -970,6 +1101,12 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.TipoFuenteEnergia", "TipoFuenteEnergia")
                         .WithMany()
                         .HasForeignKey("TipoFuenteEnergiaId");
+
+                    b.Navigation("Airbags");
+
+                    b.Navigation("GrupoModelo");
+
+                    b.Navigation("TipoFuenteEnergia");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Neumatico", b =>
@@ -977,6 +1114,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Marca", "Marca")
                         .WithMany()
                         .HasForeignKey("MarcaId");
+
+                    b.Navigation("Marca");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Partido", b =>
@@ -984,6 +1123,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Provincia", "Provincia")
                         .WithMany("Partidos")
                         .HasForeignKey("ProvinciaId");
+
+                    b.Navigation("Provincia");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.PeriodicidadMantenimiento", b =>
@@ -995,6 +1136,10 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Repuesto", "Repuesto")
                         .WithMany("PeriodicidadesMantenimiento")
                         .HasForeignKey("RepuestoId");
+
+                    b.Navigation("ModeloVehiculo");
+
+                    b.Navigation("Repuesto");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Persona", b =>
@@ -1002,6 +1147,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.TipoDocumento", "TipoDocumento")
                         .WithMany()
                         .HasForeignKey("TipoDocumentoId");
+
+                    b.Navigation("TipoDocumento");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.PresionNeumatico", b =>
@@ -1009,6 +1156,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Neumatico", "Neumatico")
                         .WithMany()
                         .HasForeignKey("NeumaticoId");
+
+                    b.Navigation("Neumatico");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Provincia", b =>
@@ -1016,6 +1165,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Pais", "Pais")
                         .WithMany("Provincias")
                         .HasForeignKey("PaisId");
+
+                    b.Navigation("Pais");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Recambio", b =>
@@ -1023,111 +1174,8 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Marca", "Marca")
                         .WithMany()
                         .HasForeignKey("MarcaId");
-                });
 
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.KitRepuesto", b =>
-                {
-                    b.HasOne("SiMaVeh.Domain.Models.Kit", "Kit")
-                        .WithMany("KitRepuesto")
-                        .HasForeignKey("KitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SiMaVeh.Domain.Models.Repuesto", "Repuesto")
-                        .WithMany("KitRepuesto")
-                        .HasForeignKey("RepuestoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.MarcaCategoriaMarca", b =>
-                {
-                    b.HasOne("SiMaVeh.Domain.Models.CategoriaMarca", "CategoriaMarca")
-                        .WithMany("MarcaCategoriaMarca")
-                        .HasForeignKey("CategoriaMarcaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SiMaVeh.Domain.Models.Marca", "Marca")
-                        .WithMany("MarcaCategoriaMarca")
-                        .HasForeignKey("MarcaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ModeloVehiculoAceite", b =>
-                {
-                    b.HasOne("SiMaVeh.Domain.Models.Aceite", "Aceite")
-                        .WithMany("ModeloVehiculoAceite")
-                        .HasForeignKey("AceiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SiMaVeh.Domain.Models.ModeloVehiculo", "ModeloVehiculo")
-                        .WithMany("ModeloVehiculoAceite")
-                        .HasForeignKey("ModeloVehiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ModeloVehiculoFuenteEnergia", b =>
-                {
-                    b.HasOne("SiMaVeh.Domain.Models.FuenteEnergia", "FuenteEnergia")
-                        .WithMany("ModeloVehiculoFuenteEnergia")
-                        .HasForeignKey("FuenteEnergiaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SiMaVeh.Domain.Models.ModeloVehiculo", "ModeloVehiculo")
-                        .WithMany("ModeloVehiculoFuenteEnergia")
-                        .HasForeignKey("ModeloVehiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ModeloVehiculoPresionNeumatico", b =>
-                {
-                    b.HasOne("SiMaVeh.Domain.Models.ModeloVehiculo", "ModeloVehiculo")
-                        .WithMany("ModeloVehiculoPresionNeumatico")
-                        .HasForeignKey("ModeloVehiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SiMaVeh.Domain.Models.PresionNeumatico", "PresionNeumatico")
-                        .WithMany("ModeloVehiculoPresionNeumatico")
-                        .HasForeignKey("PresionNeumaticoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ModeloVehiculoRepuesto", b =>
-                {
-                    b.HasOne("SiMaVeh.Domain.Models.ModeloVehiculo", "ModeloVehiculo")
-                        .WithMany("ModeloVehiculoRepuesto")
-                        .HasForeignKey("ModeloVehiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SiMaVeh.Domain.Models.Repuesto", "Repuesto")
-                        .WithMany("ModeloVehiculoRepuesto")
-                        .HasForeignKey("RepuestoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SiMaVeh.Domain.Models.Relations.ReparadorEntidadReparadora", b =>
-                {
-                    b.HasOne("SiMaVeh.Domain.Models.EntidadReparadora", "EntidadReparadora")
-                        .WithMany("ReparadorEntidadReparadora")
-                        .HasForeignKey("EntidadReparadoraId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SiMaVeh.Domain.Models.Reparador", "Reparador")
-                        .WithMany("ReparadorEntidadReparadora")
-                        .HasForeignKey("ReparadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Marca");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.ServicioReparador", b =>
@@ -1143,6 +1191,12 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Vehiculo", "Vehiculo")
                         .WithMany("ServiciosReparadores")
                         .HasForeignKey("VehiculoId");
+
+                    b.Navigation("EntidadReparadora");
+
+                    b.Navigation("MonedaMontoManoObra");
+
+                    b.Navigation("Vehiculo");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Telefono", b =>
@@ -1154,6 +1208,10 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.TipoTelefono", "TipoTelefono")
                         .WithMany()
                         .HasForeignKey("TipoTelefonoId");
+
+                    b.Navigation("Persona");
+
+                    b.Navigation("TipoTelefono");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.TipoCambio", b =>
@@ -1165,6 +1223,10 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Moneda", "MonedaOrigen")
                         .WithMany()
                         .HasForeignKey("MonedaOrigenId");
+
+                    b.Navigation("MonedaDestino");
+
+                    b.Navigation("MonedaOrigen");
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Vehiculo", b =>
@@ -1176,20 +1238,139 @@ namespace SiMaVeh.DataAccess.Migrations
                     b.HasOne("SiMaVeh.Domain.Models.Usuario", "Usuario")
                         .WithMany("Vehiculos")
                         .HasForeignKey("UsuarioId");
+
+                    b.Navigation("ModeloVehiculo");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Reparador", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.Persona", null)
+                        .WithOne()
+                        .HasForeignKey("SiMaVeh.Domain.Models.Reparador", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Usuario", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.Persona", null)
+                        .WithOne()
+                        .HasForeignKey("SiMaVeh.Domain.Models.Usuario", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Kit", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.Recambio", null)
+                        .WithOne()
+                        .HasForeignKey("SiMaVeh.Domain.Models.Kit", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Repuesto", b =>
                 {
+                    b.HasOne("SiMaVeh.Domain.Models.Recambio", null)
+                        .WithOne()
+                        .HasForeignKey("SiMaVeh.Domain.Models.Repuesto", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SiMaVeh.Domain.Models.TargetMantenimiento", "TargetMantenimiento")
                         .WithMany()
                         .HasForeignKey("TargetMantenimientoId");
+
+                    b.Navigation("TargetMantenimiento");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Aceite", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.TargetMantenimiento", null)
+                        .WithOne()
+                        .HasForeignKey("SiMaVeh.Domain.Models.Aceite", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Fluido", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.TargetMantenimiento", null)
+                        .WithOne()
+                        .HasForeignKey("SiMaVeh.Domain.Models.Fluido", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SiMaVeh.Domain.Models.Pieza", b =>
                 {
+                    b.HasOne("SiMaVeh.Domain.Models.TargetMantenimiento", null)
+                        .WithOne()
+                        .HasForeignKey("SiMaVeh.Domain.Models.Pieza", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SiMaVeh.Domain.Models.UbicacionPieza", "UbicacionPieza")
                         .WithMany()
                         .HasForeignKey("UbicacionPiezaId");
+
+                    b.Navigation("UbicacionPieza");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Automovil", b =>
+                {
+                    b.HasOne("SiMaVeh.Domain.Models.Vehiculo", null)
+                        .WithOne()
+                        .HasForeignKey("SiMaVeh.Domain.Models.Automovil", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.EntidadReparadora", b =>
+                {
+                    b.Navigation("ServiciosReparadores");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Pais", b =>
+                {
+                    b.Navigation("Provincias");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Partido", b =>
+                {
+                    b.Navigation("Localidades");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Persona", b =>
+                {
+                    b.Navigation("Telefonos");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Provincia", b =>
+                {
+                    b.Navigation("Partidos");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.ServicioReparador", b =>
+                {
+                    b.Navigation("Mantenimientos");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Vehiculo", b =>
+                {
+                    b.Navigation("ServiciosReparadores");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Usuario", b =>
+                {
+                    b.Navigation("Vehiculos");
+                });
+
+            modelBuilder.Entity("SiMaVeh.Domain.Models.Repuesto", b =>
+                {
+                    b.Navigation("PeriodicidadesMantenimiento");
                 });
 #pragma warning restore 612, 618
         }

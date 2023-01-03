@@ -22,5 +22,12 @@ namespace SiMaVeh.Api.ErrorManagement.Interfaces
         /// <typeparam name="e"></typeparam>
         /// <returns></returns>
         IList<string> BuildErrors(Exception e);
+
+        /// <summary>
+        /// Genera un mensaje de error a partir de una excepcion
+        /// </summary>
+        /// <typeparam name="e"></typeparam>
+        /// <returns></returns>
+        string BuildError(Exception e);
     }
 }
