@@ -4,7 +4,6 @@ using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
@@ -20,11 +19,6 @@ namespace SiMaVeh.Api.Controllers
     /// </summary>
     public class GenericController<TBe, TBeId> : ODataController where TBe : DomainMember<TBeId>
     {
-        /// <summary>
-        /// context
-        /// </summary>
-        protected readonly SiMaVehContext context;
-
         /// <summary>
         /// repository
         /// </summary>
@@ -66,8 +60,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="parameters"></param>
         public GenericController(IControllerParameter parameters)
         {
-            context = parameters.Context;
-            repository = new Repository<TBe, TBeId>(context);
+            repository = new Repository<TBe, TBeId>(parameters.Context);
             relatedEntityGetter = parameters.RelatedEntityGetter;
             relatedEntityChanger = parameters.RelatedEntityChanger;
             relatedEntityAdder = parameters.RelatedEntityAdder;
