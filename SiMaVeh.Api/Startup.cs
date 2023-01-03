@@ -1,8 +1,8 @@
 ﻿using FluentValidation.AspNetCore;
 using Lamar;
-using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -58,11 +58,9 @@ namespace SiMaVeh.Api
 
                 //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
                 mvcOptions.EnableEndpointRouting = false;
-            });
+            }).AddOData(opt => opt.AddRouteComponents(UriConstants.PrefijoRutaOData, modelBuilder.GetEdmModel()));
 
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
-
-            services.AddOData();
         }
 
         public void ConfigureContainer(ServiceRegistry services)
@@ -93,11 +91,9 @@ namespace SiMaVeh.Api
 
             app.UseAuthorization();
 
-            app.UseMvc(routeBuilder =>
+            app.UseEndpoints(endpoints =>
             {
-                routeBuilder.MapODataServiceRoute("odata", UriConstants.PrefijoRutaOData, modelBuilder.GetEdmModel());
-                //Work-around for issue #1175
-                routeBuilder.EnableDependencyInjection();
+                endpoints.MapControllers();
             });
 
             //Esto es para que se actualice la BD mediante migrations cuando arranca la Api. No es lo ideal,
