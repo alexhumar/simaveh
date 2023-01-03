@@ -35,7 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.AnchuraSeccionalNominal);
+            return entity == null ? NotFound() : Ok(entity.AnchuraSeccionalNominal);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.ConstruccionCarcasa);
+            return entity == null ? NotFound() : Ok(entity.ConstruccionCarcasa);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.DiametroLLanta);
+            return entity == null ? NotFound() : Ok(entity.DiametroLLanta);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.IndiceCarga);
+            return entity == null ? NotFound() : Ok(entity.IndiceCarga);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.IndiceVelocidad);
+            return entity == null ? NotFound() : Ok(entity.IndiceVelocidad);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Marca);
+            return entity == null ? NotFound() : Ok(entity.Marca);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Modelo);
+            return entity == null ? NotFound() : Ok(entity.Modelo);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.RelacionAnchoAlto);
+            return entity == null ? NotFound() : Ok(entity.RelacionAnchoAlto);
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Tipo);
+            return entity == null ? NotFound() : Ok(entity.Tipo);
         }
 
         /// <summary>

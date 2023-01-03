@@ -35,7 +35,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Anios);
+            return entity == null ? NotFound() : Ok(entity.Anios);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Dias);
+            return entity == null ? NotFound() : Ok(entity.Dias);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.EsDefault);
+            return entity == null ? NotFound() : Ok(entity.EsDefault);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Kilometros);
+            return entity == null ? NotFound() : Ok(entity.Kilometros);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Meses);
+            return entity == null ? NotFound() : Ok(entity.Meses);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.ModeloVehiculo);
+            return entity == null ? NotFound() : Ok(entity.ModeloVehiculo);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Repuesto);
+            return entity == null ? NotFound() : Ok(entity.Repuesto);
         }
 
         /// <summary>

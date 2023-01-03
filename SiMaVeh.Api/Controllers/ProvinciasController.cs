@@ -36,7 +36,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Nombre);
+            return entity == null ? NotFound() : Ok(entity.Nombre);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Pais);
+            return entity == null ? NotFound() : Ok(entity.Pais);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Partidos.AsQueryable());
+            return entity == null ? NotFound() : Ok(entity.Partidos.AsQueryable());
         }
 
         /// <summary>

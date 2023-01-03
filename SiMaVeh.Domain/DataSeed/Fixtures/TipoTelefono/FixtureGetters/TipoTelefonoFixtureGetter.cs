@@ -2,7 +2,6 @@
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.FixtureGetters
 {
