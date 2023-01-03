@@ -4,7 +4,7 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 {
-    internal class ConfiguradorJerarquiaTPH : IConfiguradorContext
+    public class ConfiguradorJerarquiaTPH : IConfiguradorContext
     {
         public void Configurar(ModelBuilder builder)
         {

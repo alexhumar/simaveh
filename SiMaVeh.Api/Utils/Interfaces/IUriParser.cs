@@ -5,7 +5,7 @@ namespace SiMaVeh.Api.Utils.Interfaces
     /// <summary>
     /// Interfaz de UriParser
     /// </summary>
-    internal interface IUriParser
+    public interface IUriParser
     {
         /// <summary>
         /// GetKeyFromRelatedEntityUri

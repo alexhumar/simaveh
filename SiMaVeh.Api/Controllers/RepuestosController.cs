@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
+using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.DataAccess.Constants;
@@ -36,7 +37,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.CodigoIdentificador);
+            return entity == null ? NotFound() : Ok(entity.CodigoIdentificador);
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Kits);
+            return entity == null ? NotFound() : Ok(entity.Kits);
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.Marca);
+            return entity == null ? NotFound() : Ok(entity.Marca);
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.PeriodicidadesMantenimiento);
+            return entity == null ? NotFound() : Ok(entity.PeriodicidadesMantenimiento);
         }
 
         /// <summary>
@@ -88,7 +89,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.TargetMantenimiento);
+            return entity == null ? NotFound() : Ok(entity.TargetMantenimiento);
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace SiMaVeh.Api.Controllers
         {
             var entity = await repository.FindAsync(key);
 
-            return entity == null ? NotFound() : (IActionResult)Ok(entity.RecomendacionesModeloVehiculo);
+            return entity == null ? NotFound() : Ok(entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>

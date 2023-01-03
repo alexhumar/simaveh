@@ -1,6 +1,6 @@
 ﻿namespace SiMaVeh.Api.Constants
 {
-    internal class UriConstants
+    public class UriConstants
     {
         public const string PrefijoRutaOData = "simaveh";
     }

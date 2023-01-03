@@ -3,7 +3,10 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia.Interfaces
 {
-    internal interface IFuenteEnergiaFixtureGetter : IFixtureGetter<DatosFuenteEnergia>
+    /// <summary>
+    /// IFuenteEnergiaFixtureGetter
+    /// </summary>
+    public interface IFuenteEnergiaFixtureGetter : IFixtureGetter<DatosFuenteEnergia>
     {
     }
 }

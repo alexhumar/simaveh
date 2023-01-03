@@ -10,7 +10,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia.FixtureGetters
     /// <summary>
     /// Fixture getter de fuente energia
     /// </summary>
-    internal class FuenteEnergiaFixtureGetter : IFuenteEnergiaFixtureGetter
+    public class FuenteEnergiaFixtureGetter : IFuenteEnergiaFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly IMarcaFixtureGetter marcaFixtureGetter;

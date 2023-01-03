@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento.FixtureGetters
     /// <summary>
     /// Fixture getter de tipo documento
     /// </summary>
-    internal class TipoDocumentoFixtureGetter : ITipoDocumentoFixtureGetter
+    public class TipoDocumentoFixtureGetter : ITipoDocumentoFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> tiposDocumento;

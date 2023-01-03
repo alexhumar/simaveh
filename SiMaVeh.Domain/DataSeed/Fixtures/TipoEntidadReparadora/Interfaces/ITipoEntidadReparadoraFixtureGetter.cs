@@ -3,7 +3,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces
 {
-    internal interface ITipoEntidadReparadoraFixtureGetter : IFixtureGetter<DatosEntidad>
+    public interface ITipoEntidadReparadoraFixtureGetter : IFixtureGetter<DatosEntidad>
     {
     }
 }

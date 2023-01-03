@@ -3,7 +3,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento.Interfaces
 {
-    internal interface ITipoDocumentoFixtureGetter : IFixtureGetter<DatosEntidad>
+    public interface ITipoDocumentoFixtureGetter : IFixtureGetter<DatosEntidad>
     {
     }
 }

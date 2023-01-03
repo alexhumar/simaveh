@@ -11,7 +11,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags.FixtureGetters
     /// <summary>
     /// Fixture getter de equipamiento airbags
     /// </summary>
-    internal class EquipamientoAirbagsFixtureGetter : IEquipamientoAirbagsFixtureGetter
+    public class EquipamientoAirbagsFixtureGetter : IEquipamientoAirbagsFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEquipamientoAirbags> equipamientosAirbags;

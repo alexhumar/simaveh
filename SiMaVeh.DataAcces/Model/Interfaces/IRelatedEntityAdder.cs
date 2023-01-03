@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using SiMaVeh.Domain.Models;
+﻿using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Interfaces;
-using System;
-using System.Net;
 using System.Threading.Tasks;
 
-namespace SiMaVeh.Api.Model.Interfaces
+namespace SiMaVeh.DataAccess.Model.Interfaces
 {
     /// <summary>
     /// Interfaz de RelatedEntityAdder
@@ -19,11 +16,10 @@ namespace SiMaVeh.Api.Model.Interfaces
         /// <typeparam name="TTargetBeId"></typeparam>
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
-        /// <param name="request"></param>
         /// <param name="targetBeKey"></param>
-        /// <param name="relatedBeLink"></param>
+        /// <param name="relatedBeKey"></param>
         /// <returns></returns>
-        Task<HttpStatusCode> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId targetBeKey, Uri relatedBeLink)
+        Task<bool> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(TTargetBeId targetBeKey, TRelatedBeId relatedBeKey)
             where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>;
     }
