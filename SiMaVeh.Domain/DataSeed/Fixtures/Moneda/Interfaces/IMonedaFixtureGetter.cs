@@ -3,7 +3,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Moneda.Interfaces
 {
-    internal interface IMonedaFixtureGetter : IFixtureGetter<DatosMoneda>
+    public interface IMonedaFixtureGetter : IFixtureGetter<DatosMoneda>
     {
     }
 }

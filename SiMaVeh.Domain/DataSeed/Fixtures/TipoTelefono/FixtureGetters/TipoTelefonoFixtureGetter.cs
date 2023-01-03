@@ -2,14 +2,13 @@
 using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
 using SiMaVeh.Domain.DataSeed.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.FixtureGetters
 {
     /// <summary>
     /// Fixture getter de tipo telefono
     /// </summary>
-    internal class TipoTelefonoFixtureGetter : ITipoTelefonoFixtureGetter
+    public class TipoTelefonoFixtureGetter : ITipoTelefonoFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> tiposTelefono;

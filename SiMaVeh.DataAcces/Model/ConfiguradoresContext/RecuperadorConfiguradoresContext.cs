@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 {
-    internal class RecuperadorConfiguradoresContext : IRecuperadorConfiguradoresContext
+    public class RecuperadorConfiguradoresContext : IRecuperadorConfiguradoresContext
     {
         public IEnumerable<IConfiguradorContext> GetConfiguradoresContext()
         {

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Api.Model.Interfaces
 {
     /// <summary>
-    /// Interfaz de RelatedEntityRemover
+    /// Interfaz de ODataRelatedEntityRemover
     /// </summary>
-    public interface IRelatedEntityRemover
+    public interface IODataRelatedEntityRemover
     {
         /// <summary>
         /// TryRemoveRelatedEntityAsync

@@ -1,6 +1,6 @@
 ﻿namespace SiMaVeh.Api.Constants
 {
-    internal class HttpConstants
+    public class HttpConstants
     {
         public const string Get = "GET";
 

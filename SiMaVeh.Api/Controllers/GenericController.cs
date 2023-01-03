@@ -4,7 +4,6 @@ using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
@@ -21,34 +20,24 @@ namespace SiMaVeh.Api.Controllers
     public class GenericController<TBe, TBeId> : ODataController where TBe : DomainMember<TBeId>
     {
         /// <summary>
-        /// context
-        /// </summary>
-        protected readonly SiMaVehContext context;
-
-        /// <summary>
         /// repository
         /// </summary>
         protected readonly IRepository<TBe, TBeId> repository;
 
         /// <summary>
-        /// relatedEntityGetter
-        /// </summary>
-        protected readonly IRelatedEntityGetter relatedEntityGetter;
-
-        /// <summary>
         /// relatedEntityChanger
         /// </summary>
-        protected readonly IRelatedEntityChanger relatedEntityChanger;
+        protected readonly IODataRelatedEntityChanger relatedEntityChanger;
 
         /// <summary>
         /// relatedEntityAdder
         /// </summary>
-        protected readonly IRelatedEntityAdder relatedEntityAdder;
+        protected readonly IODataRelatedEntityAdder relatedEntityAdder;
 
         /// <summary>
         /// relatedEntityRemover
         /// </summary>
-        protected readonly IRelatedEntityRemover relatedEntityRemover;
+        protected readonly IODataRelatedEntityRemover relatedEntityRemover;
 
         /// <summary>
         /// entityTypeGetter
@@ -66,9 +55,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="parameters"></param>
         public GenericController(IControllerParameter parameters)
         {
-            context = parameters.Context;
-            repository = new Repository<TBe, TBeId>(context);
-            relatedEntityGetter = parameters.RelatedEntityGetter;
+            repository = new Repository<TBe, TBeId>(parameters.Context);
             relatedEntityChanger = parameters.RelatedEntityChanger;
             relatedEntityAdder = parameters.RelatedEntityAdder;
             relatedEntityRemover = parameters.RelatedEntityRemover;

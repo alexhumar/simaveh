@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    internal class PartidoSantaCruzFixtureGetter : PartidoFixtureGetter
+    public class PartidoSantaCruzFixtureGetter : PartidoFixtureGetter
     {
         public PartidoSantaCruzFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
             IProvinciaFixtureGetter provinciaFixtureGetter)

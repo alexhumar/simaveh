@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base
 {
-    internal abstract class PartidoFixtureGetter : IPartidoFixtureGetter
+    public abstract class PartidoFixtureGetter : IPartidoFixtureGetter
     {
         protected readonly IProvinciaFixtureGetter provinciaFixtureGetter;
         protected readonly IDatosEntidadBuilder datosEntidadBuilder;

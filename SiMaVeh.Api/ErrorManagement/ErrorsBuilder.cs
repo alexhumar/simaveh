@@ -9,7 +9,7 @@ namespace SiMaVeh.Api.ErrorManagement
     /// <summary>
     /// Genera y procesa errores del sistema
     /// </summary>
-    internal class ErrorsBuilder : IErrorsBuilder
+    public class ErrorsBuilder : IErrorsBuilder
     {
         /// <summary>
         /// Genera una lista de errores a partir del modelstate
@@ -25,7 +25,7 @@ namespace SiMaVeh.Api.ErrorManagement
                 foreach (var modelError in modelStateEntry.Errors)
                 {
                     var message = (modelError.Exception != null ? modelError.Exception.Message : modelError.ErrorMessage).Trim();
-                    if (!string.IsNullOrEmpty(message))
+                    if (!string.IsNullOrWhiteSpace(message))
                     {
                         result.Add(message);
                     }

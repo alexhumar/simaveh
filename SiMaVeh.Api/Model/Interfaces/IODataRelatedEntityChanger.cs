@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace SiMaVeh.Api.Model.Interfaces
 {
     /// <summary>
-    /// Interfaz de RelatedEntityChanger
+    /// Interfaz de ODataRelatedEntityChanger
     /// </summary>
-    public interface IRelatedEntityChanger
+    public interface IODataRelatedEntityChanger
     {
         /// <summary>
         /// TryChangeRelatedEntity

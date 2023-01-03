@@ -77,10 +77,10 @@ namespace SiMaVeh.Domain.Models
 
             sb.Append(Conductor ? "(S," : "(N,");
             sb.Append(Acompanante ? "S," : "N,");
-            sb.Append($"{ tipoAirbagLateralParser.ToString(DelanteroIzquierdo)},");
-            sb.Append($"{ tipoAirbagLateralParser.ToString(DelanteroDerecho)},");
-            sb.Append($"{ tipoAirbagLateralParser.ToString(TraseroIzquierdo)},");
-            sb.Append($"{ tipoAirbagLateralParser.ToString(TraseroDerecho)},");
+            sb.Append($"{tipoAirbagLateralParser.ToString(DelanteroIzquierdo)},");
+            sb.Append($"{tipoAirbagLateralParser.ToString(DelanteroDerecho)},");
+            sb.Append($"{tipoAirbagLateralParser.ToString(TraseroIzquierdo)},");
+            sb.Append($"{tipoAirbagLateralParser.ToString(TraseroDerecho)},");
 
             return string.Concat(ubicaciones, " - ", sb.ToString());
         }

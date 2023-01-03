@@ -2,7 +2,7 @@
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext.Interfaces
 {
-    internal interface IConfiguradorContext
+    public interface IConfiguradorContext
     {
         void Configurar(ModelBuilder builder);
     }

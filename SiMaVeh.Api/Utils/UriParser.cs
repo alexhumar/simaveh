@@ -10,7 +10,7 @@ namespace SiMaVeh.Api.Utils
     /// <summary>
     /// UriParser
     /// </summary>
-    internal class UriParser : IUriParser
+    public class UriParser : IUriParser
     {
         private readonly IModelBuilder modelBuilder;
 

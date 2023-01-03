@@ -1,5 +1,4 @@
-﻿using SiMaVeh.Domain.Models.Interfaces;
-using System;
+﻿using System;
 
 namespace SiMaVeh.Domain.Models
 {

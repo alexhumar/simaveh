@@ -3,7 +3,7 @@ using SiMaVeh.Domain.DataSeed.Models;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces
 {
-    internal interface ITipoTelefonoFixtureGetter : IFixtureGetter<DatosEntidad>
+    public interface ITipoTelefonoFixtureGetter : IFixtureGetter<DatosEntidad>
     {
     }
 }

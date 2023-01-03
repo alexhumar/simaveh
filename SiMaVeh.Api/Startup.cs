@@ -1,4 +1,5 @@
 ﻿using FluentValidation.AspNetCore;
+using Lamar;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,10 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Extensions;
-using SiMaVeh.Api.Registration;
-using SiMaVeh.Api.Registration.Interfaces;
+using SiMaVeh.DataAccess;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.DataAccess.Model.Interfaces;
+using SiMaVeh.Domain;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 
 namespace SiMaVeh.Api
@@ -20,7 +21,6 @@ namespace SiMaVeh.Api
     {
         private readonly IConfiguration configuration;
         private readonly IModelBuilder modelBuilder;
-        private readonly ISiMaVehDependencyRegistratorBuilder siMaVehDependencyRegistratorBuilder;
 
         /// <summary>
         /// Constructor
@@ -30,7 +30,6 @@ namespace SiMaVeh.Api
         {
             this.configuration = configuration;
             modelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
-            siMaVehDependencyRegistratorBuilder = new SiMaVehDependencyRegistratorBuilder();
         }
 
         /// <summary>
@@ -64,8 +63,13 @@ namespace SiMaVeh.Api
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
             services.AddOData();
+        }
 
-            siMaVehDependencyRegistratorBuilder.BuildRegistrator().Register(services);
+        public void ConfigureContainer(ServiceRegistry services)
+        {
+            services.IncludeRegistry<ApiRegistry>();
+            services.IncludeRegistry<DomainRegistry>();
+            services.IncludeRegistry<DataAccessRegistry>();
         }
 
         /// <summary>

@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.FixtureGetters
     /// <summary>
     /// Fixture getter de tipo entidad reparadora
     /// </summary>
-    internal class TipoEntidadReparadoraFixtureGetter : ITipoEntidadReparadoraFixtureGetter
+    public class TipoEntidadReparadoraFixtureGetter : ITipoEntidadReparadoraFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosEntidad> tiposEntidadesReparadoras;

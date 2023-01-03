@@ -8,7 +8,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Moneda.FixtureGetters
     /// <summary>
     /// Fixture getter de moneda
     /// </summary>
-    internal class MonedaFixtureGetter : IMonedaFixtureGetter
+    public class MonedaFixtureGetter : IMonedaFixtureGetter
     {
         private readonly IDatosEntidadBuilder datosEntidadBuilder;
         private readonly ICollection<DatosMoneda> monedas;
