@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
-using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
@@ -95,7 +95,7 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Lista de entidades</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public virtual async Task<IQueryable<TBe>> Get()
         {
             return await repository.GetCollectionAsync();

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -45,7 +44,7 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Kits a los que pertenece el repuesto</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetKits([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
@@ -71,7 +70,7 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Periodicidades de mantenimiento del repuesto</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetPeriodicidadesMantenimiento([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
@@ -98,7 +97,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Modelo vehiculo de la presion neumatico</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);

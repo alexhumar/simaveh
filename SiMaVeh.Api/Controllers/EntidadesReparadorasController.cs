@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -60,7 +59,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Reparadores de la Entidad reparadora</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetReparadores([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
@@ -74,7 +73,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Servicios reparadores de la Entidad reparadora</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetServiciosReparadores([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -32,7 +31,7 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Lista de provincias del pais</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetProvincias([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);

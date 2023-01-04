@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -34,7 +33,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Aceites recomendados del modelo vehiculo</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetAceitesRecomendados([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
@@ -62,7 +61,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Fuentes de energia del modelo vehiculo</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetFuentesEnergiaRecomendadas([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
@@ -90,7 +89,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Presiones de neumatico recomendadas del modelo vehiculo</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetPresionesNeumaticoRecomendadas([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
@@ -104,7 +103,7 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Repuestos recomendados del modelo vehiculo</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetRepuestosRecomendados([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);

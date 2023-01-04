@@ -1,7 +1,7 @@
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
+using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Model.Interfaces;
-using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 
@@ -46,7 +46,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Automovil>(entityTypeGetter.GetCollectionNameAsString<Automovil, long>());
             builder.EntityType<Automovil>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -57,7 +57,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<CategoriaMarca>(entityTypeGetter.GetCollectionNameAsString<CategoriaMarca, long>());
             builder.EntityType<CategoriaMarca>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -66,7 +66,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Direccion>(entityTypeGetter.GetCollectionNameAsString<Direccion, long>());
             builder.EntityType<Direccion>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -75,7 +75,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<EntidadReparadora>(entityTypeGetter.GetCollectionNameAsString<EntidadReparadora, long>());
             builder.EntityType<EntidadReparadora>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -100,7 +100,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<FuenteEnergia>(entityTypeGetter.GetCollectionNameAsString<FuenteEnergia, long>());
             builder.EntityType<FuenteEnergia>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -109,7 +109,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<GrupoModelo>(entityTypeGetter.GetCollectionNameAsString<GrupoModelo, long>());
             builder.EntityType<GrupoModelo>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -118,7 +118,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Kit>(entityTypeGetter.GetCollectionNameAsString<Kit, long>());
             builder.EntityType<Kit>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -127,7 +127,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Localidad>(entityTypeGetter.GetCollectionNameAsString<Localidad, long>());
             builder.EntityType<Localidad>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -136,7 +136,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Mantenimiento>(entityTypeGetter.GetCollectionNameAsString<Mantenimiento, long>());
             builder.EntityType<Mantenimiento>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -145,7 +145,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Marca>(entityTypeGetter.GetCollectionNameAsString<Marca, long>());
             builder.EntityType<Marca>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -154,7 +154,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<ModeloVehiculo>(entityTypeGetter.GetCollectionNameAsString<ModeloVehiculo, long>());
             builder.EntityType<ModeloVehiculo>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -171,7 +171,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Neumatico>(entityTypeGetter.GetCollectionNameAsString<Neumatico, long>());
             builder.EntityType<Neumatico>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -180,7 +180,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Pais>(entityTypeGetter.GetCollectionNameAsString<Pais, long>());
             builder.EntityType<Pais>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -189,7 +189,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Partido>(entityTypeGetter.GetCollectionNameAsString<Partido, long>());
             builder.EntityType<Partido>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -198,7 +198,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<PeriodicidadMantenimiento>(entityTypeGetter.GetCollectionNameAsString<PeriodicidadMantenimiento, long>());
             builder.EntityType<PeriodicidadMantenimiento>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -207,7 +207,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Pieza>(entityTypeGetter.GetCollectionNameAsString<Pieza, long>());
             builder.EntityType<Pieza>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -216,7 +216,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<PresionNeumatico>(entityTypeGetter.GetCollectionNameAsString<PresionNeumatico, long>());
             builder.EntityType<PresionNeumatico>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -225,7 +225,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Provincia>(entityTypeGetter.GetCollectionNameAsString<Provincia, long>());
             builder.EntityType<Provincia>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -237,7 +237,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Reparador>(entityTypeGetter.GetCollectionNameAsString<Reparador, long>());
             builder.EntityType<Reparador>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -246,7 +246,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Repuesto>(entityTypeGetter.GetCollectionNameAsString<Repuesto, long>());
             builder.EntityType<Repuesto>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -255,7 +255,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<ServicioReparador>(entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>());
             builder.EntityType<ServicioReparador>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -264,7 +264,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Telefono>(entityTypeGetter.GetCollectionNameAsString<Telefono, long>());
             builder.EntityType<Telefono>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -273,7 +273,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<TipoCambio>(entityTypeGetter.GetCollectionNameAsString<TipoCambio, long>());
             builder.EntityType<TipoCambio>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()
@@ -322,7 +322,7 @@ namespace SiMaVeh.Api.Model
             builder.EntitySet<Usuario>(entityTypeGetter.GetCollectionNameAsString<Usuario, long>());
             builder.EntityType<Usuario>()
                 .Count()
-                .Expand(QueryConstants.MaxDepthNav)
+                .Expand(ODataQueryConstants.MaxDepthNav)
                 .Filter()
                 .OrderBy()
                 .Page()

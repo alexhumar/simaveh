@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -68,7 +67,7 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Telefonos del usuario</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetTelefonos([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
@@ -94,7 +93,7 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Vehiculos del usuario</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetVehiculos([FromODataUri] long key)
         {
             var entity = await repository.FindAsync(key);
