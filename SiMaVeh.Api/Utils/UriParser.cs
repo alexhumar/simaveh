@@ -1,7 +1,7 @@
 ﻿using Microsoft.OData.UriParser;
 using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.Api.Utils.Interfaces;
-using SiMaVeh.DataAccess.Model.Interfaces;
 using System;
 using System.Linq;
 
@@ -12,13 +12,13 @@ namespace SiMaVeh.Api.Utils
     /// </summary>
     public class UriParser : IUriParser
     {
-        private readonly IModelBuilder modelBuilder;
+        private readonly IODataModelBuilder modelBuilder;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="modelBuilder"></param>
-        public UriParser(IModelBuilder modelBuilder)
+        public UriParser(IODataModelBuilder modelBuilder)
         {
             this.modelBuilder = modelBuilder;
         }

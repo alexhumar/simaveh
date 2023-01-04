@@ -1,8 +1,6 @@
 ﻿using Lamar;
 using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.DataAccess.Model;
-using SiMaVeh.DataAccess.Model.Interfaces;
 using SiMaVeh.DataAccess.Model.Relations;
 using SiMaVeh.Domain.Models;
 
@@ -12,8 +10,6 @@ namespace SiMaVeh.DataAccess
     {
         public DataAccessRegistry()
         {
-            For<IModelBuilder>().Use<SiMaVehModelBuilder>();
-
             For<IDomainSeeder<Pais, long>>().Use<PaisSeeder>();
             For<IDomainSeeder<Provincia, long>>().Use<ProvinciaSeeder>();
             For<IDomainSeeder<Partido, long>>().Use<PartidoSeeder>();

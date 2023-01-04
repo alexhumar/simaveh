@@ -1,13 +1,13 @@
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
+using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Constants;
-using SiMaVeh.DataAccess.Model.Interfaces;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
 
-namespace SiMaVeh.DataAccess.Model
+namespace SiMaVeh.Api.Model
 {
-    public class SiMaVehModelBuilder : IModelBuilder
+    public class SiMaVehModelBuilder : IODataModelBuilder
     {
         private readonly IEntityTypeGetter entityTypeGetter;
 

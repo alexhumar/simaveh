@@ -9,9 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Extensions;
+using SiMaVeh.Api.Model;
+using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess;
 using SiMaVeh.DataAccess.Model;
-using SiMaVeh.DataAccess.Model.Interfaces;
 using SiMaVeh.Domain;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 
@@ -20,7 +21,7 @@ namespace SiMaVeh.Api
     public class Startup
     {
         private readonly IConfiguration configuration;
-        private readonly IModelBuilder modelBuilder;
+        private readonly IODataModelBuilder odataModelBuilder;
 
         /// <summary>
         /// Constructor
@@ -29,7 +30,7 @@ namespace SiMaVeh.Api
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration;
-            modelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
+            odataModelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
         }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace SiMaVeh.Api
 
                 //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
                 mvcOptions.EnableEndpointRouting = false;
-            }).AddOData(opt => opt.AddRouteComponents(UriConstants.PrefijoRutaOData, modelBuilder.GetEdmModel()));
+            }).AddOData(opt => opt.AddRouteComponents(UriConstants.PrefijoRutaOData, odataModelBuilder.GetEdmModel()));
 
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
         }

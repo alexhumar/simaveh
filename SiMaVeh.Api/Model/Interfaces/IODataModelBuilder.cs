@@ -1,8 +1,8 @@
 ﻿using Microsoft.OData.Edm;
 
-namespace SiMaVeh.DataAccess.Model.Interfaces
+namespace SiMaVeh.Api.Model.Interfaces
 {
-    public interface IModelBuilder
+    public interface IODataModelBuilder
     {
         /// <summary>
         /// Obtiene el modelo Edm
