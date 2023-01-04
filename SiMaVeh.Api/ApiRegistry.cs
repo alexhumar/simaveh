@@ -8,7 +8,7 @@ namespace SiMaVeh.Api
     {
         public ApiRegistry()
         {
-            For<IODataModelBuilder>().Use<SiMaVehModelBuilder>();
+            For<IODataModelBuilder>().Use<SiMaVehODataModelBuilder>();
 
             Scan(s =>
             {

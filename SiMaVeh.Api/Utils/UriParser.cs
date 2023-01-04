@@ -12,15 +12,15 @@ namespace SiMaVeh.Api.Utils
     /// </summary>
     public class UriParser : IUriParser
     {
-        private readonly IODataModelBuilder modelBuilder;
+        private readonly IODataModelBuilder odataModelBuilder;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="modelBuilder"></param>
-        public UriParser(IODataModelBuilder modelBuilder)
+        /// <param name="odataModelBuilder"></param>
+        public UriParser(IODataModelBuilder odataModelBuilder)
         {
-            this.modelBuilder = modelBuilder;
+            this.odataModelBuilder = odataModelBuilder;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace SiMaVeh.Api.Utils
         /// <returns></returns>
         public TKey GetKeyFromRelatedEntityUri<TKey>(Uri uri)
         {
-            var oDataUriParser = new ODataUriParser(modelBuilder.GetEdmModel(),
+            var oDataUriParser = new ODataUriParser(odataModelBuilder.GetEdmModel(),
                 new Uri($"{uri.Scheme}://{uri.Host}:{uri.Port}/{UriConstants.PrefijoRutaOData}/"), uri);
             var oDataKeySegment = (KeySegment)oDataUriParser.ParsePath().LastSegment;
 

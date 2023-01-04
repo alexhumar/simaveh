@@ -7,7 +7,7 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Api.Model
 {
-    public class SiMaVehModelBuilder : IODataModelBuilder
+    public class SiMaVehODataModelBuilder : IODataModelBuilder
     {
         private readonly IEntityTypeGetter entityTypeGetter;
 
@@ -15,7 +15,7 @@ namespace SiMaVeh.Api.Model
         /// Constructor
         /// </summary>
         /// <param name="entityTypeGetter"></param>
-        public SiMaVehModelBuilder(IEntityTypeGetter entityTypeGetter)
+        public SiMaVehODataModelBuilder(IEntityTypeGetter entityTypeGetter)
         {
             this.entityTypeGetter = entityTypeGetter;
         }

@@ -30,7 +30,7 @@ namespace SiMaVeh.Api
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration;
-            odataModelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
+            odataModelBuilder = new SiMaVehODataModelBuilder(new EntityTypeGetter());
         }
 
         /// <summary>
