@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de equipamiento airbags
     /// </summary>
-    public class EquipamientoAirbagsSeeder : IDomainSeeder<EquipamientoAirbags, string>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureEquipamientoAirbags"></param>
+    public class EquipamientoAirbagsSeeder(IFixtureEquipamientoAirbags fixtureEquipamientoAirbags) : IDomainSeeder<EquipamientoAirbags, string>
     {
-        private readonly IFixtureEquipamientoAirbags fixtureEquipamientoAirbags;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureEquipamientoAirbags"></param>
-        public EquipamientoAirbagsSeeder(IFixtureEquipamientoAirbags fixtureEquipamientoAirbags)
-        {
-            this.fixtureEquipamientoAirbags = fixtureEquipamientoAirbags;
-        }
+        private readonly IFixtureEquipamientoAirbags fixtureEquipamientoAirbags = fixtureEquipamientoAirbags;
 
         /// <summary>
         /// Genera los equipamientos de airbags default

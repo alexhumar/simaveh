@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de tipo de documento
     /// </summary>
-    public class TipoDocumentoSeeder : IDomainSeeder<TipoDocumento, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureTipoDocumento"></param>
+    public class TipoDocumentoSeeder(IFixtureTipoDocumento fixtureTipoDocumento) : IDomainSeeder<TipoDocumento, long>
     {
-        private readonly IFixtureTipoDocumento fixtureTipoDocumento;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureTipoDocumento"></param>
-        public TipoDocumentoSeeder(IFixtureTipoDocumento fixtureTipoDocumento)
-        {
-            this.fixtureTipoDocumento = fixtureTipoDocumento;
-        }
+        private readonly IFixtureTipoDocumento fixtureTipoDocumento = fixtureTipoDocumento;
 
         /// <summary>
         /// Genera los tipos de documento default

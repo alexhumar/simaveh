@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de pais
     /// </summary>
-    public class PaisSeeder : IDomainSeeder<Pais, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixturePais"></param>
+    public class PaisSeeder(IFixturePais fixturePais) : IDomainSeeder<Pais, long>
     {
-        private readonly IFixturePais fixturePais;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixturePais"></param>
-        public PaisSeeder(IFixturePais fixturePais)
-        {
-            this.fixturePais = fixturePais;
-        }
+        private readonly IFixturePais fixturePais = fixturePais;
 
         /// <summary>
         /// Obtiene los seeds de pais

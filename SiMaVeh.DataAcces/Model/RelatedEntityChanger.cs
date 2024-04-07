@@ -9,25 +9,18 @@ namespace SiMaVeh.DataAccess.Model
     /// <summary>
     /// RelatedEntityChanger
     /// </summary>
-    public class RelatedEntityChanger : IRelatedEntityChanger
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="context"></param>
+    /// <param name="genericEntityGetter"></param>
+    public class RelatedEntityChanger(SiMaVehContext context,
+        IGenericEntityGetter genericEntityGetter) : IRelatedEntityChanger
     {
         //TODO: mejorar la implementacion de estos metodos. Sobre todo los de tipo cambio.
 
-        private readonly SiMaVehContext context;
-        private readonly IGenericEntityGetter genericEntityGetter;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="genericEntityGetter"></param>
-        public RelatedEntityChanger(SiMaVehContext context,
-            IGenericEntityGetter genericEntityGetter)
-        {
-
-            this.context = context;
-            this.genericEntityGetter = genericEntityGetter;
-        }
+        private readonly SiMaVehContext context = context;
+        private readonly IGenericEntityGetter genericEntityGetter = genericEntityGetter;
 
         /// <summary>
         /// TryChangeRelatedEntity

@@ -5,18 +5,12 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess.Model
 {
-    public class SiMaVehContext : DbContext
+    public class SiMaVehContext(DbContextOptions<SiMaVehContext> options,
+        IDataSeeder dataSeeder,
+        IConfiguradorSiMaVehContext configuradorSiMaVehContext) : DbContext(options)
     {
-        private readonly IConfiguradorSiMaVehContext configuradorSiMaVehContext;
-        private readonly IDataSeeder dataSeeder;
-
-        public SiMaVehContext(DbContextOptions<SiMaVehContext> options,
-            IDataSeeder dataSeeder,
-            IConfiguradorSiMaVehContext configuradorSiMaVehContext) : base(options)
-        {
-            this.configuradorSiMaVehContext = configuradorSiMaVehContext;
-            this.dataSeeder = dataSeeder;
-        }
+        private readonly IConfiguradorSiMaVehContext configuradorSiMaVehContext = configuradorSiMaVehContext;
+        private readonly IDataSeeder dataSeeder = dataSeeder;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

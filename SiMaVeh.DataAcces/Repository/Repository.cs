@@ -13,18 +13,13 @@ namespace SiMaVeh.DataAccess.Repository
     /// </summary>
     /// <typeparam name="TBe"></typeparam>
     /// <typeparam name="TBeId"></typeparam>
-    public class Repository<TBe, TBeId> : IRepository<TBe, TBeId> where TBe : DomainMember<TBeId>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="context"></param>
+    public class Repository<TBe, TBeId>(SiMaVehContext context) : IRepository<TBe, TBeId> where TBe : DomainMember<TBeId>
     {
-        private readonly SiMaVehContext context;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        public Repository(SiMaVehContext context)
-        {
-            this.context = context;
-        }
+        private readonly SiMaVehContext context = context;
 
         /// <summary>
         /// GetAllAsync

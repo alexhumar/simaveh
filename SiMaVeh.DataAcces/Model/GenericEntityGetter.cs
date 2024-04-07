@@ -8,22 +8,17 @@ namespace SiMaVeh.DataAccess.Model
     /// <summary>
     /// GenericEntityGetter
     /// </summary>
-    public class GenericEntityGetter : IGenericEntityGetter
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="context"></param>
+    /// <param name="uriParser"></param>
+    public class GenericEntityGetter(SiMaVehContext context) : IGenericEntityGetter
     {
         /// <summary>
         /// context
         /// </summary>
-        private readonly SiMaVehContext context;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="uriParser"></param>
-        public GenericEntityGetter(SiMaVehContext context)
-        {
-            this.context = context;
-        }
+        private readonly SiMaVehContext context = context;
 
         /// <summary>
         /// Obtiene una entidad a partir de la key pasada por parametro

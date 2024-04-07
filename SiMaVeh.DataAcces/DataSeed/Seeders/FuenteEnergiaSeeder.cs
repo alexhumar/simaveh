@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de fuente de energia
     /// </summary>
-    public class FuenteEnergiaSeeder : IDomainSeeder<FuenteEnergia, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureFuenteEnergia"></param>
+    public class FuenteEnergiaSeeder(IFixtureFuenteEnergia fixtureFuenteEnergia) : IDomainSeeder<FuenteEnergia, long>
     {
-        private readonly IFixtureFuenteEnergia fixtureFuenteEnergia;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureFuenteEnergia"></param>
-        public FuenteEnergiaSeeder(IFixtureFuenteEnergia fixtureFuenteEnergia)
-        {
-            this.fixtureFuenteEnergia = fixtureFuenteEnergia;
-        }
+        private readonly IFixtureFuenteEnergia fixtureFuenteEnergia = fixtureFuenteEnergia;
 
         /// <summary>
         /// Genera las fuentes de energia default

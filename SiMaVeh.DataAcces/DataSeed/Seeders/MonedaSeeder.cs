@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de moneda
     /// </summary>
-    public class MonedaSeeder : IDomainSeeder<Moneda, string>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureMoneda"></param>
+    public class MonedaSeeder(IFixtureMoneda fixtureMoneda) : IDomainSeeder<Moneda, string>
     {
-        private readonly IFixtureMoneda fixtureMoneda;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureMoneda"></param>
-        public MonedaSeeder(IFixtureMoneda fixtureMoneda)
-        {
-            this.fixtureMoneda = fixtureMoneda;
-        }
+        private readonly IFixtureMoneda fixtureMoneda = fixtureMoneda;
 
         /// <summary>
         /// Genera las monedas default

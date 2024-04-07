@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de Partido
     /// </summary>
-    public class PartidoSeeder : IDomainSeeder<Partido, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixturePartido"></param>
+    public class PartidoSeeder(IFixturePartido fixturePartido) : IDomainSeeder<Partido, long>
     {
-        private readonly IFixturePartido fixturePartido;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixturePartido"></param>
-        public PartidoSeeder(IFixturePartido fixturePartido)
-        {
-            this.fixturePartido = fixturePartido;
-        }
+        private readonly IFixturePartido fixturePartido = fixturePartido;
 
         /// <summary>
         /// Genera los Partidos default

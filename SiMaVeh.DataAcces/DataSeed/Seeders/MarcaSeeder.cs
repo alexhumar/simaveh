@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de marca
     /// </summary>
-    public class MarcaSeeder : IDomainSeeder<Marca, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureMarca"></param>
+    public class MarcaSeeder(IFixtureMarca fixtureMarca) : IDomainSeeder<Marca, long>
     {
-        private readonly IFixtureMarca fixtureMarca;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureMarca"></param>
-        public MarcaSeeder(IFixtureMarca fixtureMarca)
-        {
-            this.fixtureMarca = fixtureMarca;
-        }
+        private readonly IFixtureMarca fixtureMarca = fixtureMarca;
 
         /// <summary>
         /// Genera las marcas default

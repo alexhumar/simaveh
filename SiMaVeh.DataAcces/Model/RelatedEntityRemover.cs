@@ -9,22 +9,16 @@ namespace SiMaVeh.DataAccess.Model
     /// <summary>
     /// RelatedEntityRemover
     /// </summary>
-    public class RelatedEntityRemover : IRelatedEntityRemover
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="context"></param>
+    /// <param name="relatedEntityGetter"></param>
+    public class RelatedEntityRemover(SiMaVehContext context,
+        IGenericEntityGetter relatedEntityGetter) : IRelatedEntityRemover
     {
-        private readonly SiMaVehContext context;
-        private readonly IGenericEntityGetter relatedEntityGetter;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="relatedEntityGetter"></param>
-        public RelatedEntityRemover(SiMaVehContext context,
-            IGenericEntityGetter relatedEntityGetter)
-        {
-            this.context = context;
-            this.relatedEntityGetter = relatedEntityGetter;
-        }
+        private readonly SiMaVehContext context = context;
+        private readonly IGenericEntityGetter relatedEntityGetter = relatedEntityGetter;
 
         /// <summary>
         /// TryRemoveRelatedEntityAsync

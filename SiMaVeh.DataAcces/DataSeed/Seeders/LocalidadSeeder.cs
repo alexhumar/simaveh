@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de localidad
     /// </summary>
-    public class LocalidadSeeder : IDomainSeeder<Localidad, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureLocalidad"></param>
+    public class LocalidadSeeder(IFixtureLocalidad fixtureLocalidad) : IDomainSeeder<Localidad, long>
     {
-        private readonly IFixtureLocalidad fixtureLocalidad;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureLocalidad"></param>
-        public LocalidadSeeder(IFixtureLocalidad fixtureLocalidad)
-        {
-            this.fixtureLocalidad = fixtureLocalidad;
-        }
+        private readonly IFixtureLocalidad fixtureLocalidad = fixtureLocalidad;
 
         /// <summary>
         /// Genera las localidades default

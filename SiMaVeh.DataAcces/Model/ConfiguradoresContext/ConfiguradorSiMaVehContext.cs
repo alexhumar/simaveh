@@ -3,14 +3,9 @@ using SiMaVeh.DataAccess.Model.ConfiguradoresContext.Interfaces;
 
 namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
 {
-    public class ConfiguradorSiMaVehContext : IConfiguradorSiMaVehContext
+    public class ConfiguradorSiMaVehContext(IRecuperadorConfiguradoresContext recuperadorConfiguradoresContext) : IConfiguradorSiMaVehContext
     {
-        private readonly IRecuperadorConfiguradoresContext recuperadorConfiguradoresContext;
-
-        public ConfiguradorSiMaVehContext(IRecuperadorConfiguradoresContext recuperadorConfiguradoresContext)
-        {
-            this.recuperadorConfiguradoresContext = recuperadorConfiguradoresContext;
-        }
+        private readonly IRecuperadorConfiguradoresContext recuperadorConfiguradoresContext = recuperadorConfiguradoresContext;
 
         public void Configurar(ModelBuilder builder)
         {

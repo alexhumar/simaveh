@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de ubicacion pieza
     /// </summary>
-    public class UbicacionPiezaSeeder : IDomainSeeder<UbicacionPieza, string>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureUbicacionPieza"></param>
+    public class UbicacionPiezaSeeder(IFixtureUbicacionPieza fixtureUbicacionPieza) : IDomainSeeder<UbicacionPieza, string>
     {
-        private readonly IFixtureUbicacionPieza fixtureUbicacionPieza;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureUbicacionPieza"></param>
-        public UbicacionPiezaSeeder(IFixtureUbicacionPieza fixtureUbicacionPieza)
-        {
-            this.fixtureUbicacionPieza = fixtureUbicacionPieza;
-        }
+        private readonly IFixtureUbicacionPieza fixtureUbicacionPieza = fixtureUbicacionPieza;
 
         /// <summary>
         /// Genera las ubicaciones de pieza default

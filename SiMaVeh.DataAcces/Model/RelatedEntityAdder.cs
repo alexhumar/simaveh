@@ -9,23 +9,16 @@ namespace SiMaVeh.DataAccess.Model
     /// <summary>
     /// RelatedEntityAdder
     /// </summary>
-    public class RelatedEntityAdder : IRelatedEntityAdder
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="context"></param>
+    /// <param name="genericEntityGetter"></param>
+    public class RelatedEntityAdder(SiMaVehContext context,
+        IGenericEntityGetter genericEntityGetter) : IRelatedEntityAdder
     {
-        private readonly SiMaVehContext context;
-        private readonly IGenericEntityGetter genericEntityGetter;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="genericEntityGetter"></param>
-        public RelatedEntityAdder(SiMaVehContext context,
-            IGenericEntityGetter genericEntityGetter)
-        {
-
-            this.context = context;
-            this.genericEntityGetter = genericEntityGetter;
-        }
+        private readonly SiMaVehContext context = context;
+        private readonly IGenericEntityGetter genericEntityGetter = genericEntityGetter;
 
         /// <summary>
         /// TryAddRelatedEntityAsync

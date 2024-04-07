@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de tipo de telefono
     /// </summary>
-    public class TipoTelefonoSeeder : IDomainSeeder<TipoTelefono, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureTipoTelefono"></param>
+    public class TipoTelefonoSeeder(IFixtureTipoTelefono fixtureTipoTelefono) : IDomainSeeder<TipoTelefono, long>
     {
-        private readonly IFixtureTipoTelefono fixtureTipoTelefono;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureTipoTelefono"></param>
-        public TipoTelefonoSeeder(IFixtureTipoTelefono fixtureTipoTelefono)
-        {
-            this.fixtureTipoTelefono = fixtureTipoTelefono;
-        }
+        private readonly IFixtureTipoTelefono fixtureTipoTelefono = fixtureTipoTelefono;
 
         /// <summary>
         /// Genera los tipos de telefono default

@@ -9,18 +9,13 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de Provincia
     /// </summary>
-    public class ProvinciaSeeder : IDomainSeeder<Provincia, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureProvincia"></param>
+    public class ProvinciaSeeder(IFixtureProvincia fixtureProvincia) : IDomainSeeder<Provincia, long>
     {
-        private readonly IFixtureProvincia fixtureProvincia;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureProvincia"></param>
-        public ProvinciaSeeder(IFixtureProvincia fixtureProvincia)
-        {
-            this.fixtureProvincia = fixtureProvincia;
-        }
+        private readonly IFixtureProvincia fixtureProvincia = fixtureProvincia;
 
         /// <summary>
         /// Genera las Provincias default
