@@ -8,6 +8,6 @@
         /// <summary>
         /// Valores Posibles Boolean
         /// </summary>
-        public static readonly bool[] ValoresPosibles = new bool[] { true, false };
+        public static readonly bool[] ValoresPosibles = [true, false];
     }
 }

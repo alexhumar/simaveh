@@ -3,29 +3,22 @@ using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    public class LocalidadSantiagoDelEsteroFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadSantiagoDelEsteroFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPartidoFixtureGetter partidoFixtureGetter) : LocalidadFixtureGetter(datosEntidadBuilder, partidoFixtureGetter)
     {
-        public LocalidadSantiagoDelEsteroFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPartidoFixtureGetter partidoFixtureGetter)
-            : base(datosEntidadBuilder, partidoFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Aguirre).Id, new List<DatosEntidad>
-            {
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Aguirre).Id,
+            [
                 datosEntidadBuilder.Build(3799, LocalidadSantiagoDelEstero.Casares),
                 datosEntidadBuilder.Build(3800, LocalidadSantiagoDelEstero.Pinto),
                 datosEntidadBuilder.Build(3801, LocalidadSantiagoDelEstero.Malbran)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Alberdi).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Alberdi).Id,
+            [
                 datosEntidadBuilder.Build(3802, LocalidadSantiagoDelEstero.CampoGallo),
                 datosEntidadBuilder.Build(3803, LocalidadSantiagoDelEstero.Donadeu),
                 datosEntidadBuilder.Build(3804, LocalidadSantiagoDelEstero.Huachana),
@@ -41,9 +34,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3814, LocalidadSantiagoDelEstero.Esperanza),
                 datosEntidadBuilder.Build(3815, LocalidadSantiagoDelEstero.Overa),
                 datosEntidadBuilder.Build(3816, LocalidadSantiagoDelEstero.Ranchitos)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Atamisqui).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Atamisqui).Id,
+            [
                 datosEntidadBuilder.Build(3817, LocalidadSantiagoDelEstero.VillaAtamisqui),
                 datosEntidadBuilder.Build(3818, LocalidadSantiagoDelEstero.EstacionAtamisqui),
                 datosEntidadBuilder.Build(3819, LocalidadSantiagoDelEstero.Ancocha),
@@ -75,9 +68,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3845, LocalidadSantiagoDelEstero.Tasigasta),
                 datosEntidadBuilder.Build(3846, LocalidadSantiagoDelEstero.VenturaPampa),
                 datosEntidadBuilder.Build(3847, LocalidadSantiagoDelEstero.YacuChiri)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Avellaneda).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Avellaneda).Id,
+            [
                 datosEntidadBuilder.Build(3848, LocalidadSantiagoDelEstero.ColoniaDora),
                 datosEntidadBuilder.Build(3849, LocalidadSantiagoDelEstero.Herrera),
                 datosEntidadBuilder.Build(3850, LocalidadSantiagoDelEstero.Icano),
@@ -110,9 +103,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3877, LocalidadSantiagoDelEstero.TalaPozo),
                 datosEntidadBuilder.Build(3878, LocalidadSantiagoDelEstero.Vacasnioj),
                 datosEntidadBuilder.Build(3879, LocalidadSantiagoDelEstero.Yacasnioj)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Banda).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Banda).Id,
+            [
                 datosEntidadBuilder.Build(3880, LocalidadSantiagoDelEstero.LaBanda),
                 datosEntidadBuilder.Build(3881, LocalidadSantiagoDelEstero.Clodomira),
                 datosEntidadBuilder.Build(3882, LocalidadSantiagoDelEstero.AbraGrande),
@@ -127,16 +120,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3891, LocalidadSantiagoDelEstero.LaDarsena),
                 datosEntidadBuilder.Build(3892, LocalidadSantiagoDelEstero.NegraMuerta),
                 datosEntidadBuilder.Build(3893, LocalidadSantiagoDelEstero.Tramo16)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Belgrano).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Belgrano).Id,
+            [
                 datosEntidadBuilder.Build(3894, LocalidadSantiagoDelEstero.Bandera),
                 datosEntidadBuilder.Build(3895, LocalidadSantiagoDelEstero.CuatroBocas),
                 datosEntidadBuilder.Build(3896, LocalidadSantiagoDelEstero.FortinInca),
                 datosEntidadBuilder.Build(3897, LocalidadSantiagoDelEstero.GuardiaEscolta)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Capital).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Capital).Id,
+            [
                 datosEntidadBuilder.Build(3898, LocalidadSantiagoDelEstero.SantiagoDelEstero),
                 datosEntidadBuilder.Build(3899, LocalidadSantiagoDelEstero.ElDean),
                 datosEntidadBuilder.Build(3900, LocalidadSantiagoDelEstero.Remes),
@@ -158,9 +151,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3916, LocalidadSantiagoDelEstero.TroncoYuraj),
                 datosEntidadBuilder.Build(3917, LocalidadSantiagoDelEstero.Rosario),
                 datosEntidadBuilder.Build(3918, LocalidadSantiagoDelEstero.BlancoCorral)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Choya).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Choya).Id,
+            [
                 datosEntidadBuilder.Build(3919, LocalidadSantiagoDelEstero.Choya),
                 datosEntidadBuilder.Build(3920, LocalidadSantiagoDelEstero.Frias),
                 datosEntidadBuilder.Build(3921, LocalidadSantiagoDelEstero.Laprida),
@@ -189,9 +182,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3944, LocalidadSantiagoDelEstero.VillaElvira),
                 datosEntidadBuilder.Build(3945, LocalidadSantiagoDelEstero.VillaMercedes),
                 datosEntidadBuilder.Build(3946, LocalidadSantiagoDelEstero.SolDeMayo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Copo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Copo).Id,
+            [
                 datosEntidadBuilder.Build(3947, LocalidadSantiagoDelEstero.MonteQuemado),
                 datosEntidadBuilder.Build(3948, LocalidadSantiagoDelEstero.PampaDeLosGuanacos),
                 datosEntidadBuilder.Build(3949, LocalidadSantiagoDelEstero.AhiVeremos),
@@ -199,9 +192,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3951, LocalidadSantiagoDelEstero.LosPirpintos),
                 datosEntidadBuilder.Build(3952, LocalidadSantiagoDelEstero.SanJoseDelBoqueron),
                 datosEntidadBuilder.Build(3953, LocalidadSantiagoDelEstero.VillaMatoque)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Figueroa).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Figueroa).Id,
+            [
                 datosEntidadBuilder.Build(3954, LocalidadSantiagoDelEstero.BanderaBajada),
                 datosEntidadBuilder.Build(3955, LocalidadSantiagoDelEstero.CaspiCorral),
                 datosEntidadBuilder.Build(3956, LocalidadSantiagoDelEstero.ColoniaSanJuan),
@@ -209,9 +202,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3958, LocalidadSantiagoDelEstero.LaInvernada),
                 datosEntidadBuilder.Build(3959, LocalidadSantiagoDelEstero.VacaHuanuna),
                 datosEntidadBuilder.Build(3960, LocalidadSantiagoDelEstero.VillaFigueroa)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.GeneralTaboada).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.GeneralTaboada).Id,
+            [
                 datosEntidadBuilder.Build(3961, LocalidadSantiagoDelEstero.Anatuya),
                 datosEntidadBuilder.Build(3962, LocalidadSantiagoDelEstero.LosJuries),
                 datosEntidadBuilder.Build(3963, LocalidadSantiagoDelEstero.Averias),
@@ -219,27 +212,27 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3965, LocalidadSantiagoDelEstero.LaSimona),
                 datosEntidadBuilder.Build(3966, LocalidadSantiagoDelEstero.LaNena),
                 datosEntidadBuilder.Build(3967, LocalidadSantiagoDelEstero.TomasYoung)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Guasayan).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Guasayan).Id,
+            [
                 datosEntidadBuilder.Build(3968, LocalidadSantiagoDelEstero.SanPedroDeGuasayan),
                 datosEntidadBuilder.Build(3969, LocalidadSantiagoDelEstero.DonaLuisa),
                 datosEntidadBuilder.Build(3970, LocalidadSantiagoDelEstero.Guampacha),
                 datosEntidadBuilder.Build(3971, LocalidadSantiagoDelEstero.Lavalle),
                 datosEntidadBuilder.Build(3972, LocalidadSantiagoDelEstero.SantaCatalina),
                 datosEntidadBuilder.Build(3973, LocalidadSantiagoDelEstero.VillaGuasayan)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Jimenez).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Jimenez).Id,
+            [
                 datosEntidadBuilder.Build(3974, LocalidadSantiagoDelEstero.PozoHondo),
                 datosEntidadBuilder.Build(3975, LocalidadSantiagoDelEstero.ElArenal),
                 datosEntidadBuilder.Build(3976, LocalidadSantiagoDelEstero.ElBobadal),
                 datosEntidadBuilder.Build(3977, LocalidadSantiagoDelEstero.ElCharco),
                 datosEntidadBuilder.Build(3978, LocalidadSantiagoDelEstero.Gramilla),
                 datosEntidadBuilder.Build(3979, LocalidadSantiagoDelEstero.TresCruces)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.JuanFelipeIbarra).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.JuanFelipeIbarra).Id,
+            [
                 datosEntidadBuilder.Build(3980, LocalidadSantiagoDelEstero.SunchoCorral),
                 datosEntidadBuilder.Build(3981, LocalidadSantiagoDelEstero.ElColorado),
                 datosEntidadBuilder.Build(3982, LocalidadSantiagoDelEstero.ElCuadrado),
@@ -249,9 +242,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3986, LocalidadSantiagoDelEstero.SanAntonioRoldan),
                 datosEntidadBuilder.Build(3987, LocalidadSantiagoDelEstero.Vilelas),
                 datosEntidadBuilder.Build(3988, LocalidadSantiagoDelEstero.Yuchan)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Loreto).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Loreto).Id,
+            [
                 datosEntidadBuilder.Build(3989, LocalidadSantiagoDelEstero.Ayuncha),
                 datosEntidadBuilder.Build(3990, LocalidadSantiagoDelEstero.Beltran),
                 datosEntidadBuilder.Build(3991, LocalidadSantiagoDelEstero.ChunaAlbardon),
@@ -271,17 +264,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4005, LocalidadSantiagoDelEstero.Taquetuyoj),
                 datosEntidadBuilder.Build(4006, LocalidadSantiagoDelEstero.TioPozo),
                 datosEntidadBuilder.Build(4007, LocalidadSantiagoDelEstero.VillaVieja)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Mitre).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Mitre).Id,
+            [
                 datosEntidadBuilder.Build(4008, LocalidadSantiagoDelEstero.FuerteEsperanza),
                 datosEntidadBuilder.Build(4009, LocalidadSantiagoDelEstero.Abras),
                 datosEntidadBuilder.Build(4010, LocalidadSantiagoDelEstero.VillaUnion),
                 datosEntidadBuilder.Build(4011, LocalidadSantiagoDelEstero.Captaros),
                 datosEntidadBuilder.Build(4012, LocalidadSantiagoDelEstero.Porongos)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Moreno).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Moreno).Id,
+            [
                 datosEntidadBuilder.Build(4013, LocalidadSantiagoDelEstero.Alhuampa),
                 datosEntidadBuilder.Build(4014, LocalidadSantiagoDelEstero.Tintina),
                 datosEntidadBuilder.Build(4015, LocalidadSantiagoDelEstero.Aerolito),
@@ -305,15 +298,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4033, LocalidadSantiagoDelEstero.Roversi),
                 datosEntidadBuilder.Build(4034, LocalidadSantiagoDelEstero.HernanMejiaMiraval),
                 datosEntidadBuilder.Build(4035, LocalidadSantiagoDelEstero.Libertad)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.OjoDeAgua).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.OjoDeAgua).Id,
+            [
                 datosEntidadBuilder.Build(4036, LocalidadSantiagoDelEstero.VillaOjoDeAgua),
                 datosEntidadBuilder.Build(4037, LocalidadSantiagoDelEstero.SolDeJulio),
                 datosEntidadBuilder.Build(4038, LocalidadSantiagoDelEstero.El49)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Pellegrini).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Pellegrini).Id,
+            [
                 datosEntidadBuilder.Build(4039, LocalidadSantiagoDelEstero.NuevaEsperanza),
                 datosEntidadBuilder.Build(4040, LocalidadSantiagoDelEstero.AhiVeremos),
                 datosEntidadBuilder.Build(4041, LocalidadSantiagoDelEstero.CampoGrande),
@@ -329,9 +322,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4051, LocalidadSantiagoDelEstero.ElRemate),
                 datosEntidadBuilder.Build(4052, LocalidadSantiagoDelEstero.LaFragua),
                 datosEntidadBuilder.Build(4053, LocalidadSantiagoDelEstero.SanRamon)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Quebrachos).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Quebrachos).Id,
+            [
                 datosEntidadBuilder.Build(4054, LocalidadSantiagoDelEstero.RamirezDeVelazco),
                 datosEntidadBuilder.Build(4055, LocalidadSantiagoDelEstero.Sumampa),
                 datosEntidadBuilder.Build(4056, LocalidadSantiagoDelEstero.Belgrano),
@@ -341,9 +334,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4060, LocalidadSantiagoDelEstero.TacoPozo),
                 datosEntidadBuilder.Build(4061, LocalidadSantiagoDelEstero.CampoDelCisne),
                 datosEntidadBuilder.Build(4062, LocalidadSantiagoDelEstero.HorcoTucucuna)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.RioHondo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.RioHondo).Id,
+            [
                 datosEntidadBuilder.Build(4063, LocalidadSantiagoDelEstero.Chauchillas),
                 datosEntidadBuilder.Build(4064, LocalidadSantiagoDelEstero.ColoniaTinco),
                 datosEntidadBuilder.Build(4065, LocalidadSantiagoDelEstero.LosNunez),
@@ -351,17 +344,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4067, LocalidadSantiagoDelEstero.TermasDeRioHondo),
                 datosEntidadBuilder.Build(4068, LocalidadSantiagoDelEstero.VillaRioHondo),
                 datosEntidadBuilder.Build(4069, LocalidadSantiagoDelEstero.Vinara)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Rivadavia).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Rivadavia).Id,
+            [
                 datosEntidadBuilder.Build(4070, LocalidadSantiagoDelEstero.Selva),
                 datosEntidadBuilder.Build(4071, LocalidadSantiagoDelEstero.ColoniaAlpina),
                 datosEntidadBuilder.Build(4072, LocalidadSantiagoDelEstero.PaloNegro),
                 datosEntidadBuilder.Build(4073, LocalidadSantiagoDelEstero.Argentina),
                 datosEntidadBuilder.Build(4074, LocalidadSantiagoDelEstero.Malbran)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Robles).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Robles).Id,
+            [
                 datosEntidadBuilder.Build(4075, LocalidadSantiagoDelEstero.Beltran),
                 datosEntidadBuilder.Build(4076, LocalidadSantiagoDelEstero.ColoniaElSimbolar),
                 datosEntidadBuilder.Build(4077, LocalidadSantiagoDelEstero.Fernandez),
@@ -369,9 +362,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4079, LocalidadSantiagoDelEstero.VillaRobles),
                 datosEntidadBuilder.Build(4080, LocalidadSantiagoDelEstero.Vilmer),
                 datosEntidadBuilder.Build(4081, LocalidadSantiagoDelEstero.LosBanegas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Salavina).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Salavina).Id,
+            [
                 datosEntidadBuilder.Build(4082, LocalidadSantiagoDelEstero.CarretaPaso),
                 datosEntidadBuilder.Build(4083, LocalidadSantiagoDelEstero.ChilcaJuliana),
                 datosEntidadBuilder.Build(4084, LocalidadSantiagoDelEstero.Chinuna),
@@ -391,9 +384,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4098, LocalidadSantiagoDelEstero.Veron),
                 datosEntidadBuilder.Build(4099, LocalidadSantiagoDelEstero.YacuHurmana),
                 datosEntidadBuilder.Build(4100, LocalidadSantiagoDelEstero.Asingasta)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.SanMartin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.SanMartin).Id,
+            [
                 datosEntidadBuilder.Build(4101, LocalidadSantiagoDelEstero.BreaPozo),
                 datosEntidadBuilder.Build(4102, LocalidadSantiagoDelEstero.EstacionRobles),
                 datosEntidadBuilder.Build(4103, LocalidadSantiagoDelEstero.EstacionTaboada),
@@ -425,16 +418,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4129, LocalidadSantiagoDelEstero.TresJazmines),
                 datosEntidadBuilder.Build(4130, LocalidadSantiagoDelEstero.Tuamilla),
                 datosEntidadBuilder.Build(4131, LocalidadSantiagoDelEstero.VillaNueva)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Sarmiento).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Sarmiento).Id,
+            [
                 datosEntidadBuilder.Build(4132, LocalidadSantiagoDelEstero.Matara),
                 datosEntidadBuilder.Build(4133, LocalidadSantiagoDelEstero.Garza),
                 datosEntidadBuilder.Build(4134, LocalidadSantiagoDelEstero.SauceBajada),
                 datosEntidadBuilder.Build(4135, LocalidadSantiagoDelEstero.Guaype)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Silipica).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSantiagoDelEstero.Silipica).Id,
+            [
                 datosEntidadBuilder.Build(4136, LocalidadSantiagoDelEstero.Arraga),
                 datosEntidadBuilder.Build(4137, LocalidadSantiagoDelEstero.Manogasta),
                 datosEntidadBuilder.Build(4138, LocalidadSantiagoDelEstero.NuevaFrancia),
@@ -452,7 +445,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(4150, LocalidadSantiagoDelEstero.SanVicente),
                 datosEntidadBuilder.Build(4151, LocalidadSantiagoDelEstero.Simbol),
                 datosEntidadBuilder.Build(4152, LocalidadSantiagoDelEstero.Sumamao)
-            });
+            ]);
         }
     }
 }

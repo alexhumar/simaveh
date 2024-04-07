@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    public class LocalidadLaRiojaFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadLaRiojaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPartidoFixtureGetter partidoFixtureGetter) : LocalidadFixtureGetter(datosEntidadBuilder, partidoFixtureGetter)
     {
-        public LocalidadLaRiojaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPartidoFixtureGetter partidoFixtureGetter)
-            : base(datosEntidadBuilder, partidoFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Arauco).Id, new List<DatosEntidad>
-            {
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Arauco).Id,
+            [
                 datosEntidadBuilder.Build(2361, LocalidadLaRioja.Aimogasta),
                 datosEntidadBuilder.Build(2362, LocalidadLaRioja.Arauco),
                 datosEntidadBuilder.Build(2363, LocalidadLaRioja.BanadoDeLosPantanos),
@@ -28,13 +21,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2366, LocalidadLaRioja.TermasDeSantaTeresita),
                 datosEntidadBuilder.Build(2367, LocalidadLaRioja.VillaMazan),
                 datosEntidadBuilder.Build(2368, LocalidadLaRioja.Udpinango)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Capital).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Capital).Id,
+            [
                 datosEntidadBuilder.Build(2369, LocalidadLaRioja.LaRioja)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.CastroBarros).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.CastroBarros).Id,
+            [
                 datosEntidadBuilder.Build(2370, LocalidadLaRioja.AguaBlanca),
                 datosEntidadBuilder.Build(2371, LocalidadLaRioja.Aminga),
                 datosEntidadBuilder.Build(2372, LocalidadLaRioja.Anillaco),
@@ -45,9 +38,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2377, LocalidadLaRioja.Pinchas),
                 datosEntidadBuilder.Build(2378, LocalidadLaRioja.SanPedro),
                 datosEntidadBuilder.Build(2379, LocalidadLaRioja.SantaVeraCruz)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Chamical).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Chamical).Id,
+            [
                 datosEntidadBuilder.Build(2380, LocalidadLaRioja.Chamical),
                 datosEntidadBuilder.Build(2381, LocalidadLaRioja.Polco),
                 datosEntidadBuilder.Build(2382, LocalidadLaRioja.BellaVista),
@@ -57,9 +50,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2386, LocalidadLaRioja.LaAguadita),
                 datosEntidadBuilder.Build(2387, LocalidadLaRioja.SantaBarbara),
                 datosEntidadBuilder.Build(2388, LocalidadLaRioja.SantaRitaDeLaZanja)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Chilecito).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Chilecito).Id,
+            [
                 datosEntidadBuilder.Build(2389, LocalidadLaRioja.Chilecito),
                 datosEntidadBuilder.Build(2390, LocalidadLaRioja.Anguinan),
                 datosEntidadBuilder.Build(2391, LocalidadLaRioja.LosSarmientos),
@@ -80,9 +73,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2406, LocalidadLaRioja.ColoniaCatinzaco),
                 datosEntidadBuilder.Build(2407, LocalidadLaRioja.Catinzaco),
                 datosEntidadBuilder.Build(2408, LocalidadLaRioja.LaMejicanita)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.CoronelFelipeVarela).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.CoronelFelipeVarela).Id,
+            [
                 datosEntidadBuilder.Build(2409, LocalidadLaRioja.Aicuna),
                 datosEntidadBuilder.Build(2410, LocalidadLaRioja.BandaFlorida),
                 datosEntidadBuilder.Build(2411, LocalidadLaRioja.Guandacol),
@@ -92,9 +85,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2415, LocalidadLaRioja.PuertoAlegre),
                 datosEntidadBuilder.Build(2416, LocalidadLaRioja.SantaClara),
                 datosEntidadBuilder.Build(2417, LocalidadLaRioja.VillaUnion)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Famatina).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Famatina).Id,
+            [
                 datosEntidadBuilder.Build(2418, LocalidadLaRioja.Famatina),
                 datosEntidadBuilder.Build(2419, LocalidadLaRioja.AltoCarrizal),
                 datosEntidadBuilder.Build(2420, LocalidadLaRioja.Angulos),
@@ -108,9 +101,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2428, LocalidadLaRioja.PlazaVieja),
                 datosEntidadBuilder.Build(2429, LocalidadLaRioja.SantaCruz),
                 datosEntidadBuilder.Build(2430, LocalidadLaRioja.SantoDomingo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralAngelVPenaloza).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralAngelVPenaloza).Id,
+            [
                 datosEntidadBuilder.Build(2431, LocalidadLaRioja.Alcazar),
                 datosEntidadBuilder.Build(2432, LocalidadLaRioja.Carrizal),
                 datosEntidadBuilder.Build(2433, LocalidadLaRioja.Chila),
@@ -120,9 +113,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2437, LocalidadLaRioja.PuntaDeLosLlanos),
                 datosEntidadBuilder.Build(2438, LocalidadLaRioja.Tama),
                 datosEntidadBuilder.Build(2439, LocalidadLaRioja.Tuizon)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralBelgrano).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralBelgrano).Id,
+            [
                 datosEntidadBuilder.Build(2440, LocalidadLaRioja.Olta),
                 datosEntidadBuilder.Build(2441, LocalidadLaRioja.CastroBarros),
                 datosEntidadBuilder.Build(2442, LocalidadLaRioja.Chanar),
@@ -134,9 +127,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2448, LocalidadLaRioja.SanRamon),
                 datosEntidadBuilder.Build(2449, LocalidadLaRioja.Simbolar),
                 datosEntidadBuilder.Build(2450, LocalidadLaRioja.ElCardonal)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralJuanFacundoQuiroga).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralJuanFacundoQuiroga).Id,
+            [
                 datosEntidadBuilder.Build(2451, LocalidadLaRioja.Portezuelo),
                 datosEntidadBuilder.Build(2452, LocalidadLaRioja.Malanzan),
                 datosEntidadBuilder.Build(2453, LocalidadLaRioja.Nacate),
@@ -152,9 +145,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2463, LocalidadLaRioja.Salana),
                 datosEntidadBuilder.Build(2464, LocalidadLaRioja.Tuani),
                 datosEntidadBuilder.Build(2465, LocalidadLaRioja.Huaja)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralLamadrid).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralLamadrid).Id,
+            [
                 datosEntidadBuilder.Build(2466, LocalidadLaRioja.VillaCastelli),
                 datosEntidadBuilder.Build(2467, LocalidadLaRioja.Aguaditas),
                 datosEntidadBuilder.Build(2468, LocalidadLaRioja.ElCondado),
@@ -163,9 +156,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2471, LocalidadLaRioja.PastosLargos),
                 datosEntidadBuilder.Build(2472, LocalidadLaRioja.Rivadavia),
                 datosEntidadBuilder.Build(2473, LocalidadLaRioja.Tiaguas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralOcampo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralOcampo).Id,
+            [
                 datosEntidadBuilder.Build(2474, LocalidadLaRioja.Ambil),
                 datosEntidadBuilder.Build(2475, LocalidadLaRioja.ColoniaOrtizDeOcampo),
                 datosEntidadBuilder.Build(2476, LocalidadLaRioja.Milagro),
@@ -176,9 +169,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2481, LocalidadLaRioja.LosAguirres),
                 datosEntidadBuilder.Build(2482, LocalidadLaRioja.LosAlanices),
                 datosEntidadBuilder.Build(2483, LocalidadLaRioja.EsquinaChica)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralSanMartin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.GeneralSanMartin).Id,
+            [
                 datosEntidadBuilder.Build(2484, LocalidadLaRioja.Ulapes),
                 datosEntidadBuilder.Build(2485, LocalidadLaRioja.Aguayo),
                 datosEntidadBuilder.Build(2486, LocalidadLaRioja.BajoHondo),
@@ -194,17 +187,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2496, LocalidadLaRioja.LasVentanitas),
                 datosEntidadBuilder.Build(2497, LocalidadLaRioja.VillaNidia),
                 datosEntidadBuilder.Build(2498, LocalidadLaRioja.PozoDePiedra)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Independencia).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Independencia).Id,
+            [
                 datosEntidadBuilder.Build(2499, LocalidadLaRioja.Amana),
                 datosEntidadBuilder.Build(2500, LocalidadLaRioja.LosColorados),
                 datosEntidadBuilder.Build(2501, LocalidadLaRioja.Paganzo),
                 datosEntidadBuilder.Build(2502, LocalidadLaRioja.Patquia),
                 datosEntidadBuilder.Build(2503, LocalidadLaRioja.PatquiaViejo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.RosarioVeraPenaloza).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.RosarioVeraPenaloza).Id,
+            [
                 datosEntidadBuilder.Build(2504, LocalidadLaRioja.Chepes),
                 datosEntidadBuilder.Build(2505, LocalidadLaRioja.DesiderioTello),
                 datosEntidadBuilder.Build(2506, LocalidadLaRioja.ElTotoral),
@@ -220,9 +213,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2516, LocalidadLaRioja.SanIsidro),
                 datosEntidadBuilder.Build(2517, LocalidadLaRioja.AguaBlanca),
                 datosEntidadBuilder.Build(2518, LocalidadLaRioja.LasJarillas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.SanBlasDeLosSauces).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.SanBlasDeLosSauces).Id,
+            [
                 datosEntidadBuilder.Build(2519, LocalidadLaRioja.LasPirguas),
                 datosEntidadBuilder.Build(2520, LocalidadLaRioja.ElRetiro),
                 datosEntidadBuilder.Build(2521, LocalidadLaRioja.Alpasinche),
@@ -238,21 +231,21 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2531, LocalidadLaRioja.Maican),
                 datosEntidadBuilder.Build(2532, LocalidadLaRioja.Amuschina),
                 datosEntidadBuilder.Build(2533, LocalidadLaRioja.Tuyubil)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Sanagasta).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Sanagasta).Id,
+            [
                 datosEntidadBuilder.Build(2534, LocalidadLaRioja.VillaSanagasta),
                 datosEntidadBuilder.Build(2535, LocalidadLaRioja.AltaGracia),
                 datosEntidadBuilder.Build(2536, LocalidadLaRioja.Huaco)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Vinchina).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoLaRioja.Vinchina).Id,
+            [
                 datosEntidadBuilder.Build(2537, LocalidadLaRioja.VillaSanJoseDeVinchina),
                 datosEntidadBuilder.Build(2538, LocalidadLaRioja.Jague),
                 datosEntidadBuilder.Build(2539, LocalidadLaRioja.PotreroGrande),
                 datosEntidadBuilder.Build(2540, LocalidadLaRioja.ValleHermoso),
                 datosEntidadBuilder.Build(2541, LocalidadLaRioja.PuntaDeAgua)
-            });
+            ]);
         }
     }
 }

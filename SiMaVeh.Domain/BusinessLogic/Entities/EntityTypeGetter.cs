@@ -10,7 +10,7 @@ namespace SiMaVeh.Domain.BusinessLogic.Entities
     /// </summary>
     public class EntityTypeGetter : IEntityTypeGetter
     {
-        private readonly IDictionary<string, string> colecciones = new Dictionary<string, string>()
+        private readonly Dictionary<string, string> colecciones = new()
         {
             { typeof(Aceite).Name, EntitySet.Aceite },
             { typeof(Automovil).Name, EntitySet.Automovil },

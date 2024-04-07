@@ -19,7 +19,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento.FixtureGetters
         public TipoDocumentoFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            tiposDocumento = new List<DatosEntidad>();
+            tiposDocumento = [];
 
             Initialize();
         }

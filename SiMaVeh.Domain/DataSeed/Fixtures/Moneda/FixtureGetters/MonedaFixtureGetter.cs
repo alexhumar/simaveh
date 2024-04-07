@@ -20,7 +20,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Moneda.FixtureGetters
         public MonedaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            monedas = new List<DatosMoneda>();
+            monedas = [];
 
             Initialize();
         }

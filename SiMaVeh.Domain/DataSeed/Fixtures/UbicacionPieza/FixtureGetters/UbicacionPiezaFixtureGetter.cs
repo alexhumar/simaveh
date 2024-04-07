@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.FixtureGetters
         public UbicacionPiezaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            ubicacionesPieza = new List<DatosUbicacionPieza>();
+            ubicacionesPieza = [];
 
             Initialize();
         }

@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono
     /// <summary>
     /// Provider de fixture getters de tipos de telefono
     /// </summary>
-    public class TipoTelefonoFixtureGettersProvider : ITipoTelefonoFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class TipoTelefonoFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : ITipoTelefonoFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public TipoTelefonoFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de tipos de telefono
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosEntidad>>
-            {
+            return
+            [
                 new TipoTelefonoFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

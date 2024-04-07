@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoSantaFeFixtureGetter : PartidoFixtureGetter
+    public class PartidoSantaFeFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoSantaFeFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.SantaFe).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.SantaFe).Id,
+            [
                 datosEntidadBuilder.Build(447, PartidoSantaFe.Rosario),
                 datosEntidadBuilder.Build(448, PartidoSantaFe.LaCapital),
                 datosEntidadBuilder.Build(449, PartidoSantaFe.GeneralLopez),
@@ -39,7 +32,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(463, PartidoSantaFe.SanJavier),
                 datosEntidadBuilder.Build(464, PartidoSantaFe.NueveDeJulio),
                 datosEntidadBuilder.Build(465, PartidoSantaFe.Garay)
-            });
+            ]);
         }
     }
 }

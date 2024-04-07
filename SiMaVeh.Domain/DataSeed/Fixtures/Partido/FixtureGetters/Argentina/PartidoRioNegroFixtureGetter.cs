@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoRioNegroFixtureGetter : PartidoFixtureGetter
+    public class PartidoRioNegroFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoRioNegroFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.RioNegro).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.RioNegro).Id,
+            [
                 datosEntidadBuilder.Build(376, PartidoRioNegro.AdolfoAlsina),
                 datosEntidadBuilder.Build(377, PartidoRioNegro.Avellaneda),
                 datosEntidadBuilder.Build(378, PartidoRioNegro.Bariloche),
@@ -33,7 +26,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(386, PartidoRioNegro.SanAntonio),
                 datosEntidadBuilder.Build(387, PartidoRioNegro.Valcheta),
                 datosEntidadBuilder.Build(388, PartidoRioNegro.VeinticincoDeMayo)
-            });
+            ]);
         }
     }
 }

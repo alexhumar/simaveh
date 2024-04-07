@@ -30,7 +30,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia.FixtureGetters
             this.datosEntidadBuilder = datosEntidadBuilder;
             this.marcaFixtureGetter = marcaFixtureGetter;
             this.tipoFuenteEnergiaFixtureGetter = tipoFuenteEnergiaFixtureGetter;
-            fuentesEnergia = new List<DatosFuenteEnergia>();
+            fuentesEnergia = [];
 
             Initialize();
         }

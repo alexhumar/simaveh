@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento
     /// <summary>
     /// Provider de fixture getters de tipos de documento
     /// </summary>
-    public class TipoDocumentoFixtureGettersProvider : ITipoDocumentoFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class TipoDocumentoFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : ITipoDocumentoFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public TipoDocumentoFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de tipos de documento
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosEntidad>>
-            {
+            return
+            [
                 new TipoDocumentoFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais
     /// <summary>
     /// Provider de fixture getters de Pais
     /// </summary>
-    public class PaisFixtureGettersProvider : IPaisFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class PaisFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : IPaisFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public PaisFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de pais
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosEntidad>>
-            {
+            return
+            [
                 new PaisFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

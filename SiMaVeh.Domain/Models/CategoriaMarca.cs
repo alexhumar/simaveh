@@ -47,7 +47,7 @@ namespace SiMaVeh.Domain.Models
         public override bool Equals(object obj)
         {
             return obj is CategoriaMarca item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper()));
+                (ReferenceEquals(this, item) || (Id == item.Id) || Nombre.Equals(item.Nombre, System.StringComparison.CurrentCultureIgnoreCase));
         }
 
         /// <summary>

@@ -7,14 +7,14 @@ namespace SiMaVeh.DataAccess.Model.ConfiguradoresContext
     {
         public IEnumerable<IConfiguradorContext> GetConfiguradoresContext()
         {
-            return new List<IConfiguradorContext>
-            {
+            return
+            [
                 //new ConfiguradorJerarquiaTPH(),
                 new ConfiguradorPropiedadesCalculadas(),
                 new ConfiguradorJerarquiaTPT(),
                 new ConfiguradorIDsAutogenerados(),
                 new ConfiguradorRelacionesManyToMany()
-            };
+            ];
         }
     }
 }

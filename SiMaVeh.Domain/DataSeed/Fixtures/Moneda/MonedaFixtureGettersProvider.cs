@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Moneda
     /// <summary>
     /// Provider de fixture getters de monedas
     /// </summary>
-    public class MonedaFixtureGettersProvider : IMonedaFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class MonedaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : IMonedaFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public MonedaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de moneda
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Moneda
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosMoneda>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosMoneda>>
-            {
+            return
+            [
                 new MonedaFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

@@ -51,7 +51,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            return obj is Kit item && (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper()));
+            return obj is Kit item && (ReferenceEquals(this, item) || (Id == item.Id) || Nombre.Equals(item.Nombre, System.StringComparison.CurrentCultureIgnoreCase));
         }
 
         /// <summary>

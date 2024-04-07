@@ -3,27 +3,20 @@ using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    public class LocalidadMendozaFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadMendozaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPartidoFixtureGetter partidoFixtureGetter) : LocalidadFixtureGetter(datosEntidadBuilder, partidoFixtureGetter)
     {
-        public LocalidadMendozaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPartidoFixtureGetter partidoFixtureGetter)
-            : base(datosEntidadBuilder, partidoFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Capital).Id, new List<DatosEntidad>
-            {
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Capital).Id,
+            [
                 datosEntidadBuilder.Build(2542, LocalidadMendoza.Mendoza)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.GeneralAlvear).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.GeneralAlvear).Id,
+            [
                 datosEntidadBuilder.Build(2543, LocalidadMendoza.Canalejas),
                 datosEntidadBuilder.Build(2544, LocalidadMendoza.Carmensa),
                 datosEntidadBuilder.Build(2545, LocalidadMendoza.Cochico),
@@ -45,18 +38,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2561, LocalidadMendoza.ElNevado),
                 datosEntidadBuilder.Build(2562, LocalidadMendoza.ElDesvio),
                 datosEntidadBuilder.Build(2563, LocalidadMendoza.Bowen)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.GodoyCruz).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.GodoyCruz).Id,
+            [
                 datosEntidadBuilder.Build(2564, LocalidadMendoza.GobernadorBenegas),
                 datosEntidadBuilder.Build(2565, LocalidadMendoza.GodoyCruz),
                 datosEntidadBuilder.Build(2566, LocalidadMendoza.LasTortugas),
                 datosEntidadBuilder.Build(2567, LocalidadMendoza.PresidenteSarmiento),
                 datosEntidadBuilder.Build(2568, LocalidadMendoza.SanFranciscoDelMonte),
                 datosEntidadBuilder.Build(2569, LocalidadMendoza.SanVicente)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Guaymallen).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Guaymallen).Id,
+            [
                 datosEntidadBuilder.Build(2570, LocalidadMendoza.Belgrano),
                 datosEntidadBuilder.Build(2571, LocalidadMendoza.ElBermejo),
                 datosEntidadBuilder.Build(2572, LocalidadMendoza.BuenaNueva),
@@ -79,9 +72,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2589, LocalidadMendoza.SanFranciscoDelMonte),
                 datosEntidadBuilder.Build(2590, LocalidadMendoza.SanJose),
                 datosEntidadBuilder.Build(2591, LocalidadMendoza.VillaNueva)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Junin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Junin).Id,
+            [
                 datosEntidadBuilder.Build(2592, LocalidadMendoza.AlgarroboGrande),
                 datosEntidadBuilder.Build(2593, LocalidadMendoza.AltoVerde),
                 datosEntidadBuilder.Build(2594, LocalidadMendoza.Ciudad),
@@ -92,17 +85,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2599, LocalidadMendoza.MundoNuevo),
                 datosEntidadBuilder.Build(2600, LocalidadMendoza.Phillips),
                 datosEntidadBuilder.Build(2601, LocalidadMendoza.RodriguezPena)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.LaPaz).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.LaPaz).Id,
+            [
                 datosEntidadBuilder.Build(2602, LocalidadMendoza.Desaguadero),
                 datosEntidadBuilder.Build(2603, LocalidadMendoza.LaPazNorte),
                 datosEntidadBuilder.Build(2604, LocalidadMendoza.LaPazSur),
                 datosEntidadBuilder.Build(2605, LocalidadMendoza.VillaAntigua),
                 datosEntidadBuilder.Build(2606, LocalidadMendoza.VillaCabecera)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.LasHeras).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.LasHeras).Id,
+            [
                 datosEntidadBuilder.Build(2607, LocalidadMendoza.Capdevilla),
                 datosEntidadBuilder.Build(2608, LocalidadMendoza.LaCieneguita),
                 datosEntidadBuilder.Build(2609, LocalidadMendoza.ElAlgarrobal),
@@ -116,9 +109,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2617, LocalidadMendoza.LasHeras),
                 datosEntidadBuilder.Build(2618, LocalidadMendoza.Panquehua),
                 datosEntidadBuilder.Build(2619, LocalidadMendoza.UspallataYAltaMontana)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Lavalle).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Lavalle).Id,
+            [
                 datosEntidadBuilder.Build(2620, LocalidadMendoza.CostaDeAraujo),
                 datosEntidadBuilder.Build(2621, LocalidadMendoza.ElCarmen),
                 datosEntidadBuilder.Build(2622, LocalidadMendoza.ElChilcal),
@@ -140,9 +133,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2638, LocalidadMendoza.TresDeMayo),
                 datosEntidadBuilder.Build(2639, LocalidadMendoza.VillaTulumaya),
                 datosEntidadBuilder.Build(2640, LocalidadMendoza.OscarMendoza)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.LujanDeCuyo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.LujanDeCuyo).Id,
+            [
                 datosEntidadBuilder.Build(2641, LocalidadMendoza.Agrelo),
                 datosEntidadBuilder.Build(2642, LocalidadMendoza.Cacheuta),
                 datosEntidadBuilder.Build(2643, LocalidadMendoza.Carrodilla),
@@ -158,9 +151,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2653, LocalidadMendoza.Ugarteche),
                 datosEntidadBuilder.Build(2654, LocalidadMendoza.Vistalba),
                 datosEntidadBuilder.Build(2655, LocalidadMendoza.VertientesDelPedemonte)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Maipu).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Maipu).Id,
+            [
                 datosEntidadBuilder.Build(2656, LocalidadMendoza.Coquimbito),
                 datosEntidadBuilder.Build(2657, LocalidadMendoza.CruzDePiedra),
                 datosEntidadBuilder.Build(2658, LocalidadMendoza.FrayLuisBeltran),
@@ -173,16 +166,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2665, LocalidadMendoza.RodeoDelMedio),
                 datosEntidadBuilder.Build(2666, LocalidadMendoza.Russell),
                 datosEntidadBuilder.Build(2667, LocalidadMendoza.SanRoque)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Malargue).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Malargue).Id,
+            [
                 datosEntidadBuilder.Build(2668, LocalidadMendoza.AguaEscondida),
                 datosEntidadBuilder.Build(2669, LocalidadMendoza.Malargue),
                 datosEntidadBuilder.Build(2670, LocalidadMendoza.RioBarrancas),
                 datosEntidadBuilder.Build(2671, LocalidadMendoza.RioGrande)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Rivadavia).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Rivadavia).Id,
+            [
                 datosEntidadBuilder.Build(2672, LocalidadMendoza.Andrade),
                 datosEntidadBuilder.Build(2673, LocalidadMendoza.ElMirador),
                 datosEntidadBuilder.Build(2674, LocalidadMendoza.LaCentral),
@@ -196,18 +189,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2682, LocalidadMendoza.Rivadavia),
                 datosEntidadBuilder.Build(2683, LocalidadMendoza.SantaMariaDeOro),
                 datosEntidadBuilder.Build(2684, LocalidadMendoza.SanIsidro)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.SanCarlos).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.SanCarlos).Id,
+            [
                 datosEntidadBuilder.Build(2685, LocalidadMendoza.Chilecito),
                 datosEntidadBuilder.Build(2686, LocalidadMendoza.EugenioBustos),
                 datosEntidadBuilder.Build(2687, LocalidadMendoza.LaConsulta),
                 datosEntidadBuilder.Build(2688, LocalidadMendoza.Pareditas),
                 datosEntidadBuilder.Build(2689, LocalidadMendoza.TresEsquinas),
                 datosEntidadBuilder.Build(2690, LocalidadMendoza.VillaDeSanCarlos)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.GeneralSanMartin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.GeneralSanMartin).Id,
+            [
                 datosEntidadBuilder.Build(2691, LocalidadMendoza.AltoSalvador),
                 datosEntidadBuilder.Build(2692, LocalidadMendoza.AltoVerde),
                 datosEntidadBuilder.Build(2693, LocalidadMendoza.BuenOrden),
@@ -224,9 +217,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2704, LocalidadMendoza.Palmira),
                 datosEntidadBuilder.Build(2705, LocalidadMendoza.SanMartin),
                 datosEntidadBuilder.Build(2706, LocalidadMendoza.TresPortenas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.SanRafael).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.SanRafael).Id,
+            [
                 datosEntidadBuilder.Build(2707, LocalidadMendoza.CanadaSeca),
                 datosEntidadBuilder.Build(2708, LocalidadMendoza.CuadroBenegas),
                 datosEntidadBuilder.Build(2709, LocalidadMendoza.CuadroNacional),
@@ -245,17 +238,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2722, LocalidadMendoza.SanRafael),
                 datosEntidadBuilder.Build(2723, LocalidadMendoza.VillaVeinticincoDeMayo),
                 datosEntidadBuilder.Build(2724, LocalidadMendoza.VillaAtuel)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.SantaRosa).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.SantaRosa).Id,
+            [
                 datosEntidadBuilder.Build(2725, LocalidadMendoza.DoceDeOctubre),
                 datosEntidadBuilder.Build(2726, LocalidadMendoza.LaDormida),
                 datosEntidadBuilder.Build(2727, LocalidadMendoza.LasCatitas),
                 datosEntidadBuilder.Build(2728, LocalidadMendoza.Nacunan),
                 datosEntidadBuilder.Build(2729, LocalidadMendoza.SantaRosa)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Tunuyan).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Tunuyan).Id,
+            [
                 datosEntidadBuilder.Build(2730, LocalidadMendoza.CampoDeLosAndes),
                 datosEntidadBuilder.Build(2731, LocalidadMendoza.ColoniaLasRosas),
                 datosEntidadBuilder.Build(2732, LocalidadMendoza.ElAlgarrobo),
@@ -268,9 +261,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2739, LocalidadMendoza.Tunuyan),
                 datosEntidadBuilder.Build(2740, LocalidadMendoza.VillaSeca),
                 datosEntidadBuilder.Build(2741, LocalidadMendoza.VistaFlores)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Tupungato).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoMendoza.Tupungato).Id,
+            [
                 datosEntidadBuilder.Build(2742, LocalidadMendoza.Anchoris),
                 datosEntidadBuilder.Build(2743, LocalidadMendoza.CordonDelPlata),
                 datosEntidadBuilder.Build(2744, LocalidadMendoza.ElPeral),
@@ -284,7 +277,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2752, LocalidadMendoza.Tupungato),
                 datosEntidadBuilder.Build(2753, LocalidadMendoza.VillaBastias),
                 datosEntidadBuilder.Build(2754, LocalidadMendoza.Zapata)
-            });
+            ]);
         }
     }
 }

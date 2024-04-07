@@ -86,7 +86,7 @@ namespace SiMaVeh.Domain.Models
         public override bool Equals(object obj)
         {
             return obj is ModeloVehiculo item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (GrupoModelo.Equals(item.GrupoModelo) && Version.ToUpper() == item.Version.ToUpper()));
+                (ReferenceEquals(this, item) || (Id == item.Id) || (GrupoModelo.Equals(item.GrupoModelo) && Version.Equals(item.Version, System.StringComparison.CurrentCultureIgnoreCase)));
         }
 
         /// <summary>

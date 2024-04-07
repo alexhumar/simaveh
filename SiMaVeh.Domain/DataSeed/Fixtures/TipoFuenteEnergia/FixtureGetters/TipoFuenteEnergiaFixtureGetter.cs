@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia.FixtureGetters
         public TipoFuenteEnergiaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            tiposFuentesEnergia = new List<DatosEntidad>();
+            tiposFuentesEnergia = [];
 
             Initialize();
         }

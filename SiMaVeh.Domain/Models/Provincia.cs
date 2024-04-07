@@ -52,7 +52,7 @@ namespace SiMaVeh.Domain.Models
         public override bool Equals(object obj)
         {
             return obj is Provincia item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper() && Pais.Equals(item.Pais)));
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.Equals(item.Nombre, System.StringComparison.CurrentCultureIgnoreCase) && Pais.Equals(item.Pais)));
         }
 
         /// <summary>

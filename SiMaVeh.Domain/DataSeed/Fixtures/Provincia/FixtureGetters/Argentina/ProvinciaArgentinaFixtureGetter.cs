@@ -2,23 +2,16 @@
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Base;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Argentina
 {
-    public class ProvinciaArgentinaFixtureGetter : ProvinciaFixtureGetter
+    public class ProvinciaArgentinaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPaisFixtureGetter paisFixtureGetter) : ProvinciaFixtureGetter(datosEntidadBuilder, paisFixtureGetter)
     {
-        public ProvinciaArgentinaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPaisFixtureGetter paisFixtureGetter)
-            : base(datosEntidadBuilder, paisFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            provincias.Add(paisFixtureGetter.FindByNombre(Constants.Paises.Pais.Argentina).Id, new List<DatosEntidad>
-            {
+            provincias.Add(paisFixtureGetter.FindByNombre(Constants.Paises.Pais.Argentina).Id,
+            [
                 datosEntidadBuilder.Build(1, ProvinciaArgentina.BuenosAires),
                 datosEntidadBuilder.Build(2, ProvinciaArgentina.Catamarca),
                 datosEntidadBuilder.Build(3, ProvinciaArgentina.Chaco),
@@ -42,7 +35,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(21, ProvinciaArgentina.SantiagoDelEstero),
                 datosEntidadBuilder.Build(22, ProvinciaArgentina.TierraDelFuego),
                 datosEntidadBuilder.Build(23, ProvinciaArgentina.Tucuman)
-            });
+            ]);
         }
     }
 }

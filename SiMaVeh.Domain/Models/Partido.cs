@@ -52,7 +52,7 @@ namespace SiMaVeh.Domain.Models
         public override bool Equals(object obj)
         {
             return obj is Partido item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper() && (Provincia.Equals(item.Provincia))));
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.Equals(item.Nombre, System.StringComparison.CurrentCultureIgnoreCase) && Provincia.Equals(item.Provincia)));
         }
 
         /// <summary>

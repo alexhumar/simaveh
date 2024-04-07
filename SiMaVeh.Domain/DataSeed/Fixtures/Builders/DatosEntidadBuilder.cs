@@ -10,22 +10,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Builders
     /// <summary>
     /// Builder de Datos Entidad
     /// </summary>
-    public class DatosEntidadBuilder : IDatosEntidadBuilder
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="calculadorIdEquipamientoAirbags"></param>
+    /// <param name="calculadorIdUbicacionPieza"></param>
+    public class DatosEntidadBuilder(ICalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags,
+        ICalculadorIdUbicacionPieza calculadorIdUbicacionPieza) : IDatosEntidadBuilder
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="calculadorIdEquipamientoAirbags"></param>
-        /// <param name="calculadorIdUbicacionPieza"></param>
-        public DatosEntidadBuilder(ICalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags,
-            ICalculadorIdUbicacionPieza calculadorIdUbicacionPieza)
-        {
-            this.calculadorIdEquipamientoAirbags = calculadorIdEquipamientoAirbags;
-            this.calculadorIdUbicacionPieza = calculadorIdUbicacionPieza;
-        }
-
-        private readonly ICalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags;
-        private readonly ICalculadorIdUbicacionPieza calculadorIdUbicacionPieza;
+        private readonly ICalculadorIdEquipamientoAirbags calculadorIdEquipamientoAirbags = calculadorIdEquipamientoAirbags;
+        private readonly ICalculadorIdUbicacionPieza calculadorIdUbicacionPieza = calculadorIdUbicacionPieza;
 
         /// <summary>
         /// Build datos entidad general

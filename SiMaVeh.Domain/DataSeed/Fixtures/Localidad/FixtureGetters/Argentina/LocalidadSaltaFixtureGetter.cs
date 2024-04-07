@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    public class LocalidadSaltaFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadSaltaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPartidoFixtureGetter partidoFixtureGetter) : LocalidadFixtureGetter(datosEntidadBuilder, partidoFixtureGetter)
     {
-        public LocalidadSaltaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPartidoFixtureGetter partidoFixtureGetter)
-            : base(datosEntidadBuilder, partidoFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Anta).Id, new List<DatosEntidad>
-            {
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Anta).Id,
+            [
                 datosEntidadBuilder.Build(3041, LocalidadSalta.ApolinarioSaravia),
                 datosEntidadBuilder.Build(3042, LocalidadSalta.ElQuebrachal),
                 datosEntidadBuilder.Build(3043, LocalidadSalta.GeneralPizarro),
@@ -44,9 +37,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3062, LocalidadSalta.Centro25DeJunio),
                 datosEntidadBuilder.Build(3063, LocalidadSalta.CoronelOlleros),
                 datosEntidadBuilder.Build(3064, LocalidadSalta.PiqueteCabado)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Cachi).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Cachi).Id,
+            [
                 datosEntidadBuilder.Build(3065, LocalidadSalta.Cachi),
                 datosEntidadBuilder.Build(3066, LocalidadSalta.Payogasta),
                 datosEntidadBuilder.Build(3067, LocalidadSalta.ElVallecito),
@@ -54,29 +47,29 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3069, LocalidadSalta.SanJoseDeEscalchi),
                 datosEntidadBuilder.Build(3070, LocalidadSalta.CachiAdentro),
                 datosEntidadBuilder.Build(3071, LocalidadSalta.LaPaya)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Cafayate).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Cafayate).Id,
+            [
                 datosEntidadBuilder.Build(3072, LocalidadSalta.Cafayate),
                 datosEntidadBuilder.Build(3073, LocalidadSalta.Tolombon),
                 datosEntidadBuilder.Build(3074, LocalidadSalta.LasConchas),
                 datosEntidadBuilder.Build(3075, LocalidadSalta.SantaBarbara)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Capital).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Capital).Id,
+            [
                 datosEntidadBuilder.Build(3076, LocalidadSalta.Salta)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Cerrillos).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Cerrillos).Id,
+            [
                 datosEntidadBuilder.Build(3077, LocalidadSalta.Cerrillos),
                 datosEntidadBuilder.Build(3078, LocalidadSalta.LaMerced),
                 datosEntidadBuilder.Build(3079, LocalidadSalta.SanAgustin),
                 datosEntidadBuilder.Build(3080, LocalidadSalta.VillaLosAlamos),
                 datosEntidadBuilder.Build(3081, LocalidadSalta.Sumalao),
                 datosEntidadBuilder.Build(3082, LocalidadSalta.LasPalmas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Chicoana).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Chicoana).Id,
+            [
                 datosEntidadBuilder.Build(3083, LocalidadSalta.Chicoana),
                 datosEntidadBuilder.Build(3084, LocalidadSalta.ElCarril),
                 datosEntidadBuilder.Build(3085, LocalidadSalta.Escoipe),
@@ -95,9 +88,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3098, LocalidadSalta.PotreroDeDiaz),
                 datosEntidadBuilder.Build(3099, LocalidadSalta.Simbolar),
                 datosEntidadBuilder.Build(3100, LocalidadSalta.Maroma)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.GeneralGuemes).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.GeneralGuemes).Id,
+            [
                 datosEntidadBuilder.Build(3101, LocalidadSalta.CampoSanto),
                 datosEntidadBuilder.Build(3102, LocalidadSalta.ElBordo),
                 datosEntidadBuilder.Build(3103, LocalidadSalta.GeneralGuemes),
@@ -111,9 +104,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3111, LocalidadSalta.LasMesitas),
                 datosEntidadBuilder.Build(3112, LocalidadSalta.VirgilioTedin),
                 datosEntidadBuilder.Build(3113, LocalidadSalta.LosSauces)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.GeneralJoseDeSanMartin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.GeneralJoseDeSanMartin).Id,
+            [
                 datosEntidadBuilder.Build(3114, LocalidadSalta.Tartagal),
                 datosEntidadBuilder.Build(3115, LocalidadSalta.Embarcacion),
                 datosEntidadBuilder.Build(3116, LocalidadSalta.SalvadorMazza),
@@ -138,39 +131,39 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3135, LocalidadSalta.Campichuelo),
                 datosEntidadBuilder.Build(3136, LocalidadSalta.Pacara),
                 datosEntidadBuilder.Build(3137, LocalidadSalta.Recaredo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Guachipas).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Guachipas).Id,
+            [
                 datosEntidadBuilder.Build(3138, LocalidadSalta.Guachipas),
                 datosEntidadBuilder.Build(3139, LocalidadSalta.Alemania),
                 datosEntidadBuilder.Build(3140, LocalidadSalta.Cebilar),
                 datosEntidadBuilder.Build(3141, LocalidadSalta.PampaGrande),
                 datosEntidadBuilder.Build(3142, LocalidadSalta.LasJuntas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Iruya).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Iruya).Id,
+            [
                 datosEntidadBuilder.Build(3143, LocalidadSalta.Colanzuli),
                 datosEntidadBuilder.Build(3144, LocalidadSalta.Chiyayoc),
                 datosEntidadBuilder.Build(3145, LocalidadSalta.RodeoColorado),
                 datosEntidadBuilder.Build(3146, LocalidadSalta.SanJuan),
                 datosEntidadBuilder.Build(3147, LocalidadSalta.VolcanHigueras)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LaCaldera).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LaCaldera).Id,
+            [
                 datosEntidadBuilder.Build(3148, LocalidadSalta.LaCaldera),
                 datosEntidadBuilder.Build(3149, LocalidadSalta.Vaqueros),
                 datosEntidadBuilder.Build(3150, LocalidadSalta.LaCalderilla),
                 datosEntidadBuilder.Build(3151, LocalidadSalta.LosYacones),
                 datosEntidadBuilder.Build(3152, LocalidadSalta.PotreroDeCastilla)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LaCandelaria).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LaCandelaria).Id,
+            [
                 datosEntidadBuilder.Build(3153, LocalidadSalta.ElJardin),
                 datosEntidadBuilder.Build(3154, LocalidadSalta.ElTala),
                 datosEntidadBuilder.Build(3155, LocalidadSalta.LaCandelaria)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LaPoma).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LaPoma).Id,
+            [
                 datosEntidadBuilder.Build(3156, LocalidadSalta.EsquinaDeGuardia),
                 datosEntidadBuilder.Build(3157, LocalidadSalta.LaPoma),
                 datosEntidadBuilder.Build(3158, LocalidadSalta.Cobres),
@@ -182,9 +175,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3164, LocalidadSalta.Tipan),
                 datosEntidadBuilder.Build(3165, LocalidadSalta.CerroNegro),
                 datosEntidadBuilder.Build(3166, LocalidadSalta.ElRodeo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LaVina).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LaVina).Id,
+            [
                 datosEntidadBuilder.Build(3167, LocalidadSalta.CoronelMoldes),
                 datosEntidadBuilder.Build(3168, LocalidadSalta.LaVina),
                 datosEntidadBuilder.Build(3169, LocalidadSalta.Ampascachi),
@@ -194,9 +187,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3173, LocalidadSalta.Osma),
                 datosEntidadBuilder.Build(3174, LocalidadSalta.VeinteDeFebrero),
                 datosEntidadBuilder.Build(3175, LocalidadSalta.Saladillo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LosAndes).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.LosAndes).Id,
+            [
                 datosEntidadBuilder.Build(3176, LocalidadSalta.SanAntonioDeLosCobres),
                 datosEntidadBuilder.Build(3177, LocalidadSalta.Olacapato),
                 datosEntidadBuilder.Build(3178, LocalidadSalta.SantaRosaDeLosPastosGrandes),
@@ -213,9 +206,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3189, LocalidadSalta.TacaTaca),
                 datosEntidadBuilder.Build(3190, LocalidadSalta.Unquillar),
                 datosEntidadBuilder.Build(3191, LocalidadSalta.VegaDeArizaro)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Metan).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Metan).Id,
+            [
                 datosEntidadBuilder.Build(3192, LocalidadSalta.SanJoseDeMetan),
                 datosEntidadBuilder.Build(3193, LocalidadSalta.ElGalpon),
                 datosEntidadBuilder.Build(3194, LocalidadSalta.RioPiedras),
@@ -225,9 +218,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3198, LocalidadSalta.MetanViejo),
                 datosEntidadBuilder.Build(3199, LocalidadSalta.SanJoseDeLaOrquera),
                 datosEntidadBuilder.Build(3200, LocalidadSalta.PresaElTunal)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Molinos).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Molinos).Id,
+            [
                 datosEntidadBuilder.Build(3201, LocalidadSalta.Molinos),
                 datosEntidadBuilder.Build(3202, LocalidadSalta.Seclantas),
                 datosEntidadBuilder.Build(3203, LocalidadSalta.LaPuerta),
@@ -240,18 +233,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3210, LocalidadSalta.LaAguadita),
                 datosEntidadBuilder.Build(3211, LocalidadSalta.Amaicha),
                 datosEntidadBuilder.Build(3212, LocalidadSalta.ElRefugio)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Oran).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Oran).Id,
+            [
                 datosEntidadBuilder.Build(3213, LocalidadSalta.SanRamonDeLaNuevaOran),
                 datosEntidadBuilder.Build(3214, LocalidadSalta.Pichanal),
                 datosEntidadBuilder.Build(3215, LocalidadSalta.ColoniaSantaRosa),
                 datosEntidadBuilder.Build(3216, LocalidadSalta.HipolitoYrigoyen),
                 datosEntidadBuilder.Build(3217, LocalidadSalta.Urundel),
                 datosEntidadBuilder.Build(3218, LocalidadSalta.AguasBlancas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Rivadavia).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.Rivadavia).Id,
+            [
                 datosEntidadBuilder.Build(3219, LocalidadSalta.CoronelJuanSola),
                 datosEntidadBuilder.Build(3220, LocalidadSalta.Rivadavia),
                 datosEntidadBuilder.Build(3221, LocalidadSalta.SantaVictoriaEste),
@@ -262,26 +255,26 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3226, LocalidadSalta.SantaRosa),
                 datosEntidadBuilder.Build(3227, LocalidadSalta.CapitanJuanPage),
                 datosEntidadBuilder.Build(3228, LocalidadSalta.PlumaDePato)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.RosarioDeLaFrontera).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.RosarioDeLaFrontera).Id,
+            [
                 datosEntidadBuilder.Build(3229, LocalidadSalta.RosarioDeLaFrontera),
                 datosEntidadBuilder.Build(3230, LocalidadSalta.Antilla),
                 datosEntidadBuilder.Build(3231, LocalidadSalta.CopoQuile),
                 datosEntidadBuilder.Build(3232, LocalidadSalta.ElPotrero),
                 datosEntidadBuilder.Build(3233, LocalidadSalta.ElNaranjo),
                 datosEntidadBuilder.Build(3234, LocalidadSalta.SanFelipe)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.RosarioDeLerma).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.RosarioDeLerma).Id,
+            [
                 datosEntidadBuilder.Build(3235, LocalidadSalta.CampoQuijano),
                 datosEntidadBuilder.Build(3236, LocalidadSalta.RosarioDeLerma),
                 datosEntidadBuilder.Build(3237, LocalidadSalta.LaSilleta),
                 datosEntidadBuilder.Build(3238, LocalidadSalta.PuertaTastil),
                 datosEntidadBuilder.Build(3239, LocalidadSalta.SantaRosaDeTastil)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.SanCarlos).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.SanCarlos).Id,
+            [
                 datosEntidadBuilder.Build(3240, LocalidadSalta.Angastaco),
                 datosEntidadBuilder.Build(3241, LocalidadSalta.Animana),
                 datosEntidadBuilder.Build(3242, LocalidadSalta.SanCarlos),
@@ -296,9 +289,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3251, LocalidadSalta.ParajeCorralito),
                 datosEntidadBuilder.Build(3252, LocalidadSalta.ParajeSanAntonio),
                 datosEntidadBuilder.Build(3253, LocalidadSalta.Payogastilla)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.SantaVictoria).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoSalta.SantaVictoria).Id,
+            [
                 datosEntidadBuilder.Build(3254, LocalidadSalta.SantaVictoriaOeste),
                 datosEntidadBuilder.Build(3255, LocalidadSalta.LosToldos),
                 datosEntidadBuilder.Build(3256, LocalidadSalta.Nazareno),
@@ -306,7 +299,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(3258, LocalidadSalta.CampoLaCruz),
                 datosEntidadBuilder.Build(3259, LocalidadSalta.SanMarcos),
                 datosEntidadBuilder.Build(3260, LocalidadSalta.Acoyte)
-            });
+            ]);
         }
     }
 }

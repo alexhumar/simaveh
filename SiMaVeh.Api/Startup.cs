@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Extensions;
 using SiMaVeh.Api.Model;
-using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess;
 using SiMaVeh.DataAccess.Model;
 using SiMaVeh.Domain;
@@ -25,7 +24,7 @@ namespace SiMaVeh.Api
     public class Startup(IConfiguration configuration)
     {
         private readonly IConfiguration configuration = configuration;
-        private readonly IODataModelBuilder odataModelBuilder = new SiMaVehODataModelBuilder(new EntityTypeGetter());
+        private readonly SiMaVehODataModelBuilder odataModelBuilder = new(new EntityTypeGetter());
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.

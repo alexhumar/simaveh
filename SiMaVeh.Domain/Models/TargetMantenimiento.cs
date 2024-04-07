@@ -30,7 +30,7 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            return obj is TargetMantenimiento item && ((Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper()));
+            return obj is TargetMantenimiento item && ((Id == item.Id) || Nombre.Equals(item.Nombre, System.StringComparison.CurrentCultureIgnoreCase));
         }
 
         /// <summary>

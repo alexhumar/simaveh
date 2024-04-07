@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoCatamarcaFixtureGetter : PartidoFixtureGetter
+    public class PartidoCatamarcaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoCatamarcaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Catamarca).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Catamarca).Id,
+            [
                 datosEntidadBuilder.Build(136, PartidoCatamarca.Ambato),
                 datosEntidadBuilder.Build(137, PartidoCatamarca.Ancasti),
                 datosEntidadBuilder.Build(138, PartidoCatamarca.Andalgala),
@@ -36,7 +29,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(149, PartidoCatamarca.SantaRosa),
                 datosEntidadBuilder.Build(150, PartidoCatamarca.Tinogasta),
                 datosEntidadBuilder.Build(151, PartidoCatamarca.ValleViejo)
-            });
+            ]);
         }
     }
 }

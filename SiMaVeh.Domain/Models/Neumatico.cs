@@ -91,7 +91,7 @@ namespace SiMaVeh.Domain.Models
         public override bool Equals(object obj)
         {
             return obj is Neumatico item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Marca.Equals(Marca) && Modelo.ToUpper() == item.Modelo.ToUpper()));
+                (ReferenceEquals(this, item) || (Id == item.Id) || (Marca.Equals(Marca) && Modelo.Equals(item.Modelo, System.StringComparison.CurrentCultureIgnoreCase)));
         }
 
         /// <summary>

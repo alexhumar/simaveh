@@ -12,7 +12,7 @@ namespace SiMaVeh.Domain.DataSeed.Models
         /// </summary>
         public DatosMarca()
         {
-            Categorias = new List<DatosEntidad>();
+            Categorias = [];
         }
 
         /// <summary>
