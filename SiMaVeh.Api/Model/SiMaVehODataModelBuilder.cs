@@ -7,18 +7,13 @@ using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.Api.Model
 {
-    public class SiMaVehODataModelBuilder : IODataModelBuilder
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="entityTypeGetter"></param>
+    public class SiMaVehODataModelBuilder(IEntityTypeGetter entityTypeGetter) : IODataModelBuilder
     {
-        private readonly IEntityTypeGetter entityTypeGetter;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="entityTypeGetter"></param>
-        public SiMaVehODataModelBuilder(IEntityTypeGetter entityTypeGetter)
-        {
-            this.entityTypeGetter = entityTypeGetter;
-        }
+        private readonly IEntityTypeGetter entityTypeGetter = entityTypeGetter;
 
         public IEdmModel GetEdmModel()
         {

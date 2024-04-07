@@ -21,51 +21,41 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Generic Controller
     /// </summary>
-    public class GenericController<TBe, TBeId> : ODataController where TBe : DomainMember<TBeId>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class GenericController<TBe, TBeId>(IControllerParameter parameters) : ODataController where TBe : DomainMember<TBeId>
     {
         /// <summary>
         /// repository
         /// </summary>
-        protected readonly IRepository<TBe, TBeId> repository;
+        protected readonly IRepository<TBe, TBeId> repository = new Repository<TBe, TBeId>(parameters.Context);
 
         /// <summary>
         /// relatedEntityChanger
         /// </summary>
-        protected readonly IODataRelatedEntityChanger relatedEntityChanger;
+        protected readonly IODataRelatedEntityChanger relatedEntityChanger = parameters.RelatedEntityChanger;
 
         /// <summary>
         /// relatedEntityAdder
         /// </summary>
-        protected readonly IODataRelatedEntityAdder relatedEntityAdder;
+        protected readonly IODataRelatedEntityAdder relatedEntityAdder = parameters.RelatedEntityAdder;
 
         /// <summary>
         /// relatedEntityRemover
         /// </summary>
-        protected readonly IODataRelatedEntityRemover relatedEntityRemover;
+        protected readonly IODataRelatedEntityRemover relatedEntityRemover = parameters.RelatedEntityRemover;
 
         /// <summary>
         /// entityTypeGetter
         /// </summary>
-        protected readonly IEntityTypeGetter entityTypeGetter;
+        protected readonly IEntityTypeGetter entityTypeGetter = parameters.EntityTypeGetter;
 
         /// <summary>
         /// errorsBuilder
         /// </summary>
-        protected readonly IErrorsBuilder errorsBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public GenericController(IControllerParameter parameters)
-        {
-            repository = new Repository<TBe, TBeId>(parameters.Context);
-            relatedEntityChanger = parameters.RelatedEntityChanger;
-            relatedEntityAdder = parameters.RelatedEntityAdder;
-            relatedEntityRemover = parameters.RelatedEntityRemover;
-            entityTypeGetter = parameters.EntityTypeGetter;
-            errorsBuilder = parameters.ErrorsBuilder;
-        }
+        protected readonly IErrorsBuilder errorsBuilder = parameters.ErrorsBuilder;
 
         protected IActionResult ResultFromHttpStatusCode(HttpStatusCode httpStatusCode)
         {
@@ -110,7 +100,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public virtual async Task<SingleResult<TBe>> Get([FromODataUri] TBeId key)
         {
-            IList<TBe> result = new List<TBe>();
+            IList<TBe> result = [];
 
             var entity = await repository.FindAsync(key);
 

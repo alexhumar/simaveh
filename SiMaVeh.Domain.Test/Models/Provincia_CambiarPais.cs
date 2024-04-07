@@ -21,12 +21,12 @@ namespace SiMaVeh.Domain.Test.Models
         {
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
 
-            Assert.IsNull(buenosAires.Pais);
+            Assert.That(buenosAires.Pais, Is.Null);
             Assert.That(argentina.Provincias, !Contains.Item(buenosAires));
 
             buenosAires.Cambiar(argentina);
 
-            Assert.AreSame(buenosAires.Pais, argentina, "El pais de Buenos Aires no fue seteado a Argentina");
+            Assert.That(buenosAires.Pais, Is.EqualTo(argentina), "El pais de Buenos Aires no fue seteado a Argentina");
             Assert.That(argentina.Provincias, Contains.Item(buenosAires));
         }
 
@@ -36,13 +36,13 @@ namespace SiMaVeh.Domain.Test.Models
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
             buenosAires.Cambiar(uruguay);
 
-            Assert.AreEqual(buenosAires.Pais, uruguay);
+            Assert.That(buenosAires.Pais, Is.EqualTo(uruguay));
             Assert.That(uruguay.Provincias, Contains.Item(buenosAires));
             Assert.That(argentina.Provincias, !Contains.Item(buenosAires));
 
             buenosAires.Cambiar(argentina);
 
-            Assert.AreEqual(buenosAires.Pais, argentina);
+            Assert.That(buenosAires.Pais, Is.EqualTo(argentina));
             Assert.That(uruguay.Provincias, !Contains.Item(buenosAires));
             Assert.That(argentina.Provincias, Contains.Item(buenosAires));
         }
@@ -53,14 +53,14 @@ namespace SiMaVeh.Domain.Test.Models
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
             buenosAires.Cambiar(argentina);
 
-            Assert.AreEqual(buenosAires.Pais, argentina);
+            Assert.That(buenosAires.Pais, Is.EqualTo(argentina));
             Assert.That(argentina.Provincias, Contains.Item(buenosAires));
 
             buenosAires.Cambiar(null);
 
-            Assert.IsNull(buenosAires.Pais);
+            Assert.That(buenosAires.Pais, Is.Null);
             Assert.That(argentina.Provincias, !Contains.Item(buenosAires));
-            Assert.IsEmpty(argentina.Provincias);
+            Assert.That(argentina.Provincias, Is.Empty);
         }
     }
 }

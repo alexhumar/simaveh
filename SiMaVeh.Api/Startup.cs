@@ -18,20 +18,14 @@ using SiMaVeh.Domain.BusinessLogic.Entities;
 
 namespace SiMaVeh.Api
 {
-    public class Startup
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="configuration"></param>
+    public class Startup(IConfiguration configuration)
     {
-        private readonly IConfiguration configuration;
-        private readonly IODataModelBuilder odataModelBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="configuration"></param>
-        public Startup(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-            odataModelBuilder = new SiMaVehODataModelBuilder(new EntityTypeGetter());
-        }
+        private readonly IConfiguration configuration = configuration;
+        private readonly IODataModelBuilder odataModelBuilder = new SiMaVehODataModelBuilder(new EntityTypeGetter());
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.

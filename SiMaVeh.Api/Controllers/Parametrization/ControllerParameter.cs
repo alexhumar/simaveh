@@ -9,61 +9,52 @@ namespace SiMaVeh.Api.Controllers.Parametrization
     /// <summary>
     /// Singleton que encapsula los objetos necesarios para inyectar en el GenericController
     /// </summary>
-    public class ControllerParameter : IControllerParameter
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="context"></param>
+    /// <param name="relatedEntityGetter"></param>
+    /// <param name="relatedEntityChanger"></param>
+    /// <param name="relatedEntityAdder"></param>
+    /// <param name="relatedEntityRemover"></param>
+    /// <param name="entityTypeGetter"></param>
+    /// <param name="errorsBuilder"></param>
+    public class ControllerParameter(SiMaVehContext context,
+        IODataRelatedEntityChanger relatedEntityChanger,
+        IODataRelatedEntityAdder relatedEntityAdder,
+        IODataRelatedEntityRemover relatedEntityRemover,
+        IEntityTypeGetter entityTypeGetter,
+        IErrorsBuilder errorsBuilder) : IControllerParameter
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="relatedEntityGetter"></param>
-        /// <param name="relatedEntityChanger"></param>
-        /// <param name="relatedEntityAdder"></param>
-        /// <param name="relatedEntityRemover"></param>
-        /// <param name="entityTypeGetter"></param>
-        /// <param name="errorsBuilder"></param>
-        public ControllerParameter(SiMaVehContext context,
-            IODataRelatedEntityChanger relatedEntityChanger,
-            IODataRelatedEntityAdder relatedEntityAdder,
-            IODataRelatedEntityRemover relatedEntityRemover,
-            IEntityTypeGetter entityTypeGetter,
-            IErrorsBuilder errorsBuilder)
-        {
-            Context = context;
-            RelatedEntityChanger = relatedEntityChanger;
-            RelatedEntityAdder = relatedEntityAdder;
-            RelatedEntityRemover = relatedEntityRemover;
-            EntityTypeGetter = entityTypeGetter;
-            ErrorsBuilder = errorsBuilder;
-        }
 
         /// <summary>
         /// Context
         /// </summary>
-        public SiMaVehContext Context { get; set; }
+        public SiMaVehContext Context { get; set; } = context;
 
         /// <summary>
         /// RelatedEntityChanger
         /// </summary>
-        public IODataRelatedEntityChanger RelatedEntityChanger { get; set; }
+        public IODataRelatedEntityChanger RelatedEntityChanger { get; set; } = relatedEntityChanger;
 
         /// <summary>
         /// RelatedEntityAdder
         /// </summary>
-        public IODataRelatedEntityAdder RelatedEntityAdder { get; set; }
+        public IODataRelatedEntityAdder RelatedEntityAdder { get; set; } = relatedEntityAdder;
 
         /// <summary>
         /// RelatedEntityRemover
         /// </summary>
-        public IODataRelatedEntityRemover RelatedEntityRemover { get; set; }
+        public IODataRelatedEntityRemover RelatedEntityRemover { get; set; } = relatedEntityRemover;
 
         /// <summary>
         /// RelatedEntityGetter
         /// </summary>
-        public IEntityTypeGetter EntityTypeGetter { get; set; }
+        public IEntityTypeGetter EntityTypeGetter { get; set; } = entityTypeGetter;
 
         /// <summary>
         /// ErrorsBuilder
         /// </summary>
-        public IErrorsBuilder ErrorsBuilder { get; set; }
+        public IErrorsBuilder ErrorsBuilder { get; set; } = errorsBuilder;
     }
 }

@@ -19,35 +19,35 @@ namespace SiMaVeh.Domain.Test.Models
         [Test]
         public void AgregarProvincia_BsAsAArgentina_RetornaPaisConProvinciaAgregada()
         {
-            Assert.IsEmpty(argentina.Provincias);
+            Assert.That(argentina.Provincias, Is.Empty);
 
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
 
             argentina.Agregar(buenosAires);
 
             Assert.That(argentina.Provincias, Contains.Item(buenosAires));
-            Assert.AreSame(buenosAires.Pais, argentina);
+            Assert.That(buenosAires.Pais, Is.EqualTo(argentina));
         }
 
         [Test]
         public void AgregarProvincia_BsAsAArgentina_RetornaPaisCambiadoConProvinciaAgregada()
         {
-            Assert.IsEmpty(argentina.Provincias);
-            Assert.IsEmpty(uruguay.Provincias);
+            Assert.That(argentina.Provincias, Is.Empty);
+            Assert.That(uruguay.Provincias, Is.Empty);
 
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
 
             uruguay.Agregar(buenosAires);
 
             Assert.That(uruguay.Provincias, Contains.Item(buenosAires));
-            Assert.AreSame(buenosAires.Pais, uruguay);
-            Assert.IsEmpty(argentina.Provincias);
+            Assert.That(buenosAires.Pais, Is.EqualTo(uruguay));
+            Assert.That(argentina.Provincias, Is.Empty);
 
             argentina.Agregar(buenosAires);
 
             Assert.That(argentina.Provincias, Contains.Item(buenosAires));
-            Assert.AreSame(buenosAires.Pais, argentina);
-            Assert.IsEmpty(uruguay.Provincias);
+            Assert.That(buenosAires.Pais, Is.EqualTo(argentina));
+            Assert.That(uruguay.Provincias, Is.Empty);
         }
     }
 }
