@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Paises Controller
     /// </summary>
-    public class PaisesController : GenericController<Pais, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class PaisesController(IControllerParameter parameters) : GenericController<Pais, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public PaisesController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

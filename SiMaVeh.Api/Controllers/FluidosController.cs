@@ -9,16 +9,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Fluidos Controller
     /// </summary>
-    public class FluidosController : GenericController<Fluido, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class FluidosController(IControllerParameter parameters) : GenericController<Fluido, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public FluidosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

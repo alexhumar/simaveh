@@ -9,16 +9,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Monedas Controller
     /// </summary>
-    public class MonedasController : GenericController<Moneda, string>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class MonedasController(IControllerParameter parameters) : GenericController<Moneda, string>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public MonedasController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

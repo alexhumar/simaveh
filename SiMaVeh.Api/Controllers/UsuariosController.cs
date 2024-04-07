@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Usuarios Controller
     /// </summary>
-    public class UsuariosController : GenericController<Usuario, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class UsuariosController(IControllerParameter parameters) : GenericController<Usuario, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public UsuariosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

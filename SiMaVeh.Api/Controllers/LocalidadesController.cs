@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Localidades Controller
     /// </summary>
-    public class LocalidadesController : GenericController<Localidad, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class LocalidadesController(IControllerParameter parameters) : GenericController<Localidad, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public LocalidadesController(IControllerParameter parameters) :
-            base(parameters)
-        {
-        }
 
         #region properties
 

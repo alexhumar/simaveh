@@ -14,16 +14,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Presiones Neumatico Controller
     /// </summary>
-    public class PresionesNeumaticoController : GenericController<PresionNeumatico, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class PresionesNeumaticoController(IControllerParameter parameters) : GenericController<PresionNeumatico, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public PresionesNeumaticoController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

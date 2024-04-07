@@ -14,16 +14,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Marcas Controller
     /// </summary>
-    public class MarcasController : GenericController<Marca, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class MarcasController(IControllerParameter parameters) : GenericController<Marca, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public MarcasController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

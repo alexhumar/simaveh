@@ -14,16 +14,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Fuentes Energia Controller
     /// </summary>
-    public class FuentesEnergiaController : GenericController<FuenteEnergia, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class FuentesEnergiaController(IControllerParameter parameters) : GenericController<FuenteEnergia, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public FuentesEnergiaController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

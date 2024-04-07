@@ -9,16 +9,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Tipos Documento Controller
     /// </summary>
-    public class TiposDocumentoController : GenericController<TipoDocumento, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class TiposDocumentoController(IControllerParameter parameters) : GenericController<TipoDocumento, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public TiposDocumentoController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

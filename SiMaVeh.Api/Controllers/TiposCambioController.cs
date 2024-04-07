@@ -14,16 +14,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Tipos Cambio Controller
     /// </summary>
-    public class TiposCambioController : GenericController<TipoCambio, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class TiposCambioController(IControllerParameter parameters) : GenericController<TipoCambio, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public TiposCambioController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

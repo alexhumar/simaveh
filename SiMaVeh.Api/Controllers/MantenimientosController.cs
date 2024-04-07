@@ -14,16 +14,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Mentenimientos Controller
     /// </summary>
-    public class MantenimientosController : GenericController<Mantenimiento, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class MantenimientosController(IControllerParameter parameters) : GenericController<Mantenimiento, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public MantenimientosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

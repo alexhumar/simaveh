@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Grupos Modelo Controller
     /// </summary>
-    public class GruposModeloController : GenericController<GrupoModelo, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class GruposModeloController(IControllerParameter parameters) : GenericController<GrupoModelo, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public GruposModeloController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

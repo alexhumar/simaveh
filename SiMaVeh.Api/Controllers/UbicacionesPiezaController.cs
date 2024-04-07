@@ -9,16 +9,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Ubicacion Pieza Controller
     /// </summary>
-    public class UbicacionesPiezaController : GenericController<UbicacionPieza, string>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class UbicacionesPiezaController(IControllerParameter parameters) : GenericController<UbicacionPieza, string>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public UbicacionesPiezaController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

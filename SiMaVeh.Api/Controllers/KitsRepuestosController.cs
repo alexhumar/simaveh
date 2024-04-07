@@ -14,16 +14,12 @@ namespace SiMaVeh.Api.Controllers
     /// Kits Repuestos Controller
     /// NOTA: si lo denomino KitsController, no funciona la ruta.
     /// </summary>
-    public class KitsRepuestosController : GenericController<Kit, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class KitsRepuestosController(IControllerParameter parameters) : GenericController<Kit, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public KitsRepuestosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

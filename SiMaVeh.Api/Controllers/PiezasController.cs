@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Piezas Controller
     /// </summary>
-    public class PiezasController : GenericController<Pieza, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class PiezasController(IControllerParameter parameters) : GenericController<Pieza, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public PiezasController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

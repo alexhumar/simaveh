@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Entidades Reparadoras Controller
     /// </summary>
-    public class EntidadesReparadorasController : GenericController<EntidadReparadora, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class EntidadesReparadorasController(IControllerParameter parameters) : GenericController<EntidadReparadora, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public EntidadesReparadorasController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

@@ -9,16 +9,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Equipamientos Airbags Controller
     /// </summary>
-    public class EquipamientosAirbagsController : GenericController<EquipamientoAirbags, string>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class EquipamientosAirbagsController(IControllerParameter parameters) : GenericController<EquipamientoAirbags, string>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public EquipamientosAirbagsController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

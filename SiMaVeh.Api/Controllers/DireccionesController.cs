@@ -12,16 +12,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Direcciones Controller
     /// </summary>
-    public class DireccionesController : GenericController<Direccion, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class DireccionesController(IControllerParameter parameters) : GenericController<Direccion, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public DireccionesController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

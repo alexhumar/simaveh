@@ -10,18 +10,13 @@ namespace SiMaVeh.Api.Utils
     /// <summary>
     /// UriParser
     /// </summary>
-    public class UriParser : IUriParser
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="odataModelBuilder"></param>
+    public class UriParser(IODataModelBuilder odataModelBuilder) : IUriParser
     {
-        private readonly IODataModelBuilder odataModelBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="odataModelBuilder"></param>
-        public UriParser(IODataModelBuilder odataModelBuilder)
-        {
-            this.odataModelBuilder = odataModelBuilder;
-        }
+        private readonly IODataModelBuilder odataModelBuilder = odataModelBuilder;
 
         /// <summary>
         /// GetKeyFromRelatedEntityUri

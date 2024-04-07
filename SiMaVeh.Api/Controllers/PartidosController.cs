@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Partidos Controller
     /// </summary>
-    public class PartidosController : GenericController<Partido, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class PartidosController(IControllerParameter parameters) : GenericController<Partido, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public PartidosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

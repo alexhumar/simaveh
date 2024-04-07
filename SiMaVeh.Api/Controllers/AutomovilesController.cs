@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Automoviles Controller
     /// </summary>
-    public class AutomovilesController : GenericController<Automovil, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class AutomovilesController(IControllerParameter parameters) : GenericController<Automovil, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public AutomovilesController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

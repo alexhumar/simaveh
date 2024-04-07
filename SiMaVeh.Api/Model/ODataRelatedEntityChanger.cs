@@ -13,24 +13,18 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// ODataRelatedEntityChanger
     /// </summary>
-    public class ODataRelatedEntityChanger : IODataRelatedEntityChanger
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="uriParser"></param>
+    /// <param name="relatedEntityChanger"></param>
+    public class ODataRelatedEntityChanger(IUriParser uriParser,
+        IRelatedEntityChanger relatedEntityChanger) : IODataRelatedEntityChanger
     {
         //TODO: mejorar la implementacion de estos metodos. Sobre todo los de tipo cambio.
 
-        private readonly IUriParser uriParser;
-        private readonly IRelatedEntityChanger relatedEntityChanger;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="uriParser"></param>
-        /// <param name="relatedEntityChanger"></param>
-        public ODataRelatedEntityChanger(IUriParser uriParser,
-            IRelatedEntityChanger relatedEntityChanger)
-        {
-            this.uriParser = uriParser;
-            this.relatedEntityChanger = relatedEntityChanger;
-        }
+        private readonly IUriParser uriParser = uriParser;
+        private readonly IRelatedEntityChanger relatedEntityChanger = relatedEntityChanger;
 
         /// <summary>
         /// TryChangeRelatedEntity

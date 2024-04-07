@@ -11,18 +11,13 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// ODataRelatedEntityRemover
     /// </summary>
-    public class ODataRelatedEntityRemover : IODataRelatedEntityRemover
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="relatedEntityRemover"></param>
+    public class ODataRelatedEntityRemover(IRelatedEntityRemover relatedEntityRemover) : IODataRelatedEntityRemover
     {
-        private readonly IRelatedEntityRemover relatedEntityRemover;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="relatedEntityRemover"></param>
-        public ODataRelatedEntityRemover(IRelatedEntityRemover relatedEntityRemover)
-        {
-            this.relatedEntityRemover = relatedEntityRemover;
-        }
+        private readonly IRelatedEntityRemover relatedEntityRemover = relatedEntityRemover;
 
         /// <summary>
         /// TryRemoveRelatedEntityAsync

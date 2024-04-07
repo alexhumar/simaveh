@@ -14,16 +14,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Aceites Controller
     /// </summary>
-    public class AceitesController : GenericController<Aceite, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class AceitesController(IControllerParameter parameters) : GenericController<Aceite, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public AceitesController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

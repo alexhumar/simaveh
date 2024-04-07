@@ -13,16 +13,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Telefonos Controller
     /// </summary>
-    public class TelefonosController : GenericController<Telefono, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class TelefonosController(IControllerParameter parameters) : GenericController<Telefono, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public TelefonosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 

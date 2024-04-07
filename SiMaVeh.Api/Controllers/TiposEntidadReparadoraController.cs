@@ -9,16 +9,12 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Tipos Entidad Reparadora Controller
     /// </summary>
-    public class TiposEntidadReparadoraController : GenericController<TipoEntidadReparadora, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    public class TiposEntidadReparadoraController(IControllerParameter parameters) : GenericController<TipoEntidadReparadora, long>(parameters)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public TiposEntidadReparadoraController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
