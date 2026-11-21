@@ -2,6 +2,7 @@
 using SiMaVeh.DataAccess.DataSeed.Seeders;
 using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
 using SiMaVeh.DataAccess.Model.Relations;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 
 namespace SiMaVeh.DataAccess
@@ -26,8 +27,8 @@ namespace SiMaVeh.DataAccess
             For<ISeeder<MarcaCategoriaMarca>>().Use<MarcaCategoriaMarcaSeeder>();
             For<IDomainSeeder<FuenteEnergia, long>>().Use<FuenteEnergiaSeeder>();
 
-            //Para inyectar repositorios hay que registrar cada uno de los tipos del modelo.
-            //For<IRepository<Localidad, long>>().Use<Repository<Localidad, long>>();
+            //Registro generico abierto: resuelve IRepository<TBe, TBeId> para cualquier entidad del modelo.
+            For(typeof(IRepository<,>)).Use(typeof(Repository<,>));
 
             Scan(s =>
             {

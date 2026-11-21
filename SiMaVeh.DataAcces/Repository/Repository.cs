@@ -1,129 +1,61 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SiMaVeh.DataAccess.Model;
+﻿using SiMaVeh.DataAccess.Model;
 using SiMaVeh.Domain.Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.DataAccess.Repository
 {
     /// <summary>
-    /// Repository
+    /// Implementacion de IRepository sobre EF Core.
     /// </summary>
     /// <typeparam name="TBe"></typeparam>
     /// <typeparam name="TBeId"></typeparam>
-    /// <remarks>
-    /// Constructor
-    /// </remarks>
     /// <param name="context"></param>
     public class Repository<TBe, TBeId>(SiMaVehContext context) : IRepository<TBe, TBeId> where TBe : DomainMember<TBeId>
     {
         private readonly SiMaVehContext context = context;
 
-        /// <summary>
-        /// GetAllAsync
-        /// </summary>
-        /// <returns></returns>
-        public async Task<IEnumerable<TBe>> GetAllAsync()
+        /// <inheritdoc/>
+        public async Task<int> AddAsync(TBe element)
         {
-            return await context.Set<TBe>().ToListAsync();
-        }
-
-        /// <summary>
-        /// AddAsync
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public async Task<int> AddAsync(TBe item)
-        {
-            context.Set<TBe>().Add(item);
+            context.Set<TBe>().Add(element);
 
             return await SaveChangesAsync();
         }
 
-        /// <summary>
-        /// FindAsync
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
+        public IQueryable<TBe> GetQueryable()
+        {
+            return context.Set<TBe>();
+        }
+
+        /// <inheritdoc/>
         public async Task<TBe> FindAsync(TBeId key)
         {
             return await context.Set<TBe>().FindAsync(key);
         }
 
-        /// <summary>
-        /// RemoveAsync
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public async Task<int> RemoveAsync(TBeId key)
+        /// <inheritdoc/>
+        public async Task<int> RemoveAsync(TBe element)
         {
-            var entity = await FindAsync(key);
-            context.Set<TBe>().Remove(entity);
+            context.Set<TBe>().Remove(element);
 
             return await SaveChangesAsync();
         }
 
-        /// <summary>
-        /// RemoveAsync
-        /// </summary>
-        /// <param name="elem"></param>
-        /// <returns></returns>
-        public async Task<int> RemoveAsync(TBe elem)
+        /// <inheritdoc/>
+        public async Task<int> UpdateAsync(TBe element)
         {
-            context.Set<TBe>().Remove(elem);
-
-            return await SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// UpdateAsync
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public async Task<int> UpdateAsync(TBe item)
-        {
-            var entity = await FindAsync((TBeId)item.GetType().GetProperty("Id").GetValue(item));
+            var entity = await FindAsync(element.Id);
             if (entity != null)
             {
-                Entry(entity).CurrentValues.SetValues(item);
+                context.Entry(entity).CurrentValues.SetValues(element);
             }
 
             return await SaveChangesAsync();
         }
 
-        /// <summary>
-        /// GetCollectionAsync
-        /// </summary>
-        /// <returns></returns>
-        public async Task<IQueryable<TBe>> GetCollectionAsync()
-        {
-            return await Task.Run(() => context.Set<TBe>().AsQueryable());
-        }
-
-        /// <summary>
-        /// DisposeAsync
-        /// </summary>
-        public async Task DisposeAsync()
-        {
-            await context.DisposeAsync();
-        }
-
-        /// <summary>
-        /// Entry
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public EntityEntry<TBe> Entry(TBe element)
-        {
-            return context.Entry(element);
-        }
-
-        /// <summary>
-        /// SaveChangesAsync
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public Task<int> SaveChangesAsync()
         {
             return context.SaveChangesAsync();

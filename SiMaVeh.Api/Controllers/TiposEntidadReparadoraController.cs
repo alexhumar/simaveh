@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System.Threading.Tasks;
 
@@ -13,7 +14,8 @@ namespace SiMaVeh.Api.Controllers
     /// Constructor
     /// </remarks>
     /// <param name="parameters"></param>
-    public class TiposEntidadReparadoraController(IControllerParameter parameters) : GenericController<TipoEntidadReparadora, long>(parameters)
+    /// <param name="repository"></param>
+    public class TiposEntidadReparadoraController(IControllerParameter parameters, IRepository<TipoEntidadReparadora, long> repository) : GenericController<TipoEntidadReparadora, long>(parameters, repository)
     {
 
         #region properties

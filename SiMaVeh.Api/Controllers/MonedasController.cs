@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System.Threading.Tasks;
 
@@ -13,7 +14,8 @@ namespace SiMaVeh.Api.Controllers
     /// Constructor
     /// </remarks>
     /// <param name="parameters"></param>
-    public class MonedasController(IControllerParameter parameters) : GenericController<Moneda, string>(parameters)
+    /// <param name="repository"></param>
+    public class MonedasController(IControllerParameter parameters, IRepository<Moneda, string> repository) : GenericController<Moneda, string>(parameters, repository)
     {
 
         #region properties

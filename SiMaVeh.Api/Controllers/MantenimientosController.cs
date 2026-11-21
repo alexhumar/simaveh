@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -18,7 +19,8 @@ namespace SiMaVeh.Api.Controllers
     /// Constructor
     /// </remarks>
     /// <param name="parameters"></param>
-    public class MantenimientosController(IControllerParameter parameters) : GenericController<Mantenimiento, long>(parameters)
+    /// <param name="repository"></param>
+    public class MantenimientosController(IControllerParameter parameters, IRepository<Mantenimiento, long> repository) : GenericController<Mantenimiento, long>(parameters, repository)
     {
 
         #region properties

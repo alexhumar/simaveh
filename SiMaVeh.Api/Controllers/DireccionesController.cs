@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.OData.Formatter;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -16,7 +17,8 @@ namespace SiMaVeh.Api.Controllers
     /// Constructor
     /// </remarks>
     /// <param name="parameters"></param>
-    public class DireccionesController(IControllerParameter parameters) : GenericController<Direccion, long>(parameters)
+    /// <param name="repository"></param>
+    public class DireccionesController(IControllerParameter parameters, IRepository<Direccion, long> repository) : GenericController<Direccion, long>(parameters, repository)
     {
 
         #region properties

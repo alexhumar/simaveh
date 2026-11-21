@@ -25,12 +25,13 @@ namespace SiMaVeh.Api.Controllers
     /// Constructor
     /// </remarks>
     /// <param name="parameters"></param>
-    public class GenericController<TBe, TBeId>(IControllerParameter parameters) : ODataController where TBe : DomainMember<TBeId>
+    /// <param name="repository"></param>
+    public class GenericController<TBe, TBeId>(IControllerParameter parameters, IRepository<TBe, TBeId> repository) : ODataController where TBe : DomainMember<TBeId>
     {
         /// <summary>
         /// repository
         /// </summary>
-        protected readonly IRepository<TBe, TBeId> repository = new Repository<TBe, TBeId>(parameters.Context);
+        protected readonly IRepository<TBe, TBeId> repository = repository;
 
         /// <summary>
         /// relatedEntityChanger
@@ -86,9 +87,9 @@ namespace SiMaVeh.Api.Controllers
         /// <returns>Lista de entidades</returns>
         /// <response code="200"></response>
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
-        public virtual async Task<IQueryable<TBe>> Get()
+        public virtual IQueryable<TBe> Get()
         {
-            return await repository.GetCollectionAsync();
+            return repository.GetQueryable();
         }
 
         /// <summary>

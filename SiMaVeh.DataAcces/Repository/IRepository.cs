@@ -1,80 +1,54 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Collections.Generic;
+﻿using SiMaVeh.Domain.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SiMaVeh.DataAccess.Repository
 {
     /// <summary>
-    /// IRepository
+    /// Repositorio generico de entidades de dominio.
     /// </summary>
     /// <typeparam name="TBe"></typeparam>
     /// <typeparam name="TBeId"></typeparam>
-    public interface IRepository<TBe, TBeId> where TBe : class
+    public interface IRepository<TBe, TBeId> where TBe : DomainMember<TBeId>
     {
         /// <summary>
-        /// Add async
+        /// Agrega una entidad y persiste los cambios.
         /// </summary>
         /// <param name="element"></param>
-        /// <returns></returns>
+        /// <returns>Cantidad de registros afectados</returns>
         Task<int> AddAsync(TBe element);
 
         /// <summary>
-        /// GetAllAsync
+        /// Obtiene la coleccion de entidades como IQueryable, para que OData aplique sus opciones de consulta.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<TBe>> GetAllAsync();
+        IQueryable<TBe> GetQueryable();
 
         /// <summary>
-        /// GetCollection
-        /// </summary>
-        /// <returns></returns>
-        Task<IQueryable<TBe>> GetCollectionAsync();
-
-        /// <summary>
-        /// FindAsync
+        /// Busca una entidad por su key.
         /// </summary>
         /// <param name="key"></param>
-        /// <returns></returns>
+        /// <returns>La entidad o null</returns>
         Task<TBe> FindAsync(TBeId key);
 
         /// <summary>
-        /// RemoveAsync
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        Task<int> RemoveAsync(TBeId key);
-
-        /// <summary>
-        /// RemoveAsync
-        /// </summary>
-        /// <param name="elem"></param>
-        /// <returns></returns>
-        Task<int> RemoveAsync(TBe elem);
-
-        /// <summary>
-        /// UpdateAsync
+        /// Elimina una entidad y persiste los cambios.
         /// </summary>
         /// <param name="element"></param>
-        /// <returns></returns>
+        /// <returns>Cantidad de registros afectados</returns>
+        Task<int> RemoveAsync(TBe element);
+
+        /// <summary>
+        /// Actualiza los valores de una entidad existente y persiste los cambios.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>Cantidad de registros afectados</returns>
         Task<int> UpdateAsync(TBe element);
 
         /// <summary>
-        /// DisposeAsync
+        /// Persiste los cambios pendientes.
         /// </summary>
-        Task DisposeAsync();
-
-        /// <summary>
-        /// Entry
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        EntityEntry<TBe> Entry(TBe element);
-
-        /// <summary>
-        /// SaveChangesASync
-        /// </summary>
-        /// <returns></returns>
+        /// <returns>Cantidad de registros afectados</returns>
         Task<int> SaveChangesAsync();
     }
 }
