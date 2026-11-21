@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixtureTipoEntidadReparadora"></param>
-    public class TipoEntidadReparadoraSeeder(IFixtureTipoEntidadReparadora fixtureTipoEntidadReparadora) : IDomainSeeder<TipoEntidadReparadora, long>
+    public class TipoEntidadReparadoraSeeder(IFixtureTipoEntidadReparadora fixtureTipoEntidadReparadora) : SeederBase<TipoEntidadReparadora>
     {
         private readonly IFixtureTipoEntidadReparadora fixtureTipoEntidadReparadora = fixtureTipoEntidadReparadora;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera los tipos de entidad reparadora default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             return fixtureTipoEntidadReparadora.GetTiposEntidadReparadora().Select(tipoEntidadReparadoraFixture => new
             {

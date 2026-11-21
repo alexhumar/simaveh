@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.FuenteEnergia.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixtureFuenteEnergia"></param>
-    public class FuenteEnergiaSeeder(IFixtureFuenteEnergia fixtureFuenteEnergia) : IDomainSeeder<FuenteEnergia, long>
+    public class FuenteEnergiaSeeder(IFixtureFuenteEnergia fixtureFuenteEnergia) : SeederBase<FuenteEnergia>
     {
         private readonly IFixtureFuenteEnergia fixtureFuenteEnergia = fixtureFuenteEnergia;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera las fuentes de energia default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             return fixtureFuenteEnergia.GetFuentesEnergia().Select(fuenteEnergiaFixture => new
             {

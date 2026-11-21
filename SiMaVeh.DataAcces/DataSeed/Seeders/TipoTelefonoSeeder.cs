@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixtureTipoTelefono"></param>
-    public class TipoTelefonoSeeder(IFixtureTipoTelefono fixtureTipoTelefono) : IDomainSeeder<TipoTelefono, long>
+    public class TipoTelefonoSeeder(IFixtureTipoTelefono fixtureTipoTelefono) : SeederBase<TipoTelefono>
     {
         private readonly IFixtureTipoTelefono fixtureTipoTelefono = fixtureTipoTelefono;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera los tipos de telefono default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             return fixtureTipoTelefono.GetTiposTelefono().Select(tipoTelefonoFixture => new
             {

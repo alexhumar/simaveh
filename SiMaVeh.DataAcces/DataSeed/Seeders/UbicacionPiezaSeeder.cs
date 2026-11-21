@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixtureUbicacionPieza"></param>
-    public class UbicacionPiezaSeeder(IFixtureUbicacionPieza fixtureUbicacionPieza) : IDomainSeeder<UbicacionPieza, string>
+    public class UbicacionPiezaSeeder(IFixtureUbicacionPieza fixtureUbicacionPieza) : SeederBase<UbicacionPieza>
     {
         private readonly IFixtureUbicacionPieza fixtureUbicacionPieza = fixtureUbicacionPieza;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera las ubicaciones de pieza default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             return fixtureUbicacionPieza.GetUbicacionesPieza().Select(ubicacionPiezaFixture => new
             {

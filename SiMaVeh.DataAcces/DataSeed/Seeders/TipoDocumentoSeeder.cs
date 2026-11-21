@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.TipoDocumento.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixtureTipoDocumento"></param>
-    public class TipoDocumentoSeeder(IFixtureTipoDocumento fixtureTipoDocumento) : IDomainSeeder<TipoDocumento, long>
+    public class TipoDocumentoSeeder(IFixtureTipoDocumento fixtureTipoDocumento) : SeederBase<TipoDocumento>
     {
         private readonly IFixtureTipoDocumento fixtureTipoDocumento = fixtureTipoDocumento;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera los tipos de documento default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             return fixtureTipoDocumento.GetTiposDocumento().Select(tipoDocumentoFixture => new
             {

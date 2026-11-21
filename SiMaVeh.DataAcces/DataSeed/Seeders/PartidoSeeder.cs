@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixturePartido"></param>
-    public class PartidoSeeder(IFixturePartido fixturePartido) : IDomainSeeder<Partido, long>
+    public class PartidoSeeder(IFixturePartido fixturePartido) : SeederBase<Partido>
     {
         private readonly IFixturePartido fixturePartido = fixturePartido;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera los Partidos default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             var result = new List<object>();
 

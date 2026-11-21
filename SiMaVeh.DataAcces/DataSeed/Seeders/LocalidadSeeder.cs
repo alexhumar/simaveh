@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixtureLocalidad"></param>
-    public class LocalidadSeeder(IFixtureLocalidad fixtureLocalidad) : IDomainSeeder<Localidad, long>
+    public class LocalidadSeeder(IFixtureLocalidad fixtureLocalidad) : SeederBase<Localidad>
     {
         private readonly IFixtureLocalidad fixtureLocalidad = fixtureLocalidad;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera las localidades default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             var result = new List<object>();
 

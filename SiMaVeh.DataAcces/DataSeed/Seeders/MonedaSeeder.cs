@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Moneda.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Moneda.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixtureMoneda"></param>
-    public class MonedaSeeder(IFixtureMoneda fixtureMoneda) : IDomainSeeder<Moneda, string>
+    public class MonedaSeeder(IFixtureMoneda fixtureMoneda) : SeederBase<Moneda>
     {
         private readonly IFixtureMoneda fixtureMoneda = fixtureMoneda;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera las monedas default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             return fixtureMoneda.GetMonedas().Select(monedaFixture => new
             {

@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.DataAccess.Model.Relations;
+﻿using SiMaVeh.DataAccess.Model.Relations;
 using SiMaVeh.Domain.DataSeed.Fixtures.Marca.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// Constructor
     /// </remarks>
     /// <param name="fixtureMarca"></param>
-    public class MarcaCategoriaMarcaSeeder(IFixtureMarca fixtureMarca) : ISeeder<MarcaCategoriaMarca>
+    public class MarcaCategoriaMarcaSeeder(IFixtureMarca fixtureMarca) : SeederBase<MarcaCategoriaMarca>
     {
         private readonly IFixtureMarca fixtureMarca = fixtureMarca;
 
@@ -21,7 +20,7 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
         /// Genera las marcas default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             return fixtureMarca.GetMarcas().SelectMany(marcaFixture => marcaFixture.Categorias.Select(categoria => new
             {
