@@ -30,303 +30,76 @@ namespace SiMaVeh.Api.Model
 
             var builder = new ODataConventionModelBuilder();
 
-            builder.EntitySet<Aceite>(entityTypeGetter.GetCollectionNameAsString<Aceite, long>());
-            builder.EntityType<Aceite>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Automovil>(entityTypeGetter.GetCollectionNameAsString<Automovil, long>());
-            builder.EntityType<Automovil>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
+            Registrar<Aceite, long>(builder, conExpand: false);
+            Registrar<Automovil, long>(builder);
 
             //NOTA: para acceder a la propiedad Marcas de CategoriaMarca, la invocacion es: CategoriasMarca([Id])/Marcas,
             //y, debido al Expand, se puede acceder asi: CategoriasMarca([Id])?$expand=Marcas
-            builder.EntitySet<CategoriaMarca>(entityTypeGetter.GetCollectionNameAsString<CategoriaMarca, long>());
-            builder.EntityType<CategoriaMarca>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Direccion>(entityTypeGetter.GetCollectionNameAsString<Direccion, long>());
-            builder.EntityType<Direccion>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<EntidadReparadora>(entityTypeGetter.GetCollectionNameAsString<EntidadReparadora, long>());
-            builder.EntityType<EntidadReparadora>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<EquipamientoAirbags>(entityTypeGetter.GetCollectionNameAsString<EquipamientoAirbags, string>());
-            builder.EntityType<EquipamientoAirbags>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Fluido>(entityTypeGetter.GetCollectionNameAsString<Fluido, long>());
-            builder.EntityType<Fluido>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<FuenteEnergia>(entityTypeGetter.GetCollectionNameAsString<FuenteEnergia, long>());
-            builder.EntityType<FuenteEnergia>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<GrupoModelo>(entityTypeGetter.GetCollectionNameAsString<GrupoModelo, long>());
-            builder.EntityType<GrupoModelo>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Kit>(entityTypeGetter.GetCollectionNameAsString<Kit, long>());
-            builder.EntityType<Kit>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Localidad>(entityTypeGetter.GetCollectionNameAsString<Localidad, long>());
-            builder.EntityType<Localidad>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Mantenimiento>(entityTypeGetter.GetCollectionNameAsString<Mantenimiento, long>());
-            builder.EntityType<Mantenimiento>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Marca>(entityTypeGetter.GetCollectionNameAsString<Marca, long>());
-            builder.EntityType<Marca>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<ModeloVehiculo>(entityTypeGetter.GetCollectionNameAsString<ModeloVehiculo, long>());
-            builder.EntityType<ModeloVehiculo>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Moneda>(entityTypeGetter.GetCollectionNameAsString<Moneda, string>());
-            builder.EntityType<Moneda>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Neumatico>(entityTypeGetter.GetCollectionNameAsString<Neumatico, long>());
-            builder.EntityType<Neumatico>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Pais>(entityTypeGetter.GetCollectionNameAsString<Pais, long>());
-            builder.EntityType<Pais>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Partido>(entityTypeGetter.GetCollectionNameAsString<Partido, long>());
-            builder.EntityType<Partido>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<PeriodicidadMantenimiento>(entityTypeGetter.GetCollectionNameAsString<PeriodicidadMantenimiento, long>());
-            builder.EntityType<PeriodicidadMantenimiento>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Pieza>(entityTypeGetter.GetCollectionNameAsString<Pieza, long>());
-            builder.EntityType<Pieza>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<PresionNeumatico>(entityTypeGetter.GetCollectionNameAsString<PresionNeumatico, long>());
-            builder.EntityType<PresionNeumatico>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Provincia>(entityTypeGetter.GetCollectionNameAsString<Provincia, long>());
-            builder.EntityType<Provincia>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
+            Registrar<CategoriaMarca, long>(builder);
+            Registrar<Direccion, long>(builder);
+            Registrar<EntidadReparadora, long>(builder);
+            Registrar<EquipamientoAirbags, string>(builder, conExpand: false);
+            Registrar<Fluido, long>(builder, conExpand: false);
+            Registrar<FuenteEnergia, long>(builder);
+            Registrar<GrupoModelo, long>(builder);
+            Registrar<Kit, long>(builder);
+            Registrar<Localidad, long>(builder);
+            Registrar<Mantenimiento, long>(builder);
+            Registrar<Marca, long>(builder);
+            Registrar<ModeloVehiculo, long>(builder);
+            Registrar<Moneda, string>(builder, conExpand: false);
+            Registrar<Neumatico, long>(builder);
+            Registrar<Pais, long>(builder);
+            Registrar<Partido, long>(builder);
+            Registrar<PeriodicidadMantenimiento, long>(builder);
+            Registrar<Pieza, long>(builder);
+            Registrar<PresionNeumatico, long>(builder);
+            Registrar<Provincia, long>(builder);
 
             builder.EntityType<Recambio>()
                 .Abstract();
 
-            builder.EntitySet<Reparador>(entityTypeGetter.GetCollectionNameAsString<Reparador, long>());
-            builder.EntityType<Reparador>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Repuesto>(entityTypeGetter.GetCollectionNameAsString<Repuesto, long>());
-            builder.EntityType<Repuesto>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<ServicioReparador>(entityTypeGetter.GetCollectionNameAsString<ServicioReparador, long>());
-            builder.EntityType<ServicioReparador>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Telefono>(entityTypeGetter.GetCollectionNameAsString<Telefono, long>());
-            builder.EntityType<Telefono>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<TipoCambio>(entityTypeGetter.GetCollectionNameAsString<TipoCambio, long>());
-            builder.EntityType<TipoCambio>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<TipoDocumento>(entityTypeGetter.GetCollectionNameAsString<TipoDocumento, long>());
-            builder.EntityType<TipoDocumento>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<TipoEntidadReparadora>(entityTypeGetter.GetCollectionNameAsString<TipoEntidadReparadora, long>());
-            builder.EntityType<TipoEntidadReparadora>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<TipoFuenteEnergia>(entityTypeGetter.GetCollectionNameAsString<TipoFuenteEnergia, long>());
-            builder.EntityType<TipoFuenteEnergia>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<TipoTelefono>(entityTypeGetter.GetCollectionNameAsString<TipoTelefono, long>());
-            builder.EntityType<TipoTelefono>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<UbicacionPieza>(entityTypeGetter.GetCollectionNameAsString<UbicacionPieza, string>());
-            builder.EntityType<UbicacionPieza>()
-                .Count()
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
-
-            builder.EntitySet<Usuario>(entityTypeGetter.GetCollectionNameAsString<Usuario, long>());
-            builder.EntityType<Usuario>()
-                .Count()
-                .Expand(ODataQueryConstants.MaxDepthNav)
-                .Filter()
-                .OrderBy()
-                .Page()
-                .Select();
+            Registrar<Reparador, long>(builder);
+            Registrar<Repuesto, long>(builder);
+            Registrar<ServicioReparador, long>(builder);
+            Registrar<Telefono, long>(builder);
+            Registrar<TipoCambio, long>(builder);
+            Registrar<TipoDocumento, long>(builder, conExpand: false);
+            Registrar<TipoEntidadReparadora, long>(builder, conExpand: false);
+            Registrar<TipoFuenteEnergia, long>(builder, conExpand: false);
+            Registrar<TipoTelefono, long>(builder, conExpand: false);
+            Registrar<UbicacionPieza, string>(builder, conExpand: false);
+            Registrar<Usuario, long>(builder);
 
             builder.EntityType<Vehiculo>()
                 .Abstract();
 
             return builder.GetEdmModel();
+        }
+
+        /// <summary>
+        /// Declara el EntitySet de la entidad y habilita las opciones de consulta comunes
+        /// ($count, $filter, $orderby, paginado y $select, mas $expand cuando corresponde).
+        /// </summary>
+        /// <typeparam name="TBe"></typeparam>
+        /// <typeparam name="TBeId"></typeparam>
+        /// <param name="builder"></param>
+        /// <param name="conExpand">Si se habilita $expand (hasta ODataQueryConstants.MaxDepthNav niveles)</param>
+        private void Registrar<TBe, TBeId>(ODataConventionModelBuilder builder, bool conExpand = true) where TBe : DomainMember<TBeId>
+        {
+            builder.EntitySet<TBe>(entityTypeGetter.GetCollectionNameAsString<TBe, TBeId>());
+
+            var entityType = builder.EntityType<TBe>()
+                .Count()
+                .Filter()
+                .OrderBy()
+                .Page()
+                .Select();
+
+            if (conExpand)
+            {
+                entityType.Expand(ODataQueryConstants.MaxDepthNav);
+            }
         }
     }
 }

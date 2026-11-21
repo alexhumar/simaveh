@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OData.Edm;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Extensions;
 using SiMaVeh.Api.Model;
@@ -32,6 +33,10 @@ namespace SiMaVeh.Api
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            //El modelo EDM se construye una sola vez y se comparte entre el ruteo OData y el resto de la aplicacion (ej: UriParser).
+            var edmModel = odataModelBuilder.GetEdmModel();
+            services.AddSingleton<IEdmModel>(edmModel);
+
             var connection = configuration.GetConnectionString("DefaultConnection");
             services
                 .AddDbContext<SiMaVehContext>(options => options
@@ -52,7 +57,7 @@ namespace SiMaVeh.Api
 
                 //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
                 mvcOptions.EnableEndpointRouting = false;
-            }).AddOData(opt => opt.AddRouteComponents(UriConstants.PrefijoRutaOData, odataModelBuilder.GetEdmModel()));
+            }).AddOData(opt => opt.AddRouteComponents(UriConstants.PrefijoRutaOData, edmModel));
 
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
         }
