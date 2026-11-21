@@ -49,26 +49,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat(Superior ? "(Superior, " : "(Inferior, ", Izquierda ? "Izquierda)" : "Derecha)");
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is UbicacionPieza item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Izquierda == item.Izquierda && Superior == item.Superior));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(UbicacionPieza).FullName, Id).GetHashCode();
-        }
-
         #endregion
     }
 }

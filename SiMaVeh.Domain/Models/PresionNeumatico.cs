@@ -60,26 +60,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ") ", RecomendacionesModeloVehiculo?.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is PresionNeumatico item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Neumatico.Equals(item.Neumatico) && RecomendacionesModeloVehiculo.Equals(item.RecomendacionesModeloVehiculo) && VehiculoCargado == item.VehiculoCargado));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(PresionNeumatico).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger

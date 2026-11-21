@@ -40,10 +40,6 @@ namespace SiMaVeh.Domain.Test.Models.Relaciones
 
         private static List<object> Elementos(Caso c, object duenio) => c.Coleccion(duenio).Cast<object>().ToList();
 
-        //Se compara por referencia: algunos Equals del dominio lanzan NullReferenceException al comparar
-        //contra entidades sin sus navegaciones cargadas (ver IgualdadTests).
-        private static bool Contiene(Caso c, object duenio, object elemento) => Elementos(c, duenio).Any(e => ReferenceEquals(e, elemento));
-
         [Theory]
         [MemberData(nameof(Casos))]
         public void Agregar_Elemento_LoIncorporaYDevuelveElDuenio(string caso)
@@ -55,7 +51,7 @@ namespace SiMaVeh.Domain.Test.Models.Relaciones
             var resultado = c.Agregar(duenio, elemento);
 
             Assert.Same(duenio, resultado);
-            Assert.True(Contiene(c, duenio, elemento));
+            Assert.Contains(elemento, Elementos(c, duenio));
         }
 
         [Theory]
@@ -112,8 +108,8 @@ namespace SiMaVeh.Domain.Test.Models.Relaciones
             var resultado = c.Quitar(duenio, elemento);
 
             Assert.Same(duenio, resultado);
-            Assert.False(Contiene(c, duenio, elemento));
-            Assert.True(Contiene(c, duenio, otro));
+            Assert.DoesNotContain(elemento, Elementos(c, duenio));
+            Assert.Contains(otro, Elementos(c, duenio));
         }
 
         [Theory]

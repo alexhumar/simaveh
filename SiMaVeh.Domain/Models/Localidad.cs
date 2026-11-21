@@ -36,26 +36,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat(Nombre, cpa, Partido?.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Localidad item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (CPA == item.CPA) || (Nombre == item.Nombre && Partido.Equals(item.Partido)));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Localidad).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger

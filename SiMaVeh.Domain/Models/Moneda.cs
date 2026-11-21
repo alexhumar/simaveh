@@ -21,25 +21,6 @@
             return Nombre;
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Moneda item && (ReferenceEquals(this, item) || (Id == item.Id) || Nombre.Equals(item.Nombre, System.StringComparison.CurrentCultureIgnoreCase));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Moneda).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
     }
 }

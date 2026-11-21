@@ -59,26 +59,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat("(", CodigoIdentificador, ") ", TargetMantenimiento?.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Repuesto item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (CodigoIdentificador == item.CodigoIdentificador && TargetMantenimiento.Equals(item.TargetMantenimiento)));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Repuesto).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger
@@ -162,7 +142,7 @@ namespace SiMaVeh.Domain.Models
             if ((entity != null) && PeriodicidadesMantenimiento.Contains(entity))
             {
                 PeriodicidadesMantenimiento.Remove(entity);
-                if ((bool)entity.Repuesto?.Equals(this))
+                if (Equals(entity.Repuesto, this))
                 {
                     entity.Cambiar((Repuesto)null);
                 }

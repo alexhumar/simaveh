@@ -34,25 +34,6 @@ namespace SiMaVeh.Domain.Models
             return base.ToString();
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Reparador item && (ReferenceEquals(this, item) || base.Equals(obj));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Reparador).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region ICollectionManager

@@ -37,6 +37,32 @@ namespace SiMaVeh.DataAccess.Test.Model
         private T Leer<T>(Func<SiMaVehContext, T> consulta) =>
             baseDatos.EnNuevoScope(sp => consulta(sp.GetRequiredService<SiMaVehContext>()));
 
+        #region Igualdad con proxies de EF
+
+        [Fact]
+        public void Igualdad_EntidadCargadaPorEF_EsIgualAUnaInstanciaConElMismoId()
+        {
+            var cargada = Leer(ctx => ctx.Paises.Find(1L));
+
+            //Con lazy loading, EF devuelve un proxy (subclase generada en Castle.Proxies).
+            Assert.Equal("Castle.Proxies", cargada.GetType().Namespace);
+            Assert.Equal(new Pais { Id = 1 }, cargada);
+            Assert.Equal(cargada, new Pais { Id = 1 });
+            Assert.Equal(new Pais { Id = 1 }.GetHashCode(), cargada.GetHashCode());
+            Assert.NotEqual(new Pais { Id = 2 }, cargada);
+        }
+
+        [Fact]
+        public void Igualdad_ColeccionCargadaPorEF_ContieneInstanciasConElMismoId()
+        {
+            var partidos = Leer(ctx => ctx.Provincias.Find(1L).Partidos.ToList());
+
+            Assert.Contains(new Partido { Id = 1 }, partidos);
+            Assert.DoesNotContain(new Partido { Id = 2 }, partidos);
+        }
+
+        #endregion
+
         #region GenericEntityGetter
 
         [Fact]

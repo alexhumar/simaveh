@@ -73,30 +73,6 @@ namespace SiMaVeh.Domain.Models
                 EntidadReparadora?.ToString(), " ", FechaInicio.ToString(), " ", FechaFin.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is ServicioReparador item &&
-                (ReferenceEquals(this, item) ||
-                (Id == item.Id) ||
-                (Vehiculo.Equals(item.Vehiculo) && EntidadReparadora.Equals(item.EntidadReparadora) &&
-                FechaInicio == item.FechaInicio && FechaFin == item.FechaFin && MontoManoObra == item.MontoManoObra &&
-                MonedaMontoManoObra.Equals(item.MonedaMontoManoObra) && KilometrajeVehiculo == item.KilometrajeVehiculo));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(ServicioReparador).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger
@@ -180,7 +156,7 @@ namespace SiMaVeh.Domain.Models
             if ((entity != null) && Mantenimientos.Contains(entity))
             {
                 Mantenimientos.Remove(entity);
-                if ((bool)entity.ServicioReparador?.Equals(this))
+                if (Equals(entity.ServicioReparador, this))
                 {
                     entity.Cambiar((ServicioReparador)null);
                 }

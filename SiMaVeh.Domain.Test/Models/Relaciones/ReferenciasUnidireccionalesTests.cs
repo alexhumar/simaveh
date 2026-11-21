@@ -103,13 +103,24 @@ namespace SiMaVeh.Domain.Test.Models.Relaciones
             Assert.Same(peso, tipoCambio.MonedaDestino);
         }
 
-        [Fact(Skip = "BUG: Vehiculo.Cambiar(ModeloVehiculo) tiene la condicion invertida (if ModeloVehiculo != null) y nunca asigna el modelo a un vehiculo que no tiene uno.")]
+        [Fact]
         public void Vehiculo_CambiarModeloVehiculo_SinModeloPrevio_LoAsigna()
         {
             var automovil = new Automovil { Id = 1, Patente = "AA000BB" };
             var modelo = Crear.ModeloVehiculo();
 
             automovil.Cambiar(modelo);
+
+            Assert.Same(modelo, automovil.ModeloVehiculo);
+        }
+
+        [Fact]
+        public void Vehiculo_CambiarModeloVehiculoANull_ConservaElModelo()
+        {
+            var modelo = Crear.ModeloVehiculo();
+            var automovil = new Automovil { Id = 1, Patente = "AA000BB" }.Cambiar(modelo);
+
+            automovil.Cambiar((ModeloVehiculo)null);
 
             Assert.Same(modelo, automovil.ModeloVehiculo);
         }

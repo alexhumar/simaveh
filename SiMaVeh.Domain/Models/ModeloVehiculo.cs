@@ -78,26 +78,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat(GrupoModelo?.ToString(), " ", Version);
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is ModeloVehiculo item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (GrupoModelo.Equals(item.GrupoModelo) && Version.Equals(item.Version, System.StringComparison.CurrentCultureIgnoreCase)));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(ModeloVehiculo).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger
