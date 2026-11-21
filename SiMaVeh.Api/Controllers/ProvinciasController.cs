@@ -32,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>
@@ -46,9 +44,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetPais([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Pais);
+            return await ObtenerPropiedad(key, entity => entity.Pais);
         }
 
         /// <summary>
@@ -59,9 +55,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetPartidos([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Partidos.AsQueryable());
+            return await ObtenerPropiedad(key, entity => entity.Partidos.AsQueryable());
         }
 
         /// <summary>

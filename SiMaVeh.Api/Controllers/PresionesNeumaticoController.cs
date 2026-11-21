@@ -33,9 +33,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetVehiculoCargado([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.VehiculoCargado);
+            return await ObtenerPropiedad(key, entity => entity.VehiculoCargado);
         }
 
         /// <summary>
@@ -46,9 +44,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetEsUniversal([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.EsUniversal);
+            return await ObtenerPropiedad(key, entity => entity.EsUniversal);
         }
 
         /// <summary>
@@ -60,9 +56,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RecomendacionesModeloVehiculo);
+            return await ObtenerPropiedad(key, entity => entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>
@@ -74,9 +68,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetNeumatico([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Neumatico);
+            return await ObtenerPropiedad(key, entity => entity.Neumatico);
         }
 
         /// <summary>
@@ -87,9 +79,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetRuedasDelanteras([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RuedasDelanteras);
+            return await ObtenerPropiedad(key, entity => entity.RuedasDelanteras);
         }
 
         /// <summary>
@@ -100,9 +90,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetRuedasTraseras([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RuedasTraseras);
+            return await ObtenerPropiedad(key, entity => entity.RuedasTraseras);
         }
 
         /// <summary>

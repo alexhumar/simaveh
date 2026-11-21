@@ -28,9 +28,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetDelanteroDerecho([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.DelanteroDerecho);
+            return await ObtenerPropiedad(key, entity => entity.DelanteroDerecho);
         }
 
         /// <summary>
@@ -41,9 +39,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetDelanteroIzquierdo([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.DelanteroIzquierdo);
+            return await ObtenerPropiedad(key, entity => entity.DelanteroIzquierdo);
         }
 
         /// <summary>
@@ -54,9 +50,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetAcompanante([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Acompanante);
+            return await ObtenerPropiedad(key, entity => entity.Acompanante);
         }
 
         /// <summary>
@@ -67,9 +61,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetTraseroDerecho([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TraseroDerecho);
+            return await ObtenerPropiedad(key, entity => entity.TraseroDerecho);
         }
 
         /// <summary>
@@ -80,9 +72,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetTraseroIzquierdo([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TraseroIzquierdo);
+            return await ObtenerPropiedad(key, entity => entity.TraseroIzquierdo);
         }
 
         /// <summary>
@@ -93,9 +83,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetConductor([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Conductor);
+            return await ObtenerPropiedad(key, entity => entity.Conductor);
         }
 
         #endregion

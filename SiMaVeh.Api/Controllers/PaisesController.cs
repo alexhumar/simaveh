@@ -32,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetProvincias([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Provincias);
+            return await ObtenerPropiedad(key, entity => entity.Provincias);
         }
 
         /// <summary>
@@ -44,9 +42,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>

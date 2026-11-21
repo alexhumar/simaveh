@@ -31,9 +31,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetApellido([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Apellido);
+            return await ObtenerPropiedad(key, entity => entity.Apellido);
         }
 
         /// <summary>
@@ -43,9 +41,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>
@@ -55,9 +51,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNumeroDocumento([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.NumeroDocumento);
+            return await ObtenerPropiedad(key, entity => entity.NumeroDocumento);
         }
 
         /// <summary>
@@ -68,9 +62,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetTelefonos([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Telefonos);
+            return await ObtenerPropiedad(key, entity => entity.Telefonos);
         }
 
         /// <summary>
@@ -81,9 +73,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipoDocumento([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TipoDocumento);
+            return await ObtenerPropiedad(key, entity => entity.TipoDocumento);
         }
 
         /// <summary>
@@ -94,9 +84,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetVehiculos([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Vehiculos);
+            return await ObtenerPropiedad(key, entity => entity.Vehiculos);
         }
 
         /// <summary>

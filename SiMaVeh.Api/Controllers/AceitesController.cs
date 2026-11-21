@@ -33,9 +33,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetDescripcion([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Descripcion);
+            return await ObtenerPropiedad(key, entity => entity.Descripcion);
         }
 
         /// <summary>
@@ -46,9 +44,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>
@@ -59,9 +55,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetViscosidadSAEAltaTemperatura([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ViscosidadSAEAltaTemperatura);
+            return await ObtenerPropiedad(key, entity => entity.ViscosidadSAEAltaTemperatura);
         }
 
         /// <summary>
@@ -72,9 +66,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetViscosidadSAEBajaTemperatura([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ViscosidadSAEBajaTemperatura);
+            return await ObtenerPropiedad(key, entity => entity.ViscosidadSAEBajaTemperatura);
         }
 
         /// <summary>
@@ -86,9 +78,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RecomendacionesModeloVehiculo);
+            return await ObtenerPropiedad(key, entity => entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>

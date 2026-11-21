@@ -32,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetAnchuraSeccionalNominal([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.AnchuraSeccionalNominal);
+            return await ObtenerPropiedad(key, entity => entity.AnchuraSeccionalNominal);
         }
 
         /// <summary>
@@ -45,9 +43,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetConstruccionCarcasa([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ConstruccionCarcasa);
+            return await ObtenerPropiedad(key, entity => entity.ConstruccionCarcasa);
         }
 
         /// <summary>
@@ -58,9 +54,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetDiametroLLanta([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.DiametroLLanta);
+            return await ObtenerPropiedad(key, entity => entity.DiametroLLanta);
         }
 
         /// <summary>
@@ -71,9 +65,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetIndiceCarga([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.IndiceCarga);
+            return await ObtenerPropiedad(key, entity => entity.IndiceCarga);
         }
 
         /// <summary>
@@ -84,9 +76,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetIndiceVelocidad([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.IndiceVelocidad);
+            return await ObtenerPropiedad(key, entity => entity.IndiceVelocidad);
         }
 
         /// <summary>
@@ -98,9 +88,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMarca([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Marca);
+            return await ObtenerPropiedad(key, entity => entity.Marca);
         }
 
         /// <summary>
@@ -111,9 +99,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetModelo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Modelo);
+            return await ObtenerPropiedad(key, entity => entity.Modelo);
         }
 
         /// <summary>
@@ -124,9 +110,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetRelacionAnchoAlto([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RelacionAnchoAlto);
+            return await ObtenerPropiedad(key, entity => entity.RelacionAnchoAlto);
         }
 
         /// <summary>
@@ -137,9 +121,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetTipo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Tipo);
+            return await ObtenerPropiedad(key, entity => entity.Tipo);
         }
 
         /// <summary>

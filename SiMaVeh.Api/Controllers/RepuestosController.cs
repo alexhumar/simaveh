@@ -32,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetCodigoIdentificador([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.CodigoIdentificador);
+            return await ObtenerPropiedad(key, entity => entity.CodigoIdentificador);
         }
 
         /// <summary>
@@ -45,9 +43,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetKits([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Kits);
+            return await ObtenerPropiedad(key, entity => entity.Kits);
         }
 
         /// <summary>
@@ -58,9 +54,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMarca([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Marca);
+            return await ObtenerPropiedad(key, entity => entity.Marca);
         }
 
         /// <summary>
@@ -71,9 +65,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetPeriodicidadesMantenimiento([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.PeriodicidadesMantenimiento);
+            return await ObtenerPropiedad(key, entity => entity.PeriodicidadesMantenimiento);
         }
 
         /// <summary>
@@ -84,9 +76,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTargetMantenimiento([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TargetMantenimiento);
+            return await ObtenerPropiedad(key, entity => entity.TargetMantenimiento);
         }
 
         /// <summary>
@@ -98,9 +88,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RecomendacionesModeloVehiculo);
+            return await ObtenerPropiedad(key, entity => entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>

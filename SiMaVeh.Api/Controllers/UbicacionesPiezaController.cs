@@ -27,9 +27,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetIzquierda([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Izquierda);
+            return await ObtenerPropiedad(key, entity => entity.Izquierda);
         }
 
         /// <summary>
@@ -39,9 +37,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetSuperior([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Superior);
+            return await ObtenerPropiedad(key, entity => entity.Superior);
         }
 
         #endregion

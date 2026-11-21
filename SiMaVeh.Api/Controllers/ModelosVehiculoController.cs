@@ -34,9 +34,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetAceitesRecomendados([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.AceitesRecomendados);
+            return await ObtenerPropiedad(key, entity => entity.AceitesRecomendados);
         }
 
         /// <summary>
@@ -48,9 +46,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetAirbags([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Airbags);
+            return await ObtenerPropiedad(key, entity => entity.Airbags);
         }
 
         /// <summary>
@@ -62,9 +58,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetFuentesEnergiaRecomendadas([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.FuentesEnergiaRecomendadas);
+            return await ObtenerPropiedad(key, entity => entity.FuentesEnergiaRecomendadas);
         }
 
         /// <summary>
@@ -76,9 +70,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetGrupoModelo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.GrupoModelo);
+            return await ObtenerPropiedad(key, entity => entity.GrupoModelo);
         }
 
         /// <summary>
@@ -90,9 +82,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetPresionesNeumaticoRecomendadas([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.PresionesNeumaticoRecomendadas);
+            return await ObtenerPropiedad(key, entity => entity.PresionesNeumaticoRecomendadas);
         }
 
         /// <summary>
@@ -104,9 +94,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetRepuestosRecomendados([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RepuestosRecomendados);
+            return await ObtenerPropiedad(key, entity => entity.RepuestosRecomendados);
         }
 
         /// <summary>
@@ -118,9 +106,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipoFuenteEnergia([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TipoFuenteEnergia);
+            return await ObtenerPropiedad(key, entity => entity.TipoFuenteEnergia);
         }
 
         /// <summary>
@@ -132,9 +118,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetVersion([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Version);
+            return await ObtenerPropiedad(key, entity => entity.Version);
         }
 
         /// <summary>

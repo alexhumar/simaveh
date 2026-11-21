@@ -11,6 +11,7 @@ using SiMaVeh.Api.Model.Interfaces;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -79,6 +80,20 @@ namespace SiMaVeh.Api.Controllers
         protected async Task<bool> ExisteEntidad(TBeId key)
         {
             return await repository.FindAsync(key) != null;
+        }
+
+        /// <summary>
+        /// Busca la entidad por key y devuelve el valor seleccionado, o NotFound si la entidad no existe.
+        /// </summary>
+        /// <typeparam name="TProp"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="selector">Propiedad (o navegacion) de la entidad a devolver</param>
+        /// <returns>Ok con el valor seleccionado, o NotFound</returns>
+        protected async Task<IActionResult> ObtenerPropiedad<TProp>(TBeId key, Func<TBe, TProp> selector)
+        {
+            var entity = await repository.FindAsync(key);
+
+            return entity == null ? NotFound() : Ok(selector(entity));
         }
 
         /// <summary>

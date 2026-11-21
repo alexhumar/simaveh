@@ -31,9 +31,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNumero([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Numero);
+            return await ObtenerPropiedad(key, entity => entity.Numero);
         }
 
         /// <summary>
@@ -44,9 +42,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetPersona([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Persona);
+            return await ObtenerPropiedad(key, entity => entity.Persona);
         }
 
         /// <summary>
@@ -57,9 +53,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TipoTelefono);
+            return await ObtenerPropiedad(key, entity => entity.TipoTelefono);
         }
 
         /// <summary>

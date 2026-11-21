@@ -33,9 +33,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetDireccion([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Direccion);
+            return await ObtenerPropiedad(key, entity => entity.Direccion);
         }
 
         /// <summary>
@@ -46,9 +44,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>
@@ -60,9 +56,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetReparadores([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Reparadores);
+            return await ObtenerPropiedad(key, entity => entity.Reparadores);
         }
 
         /// <summary>
@@ -74,9 +68,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetServiciosReparadores([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ServiciosReparadores);
+            return await ObtenerPropiedad(key, entity => entity.ServiciosReparadores);
         }
 
         /// <summary>
@@ -88,9 +80,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipoEntidad([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TipoEntidadReparadora);
+            return await ObtenerPropiedad(key, entity => entity.TipoEntidadReparadora);
         }
 
         /// <summary>
