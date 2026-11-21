@@ -52,12 +52,18 @@ namespace SiMaVeh.Domain.Models
         #region overrides
 
         /// <summary>
-        /// ToString
+        /// ToString: presiones delantera y trasera, seguidas de los modelos recomendados (ordenados alfabeticamente).
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ") ", RecomendacionesModeloVehiculo?.ToString());
+            var presiones = string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ")");
+            var modelos = (RecomendacionesModeloVehiculo ?? Enumerable.Empty<ModeloVehiculo>())
+                .Select(m => m.ToString())
+                .OrderBy(m => m)
+                .ToList();
+
+            return modelos.Count == 0 ? presiones : string.Concat(presiones, " ", string.Join(", ", modelos));
         }
 
         #endregion

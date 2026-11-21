@@ -88,9 +88,27 @@ namespace SiMaVeh.Domain.Test.Models
         }
 
         [Fact]
-        public void ToString_PresionNeumatico_IncluyeLasPresiones()
+        public void ToString_PresionNeumatico_SinModelosRecomendados_MuestraSoloLasPresiones()
         {
-            Assert.StartsWith("(D30, T32) ", Crear.PresionNeumatico().ToString());
+            Assert.Equal("(D30, T32)", Crear.PresionNeumatico().ToString());
+        }
+
+        [Fact]
+        public void ToString_PresionNeumatico_ConModelosRecomendados_LosListaOrdenados()
+        {
+            var presion = Crear.PresionNeumatico()
+                .Agregar(new ModeloVehiculo { Id = 2, Version = "2.0" }.Cambiar(new GrupoModelo { Id = 2, Nombre = "Mondeo" }.Cambiar(new Marca { Id = 1, Nombre = "Ford" })))
+                .Agregar(Focus16());
+
+            Assert.Equal("(D30, T32) Ford Focus 1.6, Ford Mondeo 2.0", presion.ToString());
+        }
+
+        [Fact]
+        public void ToString_PresionNeumatico_SinColeccionInicializada_NoFalla()
+        {
+            var presion = new PresionNeumatico { RuedasDelanteras = 30, RuedasTraseras = 32, RecomendacionesModeloVehiculo = null };
+
+            Assert.Equal("(D30, T32)", presion.ToString());
         }
 
         [Fact]
