@@ -11,11 +11,16 @@ SiMaVeh es una API REST OData en ASP.NET Core (.NET 8) para la administración y
 ```bash
 dotnet build SiMaVeh.sln
 dotnet run --project SiMaVeh.Api            # https://localhost:5001/simaveh, http://localhost:5000/simaveh
-dotnet test SiMaVeh.Domain.Test
-dotnet test SiMaVeh.Domain.Test --filter "FullyQualifiedName~Pais_AgregarProvincia"   # un solo fixture/test
+dotnet test SiMaVeh.sln                                                    # todos los tests
+dotnet test SiMaVeh.Domain.Test --filter "FullyQualifiedName~IgualdadTests"  # una clase de tests
+dotnet test SiMaVeh.sln -s coverlet.runsettings --collect:"XPlat Code Coverage"   # cobertura (excluye Migrations)
 ```
 
-Los tests usan NUnit 4 (estilo de restricciones con `Assert.That`) y solo cubren el proyecto Domain (comportamiento de las relaciones entre entidades).
+### Tests
+- xUnit v3 con el paquete `xunit.v3.mtp-off`: corre sobre VSTest (`dotnet test` clásico + coverlet.collector), compatible con el SDK 8 y el 10. No cambiarlo por `xunit.v3` sin optar por Microsoft Testing Platform: con el SDK 10, `dotnet test` falla.
+- `SiMaVeh.Domain.Test`: lógica de negocio. `Helpers/Crear` es la fábrica de entidades válidas. Las relaciones bidireccionales heredan de `RelacionBidireccionalTests<TPadre, THijo>`, que es una base genérica con todos los casos; las unidireccionales, la igualdad, los `ToString` y los validadores son theories con un diccionario de casos indexado por nombre. Hay tests de integridad de los fixtures de seed (`Fixtures/FixturesTests`) y de autodescubrimiento en el `DomainRegistry`.
+- `SiMaVeh.DataAccess.Test`: `Helpers/BaseDatosEnMemoria` usa EF InMemory con el contenedor real; `EnNuevoScope` verifica que los cambios quedaron persistidos. `Helpers/ModeloMySql` construye el modelo con Pomelo sin conectarse (modelo de diseño, que incluye los datos de seed) para verificar tablas, claves y seed.
+- Los defectos conocidos del código o de los datos se documentan como `[Fact(Skip = "BUG: ...")]`, con el comportamiento correcto como aserción. Al corregir un defecto, quitar el `Skip` del test correspondiente.
 
 ### Base de datos / migraciones
 
