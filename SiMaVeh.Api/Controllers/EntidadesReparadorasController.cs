@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -14,16 +14,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Entidades Reparadoras Controller
     /// </summary>
-    public class EntidadesReparadorasController : GenericController<EntidadReparadora, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class EntidadesReparadorasController(IControllerParameter parameters, IRepository<EntidadReparadora, long> repository) : GenericController<EntidadReparadora, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public EntidadesReparadorasController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -36,9 +33,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetDireccion([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Direccion);
+            return await ObtenerPropiedad(key, entity => entity.Direccion);
         }
 
         /// <summary>
@@ -49,9 +44,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>
@@ -60,12 +53,10 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Reparadores de la Entidad reparadora</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetReparadores([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Reparadores);
+            return await ObtenerPropiedad(key, entity => entity.Reparadores);
         }
 
         /// <summary>
@@ -74,12 +65,10 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Servicios reparadores de la Entidad reparadora</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetServiciosReparadores([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ServiciosReparadores);
+            return await ObtenerPropiedad(key, entity => entity.ServiciosReparadores);
         }
 
         /// <summary>
@@ -91,9 +80,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipoEntidad([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TipoEntidadReparadora);
+            return await ObtenerPropiedad(key, entity => entity.TipoEntidadReparadora);
         }
 
         /// <summary>

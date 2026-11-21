@@ -21,19 +21,6 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public abstract override string ToString();
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public abstract override bool Equals(object obj);
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public abstract override int GetHashCode();
-
         #endregion
 
         #region IEntityChanger

@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza
     /// <summary>
     /// Provider de fixture getters de ubicaciones de pieza
     /// </summary>
-    public class UbicacionPiezaFixtureGettersProvider : IUbicacionPiezaFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class UbicacionPiezaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : IUbicacionPiezaFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public UbicacionPiezaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de ubicaciones de pieza
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.UbicacionPieza
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosUbicacionPieza>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosUbicacionPieza>>
-            {
+            return
+            [
                 new UbicacionPiezaFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

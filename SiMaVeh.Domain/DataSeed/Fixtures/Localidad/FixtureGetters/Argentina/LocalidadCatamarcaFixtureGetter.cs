@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    public class LocalidadCatamarcaFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadCatamarcaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPartidoFixtureGetter partidoFixtureGetter) : LocalidadFixtureGetter(datosEntidadBuilder, partidoFixtureGetter)
     {
-        public LocalidadCatamarcaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPartidoFixtureGetter partidoFixtureGetter)
-            : base(datosEntidadBuilder, partidoFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Ambato).Id, new List<DatosEntidad>
-            {
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Ambato).Id,
+            [
                 datosEntidadBuilder.Build(932, LocalidadCatamarca.Chuchucaruana),
                 datosEntidadBuilder.Build(933, LocalidadCatamarca.Colpes),
                 datosEntidadBuilder.Build(934, LocalidadCatamarca.ElBolson),
@@ -32,16 +25,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(941, LocalidadCatamarca.LosTalas),
                 datosEntidadBuilder.Build(942, LocalidadCatamarca.LosVarela),
                 datosEntidadBuilder.Build(943, LocalidadCatamarca.Singuil)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Ancasti).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Ancasti).Id,
+            [
                 datosEntidadBuilder.Build(944, LocalidadCatamarca.VillaDeAncasti),
                 datosEntidadBuilder.Build(945, LocalidadCatamarca.Anquincila),
                 datosEntidadBuilder.Build(946, LocalidadCatamarca.LaCandelaria),
                 datosEntidadBuilder.Build(947, LocalidadCatamarca.LaMajada)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Andalgala).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Andalgala).Id,
+            [
                 datosEntidadBuilder.Build(948, LocalidadCatamarca.Aconquija),
                 datosEntidadBuilder.Build(949, LocalidadCatamarca.AltoDeLasJuntas),
                 datosEntidadBuilder.Build(950, LocalidadCatamarca.Andalgala),
@@ -55,16 +48,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(958, LocalidadCatamarca.LaAguada),
                 datosEntidadBuilder.Build(959, LocalidadCatamarca.LaMesada),
                 datosEntidadBuilder.Build(960, LocalidadCatamarca.MinasCapillitas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.AntofagastaDeLaSierra).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.AntofagastaDeLaSierra).Id,
+            [
                 datosEntidadBuilder.Build(961, LocalidadCatamarca.AntofagastaDeLaSierra),
                 datosEntidadBuilder.Build(962, LocalidadCatamarca.ElPenon),
                 datosEntidadBuilder.Build(963, LocalidadCatamarca.LosNacimientos),
                 datosEntidadBuilder.Build(964, LocalidadCatamarca.Antofalla)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Belen).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Belen).Id,
+            [
                 datosEntidadBuilder.Build(965, LocalidadCatamarca.BarrancaLarga),
                 datosEntidadBuilder.Build(966, LocalidadCatamarca.Belen),
                 datosEntidadBuilder.Build(967, LocalidadCatamarca.CondorHuasi),
@@ -81,9 +74,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(978, LocalidadCatamarca.PuertaDeCorralQuemado),
                 datosEntidadBuilder.Build(979, LocalidadCatamarca.PuertaDeSanJose),
                 datosEntidadBuilder.Build(980, LocalidadCatamarca.VillaVil)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Capayan).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Capayan).Id,
+            [
                 datosEntidadBuilder.Build(981, LocalidadCatamarca.AdolfoECarranza),
                 datosEntidadBuilder.Build(982, LocalidadCatamarca.BaldeDeLaPunta),
                 datosEntidadBuilder.Build(983, LocalidadCatamarca.Capayan),
@@ -100,24 +93,24 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(994, LocalidadCatamarca.SanMartin),
                 datosEntidadBuilder.Build(995, LocalidadCatamarca.SanPablo),
                 datosEntidadBuilder.Build(996, LocalidadCatamarca.SanPedro)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Capital).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Capital).Id,
+            [
                 datosEntidadBuilder.Build(997, LocalidadCatamarca.BarrioBancario),
                 datosEntidadBuilder.Build(998, LocalidadCatamarca.SanFernandoDelValleDeCatamarca),
                 datosEntidadBuilder.Build(999, LocalidadCatamarca.ElPantanillo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.ElAlto).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.ElAlto).Id,
+            [
                 datosEntidadBuilder.Build(1000, LocalidadCatamarca.ElAlto),
                 datosEntidadBuilder.Build(1001, LocalidadCatamarca.Guayamba),
                 datosEntidadBuilder.Build(1002, LocalidadCatamarca.Infanzon),
                 datosEntidadBuilder.Build(1003, LocalidadCatamarca.LosCorrales),
                 datosEntidadBuilder.Build(1004, LocalidadCatamarca.Tapso),
                 datosEntidadBuilder.Build(1005, LocalidadCatamarca.Vilisman)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.FrayMamertoEsquiu).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.FrayMamertoEsquiu).Id,
+            [
                 datosEntidadBuilder.Build(1006, LocalidadCatamarca.Collagasta),
                 datosEntidadBuilder.Build(1007, LocalidadCatamarca.LaCarrera),
                 datosEntidadBuilder.Build(1008, LocalidadCatamarca.ElHueco),
@@ -128,9 +121,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1013, LocalidadCatamarca.SanAntonio),
                 datosEntidadBuilder.Build(1014, LocalidadCatamarca.SanJoseDePiedraBlanca),
                 datosEntidadBuilder.Build(1015, LocalidadCatamarca.VillaLasPirquitas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.LaPaz).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.LaPaz).Id,
+            [
                 datosEntidadBuilder.Build(1016, LocalidadCatamarca.CasaDePiedra),
                 datosEntidadBuilder.Build(1017, LocalidadCatamarca.ElAybal),
                 datosEntidadBuilder.Build(1018, LocalidadCatamarca.ElBanado),
@@ -146,9 +139,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1028, LocalidadCatamarca.Ramblones),
                 datosEntidadBuilder.Build(1029, LocalidadCatamarca.Recreo),
                 datosEntidadBuilder.Build(1030, LocalidadCatamarca.SanAntonio)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Paclin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Paclin).Id,
+            [
                 datosEntidadBuilder.Build(1031, LocalidadCatamarca.Amadores),
                 datosEntidadBuilder.Build(1032, LocalidadCatamarca.ElRosario),
                 datosEntidadBuilder.Build(1033, LocalidadCatamarca.LaBajada),
@@ -160,9 +153,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1039, LocalidadCatamarca.PaloLabrado),
                 datosEntidadBuilder.Build(1040, LocalidadCatamarca.SanAntonio),
                 datosEntidadBuilder.Build(1041, LocalidadCatamarca.VillaDeBalcozna)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Poman).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Poman).Id,
+            [
                 datosEntidadBuilder.Build(1042, LocalidadCatamarca.Saujil),
                 datosEntidadBuilder.Build(1043, LocalidadCatamarca.Colpes),
                 datosEntidadBuilder.Build(1044, LocalidadCatamarca.SanJose),
@@ -178,9 +171,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1054, LocalidadCatamarca.RosarioDeColana),
                 datosEntidadBuilder.Build(1055, LocalidadCatamarca.RetiroDeColana),
                 datosEntidadBuilder.Build(1056, LocalidadCatamarca.ElPajonal)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.SantaMaria).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.SantaMaria).Id,
+            [
                 datosEntidadBuilder.Build(1057, LocalidadCatamarca.Andalhuala),
                 datosEntidadBuilder.Build(1058, LocalidadCatamarca.CasaDePiedra),
                 datosEntidadBuilder.Build(1059, LocalidadCatamarca.Caspichango),
@@ -207,9 +200,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1080, LocalidadCatamarca.SanJoseVilla),
                 datosEntidadBuilder.Build(1081, LocalidadCatamarca.SantaMaria),
                 datosEntidadBuilder.Build(1082, LocalidadCatamarca.Yapes)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.SantaRosa).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.SantaRosa).Id,
+            [
                 datosEntidadBuilder.Build(1083, LocalidadCatamarca.Alijilan),
                 datosEntidadBuilder.Build(1084, LocalidadCatamarca.BanadoDeOvanta),
                 datosEntidadBuilder.Build(1085, LocalidadCatamarca.LasCanas),
@@ -218,9 +211,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1088, LocalidadCatamarca.Manantiales),
                 datosEntidadBuilder.Build(1089, LocalidadCatamarca.MonteRedondo),
                 datosEntidadBuilder.Build(1090, LocalidadCatamarca.SanPedro)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Tinogasta).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.Tinogasta).Id,
+            [
                 datosEntidadBuilder.Build(1091, LocalidadCatamarca.Anillaco),
                 datosEntidadBuilder.Build(1092, LocalidadCatamarca.Antinaco),
                 datosEntidadBuilder.Build(1093, LocalidadCatamarca.BandaDeLucero),
@@ -243,15 +236,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1110, LocalidadCatamarca.Saujil),
                 datosEntidadBuilder.Build(1111, LocalidadCatamarca.Taton),
                 datosEntidadBuilder.Build(1112, LocalidadCatamarca.Tinogasta)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.ValleViejo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCatamarca.ValleViejo).Id,
+            [
                 datosEntidadBuilder.Build(1113, LocalidadCatamarca.ElPortezuelo),
                 datosEntidadBuilder.Build(1114, LocalidadCatamarca.Huaycama),
                 datosEntidadBuilder.Build(1115, LocalidadCatamarca.LasTejas),
                 datosEntidadBuilder.Build(1116, LocalidadCatamarca.SanIsidro),
                 datosEntidadBuilder.Build(1117, LocalidadCatamarca.SantaCruz)
-            });
+            ]);
         }
     }
 }

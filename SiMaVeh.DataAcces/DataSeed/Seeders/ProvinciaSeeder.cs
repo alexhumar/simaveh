@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +8,19 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de Provincia
     /// </summary>
-    public class ProvinciaSeeder : IDomainSeeder<Provincia, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureProvincia"></param>
+    public class ProvinciaSeeder(IFixtureProvincia fixtureProvincia) : SeederBase<Provincia>
     {
-        private readonly IFixtureProvincia fixtureProvincia;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureProvincia"></param>
-        public ProvinciaSeeder(IFixtureProvincia fixtureProvincia)
-        {
-            this.fixtureProvincia = fixtureProvincia;
-        }
+        private readonly IFixtureProvincia fixtureProvincia = fixtureProvincia;
 
         /// <summary>
         /// Genera las Provincias default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             var result = new List<object>();
 

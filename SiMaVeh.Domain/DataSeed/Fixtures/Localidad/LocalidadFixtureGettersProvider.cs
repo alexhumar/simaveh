@@ -37,8 +37,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
         /// <returns></returns>
         public IEnumerable<IFixtureDetailGetter<long, DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureDetailGetter<long, DatosEntidad>>
-            {
+            return
+            [
                 new LocalidadBuenosAiresFixtureGetter(datosEntidadBuilder, new PartidoBuenosAiresFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
                 new LocalidadCatamarcaFixtureGetter(datosEntidadBuilder, new PartidoCatamarcaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
                 new LocalidadChacoFixtureGetter(datosEntidadBuilder, new PartidoChacoFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
@@ -62,7 +62,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad
                 new LocalidadSantiagoDelEsteroFixtureGetter(datosEntidadBuilder, new PartidoSantiagoDelEsteroFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
                 new LocalidadTierraDelFuegoFixtureGetter(datosEntidadBuilder, new PartidoTierraDelFuegoFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)),
                 new LocalidadTucumanFixtureGetter(datosEntidadBuilder, new PartidoTucumanFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter))
-            };
+            ];
         }
     }
 }

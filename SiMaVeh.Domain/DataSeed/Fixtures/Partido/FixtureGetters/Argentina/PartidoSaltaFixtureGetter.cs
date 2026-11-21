@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoSaltaFixtureGetter : PartidoFixtureGetter
+    public class PartidoSaltaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoSaltaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Salta).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Salta).Id,
+            [
                 datosEntidadBuilder.Build(389, PartidoSalta.Anta),
                 datosEntidadBuilder.Build(390, PartidoSalta.Cachi),
                 datosEntidadBuilder.Build(391, PartidoSalta.Cafayate),
@@ -43,7 +36,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(409, PartidoSalta.RosarioDeLerma),
                 datosEntidadBuilder.Build(410, PartidoSalta.SanCarlos),
                 datosEntidadBuilder.Build(411, PartidoSalta.SantaVictoria)
-            });
+            ]);
         }
     }
 }

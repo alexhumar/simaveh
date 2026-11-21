@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags
     /// <summary>
     /// Provider de fixture getters de equipamientos de airbags
     /// </summary>
-    public class EquipamientoAirbagsFixtureGettersProvider : IEquipamientoAirbagsFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class EquipamientoAirbagsFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : IEquipamientoAirbagsFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public EquipamientoAirbagsFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de equipamientos de airbags
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosEquipamientoAirbags>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosEquipamientoAirbags>>
-            {
+            return
+            [
                 new EquipamientoAirbagsFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

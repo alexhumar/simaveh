@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -14,16 +15,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Mentenimientos Controller
     /// </summary>
-    public class MantenimientosController : GenericController<Mantenimiento, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class MantenimientosController(IControllerParameter parameters, IRepository<Mantenimiento, long> repository) : GenericController<Mantenimiento, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public MantenimientosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -35,9 +33,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetAccion([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Accion);
+            return await ObtenerPropiedad(key, entity => entity.Accion);
         }
 
         /// <summary>
@@ -49,9 +45,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMonedaMontoRecambio([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.MonedaMontoRecambio);
+            return await ObtenerPropiedad(key, entity => entity.MonedaMontoRecambio);
         }
 
         /// <summary>
@@ -62,9 +56,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetMontoRecambio([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.MontoRecambio);
+            return await ObtenerPropiedad(key, entity => entity.MontoRecambio);
         }
 
         /// <summary>
@@ -76,9 +68,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetRecambio([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Recambio);
+            return await ObtenerPropiedad(key, entity => entity.Recambio);
         }
 
         /// <summary>
@@ -90,9 +80,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetReparador([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Reparador);
+            return await ObtenerPropiedad(key, entity => entity.Reparador);
         }
 
         /// <summary>
@@ -104,9 +92,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetServicioReparador([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ServicioReparador);
+            return await ObtenerPropiedad(key, entity => entity.ServicioReparador);
         }
 
         /// <summary>

@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
     /// <summary>
     /// Provider de fixture getters de tipos de entidades reparadoras
     /// </summary>
-    public class TipoEntidadReparadoraFixtureGettersProvider : ITipoEntidadReparadoraFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class TipoEntidadReparadoraFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : ITipoEntidadReparadoraFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public TipoEntidadReparadoraFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de tipos de entidades reparadoras
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosEntidad>>
-            {
+            return
+            [
                 new TipoEntidadReparadoraFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

@@ -47599,7 +47599,7 @@ namespace SiMaVeh.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = "VES7​",
+                            Id = "VES",
                             Nombre = "Bolívar Soberano"
                         },
                         new
@@ -51396,7 +51396,7 @@ namespace SiMaVeh.DataAccess.Migrations
                         new
                         {
                             Id = 1L,
-                            Descripcion = "Documento nacional de identidad manual o digital (formato tarjeta o credencial virtual para dispositivos móviles)",
+                            Descripcion = "Documento nacional de identidad (tarjeta física o credencial digital en dispositivos móviles)",
                             Nombre = "DNI"
                         },
                         new

@@ -776,9 +776,9 @@
         public const string UZS = "UZS";
 
         /// <summary>
-        /// VES7​
+        /// VES
         /// </summary>
-        public const string VES7​ = "VES7​";
+        public const string VES = "VES";
 
         /// <summary>
         /// VND

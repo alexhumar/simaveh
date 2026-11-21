@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoTucumanFixtureGetter : PartidoFixtureGetter
+    public class PartidoTucumanFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoTucumanFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Tucuman).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Tucuman).Id,
+            [
                 datosEntidadBuilder.Build(498, PartidoTucuman.Burruyacu),
                 datosEntidadBuilder.Build(499, PartidoTucuman.Capital),
                 datosEntidadBuilder.Build(500, PartidoTucuman.Chicligasta),
@@ -37,7 +30,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(512, PartidoTucuman.TafiViejo),
                 datosEntidadBuilder.Build(513, PartidoTucuman.Trancas),
                 datosEntidadBuilder.Build(514, PartidoTucuman.YerbaBuena)
-            });
+            ]);
         }
     }
 }

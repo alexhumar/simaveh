@@ -44,25 +44,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat("(Aceite) ", Nombre);
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Aceite item && (ReferenceEquals(this, item) || base.Equals(obj));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Aceite).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region ICollecionManager

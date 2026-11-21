@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.DataAccess.Model.Interfaces;
-using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Interfaces;
 using System.Threading.Tasks;
@@ -9,25 +8,13 @@ namespace SiMaVeh.DataAccess.Model
     /// <summary>
     /// RelatedEntityRemover
     /// </summary>
-    public class RelatedEntityRemover : IRelatedEntityRemover
+    /// <param name="operador"></param>
+    public class RelatedEntityRemover(IOperadorEntidadesRelacionadas operador) : IRelatedEntityRemover
     {
-        private readonly SiMaVehContext context;
-        private readonly IGenericEntityGetter relatedEntityGetter;
+        private readonly IOperadorEntidadesRelacionadas operador = operador;
 
         /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="relatedEntityGetter"></param>
-        public RelatedEntityRemover(SiMaVehContext context,
-            IGenericEntityGetter relatedEntityGetter)
-        {
-            this.context = context;
-            this.relatedEntityGetter = relatedEntityGetter;
-        }
-
-        /// <summary>
-        /// TryRemoveRelatedEntityAsync
+        /// Quita la entidad relacionada de la coleccion de la entidad destino.
         /// </summary>
         /// <typeparam name="TTargetBe"></typeparam>
         /// <typeparam name="TTargetBeId"></typeparam>
@@ -35,58 +22,29 @@ namespace SiMaVeh.DataAccess.Model
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="targetBeKey"></param>
         /// <param name="relatedBeKey"></param>
-        /// <returns></returns>
-        public async Task<bool> TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(TTargetBeId targetBeKey, TRelatedBeId relatedBeKey)
+        /// <returns>false si alguna de las entidades no existe</returns>
+        public Task<bool> TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(TTargetBeId targetBeKey, TRelatedBeId relatedBeKey)
             where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
-            var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
-
-            var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
-            if (targetBe == null)
-            {
-                return false;
-            }
-
-            var relatedBe = await relatedEntityGetter.TryGetEntity<TRelatedBe, TRelatedBeId>(relatedBeKey);
-            if (relatedBe == null)
-            {
-                return false;
-            }
-
-            targetBe.Quitar(relatedBe);
-
-            await repositoryTargetBe.SaveChangesAsync();
-
-            return true;
+            return operador.AplicarAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(targetBeKey, relatedBeKey,
+                (targetBe, relatedBe) => targetBe.Quitar(relatedBe));
         }
 
         /// <summary>
-        /// TryRemoveRelatedEntityAsync
+        /// Quita la referencia de la entidad destino a la entidad relacionada.
         /// </summary>
         /// <typeparam name="TTargetBe"></typeparam>
         /// <typeparam name="TTargetBeId"></typeparam>
         /// <typeparam name="TRelatedBe"></typeparam>
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="targetBeKey"></param>
-        /// <returns></returns>
-        public async Task<bool> TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(TTargetBeId targetBeKey)
+        /// <returns>false si la entidad destino no existe</returns>
+        public Task<bool> TryRemoveRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(TTargetBeId targetBeKey)
             where TTargetBe : DomainMember<TTargetBeId>, IEntityChanger<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
-            var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
-
-            var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
-            if (targetBe == null)
-            {
-                return false;
-            }
-
-            targetBe.Cambiar(null);
-
-            await repositoryTargetBe.SaveChangesAsync();
-
-            return true;
+            return operador.AplicarAsync<TTargetBe, TTargetBeId>(targetBeKey, targetBe => targetBe.Cambiar(null));
         }
     }
 }

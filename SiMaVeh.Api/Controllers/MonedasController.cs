@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System.Threading.Tasks;
 
@@ -9,16 +10,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Monedas Controller
     /// </summary>
-    public class MonedasController : GenericController<Moneda, string>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class MonedasController(IControllerParameter parameters, IRepository<Moneda, string> repository) : GenericController<Moneda, string>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public MonedasController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -30,9 +28,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         #endregion

@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    public class LocalidadCordobaFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadCordobaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPartidoFixtureGetter partidoFixtureGetter) : LocalidadFixtureGetter(datosEntidadBuilder, partidoFixtureGetter)
     {
-        public LocalidadCordobaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPartidoFixtureGetter partidoFixtureGetter)
-            : base(datosEntidadBuilder, partidoFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Calamuchita).Id, new List<DatosEntidad>
-            {
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Calamuchita).Id,
+            [
                 datosEntidadBuilder.Build(1285, LocalidadCordoba.Embalse),
                 datosEntidadBuilder.Build(1286, LocalidadCordoba.LaCruz),
                 datosEntidadBuilder.Build(1287, LocalidadCordoba.LosCondores),
@@ -44,13 +37,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1306, LocalidadCordoba.VillaAmancay),
                 datosEntidadBuilder.Build(1307, LocalidadCordoba.VillaCiudadParqueLosReartes),
                 datosEntidadBuilder.Build(1308, LocalidadCordoba.VillaQuillinzo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Capital).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Capital).Id,
+            [
                 datosEntidadBuilder.Build(1309, LocalidadCordoba.Cordoba)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Colon).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Colon).Id,
+            [
                 datosEntidadBuilder.Build(1310, LocalidadCordoba.AguaDeOro),
                 datosEntidadBuilder.Build(1311, LocalidadCordoba.ColoniaCaroya),
                 datosEntidadBuilder.Build(1312, LocalidadCordoba.EstacionJuarezCelman),
@@ -71,9 +64,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1327, LocalidadCordoba.MiGranja),
                 datosEntidadBuilder.Build(1328, LocalidadCordoba.Tinoco),
                 datosEntidadBuilder.Build(1329, LocalidadCordoba.VillaCerroAzul)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.CruzDelEje).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.CruzDelEje).Id,
+            [
                 datosEntidadBuilder.Build(1330, LocalidadCordoba.CruzDelEje),
                 datosEntidadBuilder.Build(1331, LocalidadCordoba.SanMarcosSierras),
                 datosEntidadBuilder.Build(1332, LocalidadCordoba.Serrezuela),
@@ -91,9 +84,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1344, LocalidadCordoba.MediaNaranja),
                 datosEntidadBuilder.Build(1345, LocalidadCordoba.PasoViejo),
                 datosEntidadBuilder.Build(1346, LocalidadCordoba.Tuclame)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.GeneralRoca).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.GeneralRoca).Id,
+            [
                 datosEntidadBuilder.Build(1347, LocalidadCordoba.Buchardo),
                 datosEntidadBuilder.Build(1348, LocalidadCordoba.DelCampillo),
                 datosEntidadBuilder.Build(1349, LocalidadCordoba.HuincaRenanco),
@@ -107,9 +100,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1357, LocalidadCordoba.Onagoity),
                 datosEntidadBuilder.Build(1358, LocalidadCordoba.Pincen),
                 datosEntidadBuilder.Build(1359, LocalidadCordoba.Ranqueles)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.GeneralSanMartin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.GeneralSanMartin).Id,
+            [
                 datosEntidadBuilder.Build(1360, LocalidadCordoba.ArroyoAlgodon),
                 datosEntidadBuilder.Build(1361, LocalidadCordoba.ArroyoCabral),
                 datosEntidadBuilder.Build(1362, LocalidadCordoba.Ausonia),
@@ -125,9 +118,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1372, LocalidadCordoba.TioPujio),
                 datosEntidadBuilder.Build(1373, LocalidadCordoba.VillaMaria),
                 datosEntidadBuilder.Build(1374, LocalidadCordoba.VillaNueva)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Ischilin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Ischilin).Id,
+            [
                 datosEntidadBuilder.Build(1375, LocalidadCordoba.Avellaneda),
                 datosEntidadBuilder.Build(1376, LocalidadCordoba.CanadaDeRioPinto),
                 datosEntidadBuilder.Build(1377, LocalidadCordoba.Chuna),
@@ -135,9 +128,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1379, LocalidadCordoba.LosPozos),
                 datosEntidadBuilder.Build(1380, LocalidadCordoba.OlivaresDeSanNicolas),
                 datosEntidadBuilder.Build(1381, LocalidadCordoba.VillaGutierrez)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.JuarezCelman).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.JuarezCelman).Id,
+            [
                 datosEntidadBuilder.Build(1382, LocalidadCordoba.AlejandroRoca),
                 datosEntidadBuilder.Build(1383, LocalidadCordoba.Bengolea),
                 datosEntidadBuilder.Build(1384, LocalidadCordoba.Carnerillo),
@@ -155,9 +148,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1396, LocalidadCordoba.ElRastreador),
                 datosEntidadBuilder.Build(1397, LocalidadCordoba.PachecoDeMelo),
                 datosEntidadBuilder.Build(1398, LocalidadCordoba.PasoDelDurazno)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.MarcosJuarez).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.MarcosJuarez).Id,
+            [
                 datosEntidadBuilder.Build(1399, LocalidadCordoba.AlejoLedesma),
                 datosEntidadBuilder.Build(1400, LocalidadCordoba.Arias),
                 datosEntidadBuilder.Build(1401, LocalidadCordoba.CamiloAldao),
@@ -180,9 +173,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1418, LocalidadCordoba.ColoniaBarge),
                 datosEntidadBuilder.Build(1419, LocalidadCordoba.Saladillo),
                 datosEntidadBuilder.Build(1420, LocalidadCordoba.VillaElisa)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Minas).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Minas).Id,
+            [
                 datosEntidadBuilder.Build(1421, LocalidadCordoba.SanCarlosMinas),
                 datosEntidadBuilder.Build(1422, LocalidadCordoba.CienagaDelCoro),
                 datosEntidadBuilder.Build(1423, LocalidadCordoba.ElChacho),
@@ -191,9 +184,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1426, LocalidadCordoba.LaPlaya),
                 datosEntidadBuilder.Build(1427, LocalidadCordoba.Talaini),
                 datosEntidadBuilder.Build(1428, LocalidadCordoba.Tosno)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Pocho).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Pocho).Id,
+            [
                 datosEntidadBuilder.Build(1429, LocalidadCordoba.Salsacate),
                 datosEntidadBuilder.Build(1430, LocalidadCordoba.Chancani),
                 datosEntidadBuilder.Build(1431, LocalidadCordoba.LasPalmas),
@@ -201,9 +194,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1433, LocalidadCordoba.SanGeronimo),
                 datosEntidadBuilder.Build(1434, LocalidadCordoba.TalaCanada),
                 datosEntidadBuilder.Build(1435, LocalidadCordoba.VillaDePocho)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.PresidenteRoqueSaenzPena).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.PresidenteRoqueSaenzPena).Id,
+            [
                 datosEntidadBuilder.Build(1436, LocalidadCordoba.GeneralLevalle),
                 datosEntidadBuilder.Build(1437, LocalidadCordoba.LaCesira),
                 datosEntidadBuilder.Build(1438, LocalidadCordoba.Laboulaye),
@@ -214,9 +207,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1443, LocalidadCordoba.Leguizamon),
                 datosEntidadBuilder.Build(1444, LocalidadCordoba.RioBamba),
                 datosEntidadBuilder.Build(1445, LocalidadCordoba.SanJoaquin)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Punilla).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Punilla).Id,
+            [
                 datosEntidadBuilder.Build(1446, LocalidadCordoba.BialetMasse),
                 datosEntidadBuilder.Build(1447, LocalidadCordoba.CapillaDelMonte),
                 datosEntidadBuilder.Build(1448, LocalidadCordoba.Cosquin),
@@ -243,9 +236,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1469, LocalidadCordoba.VillaIchoCruz),
                 datosEntidadBuilder.Build(1470, LocalidadCordoba.VillaParqueSiquiman),
                 datosEntidadBuilder.Build(1471, LocalidadCordoba.VillaSantaCruzDelLago)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.RioCuarto).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.RioCuarto).Id,
+            [
                 datosEntidadBuilder.Build(1472, LocalidadCordoba.Achiras),
                 datosEntidadBuilder.Build(1473, LocalidadCordoba.AdeliaMaria),
                 datosEntidadBuilder.Build(1474, LocalidadCordoba.AlciraGigena),
@@ -275,9 +268,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1498, LocalidadCordoba.VicunaMackenna),
                 datosEntidadBuilder.Build(1499, LocalidadCordoba.VillaElChacay),
                 datosEntidadBuilder.Build(1500, LocalidadCordoba.Washington)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.RioPrimero).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.RioPrimero).Id,
+            [
                 datosEntidadBuilder.Build(1501, LocalidadCordoba.LaPara),
                 datosEntidadBuilder.Build(1502, LocalidadCordoba.LaPuerta),
                 datosEntidadBuilder.Build(1503, LocalidadCordoba.MonteCristo),
@@ -303,9 +296,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1523, LocalidadCordoba.MaquinistaGallini),
                 datosEntidadBuilder.Build(1524, LocalidadCordoba.PlazaDeMercedes),
                 datosEntidadBuilder.Build(1525, LocalidadCordoba.SagradaFamilia)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.RioSeco).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.RioSeco).Id,
+            [
                 datosEntidadBuilder.Build(1526, LocalidadCordoba.SebastianElcano),
                 datosEntidadBuilder.Build(1527, LocalidadCordoba.VillaDeMaria),
                 datosEntidadBuilder.Build(1528, LocalidadCordoba.VillaCandelariaNorte),
@@ -318,9 +311,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1535, LocalidadCordoba.PuestoDeCastro),
                 datosEntidadBuilder.Build(1536, LocalidadCordoba.RayoCortado),
                 datosEntidadBuilder.Build(1537, LocalidadCordoba.SantaElena)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.RioSegundo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.RioSegundo).Id,
+            [
                 datosEntidadBuilder.Build(1538, LocalidadCordoba.Calchin),
                 datosEntidadBuilder.Build(1539, LocalidadCordoba.CalchinOeste),
                 datosEntidadBuilder.Build(1540, LocalidadCordoba.CapillaDelCarmen),
@@ -342,9 +335,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1556, LocalidadCordoba.Impira),
                 datosEntidadBuilder.Build(1557, LocalidadCordoba.LosChanaritos),
                 datosEntidadBuilder.Build(1558, LocalidadCordoba.Rincon)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.SanAlberto).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.SanAlberto).Id,
+            [
                 datosEntidadBuilder.Build(1559, LocalidadCordoba.MinaClavero),
                 datosEntidadBuilder.Build(1560, LocalidadCordoba.Nono),
                 datosEntidadBuilder.Build(1561, LocalidadCordoba.SanPedro),
@@ -358,9 +351,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1569, LocalidadCordoba.SanLorenzo),
                 datosEntidadBuilder.Build(1570, LocalidadCordoba.SanVicente),
                 datosEntidadBuilder.Build(1571, LocalidadCordoba.SauceArriba)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.SanJavier).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.SanJavier).Id,
+            [
                 datosEntidadBuilder.Build(1572, LocalidadCordoba.LaPaz),
                 datosEntidadBuilder.Build(1573, LocalidadCordoba.SanJavierYacanto),
                 datosEntidadBuilder.Build(1574, LocalidadCordoba.SanJose),
@@ -372,9 +365,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1580, LocalidadCordoba.LosCerrillos),
                 datosEntidadBuilder.Build(1581, LocalidadCordoba.LosHornillos),
                 datosEntidadBuilder.Build(1582, LocalidadCordoba.Luyaba)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.SanJusto).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.SanJusto).Id,
+            [
                 datosEntidadBuilder.Build(1583, LocalidadCordoba.Alicia),
                 datosEntidadBuilder.Build(1584, LocalidadCordoba.AltosDeChipion),
                 datosEntidadBuilder.Build(1585, LocalidadCordoba.Arroyito),
@@ -413,9 +406,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1618, LocalidadCordoba.PlazaLuxardo),
                 datosEntidadBuilder.Build(1619, LocalidadCordoba.VillaSanEsteban),
                 datosEntidadBuilder.Build(1620, LocalidadCordoba.ToroPujio)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.SantaMaria).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.SantaMaria).Id,
+            [
                 datosEntidadBuilder.Build(1621, LocalidadCordoba.AltaGracia),
                 datosEntidadBuilder.Build(1622, LocalidadCordoba.Despenaderos),
                 datosEntidadBuilder.Build(1623, LocalidadCordoba.Lozada),
@@ -440,9 +433,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1642, LocalidadCordoba.VillaLosAromos),
                 datosEntidadBuilder.Build(1643, LocalidadCordoba.VillaParqueSantaAna),
                 datosEntidadBuilder.Build(1644, LocalidadCordoba.VillaSanIsidro)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Sobremonte).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Sobremonte).Id,
+            [
                 datosEntidadBuilder.Build(1645, LocalidadCordoba.AguadaDelMonte),
                 datosEntidadBuilder.Build(1646, LocalidadCordoba.Caminiana),
                 datosEntidadBuilder.Build(1647, LocalidadCordoba.Cerrillos),
@@ -452,9 +445,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1651, LocalidadCordoba.Caminiaga),
                 datosEntidadBuilder.Build(1652, LocalidadCordoba.ChunaHuasi),
                 datosEntidadBuilder.Build(1653, LocalidadCordoba.PozoNuevo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.TerceroArriba).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.TerceroArriba).Id,
+            [
                 datosEntidadBuilder.Build(1654, LocalidadCordoba.Almafuerte),
                 datosEntidadBuilder.Build(1655, LocalidadCordoba.Corralito),
                 datosEntidadBuilder.Build(1656, LocalidadCordoba.DalmacioVelezSarsfield),
@@ -471,9 +464,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1667, LocalidadCordoba.ColoniaAlmadaGeneralFotheringham),
                 datosEntidadBuilder.Build(1668, LocalidadCordoba.LasIsletillas),
                 datosEntidadBuilder.Build(1669, LocalidadCordoba.PampayastaNorte)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Totoral).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Totoral).Id,
+            [
                 datosEntidadBuilder.Build(1670, LocalidadCordoba.Candelaria),
                 datosEntidadBuilder.Build(1671, LocalidadCordoba.Macha),
                 datosEntidadBuilder.Build(1672, LocalidadCordoba.RioPinto),
@@ -489,9 +482,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1682, LocalidadCordoba.LasPenas),
                 datosEntidadBuilder.Build(1683, LocalidadCordoba.LosMistoles),
                 datosEntidadBuilder.Build(1684, LocalidadCordoba.Simbolar)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Tulumba).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Tulumba).Id,
+            [
                 datosEntidadBuilder.Build(1685, LocalidadCordoba.Dormida),
                 datosEntidadBuilder.Build(1686, LocalidadCordoba.Intihuasi),
                 datosEntidadBuilder.Build(1687, LocalidadCordoba.Mercedes),
@@ -506,9 +499,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1696, LocalidadCordoba.ChurquiCanada),
                 datosEntidadBuilder.Build(1697, LocalidadCordoba.ElRodeo),
                 datosEntidadBuilder.Build(1698, LocalidadCordoba.RosarioDelSaladillo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Union).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoCordoba.Union).Id,
+            [
                 datosEntidadBuilder.Build(1699, LocalidadCordoba.AltoAlegre),
                 datosEntidadBuilder.Build(1700, LocalidadCordoba.Ballesteros),
                 datosEntidadBuilder.Build(1701, LocalidadCordoba.BallesterosSud),
@@ -536,7 +529,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1723, LocalidadCordoba.AnaZumaran),
                 datosEntidadBuilder.Build(1724, LocalidadCordoba.ColoniaBremen),
                 datosEntidadBuilder.Build(1725, LocalidadCordoba.VillaLosPatos)
-            });
+            ]);
         }
     }
 }

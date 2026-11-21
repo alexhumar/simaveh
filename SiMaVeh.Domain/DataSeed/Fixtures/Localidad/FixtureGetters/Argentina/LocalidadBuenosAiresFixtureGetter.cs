@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    public class LocalidadBuenosAiresFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadBuenosAiresFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPartidoFixtureGetter partidoFixtureGetter) : LocalidadFixtureGetter(datosEntidadBuilder, partidoFixtureGetter)
     {
-        public LocalidadBuenosAiresFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPartidoFixtureGetter partidoFixtureGetter)
-            : base(datosEntidadBuilder, partidoFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.AdolfoAlsina).Id, new List<DatosEntidad>
-            {
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.AdolfoAlsina).Id,
+            [
                 datosEntidadBuilder.Build(1, LocalidadBuenosAires.Carhue),
                 datosEntidadBuilder.Build(2, LocalidadBuenosAires.Rivera),
                 datosEntidadBuilder.Build(3, LocalidadBuenosAires.VillaMaza),
@@ -29,16 +22,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(7, LocalidadBuenosAires.LaPala),
                 datosEntidadBuilder.Build(8, LocalidadBuenosAires.Thames),
                 datosEntidadBuilder.Build(9, LocalidadBuenosAires.Yutuyaco)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.AdolfoGonzalesChaves).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.AdolfoGonzalesChaves).Id,
+            [
                 datosEntidadBuilder.Build(10, LocalidadBuenosAires.GonzalesChaves),
                 datosEntidadBuilder.Build(11, LocalidadBuenosAires.DeLaGarma),
                 datosEntidadBuilder.Build(12, LocalidadBuenosAires.JuanEulogioBarra),
                 datosEntidadBuilder.Build(13, LocalidadBuenosAires.Vasquez)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Alberti).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Alberti).Id,
+            [
                 datosEntidadBuilder.Build(14, LocalidadBuenosAires.Alberti),
                 datosEntidadBuilder.Build(15, LocalidadBuenosAires.Mechita),
                 datosEntidadBuilder.Build(16, LocalidadBuenosAires.VillaOrtiz),
@@ -47,9 +40,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(19, LocalidadBuenosAires.VillaGrisolia),
                 datosEntidadBuilder.Build(20, LocalidadBuenosAires.VillaMaria),
                 datosEntidadBuilder.Build(21, LocalidadBuenosAires.GobernadorUgarte)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.AlmiranteBrown).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.AlmiranteBrown).Id,
+            [
                 datosEntidadBuilder.Build(22, LocalidadBuenosAires.Adrogue),
                 datosEntidadBuilder.Build(23, LocalidadBuenosAires.Burzaco),
                 datosEntidadBuilder.Build(24, LocalidadBuenosAires.Glew),
@@ -62,15 +55,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(31, LocalidadBuenosAires.SanFranciscoDeAsis),
                 datosEntidadBuilder.Build(32, LocalidadBuenosAires.SanJose),
                 datosEntidadBuilder.Build(33, LocalidadBuenosAires.SanFranciscoSolano)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Arrecifes).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Arrecifes).Id,
+            [
                 datosEntidadBuilder.Build(34, LocalidadBuenosAires.Arrecifes),
                 datosEntidadBuilder.Build(35, LocalidadBuenosAires.Todd),
                 datosEntidadBuilder.Build(36, LocalidadBuenosAires.Vina)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Avellaneda).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Avellaneda).Id,
+            [
                 datosEntidadBuilder.Build(37, LocalidadBuenosAires.AvellanedaCentro),
                 datosEntidadBuilder.Build(38, LocalidadBuenosAires.DockSud),
                 datosEntidadBuilder.Build(39, LocalidadBuenosAires.Gerli),
@@ -78,9 +71,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(41, LocalidadBuenosAires.Sarandi),
                 datosEntidadBuilder.Build(42, LocalidadBuenosAires.VillaDominico),
                 datosEntidadBuilder.Build(43, LocalidadBuenosAires.Wilde)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ayacucho).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ayacucho).Id,
+            [
                 datosEntidadBuilder.Build(44, LocalidadBuenosAires.Ayacucho),
                 datosEntidadBuilder.Build(45, LocalidadBuenosAires.Udaquiola),
                 datosEntidadBuilder.Build(46, LocalidadBuenosAires.LaConstancia),
@@ -89,17 +82,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(49, LocalidadBuenosAires.ParajeLangueyu),
                 datosEntidadBuilder.Build(50, LocalidadBuenosAires.ParajeFair),
                 datosEntidadBuilder.Build(51, LocalidadBuenosAires.ParajeSanIgnacio)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Azul).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Azul).Id,
+            [
                 datosEntidadBuilder.Build(52, LocalidadBuenosAires.Azul),
                 datosEntidadBuilder.Build(53, LocalidadBuenosAires.Chillar),
                 datosEntidadBuilder.Build(54, LocalidadBuenosAires.Cachari),
                 datosEntidadBuilder.Build(55, LocalidadBuenosAires.DieciseisDeJulio),
                 datosEntidadBuilder.Build(56, LocalidadBuenosAires.Ariel)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.BahiaBlanca).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.BahiaBlanca).Id,
+            [
                 datosEntidadBuilder.Build(57, LocalidadBuenosAires.BahiaBlanca),
                 datosEntidadBuilder.Build(58, LocalidadBuenosAires.IngenieroWhite),
                 datosEntidadBuilder.Build(59, LocalidadBuenosAires.GeneralDanielCerri),
@@ -108,33 +101,33 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(62, LocalidadBuenosAires.VillaEspora),
                 datosEntidadBuilder.Build(63, LocalidadBuenosAires.VillaBordeu),
                 datosEntidadBuilder.Build(64, LocalidadBuenosAires.LaViticola)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Balcarce).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Balcarce).Id,
+            [
                 datosEntidadBuilder.Build(65, LocalidadBuenosAires.Balcarce),
                 datosEntidadBuilder.Build(66, LocalidadBuenosAires.SanAgustin),
                 datosEntidadBuilder.Build(67, LocalidadBuenosAires.Napaleofu),
                 datosEntidadBuilder.Build(68, LocalidadBuenosAires.LosPinos),
                 datosEntidadBuilder.Build(69, LocalidadBuenosAires.VillaLagunaLaBrava),
                 datosEntidadBuilder.Build(70, LocalidadBuenosAires.RamosOtero)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Baradero).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Baradero).Id,
+            [
                 datosEntidadBuilder.Build(71, LocalidadBuenosAires.Baradero),
                 datosEntidadBuilder.Build(72, LocalidadBuenosAires.VillaAlsina),
                 datosEntidadBuilder.Build(73, LocalidadBuenosAires.IreneoPortela),
                 datosEntidadBuilder.Build(74, LocalidadBuenosAires.SantaColoma)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.BenitoJuarez).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.BenitoJuarez).Id,
+            [
                 datosEntidadBuilder.Build(75, LocalidadBuenosAires.BenitoJuarez),
                 datosEntidadBuilder.Build(76, LocalidadBuenosAires.VillaCacique),
                 datosEntidadBuilder.Build(77, LocalidadBuenosAires.Barker),
                 datosEntidadBuilder.Build(78, LocalidadBuenosAires.EstacionLopez),
                 datosEntidadBuilder.Build(79, LocalidadBuenosAires.TedinUriburu)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Berazategui).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Berazategui).Id,
+            [
                 datosEntidadBuilder.Build(80, LocalidadBuenosAires.Berazategui),
                 datosEntidadBuilder.Build(81, LocalidadBuenosAires.Hudson),
                 datosEntidadBuilder.Build(82, LocalidadBuenosAires.JuanMariaGutierrez),
@@ -144,9 +137,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(86, LocalidadBuenosAires.Platanos),
                 datosEntidadBuilder.Build(87, LocalidadBuenosAires.VillaEspana),
                 datosEntidadBuilder.Build(88, LocalidadBuenosAires.ElPato)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Berisso).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Berisso).Id,
+            [
                 datosEntidadBuilder.Build(89, LocalidadBuenosAires.Berisso),
                 datosEntidadBuilder.Build(90, LocalidadBuenosAires.VillaProgreso),
                 datosEntidadBuilder.Build(91, LocalidadBuenosAires.VillaSanCarlos),
@@ -167,9 +160,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(106, LocalidadBuenosAires.JuanBJusto),
                 datosEntidadBuilder.Build(107, LocalidadBuenosAires.BarrioObrero),
                 datosEntidadBuilder.Build(108, LocalidadBuenosAires.BarrioSantaTeresita)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Bolivar).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Bolivar).Id,
+            [
                 datosEntidadBuilder.Build(109, LocalidadBuenosAires.SanCarlosDeBolivar),
                 datosEntidadBuilder.Build(110, LocalidadBuenosAires.Urdampilleta),
                 datosEntidadBuilder.Build(111, LocalidadBuenosAires.Pirovano),
@@ -180,9 +173,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(116, LocalidadBuenosAires.VillaLynchPueyrredon),
                 datosEntidadBuilder.Build(117, LocalidadBuenosAires.ParajeVallimanca),
                 datosEntidadBuilder.Build(118, LocalidadBuenosAires.ParajeVillaSanz)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Bragado).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Bragado).Id,
+            [
                 datosEntidadBuilder.Build(119, LocalidadBuenosAires.Bragado),
                 datosEntidadBuilder.Build(120, LocalidadBuenosAires.EduardoObrien),
                 datosEntidadBuilder.Build(121, LocalidadBuenosAires.Mechita),
@@ -193,25 +186,25 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(126, LocalidadBuenosAires.MaximoFernandez),
                 datosEntidadBuilder.Build(127, LocalidadBuenosAires.LaLimpia),
                 datosEntidadBuilder.Build(128, LocalidadBuenosAires.Asamblea)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Brandsen).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Brandsen).Id,
+            [
                 datosEntidadBuilder.Build(129, LocalidadBuenosAires.Brandsen),
                 datosEntidadBuilder.Build(130, LocalidadBuenosAires.Jeppener),
                 datosEntidadBuilder.Build(131, LocalidadBuenosAires.Gomez),
                 datosEntidadBuilder.Build(132, LocalidadBuenosAires.Altamirano),
                 datosEntidadBuilder.Build(133, LocalidadBuenosAires.Samborombon),
                 datosEntidadBuilder.Build(134, LocalidadBuenosAires.Oliden)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Campana).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Campana).Id,
+            [
                 datosEntidadBuilder.Build(135, LocalidadBuenosAires.Campana),
                 datosEntidadBuilder.Build(136, LocalidadBuenosAires.AltoLosCardales),
                 datosEntidadBuilder.Build(137, LocalidadBuenosAires.LomasDelRioLujan),
                 datosEntidadBuilder.Build(138, LocalidadBuenosAires.IngenieroRomuloOtamendi)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Canuelas).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Canuelas).Id,
+            [
                 datosEntidadBuilder.Build(139, LocalidadBuenosAires.Canuelas),
                 datosEntidadBuilder.Build(140, LocalidadBuenosAires.SantaRosa),
                 datosEntidadBuilder.Build(141, LocalidadBuenosAires.AlejandroPetion),
@@ -221,14 +214,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(145, LocalidadBuenosAires.GobernadorUdaondo),
                 datosEntidadBuilder.Build(146, LocalidadBuenosAires.ElTaladro),
                 datosEntidadBuilder.Build(147, LocalidadBuenosAires.SantaAnita)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CapitanSarmiento).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CapitanSarmiento).Id,
+            [
                 datosEntidadBuilder.Build(148, LocalidadBuenosAires.CapitanSarmiento),
                 datosEntidadBuilder.Build(149, LocalidadBuenosAires.LaLuisa)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CarlosCasares).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CarlosCasares).Id,
+            [
                 datosEntidadBuilder.Build(150, LocalidadBuenosAires.CarlosCasares),
                 datosEntidadBuilder.Build(151, LocalidadBuenosAires.Smith),
                 datosEntidadBuilder.Build(152, LocalidadBuenosAires.Bellocq),
@@ -239,41 +232,41 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(157, LocalidadBuenosAires.MauricioHirsch),
                 datosEntidadBuilder.Build(158, LocalidadBuenosAires.ColoniaMauricio),
                 datosEntidadBuilder.Build(159, LocalidadBuenosAires.LaSofia)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CarlosTejedor).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CarlosTejedor).Id,
+            [
                 datosEntidadBuilder.Build(160, LocalidadBuenosAires.CarlosTejedor),
                 datosEntidadBuilder.Build(161, LocalidadBuenosAires.TresAlgarrobos),
                 datosEntidadBuilder.Build(162, LocalidadBuenosAires.ColoniaSere),
                 datosEntidadBuilder.Build(163, LocalidadBuenosAires.Timote),
                 datosEntidadBuilder.Build(164, LocalidadBuenosAires.Curaru)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CarmenDeAreco).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CarmenDeAreco).Id,
+            [
                 datosEntidadBuilder.Build(165, LocalidadBuenosAires.CarmenDeAreco),
                 datosEntidadBuilder.Build(166, LocalidadBuenosAires.TresSargentos),
                 datosEntidadBuilder.Build(167, LocalidadBuenosAires.PuebloGouin)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Castelli).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Castelli).Id,
+            [
                 datosEntidadBuilder.Build(168, LocalidadBuenosAires.Castelli),
                 datosEntidadBuilder.Build(169, LocalidadBuenosAires.CentroGuerrero),
                 datosEntidadBuilder.Build(170, LocalidadBuenosAires.CerroDeLaGloria)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Chacabuco).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Chacabuco).Id,
+            [
                 datosEntidadBuilder.Build(171, LocalidadBuenosAires.Chacabuco),
                 datosEntidadBuilder.Build(172, LocalidadBuenosAires.Rawson),
                 datosEntidadBuilder.Build(173, LocalidadBuenosAires.Ohiggins),
                 datosEntidadBuilder.Build(174, LocalidadBuenosAires.Castilla),
                 datosEntidadBuilder.Build(175, LocalidadBuenosAires.LosAngeles)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Chascomus).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Chascomus).Id,
+            [
                 datosEntidadBuilder.Build(176, LocalidadBuenosAires.Chascomus)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Chivilcoy).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Chivilcoy).Id,
+            [
                 datosEntidadBuilder.Build(177, LocalidadBuenosAires.Chivilcoy),
                 datosEntidadBuilder.Build(178, LocalidadBuenosAires.Moquehua),
                 datosEntidadBuilder.Build(179, LocalidadBuenosAires.Gorostiaga),
@@ -285,16 +278,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(185, LocalidadBuenosAires.Indacochea),
                 datosEntidadBuilder.Build(186, LocalidadBuenosAires.PalemonHuergo),
                 datosEntidadBuilder.Build(187, LocalidadBuenosAires.RamonBiaus)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Colon).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Colon).Id,
+            [
                 datosEntidadBuilder.Build(188, LocalidadBuenosAires.Colon),
                 datosEntidadBuilder.Build(189, LocalidadBuenosAires.Pearson),
                 datosEntidadBuilder.Build(190, LocalidadBuenosAires.Sarasa),
                 datosEntidadBuilder.Build(191, LocalidadBuenosAires.ElArbolito)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CoronelDorrego).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CoronelDorrego).Id,
+            [
                 datosEntidadBuilder.Build(192, LocalidadBuenosAires.CoronelDorrego),
                 datosEntidadBuilder.Build(193, LocalidadBuenosAires.Oriente),
                 datosEntidadBuilder.Build(194, LocalidadBuenosAires.ElPerdido),
@@ -303,18 +296,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(197, LocalidadBuenosAires.BalnearioMarisol),
                 datosEntidadBuilder.Build(198, LocalidadBuenosAires.Irene),
                 datosEntidadBuilder.Build(199, LocalidadBuenosAires.Faro)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CoronelPringles).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CoronelPringles).Id,
+            [
                 datosEntidadBuilder.Build(200, LocalidadBuenosAires.CoronelPringles),
                 datosEntidadBuilder.Build(201, LocalidadBuenosAires.IndioRico),
                 datosEntidadBuilder.Build(202, LocalidadBuenosAires.Lartigau),
                 datosEntidadBuilder.Build(203, LocalidadBuenosAires.ElPensamiento),
                 datosEntidadBuilder.Build(204, LocalidadBuenosAires.ElDivisorio),
                 datosEntidadBuilder.Build(205, LocalidadBuenosAires.Frapal)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CoronelRosales).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CoronelRosales).Id,
+            [
                 datosEntidadBuilder.Build(206, LocalidadBuenosAires.PuntaAlta),
                 datosEntidadBuilder.Build(207, LocalidadBuenosAires.VillaGeneralArias),
                 datosEntidadBuilder.Build(208, LocalidadBuenosAires.BalnearioPehuenCo),
@@ -326,9 +319,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(214, LocalidadBuenosAires.ArroyoPareja),
                 datosEntidadBuilder.Build(215, LocalidadBuenosAires.PuntaAncla),
                 datosEntidadBuilder.Build(216, LocalidadBuenosAires.BaseDeInfanteriaDeMarinaBaterias)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CoronelSuarez).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.CoronelSuarez).Id,
+            [
                 datosEntidadBuilder.Build(217, LocalidadBuenosAires.CoronelSuarez),
                 datosEntidadBuilder.Build(218, LocalidadBuenosAires.Huanguelen),
                 datosEntidadBuilder.Build(219, LocalidadBuenosAires.SanJose),
@@ -340,9 +333,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(225, LocalidadBuenosAires.EstacionPineyro),
                 datosEntidadBuilder.Build(226, LocalidadBuenosAires.Dorbigny),
                 datosEntidadBuilder.Build(227, LocalidadBuenosAires.Cascada)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Daireaux).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Daireaux).Id,
+            [
                 datosEntidadBuilder.Build(228, LocalidadBuenosAires.Daireaux),
                 datosEntidadBuilder.Build(229, LocalidadBuenosAires.SalazarMouras),
                 datosEntidadBuilder.Build(230, LocalidadBuenosAires.Arboledas),
@@ -352,22 +345,22 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(234, LocalidadBuenosAires.Luro),
                 datosEntidadBuilder.Build(235, LocalidadBuenosAires.Andant),
                 datosEntidadBuilder.Build(236, LocalidadBuenosAires.EnriqueLavalleFreyre)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Dolores).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Dolores).Id,
+            [
                 datosEntidadBuilder.Build(237, LocalidadBuenosAires.Dolores),
                 datosEntidadBuilder.Build(238, LocalidadBuenosAires.Sevigne)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ensenada).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ensenada).Id,
+            [
                 datosEntidadBuilder.Build(239, LocalidadBuenosAires.Ensenada),
                 datosEntidadBuilder.Build(240, LocalidadBuenosAires.PuntaLara),
                 datosEntidadBuilder.Build(241, LocalidadBuenosAires.VillaCatella),
                 datosEntidadBuilder.Build(242, LocalidadBuenosAires.DiqueN1),
                 datosEntidadBuilder.Build(243, LocalidadBuenosAires.IslaSantiagoOeste)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Escobar).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Escobar).Id,
+            [
                 datosEntidadBuilder.Build(244, LocalidadBuenosAires.BelenDeEscobar),
                 datosEntidadBuilder.Build(245, LocalidadBuenosAires.Garin),
                 datosEntidadBuilder.Build(246, LocalidadBuenosAires.IngenieroMaschwitz),
@@ -375,17 +368,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(248, LocalidadBuenosAires.MaquinistaFSavio),
                 datosEntidadBuilder.Build(249, LocalidadBuenosAires.PuertoParana),
                 datosEntidadBuilder.Build(250, LocalidadBuenosAires.LomaVerde)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.EstebanEcheverria).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.EstebanEcheverria).Id,
+            [
                 datosEntidadBuilder.Build(251, LocalidadBuenosAires.NueveDeAbril),
                 datosEntidadBuilder.Build(252, LocalidadBuenosAires.CanningOriental),
                 datosEntidadBuilder.Build(253, LocalidadBuenosAires.ElJaguel),
                 datosEntidadBuilder.Build(254, LocalidadBuenosAires.LuisGuillon),
                 datosEntidadBuilder.Build(255, LocalidadBuenosAires.MonteGrande)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.ExaltacionDeLaCruz).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.ExaltacionDeLaCruz).Id,
+            [
                 datosEntidadBuilder.Build(256, LocalidadBuenosAires.CapillaDelSenor),
                 datosEntidadBuilder.Build(257, LocalidadBuenosAires.LosCardales),
                 datosEntidadBuilder.Build(258, LocalidadBuenosAires.Pavon),
@@ -398,18 +391,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(265, LocalidadBuenosAires.DiegoGaynor),
                 datosEntidadBuilder.Build(266, LocalidadBuenosAires.GobernadorAndonaegui),
                 datosEntidadBuilder.Build(267, LocalidadBuenosAires.Chenaut)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ezeiza).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ezeiza).Id,
+            [
                 datosEntidadBuilder.Build(268, LocalidadBuenosAires.AeropuertoInternacionalEzeiza),
                 datosEntidadBuilder.Build(269, LocalidadBuenosAires.CanningOccidental),
                 datosEntidadBuilder.Build(270, LocalidadBuenosAires.CarlosSpegazzini),
                 datosEntidadBuilder.Build(271, LocalidadBuenosAires.Ezeiza),
                 datosEntidadBuilder.Build(272, LocalidadBuenosAires.LaUnion),
                 datosEntidadBuilder.Build(273, LocalidadBuenosAires.TristanSuarez)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.FlorencioVarela).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.FlorencioVarela).Id,
+            [
                 datosEntidadBuilder.Build(274, LocalidadBuenosAires.CiudadDeBosques),
                 datosEntidadBuilder.Build(275, LocalidadBuenosAires.CiudadDeFlorencioVarela),
                 datosEntidadBuilder.Build(276, LocalidadBuenosAires.EstanislaoSeveroZeballos),
@@ -420,29 +413,29 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(281, LocalidadBuenosAires.VillaSanLuis),
                 datosEntidadBuilder.Build(282, LocalidadBuenosAires.VillaSantaRosa),
                 datosEntidadBuilder.Build(283, LocalidadBuenosAires.VillaVatteone)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.FlorentinoAmeghino).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.FlorentinoAmeghino).Id,
+            [
                 datosEntidadBuilder.Build(284, LocalidadBuenosAires.FlorentinoAmeghino),
                 datosEntidadBuilder.Build(285, LocalidadBuenosAires.Blaquier),
                 datosEntidadBuilder.Build(286, LocalidadBuenosAires.Porvenir),
                 datosEntidadBuilder.Build(287, LocalidadBuenosAires.ParajeNuevaSuiza),
                 datosEntidadBuilder.Build(288, LocalidadBuenosAires.ParajePorvenir)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralAlvarado).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralAlvarado).Id,
+            [
                 datosEntidadBuilder.Build(289, LocalidadBuenosAires.Miramar),
                 datosEntidadBuilder.Build(290, LocalidadBuenosAires.MarDelSur),
                 datosEntidadBuilder.Build(291, LocalidadBuenosAires.ComandanteNicanorOtamendi),
                 datosEntidadBuilder.Build(292, LocalidadBuenosAires.Mechongue),
                 datosEntidadBuilder.Build(293, LocalidadBuenosAires.CentinelaDelMar)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralAlvear).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralAlvear).Id,
+            [
                 datosEntidadBuilder.Build(294, LocalidadBuenosAires.GeneralAlvear)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralArenales).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralArenales).Id,
+            [
                 datosEntidadBuilder.Build(295, LocalidadBuenosAires.GeneralArenales),
                 datosEntidadBuilder.Build(296, LocalidadBuenosAires.Arribenos),
                 datosEntidadBuilder.Build(297, LocalidadBuenosAires.Ascension),
@@ -450,23 +443,23 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(299, LocalidadBuenosAires.Ferre),
                 datosEntidadBuilder.Build(300, LocalidadBuenosAires.LaAngelita),
                 datosEntidadBuilder.Build(301, LocalidadBuenosAires.LaTrinidad)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralBelgrano).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralBelgrano).Id,
+            [
                 datosEntidadBuilder.Build(302, LocalidadBuenosAires.GeneralBelgrano),
                 datosEntidadBuilder.Build(303, LocalidadBuenosAires.Gorchs)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralGuido).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralGuido).Id,
+            [
                 datosEntidadBuilder.Build(304, LocalidadBuenosAires.GeneralGuido),
                 datosEntidadBuilder.Build(305, LocalidadBuenosAires.Labarden)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralJuanMadariaga).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralJuanMadariaga).Id,
+            [
                 datosEntidadBuilder.Build(306, LocalidadBuenosAires.GeneralMadariaga)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralLaMadrid).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralLaMadrid).Id,
+            [
                 datosEntidadBuilder.Build(307, LocalidadBuenosAires.GeneralLaMadrid),
                 datosEntidadBuilder.Build(308, LocalidadBuenosAires.LaColina),
                 datosEntidadBuilder.Build(309, LocalidadBuenosAires.Libano),
@@ -474,9 +467,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(311, LocalidadBuenosAires.Pontaut),
                 datosEntidadBuilder.Build(312, LocalidadBuenosAires.Lastra),
                 datosEntidadBuilder.Build(313, LocalidadBuenosAires.Quilco)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralLasHeras).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralLasHeras).Id,
+            [
                 datosEntidadBuilder.Build(314, LocalidadBuenosAires.GeneralLasHeras),
                 datosEntidadBuilder.Build(315, LocalidadBuenosAires.Villars),
                 datosEntidadBuilder.Build(316, LocalidadBuenosAires.GeneralHornos),
@@ -484,32 +477,32 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(318, LocalidadBuenosAires.LaChoza),
                 datosEntidadBuilder.Build(319, LocalidadBuenosAires.Lozano),
                 datosEntidadBuilder.Build(320, LocalidadBuenosAires.EnriqueFynn)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralLavalle).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralLavalle).Id,
+            [
                 datosEntidadBuilder.Build(321, LocalidadBuenosAires.GeneralLavalle),
                 datosEntidadBuilder.Build(322, LocalidadBuenosAires.Pavon),
                 datosEntidadBuilder.Build(323, LocalidadBuenosAires.LasChacras),
                 datosEntidadBuilder.Build(324, LocalidadBuenosAires.LasTijeras)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralPaz).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralPaz).Id,
+            [
                 datosEntidadBuilder.Build(325, LocalidadBuenosAires.Ranchos),
                 datosEntidadBuilder.Build(326, LocalidadBuenosAires.LomaVerde),
                 datosEntidadBuilder.Build(327, LocalidadBuenosAires.Villanueva),
                 datosEntidadBuilder.Build(328, LocalidadBuenosAires.BarrioRioSalado),
                 datosEntidadBuilder.Build(329, LocalidadBuenosAires.Alegre)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralPinto).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralPinto).Id,
+            [
                 datosEntidadBuilder.Build(330, LocalidadBuenosAires.GeneralPinto),
                 datosEntidadBuilder.Build(331, LocalidadBuenosAires.Germania),
                 datosEntidadBuilder.Build(332, LocalidadBuenosAires.VillaFrancia),
                 datosEntidadBuilder.Build(333, LocalidadBuenosAires.ColoniaSanRicardo),
                 datosEntidadBuilder.Build(334, LocalidadBuenosAires.VillaRoth)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralPueyrredon).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralPueyrredon).Id,
+            [
                 datosEntidadBuilder.Build(335, LocalidadBuenosAires.MarDelPlata),
                 datosEntidadBuilder.Build(336, LocalidadBuenosAires.LasQuintas),
                 datosEntidadBuilder.Build(337, LocalidadBuenosAires.LosZorzales),
@@ -532,13 +525,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(354, LocalidadBuenosAires.BarrioLosAcantilados),
                 datosEntidadBuilder.Build(355, LocalidadBuenosAires.BarrioChapadmalal),
                 datosEntidadBuilder.Build(356, LocalidadBuenosAires.BarrioSanEduardoDelMar)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralRodriguez).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralRodriguez).Id,
+            [
                 datosEntidadBuilder.Build(357, LocalidadBuenosAires.GeneralRodriguez)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralSanMartin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralSanMartin).Id,
+            [
                 datosEntidadBuilder.Build(358, LocalidadBuenosAires.Billinghurst),
                 datosEntidadBuilder.Build(359, LocalidadBuenosAires.LomaHermosa),
                 datosEntidadBuilder.Build(360, LocalidadBuenosAires.JoseLeonSuarez),
@@ -549,17 +542,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(365, LocalidadBuenosAires.VillaBallester),
                 datosEntidadBuilder.Build(366, LocalidadBuenosAires.VillaLynch),
                 datosEntidadBuilder.Build(367, LocalidadBuenosAires.VillaMaipu)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralViamonte).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralViamonte).Id,
+            [
                 datosEntidadBuilder.Build(368, LocalidadBuenosAires.LosToldos),
                 datosEntidadBuilder.Build(369, LocalidadBuenosAires.Baigorrita),
                 datosEntidadBuilder.Build(370, LocalidadBuenosAires.Zavalia),
                 datosEntidadBuilder.Build(371, LocalidadBuenosAires.SanEmilio),
                 datosEntidadBuilder.Build(372, LocalidadBuenosAires.LaDelfina)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralVillegas).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.GeneralVillegas).Id,
+            [
                 datosEntidadBuilder.Build(373, LocalidadBuenosAires.GeneralVillegas),
                 datosEntidadBuilder.Build(374, LocalidadBuenosAires.Piedritas),
                 datosEntidadBuilder.Build(375, LocalidadBuenosAires.EmilioVBunge),
@@ -572,9 +565,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(382, LocalidadBuenosAires.SantaEleodora),
                 datosEntidadBuilder.Build(383, LocalidadBuenosAires.MasseyEstElordi),
                 datosEntidadBuilder.Build(384, LocalidadBuenosAires.Pichincha)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Guamini).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Guamini).Id,
+            [
                 datosEntidadBuilder.Build(385, LocalidadBuenosAires.LagunaAlsina),
                 datosEntidadBuilder.Build(386, LocalidadBuenosAires.Casbas),
                 datosEntidadBuilder.Build(387, LocalidadBuenosAires.Guamini),
@@ -582,31 +575,31 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(389, LocalidadBuenosAires.Garre),
                 datosEntidadBuilder.Build(390, LocalidadBuenosAires.ArroyoVenado),
                 datosEntidadBuilder.Build(391, LocalidadBuenosAires.Huanguelen)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.HipolitoYrigoyen).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.HipolitoYrigoyen).Id,
+            [
                 datosEntidadBuilder.Build(392, LocalidadBuenosAires.Henderson),
                 datosEntidadBuilder.Build(393, LocalidadBuenosAires.HerreraVegas),
                 datosEntidadBuilder.Build(394, LocalidadBuenosAires.MariaLucila),
                 datosEntidadBuilder.Build(395, LocalidadBuenosAires.Coraceros)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Hurlingham).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Hurlingham).Id,
+            [
                 datosEntidadBuilder.Build(396, LocalidadBuenosAires.Hurlingham),
                 datosEntidadBuilder.Build(397, LocalidadBuenosAires.VillaTesei),
                 datosEntidadBuilder.Build(398, LocalidadBuenosAires.WilliamCMorris)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ituzaingo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ituzaingo).Id,
+            [
                 datosEntidadBuilder.Build(399, LocalidadBuenosAires.Ituzaingo),
                 datosEntidadBuilder.Build(400, LocalidadBuenosAires.VillaUdaondo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.JoseCPaz).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.JoseCPaz).Id,
+            [
                 datosEntidadBuilder.Build(401, LocalidadBuenosAires.JoseCPaz)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Junin).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Junin).Id,
+            [
                 datosEntidadBuilder.Build(402, LocalidadBuenosAires.Junin),
                 datosEntidadBuilder.Build(403, LocalidadBuenosAires.Morse),
                 datosEntidadBuilder.Build(404, LocalidadBuenosAires.AgustinRoca),
@@ -615,9 +608,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(407, LocalidadBuenosAires.Agustina),
                 datosEntidadBuilder.Build(408, LocalidadBuenosAires.Laplacette),
                 datosEntidadBuilder.Build(409, LocalidadBuenosAires.BalnearioLagunaDeGomez)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LaCosta).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LaCosta).Id,
+            [
                 datosEntidadBuilder.Build(410, LocalidadBuenosAires.SanClementeDelTuyu),
                 datosEntidadBuilder.Build(411, LocalidadBuenosAires.LasToninas),
                 datosEntidadBuilder.Build(412, LocalidadBuenosAires.CostaChica),
@@ -633,9 +626,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(422, LocalidadBuenosAires.PuntaMedanos),
                 datosEntidadBuilder.Build(423, LocalidadBuenosAires.PinarDelSol),
                 datosEntidadBuilder.Build(424, LocalidadBuenosAires.CostaEsmeralda)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LaMatanza).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LaMatanza).Id,
+            [
                 datosEntidadBuilder.Build(425, LocalidadBuenosAires.SanJusto),
                 datosEntidadBuilder.Build(426, LocalidadBuenosAires.VeinteDeJunio),
                 datosEntidadBuilder.Build(427, LocalidadBuenosAires.AldoBonzi),
@@ -652,9 +645,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(438, LocalidadBuenosAires.VillaLuzuriaga),
                 datosEntidadBuilder.Build(439, LocalidadBuenosAires.VillaMadero),
                 datosEntidadBuilder.Build(440, LocalidadBuenosAires.VirreyDelPino)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LaPlata).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LaPlata).Id,
+            [
                 datosEntidadBuilder.Build(441, LocalidadBuenosAires.CountryClubElRodeo),
                 datosEntidadBuilder.Build(442, LocalidadBuenosAires.BarrioRutaSol),
                 datosEntidadBuilder.Build(443, LocalidadBuenosAires.Abasto),
@@ -686,45 +679,45 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(469, LocalidadBuenosAires.VillaParqueSicardi),
                 datosEntidadBuilder.Build(470, LocalidadBuenosAires.IgnacioCorreas),
                 datosEntidadBuilder.Build(471, LocalidadBuenosAires.LomasDeCopello)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lanus).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lanus).Id,
+            [
                 datosEntidadBuilder.Build(472, LocalidadBuenosAires.LanusOeste),
                 datosEntidadBuilder.Build(473, LocalidadBuenosAires.LanusEste),
                 datosEntidadBuilder.Build(474, LocalidadBuenosAires.RemediosDeEscalada),
                 datosEntidadBuilder.Build(475, LocalidadBuenosAires.Gerli),
                 datosEntidadBuilder.Build(476, LocalidadBuenosAires.ValentinAlsina),
                 datosEntidadBuilder.Build(477, LocalidadBuenosAires.MonteChingolo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Laprida).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Laprida).Id,
+            [
                 datosEntidadBuilder.Build(478, LocalidadBuenosAires.Laprida),
                 datosEntidadBuilder.Build(479, LocalidadBuenosAires.PuebloSanJorge),
                 datosEntidadBuilder.Build(480, LocalidadBuenosAires.PuebloNuevo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LasFlores).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LasFlores).Id,
+            [
                 datosEntidadBuilder.Build(481, LocalidadBuenosAires.LasFlores),
                 datosEntidadBuilder.Build(482, LocalidadBuenosAires.Pardo),
                 datosEntidadBuilder.Build(483, LocalidadBuenosAires.ElTrigo),
                 datosEntidadBuilder.Build(484, LocalidadBuenosAires.CoronelBoerr),
                 datosEntidadBuilder.Build(485, LocalidadBuenosAires.Rosas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LeandroNAlem).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LeandroNAlem).Id,
+            [
                 datosEntidadBuilder.Build(486, LocalidadBuenosAires.Vedia),
                 datosEntidadBuilder.Build(487, LocalidadBuenosAires.JuanBautistaAlberdi),
                 datosEntidadBuilder.Build(488, LocalidadBuenosAires.LeandroNAlem),
                 datosEntidadBuilder.Build(489, LocalidadBuenosAires.AlberdiViejo),
                 datosEntidadBuilder.Build(490, LocalidadBuenosAires.ElDorado),
                 datosEntidadBuilder.Build(491, LocalidadBuenosAires.FortinAcha)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lezama).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lezama).Id,
+            [
                 datosEntidadBuilder.Build(492, LocalidadBuenosAires.Lezama)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lincoln).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lincoln).Id,
+            [
                 datosEntidadBuilder.Build(493, LocalidadBuenosAires.Lincoln),
                 datosEntidadBuilder.Build(494, LocalidadBuenosAires.Roberts),
                 datosEntidadBuilder.Build(495, LocalidadBuenosAires.Pasteur),
@@ -735,18 +728,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(500, LocalidadBuenosAires.LasToscas),
                 datosEntidadBuilder.Build(501, LocalidadBuenosAires.CarlosSalas),
                 datosEntidadBuilder.Build(502, LocalidadBuenosAires.Triunvirato)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Loberia).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Loberia).Id,
+            [
                 datosEntidadBuilder.Build(503, LocalidadBuenosAires.Loberia),
                 datosEntidadBuilder.Build(504, LocalidadBuenosAires.SanManuel),
                 datosEntidadBuilder.Build(505, LocalidadBuenosAires.Tamangueyu),
                 datosEntidadBuilder.Build(506, LocalidadBuenosAires.LicenciadoMatienzo),
                 datosEntidadBuilder.Build(507, LocalidadBuenosAires.Pieres),
                 datosEntidadBuilder.Build(508, LocalidadBuenosAires.ArenasVerdes)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lobos).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lobos).Id,
+            [
                 datosEntidadBuilder.Build(509, LocalidadBuenosAires.AntonioCarboni),
                 datosEntidadBuilder.Build(510, LocalidadBuenosAires.Elvira),
                 datosEntidadBuilder.Build(511, LocalidadBuenosAires.JoseSantosArevalo),
@@ -756,9 +749,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(515, LocalidadBuenosAires.SalvadorMaria),
                 datosEntidadBuilder.Build(516, LocalidadBuenosAires.VillaLoguercio),
                 datosEntidadBuilder.Build(517, LocalidadBuenosAires.Zapiola)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LomasDeZamora).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.LomasDeZamora).Id,
+            [
                 datosEntidadBuilder.Build(518, LocalidadBuenosAires.LomasDeZamora),
                 datosEntidadBuilder.Build(519, LocalidadBuenosAires.Banfield),
                 datosEntidadBuilder.Build(520, LocalidadBuenosAires.Temperley),
@@ -769,9 +762,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(525, LocalidadBuenosAires.IngenieroBudge),
                 datosEntidadBuilder.Build(526, LocalidadBuenosAires.VillaAlbertina),
                 datosEntidadBuilder.Build(527, LocalidadBuenosAires.SanJose)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lujan).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Lujan).Id,
+            [
                 datosEntidadBuilder.Build(528, LocalidadBuenosAires.CarlosKeen),
                 datosEntidadBuilder.Build(529, LocalidadBuenosAires.Cortines),
                 datosEntidadBuilder.Build(530, LocalidadBuenosAires.JoseMariaJauregui),
@@ -780,24 +773,24 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(533, LocalidadBuenosAires.OpenDoor),
                 datosEntidadBuilder.Build(534, LocalidadBuenosAires.Torres),
                 datosEntidadBuilder.Build(535, LocalidadBuenosAires.LezicaYTorrezuri)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Magdalena).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Magdalena).Id,
+            [
                 datosEntidadBuilder.Build(536, LocalidadBuenosAires.Magdalena),
                 datosEntidadBuilder.Build(537, LocalidadBuenosAires.GeneralMansilla),
                 datosEntidadBuilder.Build(538, LocalidadBuenosAires.Atalaya),
                 datosEntidadBuilder.Build(539, LocalidadBuenosAires.Vieytes),
                 datosEntidadBuilder.Build(540, LocalidadBuenosAires.RobertoJPayro),
                 datosEntidadBuilder.Build(541, LocalidadBuenosAires.LosNaranjos)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Maipu).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Maipu).Id,
+            [
                 datosEntidadBuilder.Build(542, LocalidadBuenosAires.Maipu),
                 datosEntidadBuilder.Build(543, LocalidadBuenosAires.LasArmas),
                 datosEntidadBuilder.Build(544, LocalidadBuenosAires.SantoDomingo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.MalvinasArgentinas).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.MalvinasArgentinas).Id,
+            [
                 datosEntidadBuilder.Build(545, LocalidadBuenosAires.AreaDePromocionElTriangulo),
                 datosEntidadBuilder.Build(546, LocalidadBuenosAires.GrandBourg),
                 datosEntidadBuilder.Build(547, LocalidadBuenosAires.IngenieroAdolfoSourdeaux),
@@ -806,9 +799,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(550, LocalidadBuenosAires.Tortuguitas),
                 datosEntidadBuilder.Build(551, LocalidadBuenosAires.VillaDeMayo),
                 datosEntidadBuilder.Build(552, LocalidadBuenosAires.TierrasAltas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.MarChiquita).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.MarChiquita).Id,
+            [
                 datosEntidadBuilder.Build(553, LocalidadBuenosAires.CoronelVidal),
                 datosEntidadBuilder.Build(554, LocalidadBuenosAires.GeneralPiran),
                 datosEntidadBuilder.Build(555, LocalidadBuenosAires.LaArmonia),
@@ -825,17 +818,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(566, LocalidadBuenosAires.SantaClaraDelMar),
                 datosEntidadBuilder.Build(567, LocalidadBuenosAires.SantaElena),
                 datosEntidadBuilder.Build(568, LocalidadBuenosAires.Vivorata)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.MarcosPaz).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.MarcosPaz).Id,
+            [
                 datosEntidadBuilder.Build(569, LocalidadBuenosAires.MarcosPaz),
                 datosEntidadBuilder.Build(570, LocalidadBuenosAires.EliasRomero),
                 datosEntidadBuilder.Build(571, LocalidadBuenosAires.SantaRosa),
                 datosEntidadBuilder.Build(572, LocalidadBuenosAires.LisandroDeLaTorre),
                 datosEntidadBuilder.Build(573, LocalidadBuenosAires.SantaMarta)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Mercedes).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Mercedes).Id,
+            [
                 datosEntidadBuilder.Build(574, LocalidadBuenosAires.Agote),
                 datosEntidadBuilder.Build(575, LocalidadBuenosAires.Altamira),
                 datosEntidadBuilder.Build(576, LocalidadBuenosAires.Goldney),
@@ -844,60 +837,60 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(579, LocalidadBuenosAires.LaVerde),
                 datosEntidadBuilder.Build(580, LocalidadBuenosAires.Mercedes),
                 datosEntidadBuilder.Build(581, LocalidadBuenosAires.TomasJofre)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Merlo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Merlo).Id,
+            [
                 datosEntidadBuilder.Build(582, LocalidadBuenosAires.Merlo),
                 datosEntidadBuilder.Build(583, LocalidadBuenosAires.SanAntonioDePadua),
                 datosEntidadBuilder.Build(584, LocalidadBuenosAires.Libertad),
                 datosEntidadBuilder.Build(585, LocalidadBuenosAires.MarianoAcosta),
                 datosEntidadBuilder.Build(586, LocalidadBuenosAires.ParqueSanMartin),
                 datosEntidadBuilder.Build(587, LocalidadBuenosAires.Pontevedra)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Monte).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Monte).Id,
+            [
                 datosEntidadBuilder.Build(588, LocalidadBuenosAires.SanMiguelDelMonte),
                 datosEntidadBuilder.Build(589, LocalidadBuenosAires.Abbott),
                 datosEntidadBuilder.Build(590, LocalidadBuenosAires.ZenonVidelaDorna)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.MonteHermoso).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.MonteHermoso).Id,
+            [
                 datosEntidadBuilder.Build(591, LocalidadBuenosAires.MonteHermoso),
                 datosEntidadBuilder.Build(592, LocalidadBuenosAires.BalnearioSauceGrande)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Moreno).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Moreno).Id,
+            [
                 datosEntidadBuilder.Build(593, LocalidadBuenosAires.Moreno),
                 datosEntidadBuilder.Build(594, LocalidadBuenosAires.LaReja),
                 datosEntidadBuilder.Build(595, LocalidadBuenosAires.FranciscoAlvarez),
                 datosEntidadBuilder.Build(596, LocalidadBuenosAires.CuartelV),
                 datosEntidadBuilder.Build(597, LocalidadBuenosAires.Trujui),
                 datosEntidadBuilder.Build(598, LocalidadBuenosAires.PasoDelRey)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Moron).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Moron).Id,
+            [
                 datosEntidadBuilder.Build(599, LocalidadBuenosAires.Moron),
                 datosEntidadBuilder.Build(600, LocalidadBuenosAires.Castelar),
                 datosEntidadBuilder.Build(601, LocalidadBuenosAires.ElPalomar),
                 datosEntidadBuilder.Build(602, LocalidadBuenosAires.Haedo),
                 datosEntidadBuilder.Build(603, LocalidadBuenosAires.VillaSarmiento)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Navarro).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Navarro).Id,
+            [
                 datosEntidadBuilder.Build(604, LocalidadBuenosAires.Navarro),
                 datosEntidadBuilder.Build(605, LocalidadBuenosAires.VillaMoll),
                 datosEntidadBuilder.Build(606, LocalidadBuenosAires.LasMarianas),
                 datosEntidadBuilder.Build(607, LocalidadBuenosAires.JoseJuanAlmeyra)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Necochea).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Necochea).Id,
+            [
                 datosEntidadBuilder.Build(608, LocalidadBuenosAires.Necochea),
                 datosEntidadBuilder.Build(609, LocalidadBuenosAires.Quequen),
                 datosEntidadBuilder.Build(610, LocalidadBuenosAires.JuanNepomucenoFernandez),
                 datosEntidadBuilder.Build(611, LocalidadBuenosAires.LaDulce)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.NueveDeJulio).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.NueveDeJulio).Id,
+            [
                 datosEntidadBuilder.Build(612, LocalidadBuenosAires.NueveDeJulio),
                 datosEntidadBuilder.Build(613, LocalidadBuenosAires.Dudignac),
                 datosEntidadBuilder.Build(614, LocalidadBuenosAires.AlfredoDemarchi),
@@ -910,9 +903,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(621, LocalidadBuenosAires.DoceDeOctubre),
                 datosEntidadBuilder.Build(622, LocalidadBuenosAires.MarcelinoUgarte),
                 datosEntidadBuilder.Build(623, LocalidadBuenosAires.Norumbega)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Olavarria).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Olavarria).Id,
+            [
                 datosEntidadBuilder.Build(624, LocalidadBuenosAires.SierrasBayas),
                 datosEntidadBuilder.Build(625, LocalidadBuenosAires.LomaNegra),
                 datosEntidadBuilder.Build(626, LocalidadBuenosAires.SierraChica),
@@ -925,9 +918,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(633, LocalidadBuenosAires.SantaLuisa),
                 datosEntidadBuilder.Build(634, LocalidadBuenosAires.BlancaGrande),
                 datosEntidadBuilder.Build(635, LocalidadBuenosAires.ColoniaNievas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Patagones).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Patagones).Id,
+            [
                 datosEntidadBuilder.Build(636, LocalidadBuenosAires.CarmenDePatagones),
                 datosEntidadBuilder.Build(637, LocalidadBuenosAires.Villalonga),
                 datosEntidadBuilder.Build(638, LocalidadBuenosAires.Stroeder),
@@ -935,9 +928,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(640, LocalidadBuenosAires.JuanAPradere),
                 datosEntidadBuilder.Build(641, LocalidadBuenosAires.CardenalCagliero),
                 datosEntidadBuilder.Build(642, LocalidadBuenosAires.JoseBCasas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pehuajo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pehuajo).Id,
+            [
                 datosEntidadBuilder.Build(643, LocalidadBuenosAires.Pehuajo),
                 datosEntidadBuilder.Build(644, LocalidadBuenosAires.JuanJosePaso),
                 datosEntidadBuilder.Build(645, LocalidadBuenosAires.MonesCazon),
@@ -947,15 +940,15 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(649, LocalidadBuenosAires.NuevaPlata),
                 datosEntidadBuilder.Build(650, LocalidadBuenosAires.Chiclana),
                 datosEntidadBuilder.Build(651, LocalidadBuenosAires.CapitanCastro)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pellegrini).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pellegrini).Id,
+            [
                 datosEntidadBuilder.Build(652, LocalidadBuenosAires.Pellegrini),
                 datosEntidadBuilder.Build(653, LocalidadBuenosAires.Bocayuva),
                 datosEntidadBuilder.Build(654, LocalidadBuenosAires.DeBary)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pergamino).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pergamino).Id,
+            [
                 datosEntidadBuilder.Build(655, LocalidadBuenosAires.Pergamino),
                 datosEntidadBuilder.Build(656, LocalidadBuenosAires.Acevedo),
                 datosEntidadBuilder.Build(657, LocalidadBuenosAires.ManuelOcampo),
@@ -970,14 +963,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(666, LocalidadBuenosAires.JADeLaPena),
                 datosEntidadBuilder.Build(667, LocalidadBuenosAires.MarianoBenitez),
                 datosEntidadBuilder.Build(668, LocalidadBuenosAires.VillaSanJose)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pila).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pila).Id,
+            [
                 datosEntidadBuilder.Build(669, LocalidadBuenosAires.Pila),
                 datosEntidadBuilder.Build(670, LocalidadBuenosAires.Casalins)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pilar).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pilar).Id,
+            [
                 datosEntidadBuilder.Build(671, LocalidadBuenosAires.DelViso),
                 datosEntidadBuilder.Build(672, LocalidadBuenosAires.Fatima),
                 datosEntidadBuilder.Build(673, LocalidadBuenosAires.LaLonja),
@@ -993,22 +986,22 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(683, LocalidadBuenosAires.Lagomarsino),
                 datosEntidadBuilder.Build(684, LocalidadBuenosAires.VillaRosa),
                 datosEntidadBuilder.Build(685, LocalidadBuenosAires.Zelaya)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pinamar).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Pinamar).Id,
+            [
                 datosEntidadBuilder.Build(686, LocalidadBuenosAires.Montecarlo),
                 datosEntidadBuilder.Build(687, LocalidadBuenosAires.Pinamar),
                 datosEntidadBuilder.Build(688, LocalidadBuenosAires.MarDeOstende),
                 datosEntidadBuilder.Build(689, LocalidadBuenosAires.Ostende),
                 datosEntidadBuilder.Build(690, LocalidadBuenosAires.ValeriaDelMar),
                 datosEntidadBuilder.Build(691, LocalidadBuenosAires.Carilo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.PresidentePeron).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.PresidentePeron).Id,
+            [
                 datosEntidadBuilder.Build(692, LocalidadBuenosAires.Guernica)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Puan).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Puan).Id,
+            [
                 datosEntidadBuilder.Build(693, LocalidadBuenosAires.Azopardo),
                 datosEntidadBuilder.Build(694, LocalidadBuenosAires.Bordenave),
                 datosEntidadBuilder.Build(695, LocalidadBuenosAires.Darregueira),
@@ -1022,18 +1015,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(703, LocalidadBuenosAires.VillaCastelar),
                 datosEntidadBuilder.Build(704, LocalidadBuenosAires.VillaDurcudoy),
                 datosEntidadBuilder.Build(705, LocalidadBuenosAires.VillaIris)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.PuntaIndio).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.PuntaIndio).Id,
+            [
                 datosEntidadBuilder.Build(706, LocalidadBuenosAires.Veronica),
                 datosEntidadBuilder.Build(707, LocalidadBuenosAires.Pipinas),
                 datosEntidadBuilder.Build(708, LocalidadBuenosAires.PuntaDelIndio),
                 datosEntidadBuilder.Build(709, LocalidadBuenosAires.AlvarezJonte),
                 datosEntidadBuilder.Build(710, LocalidadBuenosAires.LasTahonas),
                 datosEntidadBuilder.Build(711, LocalidadBuenosAires.MonteVeloz)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Quilmes).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Quilmes).Id,
+            [
                 datosEntidadBuilder.Build(712, LocalidadBuenosAires.BernalEste),
                 datosEntidadBuilder.Build(713, LocalidadBuenosAires.BernalOeste),
                 datosEntidadBuilder.Build(714, LocalidadBuenosAires.DonBosco),
@@ -1043,21 +1036,21 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(718, LocalidadBuenosAires.QuilmesOeste),
                 datosEntidadBuilder.Build(719, LocalidadBuenosAires.SanFranciscoSolano),
                 datosEntidadBuilder.Build(720, LocalidadBuenosAires.VillaLaFlorida)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ramallo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Ramallo).Id,
+            [
                 datosEntidadBuilder.Build(721, LocalidadBuenosAires.Ramallo),
                 datosEntidadBuilder.Build(722, LocalidadBuenosAires.ElParaiso),
                 datosEntidadBuilder.Build(723, LocalidadBuenosAires.PerezMillan),
                 datosEntidadBuilder.Build(724, LocalidadBuenosAires.VillaRamallo),
                 datosEntidadBuilder.Build(725, LocalidadBuenosAires.VillaGeneralSavio)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Rauch).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Rauch).Id,
+            [
                 datosEntidadBuilder.Build(726, LocalidadBuenosAires.Rauch)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Rivadavia).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Rivadavia).Id,
+            [
                 datosEntidadBuilder.Build(727, LocalidadBuenosAires.America),
                 datosEntidadBuilder.Build(728, LocalidadBuenosAires.GonzalezMoreno),
                 datosEntidadBuilder.Build(729, LocalidadBuenosAires.FortinOlavarria),
@@ -1066,9 +1059,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(732, LocalidadBuenosAires.Sundblad),
                 datosEntidadBuilder.Build(733, LocalidadBuenosAires.MiraPampa),
                 datosEntidadBuilder.Build(734, LocalidadBuenosAires.SanMauricio)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Rojas).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Rojas).Id,
+            [
                 datosEntidadBuilder.Build(735, LocalidadBuenosAires.Rojas),
                 datosEntidadBuilder.Build(736, LocalidadBuenosAires.LasCarabelas),
                 datosEntidadBuilder.Build(737, LocalidadBuenosAires.RafaelObligado),
@@ -1078,9 +1071,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(741, LocalidadBuenosAires.VillaParqueCecir),
                 datosEntidadBuilder.Build(742, LocalidadBuenosAires.RobertoCano),
                 datosEntidadBuilder.Build(743, LocalidadBuenosAires.SolDeMayo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.RoquePerez).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.RoquePerez).Id,
+            [
                 datosEntidadBuilder.Build(744, LocalidadBuenosAires.RoquePerez),
                 datosEntidadBuilder.Build(745, LocalidadBuenosAires.CarlosBeguerie),
                 datosEntidadBuilder.Build(746, LocalidadBuenosAires.SantiagoLarre),
@@ -1089,9 +1082,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(749, LocalidadBuenosAires.LaPaz),
                 datosEntidadBuilder.Build(750, LocalidadBuenosAires.LaPazChica),
                 datosEntidadBuilder.Build(751, LocalidadBuenosAires.Atucha)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Saavedra).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Saavedra).Id,
+            [
                 datosEntidadBuilder.Build(752, LocalidadBuenosAires.Pigue),
                 datosEntidadBuilder.Build(753, LocalidadBuenosAires.Saavedra),
                 datosEntidadBuilder.Build(754, LocalidadBuenosAires.Espartillar),
@@ -1099,32 +1092,32 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(756, LocalidadBuenosAires.ArroyoCorto),
                 datosEntidadBuilder.Build(757, LocalidadBuenosAires.Dufaur),
                 datosEntidadBuilder.Build(758, LocalidadBuenosAires.ColoniaSanMartin)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Saladillo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Saladillo).Id,
+            [
                 datosEntidadBuilder.Build(759, LocalidadBuenosAires.Saladillo),
                 datosEntidadBuilder.Build(760, LocalidadBuenosAires.DelCarril),
                 datosEntidadBuilder.Build(761, LocalidadBuenosAires.Polvaredas),
                 datosEntidadBuilder.Build(762, LocalidadBuenosAires.Cazon),
                 datosEntidadBuilder.Build(763, LocalidadBuenosAires.AlvarezDeToledo),
                 datosEntidadBuilder.Build(764, LocalidadBuenosAires.JuanJoseBlaquier)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Salliquelo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Salliquelo).Id,
+            [
                 datosEntidadBuilder.Build(765, LocalidadBuenosAires.Salliquelo),
                 datosEntidadBuilder.Build(766, LocalidadBuenosAires.Quenuma)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Salto).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Salto).Id,
+            [
                 datosEntidadBuilder.Build(767, LocalidadBuenosAires.Salto),
                 datosEntidadBuilder.Build(768, LocalidadBuenosAires.ArroyoDulce),
                 datosEntidadBuilder.Build(769, LocalidadBuenosAires.InesIndart),
                 datosEntidadBuilder.Build(770, LocalidadBuenosAires.Gahan),
                 datosEntidadBuilder.Build(771, LocalidadBuenosAires.Berdier),
                 datosEntidadBuilder.Build(772, LocalidadBuenosAires.LaInvencible)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanAndresDeGiles).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanAndresDeGiles).Id,
+            [
                 datosEntidadBuilder.Build(773, LocalidadBuenosAires.SanAndresDeGiles),
                 datosEntidadBuilder.Build(774, LocalidadBuenosAires.Solis),
                 datosEntidadBuilder.Build(775, LocalidadBuenosAires.VillaRuiz),
@@ -1132,46 +1125,46 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(777, LocalidadBuenosAires.Azcuenaga),
                 datosEntidadBuilder.Build(778, LocalidadBuenosAires.VillaEspil),
                 datosEntidadBuilder.Build(779, LocalidadBuenosAires.Franklin)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanAntonioDeAreco).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanAntonioDeAreco).Id,
+            [
                 datosEntidadBuilder.Build(780, LocalidadBuenosAires.SanAntonioDeAreco),
                 datosEntidadBuilder.Build(781, LocalidadBuenosAires.VillaLia),
                 datosEntidadBuilder.Build(782, LocalidadBuenosAires.Duggan),
                 datosEntidadBuilder.Build(783, LocalidadBuenosAires.Vagues)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanCayetano).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanCayetano).Id,
+            [
                 datosEntidadBuilder.Build(784, LocalidadBuenosAires.SanCayetano),
                 datosEntidadBuilder.Build(785, LocalidadBuenosAires.Ochandio),
                 datosEntidadBuilder.Build(786, LocalidadBuenosAires.BalnearioSanCayetano)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanFernando).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanFernando).Id,
+            [
                 datosEntidadBuilder.Build(787, LocalidadBuenosAires.SanFernando),
                 datosEntidadBuilder.Build(788, LocalidadBuenosAires.Victoria),
                 datosEntidadBuilder.Build(789, LocalidadBuenosAires.Virreyes),
                 datosEntidadBuilder.Build(790, LocalidadBuenosAires.Islas)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanIsidro).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanIsidro).Id,
+            [
                 datosEntidadBuilder.Build(791, LocalidadBuenosAires.VillaAdelina),
                 datosEntidadBuilder.Build(792, LocalidadBuenosAires.BoulogneSurMer),
                 datosEntidadBuilder.Build(793, LocalidadBuenosAires.Martinez),
                 datosEntidadBuilder.Build(794, LocalidadBuenosAires.Acassuso),
                 datosEntidadBuilder.Build(795, LocalidadBuenosAires.SanIsidro),
                 datosEntidadBuilder.Build(796, LocalidadBuenosAires.Beccar)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanMiguel).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanMiguel).Id,
+            [
                 datosEntidadBuilder.Build(797, LocalidadBuenosAires.SanMiguel),
                 datosEntidadBuilder.Build(798, LocalidadBuenosAires.BellaVista),
                 datosEntidadBuilder.Build(799, LocalidadBuenosAires.CampoDeMayo),
                 datosEntidadBuilder.Build(800, LocalidadBuenosAires.Muniz),
                 datosEntidadBuilder.Build(801, LocalidadBuenosAires.SantaMaria)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanNicolas).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanNicolas).Id,
+            [
                 datosEntidadBuilder.Build(802, LocalidadBuenosAires.CamposSalles),
                 datosEntidadBuilder.Build(803, LocalidadBuenosAires.Conesa),
                 datosEntidadBuilder.Build(804, LocalidadBuenosAires.Erezcano),
@@ -1183,38 +1176,38 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(810, LocalidadBuenosAires.VillaEsperanza),
                 datosEntidadBuilder.Build(811, LocalidadBuenosAires.VillaHermosa),
                 datosEntidadBuilder.Build(812, LocalidadBuenosAires.VillaRiccio)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanPedro).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanPedro).Id,
+            [
                 datosEntidadBuilder.Build(813, LocalidadBuenosAires.SanPedro),
                 datosEntidadBuilder.Build(814, LocalidadBuenosAires.GobernadorCastro),
                 datosEntidadBuilder.Build(815, LocalidadBuenosAires.SantaLucia),
                 datosEntidadBuilder.Build(816, LocalidadBuenosAires.RioTala),
                 datosEntidadBuilder.Build(817, LocalidadBuenosAires.PuebloDoyle),
                 datosEntidadBuilder.Build(818, LocalidadBuenosAires.Obligado)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanVicente).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.SanVicente).Id,
+            [
                 datosEntidadBuilder.Build(819, LocalidadBuenosAires.SanVicente),
                 datosEntidadBuilder.Build(820, LocalidadBuenosAires.AlejandroKorn),
                 datosEntidadBuilder.Build(821, LocalidadBuenosAires.Domselaar)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Suipacha).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Suipacha).Id,
+            [
                 datosEntidadBuilder.Build(822, LocalidadBuenosAires.Suipacha),
                 datosEntidadBuilder.Build(823, LocalidadBuenosAires.GeneralRivas),
                 datosEntidadBuilder.Build(824, LocalidadBuenosAires.RomanBaez)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tandil).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tandil).Id,
+            [
                 datosEntidadBuilder.Build(825, LocalidadBuenosAires.Tandil),
                 datosEntidadBuilder.Build(826, LocalidadBuenosAires.MariaIgnacia),
                 datosEntidadBuilder.Build(827, LocalidadBuenosAires.Gardey),
                 datosEntidadBuilder.Build(828, LocalidadBuenosAires.DeLaCanal),
                 datosEntidadBuilder.Build(829, LocalidadBuenosAires.DesvioAguirre)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tapalque).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tapalque).Id,
+            [
                 datosEntidadBuilder.Build(830, LocalidadBuenosAires.Tapalque),
                 datosEntidadBuilder.Build(831, LocalidadBuenosAires.Altona),
                 datosEntidadBuilder.Build(832, LocalidadBuenosAires.Crotto),
@@ -1224,9 +1217,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(836, LocalidadBuenosAires.Covello),
                 datosEntidadBuilder.Build(837, LocalidadBuenosAires.Velloso),
                 datosEntidadBuilder.Build(838, LocalidadBuenosAires.LaPaloma)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tigre).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tigre).Id,
+            [
                 datosEntidadBuilder.Build(839, LocalidadBuenosAires.Tigre),
                 datosEntidadBuilder.Build(840, LocalidadBuenosAires.DonTorcuato),
                 datosEntidadBuilder.Build(841, LocalidadBuenosAires.GeneralPacheco),
@@ -1238,14 +1231,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(847, LocalidadBuenosAires.RinconDeMilberg),
                 datosEntidadBuilder.Build(848, LocalidadBuenosAires.Nordelta),
                 datosEntidadBuilder.Build(849, LocalidadBuenosAires.DeltaDelTigre)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tordillo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tordillo).Id,
+            [
                 datosEntidadBuilder.Build(850, LocalidadBuenosAires.GeneralConesa),
                 datosEntidadBuilder.Build(851, LocalidadBuenosAires.VillaRoch)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tornquist).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Tornquist).Id,
+            [
                 datosEntidadBuilder.Build(852, LocalidadBuenosAires.Tornquist),
                 datosEntidadBuilder.Build(853, LocalidadBuenosAires.SierraDeLaVentana),
                 datosEntidadBuilder.Build(854, LocalidadBuenosAires.Saldungaray),
@@ -1253,18 +1246,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(856, LocalidadBuenosAires.Chasico),
                 datosEntidadBuilder.Build(857, LocalidadBuenosAires.TresPicos),
                 datosEntidadBuilder.Build(858, LocalidadBuenosAires.VillaSerranaLaGruta)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.TrenqueLauquen).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.TrenqueLauquen).Id,
+            [
                 datosEntidadBuilder.Build(859, LocalidadBuenosAires.TrenqueLauquen),
                 datosEntidadBuilder.Build(860, LocalidadBuenosAires.TreintaDeAgosto),
                 datosEntidadBuilder.Build(861, LocalidadBuenosAires.Beruti),
                 datosEntidadBuilder.Build(862, LocalidadBuenosAires.Girodias),
                 datosEntidadBuilder.Build(863, LocalidadBuenosAires.LaCarreta),
                 datosEntidadBuilder.Build(864, LocalidadBuenosAires.Garre)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.TresArroyos).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.TresArroyos).Id,
+            [
                 datosEntidadBuilder.Build(865, LocalidadBuenosAires.TresArroyos),
                 datosEntidadBuilder.Build(866, LocalidadBuenosAires.Claromeco),
                 datosEntidadBuilder.Build(867, LocalidadBuenosAires.Orense),
@@ -1276,9 +1269,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(873, LocalidadBuenosAires.SanMayol),
                 datosEntidadBuilder.Build(874, LocalidadBuenosAires.LinCalel),
                 datosEntidadBuilder.Build(875, LocalidadBuenosAires.Barrow)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.TresDeFebrero).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.TresDeFebrero).Id,
+            [
                 datosEntidadBuilder.Build(876, LocalidadBuenosAires.Caseros),
                 datosEntidadBuilder.Build(877, LocalidadBuenosAires.Churruca),
                 datosEntidadBuilder.Build(878, LocalidadBuenosAires.CiudadJardinLomasDelPalomar),
@@ -1294,14 +1287,14 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(888, LocalidadBuenosAires.SantosLugares),
                 datosEntidadBuilder.Build(889, LocalidadBuenosAires.VillaBosch),
                 datosEntidadBuilder.Build(890, LocalidadBuenosAires.VillaRaffo)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.TresLomas).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.TresLomas).Id,
+            [
                 datosEntidadBuilder.Build(891, LocalidadBuenosAires.TresLomas),
                 datosEntidadBuilder.Build(892, LocalidadBuenosAires.IngenieroThompson)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.VeinticincoDeMayo).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.VeinticincoDeMayo).Id,
+            [
                 datosEntidadBuilder.Build(893, LocalidadBuenosAires.VeinticincoDeMayo),
                 datosEntidadBuilder.Build(894, LocalidadBuenosAires.NorbertoDeLaRiestra),
                 datosEntidadBuilder.Build(895, LocalidadBuenosAires.Pedernales),
@@ -1312,9 +1305,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(900, LocalidadBuenosAires.AgustinMosconi),
                 datosEntidadBuilder.Build(901, LocalidadBuenosAires.Ernestina),
                 datosEntidadBuilder.Build(902, LocalidadBuenosAires.LucasMonteverde)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.VicenteLopez).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.VicenteLopez).Id,
+            [
                 datosEntidadBuilder.Build(903, LocalidadBuenosAires.VicenteLopez),
                 datosEntidadBuilder.Build(904, LocalidadBuenosAires.Olivos),
                 datosEntidadBuilder.Build(905, LocalidadBuenosAires.Florida),
@@ -1324,16 +1317,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(909, LocalidadBuenosAires.Munro),
                 datosEntidadBuilder.Build(910, LocalidadBuenosAires.Carapachay),
                 datosEntidadBuilder.Build(911, LocalidadBuenosAires.VillaAdelina)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.VillaGesell).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.VillaGesell).Id,
+            [
                 datosEntidadBuilder.Build(912, LocalidadBuenosAires.LasGaviotas),
                 datosEntidadBuilder.Build(913, LocalidadBuenosAires.MarAzul),
                 datosEntidadBuilder.Build(914, LocalidadBuenosAires.MarDeLasPampas),
                 datosEntidadBuilder.Build(915, LocalidadBuenosAires.VillaGesell)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Villarino).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Villarino).Id,
+            [
                 datosEntidadBuilder.Build(916, LocalidadBuenosAires.PedroLuro),
                 datosEntidadBuilder.Build(917, LocalidadBuenosAires.MayorBuratovich),
                 datosEntidadBuilder.Build(918, LocalidadBuenosAires.Medanos),
@@ -1344,16 +1337,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(923, LocalidadBuenosAires.Argerich),
                 datosEntidadBuilder.Build(924, LocalidadBuenosAires.LagunaChasico),
                 datosEntidadBuilder.Build(925, LocalidadBuenosAires.BalnearioLaChiquita)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Zarate).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoBuenosAires.Zarate).Id,
+            [
                 datosEntidadBuilder.Build(926, LocalidadBuenosAires.Zarate),
                 datosEntidadBuilder.Build(927, LocalidadBuenosAires.Lima),
                 datosEntidadBuilder.Build(928, LocalidadBuenosAires.BarrioSaavedra),
                 datosEntidadBuilder.Build(929, LocalidadBuenosAires.CountryClubElCasco),
                 datosEntidadBuilder.Build(930, LocalidadBuenosAires.Escalada),
                 datosEntidadBuilder.Build(931, LocalidadBuenosAires.ParajeOrtiz)
-            });
+            ]);
         }
     }
 }

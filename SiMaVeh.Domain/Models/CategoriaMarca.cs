@@ -39,26 +39,6 @@ namespace SiMaVeh.Domain.Models
             return Nombre;
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is CategoriaMarca item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper()));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(CategoriaMarca).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region ICollectionManager

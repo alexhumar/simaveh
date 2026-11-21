@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -15,16 +15,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Presiones Neumatico Controller
     /// </summary>
-    public class PresionesNeumaticoController : GenericController<PresionNeumatico, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class PresionesNeumaticoController(IControllerParameter parameters, IRepository<PresionNeumatico, long> repository) : GenericController<PresionNeumatico, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public PresionesNeumaticoController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -36,9 +33,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetVehiculoCargado([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.VehiculoCargado);
+            return await ObtenerPropiedad(key, entity => entity.VehiculoCargado);
         }
 
         /// <summary>
@@ -49,9 +44,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetEsUniversal([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.EsUniversal);
+            return await ObtenerPropiedad(key, entity => entity.EsUniversal);
         }
 
         /// <summary>
@@ -60,12 +53,10 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Modelo vehiculo de la presion neumatico</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RecomendacionesModeloVehiculo);
+            return await ObtenerPropiedad(key, entity => entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>
@@ -77,9 +68,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetNeumatico([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Neumatico);
+            return await ObtenerPropiedad(key, entity => entity.Neumatico);
         }
 
         /// <summary>
@@ -90,9 +79,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetRuedasDelanteras([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RuedasDelanteras);
+            return await ObtenerPropiedad(key, entity => entity.RuedasDelanteras);
         }
 
         /// <summary>
@@ -103,9 +90,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetRuedasTraseras([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RuedasTraseras);
+            return await ObtenerPropiedad(key, entity => entity.RuedasTraseras);
         }
 
         /// <summary>

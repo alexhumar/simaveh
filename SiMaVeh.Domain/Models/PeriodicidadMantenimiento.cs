@@ -55,26 +55,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat("Periodicidad ", Repuesto?.ToString(), " - ", ModeloVehiculo?.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is PeriodicidadMantenimiento item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Repuesto.Equals(item.Repuesto) && ModeloVehiculo.Equals(item.ModeloVehiculo) && EsDefault == item.EsDefault));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(PeriodicidadMantenimiento).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger

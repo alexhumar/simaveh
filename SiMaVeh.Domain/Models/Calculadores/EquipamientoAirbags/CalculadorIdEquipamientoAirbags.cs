@@ -8,18 +8,13 @@ namespace SiMaVeh.Domain.Models.Calculadores.EquipamientoAirbags
     /// <summary>
     /// Calculador de Id de EquipamientoAirbags
     /// </summary>
-    public class CalculadorIdEquipamientoAirbags : ICalculadorIdEquipamientoAirbags
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="tipoAirbagLateralParser"></param>
+    public class CalculadorIdEquipamientoAirbags(IEnumParser<TipoAirbagLateral> tipoAirbagLateralParser) : ICalculadorIdEquipamientoAirbags
     {
-        private readonly IEnumParser<TipoAirbagLateral> tipoAirbagLateralParser;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="tipoAirbagLateralParser"></param>
-        public CalculadorIdEquipamientoAirbags(IEnumParser<TipoAirbagLateral> tipoAirbagLateralParser)
-        {
-            this.tipoAirbagLateralParser = tipoAirbagLateralParser;
-        }
+        private readonly IEnumParser<TipoAirbagLateral> tipoAirbagLateralParser = tipoAirbagLateralParser;
 
         /// <summary>
         /// Calcular

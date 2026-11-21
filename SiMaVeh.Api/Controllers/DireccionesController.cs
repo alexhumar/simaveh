@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.OData.Formatter;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -12,16 +13,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Direcciones Controller
     /// </summary>
-    public class DireccionesController : GenericController<Direccion, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class DireccionesController(IControllerParameter parameters, IRepository<Direccion, long> repository) : GenericController<Direccion, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public DireccionesController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -33,9 +31,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetCalle([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Calle);
+            return await ObtenerPropiedad(key, entity => entity.Calle);
         }
 
         /// <summary>
@@ -46,9 +42,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetLocalidad([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Localidad);
+            return await ObtenerPropiedad(key, entity => entity.Localidad);
         }
 
         /// <summary>
@@ -59,9 +53,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNumeroCalle([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.NumeroCalle);
+            return await ObtenerPropiedad(key, entity => entity.NumeroCalle);
         }
 
         /// <summary>

@@ -83,26 +83,6 @@ namespace SiMaVeh.Domain.Models
                 DiametroLLanta, " ", IndiceCarga, IndiceVelocidad);
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Neumatico item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Marca.Equals(Marca) && Modelo.ToUpper() == item.Modelo.ToUpper()));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Neumatico).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger

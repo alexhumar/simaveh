@@ -8,7 +8,7 @@
         /// <summary>
         /// DNI
         /// </summary>
-        public const string DNI = "Documento nacional de identidad manual o digital (formato tarjeta o credencial virtual para dispositivos móviles)";
+        public const string DNI = "Documento nacional de identidad (tarjeta física o credencial digital en dispositivos móviles)";
 
         /// <summary>
         /// Libreta de enrolamiento

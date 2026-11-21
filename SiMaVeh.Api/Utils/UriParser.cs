@@ -1,7 +1,7 @@
-﻿using Microsoft.OData.UriParser;
+﻿using Microsoft.OData.Edm;
+using Microsoft.OData.UriParser;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Utils.Interfaces;
-using SiMaVeh.DataAccess.Model.Interfaces;
 using System;
 using System.Linq;
 
@@ -10,18 +10,13 @@ namespace SiMaVeh.Api.Utils
     /// <summary>
     /// UriParser
     /// </summary>
-    public class UriParser : IUriParser
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="edmModel"></param>
+    public class UriParser(IEdmModel edmModel) : IUriParser
     {
-        private readonly IModelBuilder modelBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="modelBuilder"></param>
-        public UriParser(IModelBuilder modelBuilder)
-        {
-            this.modelBuilder = modelBuilder;
-        }
+        private readonly IEdmModel edmModel = edmModel;
 
         /// <summary>
         /// GetKeyFromRelatedEntityUri
@@ -31,7 +26,7 @@ namespace SiMaVeh.Api.Utils
         /// <returns></returns>
         public TKey GetKeyFromRelatedEntityUri<TKey>(Uri uri)
         {
-            var oDataUriParser = new ODataUriParser(modelBuilder.GetEdmModel(),
+            var oDataUriParser = new ODataUriParser(edmModel,
                 new Uri($"{uri.Scheme}://{uri.Host}:{uri.Port}/{UriConstants.PrefijoRutaOData}/"), uri);
             var oDataKeySegment = (KeySegment)oDataUriParser.ParsePath().LastSegment;
 

@@ -1,9 +1,9 @@
-﻿namespace SiMaVeh.DataAccess.Constants
+﻿namespace SiMaVeh.Api.Constants
 {
     /// <summary>
     /// Query Constants
     /// </summary>
-    public class QueryConstants
+    public class ODataQueryConstants
     {
         /// <summary>
         /// MaxItemsPerPage

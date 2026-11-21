@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System.Threading.Tasks;
 
@@ -9,16 +10,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Fluidos Controller
     /// </summary>
-    public class FluidosController : GenericController<Fluido, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class FluidosController(IControllerParameter parameters, IRepository<Fluido, long> repository) : GenericController<Fluido, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public FluidosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -30,9 +28,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetDescripcion([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Descripcion);
+            return await ObtenerPropiedad(key, entity => entity.Descripcion);
         }
 
         /// <summary>
@@ -43,9 +39,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         #endregion

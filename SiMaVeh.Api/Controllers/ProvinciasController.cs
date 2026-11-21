@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Linq;
@@ -15,16 +15,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Provincias Controller
     /// </summary>
-    public class ProvinciasController : GenericController<Provincia, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class ProvinciasController(IControllerParameter parameters, IRepository<Provincia, long> repository) : GenericController<Provincia, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public ProvinciasController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -35,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>
@@ -49,9 +44,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetPais([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Pais);
+            return await ObtenerPropiedad(key, entity => entity.Pais);
         }
 
         /// <summary>
@@ -59,12 +52,10 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Lista de partidos de la provincia</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetPartidos([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Partidos.AsQueryable());
+            return await ObtenerPropiedad(key, entity => entity.Partidos.AsQueryable());
         }
 
         /// <summary>

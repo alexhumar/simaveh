@@ -7,30 +7,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OData.Edm;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Extensions;
+using SiMaVeh.Api.Model;
 using SiMaVeh.DataAccess;
 using SiMaVeh.DataAccess.Model;
-using SiMaVeh.DataAccess.Model.Interfaces;
 using SiMaVeh.Domain;
 using SiMaVeh.Domain.BusinessLogic.Entities;
 
 namespace SiMaVeh.Api
 {
-    public class Startup
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="configuration"></param>
+    public class Startup(IConfiguration configuration)
     {
-        private readonly IConfiguration configuration;
-        private readonly IModelBuilder modelBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="configuration"></param>
-        public Startup(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-            modelBuilder = new SiMaVehModelBuilder(new EntityTypeGetter());
-        }
+        private readonly IConfiguration configuration = configuration;
+        private readonly SiMaVehODataModelBuilder odataModelBuilder = new(new EntityTypeGetter());
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
@@ -38,6 +33,10 @@ namespace SiMaVeh.Api
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            //El modelo EDM se construye una sola vez y se comparte entre el ruteo OData y el resto de la aplicacion (ej: UriParser).
+            var edmModel = odataModelBuilder.GetEdmModel();
+            services.AddSingleton<IEdmModel>(edmModel);
+
             var connection = configuration.GetConnectionString("DefaultConnection");
             services
                 .AddDbContext<SiMaVehContext>(options => options
@@ -58,7 +57,7 @@ namespace SiMaVeh.Api
 
                 //TODO: Esto es para habilitar el soporte legacy para IRouter. Habria que ver como reemplazarlo!
                 mvcOptions.EnableEndpointRouting = false;
-            }).AddOData(opt => opt.AddRouteComponents(UriConstants.PrefijoRutaOData, modelBuilder.GetEdmModel()));
+            }).AddOData(opt => opt.AddRouteComponents(UriConstants.PrefijoRutaOData, edmModel));
 
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
         }

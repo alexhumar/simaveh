@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoLaRiojaFixtureGetter : PartidoFixtureGetter
+    public class PartidoLaRiojaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoLaRiojaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.LaRioja).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.LaRioja).Id,
+            [
                 datosEntidadBuilder.Build(307, PartidoLaRioja.Arauco),
                 datosEntidadBuilder.Build(308, PartidoLaRioja.Capital),
                 datosEntidadBuilder.Build(309, PartidoLaRioja.CastroBarros),
@@ -38,7 +31,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(322, PartidoLaRioja.SanBlasDeLosSauces),
                 datosEntidadBuilder.Build(323, PartidoLaRioja.Sanagasta),
                 datosEntidadBuilder.Build(324, PartidoLaRioja.Vinchina)
-            });
+            ]);
         }
     }
 }

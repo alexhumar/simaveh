@@ -13,22 +13,16 @@ namespace SiMaVeh.Api.Model
     /// <summary>
     /// ODataRelatedEntityAdder
     /// </summary>
-    public class ODataRelatedEntityAdder : IODataRelatedEntityAdder
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="uriParser"></param>
+    /// <param name="relatedEntityAdder"></param>
+    public class ODataRelatedEntityAdder(IUriParser uriParser,
+        IRelatedEntityAdder relatedEntityAdder) : IODataRelatedEntityAdder
     {
-        private readonly IUriParser uriParser;
-        private readonly IRelatedEntityAdder relatedEntityAdder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="uriParser"></param>
-        /// <param name="relatedEntityAdder"></param>
-        public ODataRelatedEntityAdder(IUriParser uriParser,
-            IRelatedEntityAdder relatedEntityAdder)
-        {
-            this.uriParser = uriParser;
-            this.relatedEntityAdder = relatedEntityAdder;
-        }
+        private readonly IUriParser uriParser = uriParser;
+        private readonly IRelatedEntityAdder relatedEntityAdder = relatedEntityAdder;
 
         /// <summary>
         /// TryAddRelatedEntityAsync

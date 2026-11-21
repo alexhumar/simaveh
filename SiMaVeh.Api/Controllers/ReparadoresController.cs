@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -14,16 +14,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Reparadores Controller
     /// </summary>
-    public class ReparadoresController : GenericController<Reparador, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class ReparadoresController(IControllerParameter parameters, IRepository<Reparador, long> repository) : GenericController<Reparador, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public ReparadoresController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -34,9 +31,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetApellido([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Apellido);
+            return await ObtenerPropiedad(key, entity => entity.Apellido);
         }
 
         /// <summary>
@@ -44,12 +39,10 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Entidades reparadoras del reparador</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetEntidadesReparadoras([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.EntidadesReparadoras);
+            return await ObtenerPropiedad(key, entity => entity.EntidadesReparadoras);
         }
 
         /// <summary>
@@ -59,9 +52,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>
@@ -71,9 +62,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNumeroDocumento([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.NumeroDocumento);
+            return await ObtenerPropiedad(key, entity => entity.NumeroDocumento);
         }
 
         /// <summary>
@@ -81,12 +70,10 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Telefonos del reparador</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetTelefonos([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Telefonos);
+            return await ObtenerPropiedad(key, entity => entity.Telefonos);
         }
 
         /// <summary>
@@ -97,9 +84,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTipoDocumento([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TipoDocumento);
+            return await ObtenerPropiedad(key, entity => entity.TipoDocumento);
         }
 
         /// <summary>

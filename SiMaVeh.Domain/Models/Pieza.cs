@@ -24,25 +24,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat("(Pieza) ", Nombre, UbicacionPieza?.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Pieza item && (ReferenceEquals(this, item) || base.Equals(obj));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Pieza).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger

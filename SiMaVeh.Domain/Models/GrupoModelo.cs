@@ -29,26 +29,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat(Marca?.ToString(), " ", Nombre);
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is GrupoModelo item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre == item.Nombre && Marca.Equals(item.Marca)));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(GrupoModelo).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger

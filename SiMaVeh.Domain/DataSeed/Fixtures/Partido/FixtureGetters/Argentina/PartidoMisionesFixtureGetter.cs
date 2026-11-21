@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoMisionesFixtureGetter : PartidoFixtureGetter
+    public class PartidoMisionesFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoMisionesFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Misiones).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Misiones).Id,
+            [
                 datosEntidadBuilder.Build(343, PartidoMisiones.Apostoles),
                 datosEntidadBuilder.Build(344, PartidoMisiones.Cainguas),
                 datosEntidadBuilder.Build(345, PartidoMisiones.Candelaria),
@@ -37,7 +30,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(357, PartidoMisiones.SanJavier),
                 datosEntidadBuilder.Build(358, PartidoMisiones.SanPedro),
                 datosEntidadBuilder.Build(359, PartidoMisiones.VeinticincoDeMayo)
-            });
+            ]);
         }
     }
 }

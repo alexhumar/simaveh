@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoCorrientesFixtureGetter : PartidoFixtureGetter
+    public class PartidoCorrientesFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoCorrientesFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Corrientes).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Corrientes).Id,
+            [
                 datosEntidadBuilder.Build(218, PartidoCorrientes.BellaVista),
                 datosEntidadBuilder.Build(219, PartidoCorrientes.BeronDeAstrada),
                 datosEntidadBuilder.Build(220, PartidoCorrientes.Capital),
@@ -45,7 +38,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(240, PartidoCorrientes.SanRoque),
                 datosEntidadBuilder.Build(241, PartidoCorrientes.SantoTome),
                 datosEntidadBuilder.Build(242, PartidoCorrientes.Sauce)
-            });
+            ]);
         }
     }
 }

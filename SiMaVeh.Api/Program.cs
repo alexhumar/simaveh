@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog;
 using NLog.Web;
+using SiMaVeh.Api.Utils;
 using System;
 
 namespace SiMaVeh.Api
@@ -11,9 +13,10 @@ namespace SiMaVeh.Api
     {
         public static void Main(string[] args)
         {
-            var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
             try
             {
+                logger.Info("{Aplicacion} iniciando.", new InformacionVersion());
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception e)
@@ -23,7 +26,7 @@ namespace SiMaVeh.Api
             }
             finally
             {
-                NLog.LogManager.Shutdown();
+                LogManager.Shutdown();
             }
         }
 
@@ -36,7 +39,7 @@ namespace SiMaVeh.Api
                 })
                 .ConfigureLogging(logging =>
                 {
-                    logging.ClearProviders().SetMinimumLevel(LogLevel.Trace);
+                    logging.ClearProviders().SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
                 })
                 .UseNLog(); //Configura NLog para inyeccion de dependencias.
     }

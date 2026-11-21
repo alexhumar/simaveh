@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoSanJuanFixtureGetter : PartidoFixtureGetter
+    public class PartidoSanJuanFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoSanJuanFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.SanJuan).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.SanJuan).Id,
+            [
                 datosEntidadBuilder.Build(412, PartidoSanJuan.Albardon),
                 datosEntidadBuilder.Build(413, PartidoSanJuan.Angaco),
                 datosEntidadBuilder.Build(414, PartidoSanJuan.Calingasta),
@@ -39,7 +32,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(428, PartidoSanJuan.ValleFertil),
                 datosEntidadBuilder.Build(429, PartidoSanJuan.VeinticincoDeMayo),
                 datosEntidadBuilder.Build(430, PartidoSanJuan.Zonda)
-            });
+            ]);
         }
     }
 }

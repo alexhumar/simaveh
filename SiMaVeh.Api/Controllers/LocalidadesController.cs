@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -13,16 +14,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Localidades Controller
     /// </summary>
-    public class LocalidadesController : GenericController<Localidad, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class LocalidadesController(IControllerParameter parameters, IRepository<Localidad, long> repository) : GenericController<Localidad, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public LocalidadesController(IControllerParameter parameters) :
-            base(parameters)
-        {
-        }
 
         #region properties
 
@@ -34,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNombre([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Nombre);
+            return await ObtenerPropiedad(key, entity => entity.Nombre);
         }
 
         /// <summary>
@@ -47,9 +43,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetCPA([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.CPA);
+            return await ObtenerPropiedad(key, entity => entity.CPA);
         }
 
         /// <summary>
@@ -61,9 +55,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetPartido([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Partido);
+            return await ObtenerPropiedad(key, entity => entity.Partido);
         }
 
         /// <summary>

@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia
     /// <summary>
     /// Provider de fixture getters de Tipos de Fuentes de Energia
     /// </summary>
-    public class TipoFuenteEnergiaFixtureGettersProvider : ITipoFuenteEnergiaFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class TipoFuenteEnergiaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : ITipoFuenteEnergiaFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public TipoFuenteEnergiaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de tipos de fuentes de energia
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoFuenteEnergia
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosEntidad>>
-            {
+            return
+            [
                 new TipoFuenteEnergiaFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

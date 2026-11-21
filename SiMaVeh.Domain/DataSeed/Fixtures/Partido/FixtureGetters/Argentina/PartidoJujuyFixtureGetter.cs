@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoJujuyFixtureGetter : PartidoFixtureGetter
+    public class PartidoJujuyFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoJujuyFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Jujuy).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Jujuy).Id,
+            [
                 datosEntidadBuilder.Build(269, PartidoJujuy.Cochinoca),
                 datosEntidadBuilder.Build(270, PartidoJujuy.DrManuelBelgrano),
                 datosEntidadBuilder.Build(271, PartidoJujuy.ElCarmen),
@@ -36,7 +29,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(282, PartidoJujuy.Tumbaya),
                 datosEntidadBuilder.Build(283, PartidoJujuy.ValleGrande),
                 datosEntidadBuilder.Build(284, PartidoJujuy.Yavi)
-            });
+            ]);
         }
     }
 }

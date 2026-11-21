@@ -20,7 +20,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoTelefono.FixtureGetters
         public TipoTelefonoFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            tiposTelefono = new List<DatosEntidad>();
+            tiposTelefono = [];
 
             Initialize();
         }

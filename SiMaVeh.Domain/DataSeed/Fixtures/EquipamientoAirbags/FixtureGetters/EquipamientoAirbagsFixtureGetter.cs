@@ -23,7 +23,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.EquipamientoAirbags.FixtureGetters
         public EquipamientoAirbagsFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            equipamientosAirbags = new List<DatosEquipamientoAirbags>();
+            equipamientosAirbags = [];
 
             Initialize();
         }

@@ -2,23 +2,16 @@
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Pais.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Base;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Uruguay
 {
-    public class ProvinciaUruguayFixtureGetter : ProvinciaFixtureGetter
+    public class ProvinciaUruguayFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPaisFixtureGetter paisFixtureGetter) : ProvinciaFixtureGetter(datosEntidadBuilder, paisFixtureGetter)
     {
-        public ProvinciaUruguayFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPaisFixtureGetter paisFixtureGetter)
-            : base(datosEntidadBuilder, paisFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            provincias.Add(paisFixtureGetter.FindByNombre(Constants.Paises.Pais.Uruguay).Id, new List<DatosEntidad>
-            {
+            provincias.Add(paisFixtureGetter.FindByNombre(Constants.Paises.Pais.Uruguay).Id,
+            [
                 datosEntidadBuilder.Build(24, ProvinciaUruguay.Artigas),
                 datosEntidadBuilder.Build(25, ProvinciaUruguay.Canelones),
                 datosEntidadBuilder.Build(26, ProvinciaUruguay.CerroLargo),
@@ -38,7 +31,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia.FixtureGetters.Uruguay
                 datosEntidadBuilder.Build(40, ProvinciaUruguay.Soriano),
                 datosEntidadBuilder.Build(41, ProvinciaUruguay.Tacuarembó),
                 datosEntidadBuilder.Build(42, ProvinciaUruguay.TreintaYTres)
-            });
+            ]);
         }
     }
 }

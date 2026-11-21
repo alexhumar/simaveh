@@ -1,0 +1,15 @@
+<Project>
+
+  <!--
+    Version de la aplicacion: unica fuente de verdad para todos los proyectos de la solucion.
+    Se usa versionado semantico (MAYOR.MENOR.PARCHE). Al publicar una version, crear el tag SMV_<MAYOR>.<MENOR>
+    y subir este numero para la siguiente.
+    De Version se derivan AssemblyVersion, FileVersion e InformationalVersion; el SDK agrega a esta ultima
+    el hash del commit (por ejemplo 0.8.0+b1a7963...).
+  -->
+  <PropertyGroup>
+    <Version>0.8.0</Version>
+    <Product>SiMaVeh</Product>
+  </PropertyGroup>
+
+</Project>

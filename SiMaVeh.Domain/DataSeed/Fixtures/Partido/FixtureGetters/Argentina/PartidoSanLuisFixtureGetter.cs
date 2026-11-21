@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoSanLuisFixtureGetter : PartidoFixtureGetter
+    public class PartidoSanLuisFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoSanLuisFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.SanLuis).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.SanLuis).Id,
+            [
                 datosEntidadBuilder.Build(431, PartidoSanLuis.JuanMartinDePueyrredon),
                 datosEntidadBuilder.Build(432, PartidoSanLuis.GeneralPedernera),
                 datosEntidadBuilder.Build(433, PartidoSanLuis.Junin),
@@ -29,7 +22,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(437, PartidoSanLuis.GobernadorDupuy),
                 datosEntidadBuilder.Build(438, PartidoSanLuis.LibertadorGeneralSanMartin),
                 datosEntidadBuilder.Build(439, PartidoSanLuis.Belgrano)
-            });
+            ]);
         }
     }
 }

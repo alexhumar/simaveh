@@ -33,25 +33,6 @@ namespace SiMaVeh.Domain.Models
             return base.ToString();
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Usuario item && (ReferenceEquals(this, item) || base.Equals(obj));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Usuario).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region ICollectionManager
@@ -82,7 +63,7 @@ namespace SiMaVeh.Domain.Models
             if ((entity != null) && Vehiculos.Contains(entity))
             {
                 Vehiculos.Remove(entity);
-                if ((bool)entity.Usuario?.Equals(this))
+                if (Equals(entity.Usuario, this))
                 {
                     entity.Cambiar((Usuario)null);
                 }

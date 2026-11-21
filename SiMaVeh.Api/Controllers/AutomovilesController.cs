@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -14,16 +14,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Automoviles Controller
     /// </summary>
-    public class AutomovilesController : GenericController<Automovil, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class AutomovilesController(IControllerParameter parameters, IRepository<Automovil, long> repository) : GenericController<Automovil, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public AutomovilesController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -35,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetAnioFabricacion([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.AnioFabricacion);
+            return await ObtenerPropiedad(key, entity => entity.AnioFabricacion);
         }
 
         /// <summary>
@@ -48,9 +43,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetCodigoColorPintura([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.CodigoColorPintura);
+            return await ObtenerPropiedad(key, entity => entity.CodigoColorPintura);
         }
 
         /// <summary>
@@ -61,9 +54,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetKilometraje([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Kilometraje);
+            return await ObtenerPropiedad(key, entity => entity.Kilometraje);
         }
 
         /// <summary>
@@ -75,9 +66,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetModelo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ModeloVehiculo);
+            return await ObtenerPropiedad(key, entity => entity.ModeloVehiculo);
         }
 
         /// <summary>
@@ -88,9 +77,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetNumeroChasis([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.NumeroChasis);
+            return await ObtenerPropiedad(key, entity => entity.NumeroChasis);
         }
 
         /// <summary>
@@ -101,9 +88,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetPatente([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Patente);
+            return await ObtenerPropiedad(key, entity => entity.Patente);
         }
 
         /// <summary>
@@ -112,12 +97,10 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Servicios reparadores del automovil</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetServiciosReparadores([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ServiciosReparadores);
+            return await ObtenerPropiedad(key, entity => entity.ServiciosReparadores);
         }
 
         /// <summary>
@@ -129,9 +112,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetUsuario([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Usuario);
+            return await ObtenerPropiedad(key, entity => entity.Usuario);
         }
 
         /// <summary>

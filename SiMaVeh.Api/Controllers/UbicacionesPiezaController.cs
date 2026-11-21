@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System.Threading.Tasks;
 
@@ -9,16 +10,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Ubicacion Pieza Controller
     /// </summary>
-    public class UbicacionesPiezaController : GenericController<UbicacionPieza, string>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class UbicacionesPiezaController(IControllerParameter parameters, IRepository<UbicacionPieza, string> repository) : GenericController<UbicacionPieza, string>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public UbicacionesPiezaController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -29,9 +27,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetIzquierda([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Izquierda);
+            return await ObtenerPropiedad(key, entity => entity.Izquierda);
         }
 
         /// <summary>
@@ -41,9 +37,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetSuperior([FromODataUri] string key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Superior);
+            return await ObtenerPropiedad(key, entity => entity.Superior);
         }
 
         #endregion

@@ -1,5 +1,4 @@
-﻿using SiMaVeh.DataAccess.DataSeed.Seeders.Interfaces;
-using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.Interfaces;
+﻿using SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.Interfaces;
 using SiMaVeh.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +8,19 @@ namespace SiMaVeh.DataAccess.DataSeed.Seeders
     /// <summary>
     /// Seeder de categoria de marca
     /// </summary>
-    public class CategoriaMarcaSeeder : IDomainSeeder<CategoriaMarca, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="fixtureCategoriaMarca"></param>
+    public class CategoriaMarcaSeeder(IFixtureCategoriaMarca fixtureCategoriaMarca) : SeederBase<CategoriaMarca>
     {
-        private readonly IFixtureCategoriaMarca fixtureCategoriaMarca;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fixtureCategoriaMarca"></param>
-        public CategoriaMarcaSeeder(IFixtureCategoriaMarca fixtureCategoriaMarca)
-        {
-            this.fixtureCategoriaMarca = fixtureCategoriaMarca;
-        }
+        private readonly IFixtureCategoriaMarca fixtureCategoriaMarca = fixtureCategoriaMarca;
 
         /// <summary>
         /// Genera las categorias de marca default
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<object> GetSeeds()
+        public override IEnumerable<object> GetSeeds()
         {
             return fixtureCategoriaMarca.GetCategoriasMarca().Select(categoriaMarcaFixture => new
             {

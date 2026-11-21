@@ -19,7 +19,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.TipoEntidadReparadora.FixtureGetters
         public TipoEntidadReparadoraFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            tiposEntidadesReparadoras = new List<DatosEntidad>();
+            tiposEntidadesReparadoras = [];
 
             Initialize();
         }

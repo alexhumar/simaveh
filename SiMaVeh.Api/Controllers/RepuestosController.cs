@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
-using SiMaVeh.DataAccess.Constants;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -15,16 +15,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Repuestos Controller
     /// </summary>
-    public class RepuestosController : GenericController<Repuesto, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class RepuestosController(IControllerParameter parameters, IRepository<Repuesto, long> repository) : GenericController<Repuesto, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public RepuestosController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -35,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetCodigoIdentificador([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.CodigoIdentificador);
+            return await ObtenerPropiedad(key, entity => entity.CodigoIdentificador);
         }
 
         /// <summary>
@@ -45,12 +40,10 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Kits a los que pertenece el repuesto</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetKits([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Kits);
+            return await ObtenerPropiedad(key, entity => entity.Kits);
         }
 
         /// <summary>
@@ -61,9 +54,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMarca([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Marca);
+            return await ObtenerPropiedad(key, entity => entity.Marca);
         }
 
         /// <summary>
@@ -71,12 +62,10 @@ namespace SiMaVeh.Api.Controllers
         /// </summary>
         /// <returns>Periodicidades de mantenimiento del repuesto</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetPeriodicidadesMantenimiento([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.PeriodicidadesMantenimiento);
+            return await ObtenerPropiedad(key, entity => entity.PeriodicidadesMantenimiento);
         }
 
         /// <summary>
@@ -87,9 +76,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetTargetMantenimiento([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.TargetMantenimiento);
+            return await ObtenerPropiedad(key, entity => entity.TargetMantenimiento);
         }
 
         /// <summary>
@@ -98,12 +85,10 @@ namespace SiMaVeh.Api.Controllers
         /// <param name="key"></param>
         /// <returns>Modelo vehiculo de la presion neumatico</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
         public async Task<IActionResult> GetRecomendacionesModeloVehiculo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.RecomendacionesModeloVehiculo);
+            return await ObtenerPropiedad(key, entity => entity.RecomendacionesModeloVehiculo);
         }
 
         /// <summary>

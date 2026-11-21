@@ -31,25 +31,6 @@
             return string.Concat("(", Patente, ") ", ModeloVehiculo?.ToString(), " ", AnioFabricacion);
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Automovil item && (ReferenceEquals(this, item) || (Id == item.Id) || (Patente == item.Patente));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Automovil).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
     }
 }

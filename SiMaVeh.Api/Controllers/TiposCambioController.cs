@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Constants;
 using SiMaVeh.Domain.Models;
 using System;
@@ -14,16 +15,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Tipos Cambio Controller
     /// </summary>
-    public class TiposCambioController : GenericController<TipoCambio, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class TiposCambioController(IControllerParameter parameters, IRepository<TipoCambio, long> repository) : GenericController<TipoCambio, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public TiposCambioController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -34,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetCoeficienteCambio([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.CoeficienteCambio);
+            return await ObtenerPropiedad(key, entity => entity.CoeficienteCambio);
         }
 
         /// <summary>
@@ -46,9 +42,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetFecha([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Fecha);
+            return await ObtenerPropiedad(key, entity => entity.Fecha);
         }
 
         /// <summary>
@@ -59,9 +53,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMonedaDestino([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.MonedaDestino);
+            return await ObtenerPropiedad(key, entity => entity.MonedaDestino);
         }
 
         /// <summary>
@@ -72,9 +64,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetMonedaOrigen([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.MonedaOrigen);
+            return await ObtenerPropiedad(key, entity => entity.MonedaOrigen);
         }
 
         /// <summary>
@@ -92,11 +82,13 @@ namespace SiMaVeh.Api.Controllers
 
             if (navigationProperty.Equals(EntityProperty.MonedaOrigen))
             {
-                resultado = await relatedEntityChanger.TryChangeMonedaOrigenAsync(Request, key, link);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<TipoCambio, long, Moneda, string>(Request, key, link,
+                    (tipoCambio, moneda) => tipoCambio.CambiarMonedaOrigen(moneda));
             }
             else if (navigationProperty.Equals(EntityProperty.MonedaDestino))
             {
-                resultado = await relatedEntityChanger.TryChangeMonedaDestinoAsync(Request, key, link);
+                resultado = await relatedEntityChanger.TryChangeRelatedEntityAsync<TipoCambio, long, Moneda, string>(Request, key, link,
+                    (tipoCambio, moneda) => tipoCambio.CambiarMonedaDestino(moneda));
             }
 
             return ResultFromHttpStatusCode(resultado);

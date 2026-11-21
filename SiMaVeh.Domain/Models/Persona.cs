@@ -54,22 +54,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat(Apellido, ", ", Nombre);
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Persona item && (ReferenceEquals(this, item) || (Id == item.Id) || (NumeroDocumento == item.NumeroDocumento));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public abstract override int GetHashCode();
-
         #endregion
 
         #region IEntityChanger
@@ -120,7 +104,7 @@ namespace SiMaVeh.Domain.Models
             if ((entity != null) && Telefonos.Contains(entity))
             {
                 Telefonos.Remove(entity);
-                if ((bool)entity.Persona?.Equals(this))
+                if (Equals(entity.Persona, this))
                 {
                     entity.Cambiar((Persona)null);
                 }

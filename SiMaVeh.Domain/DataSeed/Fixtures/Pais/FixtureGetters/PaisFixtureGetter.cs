@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Pais.FixtureGetters
         public PaisFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            paises = new List<DatosEntidad>();
+            paises = [];
 
             Initialize();
         }

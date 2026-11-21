@@ -52,19 +52,6 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public abstract override string ToString();
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public abstract override bool Equals(object obj);
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public abstract override int GetHashCode();
-
         #endregion
 
         #region IEntityChanger
@@ -76,7 +63,7 @@ namespace SiMaVeh.Domain.Models
         /// <returns></returns>
         public Vehiculo Cambiar(ModeloVehiculo entity)
         {
-            if (ModeloVehiculo != null)
+            if (entity != null)
             {
                 ModeloVehiculo = entity;
             }
@@ -131,7 +118,7 @@ namespace SiMaVeh.Domain.Models
             if ((entity != null) && ServiciosReparadores.Contains(entity))
             {
                 ServiciosReparadores.Remove(entity);
-                if ((bool)entity.Vehiculo?.Equals(this))
+                if (Equals(entity.Vehiculo, this))
                 {
                     entity.Cambiar((Vehiculo)null);
                 }

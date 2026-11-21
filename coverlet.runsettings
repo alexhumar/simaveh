@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Configuracion de cobertura: dotnet test SiMaVeh.sln -s coverlet.runsettings -->
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <!-- Se excluyen las migraciones (codigo generado por EF) y los proyectos de test. -->
+          <ExcludeByFile>**/Migrations/*.cs</ExcludeByFile>
+          <Exclude>[*.Test]*</Exclude>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

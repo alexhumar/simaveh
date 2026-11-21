@@ -12,22 +12,16 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
     /// <summary>
     /// Provider de fixture getters de provincia
     /// </summary>
-    public class ProvinciaFixtureGettersProvider : IProvinciaFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    /// <param name="paisFixtureGetter"></param>
+    public class ProvinciaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder,
+        IPaisFixtureGetter paisFixtureGetter) : IProvinciaFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-        private readonly IPaisFixtureGetter paisFixtureGetter;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        /// <param name="paisFixtureGetter"></param>
-        public ProvinciaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder,
-            IPaisFixtureGetter paisFixtureGetter)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-            this.paisFixtureGetter = paisFixtureGetter;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
+        private readonly IPaisFixtureGetter paisFixtureGetter = paisFixtureGetter;
 
         /// <summary>
         /// Retorna los providers de fixture getters de provincias
@@ -35,11 +29,11 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Provincia
         /// <returns></returns>
         public IEnumerable<IFixtureDetailGetter<long, DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureDetailGetter<long, DatosEntidad>>
-            {
+            return
+            [
                 new ProvinciaArgentinaFixtureGetter(datosEntidadBuilder, paisFixtureGetter),
                 new ProvinciaUruguayFixtureGetter(datosEntidadBuilder, paisFixtureGetter),
-            };
+            ];
         }
     }
 }

@@ -85,30 +85,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat(ubicaciones, " - ", sb.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is EquipamientoAirbags item &&
-                (ReferenceEquals(this, item) ||
-                (Id == item.Id) ||
-                (Conductor == item.Conductor && Acompanante == item.Acompanante &&
-                DelanteroIzquierdo == item.DelanteroIzquierdo && DelanteroDerecho == item.DelanteroDerecho &&
-                TraseroIzquierdo == item.TraseroIzquierdo && TraseroDerecho == item.TraseroDerecho));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(EquipamientoAirbags).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
     }
 }

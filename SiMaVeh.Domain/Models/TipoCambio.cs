@@ -39,27 +39,6 @@ namespace SiMaVeh.Domain.Models
                 CoeficienteCambio, " ", Fecha.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is TipoCambio item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (MonedaOrigen.Equals(item.MonedaOrigen) &&
-                MonedaDestino.Equals(item.MonedaDestino) && Fecha == item.Fecha && CoeficienteCambio == item.CoeficienteCambio));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(TipoCambio).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger

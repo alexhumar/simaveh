@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoLaPampaFixtureGetter : PartidoFixtureGetter
+    public class PartidoLaPampaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoLaPampaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.LaPampa).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.LaPampa).Id,
+            [
                 datosEntidadBuilder.Build(285, PartidoLaPampa.Atreuco),
                 datosEntidadBuilder.Build(286, PartidoLaPampa.CaleuCaleu),
                 datosEntidadBuilder.Build(287, PartidoLaPampa.Capital),
@@ -42,7 +35,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(304, PartidoLaPampa.Toay),
                 datosEntidadBuilder.Build(305, PartidoLaPampa.Trenel),
                 datosEntidadBuilder.Build(306, PartidoLaPampa.Utracan)
-            });
+            ]);
         }
     }
 }

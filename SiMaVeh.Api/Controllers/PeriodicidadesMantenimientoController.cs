@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
+using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System;
 using System.Net;
@@ -13,16 +14,13 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Periodicidades Mantenimiento Controller
     /// </summary>
-    public class PeriodicidadesMantenimientoController : GenericController<PeriodicidadMantenimiento, long>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class PeriodicidadesMantenimientoController(IControllerParameter parameters, IRepository<PeriodicidadMantenimiento, long> repository) : GenericController<PeriodicidadMantenimiento, long>(parameters, repository)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public PeriodicidadesMantenimientoController(IControllerParameter parameters)
-            : base(parameters)
-        {
-        }
 
         #region properties
 
@@ -34,9 +32,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetAnios([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Anios);
+            return await ObtenerPropiedad(key, entity => entity.Anios);
         }
 
         /// <summary>
@@ -47,9 +43,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetDias([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Dias);
+            return await ObtenerPropiedad(key, entity => entity.Dias);
         }
 
         /// <summary>
@@ -60,9 +54,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetEsDefault([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.EsDefault);
+            return await ObtenerPropiedad(key, entity => entity.EsDefault);
         }
 
         /// <summary>
@@ -73,9 +65,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetKilometros([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Kilometros);
+            return await ObtenerPropiedad(key, entity => entity.Kilometros);
         }
 
         /// <summary>
@@ -86,9 +76,7 @@ namespace SiMaVeh.Api.Controllers
         /// <response code="200"></response>
         public async Task<IActionResult> GetMeses([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Meses);
+            return await ObtenerPropiedad(key, entity => entity.Meses);
         }
 
         /// <summary>
@@ -100,9 +88,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetModeloVehiculo([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.ModeloVehiculo);
+            return await ObtenerPropiedad(key, entity => entity.ModeloVehiculo);
         }
 
         /// <summary>
@@ -114,9 +100,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public async Task<IActionResult> GetRepuesto([FromODataUri] long key)
         {
-            var entity = await repository.FindAsync(key);
-
-            return entity == null ? NotFound() : Ok(entity.Repuesto);
+            return await ObtenerPropiedad(key, entity => entity.Repuesto);
         }
 
         /// <summary>

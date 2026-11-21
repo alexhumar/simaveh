@@ -42,7 +42,7 @@ namespace SiMaVeh.Api.ErrorManagement
         /// <returns></returns>
         public IList<string> BuildErrors(Exception e)
         {
-            return new List<string> { e.GetDetalle() };
+            return [e.GetDetalle()];
         }
 
         /// <summary>

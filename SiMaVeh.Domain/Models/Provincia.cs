@@ -44,26 +44,6 @@ namespace SiMaVeh.Domain.Models
             return string.Concat(Nombre, " ", Pais?.ToString());
         }
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Provincia item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Nombre.ToUpper() == item.Nombre.ToUpper() && Pais.Equals(item.Pais)));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(Provincia).FullName, Id.ToString()).GetHashCode();
-        }
-
         #endregion
 
         #region IEntityChanger
@@ -115,7 +95,7 @@ namespace SiMaVeh.Domain.Models
             if ((entity != null) && Partidos.Contains(entity))
             {
                 Partidos.Remove(entity);
-                if ((bool)entity.Provincia?.Equals(this))
+                if (Equals(entity.Provincia, this))
                 {
                     entity.Cambiar(null);
                 }

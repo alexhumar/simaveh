@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 
 namespace SiMaVeh.Api.ErrorManagement.Middlewares
 {
-    public class ResponseExceptionMiddleware
+    public class ResponseExceptionMiddleware(RequestDelegate next,
+        ILogger<ResponseExceptionMiddleware> logger)
     {
-        private readonly RequestDelegate next;
-        private readonly ILogger logger;
-
-        public ResponseExceptionMiddleware(RequestDelegate next,
-            ILogger<ResponseExceptionMiddleware> logger)
-        {
-            this.next = next;
-            this.logger = logger;
-        }
+        private readonly RequestDelegate next = next;
+        private readonly ILogger logger = logger;
 
         public async Task InvokeAsync(HttpContext context)
         {

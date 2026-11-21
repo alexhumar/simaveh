@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubSubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
 {
-    public class LocalidadEntreRiosFixtureGetter : LocalidadFixtureGetter
+    public class LocalidadEntreRiosFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IPartidoFixtureGetter partidoFixtureGetter) : LocalidadFixtureGetter(datosEntidadBuilder, partidoFixtureGetter)
     {
-        public LocalidadEntreRiosFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IPartidoFixtureGetter partidoFixtureGetter)
-            : base(datosEntidadBuilder, partidoFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Colon).Id, new List<DatosEntidad>
-            {
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Colon).Id,
+            [
                 datosEntidadBuilder.Build(1799, LocalidadEntreRios.Colon),
                 datosEntidadBuilder.Build(1800, LocalidadEntreRios.SanJose),
                 datosEntidadBuilder.Build(1801, LocalidadEntreRios.Ubajay),
@@ -32,9 +25,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1808, LocalidadEntreRios.ColoniaHocker),
                 datosEntidadBuilder.Build(1809, LocalidadEntreRios.ColoniaSanAnselmoYAledanas),
                 datosEntidadBuilder.Build(1810, LocalidadEntreRios.Hambis)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Concordia).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Concordia).Id,
+            [
                 datosEntidadBuilder.Build(1811, LocalidadEntreRios.Concordia),
                 datosEntidadBuilder.Build(1812, LocalidadEntreRios.ColoniaAyui),
                 datosEntidadBuilder.Build(1813, LocalidadEntreRios.EstanciaGrande),
@@ -49,9 +42,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1822, LocalidadEntreRios.ClodomiroLedesma),
                 datosEntidadBuilder.Build(1823, LocalidadEntreRios.ElRedomon),
                 datosEntidadBuilder.Build(1824, LocalidadEntreRios.ColoniaSanJusto)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Diamante).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Diamante).Id,
+            [
                 datosEntidadBuilder.Build(1825, LocalidadEntreRios.Diamante),
                 datosEntidadBuilder.Build(1826, LocalidadEntreRios.GeneralRamirez),
                 datosEntidadBuilder.Build(1827, LocalidadEntreRios.AldeaValleMaria),
@@ -68,9 +61,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1838, LocalidadEntreRios.AldeaSalto),
                 datosEntidadBuilder.Build(1839, LocalidadEntreRios.EstacionCamps),
                 datosEntidadBuilder.Build(1840, LocalidadEntreRios.AldeaGrapschental)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Federacion).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Federacion).Id,
+            [
                 datosEntidadBuilder.Build(1841, LocalidadEntreRios.Chajari),
                 datosEntidadBuilder.Build(1842, LocalidadEntreRios.Federacion),
                 datosEntidadBuilder.Build(1843, LocalidadEntreRios.LosConquistadores),
@@ -89,9 +82,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1856, LocalidadEntreRios.ColoniaTunas),
                 datosEntidadBuilder.Build(1857, LocalidadEntreRios.Gualeguaycito),
                 datosEntidadBuilder.Build(1858, LocalidadEntreRios.SanRoque)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Federal).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Federal).Id,
+            [
                 datosEntidadBuilder.Build(1859, LocalidadEntreRios.Achiras),
                 datosEntidadBuilder.Build(1860, LocalidadEntreRios.Banderas),
                 datosEntidadBuilder.Build(1861, LocalidadEntreRios.Chanar),
@@ -111,9 +104,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1875, LocalidadEntreRios.DistritoDiegoLopez),
                 datosEntidadBuilder.Build(1876, LocalidadEntreRios.ElGatoLomaLimpia),
                 datosEntidadBuilder.Build(1877, LocalidadEntreRios.ElGramiyal)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Feliciano).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Feliciano).Id,
+            [
                 datosEntidadBuilder.Build(1878, LocalidadEntreRios.SanJoseDeFeliciano),
                 datosEntidadBuilder.Build(1879, LocalidadEntreRios.SanVictor),
                 datosEntidadBuilder.Build(1880, LocalidadEntreRios.DistritoChanar),
@@ -123,9 +116,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1884, LocalidadEntreRios.LasMulitas),
                 datosEntidadBuilder.Build(1885, LocalidadEntreRios.LasHierras),
                 datosEntidadBuilder.Build(1886, LocalidadEntreRios.MulasGrandes)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Gualeguay).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Gualeguay).Id,
+            [
                 datosEntidadBuilder.Build(1887, LocalidadEntreRios.Gualeguay),
                 datosEntidadBuilder.Build(1888, LocalidadEntreRios.GeneralGalarza),
                 datosEntidadBuilder.Build(1889, LocalidadEntreRios.AldeaAsuncion),
@@ -138,9 +131,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1896, LocalidadEntreRios.GonzalezCalderon),
                 datosEntidadBuilder.Build(1897, LocalidadEntreRios.MonteRedondo),
                 datosEntidadBuilder.Build(1898, LocalidadEntreRios.PuntaDelMonte)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Gualeguaychu).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Gualeguaychu).Id,
+            [
                 datosEntidadBuilder.Build(1899, LocalidadEntreRios.Gualeguaychu),
                 datosEntidadBuilder.Build(1900, LocalidadEntreRios.Larroque),
                 datosEntidadBuilder.Build(1901, LocalidadEntreRios.Urdinarrain),
@@ -162,17 +155,17 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1917, LocalidadEntreRios.Perdices),
                 datosEntidadBuilder.Build(1918, LocalidadEntreRios.RinconDelCinto),
                 datosEntidadBuilder.Build(1919, LocalidadEntreRios.RinconDelGato)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.IslasDelIbicuy).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.IslasDelIbicuy).Id,
+            [
                 datosEntidadBuilder.Build(1920, LocalidadEntreRios.Ceibas),
                 datosEntidadBuilder.Build(1921, LocalidadEntreRios.PuertoIbicuy),
                 datosEntidadBuilder.Build(1922, LocalidadEntreRios.VillaParanacito),
                 datosEntidadBuilder.Build(1923, LocalidadEntreRios.Medanos),
                 datosEntidadBuilder.Build(1924, LocalidadEntreRios.Nancay)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.LaPaz).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.LaPaz).Id,
+            [
                 datosEntidadBuilder.Build(1925, LocalidadEntreRios.Bovril),
                 datosEntidadBuilder.Build(1926, LocalidadEntreRios.LaPaz),
                 datosEntidadBuilder.Build(1927, LocalidadEntreRios.SantaElena),
@@ -200,9 +193,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1949, LocalidadEntreRios.Estaquitas),
                 datosEntidadBuilder.Build(1950, LocalidadEntreRios.LasToscas),
                 datosEntidadBuilder.Build(1951, LocalidadEntreRios.PicadaBeron)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Nogoya).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Nogoya).Id,
+            [
                 datosEntidadBuilder.Build(1952, LocalidadEntreRios.LucasGonzalez),
                 datosEntidadBuilder.Build(1953, LocalidadEntreRios.Nogoya),
                 datosEntidadBuilder.Build(1954, LocalidadEntreRios.Aranguren),
@@ -220,9 +213,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(1966, LocalidadEntreRios.Betbeder),
                 datosEntidadBuilder.Build(1967, LocalidadEntreRios.DistritoChiqueros),
                 datosEntidadBuilder.Build(1968, LocalidadEntreRios.Laurencena)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Parana).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Parana).Id,
+            [
                 datosEntidadBuilder.Build(1969, LocalidadEntreRios.Crespo),
                 datosEntidadBuilder.Build(1970, LocalidadEntreRios.MariaGrande),
                 datosEntidadBuilder.Build(1971, LocalidadEntreRios.Parana),
@@ -272,18 +265,18 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2015, LocalidadEntreRios.ColoniaReffino),
                 datosEntidadBuilder.Build(2016, LocalidadEntreRios.DistritoTala),
                 datosEntidadBuilder.Build(2017, LocalidadEntreRios.Quebracho)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.SanSalvador).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.SanSalvador).Id,
+            [
                 datosEntidadBuilder.Build(2018, LocalidadEntreRios.SanSalvador),
                 datosEntidadBuilder.Build(2019, LocalidadEntreRios.GeneralCampos),
                 datosEntidadBuilder.Build(2020, LocalidadEntreRios.ColoniaBaylina),
                 datosEntidadBuilder.Build(2021, LocalidadEntreRios.SanErnesto),
                 datosEntidadBuilder.Build(2022, LocalidadEntreRios.ColoniaOficialN5),
                 datosEntidadBuilder.Build(2023, LocalidadEntreRios.WalterMoss)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Tala).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Tala).Id,
+            [
                 datosEntidadBuilder.Build(2024, LocalidadEntreRios.Macia),
                 datosEntidadBuilder.Build(2025, LocalidadEntreRios.RosarioDelTala),
                 datosEntidadBuilder.Build(2026, LocalidadEntreRios.GobernadorMansilla),
@@ -296,9 +289,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2033, LocalidadEntreRios.LasGuachas),
                 datosEntidadBuilder.Build(2034, LocalidadEntreRios.SauceSur),
                 datosEntidadBuilder.Build(2035, LocalidadEntreRios.LaOllita)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Uruguay).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Uruguay).Id,
+            [
                 datosEntidadBuilder.Build(2036, LocalidadEntreRios.Basavilbaso),
                 datosEntidadBuilder.Build(2037, LocalidadEntreRios.ConcepcionDelUruguay),
                 datosEntidadBuilder.Build(2038, LocalidadEntreRios.Caseros),
@@ -316,9 +309,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2050, LocalidadEntreRios.EstacionLibaros),
                 datosEntidadBuilder.Build(2051, LocalidadEntreRios.Rocamora),
                 datosEntidadBuilder.Build(2052, LocalidadEntreRios.ArroyoGena)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Victoria).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Victoria).Id,
+            [
                 datosEntidadBuilder.Build(2053, LocalidadEntreRios.Victoria),
                 datosEntidadBuilder.Build(2054, LocalidadEntreRios.RinconDeNogoya),
                 datosEntidadBuilder.Build(2055, LocalidadEntreRios.RinconDelDoll),
@@ -329,9 +322,9 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2060, LocalidadEntreRios.Hinojal),
                 datosEntidadBuilder.Build(2061, LocalidadEntreRios.LagunaDelPescado),
                 datosEntidadBuilder.Build(2062, LocalidadEntreRios.Montoya)
-            });
-            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Villaguay).Id, new List<DatosEntidad>
-            {
+            ]);
+            localidades.Add(partidoFixtureGetter.FindByNombre(PartidoEntreRios.Villaguay).Id,
+            [
                 datosEntidadBuilder.Build(2063, LocalidadEntreRios.Villaguay),
                 datosEntidadBuilder.Build(2064, LocalidadEntreRios.VillaClara),
                 datosEntidadBuilder.Build(2065, LocalidadEntreRios.VillaDominguez),
@@ -347,7 +340,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Localidad.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(2075, LocalidadEntreRios.ParajeLosAlgarrobos),
                 datosEntidadBuilder.Build(2076, LocalidadEntreRios.ColoniaAdivino),
                 datosEntidadBuilder.Build(2077, LocalidadEntreRios.MojonesSud)
-            });
+            ]);
         }
     }
 }

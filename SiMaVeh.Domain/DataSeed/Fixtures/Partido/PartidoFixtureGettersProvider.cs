@@ -36,8 +36,8 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
         /// <returns></returns>
         public IEnumerable<IFixtureDetailGetter<long, DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureDetailGetter<long, DatosEntidad>>
-            {
+            return
+            [
                 new PartidoBuenosAiresFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter),
                 new PartidoCatamarcaFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter),
                 new PartidoChacoFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter),
@@ -61,7 +61,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido
                 new PartidoSantiagoDelEsteroFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter),
                 new PartidoTierraDelFuegoFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter),
                 new PartidoTucumanFixtureGetter(datosEntidadBuilder, provinciaArgentinaFixtureGetter)
-            };
+            ];
         }
     }
 }

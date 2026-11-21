@@ -10,18 +10,13 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca
     /// <summary>
     /// Provider de fixture getters de categorias de marca
     /// </summary>
-    public class CategoriaMarcaFixtureGettersProvider : ICategoriaMarcaFixtureGettersProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="datosEntidadBuilder"></param>
+    public class CategoriaMarcaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder) : ICategoriaMarcaFixtureGettersProvider
     {
-        private readonly IDatosEntidadBuilder datosEntidadBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="datosEntidadBuilder"></param>
-        public CategoriaMarcaFixtureGettersProvider(IDatosEntidadBuilder datosEntidadBuilder)
-        {
-            this.datosEntidadBuilder = datosEntidadBuilder;
-        }
+        private readonly IDatosEntidadBuilder datosEntidadBuilder = datosEntidadBuilder;
 
         /// <summary>
         /// Retorna los providers de fixture getters de categorias de marca
@@ -29,10 +24,10 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca
         /// <returns></returns>
         public IEnumerable<IFixtureGetter<DatosEntidad>> GetFixtureGetters()
         {
-            return new List<IFixtureGetter<DatosEntidad>>
-            {
+            return
+            [
                 new CategoriaMarcaFixtureGetter(datosEntidadBuilder)
-            };
+            ];
         }
     }
 }

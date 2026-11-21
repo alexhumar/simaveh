@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoSantiagoDelEsteroFixtureGetter : PartidoFixtureGetter
+    public class PartidoSantiagoDelEsteroFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoSantiagoDelEsteroFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.SantiagoDelEstero).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.SantiagoDelEstero).Id,
+            [
                 datosEntidadBuilder.Build(466, PartidoSantiagoDelEstero.Aguirre),
                 datosEntidadBuilder.Build(467, PartidoSantiagoDelEstero.Alberdi),
                 datosEntidadBuilder.Build(468, PartidoSantiagoDelEstero.Atamisqui),
@@ -47,7 +40,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(490, PartidoSantiagoDelEstero.SanMartin),
                 datosEntidadBuilder.Build(491, PartidoSantiagoDelEstero.Sarmiento),
                 datosEntidadBuilder.Build(492, PartidoSantiagoDelEstero.Silipica)
-            });
+            ]);
         }
     }
 }

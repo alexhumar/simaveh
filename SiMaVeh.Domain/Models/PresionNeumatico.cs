@@ -52,32 +52,18 @@ namespace SiMaVeh.Domain.Models
         #region overrides
 
         /// <summary>
-        /// ToString
+        /// ToString: presiones delantera y trasera, seguidas de los modelos recomendados (ordenados alfabeticamente).
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ") ", RecomendacionesModeloVehiculo?.ToString());
-        }
+            var presiones = string.Concat("(D", RuedasDelanteras, ", T", RuedasTraseras, ")");
+            var modelos = (RecomendacionesModeloVehiculo ?? Enumerable.Empty<ModeloVehiculo>())
+                .Select(m => m.ToString())
+                .OrderBy(m => m)
+                .ToList();
 
-        /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is PresionNeumatico item &&
-                (ReferenceEquals(this, item) || (Id == item.Id) || (Neumatico.Equals(item.Neumatico) && RecomendacionesModeloVehiculo.Equals(item.RecomendacionesModeloVehiculo) && VehiculoCargado == item.VehiculoCargado));
-        }
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return string.Concat(typeof(PresionNeumatico).FullName, Id.ToString()).GetHashCode();
+            return modelos.Count == 0 ? presiones : string.Concat(presiones, " ", string.Join(", ", modelos));
         }
 
         #endregion

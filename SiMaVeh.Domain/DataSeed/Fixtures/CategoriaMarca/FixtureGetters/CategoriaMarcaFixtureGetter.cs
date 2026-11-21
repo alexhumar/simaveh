@@ -21,7 +21,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.CategoriaMarca.FixtureGetters
         public CategoriaMarcaFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder)
         {
             this.datosEntidadBuilder = datosEntidadBuilder;
-            categoriasMarca = new List<DatosEntidad>();
+            categoriasMarca = [];
 
             Initialize();
         }

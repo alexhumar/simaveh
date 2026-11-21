@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using SiMaVeh.Api.Constants;
 using SiMaVeh.Api.Controllers.Parametrization.Interfaces;
 using SiMaVeh.Api.ErrorManagement.Interfaces;
 using SiMaVeh.Api.Model.Interfaces;
-using SiMaVeh.DataAccess.Constants;
 using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.BusinessLogic.Entities.Interfaces;
 using SiMaVeh.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,51 +22,42 @@ namespace SiMaVeh.Api.Controllers
     /// <summary>
     /// Generic Controller
     /// </summary>
-    public class GenericController<TBe, TBeId> : ODataController where TBe : DomainMember<TBeId>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="parameters"></param>
+    /// <param name="repository"></param>
+    public class GenericController<TBe, TBeId>(IControllerParameter parameters, IRepository<TBe, TBeId> repository) : ODataController where TBe : DomainMember<TBeId>
     {
         /// <summary>
         /// repository
         /// </summary>
-        protected readonly IRepository<TBe, TBeId> repository;
+        protected readonly IRepository<TBe, TBeId> repository = repository;
 
         /// <summary>
         /// relatedEntityChanger
         /// </summary>
-        protected readonly IODataRelatedEntityChanger relatedEntityChanger;
+        protected readonly IODataRelatedEntityChanger relatedEntityChanger = parameters.RelatedEntityChanger;
 
         /// <summary>
         /// relatedEntityAdder
         /// </summary>
-        protected readonly IODataRelatedEntityAdder relatedEntityAdder;
+        protected readonly IODataRelatedEntityAdder relatedEntityAdder = parameters.RelatedEntityAdder;
 
         /// <summary>
         /// relatedEntityRemover
         /// </summary>
-        protected readonly IODataRelatedEntityRemover relatedEntityRemover;
+        protected readonly IODataRelatedEntityRemover relatedEntityRemover = parameters.RelatedEntityRemover;
 
         /// <summary>
         /// entityTypeGetter
         /// </summary>
-        protected readonly IEntityTypeGetter entityTypeGetter;
+        protected readonly IEntityTypeGetter entityTypeGetter = parameters.EntityTypeGetter;
 
         /// <summary>
         /// errorsBuilder
         /// </summary>
-        protected readonly IErrorsBuilder errorsBuilder;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parameters"></param>
-        public GenericController(IControllerParameter parameters)
-        {
-            repository = new Repository<TBe, TBeId>(parameters.Context);
-            relatedEntityChanger = parameters.RelatedEntityChanger;
-            relatedEntityAdder = parameters.RelatedEntityAdder;
-            relatedEntityRemover = parameters.RelatedEntityRemover;
-            entityTypeGetter = parameters.EntityTypeGetter;
-            errorsBuilder = parameters.ErrorsBuilder;
-        }
+        protected readonly IErrorsBuilder errorsBuilder = parameters.ErrorsBuilder;
 
         protected IActionResult ResultFromHttpStatusCode(HttpStatusCode httpStatusCode)
         {
@@ -91,14 +83,28 @@ namespace SiMaVeh.Api.Controllers
         }
 
         /// <summary>
+        /// Busca la entidad por key y devuelve el valor seleccionado, o NotFound si la entidad no existe.
+        /// </summary>
+        /// <typeparam name="TProp"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="selector">Propiedad (o navegacion) de la entidad a devolver</param>
+        /// <returns>Ok con el valor seleccionado, o NotFound</returns>
+        protected async Task<IActionResult> ObtenerPropiedad<TProp>(TBeId key, Func<TBe, TProp> selector)
+        {
+            var entity = await repository.FindAsync(key);
+
+            return entity == null ? NotFound() : Ok(selector(entity));
+        }
+
+        /// <summary>
         /// Obtiene todas las entidades, sin filtrar
         /// </summary>
         /// <returns>Lista de entidades</returns>
         /// <response code="200"></response>
-        [EnableQuery(PageSize = QueryConstants.PageSize)]
-        public virtual async Task<IQueryable<TBe>> Get()
+        [EnableQuery(PageSize = ODataQueryConstants.PageSize)]
+        public virtual IQueryable<TBe> Get()
         {
-            return await repository.GetCollectionAsync();
+            return repository.GetQueryable();
         }
 
         /// <summary>
@@ -110,7 +116,7 @@ namespace SiMaVeh.Api.Controllers
         [EnableQuery]
         public virtual async Task<SingleResult<TBe>> Get([FromODataUri] TBeId key)
         {
-            IList<TBe> result = new List<TBe>();
+            IList<TBe> result = [];
 
             var entity = await repository.FindAsync(key);
 

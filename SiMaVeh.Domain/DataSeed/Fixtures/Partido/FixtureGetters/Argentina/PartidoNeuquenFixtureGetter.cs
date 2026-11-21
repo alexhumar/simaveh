@@ -3,23 +3,16 @@ using SiMaVeh.Domain.DataSeed.Constants.SubdivisionesPais;
 using SiMaVeh.Domain.DataSeed.Fixtures.Builders.Interfaces;
 using SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Base;
 using SiMaVeh.Domain.DataSeed.Fixtures.Provincia.Interfaces;
-using SiMaVeh.Domain.DataSeed.Models;
-using System.Collections.Generic;
 
 namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
 {
-    public class PartidoNeuquenFixtureGetter : PartidoFixtureGetter
+    public class PartidoNeuquenFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
+        IProvinciaFixtureGetter provinciaFixtureGetter) : PartidoFixtureGetter(datosEntidadBuilder, provinciaFixtureGetter)
     {
-        public PartidoNeuquenFixtureGetter(IDatosEntidadBuilder datosEntidadBuilder,
-            IProvinciaFixtureGetter provinciaFixtureGetter)
-            : base(datosEntidadBuilder, provinciaFixtureGetter)
-        {
-        }
-
         protected override void Initialize()
         {
-            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Neuquen).Id, new List<DatosEntidad>
-            {
+            partidos.Add(provinciaFixtureGetter.FindByNombre(ProvinciaArgentina.Neuquen).Id,
+            [
                 datosEntidadBuilder.Build(360, PartidoNeuquen.Alumine),
                 datosEntidadBuilder.Build(361, PartidoNeuquen.Anelo),
                 datosEntidadBuilder.Build(362, PartidoNeuquen.CatanLil),
@@ -36,7 +29,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Partido.FixtureGetters.Argentina
                 datosEntidadBuilder.Build(373, PartidoNeuquen.PicunLeufu),
                 datosEntidadBuilder.Build(374, PartidoNeuquen.Picunches),
                 datosEntidadBuilder.Build(375, PartidoNeuquen.Zapala)
-            });
+            ]);
         }
     }
 }
