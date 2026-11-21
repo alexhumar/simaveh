@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.Models;
 
@@ -6,61 +5,60 @@ namespace SiMaVeh.Domain.Test.Models
 {
     public class Provincia_CambiarPais
     {
-        private Pais argentina;
-        private Pais uruguay;
+        private readonly Pais argentina;
+        private readonly Pais uruguay;
 
-        [SetUp]
-        public void Setup()
+        public Provincia_CambiarPais()
         {
             argentina = new Pais { Id = 1, Nombre = DataSeed.Constants.Paises.Pais.Argentina };
             uruguay = new Pais { Id = 2, Nombre = DataSeed.Constants.Paises.Pais.Uruguay };
         }
 
-        [Test]
+        [Fact]
         public void CambiarPais_AArgenina_RetornaProvinciaConPaisSeteado()
         {
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
 
-            Assert.That(buenosAires.Pais, Is.Null);
-            Assert.That(argentina.Provincias, !Contains.Item(buenosAires));
+            Assert.Null(buenosAires.Pais);
+            Assert.DoesNotContain(buenosAires, argentina.Provincias);
 
             buenosAires.Cambiar(argentina);
 
-            Assert.That(buenosAires.Pais, Is.EqualTo(argentina), "El pais de Buenos Aires no fue seteado a Argentina");
-            Assert.That(argentina.Provincias, Contains.Item(buenosAires));
+            Assert.Equal(argentina, buenosAires.Pais);
+            Assert.Contains(buenosAires, argentina.Provincias);
         }
 
-        [Test]
+        [Fact]
         public void CambiarPais_AArgenina_RetornaProvinciaConPaisModificado()
         {
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
             buenosAires.Cambiar(uruguay);
 
-            Assert.That(buenosAires.Pais, Is.EqualTo(uruguay));
-            Assert.That(uruguay.Provincias, Contains.Item(buenosAires));
-            Assert.That(argentina.Provincias, !Contains.Item(buenosAires));
+            Assert.Equal(uruguay, buenosAires.Pais);
+            Assert.Contains(buenosAires, uruguay.Provincias);
+            Assert.DoesNotContain(buenosAires, argentina.Provincias);
 
             buenosAires.Cambiar(argentina);
 
-            Assert.That(buenosAires.Pais, Is.EqualTo(argentina));
-            Assert.That(uruguay.Provincias, !Contains.Item(buenosAires));
-            Assert.That(argentina.Provincias, Contains.Item(buenosAires));
+            Assert.Equal(argentina, buenosAires.Pais);
+            Assert.DoesNotContain(buenosAires, uruguay.Provincias);
+            Assert.Contains(buenosAires, argentina.Provincias);
         }
 
-        [Test]
+        [Fact]
         public void CambiarPais_ANull_RetornaProvinciaSinPais()
         {
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
             buenosAires.Cambiar(argentina);
 
-            Assert.That(buenosAires.Pais, Is.EqualTo(argentina));
-            Assert.That(argentina.Provincias, Contains.Item(buenosAires));
+            Assert.Equal(argentina, buenosAires.Pais);
+            Assert.Contains(buenosAires, argentina.Provincias);
 
             buenosAires.Cambiar(null);
 
-            Assert.That(buenosAires.Pais, Is.Null);
-            Assert.That(argentina.Provincias, !Contains.Item(buenosAires));
-            Assert.That(argentina.Provincias, Is.Empty);
+            Assert.Null(buenosAires.Pais);
+            Assert.DoesNotContain(buenosAires, argentina.Provincias);
+            Assert.Empty(argentina.Provincias);
         }
     }
 }

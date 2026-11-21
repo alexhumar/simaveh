@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using SiMaVeh.Domain.DataSeed.Constants.DivisionesPais;
 using SiMaVeh.Domain.Models;
 
@@ -6,48 +5,48 @@ namespace SiMaVeh.Domain.Test.Models
 {
     public class Pais_AgregarProvincia
     {
-        private Pais argentina;
-        private Pais uruguay;
+        private readonly Pais argentina;
+        private readonly Pais uruguay;
 
-        [SetUp]
-        public void Setup()
+        //xUnit crea una instancia nueva de la clase por cada test: el constructor reemplaza al [SetUp] de NUnit.
+        public Pais_AgregarProvincia()
         {
             argentina = new Pais { Id = 1, Nombre = DataSeed.Constants.Paises.Pais.Argentina };
             uruguay = new Pais { Id = 2, Nombre = DataSeed.Constants.Paises.Pais.Uruguay };
         }
 
-        [Test]
+        [Fact]
         public void AgregarProvincia_BsAsAArgentina_RetornaPaisConProvinciaAgregada()
         {
-            Assert.That(argentina.Provincias, Is.Empty);
+            Assert.Empty(argentina.Provincias);
 
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
 
             argentina.Agregar(buenosAires);
 
-            Assert.That(argentina.Provincias, Contains.Item(buenosAires));
-            Assert.That(buenosAires.Pais, Is.EqualTo(argentina));
+            Assert.Contains(buenosAires, argentina.Provincias);
+            Assert.Equal(argentina, buenosAires.Pais);
         }
 
-        [Test]
+        [Fact]
         public void AgregarProvincia_BsAsAArgentina_RetornaPaisCambiadoConProvinciaAgregada()
         {
-            Assert.That(argentina.Provincias, Is.Empty);
-            Assert.That(uruguay.Provincias, Is.Empty);
+            Assert.Empty(argentina.Provincias);
+            Assert.Empty(uruguay.Provincias);
 
             var buenosAires = new Provincia { Id = 1, Nombre = ProvinciaArgentina.BuenosAires };
 
             uruguay.Agregar(buenosAires);
 
-            Assert.That(uruguay.Provincias, Contains.Item(buenosAires));
-            Assert.That(buenosAires.Pais, Is.EqualTo(uruguay));
-            Assert.That(argentina.Provincias, Is.Empty);
+            Assert.Contains(buenosAires, uruguay.Provincias);
+            Assert.Equal(uruguay, buenosAires.Pais);
+            Assert.Empty(argentina.Provincias);
 
             argentina.Agregar(buenosAires);
 
-            Assert.That(argentina.Provincias, Contains.Item(buenosAires));
-            Assert.That(buenosAires.Pais, Is.EqualTo(argentina));
-            Assert.That(uruguay.Provincias, Is.Empty);
+            Assert.Contains(buenosAires, argentina.Provincias);
+            Assert.Equal(argentina, buenosAires.Pais);
+            Assert.Empty(uruguay.Provincias);
         }
     }
 }
