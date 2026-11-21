@@ -42,10 +42,6 @@ namespace SiMaVeh.Domain.Test.Fixtures
     {
         private readonly ContenedorDominio contenedor = contenedor;
 
-        //Defectos conocidos en los datos de seed. Se excluyen de los tests generales y se documentan
-        //en tests omitidos propios, para que el resto de los datos siga verificandose.
-        private const string CodigoMonedaVenezolanaInvalido = "VES7​";
-        private const string NombreTipoDocumentoConDescripcionLarga = "DNI";
 
         private static void AssertIdsUnicos<T>(IEnumerable<T> ids)
         {
@@ -149,16 +145,16 @@ namespace SiMaVeh.Domain.Test.Fixtures
 
             AssertIdsUnicos(monedas.Select(m => m.Id));
             AssertNombresCargados(monedas);
-            Assert.All(monedas.Where(m => m.Id != CodigoMonedaVenezolanaInvalido), m => Assert.Matches(new Regex("^[A-Z]{3}$"), m.Id));
+            Assert.All(monedas, m => Assert.Matches(new Regex("^[A-Z]{3}$"), m.Id));
         }
 
-        [Fact(Skip = "BUG: el codigo ISO del Bolivar Soberano esta cargado como \"VES7\" seguido de un espacio de ancho cero (U+200B) en lugar de \"VES\" (CodigoISOMoneda.cs).")]
+        [Fact]
         public void Monedas_BolivarSoberano_TieneCodigoISOValido()
         {
             var monedas = contenedor.Get<IFixtureMoneda>().GetMonedas();
 
             Assert.Contains(monedas, m => m.Id == "VES");
-            Assert.DoesNotContain(monedas, m => m.Id == CodigoMonedaVenezolanaInvalido);
+            Assert.DoesNotContain(monedas, m => m.Id.Any(c => !char.IsAsciiLetterUpper(c)));
         }
 
         [Fact]
@@ -201,13 +197,13 @@ namespace SiMaVeh.Domain.Test.Fixtures
             AssertIdsUnicos(tipos.Select(t => t.Id));
             AssertNombresCargados(tipos);
             //Los validadores de los tipos limitan la descripcion a 100 caracteres.
-            Assert.All(tipos.Where(t => fixture != "TipoDocumento" || t.Nombre != NombreTipoDocumentoConDescripcionLarga), t => Assert.True((t.Descripcion?.Length ?? 0) <= 100, $"Descripcion de '{t.Nombre}' supera los 100 caracteres"));
+            Assert.All(tipos, t => Assert.True((t.Descripcion?.Length ?? 0) <= 100, $"Descripcion de '{t.Nombre}' supera los 100 caracteres"));
         }
 
-        [Fact(Skip = "BUG: la descripcion del tipo de documento DNI tiene mas de 100 caracteres y no cumple ValidadorTipoDocumento, por lo que un PUT de ese registro tal como esta en la base es rechazado.")]
+        [Fact]
         public void TiposDocumento_DNI_TieneDescripcionDeHasta100Caracteres()
         {
-            var dni = contenedor.Get<IFixtureTipoDocumento>().GetTiposDocumento().Single(t => t.Nombre == NombreTipoDocumentoConDescripcionLarga);
+            var dni = contenedor.Get<IFixtureTipoDocumento>().GetTiposDocumento().Single(t => t.Nombre == "DNI");
 
             Assert.True(dni.Descripcion.Length <= 100);
         }

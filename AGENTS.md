@@ -31,6 +31,7 @@ dotnet test SiMaVeh.sln -s coverlet.runsettings --collect:"XPlat Code Coverage" 
   - Revertir: `Update-Database <migracion_anterior>` y luego `Remove-Migration`
   - Equivalente por CLI: `dotnet ef migrations add <nombre> --project SiMaVeh.DataAcces --startup-project SiMaVeh.Api --context SiMaVehContext -o Migrations`. El proyecto de inicio es necesario porque `SiMaVehContext` recibe su seeder y su configurador por inyección de dependencias.
 - Los datos de seed se aplican mediante `HasData`. **Cualquier cambio en los datos de los fixtures requiere una nueva migración.**
+- El snapshot se generó con EF Core 5. Por eso, el modelo actual (EF Core 8) tiene diferencias de anotación pendientes (`AlterColumn` sobre los Id), y una migración autogenerada las va a incluir. Para correcciones de datos puntuales se usan migraciones escritas a mano con SQL (ver `20261121120000_CorreccionDatosSeedMonedaYTipoDocumento`), actualizando a mano el snapshot.
 
 Nota: la carpeta del proyecto DataAccess está mal escrita como `SiMaVeh.DataAcces/`, pero el archivo csproj y el namespace son `SiMaVeh.DataAccess`.
 
@@ -44,7 +45,7 @@ Lamar reemplaza al contenedor por defecto (`UseLamar()` en Program.cs). Cada pro
 ### Domain (`SiMaVeh.Domain`)
 - Todas las entidades derivan de `DomainMember<TId>` (mayormente `long`; `Moneda`, `UbicacionPieza` y `EquipamientoAirbags` usan claves `string`). Todas las propiedades son `virtual` porque están habilitados los proxies de lazy loading de EF.
 - Las relaciones bidireccionales se mantienen consistentes dentro de las propias entidades mediante `IEntityChanger<...>.Cambiar(...)` e `ICollectionManager<...>.Agregar/Quitar(...)`. Cada lado actualiza al otro; por ejemplo, `Provincia.Cambiar(pais)` quita la provincia del Pais anterior y la agrega al nuevo. Usar estos métodos en lugar de asignar las propiedades de navegación directamente. Los setters de navegación siguen siendo públicos porque OData los necesita.
-- Las entidades sobrescriben `Equals`/`GetHashCode`, y las colecciones son `ISet<>`.
+- La igualdad es por identidad y está implementada solo en `DomainMember`: dos entidades son iguales si son del mismo tipo (ignorando el proxy de EF) y tienen el mismo Id asignado. Una entidad transitoria (sin Id) solo es igual a sí misma. El hash se calcula una vez y se conserva. No sobrescribir `Equals`/`GetHashCode` en las entidades; los duplicados por atributos (por ejemplo, el mismo nombre) se validan aparte. Las colecciones son `ISet<>`.
 - Los validadores de FluentValidation están en `Validators/Validador<Entidad>.cs`, se registran solos por escaneo del ensamblado y se ejecutan mediante `AddFluentValidationAutoValidation` (los errores aparecen en `ModelState`).
 - `EntityTypeGetter` mapea cada nombre de tipo a su nombre de entity set de OData (constantes en `Constants/EntitySet`). Lo usan el constructor del modelo EDM y los controllers para comparar valores de `navigationProperty`.
 - `DataSeed/` contiene los datos de los fixtures (países, provincias, partidos, localidades, marcas, monedas, etc.). La cadena es: `Constants/<X>` (nombres) → `Fixtures/<X>/FixtureGetters/*FixtureGetter` (construye objetos `DatosEntidad` con IDs fijos, a veces separados por país como `Argentina/` o `Uruguay/`) → `*FixtureGettersProvider` → `Fixture<X>`.

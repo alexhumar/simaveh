@@ -190,7 +190,7 @@ namespace SiMaVeh.Domain.DataSeed.Fixtures.Moneda.FixtureGetters
             monedas.Add(datosEntidadBuilder.Build(Constants.Monedas.CodigoISOMoneda.UYU, Constants.Monedas.Moneda.PesoUruguayo));
             monedas.Add(datosEntidadBuilder.Build(Constants.Monedas.CodigoISOMoneda.UYW, Constants.Monedas.Moneda.UnidadPrevisional));
             monedas.Add(datosEntidadBuilder.Build(Constants.Monedas.CodigoISOMoneda.UZS, Constants.Monedas.Moneda.SomUzbeko));
-            monedas.Add(datosEntidadBuilder.Build(Constants.Monedas.CodigoISOMoneda.VES7​, Constants.Monedas.Moneda.BolivarSoberano));
+            monedas.Add(datosEntidadBuilder.Build(Constants.Monedas.CodigoISOMoneda.VES, Constants.Monedas.Moneda.BolivarSoberano));
             monedas.Add(datosEntidadBuilder.Build(Constants.Monedas.CodigoISOMoneda.VND, Constants.Monedas.Moneda.DongVietnamita));
             monedas.Add(datosEntidadBuilder.Build(Constants.Monedas.CodigoISOMoneda.VUV, Constants.Monedas.Moneda.Vatu));
             monedas.Add(datosEntidadBuilder.Build(Constants.Monedas.CodigoISOMoneda.WST, Constants.Monedas.Moneda.Tala));
