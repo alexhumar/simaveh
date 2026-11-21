@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Web;
+using SiMaVeh.Api.Utils;
 using System;
 
 namespace SiMaVeh.Api
@@ -15,6 +16,7 @@ namespace SiMaVeh.Api
             var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
             try
             {
+                logger.Info("{Aplicacion} iniciando.", new InformacionVersion());
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception e)

@@ -16,10 +16,16 @@ dotnet test SiMaVeh.Domain.Test --filter "FullyQualifiedName~IgualdadTests"  # u
 dotnet test SiMaVeh.sln -s coverlet.runsettings --collect:"XPlat Code Coverage"   # cobertura (excluye Migrations)
 ```
 
+### Versión
+- La versión de la aplicación se define una sola vez, en `<Version>` de [Directory.Build.props](Directory.Build.props) (SemVer, por ejemplo `0.8.0`), y se aplica a todos los proyectos. El SDK agrega el hash del commit a la `InformationalVersion` (`0.8.0+<hash>`).
+- En ejecución, la versión se consulta en `GET /version` (`VersionController`, fuera del prefijo OData) y figura en el log de inicio. Se lee mediante `IInformacionVersion` (`Utils/InformacionVersion`).
+- Para publicar una versión: crear el tag `SMV_<MAYOR>.<MENOR>` (la convención de los tags existentes, `SMV_0.3` … `SMV_0.7`) y subir `<Version>` para la próxima.
+
 ### Tests
 - xUnit v3 con el paquete `xunit.v3.mtp-off`: corre sobre VSTest (`dotnet test` clásico + coverlet.collector), compatible con el SDK 8 y el 10. No cambiarlo por `xunit.v3` sin optar por Microsoft Testing Platform: con el SDK 10, `dotnet test` falla.
 - `SiMaVeh.Domain.Test`: lógica de negocio. `Helpers/Crear` es la fábrica de entidades válidas. Las relaciones bidireccionales heredan de `RelacionBidireccionalTests<TPadre, THijo>`, que es una base genérica con todos los casos; las unidireccionales, la igualdad, los `ToString` y los validadores son theories con un diccionario de casos indexado por nombre. Hay tests de integridad de los fixtures de seed (`Fixtures/FixturesTests`) y de autodescubrimiento en el `DomainRegistry`.
 - `SiMaVeh.DataAccess.Test`: `Helpers/BaseDatosEnMemoria` usa EF InMemory con el contenedor real; `EnNuevoScope` verifica que los cambios quedaron persistidos. `Helpers/ModeloMySql` construye el modelo con Pomelo sin conectarse (modelo de diseño, que incluye los datos de seed) para verificar tablas, claves y seed.
+- `SiMaVeh.Api.Test`: tests de la capa Api. Para pruebas HTTP se usa un host en memoria (TestServer) con la misma configuración de MVC/OData que `Startup`, sin base de datos (ver `VersionTests`). Ese host necesita registrar como application part el ensamblado de Microsoft.AspNetCore.OData para que `$metadata` responda.
 - Los defectos conocidos del código o de los datos se documentan como `[Fact(Skip = "BUG: ...")]`, con el comportamiento correcto como aserción. Al corregir un defecto, quitar el `Skip` del test correspondiente.
 
 ### Base de datos / migraciones
