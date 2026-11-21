@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.DataAccess.Model.Interfaces;
-using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using SiMaVeh.Domain.Models.Interfaces;
 using System.Threading.Tasks;
@@ -9,19 +8,13 @@ namespace SiMaVeh.DataAccess.Model
     /// <summary>
     /// RelatedEntityAdder
     /// </summary>
-    /// <remarks>
-    /// Constructor
-    /// </remarks>
-    /// <param name="context"></param>
-    /// <param name="genericEntityGetter"></param>
-    public class RelatedEntityAdder(SiMaVehContext context,
-        IGenericEntityGetter genericEntityGetter) : IRelatedEntityAdder
+    /// <param name="operador"></param>
+    public class RelatedEntityAdder(IOperadorEntidadesRelacionadas operador) : IRelatedEntityAdder
     {
-        private readonly SiMaVehContext context = context;
-        private readonly IGenericEntityGetter genericEntityGetter = genericEntityGetter;
+        private readonly IOperadorEntidadesRelacionadas operador = operador;
 
         /// <summary>
-        /// TryAddRelatedEntityAsync
+        /// Agrega la entidad relacionada a la coleccion de la entidad destino.
         /// </summary>
         /// <typeparam name="TTargetBe"></typeparam>
         /// <typeparam name="TTargetBeId"></typeparam>
@@ -29,30 +22,13 @@ namespace SiMaVeh.DataAccess.Model
         /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="targetBeKey"></param>
         /// <param name="relatedBeKey"></param>
-        /// <returns></returns>
-        public async Task<bool> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(TTargetBeId targetBeKey, TRelatedBeId relatedBeKey)
+        /// <returns>false si alguna de las entidades no existe</returns>
+        public Task<bool> TryAddRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(TTargetBeId targetBeKey, TRelatedBeId relatedBeKey)
             where TTargetBe : DomainMember<TTargetBeId>, ICollectionManager<TRelatedBe, TRelatedBeId, TTargetBe, TTargetBeId>
             where TRelatedBe : DomainMember<TRelatedBeId>
         {
-            var repositoryTargetBe = new Repository<TTargetBe, TTargetBeId>(context);
-
-            var targetBe = await repositoryTargetBe.FindAsync(targetBeKey);
-            if (targetBe == null)
-            {
-                return false;
-            }
-
-            var relatedBe = await genericEntityGetter.TryGetEntity<TRelatedBe, TRelatedBeId>(relatedBeKey);
-            if (relatedBe == null)
-            {
-                return false;
-            }
-
-            targetBe.Agregar(relatedBe);
-
-            await repositoryTargetBe.SaveChangesAsync();
-
-            return true;
+            return operador.AplicarAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(targetBeKey, relatedBeKey,
+                (targetBe, relatedBe) => targetBe.Agregar(relatedBe));
         }
     }
 }

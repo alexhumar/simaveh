@@ -1,5 +1,4 @@
 ﻿using SiMaVeh.DataAccess.Model.Interfaces;
-using SiMaVeh.DataAccess.Repository;
 using SiMaVeh.Domain.Models;
 using System.Threading.Tasks;
 
@@ -8,16 +7,9 @@ namespace SiMaVeh.DataAccess.Model
     /// <summary>
     /// GenericEntityGetter
     /// </summary>
-    /// <remarks>
-    /// Constructor
-    /// </remarks>
     /// <param name="context"></param>
-    /// <param name="uriParser"></param>
     public class GenericEntityGetter(SiMaVehContext context) : IGenericEntityGetter
     {
-        /// <summary>
-        /// context
-        /// </summary>
         private readonly SiMaVehContext context = context;
 
         /// <summary>
@@ -25,13 +17,11 @@ namespace SiMaVeh.DataAccess.Model
         /// </summary>
         /// <typeparam name="TBe"></typeparam>
         /// <typeparam name="TBeId"></typeparam>
-        /// <param name="link"></param>
-        /// <returns></returns>
+        /// <param name="key"></param>
+        /// <returns>La entidad o null</returns>
         public async Task<TBe> TryGetEntity<TBe, TBeId>(TBeId key) where TBe : DomainMember<TBeId>
         {
-            var repository = new Repository<TBe, TBeId>(context);
-
-            return await repository.FindAsync(key);
+            return await context.Set<TBe>().FindAsync(key);
         }
     }
 }

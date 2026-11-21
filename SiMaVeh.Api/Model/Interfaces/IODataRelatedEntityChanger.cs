@@ -13,7 +13,7 @@ namespace SiMaVeh.Api.Model.Interfaces
     public interface IODataRelatedEntityChanger
     {
         /// <summary>
-        /// TryChangeRelatedEntity
+        /// Cambia la entidad relacionada de la entidad destino mediante IEntityChanger.
         /// </summary>
         /// <typeparam name="TTargetBe"></typeparam>
         /// <typeparam name="TTargetBeId"></typeparam>
@@ -28,21 +28,20 @@ namespace SiMaVeh.Api.Model.Interfaces
             where TRelatedBe : DomainMember<TRelatedBeId>;
 
         /// <summary>
-        /// TryChangeMonedaOrigenAsync
+        /// Cambia la entidad relacionada de la entidad destino mediante la accion indicada.
+        /// Util cuando la entidad destino tiene mas de una navegacion al mismo tipo (por ejemplo TipoCambio y sus monedas).
         /// </summary>
+        /// <typeparam name="TTargetBe"></typeparam>
+        /// <typeparam name="TTargetBeId"></typeparam>
+        /// <typeparam name="TRelatedBe"></typeparam>
+        /// <typeparam name="TRelatedBeId"></typeparam>
         /// <param name="request"></param>
-        /// <param name="tipoCambioKey"></param>
-        /// <param name="monedaLink"></param>
+        /// <param name="targetBeKey"></param>
+        /// <param name="relatedBeLink"></param>
+        /// <param name="cambio"></param>
         /// <returns></returns>
-        Task<HttpStatusCode> TryChangeMonedaOrigenAsync(HttpRequest request, long tipoCambioKey, Uri monedaLink);
-
-        /// <summary>
-        /// TryChangeMonedaDestinoAsync
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="tipoCambioKey"></param>
-        /// <param name="monedaLink"></param>
-        /// <returns></returns>
-        Task<HttpStatusCode> TryChangeMonedaDestinoAsync(HttpRequest request, long tipoCambioKey, Uri monedaLink);
+        Task<HttpStatusCode> TryChangeRelatedEntityAsync<TTargetBe, TTargetBeId, TRelatedBe, TRelatedBeId>(HttpRequest request, TTargetBeId targetBeKey, Uri relatedBeLink, Action<TTargetBe, TRelatedBe> cambio)
+            where TTargetBe : DomainMember<TTargetBeId>
+            where TRelatedBe : DomainMember<TRelatedBeId>;
     }
 }
