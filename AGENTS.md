@@ -10,7 +10,7 @@ SiMaVeh es una API REST OData en ASP.NET Core (.NET 8) para la administración y
 
 ```bash
 dotnet build SiMaVeh.sln
-dotnet run --project SiMaVeh.Api            # https://localhost:5001/simaveh, http://localhost:5000/simaveh
+dotnet run --project SiMaVeh.Api            # https://localhost:5001/simaveh, http://localhost:5000/simaveh (contrato: /openapi.json, Swagger UI: /swagger)
 dotnet test SiMaVeh.sln                                                    # todos los tests
 dotnet test SiMaVeh.Domain.Test --filter "FullyQualifiedName~IgualdadTests"  # una clase de tests
 dotnet test SiMaVeh.sln -s coverlet.runsettings --collect:"XPlat Code Coverage"   # cobertura (excluye Migrations)
@@ -69,6 +69,13 @@ Lamar reemplaza al contenedor por defecto (`UseLamar()` en Program.cs). Cada pro
 - Las dependencias de los controllers vienen agrupadas en un único `IControllerParameter` (`Controllers/Parametrization`).
 - Los errores los maneja un middleware de excepciones propio (`ErrorManagement/Middlewares`, conectado mediante `app.ConfigureCustomExceptionMiddleware()`), y `ErrorsBuilder` da formato a los errores de `ModelState`.
 - El logging usa NLog (`nlog.config`).
+
+### Contrato de la API (OpenAPI)
+- `GET /openapi.json` y `GET /openapi.yaml` (`ContratoController`, fuera del prefijo OData) publican el contrato OpenAPI 3.0; Swagger UI está en `/swagger`. El CSDL de OData sigue en `GET /simaveh/$metadata`.
+- Lo genera `Contrato/GeneradorContratoOpenApi`, registrado como singleton en `ApiRegistry`. **Los paths salen de las rutas que el router de OData realmente registra** (`IActionDescriptorCollectionProvider`), así que el contrato se actualiza solo al agregar o quitar acciones en los controllers. Los esquemas y los parámetros de consulta vienen de la conversión del modelo EDM (`Microsoft.OpenApi.OData`). Si esa conversión ya describe una ruta registrada, se reutiliza su operación; si no (PUT, getters de propiedades, `$ref`, `$metadata`), la operación se arma desde el EDM.
+- Exclusiones intencionales: la forma duplicada con la clave como segmento (`/Provincias/{key}`), los `DeleteRef` heredados de `GenericController` (siempre responden 501) y los `$ref` sobre entidades sin navegaciones del tipo que corresponde (POST y DELETE usan navegaciones de colección; PUT, navegaciones simples). Además, `$search` no se anuncia (no está habilitado), `$expand` solo donde el modelo lo permite, y las opciones de consulta solo en acciones con `[EnableQuery]`.
+- Si aparece una forma de ruta que el generador no sabe describir, lanza `NotSupportedException` y fallan los tests de `ContratoTests`. Esos tests también verifican que cada operación del contrato tenga una ruta registrada y viceversa.
+- Versiones: `Microsoft.OpenApi.OData` 1.7.x es la línea compatible con OData 8 (Microsoft.OData.Edm 7.x). Por eso `Microsoft.OData.Core` está fijado en la misma versión que Edm (7.21.6). Al subir a Microsoft.AspNetCore.OData 9, pasar a `Microsoft.OpenApi.OData` 3.x.
 
 ### Agregar una entidad nueva (checklist de punta a punta)
 1. Domain: modelo que derive de `DomainMember<TId>`, más los métodos de relación, el validador (se registra solo), una constante en `EntitySet` y una entrada en `EntityTypeGetter`.

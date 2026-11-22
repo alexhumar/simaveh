@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiMaVeh.Api.Constants;
+using SiMaVeh.Api.Test.Helpers;
 using SiMaVeh.Api.Controllers;
 using SiMaVeh.Api.Model;
 using SiMaVeh.Api.Utils;
@@ -64,26 +65,7 @@ namespace SiMaVeh.Api.Test
         /// Host en memoria con la misma configuracion de MVC/OData que Startup (sin base de datos),
         /// para verificar que /version convive con las rutas OData.
         /// </summary>
-        private static async Task<IHost> CrearHostAsync()
-        {
-            var edmModel = new SiMaVehODataModelBuilder(new EntityTypeGetter()).GetEdmModel();
-
-            return await new HostBuilder()
-                .ConfigureWebHost(web => web
-                    .UseTestServer()
-                    .ConfigureServices(services =>
-                    {
-                        services.AddSingleton<IInformacionVersion, InformacionVersion>();
-                        services.AddControllers(o => o.EnableEndpointRouting = false)
-                            .AddApplicationPart(typeof(Startup).Assembly)
-                            .AddApplicationPart(typeof(Microsoft.AspNetCore.OData.Routing.Controllers.MetadataController).Assembly)
-                            .AddOData(o => o.AddRouteComponents(UriConstants.PrefijoRutaOData, edmModel));
-                    })
-                    .Configure(app => app
-                        .UseRouting()
-                        .UseEndpoints(e => e.MapControllers())))
-                .StartAsync();
-        }
+        private static Task<IHost> CrearHostAsync() => HostDePrueba.CrearAsync();
 
         [Fact]
         public async Task GetVersion_PorHttp_DevuelveLaVersionEnJson()
@@ -91,10 +73,10 @@ namespace SiMaVeh.Api.Test
             using var host = await CrearHostAsync();
             var cliente = host.GetTestClient();
 
-            var respuesta = await cliente.GetAsync("/version");
+            var respuesta = await cliente.GetAsync("/version", TestContext.Current.CancellationToken);
 
             Assert.Equal(HttpStatusCode.OK, respuesta.StatusCode);
-            using var json = JsonDocument.Parse(await respuesta.Content.ReadAsStringAsync());
+            using var json = JsonDocument.Parse(await respuesta.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
             var informacion = new InformacionVersion();
             Assert.Equal("SiMaVeh", json.RootElement.GetProperty("aplicacion").GetString());
             Assert.Equal(informacion.Version, json.RootElement.GetProperty("version").GetString());
@@ -107,10 +89,10 @@ namespace SiMaVeh.Api.Test
             using var host = await CrearHostAsync();
             var cliente = host.GetTestClient();
 
-            var metadata = await cliente.GetAsync($"/{UriConstants.PrefijoRutaOData}/$metadata");
+            var metadata = await cliente.GetAsync($"/{UriConstants.PrefijoRutaOData}/$metadata", TestContext.Current.CancellationToken);
 
             Assert.Equal(HttpStatusCode.OK, metadata.StatusCode);
-            Assert.Contains("EntitySet Name=\"Paises\"", await metadata.Content.ReadAsStringAsync());
+            Assert.Contains("EntitySet Name=\"Paises\"", await metadata.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
         }
     }
 }
