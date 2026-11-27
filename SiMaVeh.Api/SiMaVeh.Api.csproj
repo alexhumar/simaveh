@@ -7,10 +7,14 @@
   <ItemGroup>
     <PackageReference Include="Lamar" Version="13.0.3" />
     <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="13.0.3" />
+    <PackageReference Include="Microsoft.OData.Core" Version="7.21.6" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.31" />
+    <PackageReference Include="Microsoft.OpenApi.OData" Version="1.7.6" />
     <PackageReference Include="NLog" Version="5.2.8" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.8" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.3.1" />
   </ItemGroup>
   
   <ItemGroup>

@@ -84,6 +84,8 @@ namespace SiMaVeh.Api
 
             app.ConfigureCustomExceptionMiddleware();
 
+            app.ConfigurarSwaggerUI();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
